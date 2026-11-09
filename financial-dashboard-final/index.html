@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球市場數據監控</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script> 
+    <script>
+        function getColor(change) {
+            if (change > 0) return 'text-red-500';
+            if (change < 0) return 'text-green-500';
+            return 'text-gray-500';
+        }
+        function getSign(change) {
+            return change > 0 ? '+' : '';
+        }
+        function createCard(item) {
+            const color = getColor(item.change);
+            const sign = getSign(item.change);
+            const changeText = item.change !== null ? `${sign}${item.change}%` : '-';
+            return `
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <h3 class="text-gray-600 font-medium text-sm">${item.name}</h3>
+                    <div class="mt-2 flex items-baseline gap-2">
+                        <span class="text-2xl font-bold text-gray-900">${item.price}</span>
+                        <span class="text-sm font-semibold ${color}">${changeText}</span>
+                    </div>
+                </div>
+            `;
+        }
+        function createSection(title, data) {
+            const cards = data.map(createCard).join('');
+            return `
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">${title}</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        ${cards}
+                    </div>
+                </div>
+            `;
+        }
+        window.onload = () => {
+            const container = document.getElementById('dashboard-content');
+            let html = '';
+            if (typeof data !== 'undefined' && Object.keys(data).length > 0) {
+                for (const [title, items] of Object.entries(data)) {
+                    html += createSection(title, items);
+                }
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<div class="p-8 text-center text-gray-500">正在等待系統更新資料...</div>';
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 p-6 md:p-12 font-sans">
+    <header class="mb-10 flex justify-between items-end">
+        <div>
+            <h1 class="text-3xl font-black text-gray-900">全球市場數據監控</h1>
+            <p class="text-gray-500 mt-2">每日收盤後自動化更新</p>
+        </div>
+    </header>
+    <main id="dashboard-content"></main>
+</body>
+</html>
