@@ -1,6 +1,7 @@
 import yfinance as yf
 import json
 import requests
+from datetime import datetime, timedelta
 
 yf_assets = {
     "全球指數": {"標普 500": "^GSPC", "道瓊工業": "^DJI", "納斯達克": "^IXIC", "費城半導體": "^SOX", "台股指數": "^TWII", "日經 225": "^N225", "韓國 KOSPI": "^KS11"},
@@ -12,6 +13,7 @@ yf_assets = {
 
 dashboard_data = {}
 
+# 1. 抓取全球金融報價
 for category, tickers in yf_assets.items():
     dashboard_data[category] = []
     for name, ticker in tickers.items():
@@ -21,14 +23,14 @@ for category, tickers in yf_assets.items():
                 today = hist['Close'].iloc[-1]
                 yesterday = hist['Close'].iloc[-2]
                 
-                # 修正殖利率被放大10倍的問題
+                # 修正殖利率被放大 10 倍的問題
                 if category == "美債殖利率":
                     today = today / 10
                     yesterday = yesterday / 10
                     
                 pct = ((today - yesterday) / yesterday) * 100
                 
-                if category == "美債殖利率" or category == "外匯市場":
+                if category in ["美債殖利率", "外匯市場"]:
                     price_str = f"{today:.3f}"
                     if category == "美債殖利率": price_str += "%"
                 else:
@@ -38,45 +40,53 @@ for category, tickers in yf_assets.items():
         except Exception:
             pass
 
-# 改用證交所 OpenAPI，此端點不會封鎖 GitHub Actions
+# 2. 抓取台股籌碼 (改用 FinMind 開源 API，免金鑰且防擋)
 try:
-    url = "https://openapi.twse.com.tw/v1/fund/BFI82U"
+    # 抓取近 7 天確保能涵蓋最新交易日
+    start_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+    url = f"https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockTotalInstitutionalInvestors&start_date={start_date}"
     res = requests.get(url, timeout=10)
     
     if res.status_code == 200:
-        data_list = res.json()
-        f_val = 0
-        t_val = 0
-        d_val = 0
-        
-        for item in data_list:
-            # OpenAPI 欄位解析，相容大小寫
-            name = item.get("type", item.get("Type", ""))
-            diff_str = item.get("difference", item.get("Difference", "0"))
-            diff = int(str(diff_str).replace(",", ""))
+        json_data = res.json()
+        if json_data.get("msg") == "success" and len(json_data.get("data", [])) > 0:
+            df_data = json_data["data"]
+            last_date = df_data[-1]["date"] # 自動對齊最新日期
             
-            if "外資" in name:
-                f_val += diff
-            elif "投信" in name:
-                t_val += diff
-            elif "自營商" in name:
-                d_val += diff
-                
-        f_val = round(f_val / 100_000_000, 1)
-        t_val = round(t_val / 100_000_000, 1)
-        d_val = round(d_val / 100_000_000, 1)
-        
-        fmt = lambda v: f"+ {v} 億" if v > 0 else f"- {abs(v)} 億"
-        
-        dashboard_data["台股籌碼"] = [
-            {"name": "外資買賣超", "price": fmt(f_val), "change": 1 if f_val > 0 else -1},
-            {"name": "投信買賣超", "price": fmt(t_val), "change": 1 if t_val > 0 else -1},
-            {"name": "自營商買賣超", "price": fmt(d_val), "change": 1 if d_val > 0 else -1}
-        ]
+            f_val = 0
+            t_val = 0
+            d_val = 0
+            
+            for row in df_data:
+                if row.get("date") == last_date:
+                    name = row.get("name", "")
+                    net = row.get("buy", 0) - row.get("sell", 0)
+                    
+                    if "外資" in name:
+                        f_val += net
+                    elif "投信" in name:
+                        t_val += net
+                    elif "自營商" in name:
+                        d_val += net
+                        
+            f_val = round(f_val / 100_000_000, 1)
+            t_val = round(t_val / 100_000_000, 1)
+            d_val = round(d_val / 100_000_000, 1)
+            
+            fmt = lambda v: f"+ {v} 億" if v > 0 else f"- {abs(v)} 億"
+            
+            dashboard_data["台股籌碼"] = [
+                {"name": "外資買賣超", "price": fmt(f_val), "change": 1 if f_val > 0 else -1},
+                {"name": "投信買賣超", "price": fmt(t_val), "change": 1 if t_val > 0 else -1},
+                {"name": "自營商買賣超", "price": fmt(d_val), "change": 1 if d_val > 0 else -1}
+            ]
+        else:
+            dashboard_data["台股籌碼"] = []
     else:
         dashboard_data["台股籌碼"] = []
 except Exception:
     dashboard_data["台股籌碼"] = []
 
+# 3. 匯出給前端網頁讀取
 with open('data.js', 'w', encoding='utf-8') as f:
     f.write(f"const data = {json.dumps(dashboard_data, ensure_ascii=False)};")
