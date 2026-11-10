@@ -52,25 +52,29 @@ yf_assets = {
 
 dashboard_data = {}
 
-# 1. 抓取全球金融報價
+# 1. 抓取全球金融報價與當日走勢
 for category, tickers in yf_assets.items():
     dashboard_data[category] = []
     for name, ticker in tickers.items():
         try:
-            hist = yf.Ticker(ticker).history(period="5d")
+            tk = yf.Ticker(ticker)
+            hist = tk.history(period="5d")
             hist = hist.dropna(subset=['Close'])
             if len(hist) >= 2:
                 today = float(hist['Close'].iloc[-1])
                 yesterday = float(hist['Close'].iloc[-2])
                 
                 # 強制校正美債殖利率，確保數值永遠落在合理的 1% ~ 15% 真實殖利率區間
+                scale_factor = 1.0
                 if category == "美債殖利率":
                     while today > 15:
                         today /= 10.0
                         yesterday /= 10.0
+                        scale_factor /= 10.0
                     while today < 0.8 and today > 0:
                         today *= 10.0
                         yesterday *= 10.0
+                        scale_factor *= 10.0
                         
                 pct = ((today - yesterday) / yesterday) * 100
                 
@@ -80,8 +84,29 @@ for category, tickers in yf_assets.items():
                     price_str = f"{today:.3f}"
                 else:
                     price_str = f"{today:.2f}"
+                
+                # 抓取當日 5 分鐘 K 線製作迷你走勢圖 (Sparkline)
+                sparkline = []
+                try:
+                    intra = tk.history(period="1d", interval="5m")
+                    intra = intra.dropna(subset=['Close'])
+                    if len(intra) > 5:
+                        raw_pts = [float(x) * scale_factor for x in intra['Close'].tolist()]
+                        # 抽樣控制在 25 個點以內，確保檔案輕量且線條平滑
+                        step = max(1, len(raw_pts) // 25)
+                        sparkline = [round(x, 4) for x in raw_pts[::step]]
+                    else:
+                        # 備援：若無分時資料則取近 5 日收盤價
+                        sparkline = [round(float(x) * scale_factor, 4) for x in hist['Close'].tolist()]
+                except Exception:
+                    sparkline = [round(float(x) * scale_factor, 4) for x in hist['Close'].tolist()]
                     
-                dashboard_data[category].append({"name": name, "price": price_str, "change": round(pct, 2)})
+                dashboard_data[category].append({
+                    "name": name, 
+                    "price": price_str, 
+                    "change": round(pct, 2),
+                    "sparkline": sparkline
+                })
         except Exception as e:
             print(f"Error {name}: {e}")
 
@@ -95,7 +120,6 @@ headers = {
     'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7'
 }
 
-# 自動往回尋找最近一個有開盤的交易日（最多找7天）
 tw_now = datetime.utcnow() + timedelta(hours=8)
 
 for i in range(7):
