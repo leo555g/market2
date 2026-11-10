@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全球市場數據監控</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="data.js"></script> 
     <script>
         function getColor(change) {
             if (change > 0) return 'text-red-500';
@@ -18,19 +17,24 @@
         function createCard(item) {
             const color = getColor(item.change);
             const sign = getSign(item.change);
-            const changeText = item.change !== null ? `${sign}${item.change}%` : '-';
+            // 台股籌碼不需要顯示百分比，只靠顏色區分買賣超
+            const showPct = item.price.includes('億') || item.price === '更新中';
+            const changeText = (!showPct && item.change !== null) ? `${sign}${item.change}%` : '';
+            const priceColor = showPct ? color : 'text-gray-900';
+            
             return `
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
                     <h3 class="text-gray-600 font-medium text-sm">${item.name}</h3>
                     <div class="mt-2 flex items-baseline gap-2">
-                        <span class="text-2xl font-bold text-gray-900">${item.price}</span>
+                        <span class="text-2xl font-bold ${priceColor}">${item.price}</span>
                         <span class="text-sm font-semibold ${color}">${changeText}</span>
                     </div>
                 </div>
             `;
         }
-        function createSection(title, data) {
-            const cards = data.map(createCard).join('');
+        function createSection(title, sectionData) {
+            if (!sectionData || sectionData.length === 0) return '';
+            const cards = sectionData.map(createCard).join('');
             return `
                 <div class="mb-8">
                     <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">${title}</h2>
@@ -40,8 +44,12 @@
                 </div>
             `;
         }
-        window.onload = () => {
+        function renderDashboard() {
             const container = document.getElementById('dashboard-content');
+            const timeEl = document.getElementById('update-time');
+            if (typeof lastUpdate !== 'undefined') {
+                timeEl.textContent = `最後更新時間：${lastUpdate}`;
+            }
             let html = '';
             if (typeof data !== 'undefined' && Object.keys(data).length > 0) {
                 for (const [title, items] of Object.entries(data)) {
@@ -51,15 +59,24 @@
             } else {
                 container.innerHTML = '<div class="p-8 text-center text-gray-500">正在等待系統更新資料...</div>';
             }
+        }
+        
+        // 動態載入 data.js 並加上時間戳記，強制破除瀏覽器快取！
+        window.onload = () => {
+            const script = document.createElement('script');
+            script.src = 'data.js?t=' + new Date().getTime();
+            script.onload = renderDashboard;
+            document.head.appendChild(script);
         };
     </script>
 </head>
 <body class="bg-gray-50 p-6 md:p-12 font-sans">
-    <header class="mb-10 flex justify-between items-end">
+    <header class="mb-10 flex flex-col md:flex-row md:justify-between md:items-end">
         <div>
             <h1 class="text-3xl font-black text-gray-900">全球市場數據監控</h1>
             <p class="text-gray-500 mt-2">每日收盤後自動化更新</p>
         </div>
+        <div id="update-time" class="text-sm text-gray-400 mt-2 md:mt-0"></div>
     </header>
     <main id="dashboard-content"></main>
 </body>
