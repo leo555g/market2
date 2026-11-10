@@ -28,11 +28,15 @@ for category, tickers in yf_assets.items():
                 today = float(hist['Close'].iloc[-1])
                 yesterday = float(hist['Close'].iloc[-2])
                 
-                # 防呆機制：如果報價異常大於 20 (代表舊版放大10倍格式) 才除以 10，否則保持原樣
-                if category == "美債殖利率" and today > 20:
-                    today /= 10
-                    yesterday /= 10
-                    
+                # 【強制校正美債殖利率】確保數值永遠落在合理的 1% ~ 15% 真實殖利率區間
+                if category == "美債殖利率":
+                    while today > 15:
+                        today /= 10.0
+                        yesterday /= 10.0
+                    while today < 0.8 and today > 0:
+                        today *= 10.0
+                        yesterday *= 10.0
+                        
                 pct = ((today - yesterday) / yesterday) * 100
                 
                 if category == "美債殖利率":
@@ -46,84 +50,75 @@ for category, tickers in yf_assets.items():
         except Exception as e:
             print(f"Error {name}: {e}")
 
-# 2. 抓取台股籌碼 (三道防線：證交所 OpenAPI -> 證交所官網 -> FinMind 英文標籤)
+# 2. 直連您指定的證交所三大法人網頁 (https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)
 twse_success = False
+session = requests.Session()
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Referer': 'https://www.twse.com.tw/zh/trading/foreign/bfi82u.html', # 綁定您指定的網址作為安全通行證
+    'Accept': 'application/json, text/javascript, */*; q=0.01',
+    'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7'
 }
 
-# 防線 A：證交所 OpenAPI
-try:
-    res = requests.get("https://openapi.twse.com.tw/v1/fund/BFI82U", headers=headers, timeout=10, verify=False)
-    if res.status_code == 200:
-        data_list = res.json()
-        if isinstance(data_list, list) and len(data_list) > 0:
-            f_val, t_val, d_val = 0, 0, 0
-            for item in data_list:
-                name = str(item.get("單位名稱", item.get("type", item.get("Type", ""))))
-                diff_str = str(item.get("買賣差額", item.get("difference", item.get("Difference", "0")))).replace(",", "")
-                if diff_str and diff_str != "-":
-                    diff = int(float(diff_str))
-                    if "外資" in name: f_val += diff
-                    elif "投信" in name: t_val += diff
-                    elif "自營商" in name: d_val += diff
-            if f_val != 0 or t_val != 0:
-                f_val = round(f_val / 100_000_000, 1)
-                t_val = round(t_val / 100_000_000, 1)
-                d_val = round(d_val / 100_000_000, 1)
-                fmt = lambda v: f"+ {v} 億" if v > 0 else f"- {abs(v)} 億"
-                dashboard_data["台股籌碼"] = [
-                    {"name": "外資買賣超", "price": fmt(f_val), "change": 1 if f_val > 0 else -1},
-                    {"name": "投信買賣超", "price": fmt(t_val), "change": 1 if t_val > 0 else -1},
-                    {"name": "自營商買賣超", "price": fmt(d_val), "change": 1 if d_val > 0 else -1}
-                ]
-                twse_success = True
-except Exception as e:
-    print(f"OpenAPI 失敗: {e}")
+# 自動往回尋找最近一個有開盤的交易日（最多找7天，避開週末或下午未結算的空窗期）
+tw_now = datetime.utcnow() + timedelta(hours=8)
 
-# 防線 B：FinMind API (修正為正確的英文標籤比對)
-if not twse_success:
+for i in range(7):
+    target_date = (tw_now - timedelta(days=i)).strftime("%Y%m%d")
+    # 這是 bfi82u.html 網頁背後真正抓取表格的資料端點
+    url = f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate={target_date}"
+    
     try:
-        start_date = (datetime.now() - timedelta(days=10)).strftime("%Y-%m-%d")
-        url = f"https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockTotalInstitutionalInvestors&start_date={start_date}"
-        res = requests.get(url, timeout=10)
+        res = session.get(url, headers=headers, timeout=15, verify=False)
         if res.status_code == 200:
-            json_data = res.json()
-            df_data = json_data.get("data", [])
-            if len(df_data) > 0:
-                last_date = df_data[-1]["date"]
+            twse_data = res.json()
+            if twse_data.get('stat') == 'OK' and twse_data.get('data'):
                 f_val, t_val, d_val = 0, 0, 0
-                for row in df_data:
-                    if row.get("date") == last_date:
-                        name = str(row.get("name", ""))
-                        net = float(row.get("buy", 0)) - float(row.get("sell", 0))
-                        if "Foreign" in name or "外資" in name: f_val += net
-                        elif "Investment_Trust" in name or "投信" in name: t_val += net
-                        elif "Dealer" in name or "自營商" in name: d_val += net
-                if f_val != 0 or t_val != 0:
-                    f_val = round(f_val / 100_000_000, 1)
-                    t_val = round(t_val / 100_000_000, 1)
-                    d_val = round(d_val / 100_000_000, 1)
-                    fmt = lambda v: f"+ {v} 億" if v > 0 else f"- {abs(v)} 億"
-                    dashboard_data["台股籌碼"] = [
-                        {"name": "外資買賣超", "price": fmt(f_val), "change": 1 if f_val > 0 else -1},
-                        {"name": "投信買賣超", "price": fmt(t_val), "change": 1 if t_val > 0 else -1},
-                        {"name": "自營商買賣超", "price": fmt(d_val), "change": 1 if d_val > 0 else -1}
+                
+                for row in twse_data['data']:
+                    name = str(row[0]).strip()
+                    # row[3] 為「買賣差額」，清除逗號與空白
+                    diff_str = str(row[3]).replace(',', '').replace(' ', '').strip()
+                    if not diff_str or diff_str == '-':
+                        continue
+                    diff = int(float(diff_str))
+                    
+                    if '外資' in name:
+                        f_val += diff
+                    elif '投信' in name:
+                        t_val += diff
+                    elif '自營商' in name:
+                        d_val += diff
+                        
+                # 只要三大法人不是全部為 0，就代表成功抓到有效交易日數據
+                if f_val != 0 or t_val != 0 or d_val != 0:
+                    f_yi = round(f_val / 100_000_000, 2)
+                    t_yi = round(t_val / 100_000_000, 2)
+                    d_yi = round(d_val / 100_000_000, 2)
+                    
+                    fmt = lambda v: f"+{v} 億" if v > 0 else f"{v} 億"
+                    
+                    dashboard_data[f"台股籌碼 ({target_date[:4]}/{target_date[4:6]}/{target_date[6:]})"] = [
+                        {"name": "外資買賣超", "price": fmt(f_yi), "change": 1 if f_yi > 0 else (-1 if f_yi < 0 else 0)},
+                        {"name": "投信買賣超", "price": fmt(t_yi), "change": 1 if t_yi > 0 else (-1 if t_yi < 0 else 0)},
+                        {"name": "自營商買賣超", "price": fmt(d_yi), "change": 1 if d_yi > 0 else (-1 if d_yi < 0 else 0)}
                     ]
                     twse_success = True
+                    print(f"成功抓取 {target_date} 證交所三大法人數據！")
+                    break # 抓到最新一天就立刻停止迴圈
     except Exception as e:
-        print(f"FinMind 失敗: {e}")
+        print(f"嘗試抓取 {target_date} 失敗: {e}")
 
 if not twse_success:
     dashboard_data["台股籌碼"] = [
-        {"name": "外資買賣超", "price": "更新中", "change": 0},
-        {"name": "投信買賣超", "price": "更新中", "change": 0},
-        {"name": "自營商買賣超", "price": "更新中", "change": 0}
+        {"name": "外資買賣超", "price": "連線失敗", "change": 0},
+        {"name": "投信買賣超", "price": "連線失敗", "change": 0},
+        {"name": "自營商買賣超", "price": "連線失敗", "change": 0}
     ]
 
 # 紀錄最後更新時間 (台灣時間 UTC+8)
-tw_time = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M")
+tw_time_str = tw_now.strftime("%Y-%m-%d %H:%M")
 
-output_content = f"const lastUpdate = '{tw_time}';\nconst data = {json.dumps(dashboard_data, ensure_ascii=False)};"
+output_content = f"const lastUpdate = '{tw_time_str}';\nconst data = {json.dumps(dashboard_data, ensure_ascii=False)};"
 with open('data.js', 'w', encoding='utf-8') as f:
     f.write(output_content)
