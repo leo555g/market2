@@ -8,11 +8,46 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 yf_assets = {
-    "全球指數": {"標普 500": "^GSPC", "道瓊工業": "^DJI", "納斯達克": "^IXIC", "費城半導體": "^SOX", "台股指數": "^TWII", "日經 225": "^N225", "韓國 KOSPI": "^KS11"},
-    "外匯市場": {"USD/TWD": "USDTWD=X", "美元指數 (DXY)": "DX-Y.NYB", "人民幣 (USD/CNY)": "USDCNY=X", "歐元 (EUR/USD)": "EURUSD=X", "日圓 (USD/JPY)": "USDJPY=X", "英鎊 (GBP/USD)": "GBPUSD=X"},
-    "美債殖利率": {"10年期": "^TNX", "30年期": "^TYX"},
-    "原物料": {"黃金": "GC=F", "白銀": "SI=F", "銅": "HG=F", "布蘭特原油": "BZ=F", "WTI原油": "CL=F"},
-    "核心科技股": {"輝達 (NVDA)": "NVDA", "台積電 (TSM)": "TSM", "AMD": "AMD"}
+    "全球指數": {
+        "標普 500": "^GSPC", 
+        "道瓊工業": "^DJI", 
+        "納斯達克": "^IXIC", 
+        "費城半導體": "^SOX", 
+        "台股指數": "^TWII", 
+        "日經 225": "^N225", 
+        "韓國 KOSPI": "^KS11",
+        "英國富時 100": "^FTSE",
+        "德國 DAX": "^GDAXI",
+        "法國 CAC 40": "^FCHI"
+    },
+    "外匯市場": {
+        "USD/TWD": "USDTWD=X", 
+        "美元指數 (DXY)": "DX-Y.NYB", 
+        "人民幣 (USD/CNY)": "USDCNY=X", 
+        "歐元 (EUR/USD)": "EURUSD=X", 
+        "日圓 (USD/JPY)": "USDJPY=X", 
+        "英鎊 (GBP/USD)": "GBPUSD=X"
+    },
+    "美債殖利率": {
+        "10年期": "^TNX", 
+        "30年期": "^TYX"
+    },
+    "原物料": {
+        "黃金": "GC=F", 
+        "白銀": "SI=F", 
+        "銅": "HG=F", 
+        "鈀金": "PA=F",
+        "布蘭特原油": "BZ=F", 
+        "WTI原油": "CL=F",
+        "黃豆期貨": "ZS=F",
+        "小麥期貨": "ZW=F",
+        "玉米期貨": "ZC=F"
+    },
+    "核心科技股": {
+        "輝達 (NVDA)": "NVDA", 
+        "台積電 (TSM)": "TSM", 
+        "AMD": "AMD"
+    }
 }
 
 dashboard_data = {}
@@ -28,7 +63,7 @@ for category, tickers in yf_assets.items():
                 today = float(hist['Close'].iloc[-1])
                 yesterday = float(hist['Close'].iloc[-2])
                 
-                # 【強制校正美債殖利率】確保數值永遠落在合理的 1% ~ 15% 真實殖利率區間
+                # 強制校正美債殖利率，確保數值永遠落在合理的 1% ~ 15% 真實殖利率區間
                 if category == "美債殖利率":
                     while today > 15:
                         today /= 10.0
@@ -50,22 +85,21 @@ for category, tickers in yf_assets.items():
         except Exception as e:
             print(f"Error {name}: {e}")
 
-# 2. 直連您指定的證交所三大法人網頁 (https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)
+# 2. 直連證交所三大法人網頁 (https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)
 twse_success = False
 session = requests.Session()
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-    'Referer': 'https://www.twse.com.tw/zh/trading/foreign/bfi82u.html', # 綁定您指定的網址作為安全通行證
+    'Referer': 'https://www.twse.com.tw/zh/trading/foreign/bfi82u.html',
     'Accept': 'application/json, text/javascript, */*; q=0.01',
     'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7'
 }
 
-# 自動往回尋找最近一個有開盤的交易日（最多找7天，避開週末或下午未結算的空窗期）
+# 自動往回尋找最近一個有開盤的交易日（最多找7天）
 tw_now = datetime.utcnow() + timedelta(hours=8)
 
 for i in range(7):
     target_date = (tw_now - timedelta(days=i)).strftime("%Y%m%d")
-    # 這是 bfi82u.html 網頁背後真正抓取表格的資料端點
     url = f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate={target_date}"
     
     try:
@@ -77,7 +111,6 @@ for i in range(7):
                 
                 for row in twse_data['data']:
                     name = str(row[0]).strip()
-                    # row[3] 為「買賣差額」，清除逗號與空白
                     diff_str = str(row[3]).replace(',', '').replace(' ', '').strip()
                     if not diff_str or diff_str == '-':
                         continue
@@ -90,7 +123,6 @@ for i in range(7):
                     elif '自營商' in name:
                         d_val += diff
                         
-                # 只要三大法人不是全部為 0，就代表成功抓到有效交易日數據
                 if f_val != 0 or t_val != 0 or d_val != 0:
                     f_yi = round(f_val / 100_000_000, 2)
                     t_yi = round(t_val / 100_000_000, 2)
@@ -105,7 +137,7 @@ for i in range(7):
                     ]
                     twse_success = True
                     print(f"成功抓取 {target_date} 證交所三大法人數據！")
-                    break # 抓到最新一天就立刻停止迴圈
+                    break
     except Exception as e:
         print(f"嘗試抓取 {target_date} 失敗: {e}")
 
