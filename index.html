@@ -14,36 +14,70 @@
         function getSign(change) {
             return change > 0 ? '+' : '';
         }
+        
+        // 繪製 SVG 迷你走勢圖 (含漸層底色)
+        function createSparkline(sparkline, change) {
+            if (!sparkline || sparkline.length < 2) return '';
+            const width = 85;
+            const height = 36;
+            const min = Math.min(...sparkline);
+            const max = Math.max(...sparkline);
+            const range = (max - min) === 0 ? 1 : (max - min);
+            
+            const pts = sparkline.map((val, idx) => {
+                const x = (idx / (sparkline.length - 1)) * width;
+                const y = height - ((val - min) / range) * (height - 8) - 4;
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+            });
+            
+            const pointsStr = pts.join(' ');
+            const strokeColor = change > 0 ? '#ef4444' : (change < 0 ? '#22c55e' : '#9ca3af');
+            const fillColor = change > 0 ? 'rgba(239, 68, 68, 0.12)' : (change < 0 ? 'rgba(34, 197, 94, 0.12)' : 'rgba(156, 163, 175, 0.1)');
+            const areaPoints = `0,${height} ${pointsStr} ${width},${height}`;
+
+            return `
+                <svg width="${width}" height="${height}" class="overflow-visible shrink-0 ml-2">
+                    <polygon points="${areaPoints}" fill="${fillColor}" />
+                    <polyline fill="none" stroke="${strokeColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" points="${pointsStr}" />
+                </svg>
+            `;
+        }
+
         function createCard(item) {
             const color = getColor(item.change);
             const sign = getSign(item.change);
-            // 台股籌碼不需要顯示百分比，只靠顏色區分買賣超
-            const showPct = item.price.includes('億') || item.price === '更新中';
+            const showPct = item.price.includes('億') || item.price === '連線失敗' || item.price === '更新中';
             const changeText = (!showPct && item.change !== null) ? `${sign}${item.change}%` : '';
             const priceColor = showPct ? color : 'text-gray-900';
+            const sparklineSvg = createSparkline(item.sparkline, item.change);
             
             return `
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <h3 class="text-gray-600 font-medium text-sm">${item.name}</h3>
-                    <div class="mt-2 flex items-baseline gap-2">
-                        <span class="text-2xl font-bold ${priceColor}">${item.price}</span>
-                        <span class="text-sm font-semibold ${color}">${changeText}</span>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md transition-shadow">
+                    <div class="flex flex-col justify-between min-w-0">
+                        <h3 class="text-gray-600 font-medium text-sm truncate">${item.name}</h3>
+                        <div class="mt-2 flex items-baseline gap-2 flex-wrap">
+                            <span class="text-2xl font-bold ${priceColor}">${item.price}</span>
+                            <span class="text-xs font-semibold ${color}">${changeText}</span>
+                        </div>
                     </div>
+                    ${sparklineSvg}
                 </div>
             `;
         }
+
         function createSection(title, sectionData) {
             if (!sectionData || sectionData.length === 0) return '';
             const cards = sectionData.map(createCard).join('');
             return `
                 <div class="mb-8">
                     <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">${title}</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         ${cards}
                     </div>
                 </div>
             `;
         }
+
         function renderDashboard() {
             const container = document.getElementById('dashboard-content');
             const timeEl = document.getElementById('update-time');
@@ -61,7 +95,6 @@
             }
         }
         
-        // 動態載入 data.js 並加上時間戳記，強制破除瀏覽器快取！
         window.onload = () => {
             const script = document.createElement('script');
             script.src = 'data.js?t=' + new Date().getTime();
