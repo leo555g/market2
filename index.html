@@ -40,17 +40,15 @@
   <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援美股盤前盤後、期貨夜盤、台股月營收與公開資訊觀測站重大訊息</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援多標的疊圖比較、個股利多利空情報、盤前盤後與期貨夜盤即時跳動</p>
     </div>
 
     <div class="flex flex-wrap items-center gap-3">
-      <!-- 即時跳動狀態指示器 -->
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
         <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
         <span id="live-status" class="text-xs font-bold text-emerald-400">即時報價跳動中 (10秒自動巡檢)</span>
       </div>
 
-      <!-- 選填：Finnhub WebSocket 美股秒級連線設定 -->
       <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">
         ⚡ 設定美股 WebSocket 秒級金鑰
       </button>
@@ -61,24 +59,25 @@
 
   <main class="max-w-7xl mx-auto space-y-10">
 
-    <!-- 專區 1：互動式走勢圖 (1D / 1W / 1M / YTD + 自訂任意日期區間) -->
+    <!-- 專區 1：互動式走勢圖 + 多標的自由疊加比較 (Normalized % Return) -->
     <section class="card-bg rounded-xl p-5 shadow-lg">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-800 pb-4 mb-3">
         <div>
-          <div class="flex items-center gap-3">
-            <h2 id="chart-asset-title" class="text-xl font-bold text-white">點擊任一資產卡片檢視走勢圖</h2>
-            <span id="chart-period-return" class="text-sm font-bold px-2.5 py-0.5 rounded bg-slate-800 mono"></span>
+          <div class="flex flex-wrap items-center gap-3">
+            <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較圖</h2>
+            <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
           </div>
-          <p class="text-xs text-slate-400 mt-1">支援日內 5 分鐘走勢 (1D)、歷史區間切換，或自行指定任意起訖日期</p>
+          <p class="text-xs text-slate-400 mt-1">點擊下方卡片切換主標的，或使用右側下拉選單自由加入多個標的進行「同區間累計報酬率 (%)」疊圖比較</p>
         </div>
 
+        <!-- 區間切換按鈕與自訂日期選擇器 -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1D (日內)</button>
           <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
           <button onclick="switchRange('1M')" id="btn-1M" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1M</button>
           <button onclick="switchRange('YTD')" id="btn-YTD" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
 
-          <div class="flex items-center gap-1.5 ml-2 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
+          <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">自訂區間：</span>
             <input type="date" id="custom-start" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
@@ -88,18 +87,41 @@
         </div>
       </div>
 
+      <!-- 多標的比較控制列 (可自由選擇全網頁任一標的加入比較) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 border border-slate-800/80 rounded-lg p-3 mb-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-slate-300">目前比較清單：</span>
+          <div id="compare-chips-container" class="flex flex-wrap items-center gap-2"></div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <select id="compare-select" class="bg-slate-800 border border-slate-700 text-xs text-white rounded px-2.5 py-1.5 focus:outline-none focus:border-blue-500">
+            <option value="">＋ 選擇要加入比較的指數 / 個股 / 期貨...</option>
+          </select>
+          <button onclick="addSelectedCompareAsset()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded transition">
+            加入比較
+          </button>
+          <button onclick="clearComparisons()" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded transition">
+            清除比較
+          </button>
+        </div>
+      </div>
+
+      <!-- 區間累計報酬率排行顯示列 -->
+      <div id="comparison-return-summary" class="flex flex-wrap items-center gap-3 mb-3"></div>
+
       <div id="main-price-chart" class="w-full h-80"></div>
     </section>
 
     <!-- 專區 2：全球主要指數 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(即時跳動・點擊卡片可切換上方走勢圖)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(左鍵點擊切換主圖・點「＋比較」直接疊圖對比報酬率)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 專區 3：美股核心科技股 (純代號 + 盤前/盤後即時跳動) -->
+    <!-- 專區 3：美股核心科技股 (純代號 + 盤前/盤後即時跳動 + 點擊查看利多利空消息) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-indigo-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-slate-400 ml-2">(純代號顯示・下方即時跳動盤前／盤後價格)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-indigo-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-slate-400 ml-2">(純代號顯示・點擊個股或「📊 多空情報」檢視利多與利空消息)</span></h2>
       <div id="grid-us-stocks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
@@ -109,9 +131,9 @@
       <div id="grid-futures" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 5：台股核心權值股 (最新財報核心數據 + 月營收 + 公開資訊觀測站重訊) -->
+    <!-- 專區 5：台股核心權值股 (最新財報 + 月營收 + 公開資訊觀測站重訊 + 點擊查看利多利空消息) -->
     <section class="space-y-6">
-      <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">台股核心權值股・最新財報與月營收指標・公開資訊觀測站重大訊息</h2>
+      <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">台股核心權值股・最新財報與月營收指標・利多利空與重訊</h2>
       <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
       <!-- 公開資訊觀測站 (MOPS) 當日重大訊息專欄 -->
@@ -144,7 +166,7 @@
 
     <!-- 專區 7：美股最新財報核心數據與獲利能力指標 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美股科技股：最新財報核心數據與獲利能力指標</h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美股科技股：最新財報核心數據與獲利能力指標 <span class="text-xs font-normal text-slate-400 ml-2">(點擊代號可開啟利多利空消息視窗)</span></h2>
       <div class="card-bg rounded-xl overflow-x-auto">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
@@ -159,6 +181,7 @@
               <th class="py-3 px-4">營業利益率</th>
               <th class="py-3 px-4">ROE</th>
               <th class="py-3 px-4">季度營收年增率 (YoY)</th>
+              <th class="py-3 px-4">多空情報</th>
             </tr>
           </thead>
           <tbody id="table-us-fundamentals" class="divide-y divide-slate-800/60 mono text-xs"></tbody>
@@ -174,16 +197,78 @@
 
   </main>
 
+  <!-- ========================================================= -->
+  <!-- 個股「利多 / 利空消息與財報深度剖析」彈出式視窗 (Modal) -->
+  <!-- ========================================================= -->
+  <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="card-bg border border-slate-700 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
+      <!-- 彈窗頂部 -->
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-5">
+        <div>
+          <div class="flex items-center gap-3">
+            <h2 id="modal-stock-title" class="text-2xl font-bold text-white">NVDA</h2>
+            <span id="modal-stock-price" class="text-xl font-bold mono text-white"></span>
+            <span id="modal-stock-ext" class="text-xs font-bold mono px-2 py-0.5 rounded bg-slate-800"></span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">即時彙整最新財報核心指標、月營收動能、公開資訊觀測站重訊與市場利多／利空情報</p>
+        </div>
+        <button onclick="closeStockModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-1.5 text-sm font-bold">
+          ✕ 關閉
+        </button>
+      </div>
+
+      <!-- 利多 vs 利空 雙欄對照區 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <!-- 利多消息 (Bullish) -->
+        <div class="bg-rose-950/20 border border-rose-500/30 rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-3 border-b border-rose-500/20 pb-2">
+            <span class="px-2 py-0.5 text-xs font-bold bg-rose-500/20 text-rose-400 rounded">🔥 利多消息與成長動能</span>
+          </div>
+          <ul id="modal-bullish-list" class="space-y-2.5 text-xs text-slate-200"></ul>
+        </div>
+
+        <!-- 利空消息 (Bearish) -->
+        <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-3 border-b border-emerald-500/20 pb-2">
+            <span class="px-2 py-0.5 text-xs font-bold bg-emerald-500/20 text-emerald-400 rounded">❄️ 利空消息與風險提示</span>
+          </div>
+          <ul id="modal-bearish-list" class="space-y-2.5 text-xs text-slate-200"></ul>
+        </div>
+      </div>
+
+      <!-- 財報與獲利能力指標總覽 -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-4">
+        <h3 class="text-sm font-bold text-white mb-3">最新財報核心數據與獲利能力指標</h3>
+        <div id="modal-fundamentals-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mono"></div>
+      </div>
+
+      <!-- 底部操作按鈕 -->
+      <div class="flex justify-end gap-3 pt-2">
+        <button id="modal-btn-add-compare" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg">
+          ➕ 將此標的加入上方走勢圖比較
+        </button>
+        <button onclick="closeStockModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-lg">
+          完成檢視
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let globalMarketData = null;
     let allAssetsMap = {};
-    let currentAssetSymbol = "^TWII";
-    let currentRangeMode = "1D";
+    let currentAssetSymbol = "^GSPC";
+    let compareSymbols = []; // 儲存使用者額外選擇要疊圖比較的標的代號
+    let currentRangeMode = "1M";
 
     let mainChart = null;
     let instChart = null;
     let marginChart = null;
     let finnhubSocket = null;
+
+    const CHART_COLORS = [
+      "#fb7185", "#38bdf8", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf"
+    ];
 
     function safeId(symbol) {
       return symbol.replace(/[^a-zA-Z0-9]/g, "_");
@@ -201,12 +286,13 @@
       return `${sign}${Number(val).toFixed(2)}%`;
     }
 
-    // 建立報價卡片 (綁定 DOM ID 供即時跳動與紅綠閃爍更新)
+    // 建立報價卡片 (支援點擊開啟利多利空視窗 + 一鍵加入走勢比較)
     function createQuoteCard(item, forceTickerOnly = false) {
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const titleText = forceTickerOnly ? item.symbol : item.name;
       const colorCls = getColorClass(item.change_pct);
+      const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
 
       let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
       if (item.ext_session && item.ext_session.price !== null) {
@@ -220,22 +306,38 @@
         `;
       }
 
+      // 個股專屬「📊 多空情報」按鈕與所有標的通用的「＋比較」按鈕
+      const actionBtns = `
+        <div class="mt-2 pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1">
+          ${isStock ? `<button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 font-medium transition">📊 多空情報</button>` : `<span class="text-[10px] text-slate-500 mono">${item.symbol}</span>`}
+          <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300 transition">＋比較</button>
+        </div>
+      `;
+
+      // 點擊美股卡片直接打開利多利空消息同時切換主走勢圖
+      const cardClickAction = isStock
+        ? `selectAsset('${item.symbol}'); openStockModal('${item.symbol}');`
+        : `selectAsset('${item.symbol}')`;
+
       return `
-        <div id="card-${domId}" onclick="selectAsset('${item.symbol}')" class="card-bg rounded-lg p-3.5 cursor-pointer">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-white text-sm tracking-tight">${titleText}</span>
-            <span class="text-[11px] text-slate-500 mono">${forceTickerOnly ? 'US' : item.symbol}</span>
+        <div id="card-${domId}" onclick="${cardClickAction}" class="card-bg rounded-lg p-3.5 cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm tracking-tight">${titleText}</span>
+              <span class="text-[11px] text-slate-500 mono">${forceTickerOnly ? 'US' : ''}</span>
+            </div>
+            <div class="mt-2 flex items-baseline justify-between mono">
+              <span id="price-${domId}" class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
+              <span id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
+            </div>
+            ${extHtml}
           </div>
-          <div class="mt-2 flex items-baseline justify-between mono">
-            <span id="price-${domId}" class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
-            <span id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
-          </div>
-          ${extHtml}
+          ${actionBtns}
         </div>
       `;
     }
 
-    // 台股權值股卡片
+    // 建立台股權值股卡片 (內建利多利空摘要預覽 + 點擊展開完整多空情報視窗)
     function createTwStockCard(item) {
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
@@ -260,11 +362,15 @@
         `;
       }
 
+      // 預覽最新一條利多與利空
+      const topBull = item.news_sentiment?.bullish?.[0]?.title || "點擊查看最新利多消息";
+      const topBear = item.news_sentiment?.bearish?.[0]?.title || "點擊查看最新風險提示";
+
       let mopsHtml = "";
       if (item.mops_announcements && item.mops_announcements.length > 0) {
         const listItems = item.mops_announcements.slice(0, 2).map(m => `
           <li class="text-xs text-slate-300 truncate">
-            <a href="${m.url}" target="_blank" class="hover:text-blue-400">
+            <a href="${m.url}" target="_blank" onclick="event.stopPropagation()" class="hover:text-blue-400">
               <span class="text-rose-400 font-bold">[重訊 ${m.time}]</span> ${m.subject}
             </a>
           </li>
@@ -275,22 +381,15 @@
             <ul class="space-y-1">${listItems}</ul>
           </div>
         `;
-      } else {
-        mopsHtml = `
-          <div class="mt-2.5 pt-2 border-t border-slate-800 flex justify-between items-center text-[11px] text-slate-500">
-            <span>今日無新增重大訊息</span>
-            <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" class="text-blue-400 hover:underline">MOPS 查詢</a>
-          </div>
-        `;
       }
 
       return `
-        <div id="card-${domId}" class="card-bg rounded-xl p-4 flex flex-col justify-between">
+        <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 flex flex-col justify-between cursor-pointer">
           <div>
-            <div onclick="selectAsset('${item.symbol}')" class="flex items-center justify-between cursor-pointer border-b border-slate-800 pb-2.5">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
               <div>
                 <h3 class="font-bold text-base text-white">${item.name}</h3>
-                <span class="text-xs text-slate-400">點擊切換上方走勢圖</span>
+                <span class="text-[11px] text-indigo-400">點擊卡片開啟「利多／利空情報室」</span>
               </div>
               <div class="text-right mono">
                 <div id="price-${domId}" class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
@@ -310,21 +409,431 @@
               </div>
               ${revHtml}
             </div>
+
+            <!-- 利多利空預覽條 -->
+            <div class="mt-2.5 space-y-1 text-xs bg-slate-900/50 p-2 rounded border border-slate-800/80">
+              <div class="truncate text-rose-300"><strong class="text-rose-400">🔥 利多：</strong>${topBull}</div>
+              <div class="truncate text-emerald-300"><strong class="text-emerald-400">❄️ 利空：</strong>${topBear}</div>
+            </div>
           </div>
+
           ${mopsHtml}
+
+          <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">
+              📊 展開完整利多／利空消息
+            </button>
+            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300">
+              ＋加入走勢比較
+            </button>
+          </div>
         </div>
       `;
     }
 
     // =====================================================
-    // 即時價格跳動與視覺閃爍更新引擎 (Live Tick Engine)
+    // 個股「利多 / 利空消息」彈窗控制 (需求 #1)
+    // =====================================================
+    function openStockModal(symbol) {
+      const item = allAssetsMap[symbol];
+      if (!item) return;
+
+      document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : item.name;
+      const pEl = document.getElementById("modal-stock-price");
+      pEl.textContent = `${item.price} (${formatSignedPct(item.change_pct)})`;
+      pEl.className = `text-xl font-bold mono ${getColorClass(item.change_pct)}`;
+
+      const extEl = document.getElementById("modal-stock-ext");
+      if (item.ext_session && item.ext_session.price) {
+        extEl.classList.remove("hidden");
+        extEl.textContent = `${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}`;
+        extEl.className = `text-xs font-bold mono px-2 py-0.5 rounded bg-slate-800 ${getColorClass(item.ext_session.change_pct)}`;
+      } else {
+        extEl.classList.add("hidden");
+      }
+
+      const bulls = item.news_sentiment?.bullish || [];
+      const bears = item.news_sentiment?.bearish || [];
+
+      document.getElementById("modal-bullish-list").innerHTML = bulls.map(n => `
+        <li class="border-b border-rose-500/10 pb-2">
+          <a href="${n.url}" target="_blank" class="hover:text-rose-300 font-medium block">${n.title}</a>
+          <span class="text-[10px] text-slate-400 mono">${n.date || ''}</span>
+        </li>
+      `).join("");
+
+      document.getElementById("modal-bearish-list").innerHTML = bears.map(n => `
+        <li class="border-b border-emerald-500/10 pb-2">
+          <a href="${n.url}" target="_blank" class="hover:text-emerald-300 font-medium block">${n.title}</a>
+          <span class="text-[10px] text-slate-400 mono">${n.date || ''}</span>
+        </li>
+      `).join("");
+
+      const f = item.fundamentals || {};
+      let revBlock = "";
+      if (f.monthly_rev) {
+        revBlock = `
+          <div><span class="text-slate-400 block text-[10px]">最新月營收 (${f.monthly_rev.month})</span><strong class="text-amber-400">${f.monthly_rev.revenue_yi}</strong></div>
+          <div><span class="text-slate-400 block text-[10px]">月營收 MoM / YoY</span>${formatSignedPct(f.monthly_rev.mom)} / ${formatSignedPct(f.monthly_rev.yoy)}</div>
+        `;
+      }
+
+      document.getElementById("modal-fundamentals-grid").innerHTML = `
+        <div><span class="text-slate-400 block text-[10px]">本益比 (PE)</span>${f.pe ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span>${f.forward_pe ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span>${f.eps ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">營業利益率</span>${f.operating_margin ?? 'N/A'}</div>
+        <div><span class="text-slate-400 block text-[10px]">季度營收年增 (YoY)</span>${f.yoy_rev_growth ?? 'N/A'}</div>
+        ${revBlock}
+      `;
+
+      const addBtn = document.getElementById("modal-btn-add-compare");
+      addBtn.onclick = () => {
+        toggleCompareSymbol(symbol);
+        closeStockModal();
+        document.getElementById("main-price-chart").scrollIntoView({ behavior: "smooth" });
+      };
+
+      document.getElementById("stock-detail-modal").classList.remove("hidden");
+    }
+
+    function closeStockModal() {
+      document.getElementById("stock-detail-modal").classList.add("hidden");
+    }
+
+    // =====================================================
+    // 多標的自由選擇與報酬率疊圖比較系統 (需求 #2)
+    // =====================================================
+    function populateCompareDropdown() {
+      const sel = document.getElementById("compare-select");
+      const groups = [
+        { label: "全球主要指數", list: globalMarketData.indices },
+        { label: "美股核心科技股", list: globalMarketData.us_stocks },
+        { label: "台股核心權值股", list: globalMarketData.tw_stocks },
+        { label: "期貨與大宗商品", list: globalMarketData.futures_commodities },
+        { label: "外匯與美債殖利率", list: globalMarketData.fx_bonds }
+      ];
+
+      sel.innerHTML = `<option value="">＋ 選擇要加入比較的指數 / 個股 / 期貨...</option>` +
+        groups.map(g => `
+          <optgroup label="${g.label}">
+            ${g.list.map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : item.name} (${item.symbol})</option>`).join("")}
+          </optgroup>
+        `).join("");
+    }
+
+    function addSelectedCompareAsset() {
+      const sel = document.getElementById("compare-select");
+      const sym = sel.value;
+      if (!sym) return;
+      if (sym !== currentAssetSymbol && !compareSymbols.includes(sym)) {
+        compareSymbols.push(sym);
+      }
+      sel.value = "";
+      renderMainChart();
+    }
+
+    function toggleCompareSymbol(sym) {
+      if (sym === currentAssetSymbol) return;
+      const idx = compareSymbols.indexOf(sym);
+      if (idx >= 0) {
+        compareSymbols.splice(idx, 1);
+      } else {
+        compareSymbols.push(sym);
+      }
+      renderMainChart();
+    }
+
+    function removeCompareSymbol(sym) {
+      compareSymbols = compareSymbols.filter(s => s !== sym);
+      renderMainChart();
+    }
+
+    function clearComparisons() {
+      compareSymbols = [];
+      renderMainChart();
+    }
+
+    function renderCompareChips() {
+      const container = document.getElementById("compare-chips-container");
+      const activeList = [currentAssetSymbol, ...compareSymbols];
+
+      container.innerHTML = activeList.map((sym, idx) => {
+        const asset = allAssetsMap[sym];
+        if (!asset) return "";
+        const label = asset.asset_type === "us_stock" ? asset.symbol : asset.name;
+        const color = CHART_COLORS[idx % CHART_COLORS.length];
+        const isPrimary = (idx === 0);
+
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-800 text-white border border-slate-700">
+            <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
+            <span>${label} ${isPrimary ? '(主標的)' : ''}</span>
+            ${!isPrimary ? `<button onclick="removeCompareSymbol('${sym}')" class="text-slate-400 hover:text-rose-400 ml-1">✕</button>` : ''}
+          </span>
+        `;
+      }).join("");
+    }
+
+    // 根據當前區間取得單一標的之點位序列 [{x, y}]
+    function getFilteredSeriesPoints(asset, customStart = null, customEnd = null) {
+      if (!asset) return [];
+      if (currentRangeMode === "1D" && asset.intraday && asset.intraday.length > 0) {
+        return asset.intraday.map(d => ({ x: d.time, y: Number(d.price) }));
+      }
+      const hist = asset.history || [];
+      let filtered = hist;
+      const now = new Date();
+
+      if (currentRangeMode === "1W") {
+        filtered = hist.slice(-6);
+      } else if (currentRangeMode === "1M") {
+        filtered = hist.slice(-22);
+      } else if (currentRangeMode === "YTD") {
+        const currentYear = `${now.getFullYear()}-01-01`;
+        filtered = hist.filter(d => d.date >= currentYear);
+      } else if (currentRangeMode === "CUSTOM") {
+        const s = customStart || document.getElementById("custom-start").value;
+        const e = customEnd || document.getElementById("custom-end").value;
+        filtered = hist.filter(d => d.date >= s && d.date <= e);
+      }
+      return filtered.map(d => ({ x: d.date, y: Number(d.close) }));
+    }
+
+    function selectAsset(symbol) {
+      if (!allAssetsMap[symbol]) return;
+      currentAssetSymbol = symbol;
+      compareSymbols = compareSymbols.filter(s => s !== symbol);
+      renderMainChart();
+    }
+
+    function switchRange(mode) {
+      currentRangeMode = mode;
+      document.querySelectorAll(".range-btn").forEach(btn => {
+        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
+      });
+      const activeBtn = document.getElementById(`btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white";
+      }
+      renderMainChart();
+    }
+
+    function applyCustomDateRange() {
+      const startVal = document.getElementById("custom-start").value;
+      const endVal = document.getElementById("custom-end").value;
+      if (!startVal || !endVal) {
+        alert("請先選擇自訂區間的「起始日期」與「結束日期」！");
+        return;
+      }
+      currentRangeMode = "CUSTOM";
+      document.querySelectorAll(".range-btn").forEach(btn => {
+        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
+      });
+      renderMainChart(startVal, endVal);
+    }
+
+    // 主圖表渲染：自動支援「單一標的價格模式」與「多標的累計報酬率 (%) 疊圖比較模式」
+    function renderMainChart(customStart = null, customEnd = null) {
+      const primaryAsset = allAssetsMap[currentAssetSymbol];
+      if (!primaryAsset) return;
+
+      renderCompareChips();
+      const activeSymbols = [currentAssetSymbol, ...compareSymbols];
+      const isCompareMode = activeSymbols.length > 1;
+
+      const modeBadge = document.getElementById("chart-mode-badge");
+      const summaryEl = document.getElementById("comparison-return-summary");
+
+      if (!mainChart) {
+        mainChart = echarts.init(document.getElementById("main-price-chart"));
+      }
+
+      if (!isCompareMode) {
+        // 單一標的模式：顯示絕對價格 + 區間報酬率
+        const displayName = primaryAsset.asset_type === "us_stock" ? primaryAsset.symbol : primaryAsset.name;
+        document.getElementById("chart-asset-title").textContent = `${displayName} (${primaryAsset.symbol}) 走勢圖`;
+        modeBadge.textContent = "單一標的價格模式 (可於下方加入其他標的疊圖比較)";
+        modeBadge.className = "text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30";
+
+        const pts = getFilteredSeriesPoints(primaryAsset, customStart, customEnd);
+        const xData = pts.map(p => p.x);
+        const yData = pts.map(p => p.y);
+
+        if (yData.length >= 2) {
+          const pct = ((yData[yData.length - 1] - yData[0]) / yData[0]) * 100;
+          summaryEl.innerHTML = `
+            <span class="text-xs font-bold px-3 py-1 rounded bg-slate-800 mono ${getColorClass(pct)}">
+              ${displayName} 區間累計報酬率：${formatSignedPct(pct)} (${yData[0]} &rarr; ${yData[yData.length - 1]})
+            </span>
+          `;
+        } else {
+          summaryEl.innerHTML = `<span class="text-xs text-slate-400">區間資料點不足</span>`;
+        }
+
+        const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
+        const lineColor = isUp ? "#fb7185" : "#34d399";
+
+        mainChart.setOption({
+          tooltip: { trigger: "axis" },
+          legend: { show: false },
+          grid: { left: "5%", right: "3%", top: "8%", bottom: "12%" },
+          xAxis: {
+            type: "category",
+            data: xData,
+            axisLine: { lineStyle: { color: "#334155" } },
+            axisLabel: { color: "#94a3b8", fontSize: 11 }
+          },
+          yAxis: {
+            type: "value",
+            scale: true,
+            splitLine: { lineStyle: { color: "#1e293b" } },
+            axisLabel: { color: "#94a3b8", fontSize: 11 }
+          },
+          dataZoom: [
+            { type: "inside", start: 0, end: 100 },
+            { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
+          ],
+          series: [{
+            name: displayName,
+            type: "line",
+            smooth: true,
+            symbol: "none",
+            data: yData,
+            lineStyle: { color: lineColor, width: 2.5 },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: isUp ? "rgba(251, 113, 133, 0.35)" : "rgba(52, 211, 153, 0.35)" },
+                { offset: 1, color: "rgba(15, 23, 42, 0.0)" }
+              ])
+            }
+          }]
+        }, true);
+
+      } else {
+        // 多標的比較模式：以起點為 0% 進行標準化百分比報酬率疊圖對決
+        document.getElementById("chart-asset-title").textContent = `多標的走勢與區間報酬率 (%) 對決比較`;
+        modeBadge.textContent = `多標的報酬率比較模式 (共 ${activeSymbols.length} 檔標的)`;
+        modeBadge.className = "text-xs font-bold px-2.5 py-0.5 rounded bg-emerald-600/30 text-emerald-300 border border-emerald-500/30";
+
+        // 收集所有選定標的的日期軸聯集 (確保跨市場如台股、美股、期貨日期對齊)
+        const allSeriesMap = {};
+        const xSet = new Set();
+
+        activeSymbols.forEach(sym => {
+          const asset = allAssetsMap[sym];
+          const pts = getFilteredSeriesPoints(asset, customStart, customEnd);
+          allSeriesMap[sym] = {};
+          pts.forEach(p => {
+            xSet.add(p.x);
+            allSeriesMap[sym][p.x] = p.y;
+          });
+        });
+
+        const sortedX = Array.from(xSet).sort();
+        const echartsSeries = [];
+        const returnSummaries = [];
+
+        activeSymbols.forEach((sym, idx) => {
+          const asset = allAssetsMap[sym];
+          if (!asset) return;
+          const displayName = asset.asset_type === "us_stock" ? asset.symbol : asset.name;
+          const color = CHART_COLORS[idx % CHART_COLORS.length];
+          const pointMap = allSeriesMap[sym];
+
+          // 找出該標的在此區間的第一個有效基準價，並進行前值填補 (Forward Fill)
+          let basePrice = null;
+          let lastValidPrice = null;
+          const normalizedY = [];
+
+          sortedX.forEach(xVal => {
+            const rawP = pointMap[xVal];
+            if (rawP !== undefined && rawP !== null && rawP > 0) {
+              if (basePrice === null) basePrice = rawP;
+              lastValidPrice = rawP;
+            }
+            if (basePrice !== null && lastValidPrice !== null) {
+              const pctChange = ((lastValidPrice - basePrice) / basePrice) * 100;
+              normalizedY.push(Number(pctChange.toFixed(2)));
+            } else {
+              normalizedY.push(null);
+            }
+          });
+
+          const validNorm = normalizedY.filter(v => v !== null);
+          const totalPct = validNorm.length > 0 ? validNorm[validNorm.length - 1] : 0.0;
+          returnSummaries.push({ name: displayName, pct: totalPct, color });
+
+          echartsSeries.push({
+            name: displayName,
+            type: "line",
+            smooth: true,
+            connectNulls: true,
+            symbol: "none",
+            data: normalizedY,
+            lineStyle: { color: color, width: 2.5 },
+            itemStyle: { color: color }
+          });
+        });
+
+        // 依報酬率由高到低排序顯示於圖表上方
+        returnSummaries.sort((a, b) => b.pct - a.pct);
+        summaryEl.innerHTML = returnSummaries.map((r, i) => `
+          <div class="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs mono">
+            <span class="text-slate-400">#${i + 1}</span>
+            <span class="w-2 h-2 rounded-full" style="background-color: ${r.color}"></span>
+            <span class="font-bold text-white">${r.name}:</span>
+            <strong class="${getColorClass(r.pct)}">${formatSignedPct(r.pct)}</strong>
+          </div>
+        `).join("");
+
+        mainChart.setOption({
+          tooltip: {
+            trigger: "axis",
+            valueFormatter: (val) => (val !== null && val !== undefined) ? `${val > 0 ? '+' : ''}${val}%` : "N/A"
+          },
+          legend: {
+            show: true,
+            top: 0,
+            textStyle: { color: "#cbd5e1", fontSize: 12 }
+          },
+          grid: { left: "5%", right: "3%", top: "14%", bottom: "12%" },
+          xAxis: {
+            type: "category",
+            data: sortedX,
+            axisLine: { lineStyle: { color: "#334155" } },
+            axisLabel: { color: "#94a3b8", fontSize: 11 }
+          },
+          yAxis: {
+            type: "value",
+            scale: true,
+            axisLabel: {
+              color: "#94a3b8",
+              fontSize: 11,
+              formatter: (val) => `${val > 0 ? '+' : ''}${val}%`
+            },
+            splitLine: { lineStyle: { color: "#1e293b" } }
+          },
+          dataZoom: [
+            { type: "inside", start: 0, end: 100 },
+            { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
+          ],
+          series: echartsSeries
+        }, true);
+      }
+    }
+
+    // =====================================================
+    // 即時價格跳動與視覺閃爍更新引擎
     // =====================================================
     function triggerCardFlash(symbol, isUp) {
       const domId = safeId(symbol);
       const card = document.getElementById(`card-${domId}`);
       if (!card) return;
       card.classList.remove("tick-up", "tick-down");
-      void card.offsetWidth; // 強制重繪觸發動畫
+      void card.offsetWidth;
       card.classList.add(isUp ? "tick-up" : "tick-down");
     }
 
@@ -333,13 +842,11 @@
       if (!item) return;
       const domId = safeId(symbol);
 
-      // 判斷漲跌方向以觸發閃爍
       const oldComparable = (extSessionObj && extSessionObj.price) ? (item.ext_session ? item.ext_session.price : item.price) : item.price;
       const newComparable = (extSessionObj && extSessionObj.price) ? extSessionObj.price : newMainPrice;
 
       if (oldComparable && newComparable && Number(oldComparable) !== Number(newComparable)) {
-        const isUp = Number(newComparable) > Number(oldComparable);
-        triggerCardFlash(symbol, isUp);
+        triggerCardFlash(symbol, Number(newComparable) > Number(oldComparable));
       }
 
       if (newMainPrice !== null && newMainPrice !== undefined) {
@@ -367,33 +874,16 @@
             </span>
           `;
         }
-        // 同步更新美股財報表格中的盤前/盤後欄位
         const tblExt = document.getElementById(`tbl-ext-${domId}`);
         if (tblExt) {
           const extColor = getColorClass(extSessionObj.change_pct);
           tblExt.innerHTML = `<span class="${extColor}">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`;
         }
       }
-
-      // 若目前正打開該資產的 1D 走勢圖，直接把最新跳動點位畫進圖表最後一根
-      if (currentAssetSymbol === symbol && currentRangeMode === "1D") {
-        const nowStr = new Date().toLocaleTimeString("zh-TW", { hour12: false, hour: "2-digit", minute: "2-digit" });
-        const plotPrice = Number(newComparable);
-        if (!isNaN(plotPrice) && item.intraday) {
-          if (item.intraday.length > 0 && item.intraday[item.intraday.length - 1].time === nowStr) {
-            item.intraday[item.intraday.length - 1].price = plotPrice;
-          } else {
-            item.intraday.push({ time: nowStr, price: plotPrice });
-          }
-          renderMainChart();
-        }
-      }
     }
 
-    // 第一重：前端每 10 秒自動巡檢 Yahoo 即時報價 (免金鑰、涵蓋全球指數/美股盤前盤後/期貨夜盤)
     async function pollLiveYahooQuotes() {
       const symbols = Object.keys(allAssetsMap);
-      // 隨機挑選一組活躍標的進行無痛快速刷新
       for (const sym of symbols) {
         try {
           const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
@@ -415,7 +905,6 @@
           const prevClose = meta.chartPreviousClose || meta.previousClose || item.prev_close || regClose;
 
           if (item.asset_type === "futures") {
-            // 期貨：主欄位維持日盤結算價，下方即時跳動夜盤價
             const daySettle = Number(item.price);
             const nightPct = ((latestTick - daySettle) / daySettle) * 100;
             updateAssetDomPrice(sym, daySettle, item.change_pct, {
@@ -443,15 +932,12 @@
             const pct = ((latestTick - prevClose) / prevClose) * 100;
             updateAssetDomPrice(sym, latestTick, pct, null);
           }
-        } catch (e) {
-          // 忽略單一連線逾時
-        }
+        } catch (e) {}
       }
       const nowTime = new Date().toLocaleTimeString("zh-TW", { hour12: false });
       document.getElementById("last-updated").textContent = `即時跳動同步：${nowTime}`;
     }
 
-    // 第二重：Finnhub WebSocket 美股毫秒級即時推播
     function configureFinnhubKey() {
       const saved = localStorage.getItem("FINNHUB_API_KEY") || "";
       const key = prompt("請輸入免費的 Finnhub API Key (可於 finnhub.io 免費註冊取得)，輸入後美股將開啟 WebSocket 毫秒級跳動：", saved);
@@ -501,127 +987,6 @@
           }
         }
       });
-    }
-
-    // 走勢圖切換與自訂區間
-    function selectAsset(symbol) {
-      if (!allAssetsMap[symbol]) return;
-      currentAssetSymbol = symbol;
-      renderMainChart();
-    }
-
-    function switchRange(mode) {
-      currentRangeMode = mode;
-      document.querySelectorAll(".range-btn").forEach(btn => {
-        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
-      });
-      const activeBtn = document.getElementById(`btn-${mode}`);
-      if (activeBtn) {
-        activeBtn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white";
-      }
-      renderMainChart();
-    }
-
-    function applyCustomDateRange() {
-      const startVal = document.getElementById("custom-start").value;
-      const endVal = document.getElementById("custom-end").value;
-      if (!startVal || !endVal) {
-        alert("請先選擇自訂區間的「起始日期」與「結束日期」！");
-        return;
-      }
-      currentRangeMode = "CUSTOM";
-      document.querySelectorAll(".range-btn").forEach(btn => {
-        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
-      });
-      renderMainChart(startVal, endVal);
-    }
-
-    function renderMainChart(customStart = null, customEnd = null) {
-      const asset = allAssetsMap[currentAssetSymbol];
-      if (!asset) return;
-
-      document.getElementById("chart-asset-title").textContent = `${asset.name} (${asset.symbol}) 走勢圖`;
-
-      let xData = [];
-      let yData = [];
-
-      if (currentRangeMode === "1D" && asset.intraday && asset.intraday.length > 0) {
-        xData = asset.intraday.map(d => d.time);
-        yData = asset.intraday.map(d => d.price);
-      } else {
-        const hist = asset.history || [];
-        let filtered = hist;
-        const now = new Date();
-
-        if (currentRangeMode === "1W") {
-          filtered = hist.slice(-6);
-        } else if (currentRangeMode === "1M") {
-          filtered = hist.slice(-22);
-        } else if (currentRangeMode === "YTD") {
-          const currentYear = `${now.getFullYear()}-01-01`;
-          filtered = hist.filter(d => d.date >= currentYear);
-        } else if (currentRangeMode === "CUSTOM") {
-          const s = customStart || document.getElementById("custom-start").value;
-          const e = customEnd || document.getElementById("custom-end").value;
-          filtered = hist.filter(d => d.date >= s && d.date <= e);
-        }
-
-        xData = filtered.map(d => d.date);
-        yData = filtered.map(d => d.close);
-      }
-
-      const badge = document.getElementById("chart-period-return");
-      if (yData.length >= 2) {
-        const firstP = yData[0];
-        const lastP = yData[yData.length - 1];
-        const pct = ((lastP - firstP) / firstP) * 100;
-        badge.textContent = `區間變化：${formatSignedPct(pct)}`;
-        badge.className = `text-sm font-bold px-2.5 py-0.5 rounded bg-slate-800 mono ${getColorClass(pct)}`;
-      } else {
-        badge.textContent = "區間資料點不足";
-      }
-
-      const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
-      const lineColor = isUp ? "#fb7185" : "#34d399";
-
-      if (!mainChart) {
-        mainChart = echarts.init(document.getElementById("main-price-chart"));
-      }
-
-      mainChart.setOption({
-        tooltip: { trigger: "axis" },
-        grid: { left: "5%", right: "3%", top: "8%", bottom: "12%" },
-        xAxis: {
-          type: "category",
-          data: xData,
-          axisLine: { lineStyle: { color: "#334155" } },
-          axisLabel: { color: "#94a3b8", fontSize: 11 }
-        },
-        yAxis: {
-          type: "value",
-          scale: true,
-          splitLine: { lineStyle: { color: "#1e293b" } },
-          axisLabel: { color: "#94a3b8", fontSize: 11 }
-        },
-        dataZoom: [
-          { type: "inside", start: 0, end: 100 },
-          { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
-        ],
-        series: [{
-          name: asset.name,
-          type: "line",
-          smooth: true,
-          symbol: "none",
-          data: yData,
-          lineStyle: { color: lineColor, width: 2.5 },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: isUp ? "rgba(251, 113, 133, 0.35)" : "rgba(52, 211, 153, 0.35)" },
-              { offset: 1, color: "rgba(15, 23, 42, 0.0)" }
-            ])
-          }
-        }]
-      }, true);
     }
 
     function renderChipCharts(chips) {
@@ -705,8 +1070,8 @@
               extText = `<span class="${cls}">${s.ext_session.price} ${formatSignedPct(s.ext_session.change_pct)} ${s.ext_session.label}</span>`;
             }
             return `
-              <tr class="hover:bg-slate-800/40">
-                <td class="py-2.5 px-4 font-bold text-white">${s.symbol}</td>
+              <tr onclick="openStockModal('${s.symbol}')" class="hover:bg-slate-800/40 cursor-pointer">
+                <td class="py-2.5 px-4 font-bold text-white underline decoration-indigo-500/50">${s.symbol}</td>
                 <td class="py-2.5 px-4 text-white">${s.price ?? 'N/A'} <span class="${getColorClass(s.change_pct)}">(${formatSignedPct(s.change_pct)})</span></td>
                 <td id="tbl-ext-${domId}" class="py-2.5 px-4">${extText}</td>
                 <td class="py-2.5 px-4">${f.pe ?? 'N/A'}</td>
@@ -716,6 +1081,7 @@
                 <td class="py-2.5 px-4">${f.operating_margin ?? 'N/A'}</td>
                 <td class="py-2.5 px-4">${f.roe ?? 'N/A'}</td>
                 <td class="py-2.5 px-4">${f.yoy_rev_growth ?? 'N/A'}</td>
+                <td class="py-2.5 px-4"><span class="text-indigo-400 font-bold">📊 檢視利多利空</span></td>
               </tr>
             `;
           }).join("");
@@ -723,17 +1089,19 @@
         document.getElementById("grid-fx-bonds").innerHTML =
           globalMarketData.fx_bonds.map(x => createQuoteCard(x, false)).join("");
 
+        // 初始化比較下拉選單與預設自訂日期區間
+        populateCompareDropdown();
         document.getElementById("custom-start").value = "2025-03-05";
         document.getElementById("custom-end").value = "2026-08-10";
 
-        selectAsset("^TWII");
+        // 預設展示 S&P 500 並切換至 1M 區間
+        switchRange("1M");
+        selectAsset("^GSPC");
         renderChipCharts(globalMarketData.tw_chips_visual);
 
-        // 啟動背景每 10 秒自動報價跳動巡檢與每 60 秒 JSON 同步
         setInterval(pollLiveYahooQuotes, 10000);
         setTimeout(pollLiveYahooQuotes, 2500);
 
-        // 若曾設定過 Finnhub Key，自動啟動 WebSocket 秒級連線
         const savedKey = localStorage.getItem("FINNHUB_API_KEY");
         if (savedKey) startFinnhubWebSocket(savedKey);
 
