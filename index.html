@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全球市場數據監控</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // 深色模式下使用更明亮的紅綠配色，確保高對比清晰度
         function getColor(change) {
-            if (change > 0) return 'text-red-500';
-            if (change < 0) return 'text-green-500';
-            return 'text-gray-500';
+            if (change > 0) return 'text-red-400';
+            if (change < 0) return 'text-emerald-400';
+            return 'text-slate-400';
         }
         function getSign(change) {
             return change > 0 ? '+' : '';
         }
         
-        // 繪製 SVG 迷你走勢圖 (含漸層底色)
+        // 繪製深色版 SVG 迷你走勢圖 (含微發光漸層底色)
         function createSparkline(sparkline, change) {
             if (!sparkline || sparkline.length < 2) return '';
             const width = 80;
@@ -31,8 +32,8 @@
             });
             
             const pointsStr = pts.join(' ');
-            const strokeColor = change > 0 ? '#ef4444' : (change < 0 ? '#22c55e' : '#9ca3af');
-            const fillColor = change > 0 ? 'rgba(239, 68, 68, 0.12)' : (change < 0 ? 'rgba(34, 197, 94, 0.12)' : 'rgba(156, 163, 175, 0.1)');
+            const strokeColor = change > 0 ? '#f87171' : (change < 0 ? '#34d399' : '#94a3b8');
+            const fillColor = change > 0 ? 'rgba(248, 113, 113, 0.16)' : (change < 0 ? 'rgba(52, 211, 153, 0.16)' : 'rgba(148, 163, 184, 0.1)');
             const areaPoints = `0,${height} ${pointsStr} ${width},${height}`;
 
             return `
@@ -58,15 +59,15 @@
                 }
             }
             
-            const priceColor = isChip ? color : 'text-gray-900';
+            const priceColor = isChip ? color : 'text-slate-100';
             const sparklineSvg = createSparkline(item.sparkline, item.change);
             
             return `
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md transition-shadow">
+                <div class="bg-slate-900/90 p-4 rounded-xl shadow-lg border border-slate-800 flex items-center justify-between hover:border-slate-700 hover:bg-slate-800/80 transition-all">
                     <div class="flex flex-col justify-between min-w-0">
-                        <h3 class="text-gray-600 font-medium text-sm truncate">${item.name}</h3>
+                        <h3 class="text-slate-400 font-medium text-sm truncate">${item.name}</h3>
                         <div class="mt-1.5 flex flex-col">
-                            <span class="text-2xl font-bold ${priceColor} leading-tight">${item.price}</span>
+                            <span class="text-2xl font-bold ${priceColor} leading-tight tracking-tight">${item.price}</span>
                             ${changeText ? `<span class="text-xs font-semibold ${color} mt-1">${changeText}</span>` : ''}
                         </div>
                     </div>
@@ -79,8 +80,8 @@
             if (!sectionData || sectionData.length === 0) return '';
             const cards = sectionData.map(createCard).join('');
             return `
-                <div class="mb-8">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">${title}</h2>
+                <div class="mb-9">
+                    <h2 class="text-xl font-bold text-slate-100 mb-4 border-l-4 border-blue-500 pl-3 tracking-wide">${title}</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         ${cards}
                     </div>
@@ -101,7 +102,7 @@
                 }
                 container.innerHTML = html;
             } else {
-                container.innerHTML = '<div class="p-8 text-center text-gray-500">正在等待系統更新資料...</div>';
+                container.innerHTML = '<div class="p-8 text-center text-slate-500">正在等待系統更新資料...</div>';
             }
         }
         
@@ -113,13 +114,13 @@
         };
     </script>
 </head>
-<body class="bg-gray-50 p-6 md:p-12 font-sans">
-    <header class="mb-10 flex flex-col md:flex-row md:justify-between md:items-end">
+<body class="bg-slate-950 text-slate-100 p-6 md:p-12 font-sans min-h-screen selection:bg-blue-500 selection:text-white">
+    <header class="mb-10 flex flex-col md:flex-row md:justify-between md:items-end border-b border-slate-800/80 pb-6">
         <div>
-            <h1 class="text-3xl font-black text-gray-900">全球市場數據監控</h1>
-            <p class="text-gray-500 mt-2">每日收盤後自動化更新</p>
+            <h1 class="text-3xl font-black text-white tracking-tight">全球市場數據監控</h1>
+            <p class="text-slate-400 mt-2 text-sm">每日早晚自動化更新（07:00 / 16:30）</p>
         </div>
-        <div id="update-time" class="text-sm text-gray-400 mt-2 md:mt-0"></div>
+        <div id="update-time" class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 mt-4 md:mt-0"></div>
     </header>
     <main id="dashboard-content"></main>
 </body>
