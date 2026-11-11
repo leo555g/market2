@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-11-11 23:07:57 CST",
+  "last_updated": "2026-11-11 23:08:24 CST",
   "indices": [
     {
       "symbol": "^GSPC",
       "name": "S&P 500 指數",
       "asset_type": "standard",
-      "price": 7587.02,
+      "price": 7586.66,
       "prev_close": 7520.93,
-      "change": 66.09,
-      "change_pct": 0.88,
+      "change": 65.73,
+      "change_pct": 0.87,
       "ext_session": null,
       "intraday": [
         {
@@ -41,7 +41,7 @@
         },
         {
           "time": "10:05",
-          "price": 7586.8
+          "price": 7586.66
         }
       ],
       "history": [
@@ -2051,7 +2051,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 7586.84
+          "close": 7586.66
         }
       ],
       "fundamentals": {},
@@ -2064,9 +2064,9 @@
       "symbol": "^DJI",
       "name": "道瓊工業指數",
       "asset_type": "standard",
-      "price": 52153.28,
+      "price": 52155.67,
       "prev_close": 52231.89,
-      "change": -78.61,
+      "change": -76.22,
       "change_pct": -0.15,
       "ext_session": null,
       "intraday": [
@@ -2100,7 +2100,7 @@
         },
         {
           "time": "10:05",
-          "price": 52149.04
+          "price": 52154.94
         }
       ],
       "history": [
@@ -4110,7 +4110,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 52149.04
+          "close": 52155.67
         }
       ],
       "fundamentals": {},
@@ -4123,10 +4123,10 @@
       "symbol": "^IXIC",
       "name": "那斯達克指數",
       "asset_type": "standard",
-      "price": 25406.94,
+      "price": 25403.03,
       "prev_close": 25065.88,
-      "change": 341.06,
-      "change_pct": 1.36,
+      "change": 337.16,
+      "change_pct": 1.35,
       "ext_session": null,
       "intraday": [
         {
@@ -4159,7 +4159,7 @@
         },
         {
           "time": "10:05",
-          "price": 25402.96
+          "price": 25403.03
         }
       ],
       "history": [
@@ -6169,7 +6169,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 25402.96
+          "close": 25403.03
         }
       ],
       "fundamentals": {},
@@ -6182,10 +6182,10 @@
       "symbol": "^SOX",
       "name": "費城半導體指數",
       "asset_type": "standard",
-      "price": 10468.11,
+      "price": 10463.31,
       "prev_close": 9998.33,
-      "change": 469.78,
-      "change_pct": 4.7,
+      "change": 464.98,
+      "change_pct": 4.65,
       "ext_session": null,
       "intraday": [
         {
@@ -6218,7 +6218,7 @@
         },
         {
           "time": "10:05",
-          "price": 10468.11
+          "price": 10463.31
         }
       ],
       "history": [
@@ -8228,7 +8228,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 10468.11
+          "close": 10463.31
         }
       ],
       "fundamentals": {},
@@ -14918,10 +14918,10 @@
       "symbol": "^FTSE",
       "name": "英國富時 100",
       "asset_type": "standard",
-      "price": 10792.21,
+      "price": 10793.5,
       "prev_close": 10751.59,
-      "change": 40.62,
-      "change_pct": 0.38,
+      "change": 41.91,
+      "change_pct": 0.39,
       "ext_session": null,
       "intraday": [
         {
@@ -15254,7 +15254,7 @@
         },
         {
           "time": "14:50",
-          "price": 10792.21
+          "price": 10793.5
         }
       ],
       "history": [
@@ -17284,7 +17284,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 10792.36
+          "close": 10793.5
         }
       ],
       "fundamentals": {},
@@ -17297,10 +17297,10 @@
       "symbol": "^GDAXI",
       "name": "德國 DAX 指數",
       "asset_type": "standard",
-      "price": 26567.46,
+      "price": 26574.84,
       "prev_close": 26347.45,
-      "change": 220.01,
-      "change_pct": 0.84,
+      "change": 227.39,
+      "change_pct": 0.86,
       "ext_session": null,
       "intraday": [
         {
@@ -17633,7 +17633,7 @@
         },
         {
           "time": "15:50",
-          "price": 26567.46
+          "price": 26574.84
         }
       ],
       "history": [
@@ -19663,7 +19663,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 26566.77
+          "close": 26576.16
         }
       ],
       "fundamentals": {},
@@ -19676,10 +19676,10 @@
       "symbol": "^FCHI",
       "name": "法國 CAC 40",
       "asset_type": "standard",
-      "price": 8313.38,
+      "price": 8315.81,
       "prev_close": 8278.59,
-      "change": 34.79,
-      "change_pct": 0.42,
+      "change": 37.22,
+      "change_pct": 0.45,
       "ext_session": null,
       "intraday": [
         {
@@ -20012,11 +20012,7 @@
         },
         {
           "time": "15:50",
-          "price": 8315.15
-        },
-        {
-          "time": "15:53",
-          "price": 8313.38
+          "price": 8316.53
         }
       ],
       "history": [
@@ -22062,7 +22058,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 8313.38
+          "close": 8316.53
         }
       ],
       "fundamentals": {},
@@ -22077,10 +22073,10 @@
       "symbol": "NVDA",
       "name": "NVDA",
       "asset_type": "us_stock",
-      "price": 172.95,
+      "price": 172.9,
       "prev_close": 168.8,
-      "change": 4.15,
-      "change_pct": 2.46,
+      "change": 4.1,
+      "change_pct": 2.43,
       "ext_session": null,
       "intraday": [
         {
@@ -22169,7 +22165,7 @@
         },
         {
           "time": "07:05",
-          "price": 175.6
+          "price": 175.55
         },
         {
           "time": "07:10",
@@ -22313,7 +22309,7 @@
         },
         {
           "time": "10:05",
-          "price": 172.95
+          "price": 172.9
         }
       ],
       "history": [
@@ -24323,7 +24319,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 172.93
+          "close": 172.91
         }
       ],
       "fundamentals": {
@@ -24397,10 +24393,10 @@
       "symbol": "TSM",
       "name": "TSM",
       "asset_type": "us_stock",
-      "price": 409.02,
+      "price": 408.68,
       "prev_close": 396.48,
-      "change": 12.54,
-      "change_pct": 3.16,
+      "change": 12.2,
+      "change_pct": 3.08,
       "ext_session": null,
       "intraday": [
         {
@@ -24493,7 +24489,7 @@
         },
         {
           "time": "05:50",
-          "price": 417.25
+          "price": 417.26
         },
         {
           "time": "05:55",
@@ -24685,7 +24681,7 @@
         },
         {
           "time": "10:05",
-          "price": 409.01
+          "price": 408.68
         }
       ],
       "history": [
@@ -26695,12 +26691,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 409.01
+          "close": 408.68
         }
       ],
       "fundamentals": {
-        "pe": 26.51,
-        "forward_pe": 17.49,
+        "pe": 26.49,
+        "forward_pe": 17.48,
         "eps": 15.43,
         "gross_margin": "65.85%",
         "operating_margin": "57.96%",
@@ -26769,10 +26765,10 @@
       "symbol": "AMD",
       "name": "AMD",
       "asset_type": "us_stock",
-      "price": 545.34,
+      "price": 545.5,
       "prev_close": 515.21,
-      "change": 30.13,
-      "change_pct": 5.85,
+      "change": 30.29,
+      "change_pct": 5.88,
       "ext_session": null,
       "intraday": [
         {
@@ -27005,7 +27001,7 @@
         },
         {
           "time": "10:05",
-          "price": 545.38
+          "price": 545.95
         }
       ],
       "history": [
@@ -29015,12 +29011,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 544.69
+          "close": 545.95
         }
       ],
       "fundamentals": {
-        "pe": 116.53,
-        "forward_pe": 30.83,
+        "pe": 116.56,
+        "forward_pe": 30.84,
         "eps": 4.68,
         "gross_margin": "56.0%",
         "operating_margin": "17.82%",
@@ -29089,10 +29085,10 @@
       "symbol": "GOOGL",
       "name": "GOOGL",
       "asset_type": "us_stock",
-      "price": 290.63,
+      "price": 290.71,
       "prev_close": 287.38,
-      "change": 3.25,
-      "change_pct": 1.13,
+      "change": 3.33,
+      "change_pct": 1.16,
       "ext_session": null,
       "intraday": [
         {
@@ -29317,7 +29313,7 @@
         },
         {
           "time": "09:55",
-          "price": 290.48
+          "price": 290.43
         },
         {
           "time": "10:00",
@@ -29325,7 +29321,7 @@
         },
         {
           "time": "10:05",
-          "price": 290.65
+          "price": 290.71
         }
       ],
       "history": [
@@ -31335,7 +31331,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 290.65
+          "close": 290.73
         }
       ],
       "fundamentals": {
@@ -31409,9 +31405,9 @@
       "symbol": "META",
       "name": "META",
       "asset_type": "us_stock",
-      "price": 637.46,
+      "price": 637.5,
       "prev_close": 641.39,
-      "change": -3.93,
+      "change": -3.89,
       "change_pct": -0.61,
       "ext_session": null,
       "intraday": [
@@ -31641,7 +31637,7 @@
         },
         {
           "time": "10:05",
-          "price": 637.46
+          "price": 637.5
         }
       ],
       "history": [
@@ -31883,7 +31879,7 @@
         },
         {
           "date": "2025-02-07",
-          "close": 710.45
+          "close": 710.44
         },
         {
           "date": "2025-02-10",
@@ -33651,7 +33647,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 637.4
+          "close": 637.5
         }
       ],
       "fundamentals": {
@@ -33725,10 +33721,10 @@
       "symbol": "TSLA",
       "name": "TSLA",
       "asset_type": "us_stock",
-      "price": 391.64,
+      "price": 391.59,
       "prev_close": 379.78,
-      "change": 11.87,
-      "change_pct": 3.12,
+      "change": 11.81,
+      "change_pct": 3.11,
       "ext_session": null,
       "intraday": [
         {
@@ -33961,7 +33957,7 @@
         },
         {
           "time": "10:05",
-          "price": 391.6
+          "price": 391.59
         }
       ],
       "history": [
@@ -35971,12 +35967,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 391.74
+          "close": 391.59
         }
       ],
       "fundamentals": {
-        "pe": 430.38,
-        "forward_pe": 181.38,
+        "pe": 430.32,
+        "forward_pe": 181.36,
         "eps": 0.91,
         "gross_margin": "19.29%",
         "operating_margin": "3.03%",
@@ -36045,10 +36041,10 @@
       "symbol": "AVGO",
       "name": "AVGO",
       "asset_type": "us_stock",
-      "price": 352.42,
+      "price": 351.97,
       "prev_close": 331.98,
-      "change": 20.44,
-      "change_pct": 6.16,
+      "change": 19.99,
+      "change_pct": 6.02,
       "ext_session": null,
       "intraday": [
         {
@@ -36093,7 +36089,7 @@
         },
         {
           "time": "06:10",
-          "price": 345.89
+          "price": 346.0
         },
         {
           "time": "06:15",
@@ -36173,7 +36169,7 @@
         },
         {
           "time": "07:50",
-          "price": 345.05
+          "price": 345.07
         },
         {
           "time": "07:55",
@@ -36281,7 +36277,7 @@
         },
         {
           "time": "10:05",
-          "price": 352.42
+          "price": 351.97
         }
       ],
       "history": [
@@ -38291,12 +38287,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 352.42
+          "close": 351.93
         }
       ],
       "fundamentals": {
-        "pe": 45.01,
-        "forward_pe": 18.11,
+        "pe": 44.95,
+        "forward_pe": 18.08,
         "eps": 7.83,
         "gross_margin": "75.52%",
         "operating_margin": "48.81%",
@@ -38365,10 +38361,10 @@
       "symbol": "AMZN",
       "name": "AMZN",
       "asset_type": "us_stock",
-      "price": 268.96,
+      "price": 268.93,
       "prev_close": 270.87,
-      "change": -1.91,
-      "change_pct": -0.71,
+      "change": -1.94,
+      "change_pct": -0.72,
       "ext_session": null,
       "intraday": [
         {
@@ -38477,7 +38473,7 @@
         },
         {
           "time": "07:30",
-          "price": 271.12
+          "price": 270.69
         },
         {
           "time": "07:35",
@@ -38601,7 +38597,7 @@
         },
         {
           "time": "10:05",
-          "price": 268.93
+          "price": 268.92
         }
       ],
       "history": [
@@ -40611,12 +40607,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 268.93
+          "close": 268.92
         }
       ],
       "fundamentals": {
         "pe": 21.74,
-        "forward_pe": 24.67,
+        "forward_pe": 24.66,
         "eps": 12.37,
         "gross_margin": "51.37%",
         "operating_margin": "13.09%",
@@ -40685,10 +40681,10 @@
       "symbol": "AAPL",
       "name": "AAPL",
       "asset_type": "us_stock",
-      "price": 353.16,
+      "price": 353.04,
       "prev_close": 348.51,
-      "change": 4.65,
-      "change_pct": 1.33,
+      "change": 4.53,
+      "change_pct": 1.3,
       "ext_session": null,
       "intraday": [
         {
@@ -40809,7 +40805,7 @@
         },
         {
           "time": "07:50",
-          "price": 346.36
+          "price": 346.4
         },
         {
           "time": "07:55",
@@ -40917,7 +40913,7 @@
         },
         {
           "time": "10:05",
-          "price": 353.18
+          "price": 353.04
         }
       ],
       "history": [
@@ -42927,12 +42923,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 353.18
+          "close": 353.04
         }
       ],
       "fundamentals": {
-        "pe": 39.33,
-        "forward_pe": 33.47,
+        "pe": 39.31,
+        "forward_pe": 33.46,
         "eps": 8.98,
         "gross_margin": "48.79%",
         "operating_margin": "33.01%",
@@ -43001,10 +42997,10 @@
       "symbol": "MSFT",
       "name": "MSFT",
       "asset_type": "us_stock",
-      "price": 526.2,
+      "price": 525.83,
       "prev_close": 533.16,
-      "change": -6.96,
-      "change_pct": -1.31,
+      "change": -7.33,
+      "change_pct": -1.37,
       "ext_session": null,
       "intraday": [
         {
@@ -43225,7 +43221,7 @@
         },
         {
           "time": "10:05",
-          "price": 526.2
+          "price": 525.82
         }
       ],
       "history": [
@@ -45235,12 +45231,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 526.2
+          "close": 525.82
         }
       ],
       "fundamentals": {
-        "pe": 27.46,
-        "forward_pe": 21.75,
+        "pe": 27.44,
+        "forward_pe": 21.73,
         "eps": 19.16,
         "gross_margin": "67.66%",
         "operating_margin": "47.1%",
@@ -45809,7 +45805,7 @@
         },
         {
           "date": "2025-02-25",
-          "close": 1028.88
+          "close": 1028.89
         },
         {
           "date": "2025-02-26",
@@ -45873,7 +45869,7 @@
         },
         {
           "date": "2025-03-20",
-          "close": 965.1
+          "close": 965.09
         },
         {
           "date": "2025-03-21",
@@ -51961,7 +51957,7 @@
       ],
       "fundamentals": {
         "pe": 38.96,
-        "forward_pe": 21.41,
+        "forward_pe": 21.42,
         "eps": 33.24,
         "gross_margin": "35.27%",
         "operating_margin": "16.93%",
@@ -51972,8 +51968,13 @@
       "news_sentiment": {
         "bullish": [
           {
-            "title": "營收報喜！臺達電股價腰斬後大復仇連拉2根漲停法人揭下一波目標價- 證券 - 工商時報",
-            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1qSS1rbTNCdnBFMk1HUHRjUVZHLXpIRm9mUkRDc3N3YnBYdlFfeVZ1allnd2hiT1NEVE14M0p3Sm1mZjVwMmNxR1B6ZHVVSjhhRnFUMjUxekxhLUdCVU5F?oc=5",
+            "title": "臺達電營收首破700億元！一字鎖再閃第二紅燈 分析師曝「上檔壓力區」 - Yahoo股市",
+            "url": "https://news.google.com/rss/articles/CBMiyANBVV95cUxNYktKTTN4S3o2bEljRTgzMkhoaGNBZ0pfLWdNQWdRZERWT1J4MzBaLVZ5VTkwZnFhSVFxZm9BeVBvbENVUlJad0tTbmVkN1Vpc2ZoQ3h1TnN5WC11SmJQUThGdUxTMFA4dWJHZmx6czhBaWJwLUREa1ZQaG1Ddkx1YTlJZ2k3Ym1nY0ZYODFDT29lSUk0OTVTR3Z3TTM2bzhsUkI5LXBvQzJENzZxR0JPX0Q4SHA5bFJUVGJEX20wUjRfaWxDSWRSNW9TSzdacVlaY25WeHJ4MUJud0w4cWdHRV9zMFkzRHI1aHhQNlh5YkJSaWRNX2t3aDVmNURHTjhTUTdJZFh4bVRCZ3pRUF9RMUpfOFpXSTNXdTAxNDhKcWV4anczc250dUo5R2xUNENhOXRURUgyTFdkb1J4ZzVxb2Q5dDFZTXgwYUJIVXZQRTFMQjZ2Y0xubm9GM1E5bXdJRFplV2NCeEVkb0Q5T19EUF9rdTRpU1AtMWZsYnVkdzBBMkNTWHB5dGhNcURpRkFVYVRneUNvUW9mVmRwTG9NcEFmZnBrbUFmSktfaE1QSWRQcURBVk92d2hQQWhqcjExRnk3Tjc2dzY?oc=5",
+            "date": "Tue, 10 Nov 2026"
+          },
+          {
+            "title": "臺達電（2308）-從零元件供應商走向系統整合商｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+            "url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxQTVU4SkVCYmRVaXVGNXIwcktfRDRLZUowSHZ2Zi1BY0FXS2RvVUZ3Sm93d0pCR2piQzBKMUloNlhROGU3b1FRc0FOajlZRS0wVXY0NXd4SndXY0M0R2NiaFJ4Y3FyTnQ2c3cwVHBNbHNiRThhcmFrUU1oUmktQjgzWDlxdHprY3VUWWY0RGtyM2NaY05jb0k5aHpuckphOEU3dkpOUzFuajBWaDVoNWhNcnVFNmFVUGtyZFdYTlBVYzJha2hZSTdOSHI0Z0JCV29pV21XRU4wbkE4cWN1N0VnRUhsNHE4QzVEclhDVjIzMW5nX19pU3JmbWhxZUlmajFidUZqZGNBajBiaGozZEktNkg3UGk3YV83dUNRV052Rk1Sb3l6d0loN2R0REp4TFpKNDNQWXp6MXN2NWNSMHB0SEtZeEhpODNzd1VUM3hnczZ4Zw?oc=5",
             "date": "Tue, 10 Nov 2026"
           },
           {
@@ -51990,17 +51991,12 @@
             "title": "【即時新聞】最新臺股反彈行情啟動，臺達電強勢領軍穩盤，帶動指數大漲1050點！ - CMoney投資網誌",
             "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxORzUzU2NFWnBsbHZyTGYxT054aVo1WmFOQTlKc1ZBX1g3VWJiM3NQQ2VZQjFTT1hvV1VseGYzMTdUcHdGakx3a1R1QVVYcEUtdmZqZlEwWjlhVkhzaTdpUWM3Q2Z0UlNUUjhTOElXVXRnYW9wUHRnQi10eFFBcHdlR3ZFUjdYdFh3eFhxX1NNR1o?oc=5",
             "date": "Wed, 11 Nov 2026"
-          },
-          {
-            "title": "臺達電法說會變法會！股價15天崩快4成、1張跌78萬禍首是它？阮慕驊拆解財報「這數字」還有救嗎 - 今週刊",
-            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOUFk3YUw4UDlxbHhxaXFPcDdCa1U2MDNzX0x5R3BxMDdyZ2djWmFsTkJ5eVNVZFE2S0xrVGxraVVoWlFoRFpEWUhRajNlNXlHejlHVUZrVDhHRmVnc0JCQl8tUjZjSmstUmQ4cVIxQkNUdkRqN3ZrT2JmQjl0OHRDSQ?oc=5",
-            "date": "Fri, 30 Oct 2026"
           }
         ],
         "bearish": [
           {
-            "title": "臺達電（2308）-從零元件供應商走向系統整合商｜豐雲學堂 2026 年 11 月 - 永豐金證券",
-            "url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxQTVU4SkVCYmRVaXVGNXIwcktfRDRLZUowSHZ2Zi1BY0FXS2RvVUZ3Sm93d0pCR2piQzBKMUloNlhROGU3b1FRc0FOajlZRS0wVXY0NXd4SndXY0M0R2NiaFJ4Y3FyTnQ2c3cwVHBNbHNiRThhcmFrUU1oUmktQjgzWDlxdHprY3VUWWY0RGtyM2NaY05jb0k5aHpuckphOEU3dkpOUzFuajBWaDVoNWhNcnVFNmFVUGtyZFdYTlBVYzJha2hZSTdOSHI0Z0JCV29pV21XRU4wbkE4cWN1N0VnRUhsNHE4QzVEclhDVjIzMW5nX19pU3JmbWhxZUlmajFidUZqZGNBajBiaGozZEktNkg3UGk3YV83dUNRV052Rk1Sb3l6d0loN2R0REp4TFpKNDNQWXp6MXN2NWNSMHB0SEtZeEhpODNzd1VUM3hnczZ4Zw?oc=5",
+            "title": "營收報喜！臺達電股價腰斬後大復仇連拉2根漲停法人揭下一波目標價- 證券 - 工商時報",
+            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1qSS1rbTNCdnBFMk1HUHRjUVZHLXpIRm9mUkRDc3N3YnBYdlFfeVZ1allnd2hiT1NEVE14M0p3Sm1mZjVwMmNxR1B6ZHVVSjhhRnFUMjUxekxhLUdCVU5F?oc=5",
             "date": "Tue, 10 Nov 2026"
           },
           {
@@ -52019,9 +52015,9 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "臺達電股價慘跌近腰斬！ 股民哀號：比奪魂鋸更慘烈 - 自由財經",
-            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE03anNnSkNwUVc4UnB6MzJKS0JraGtRT3dHSEdVdjE1YzhUQTg2eHVqcTI2TFBpU2pINnZIQ1pUdmdsd0g1MzlrcG1ObXlPVEk1MEdaVTJfZFBmY09oSFJz0gFkQVVfeXFMT0JvYTZ6V3Y1b0liTElvVjdZTTBNSlFtX29ER3ZyejZFNkdVejF0V3FIWi1CSnlLRnhkZkEyWnRKMWdrZkViNGsxbnBrbHJfT0x4b0cwUkhZUWVTZEVIU2QxNkhFeA?oc=5",
-            "date": "Sun, 01 Nov 2026"
+            "title": "臺達電法說會變法會！股價15天崩快4成、1張跌78萬禍首是它？阮慕驊拆解財報「這數字」還有救嗎 - 今週刊",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOUFk3YUw4UDlxbHhxaXFPcDdCa1U2MDNzX0x5R3BxMDdyZ2djWmFsTkJ5eVNVZFE2S0xrVGxraVVoWlFoRFpEWUhRajNlNXlHejlHVUZrVDhHRmVnc0JCQl8tUjZjSmstUmQ4cVIxQkNUdkRqN3ZrT2JmQjl0OHRDSQ?oc=5",
+            "date": "Fri, 30 Oct 2026"
           }
         ]
       },
@@ -56514,8 +56510,8 @@
       "change_pct": -0.4,
       "ext_session": {
         "label": "夜盤",
-        "price": 7607.0,
-        "change_pct": 0.83
+        "price": 7607.5,
+        "change_pct": 0.84
       },
       "intraday": [
         {
@@ -56656,7 +56652,7 @@
         },
         {
           "time": "02:55",
-          "price": 7591.0
+          "price": 7591.25
         },
         {
           "time": "03:00",
@@ -56716,7 +56712,7 @@
         },
         {
           "time": "04:10",
-          "price": 7595.5
+          "price": 7595.0
         },
         {
           "time": "04:15",
@@ -56784,7 +56780,7 @@
         },
         {
           "time": "05:35",
-          "price": 7602.25
+          "price": 7602.0
         },
         {
           "time": "05:40",
@@ -56852,7 +56848,7 @@
         },
         {
           "time": "07:00",
-          "price": 7607.75
+          "price": 7608.0
         },
         {
           "time": "07:05",
@@ -56872,11 +56868,11 @@
         },
         {
           "time": "07:25",
-          "price": 7611.75
+          "price": 7611.5
         },
         {
           "time": "07:30",
-          "price": 7610.5
+          "price": 7610.25
         },
         {
           "time": "07:35",
@@ -56884,7 +56880,7 @@
         },
         {
           "time": "07:40",
-          "price": 7613.25
+          "price": 7613.5
         },
         {
           "time": "07:45",
@@ -56892,7 +56888,7 @@
         },
         {
           "time": "07:50",
-          "price": 7609.5
+          "price": 7609.25
         },
         {
           "time": "07:55",
@@ -56904,7 +56900,7 @@
         },
         {
           "time": "08:05",
-          "price": 7611.0
+          "price": 7611.25
         },
         {
           "time": "08:10",
@@ -56948,11 +56944,11 @@
         },
         {
           "time": "09:00",
-          "price": 7617.5
+          "price": 7617.75
         },
         {
           "time": "09:05",
-          "price": 7615.25
+          "price": 7615.0
         },
         {
           "time": "09:10",
@@ -56972,7 +56968,7 @@
         },
         {
           "time": "09:30",
-          "price": 7612.0
+          "price": 7612.25
         },
         {
           "time": "09:35",
@@ -56992,11 +56988,11 @@
         },
         {
           "time": "09:55",
-          "price": 7608.25
+          "price": 7608.0
         },
         {
           "time": "10:00",
-          "price": 7607.0
+          "price": 7607.5
         }
       ],
       "history": [
@@ -59014,7 +59010,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 7607.0
+          "close": 7607.5
         }
       ],
       "fundamentals": {},
@@ -59033,8 +59029,8 @@
       "change_pct": -0.64,
       "ext_session": {
         "label": "夜盤",
-        "price": 28289.25,
-        "change_pct": 1.63
+        "price": 28301.0,
+        "change_pct": 1.67
       },
       "intraday": [
         {
@@ -59075,7 +59071,7 @@
         },
         {
           "time": "00:50",
-          "price": 28241.5
+          "price": 28242.25
         },
         {
           "time": "00:55",
@@ -59091,7 +59087,7 @@
         },
         {
           "time": "01:10",
-          "price": 28237.25
+          "price": 28235.25
         },
         {
           "time": "01:15",
@@ -59155,7 +59151,7 @@
         },
         {
           "time": "02:30",
-          "price": 28198.5
+          "price": 28199.0
         },
         {
           "time": "02:35",
@@ -59179,7 +59175,7 @@
         },
         {
           "time": "03:00",
-          "price": 28247.75
+          "price": 28246.5
         },
         {
           "time": "03:05",
@@ -59187,7 +59183,7 @@
         },
         {
           "time": "03:10",
-          "price": 28269.0
+          "price": 28268.5
         },
         {
           "time": "03:15",
@@ -59223,7 +59219,7 @@
         },
         {
           "time": "03:55",
-          "price": 28285.5
+          "price": 28285.0
         },
         {
           "time": "04:00",
@@ -59259,7 +59255,7 @@
         },
         {
           "time": "04:40",
-          "price": 28288.5
+          "price": 28287.25
         },
         {
           "time": "04:45",
@@ -59323,7 +59319,7 @@
         },
         {
           "time": "06:00",
-          "price": 28317.5
+          "price": 28316.75
         },
         {
           "time": "06:05",
@@ -59375,7 +59371,7 @@
         },
         {
           "time": "07:05",
-          "price": 28376.5
+          "price": 28375.25
         },
         {
           "time": "07:10",
@@ -59399,7 +59395,7 @@
         },
         {
           "time": "07:35",
-          "price": 28391.25
+          "price": 28391.5
         },
         {
           "time": "07:40",
@@ -59471,7 +59467,7 @@
         },
         {
           "time": "09:05",
-          "price": 28356.25
+          "price": 28356.5
         },
         {
           "time": "09:10",
@@ -59491,7 +59487,7 @@
         },
         {
           "time": "09:30",
-          "price": 28348.75
+          "price": 28349.0
         },
         {
           "time": "09:35",
@@ -59507,7 +59503,7 @@
         },
         {
           "time": "09:50",
-          "price": 28246.0
+          "price": 28246.25
         },
         {
           "time": "09:55",
@@ -59515,7 +59511,7 @@
         },
         {
           "time": "10:00",
-          "price": 28289.25
+          "price": 28301.0
         }
       ],
       "history": [
@@ -61533,7 +61529,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 28289.25
+          "close": 28301.0
         }
       ],
       "fundamentals": {},
@@ -61552,8 +61548,8 @@
       "change_pct": -2.05,
       "ext_session": {
         "label": "夜盤",
-        "price": 4020.7,
-        "change_pct": -0.24
+        "price": 4020.2,
+        "change_pct": -0.25
       },
       "intraday": [
         {
@@ -61562,7 +61558,7 @@
         },
         {
           "time": "00:05",
-          "price": 4060.0
+          "price": 4060.2
         },
         {
           "time": "00:10",
@@ -61690,15 +61686,15 @@
         },
         {
           "time": "02:45",
-          "price": 4067.2
+          "price": 4067.0
         },
         {
           "time": "02:50",
-          "price": 4067.2
+          "price": 4067.0
         },
         {
           "time": "02:55",
-          "price": 4066.6
+          "price": 4066.8
         },
         {
           "time": "03:00",
@@ -61722,7 +61718,7 @@
         },
         {
           "time": "03:25",
-          "price": 4063.5
+          "price": 4063.4
         },
         {
           "time": "03:30",
@@ -61730,7 +61726,7 @@
         },
         {
           "time": "03:35",
-          "price": 4067.6
+          "price": 4067.4
         },
         {
           "time": "03:40",
@@ -61746,7 +61742,7 @@
         },
         {
           "time": "03:55",
-          "price": 4066.8
+          "price": 4066.7
         },
         {
           "time": "04:00",
@@ -61822,7 +61818,7 @@
         },
         {
           "time": "05:30",
-          "price": 4057.6
+          "price": 4057.5
         },
         {
           "time": "05:35",
@@ -61966,7 +61962,7 @@
         },
         {
           "time": "08:30",
-          "price": 4045.1
+          "price": 4045.4
         },
         {
           "time": "08:35",
@@ -62018,7 +62014,7 @@
         },
         {
           "time": "09:35",
-          "price": 4025.9
+          "price": 4025.7
         },
         {
           "time": "09:40",
@@ -62038,7 +62034,7 @@
         },
         {
           "time": "10:00",
-          "price": 4020.7
+          "price": 4020.2
         }
       ],
       "history": [
@@ -64056,7 +64052,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 4020.6
+          "close": 4020.2
         }
       ],
       "fundamentals": {},
@@ -64205,7 +64201,7 @@
         },
         {
           "time": "02:35",
-          "price": 53.0
+          "price": 53.01
         },
         {
           "time": "02:40",
@@ -64437,7 +64433,7 @@
         },
         {
           "time": "07:25",
-          "price": 52.86
+          "price": 52.85
         },
         {
           "time": "07:30",
@@ -64513,7 +64509,7 @@
         },
         {
           "time": "09:00",
-          "price": 52.62
+          "price": 52.63
         },
         {
           "time": "09:05",
@@ -66984,7 +66980,7 @@
         },
         {
           "time": "07:55",
-          "price": 6.29
+          "price": 6.3
         },
         {
           "time": "08:00",
@@ -67084,7 +67080,7 @@
         },
         {
           "time": "10:00",
-          "price": 6.26
+          "price": 6.27
         }
       ],
       "history": [
@@ -69121,8 +69117,8 @@
       "change_pct": -0.93,
       "ext_session": {
         "label": "夜盤",
-        "price": 87.49,
-        "change_pct": 1.69
+        "price": 87.47,
+        "change_pct": 1.66
       },
       "intraday": [
         {
@@ -69291,7 +69287,7 @@
         },
         {
           "time": "03:25",
-          "price": 86.29
+          "price": 86.28
         },
         {
           "time": "03:30",
@@ -69311,7 +69307,7 @@
         },
         {
           "time": "03:50",
-          "price": 86.08
+          "price": 86.06
         },
         {
           "time": "03:55",
@@ -69343,7 +69339,7 @@
         },
         {
           "time": "04:30",
-          "price": 86.75
+          "price": 86.76
         },
         {
           "time": "04:35",
@@ -69587,15 +69583,15 @@
         },
         {
           "time": "09:35",
-          "price": 87.28
+          "price": 87.26
         },
         {
           "time": "09:40",
-          "price": 87.46
+          "price": 87.47
         },
         {
           "time": "09:45",
-          "price": 87.5
+          "price": 87.51
         },
         {
           "time": "09:50",
@@ -69607,7 +69603,7 @@
         },
         {
           "time": "10:00",
-          "price": 87.49
+          "price": 87.47
         }
       ],
       "history": [
@@ -71625,7 +71621,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 87.52
+          "close": 87.47
         }
       ],
       "fundamentals": {},
@@ -71644,8 +71640,8 @@
       "change_pct": -1.17,
       "ext_session": {
         "label": "夜盤",
-        "price": 93.14,
-        "change_pct": 1.8
+        "price": 93.1,
+        "change_pct": 1.76
       },
       "intraday": [
         {
@@ -71898,7 +71894,7 @@
         },
         {
           "time": "05:10",
-          "price": 93.4
+          "price": 93.39
         },
         {
           "time": "05:15",
@@ -71990,7 +71986,7 @@
         },
         {
           "time": "07:05",
-          "price": 93.1
+          "price": 93.14
         },
         {
           "time": "07:10",
@@ -72130,7 +72126,7 @@
         },
         {
           "time": "10:00",
-          "price": 93.14
+          "price": 93.1
         }
       ],
       "history": [
@@ -74148,7 +74144,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 93.14
+          "close": 93.1
         }
       ],
       "fundamentals": {},
@@ -74593,7 +74589,7 @@
         },
         {
           "time": "08:50",
-          "price": 1080.5
+          "price": 1080.0
         },
         {
           "time": "08:55",
@@ -76682,8 +76678,8 @@
       "change_pct": 3.57,
       "ext_session": {
         "label": "夜盤",
-        "price": 1227.25,
-        "change_pct": 0.22
+        "price": 1227.0,
+        "change_pct": 0.2
       },
       "intraday": [
         {
@@ -77132,7 +77128,7 @@
         },
         {
           "time": "10:00",
-          "price": 1227.25
+          "price": 1227.0
         }
       ],
       "history": [
@@ -79146,7 +79142,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 1227.25
+          "close": 1227.0
         }
       ],
       "fundamentals": {},
@@ -79165,8 +79161,8 @@
       "change_pct": 0.81,
       "ext_session": {
         "label": "夜盤",
-        "price": 593.75,
-        "change_pct": 0.17
+        "price": 593.5,
+        "change_pct": 0.13
       },
       "intraday": [
         {
@@ -79307,7 +79303,7 @@
         },
         {
           "time": "02:55",
-          "price": 602.0
+          "price": 601.75
         },
         {
           "time": "03:00",
@@ -79595,7 +79591,7 @@
         },
         {
           "time": "09:40",
-          "price": 591.75
+          "price": 592.0
         },
         {
           "time": "09:45",
@@ -79611,7 +79607,7 @@
         },
         {
           "time": "10:00",
-          "price": 593.75
+          "price": 593.5
         }
       ],
       "history": [
@@ -81625,7 +81621,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 593.75
+          "close": 593.5
         }
       ],
       "fundamentals": {},
@@ -81738,7 +81734,7 @@
         },
         {
           "time": "01:50",
-          "price": 449.5
+          "price": 449.25
         },
         {
           "time": "01:55",
@@ -81846,7 +81842,7 @@
         },
         {
           "time": "04:05",
-          "price": 448.0
+          "price": 447.75
         },
         {
           "time": "04:10",
@@ -82086,7 +82082,7 @@
         },
         {
           "time": "09:50",
-          "price": 445.0
+          "price": 445.25
         },
         {
           "time": "09:55",
@@ -93264,7 +93260,7 @@
         },
         {
           "time": "15:10",
-          "price": 159.68
+          "price": 159.69
         }
       ],
       "history": [
@@ -98177,7 +98173,7 @@
       "price": 102.93,
       "prev_close": 102.23,
       "change": 0.7,
-      "change_pct": 0.68,
+      "change_pct": 0.69,
       "ext_session": null,
       "intraday": [
         {
