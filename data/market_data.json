@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-11-11 22:42:54 CST",
+  "last_updated": "2026-11-11 22:44:18 CST",
   "indices": [
     {
       "symbol": "^GSPC",
       "name": "S&P 500 指數",
       "asset_type": "standard",
-      "price": 7583.75,
+      "price": 7581.96,
       "prev_close": 7520.93,
-      "change": 62.82,
-      "change_pct": 0.84,
+      "change": 61.03,
+      "change_pct": 0.81,
       "ext_session": null,
       "intraday": [
         {
@@ -21,7 +21,7 @@
         },
         {
           "time": "09:40",
-          "price": 7584.21
+          "price": 7581.96
         }
       ],
       "history": [
@@ -2031,7 +2031,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 7584.21
+          "close": 7581.96
         }
       ],
       "fundamentals": {}
@@ -2040,10 +2040,10 @@
       "symbol": "^DJI",
       "name": "道瓊工業指數",
       "asset_type": "standard",
-      "price": 52215.87,
+      "price": 52212.7,
       "prev_close": 52231.89,
-      "change": -16.02,
-      "change_pct": -0.03,
+      "change": -19.19,
+      "change_pct": -0.04,
       "ext_session": null,
       "intraday": [
         {
@@ -2056,7 +2056,7 @@
         },
         {
           "time": "09:40",
-          "price": 52215.87
+          "price": 52212.7
         }
       ],
       "history": [
@@ -4066,7 +4066,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 52215.87
+          "close": 52212.7
         }
       ],
       "fundamentals": {}
@@ -4075,10 +4075,10 @@
       "symbol": "^IXIC",
       "name": "那斯達克指數",
       "asset_type": "standard",
-      "price": 25395.98,
+      "price": 25377.97,
       "prev_close": 25065.88,
-      "change": 330.1,
-      "change_pct": 1.32,
+      "change": 312.09,
+      "change_pct": 1.25,
       "ext_session": null,
       "intraday": [
         {
@@ -4091,7 +4091,7 @@
         },
         {
           "time": "09:40",
-          "price": 25395.98
+          "price": 25377.96
         }
       ],
       "history": [
@@ -6101,7 +6101,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 25395.98
+          "close": 25377.96
         }
       ],
       "fundamentals": {}
@@ -6110,10 +6110,10 @@
       "symbol": "^SOX",
       "name": "費城半導體指數",
       "asset_type": "standard",
-      "price": 10378.84,
+      "price": 10340.59,
       "prev_close": 9998.33,
-      "change": 380.51,
-      "change_pct": 3.81,
+      "change": 342.26,
+      "change_pct": 3.42,
       "ext_session": null,
       "intraday": [
         {
@@ -6126,7 +6126,7 @@
         },
         {
           "time": "09:40",
-          "price": 10366.69
+          "price": 10340.59
         }
       ],
       "history": [
@@ -8136,7 +8136,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 10366.69
+          "close": 10340.59
         }
       ],
       "fundamentals": {}
@@ -14818,10 +14818,10 @@
       "symbol": "^FTSE",
       "name": "英國富時 100",
       "asset_type": "standard",
-      "price": 10802.43,
+      "price": 10803.86,
       "prev_close": 10751.59,
-      "change": 50.84,
-      "change_pct": 0.47,
+      "change": 52.27,
+      "change_pct": 0.49,
       "ext_session": null,
       "intraday": [
         {
@@ -15134,7 +15134,7 @@
         },
         {
           "time": "14:25",
-          "price": 10802.43
+          "price": 10803.86
         }
       ],
       "history": [
@@ -17164,7 +17164,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 10802.41
+          "close": 10803.86
         }
       ],
       "fundamentals": {}
@@ -17173,9 +17173,9 @@
       "symbol": "^GDAXI",
       "name": "德國 DAX 指數",
       "asset_type": "standard",
-      "price": 26558.12,
+      "price": 26558.08,
       "prev_close": 26347.45,
-      "change": 210.67,
+      "change": 210.63,
       "change_pct": 0.8,
       "ext_session": null,
       "intraday": [
@@ -17489,7 +17489,7 @@
         },
         {
           "time": "15:25",
-          "price": 26558.12
+          "price": 26558.08
         }
       ],
       "history": [
@@ -19519,7 +19519,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 26558.12
+          "close": 26558.08
         }
       ],
       "fundamentals": {}
@@ -19528,9 +19528,9 @@
       "symbol": "^FCHI",
       "name": "法國 CAC 40",
       "asset_type": "standard",
-      "price": 8308.9,
+      "price": 8309.2,
       "prev_close": 8278.59,
-      "change": 30.31,
+      "change": 30.61,
       "change_pct": 0.37,
       "ext_session": null,
       "intraday": [
@@ -19844,11 +19844,7 @@
         },
         {
           "time": "15:25",
-          "price": 8308.88
-        },
-        {
-          "time": "15:28",
-          "price": 8308.9
+          "price": 8309.2
         }
       ],
       "history": [
@@ -21894,7 +21890,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 8308.9
+          "close": 8309.2
         }
       ],
       "fundamentals": {}
@@ -21905,10 +21901,10 @@
       "symbol": "NVDA",
       "name": "NVDA",
       "asset_type": "us_stock",
-      "price": 173.06,
+      "price": 172.27,
       "prev_close": 168.8,
-      "change": 4.27,
-      "change_pct": 2.53,
+      "change": 3.47,
+      "change_pct": 2.06,
       "ext_session": null,
       "intraday": [
         {
@@ -22121,11 +22117,7 @@
         },
         {
           "time": "09:40",
-          "price": 173.08
-        },
-        {
-          "time": "09:43",
-          "price": 173.06
+          "price": 172.34
         }
       ],
       "history": [
@@ -24135,12 +24127,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 173.07
+          "close": 172.35
         }
       ],
       "fundamentals": {
-        "pe": 21.88,
-        "forward_pe": 10.88,
+        "pe": 21.78,
+        "forward_pe": 10.83,
         "eps": 7.91,
         "gross_margin": "74.67%",
         "operating_margin": "65.21%",
@@ -24153,10 +24145,10 @@
       "symbol": "TSM",
       "name": "TSM",
       "asset_type": "us_stock",
-      "price": 411.69,
+      "price": 410.1,
       "prev_close": 396.58,
-      "change": 15.11,
-      "change_pct": 3.81,
+      "change": 13.51,
+      "change_pct": 3.41,
       "ext_session": null,
       "intraday": [
         {
@@ -24433,7 +24425,7 @@
         },
         {
           "time": "09:40",
-          "price": 411.69
+          "price": 410.08
         }
       ],
       "history": [
@@ -26443,12 +26435,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 411.71
+          "close": 410.08
         }
       ],
       "fundamentals": {
-        "pe": 26.68,
-        "forward_pe": 17.6,
+        "pe": 26.58,
+        "forward_pe": 17.54,
         "eps": 15.43,
         "gross_margin": "65.85%",
         "operating_margin": "57.96%",
@@ -26461,10 +26453,10 @@
       "symbol": "AMD",
       "name": "AMD",
       "asset_type": "us_stock",
-      "price": 525.81,
+      "price": 524.58,
       "prev_close": 515.21,
-      "change": 10.6,
-      "change_pct": 2.06,
+      "change": 9.37,
+      "change_pct": 1.82,
       "ext_session": null,
       "intraday": [
         {
@@ -26677,7 +26669,7 @@
         },
         {
           "time": "09:40",
-          "price": 525.78
+          "price": 524.61
         }
       ],
       "history": [
@@ -28687,12 +28679,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 525.78
+          "close": 524.61
         }
       ],
       "fundamentals": {
-        "pe": 112.35,
-        "forward_pe": 29.72,
+        "pe": 112.09,
+        "forward_pe": 29.65,
         "eps": 4.68,
         "gross_margin": "56.0%",
         "operating_margin": "17.82%",
@@ -28705,10 +28697,10 @@
       "symbol": "GOOGL",
       "name": "GOOGL",
       "asset_type": "us_stock",
-      "price": 290.52,
+      "price": 290.76,
       "prev_close": 287.38,
-      "change": 3.14,
-      "change_pct": 1.09,
+      "change": 3.38,
+      "change_pct": 1.18,
       "ext_session": null,
       "intraday": [
         {
@@ -28921,7 +28913,7 @@
         },
         {
           "time": "09:40",
-          "price": 290.52
+          "price": 290.76
         }
       ],
       "history": [
@@ -30931,12 +30923,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 290.52
+          "close": 290.77
         }
       ],
       "fundamentals": {
-        "pe": 15.17,
-        "forward_pe": 18.82,
+        "pe": 15.18,
+        "forward_pe": 18.84,
         "eps": 19.15,
         "gross_margin": "60.86%",
         "operating_margin": "33.32%",
@@ -30949,10 +30941,10 @@
       "symbol": "META",
       "name": "META",
       "asset_type": "us_stock",
-      "price": 641.56,
+      "price": 642.44,
       "prev_close": 641.39,
-      "change": 0.17,
-      "change_pct": 0.03,
+      "change": 1.05,
+      "change_pct": 0.16,
       "ext_session": null,
       "intraday": [
         {
@@ -31161,7 +31153,7 @@
         },
         {
           "time": "09:40",
-          "price": 641.56
+          "price": 642.44
         }
       ],
       "history": [
@@ -33171,12 +33163,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 641.68
+          "close": 642.44
         }
       ],
       "fundamentals": {
-        "pe": 21.89,
-        "forward_pe": 18.03,
+        "pe": 21.92,
+        "forward_pe": 18.05,
         "eps": 29.31,
         "gross_margin": "81.03%",
         "operating_margin": "37.78%",
@@ -33189,10 +33181,10 @@
       "symbol": "TSLA",
       "name": "TSLA",
       "asset_type": "us_stock",
-      "price": 387.92,
+      "price": 387.66,
       "prev_close": 379.78,
-      "change": 8.14,
-      "change_pct": 2.14,
+      "change": 7.88,
+      "change_pct": 2.07,
       "ext_session": null,
       "intraday": [
         {
@@ -33405,7 +33397,7 @@
         },
         {
           "time": "09:40",
-          "price": 388.06
+          "price": 387.66
         }
       ],
       "history": [
@@ -35415,12 +35407,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 388.06
+          "close": 387.66
         }
       ],
       "fundamentals": {
-        "pe": 426.28,
-        "forward_pe": 179.66,
+        "pe": 426.0,
+        "forward_pe": 179.54,
         "eps": 0.91,
         "gross_margin": "19.29%",
         "operating_margin": "3.03%",
@@ -35433,10 +35425,10 @@
       "symbol": "AVGO",
       "name": "AVGO",
       "asset_type": "us_stock",
-      "price": 350.6,
+      "price": 349.28,
       "prev_close": 331.98,
-      "change": 18.62,
-      "change_pct": 5.61,
+      "change": 17.3,
+      "change_pct": 5.21,
       "ext_session": null,
       "intraday": [
         {
@@ -35649,7 +35641,7 @@
         },
         {
           "time": "09:40",
-          "price": 350.46
+          "price": 349.28
         }
       ],
       "history": [
@@ -37659,12 +37651,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 350.46
+          "close": 349.28
         }
       ],
       "fundamentals": {
-        "pe": 44.78,
-        "forward_pe": 18.01,
+        "pe": 44.61,
+        "forward_pe": 17.94,
         "eps": 7.83,
         "gross_margin": "75.52%",
         "operating_margin": "48.81%",
@@ -37677,10 +37669,10 @@
       "symbol": "AMZN",
       "name": "AMZN",
       "asset_type": "us_stock",
-      "price": 268.85,
+      "price": 269.26,
       "prev_close": 270.87,
-      "change": -2.02,
-      "change_pct": -0.75,
+      "change": -1.61,
+      "change_pct": -0.59,
       "ext_session": null,
       "intraday": [
         {
@@ -37893,7 +37885,7 @@
         },
         {
           "time": "09:40",
-          "price": 268.78
+          "price": 269.26
         }
       ],
       "history": [
@@ -39903,12 +39895,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 268.86
+          "close": 269.33
         }
       ],
       "fundamentals": {
-        "pe": 21.73,
-        "forward_pe": 24.66,
+        "pe": 21.77,
+        "forward_pe": 24.69,
         "eps": 12.37,
         "gross_margin": "51.37%",
         "operating_margin": "13.09%",
@@ -39921,10 +39913,10 @@
       "symbol": "AAPL",
       "name": "AAPL",
       "asset_type": "us_stock",
-      "price": 352.68,
+      "price": 353.05,
       "prev_close": 348.51,
-      "change": 4.17,
-      "change_pct": 1.2,
+      "change": 4.54,
+      "change_pct": 1.3,
       "ext_session": null,
       "intraday": [
         {
@@ -40133,7 +40125,7 @@
         },
         {
           "time": "09:40",
-          "price": 352.68
+          "price": 353.09
         }
       ],
       "history": [
@@ -40699,7 +40691,7 @@
         },
         {
           "date": "2025-06-05",
-          "close": 199.66
+          "close": 199.67
         },
         {
           "date": "2025-06-06",
@@ -42143,12 +42135,12 @@
         },
         {
           "date": "2026-11-11",
-          "close": 352.68
+          "close": 353.08
         }
       ],
       "fundamentals": {
-        "pe": 39.27,
-        "forward_pe": 33.42,
+        "pe": 39.32,
+        "forward_pe": 33.46,
         "eps": 8.98,
         "gross_margin": "48.79%",
         "operating_margin": "33.01%",
@@ -42161,10 +42153,10 @@
       "symbol": "MSFT",
       "name": "MSFT",
       "asset_type": "us_stock",
-      "price": 533.13,
+      "price": 533.16,
       "prev_close": 533.16,
-      "change": -0.03,
-      "change_pct": -0.01,
+      "change": 0.0,
+      "change_pct": 0.0,
       "ext_session": null,
       "intraday": [
         {
@@ -42365,7 +42357,7 @@
         },
         {
           "time": "09:40",
-          "price": 533.1
+          "price": 533.17
         }
       ],
       "history": [
@@ -42731,7 +42723,7 @@
         },
         {
           "date": "2025-03-25",
-          "close": 390.57
+          "close": 390.58
         },
         {
           "date": "2025-03-26",
@@ -44375,7 +44367,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 533.1
+          "close": 533.17
         }
       ],
       "fundamentals": {
@@ -45241,7 +45233,7 @@
         },
         {
           "date": "2025-07-03",
-          "close": 1072.5
+          "close": 1072.51
         },
         {
           "date": "2025-07-04",
@@ -45257,7 +45249,7 @@
         },
         {
           "date": "2025-07-09",
-          "close": 1072.5
+          "close": 1072.51
         },
         {
           "date": "2025-07-10",
@@ -45845,7 +45837,7 @@
         },
         {
           "date": "2026-02-10",
-          "close": 1863.42
+          "close": 1863.41
         },
         {
           "date": "2026-02-11",
@@ -55333,8 +55325,8 @@
       "change_pct": -0.4,
       "ext_session": {
         "label": "夜盤",
-        "price": 7611.75,
-        "change_pct": 0.89
+        "price": 7613.25,
+        "change_pct": 0.91
       },
       "intraday": [
         {
@@ -55795,7 +55787,7 @@
         },
         {
           "time": "09:35",
-          "price": 7611.75
+          "price": 7613.25
         }
       ],
       "history": [
@@ -57813,7 +57805,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 7611.75
+          "close": 7613.25
         }
       ],
       "fundamentals": {}
@@ -57828,7 +57820,7 @@
       "change_pct": -0.64,
       "ext_session": {
         "label": "夜盤",
-        "price": 28348.5,
+        "price": 28348.25,
         "change_pct": 1.84
       },
       "intraday": [
@@ -58290,7 +58282,7 @@
         },
         {
           "time": "09:35",
-          "price": 28348.5
+          "price": 28348.25
         }
       ],
       "history": [
@@ -60308,7 +60300,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 28348.5
+          "close": 28348.25
         }
       ],
       "fundamentals": {}
@@ -60323,8 +60315,8 @@
       "change_pct": -2.05,
       "ext_session": {
         "label": "夜盤",
-        "price": 4022.4,
-        "change_pct": -0.19
+        "price": 4024.5,
+        "change_pct": -0.14
       },
       "intraday": [
         {
@@ -60789,7 +60781,7 @@
         },
         {
           "time": "09:35",
-          "price": 4022.4
+          "price": 4024.5
         }
       ],
       "history": [
@@ -62807,7 +62799,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 4022.4
+          "close": 4024.5
         }
       ],
       "fundamentals": {}
@@ -62822,8 +62814,8 @@
       "change_pct": -2.78,
       "ext_session": {
         "label": "夜盤",
-        "price": 52.26,
-        "change_pct": 2.27
+        "price": 52.3,
+        "change_pct": 2.35
       },
       "intraday": [
         {
@@ -63288,7 +63280,7 @@
         },
         {
           "time": "09:35",
-          "price": 52.26
+          "price": 52.3
         }
       ],
       "history": [
@@ -65306,7 +65298,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 52.26
+          "close": 52.3
         }
       ],
       "fundamentals": {}
@@ -67820,8 +67812,8 @@
       "change_pct": -0.93,
       "ext_session": {
         "label": "夜盤",
-        "price": 87.25,
-        "change_pct": 1.41
+        "price": 87.21,
+        "change_pct": 1.36
       },
       "intraday": [
         {
@@ -68286,7 +68278,7 @@
         },
         {
           "time": "09:35",
-          "price": 87.25
+          "price": 87.21
         }
       ],
       "history": [
@@ -70304,7 +70296,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 87.25
+          "close": 87.21
         }
       ],
       "fundamentals": {}
@@ -72818,8 +72810,8 @@
       "change_pct": -0.06,
       "ext_session": {
         "label": "夜盤",
-        "price": 1067.0,
-        "change_pct": 4.78
+        "price": 1068.5,
+        "change_pct": 4.93
       },
       "intraday": [
         {
@@ -73280,7 +73272,7 @@
         },
         {
           "time": "09:35",
-          "price": 1067.0
+          "price": 1068.5
         }
       ],
       "history": [
@@ -75294,7 +75286,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 1067.0
+          "close": 1068.5
         }
       ],
       "fundamentals": {}
@@ -75309,8 +75301,8 @@
       "change_pct": 3.57,
       "ext_session": {
         "label": "夜盤",
-        "price": 1224.75,
-        "change_pct": 0.02
+        "price": 1226.0,
+        "change_pct": 0.12
       },
       "intraday": [
         {
@@ -75739,7 +75731,7 @@
         },
         {
           "time": "09:35",
-          "price": 1224.75
+          "price": 1226.0
         }
       ],
       "history": [
@@ -77753,7 +77745,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 1224.75
+          "close": 1226.0
         }
       ],
       "fundamentals": {}
@@ -80223,8 +80215,8 @@
       "change_pct": 2.22,
       "ext_session": {
         "label": "夜盤",
-        "price": 446.0,
-        "change_pct": -0.67
+        "price": 445.75,
+        "change_pct": -0.72
       },
       "intraday": [
         {
@@ -80653,7 +80645,7 @@
         },
         {
           "time": "09:35",
-          "price": 446.0
+          "price": 445.75
         }
       ],
       "history": [
@@ -82667,7 +82659,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 446.0
+          "close": 445.75
         }
       ],
       "fundamentals": {}
@@ -82680,7 +82672,7 @@
       "asset_type": "standard",
       "price": 32.89,
       "prev_close": 32.94,
-      "change": -0.04,
+      "change": -0.05,
       "change_pct": -0.14,
       "ext_session": null,
       "intraday": [
@@ -88219,7 +88211,7 @@
       "price": 1.11,
       "prev_close": 1.12,
       "change": -0.01,
-      "change_pct": -0.68,
+      "change_pct": -0.69,
       "ext_session": null,
       "intraday": [
         {
@@ -91723,6 +91715,14 @@
         },
         {
           "time": "14:35",
+          "price": 159.67
+        },
+        {
+          "time": "14:40",
+          "price": 159.7
+        },
+        {
+          "time": "14:45",
           "price": 159.67
         },
         {
@@ -96613,10 +96613,10 @@
       "symbol": "DX-Y.NYB",
       "name": "美元指數 (DXY)",
       "asset_type": "standard",
-      "price": 102.91,
+      "price": 102.92,
       "prev_close": 102.23,
-      "change": 0.68,
-      "change_pct": 0.66,
+      "change": 0.69,
+      "change_pct": 0.67,
       "ext_session": null,
       "intraday": [
         {
@@ -97081,7 +97081,7 @@
         },
         {
           "time": "09:35",
-          "price": 102.91
+          "price": 102.92
         }
       ],
       "history": [
@@ -99099,7 +99099,7 @@
         },
         {
           "date": "2026-11-11",
-          "close": 102.91
+          "close": 102.92
         }
       ],
       "fundamentals": {}
