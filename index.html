@@ -1,613 +1,551 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="dark">
+<html lang="zh-Hant-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全球市場數據監控與深度基本面儀表板</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 改用極速穩定的 Cloudflare CDN 載入 ECharts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-    <style>
-        /* 自訂捲軸與卡片互動動畫 */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全球金融市場與台股籌碼監控儀表板</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Apache ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <!-- Google Fonts: Noto Sans TC 強制繁體字型 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .card-bg {
+      background: linear-gradient(145deg, #131b2e 0%, #0f1523 100%);
+      border: 1px solid #1e293b;
+    }
+    .card-bg:hover {
+      border-color: #3b82f6;
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 p-4 sm:p-6 md:p-10 font-sans min-h-screen selection:bg-blue-500 selection:text-white">
-    
-    <!-- 頂部標題列 -->
-    <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row md:justify-between md:items-end border-b border-slate-800 pb-5">
-        <div>
-            <div class="flex items-center gap-3">
-                <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">全球市場數據監控</h1>
-                <span class="text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2.5 py-0.5 rounded-full">互動式分析版</span>
-            </div>
-            <p class="text-slate-400 mt-2 text-xs sm:text-sm">💡 點擊下方任意標的卡片，即可檢視「近一年歷史走勢」、「大盤相對強弱對比」、「最新財報數據」與「近期漲跌利多／利空原因」</p>
-        </div>
-        <div id="update-time" class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 mt-4 md:mt-0 self-start md:self-auto">
-            載入數據中...
-        </div>
-    </header>
-    
-    <!-- 主儀表板內容區 -->
-    <main id="dashboard-content" class="max-w-7xl mx-auto"></main>
+<body class="min-h-screen p-4 md:p-8">
 
-    <!-- 互動式深度分析彈窗 (Modal) -->
-    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-        <div id="modal-box" class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-4 sm:p-6 md:p-8 relative">
-            
-            <!-- 彈窗頂部：名稱、報價、漲跌與關閉按鈕 -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span id="modal-category" class="text-xs font-bold text-blue-400 bg-blue-950/80 border border-blue-800/60 px-2 py-0.5 rounded uppercase tracking-wider"></span>
-                        <span id="modal-ticker" class="text-xs font-mono text-slate-400"></span>
-                    </div>
-                    <div class="flex items-baseline gap-3 mt-2 flex-wrap">
-                        <h2 id="modal-title" class="text-2xl sm:text-3xl font-black text-white"></h2>
-                        <span id="modal-price" class="text-2xl sm:text-3xl font-black text-white font-mono"></span>
-                        <span id="modal-change" class="text-xs sm:text-sm font-bold px-2.5 py-1 rounded-md bg-slate-800"></span>
-                        <span id="modal-year-change" class="text-xs font-semibold px-2 py-1 rounded bg-slate-800/70 text-slate-300"></span>
-                    </div>
-                </div>
-                <button id="btn-close-modal" class="self-end sm:self-center text-slate-300 hover:text-white bg-slate-800 hover:bg-red-600/80 px-4 py-2 rounded-xl text-sm font-bold transition-colors cursor-pointer">
-                    ✕ 關閉視窗
-                </button>
-            </div>
-
-            <!-- 近一年走勢與大盤對比圖表區 -->
-            <div class="mt-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                    <div>
-                        <h3 id="chart-section-title" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                            📈 近一年歷史走勢圖
-                        </h3>
-                        <p id="chart-subtitle" class="text-xs text-slate-400 mt-0.5">支援滑鼠滾輪縮放、拖曳檢視特定區間與十字游標比價</p>
-                    </div>
-                    <div id="chart-mode-switch" class="flex bg-slate-950 p-1 rounded-xl border border-slate-800 self-start">
-                        <button id="btn-mode-compare" type="button" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow cursor-pointer transition-all">
-                            相對大盤績效對比 (%)
-                        </button>
-                        <button id="btn-mode-price" type="button" class="px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white cursor-pointer transition-all">
-                            絕對價格走勢
-                        </button>
-                    </div>
-                </div>
-                <div id="echarts-container" class="w-full h-80 sm:h-96 bg-slate-950/70 rounded-xl border border-slate-800 p-2"></div>
-            </div>
-
-            <!-- 近期漲跌原因：利多與利空分析 -->
-            <div class="mt-6">
-                <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
-                    ⚖️ 近期漲跌原因與多空驅動因子分析
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-red-950/20 border border-red-900/50 rounded-xl p-4">
-                        <h4 class="text-sm font-bold text-red-400 mb-3 flex items-center gap-1.5 border-b border-red-900/40 pb-2">
-                            🔥 近期利多、上漲動能與支撐因素
-                        </h4>
-                        <ul id="modal-bulls" class="text-xs sm:text-sm text-slate-200 space-y-2.5 leading-relaxed"></ul>
-                    </div>
-                    <div class="bg-emerald-950/20 border border-emerald-900/50 rounded-xl p-4">
-                        <h4 class="text-sm font-bold text-emerald-400 mb-3 flex items-center gap-1.5 border-b border-emerald-900/40 pb-2">
-                            ❄️ 近期利空、下跌壓力與潛在風險
-                        </h4>
-                        <ul id="modal-bears" class="text-xs sm:text-sm text-slate-200 space-y-2.5 leading-relaxed"></ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 個股專屬：最新財報數據整理 -->
-            <div id="modal-financials-section" class="mt-6 bg-slate-950/80 border border-slate-800 rounded-xl p-4 sm:p-5">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 border-b border-slate-800 pb-3">
-                    <h4 class="text-base font-bold text-white flex items-center gap-2">
-                        📊 最新財報核心數據與獲利能力指標
-                    </h4>
-                    <span id="fin-period" class="text-xs font-mono text-blue-400 bg-blue-950/60 px-2.5 py-1 rounded border border-blue-800/50 mt-1 sm:mt-0"></span>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 text-center">
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">最新單季營收</div>
-                        <div id="fin-rev" class="text-xs sm:text-sm font-bold text-white mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">單季稅後淨利</div>
-                        <div id="fin-ni" class="text-xs sm:text-sm font-bold text-white mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">每股盈餘 (EPS)</div>
-                        <div id="fin-eps" class="text-xs sm:text-sm font-bold text-amber-400 mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">毛利率</div>
-                        <div id="fin-gm" class="text-xs sm:text-sm font-bold text-white mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">營業利益率</div>
-                        <div id="fin-om" class="text-xs sm:text-sm font-bold text-white mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">營收年增 (YoY)</div>
-                        <div id="fin-yoy" class="text-xs sm:text-sm font-bold text-blue-400 mt-1 font-mono"></div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[11px] text-slate-400">本益比 (P/E)</div>
-                        <div id="fin-pe" class="text-xs sm:text-sm font-bold text-white mt-1 font-mono"></div>
-                    </div>
-                </div>
-                <div class="mt-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                    <div class="text-xs font-bold text-amber-400 mb-1.5">📑 財報表現與營運展望重點整理：</div>
-                    <p id="modal-earnings-note" class="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line"></p>
-                </div>
-            </div>
-
-            <!-- 公司公開說明、重大訊息與即時新聞整合 -->
-            <div class="mt-6 bg-slate-950/80 border border-slate-800 rounded-xl p-4 sm:p-5">
-                <h4 class="text-base font-bold text-white mb-2.5 flex items-center gap-2">
-                    📢 公司公開說明、重大訊息與市場動態整合
-                </h4>
-                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                    <p id="modal-announcements" class="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line"></p>
-                </div>
-                
-                <div id="modal-news-wrapper" class="mt-4 pt-3 border-t border-slate-800/80">
-                    <div class="text-xs font-bold text-slate-400 mb-2.5">📰 近期公開新聞與法說／公告追蹤（點擊可開啟新聞來源）：</div>
-                    <div id="modal-news-list" class="space-y-2"></div>
-                </div>
-            </div>
-
-        </div>
+  <!-- 頂部標題與更新狀態列 -->
+  <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼監控儀表板</h1>
+      <p class="text-slate-400 text-sm mt-1">涵蓋全球指數、美股盤前盤後、期貨夜盤、台股法人籌碼與公開資訊觀測站重大訊息</p>
     </div>
+    <div class="mt-3 md:mt-0 flex items-center space-x-3">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span id="last-updated" class="text-xs md:text-sm text-slate-300 mono">資料載入中...</span>
+    </div>
+  </header>
 
-    <script>
-        let flatItemsList = [];
-        let currentModalItem = null;
-        let chartInstance = null;
-        let currentChartMode = 'compare';
+  <main class="max-w-7xl mx-auto space-y-10">
 
-        function getColor(change) {
-            if (change > 0) return 'text-red-400';
-            if (change < 0) return 'text-emerald-400';
-            return 'text-slate-400';
+    <!-- 專區 1：互動式走勢圖 (1D / 1W / 1M / YTD + 自訂任意日期區間) -->
+    <section class="card-bg rounded-xl p-5 shadow-lg">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <h2 id="chart-asset-title" class="text-xl font-bold text-white">點擊下方任一資產檢視走勢圖</h2>
+            <span id="chart-period-return" class="text-sm font-bold px-2.5 py-0.5 rounded bg-slate-800 mono"></span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">支援日內 5 分鐘走勢 (1D)、歷史區間切換，或自行指定任意起訖日期</p>
+        </div>
+
+        <!-- 區間切換按鈕與自訂日期選擇器 -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1D (日內)</button>
+          <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
+          <button onclick="switchRange('1M')" id="btn-1M" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1M</button>
+          <button onclick="switchRange('YTD')" id="btn-YTD" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
+
+          <div class="flex items-center gap-1.5 ml-2 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
+            <span class="text-xs text-slate-400">自訂區間：</span>
+            <input type="date" id="custom-start" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <span class="text-xs text-slate-500">至</span>
+            <input type="date" id="custom-end" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="main-price-chart" class="w-full h-80"></div>
+    </section>
+
+    <!-- 專區 2：全球主要指數 -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可切換上方走勢圖)</span></h2>
+      <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
+    </section>
+
+    <!-- 專區 3：美股重點科技股 (純代號 + 盤前/盤後即時顯示) -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-white border-l-4 border-indigo-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-slate-400 ml-2">(純代號顯示・自動偵測盤前／盤後報價)</span></h2>
+      </div>
+      <div id="grid-us-stocks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
+    </section>
+
+    <!-- 專區 4：期貨與原物料商品 (當日收盤價 + 夜盤即時報價) -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主價格為日盤結算收盤・下方顯示夜盤最新報價)</span></h2>
+      <div id="grid-futures" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
+    </section>
+
+    <!-- 專區 5：台股重點權值股、最新財報核心數據(含月營收) 與 公開資訊觀測站重大訊息 -->
+    <section class="space-y-6">
+      <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">台股核心權值股・最新財報與月營收指標・公開資訊觀測站重大訊息</h2>
+      <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+      <!-- 公開資訊觀測站 (MOPS) 即時重大訊息專欄 -->
+      <div class="card-bg rounded-xl p-5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 text-xs font-bold bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded">MOPS 重大訊息</span>
+            <h3 class="text-base font-bold text-white">公開資訊觀測站當日最新重大訊息通報</h3>
+          </div>
+          <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
+        </div>
+        <div id="mops-list" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
+      </div>
+    </section>
+
+    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (三大法人買賣超長條圖 + 融資融券變化圖) -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-purple-500 pl-3">台股與法人籌碼進階視覺化專區</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="card-bg rounded-xl p-4">
+          <h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 日買賣超金額變化 (單位：億元)</h3>
+          <div id="chart-institutional" class="w-full h-72"></div>
+        </div>
+        <div class="card-bg rounded-xl p-4">
+          <h3 class="text-sm font-bold text-slate-200 mb-2">大盤融資餘額與融券餘額變化趨勢 (單位：萬張)</h3>
+          <div id="chart-margin" class="w-full h-72"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專區 7：美股最新財報核心數據與獲利能力指標 -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美股科技股：最新財報核心數據與獲利能力指標</h2>
+      <div class="card-bg rounded-xl overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 text-xs">
+              <th class="py-3 px-4">代號</th>
+              <th class="py-3 px-4">最新收盤價</th>
+              <th class="py-3 px-4">盤前 / 盤後</th>
+              <th class="py-3 px-4">本益比 (PE)</th>
+              <th class="py-3 px-4">預估本益比 (Fwd PE)</th>
+              <th class="py-3 px-4">EPS (TTM)</th>
+              <th class="py-3 px-4">毛利率</th>
+              <th class="py-3 px-4">營業利益率</th>
+              <th class="py-3 px-4">ROE</th>
+              <th class="py-3 px-4">季度營收年增率 (YoY)</th>
+            </tr>
+          </thead>
+          <tbody id="table-us-fundamentals" class="divide-y divide-slate-800/60 mono text-xs"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 專區 8：外匯與美國公債殖利率 -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率</h2>
+      <div id="grid-fx-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+    </section>
+
+  </main>
+
+  <script>
+    let globalMarketData = null;
+    let allAssetsMap = {};
+    let currentAssetSymbol = "^TWII";
+    let currentRangeMode = "1D";
+
+    let mainChart = null;
+    let instChart = null;
+    let marginChart = null;
+
+    // 台股習慣：紅漲綠跌
+    function getColorClass(val) {
+      if (val > 0) return "text-rose-400";
+      if (val < 0) return "text-emerald-400";
+      return "text-slate-300";
+    }
+
+    function formatSignedPct(val) {
+      if (val === null || val === undefined || isNaN(val)) return "0.00%";
+      const sign = val > 0 ? "+" : "";
+      return `${sign}${Number(val).toFixed(2)}%`;
+    }
+
+    // 建立通用報價卡片 (支援盤前/盤後/夜盤第二行顯示)
+    function createQuoteCard(item, forceTickerOnly = false) {
+      allAssetsMap[item.symbol] = item;
+      const titleText = forceTickerOnly ? item.symbol : item.name;
+      const colorCls = getColorClass(item.change_pct);
+
+      // 盤前 / 盤後 / 夜盤 顯示區塊 (格式：1 +3% 盤前 / 夜盤)
+      let extHtml = "";
+      if (item.ext_session && item.ext_session.price !== null) {
+        const extColor = getColorClass(item.ext_session.change_pct);
+        extHtml = `
+          <div class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
+            <span class="${extColor} font-semibold">
+              ${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}
+            </span>
+          </div>
+        `;
+      }
+
+      return `
+        <div onclick="selectAsset('${item.symbol}')" class="card-bg rounded-lg p-3.5 cursor-pointer transition-all hover:-translate-y-0.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white text-sm tracking-tight">${titleText}</span>
+            <span class="text-[11px] text-slate-500 mono">${forceTickerOnly ? 'US' : item.symbol}</span>
+          </div>
+          <div class="mt-2 flex items-baseline justify-between mono">
+            <span class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
+            <span class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
+          </div>
+          ${extHtml}
+        </div>
+      `;
+    }
+
+    // 建立台股權值股完整卡片 (整合最新財報核心數據 + 月營收 + 公開資訊觀測站重訊)
+    function createTwStockCard(item) {
+      allAssetsMap[item.symbol] = item;
+      const colorCls = getColorClass(item.change_pct);
+      const f = item.fundamentals || {};
+
+      // 月營收區塊
+      let revHtml = `<div class="text-xs text-slate-400">月營收：尚無最新資料</div>`;
+      if (f.monthly_rev) {
+        const momCls = getColorClass(f.monthly_rev.mom);
+        const yoyCls = getColorClass(f.monthly_rev.yoy);
+        revHtml = `
+          <div class="bg-slate-900/70 rounded p-2.5 border border-slate-800/90 mt-2">
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="font-bold text-amber-400">最新月營收 (${f.monthly_rev.month})</span>
+              <span class="mono font-bold text-white">${f.monthly_rev.revenue_yi}</span>
+            </div>
+            <div class="flex items-center justify-between text-xs mono">
+              <span>月增 (MoM): <strong class="${momCls}">${formatSignedPct(f.monthly_rev.mom)}</strong></span>
+              <span>年增 (YoY): <strong class="${yoyCls}">${formatSignedPct(f.monthly_rev.yoy)}</strong></span>
+            </div>
+          </div>
+        `;
+      }
+
+      // 該個股當日 MOPS 重大訊息
+      let mopsHtml = "";
+      if (item.mops_announcements && item.mops_announcements.length > 0) {
+        const listItems = item.mops_announcements.slice(0, 2).map(m => `
+          <li class="text-xs text-slate-300 truncate">
+            <a href="${m.url}" target="_blank" class="hover:text-blue-400">
+              <span class="text-rose-400 font-bold">[重訊 ${m.time}]</span> ${m.subject}
+            </a>
+          </li>
+        `).join("");
+        mopsHtml = `
+          <div class="mt-2.5 pt-2 border-t border-slate-800">
+            <div class="text-[11px] font-bold text-rose-400 mb-1">公開資訊觀測站最新公告：</div>
+            <ul class="space-y-1">${listItems}</ul>
+          </div>
+        `;
+      } else {
+        mopsHtml = `
+          <div class="mt-2.5 pt-2 border-t border-slate-800 flex justify-between items-center text-[11px] text-slate-500">
+            <span>今日無新增重大訊息</span>
+            <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" class="text-blue-400 hover:underline">MOPS 查詢</a>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="card-bg rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div onclick="selectAsset('${item.symbol}')" class="flex items-center justify-between cursor-pointer border-b border-slate-800 pb-2.5">
+              <div>
+                <h3 class="font-bold text-base text-white">${item.name}</h3>
+                <span class="text-xs text-slate-400">點擊檢視歷史與日內走勢</span>
+              </div>
+              <div class="text-right mono">
+                <div class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
+                <div class="text-xs font-bold ${colorCls}">${item.change > 0 ? '+' : ''}${item.change} (${formatSignedPct(item.change_pct)})</div>
+              </div>
+            </div>
+
+            <!-- 最新財報核心數據與獲利能力指標 (含月營收) -->
+            <div class="mt-3">
+              <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
+              <div class="grid grid-cols-3 gap-2 text-xs mono bg-slate-900/40 p-2 rounded">
+                <div><span class="text-slate-400 block text-[10px]">本益比 PE</span>${f.pe ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span>${f.eps ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">營益率</span>${f.operating_margin ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">季營收年增</span>${f.yoy_rev_growth ?? 'N/A'}</div>
+              </div>
+              ${revHtml}
+            </div>
+          </div>
+          ${mopsHtml}
+        </div>
+      `;
+    }
+
+    // 切換選中資產並繪製走勢圖
+    function selectAsset(symbol) {
+      if (!allAssetsMap[symbol]) return;
+      currentAssetSymbol = symbol;
+      renderMainChart();
+    }
+
+    function switchRange(mode) {
+      currentRangeMode = mode;
+      document.querySelectorAll(".range-btn").forEach(btn => {
+        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
+      });
+      const activeBtn = document.getElementById(`btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white";
+      }
+      renderMainChart();
+    }
+
+    function applyCustomDateRange() {
+      const startVal = document.getElementById("custom-start").value;
+      const endVal = document.getElementById("custom-end").value;
+      if (!startVal || !endVal) {
+        alert("請先選擇自訂區間的「起始日期」與「結束日期」！");
+        return;
+      }
+      currentRangeMode = "CUSTOM";
+      document.querySelectorAll(".range-btn").forEach(btn => {
+        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
+      });
+      renderMainChart(startVal, endVal);
+    }
+
+    function renderMainChart(customStart = null, customEnd = null) {
+      const asset = allAssetsMap[currentAssetSymbol];
+      if (!asset) return;
+
+      document.getElementById("chart-asset-title").textContent = `${asset.name} (${asset.symbol}) 走勢圖`;
+
+      let xData = [];
+      let yData = [];
+
+      if (currentRangeMode === "1D" && asset.intraday && asset.intraday.length > 0) {
+        xData = asset.intraday.map(d => d.time);
+        yData = asset.intraday.map(d => d.price);
+      } else {
+        const hist = asset.history || [];
+        let filtered = hist;
+        const now = new Date();
+
+        if (currentRangeMode === "1W") {
+          filtered = hist.slice(-6);
+        } else if (currentRangeMode === "1M") {
+          filtered = hist.slice(-22);
+        } else if (currentRangeMode === "YTD") {
+          const currentYear = `${now.getFullYear()}-01-01`;
+          filtered = hist.filter(d => d.date >= currentYear);
+        } else if (currentRangeMode === "CUSTOM" && customStart && customEnd) {
+          filtered = hist.filter(d => d.date >= customStart && d.date <= customEnd);
         }
-        function getSign(change) {
-            return change > 0 ? '+' : '';
-        }
-        
-        // 繪製卡片上的 SVG 迷你走勢圖
-        function createSparkline(sparkline, change) {
-            if (!sparkline || sparkline.length < 2) return '';
-            const width = 80;
-            const height = 36;
-            const min = Math.min(...sparkline);
-            const max = Math.max(...sparkline);
-            const range = (max - min) === 0 ? 1 : (max - min);
-            
-            const pts = sparkline.map((val, idx) => {
-                const x = (idx / (sparkline.length - 1)) * width;
-                const y = height - ((val - min) / range) * (height - 8) - 4;
-                return `${x.toFixed(1)},${y.toFixed(1)}`;
-            });
-            
-            const pointsStr = pts.join(' ');
-            const strokeColor = change > 0 ? '#f87171' : (change < 0 ? '#34d399' : '#94a3b8');
-            const fillColor = change > 0 ? 'rgba(248, 113, 113, 0.16)' : (change < 0 ? 'rgba(52, 211, 153, 0.16)' : 'rgba(148, 163, 184, 0.1)');
-            const areaPoints = `0,${height} ${pointsStr} ${width},${height}`;
 
+        xData = filtered.map(d => d.date);
+        yData = filtered.map(d => d.close);
+      }
+
+      // 計算該區間累計漲跌幅
+      const badge = document.getElementById("chart-period-return");
+      if (yData.length >= 2) {
+        const firstP = yData[0];
+        const lastP = yData[yData.length - 1];
+        const pct = ((lastP - firstP) / firstP) * 100;
+        badge.textContent = `區間變化：${formatSignedPct(pct)}`;
+        badge.className = `text-sm font-bold px-2.5 py-0.5 rounded bg-slate-800 mono ${getColorClass(pct)}`;
+      } else {
+        badge.textContent = "區間資料點不足";
+      }
+
+      const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
+      const lineColor = isUp ? "#fb7185" : "#34d399";
+
+      if (!mainChart) {
+        mainChart = echarts.init(document.getElementById("main-price-chart"));
+      }
+
+      mainChart.setOption({
+        tooltip: { trigger: "axis" },
+        grid: { left: "5%", right: "3%", top: "8%", bottom: "12%" },
+        xAxis: {
+          type: "category",
+          data: xData,
+          axisLine: { lineStyle: { color: "#334155" } },
+          axisLabel: { color: "#94a3b8", fontSize: 11 }
+        },
+        yAxis: {
+          type: "value",
+          scale: true,
+          splitLine: { lineStyle: { color: "#1e293b" } },
+          axisLabel: { color: "#94a3b8", fontSize: 11 }
+        },
+        dataZoom: [
+          { type: "inside", start: 0, end: 100 },
+          { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
+        ],
+        series: [{
+          name: asset.name,
+          type: "line",
+          smooth: true,
+          symbol: "none",
+          data: yData,
+          lineStyle: { color: lineColor, width: 2.5 },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: isUp ? "rgba(251, 113, 133, 0.35)" : "rgba(52, 211, 153, 0.35)" },
+              { offset: 1, color: "rgba(15, 23, 42, 0.0)" }
+            ])
+          }
+        }]
+      }, true);
+    }
+
+    // 繪製三大法人與融資融券圖表 (需求 #5)
+    function renderChipCharts(chips) {
+      if (!chips || !chips.dates || chips.dates.length === 0) return;
+
+      instChart = echarts.init(document.getElementById("chart-institutional"));
+      instChart.setOption({
+        tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+        legend: { data: ["外資", "投信", "自營商"], textStyle: { color: "#cbd5e1" } },
+        grid: { left: "8%", right: "4%", top: "14%", bottom: "10%" },
+        xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8" } },
+        yAxis: { type: "value", splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8" } },
+        series: [
+          { name: "外資", type: "bar", stack: "total", data: chips.foreign_buy, itemStyle: { color: "#38bdf8" } },
+          { name: "投信", type: "bar", stack: "total", data: chips.trust_buy, itemStyle: { color: "#fb7185" } },
+          { name: "自營商", type: "bar", stack: "total", data: chips.dealer_buy, itemStyle: { color: "#facc15" } }
+        ]
+      });
+
+      marginChart = echarts.init(document.getElementById("chart-margin"));
+      marginChart.setOption({
+        tooltip: { trigger: "axis" },
+        legend: { data: ["融資餘額 (萬張)", "融券餘額 (萬張)"], textStyle: { color: "#cbd5e1" } },
+        grid: { left: "8%", right: "8%", top: "14%", bottom: "10%" },
+        xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8" } },
+        yAxis: [
+          { type: "value", name: "融資", scale: true, splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8" } },
+          { type: "value", name: "融券", scale: true, splitLine: { show: false }, axisLabel: { color: "#94a3b8" } }
+        ],
+        series: [
+          { name: "融資餘額 (萬張)", type: "line", yAxisIndex: 0, smooth: true, data: chips.margin_balance, itemStyle: { color: "#f43f5e" } },
+          { name: "融券餘額 (萬張)", type: "bar", yAxisIndex: 1, data: chips.short_balance, itemStyle: { color: "#10b981", opacity: 0.6 } }
+        ]
+      });
+    }
+
+    async function initDashboard() {
+      try {
+        const res = await fetch(`data/market_data.json?t=${Date.now()}`);
+        globalMarketData = await res.json();
+
+        document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated}`;
+
+        // 1. 全球指數
+        document.getElementById("grid-indices").innerHTML =
+          globalMarketData.indices.map(i => createQuoteCard(i, false)).join("");
+
+        // 2. 美股個股 (強制僅顯示純英文代號 + 盤前/盤後)
+        document.getElementById("grid-us-stocks").innerHTML =
+          globalMarketData.us_stocks.map(s => createQuoteCard(s, true)).join("");
+
+        // 3. 期貨與商品 (主收盤價 + 夜盤)
+        document.getElementById("grid-futures").innerHTML =
+          globalMarketData.futures_commodities.map(f => createQuoteCard(f, false)).join("");
+
+        // 4. 台股權值股 (含月營收與 MOPS)
+        document.getElementById("grid-tw-stocks").innerHTML =
+          globalMarketData.tw_stocks.map(t => createTwStockCard(t)).join("");
+
+        // 5. MOPS 重大訊息總表
+        const mopsContainer = document.getElementById("mops-list");
+        if (globalMarketData.mops_general && globalMarketData.mops_general.length > 0) {
+          mopsContainer.innerHTML = globalMarketData.mops_general.map(m => `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs py-1.5 border-b border-slate-800/60">
+              <div class="truncate pr-2">
+                <span class="font-bold text-amber-400 mono mr-2">${m.code} ${m.name}</span>
+                <span class="text-slate-200">${m.subject}</span>
+              </div>
+              <div class="flex items-center gap-3 shrink-0 mt-1 sm:mt-0">
+                <span class="text-slate-500 mono">${m.date} ${m.time}</span>
+                <a href="${m.url}" target="_blank" class="text-blue-400 hover:underline">詳情</a>
+              </div>
+            </div>
+          `).join("");
+        } else {
+          mopsContainer.innerHTML = `<div class="text-xs text-slate-400">目前公開資訊觀測站無當日最新重大訊息或處於非公告時段。</div>`;
+        }
+
+        // 6. 美股財報表格 (純代號顯示)
+        document.getElementById("table-us-fundamentals").innerHTML =
+          globalMarketData.us_stocks.map(s => {
+            const f = s.fundamentals || {};
+            let extText = "-";
+            if (s.ext_session) {
+              const cls = getColorClass(s.ext_session.change_pct);
+              extText = `<span class="${cls}">${s.ext_session.price} ${formatSignedPct(s.ext_session.change_pct)} ${s.ext_session.label}</span>`;
+            }
             return `
-                <svg width="${width}" height="${height}" class="overflow-visible shrink-0 ml-2 pointer-events-none">
-                    <polygon points="${areaPoints}" fill="${fillColor}" />
-                    <polyline fill="none" stroke="${strokeColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" points="${pointsStr}" />
-                </svg>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-2.5 px-4 font-bold text-white">${s.symbol}</td>
+                <td class="py-2.5 px-4 text-white">${s.price ?? 'N/A'} <span class="${getColorClass(s.change_pct)}">(${formatSignedPct(s.change_pct)})</span></td>
+                <td class="py-2.5 px-4">${extText}</td>
+                <td class="py-2.5 px-4">${f.pe ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.forward_pe ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.eps ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.gross_margin ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.operating_margin ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.roe ?? 'N/A'}</td>
+                <td class="py-2.5 px-4">${f.yoy_rev_growth ?? 'N/A'}</td>
+              </tr>
             `;
-        }
+          }).join("");
 
-        function createCardHtml(item, globalIdx) {
-            const color = getColor(item.change);
-            const sign = getSign(item.change);
-            const isChip = String(item.price).includes('億') || item.price === '連線失敗' || item.price === '更新中';
-            
-            let changeText = '';
-            if (!isChip && item.change !== null && item.change !== undefined) {
-                if (item.diff !== undefined) {
-                    changeText = `${item.diff} (${sign}${item.change}%)`;
-                } else {
-                    changeText = `${sign}${item.change}%`;
-                }
-            }
-            
-            const priceColor = isChip ? color : 'text-slate-100';
-            const sparklineSvg = createSparkline(item.sparkline, item.change);
-            
-            return `
-                <div data-idx="${globalIdx}" class="asset-card cursor-pointer group bg-slate-900/90 p-4 rounded-xl shadow-lg border border-slate-800/90 flex items-center justify-between hover:border-blue-500 hover:bg-slate-800/90 hover:shadow-blue-950/40 hover:-translate-y-0.5 transition-all duration-150 select-none">
-                    <div class="flex flex-col justify-between min-w-0 pointer-events-none">
-                        <div class="flex items-center gap-1.5">
-                            <h3 class="text-slate-300 group-hover:text-blue-400 font-semibold text-sm truncate transition-colors">${item.name}</h3>
-                            <span class="text-[10px] text-blue-400 font-medium opacity-70 group-hover:opacity-100">詳情 ↗</span>
-                        </div>
-                        <div class="mt-1.5 flex flex-col">
-                            <span class="text-2xl font-bold ${priceColor} leading-tight tracking-tight font-mono">${item.price}</span>
-                            ${changeText ? `<span class="text-xs font-semibold ${color} mt-1 font-mono">${changeText}</span>` : `<span class="text-[11px] text-slate-500 mt-1">點擊檢視趨勢與分析</span>`}
-                        </div>
-                    </div>
-                    ${sparklineSvg}
-                </div>
-            `;
-        }
+        // 7. 外匯與公債殖利率
+        document.getElementById("grid-fx-bonds").innerHTML =
+          globalMarketData.fx_bonds.map(x => createQuoteCard(x, false)).join("");
 
-        function renderDashboard() {
-            const container = document.getElementById('dashboard-content');
-            const timeEl = document.getElementById('update-time');
-            if (typeof lastUpdate !== 'undefined') {
-                timeEl.textContent = `最後更新：${lastUpdate}`;
-            }
-            
-            flatItemsList = [];
-            let html = '';
-            
-            if (typeof data !== 'undefined' && Object.keys(data).length > 0) {
-                for (const [title, items] of Object.entries(data)) {
-                    if (!items || items.length === 0) continue;
-                    const cardsHtml = items.map(item => {
-                        if (!item.category) item.category = title;
-                        const idx = flatItemsList.length;
-                        flatItemsList.push(item);
-                        return createCardHtml(item, idx);
-                    }).join('');
-                    
-                    html += `
-                        <div class="mb-9">
-                            <h2 class="text-lg sm:text-xl font-bold text-slate-100 mb-4 border-l-4 border-blue-500 pl-3 tracking-wide flex items-center justify-between">
-                                <span>${title}</span>
-                                <span class="text-xs font-normal text-slate-500">點擊卡片開啟完整報告</span>
-                            </h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                                ${cardsHtml}
-                            </div>
-                        </div>
-                    `;
-                }
-                container.innerHTML = html;
+        // 初始化預設自訂日期區間 (預設示範：去年 3 月 5 號到今年 8 月 10 號)
+        document.getElementById("custom-start").value = "2025-03-05";
+        document.getElementById("custom-end").value = "2026-08-10";
 
-                // 綁定所有卡片的點擊事件
-                document.querySelectorAll('.asset-card').forEach(cardEl => {
-                    cardEl.addEventListener('click', function() {
-                        const idx = parseInt(this.getAttribute('data-idx'), 10);
-                        openModalByIndex(idx);
-                    });
-                });
-            } else {
-                container.innerHTML = '<div class="p-8 text-center text-slate-500">正在等待系統更新資料...</div>';
-            }
-        }
+        // 繪製預設走勢圖與籌碼圖
+        selectAsset("^TWII");
+        renderChipCharts(globalMarketData.tw_chips_visual);
 
-        function openModalByIndex(idx) {
-            const item = flatItemsList[idx];
-            if (!item) return;
-            currentModalItem = item;
+      } catch (err) {
+        console.error("Failed loading market data:", err);
+      }
+    }
 
-            const modal = document.getElementById('detail-modal');
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+    window.addEventListener("resize", () => {
+      if (mainChart) mainChart.resize();
+      if (instChart) instChart.resize();
+      if (marginChart) marginChart.resize();
+    });
 
-            // 1. 基本標題與報價
-            document.getElementById('modal-title').textContent = item.name;
-            document.getElementById('modal-category').textContent = item.category || '全球市場';
-            document.getElementById('modal-ticker').textContent = item.id ? `(${item.id})` : '';
-
-            const isChip = String(item.price).includes('億');
-            const priceEl = document.getElementById('modal-price');
-            priceEl.textContent = item.price;
-            priceEl.className = `text-2xl sm:text-3xl font-black tracking-tight font-mono ${isChip ? getColor(item.change) : 'text-white'}`;
-
-            const changeEl = document.getElementById('modal-change');
-            const sign = getSign(item.change);
-            if (!isChip && item.change !== null && item.change !== undefined) {
-                changeEl.textContent = `單日：${item.diff || ''} (${sign}${item.change}%)`;
-                changeEl.className = `text-xs sm:text-sm font-bold px-2.5 py-1 rounded-md bg-slate-800 font-mono ${getColor(item.change)}`;
-                changeEl.classList.remove('hidden');
-            } else {
-                changeEl.classList.add('hidden');
-            }
-
-            const yChangeEl = document.getElementById('modal-year-change');
-            if (item.year_change !== undefined && item.year_change !== null) {
-                const ySign = item.year_change > 0 ? '+' : '';
-                yChangeEl.textContent = `近一年累計：${ySign}${item.year_change}%`;
-                yChangeEl.className = `text-xs font-bold px-2.5 py-1 rounded-md bg-slate-800/90 font-mono ${getColor(item.year_change)}`;
-                yChangeEl.classList.remove('hidden');
-            } else {
-                yChangeEl.classList.add('hidden');
-            }
-
-            // 2. 判斷是否具備大盤對比資料 (美股 vs 納斯達克 / 台股 vs 加權指數)
-            const hasBenchmark = item.history_1y && item.history_1y.benchmark && item.history_1y.benchmark.prices && item.history_1y.benchmark.prices.length > 1;
-            const switchEl = document.getElementById('chart-mode-switch');
-            const chartTitleEl = document.getElementById('chart-section-title');
-            
-            if (hasBenchmark) {
-                switchEl.classList.remove('hidden');
-                currentChartMode = 'compare';
-                chartTitleEl.textContent = `📈 ${item.name} vs ${item.history_1y.benchmark.name} 近一年走勢對比`;
-                updateModeButtonsUI();
-            } else {
-                switchEl.classList.add('hidden');
-                currentChartMode = 'price';
-                chartTitleEl.textContent = item.category && item.category.includes('籌碼') ? `📊 ${item.name} 近期買賣超趨勢 (億元)` : `📈 ${item.name} 近一年歷史走勢圖`;
-            }
-
-            // 3. 填入利多與利空分析
-            const analysis = item.analysis || {};
-            const bulls = (analysis.bull_factors && analysis.bull_factors.length > 0) 
-                ? analysis.bull_factors 
-                : [item.change >= 0 ? `單日表現穩健 (${sign}${item.change}%)，買盤承接力道顯現` : `短線回檔修正，留意下方均線與整數關卡支撐`];
-            const bears = (analysis.bear_factors && analysis.bear_factors.length > 0) 
-                ? analysis.bear_factors 
-                : [`須留意全球總經利率預期、匯率波動與產業資金輪動風險`];
-
-            document.getElementById('modal-bulls').innerHTML = bulls.map(b => `<li class="flex items-start gap-2"><span class="text-red-400 font-bold mt-0.5">▲</span><span>${b}</span></li>`).join('');
-            document.getElementById('modal-bears').innerHTML = bears.map(b => `<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold mt-0.5">▼</span><span>${b}</span></li>`).join('');
-
-            // 4. 填入個股財報數據
-            const finSection = document.getElementById('modal-financials-section');
-            const isStock = item.is_stock || (item.category && (item.category.includes('權值股') || item.category.includes('科技股')));
-            if (isStock && item.financials) {
-                finSection.classList.remove('hidden');
-                const f = item.financials;
-                document.getElementById('fin-period').textContent = `財報季度：${f.period || '最近一期'}`;
-                document.getElementById('fin-rev').textContent = f.revenue || '-';
-                document.getElementById('fin-ni').textContent = f.net_income || '-';
-                document.getElementById('fin-eps').textContent = f.eps || '-';
-                document.getElementById('fin-gm').textContent = f.gross_margin || '-';
-                document.getElementById('fin-om').textContent = f.operating_margin || '-';
-                document.getElementById('fin-yoy').textContent = f.yoy_growth || '-';
-                document.getElementById('fin-pe').textContent = f.pe_ratio || '-';
-                document.getElementById('modal-earnings-note').textContent = analysis.earnings_note || '已同步最新季度財務報表與獲利能力指標。';
-            } else {
-                finSection.classList.add('hidden');
-            }
-
-            // 5. 填入公開說明與新聞清單
-            document.getElementById('modal-announcements').textContent = analysis.announcements || '系統將於每日排程自動彙整最新公司重大訊息、公開說明與市場新聞。';
-            
-            const newsWrapper = document.getElementById('modal-news-wrapper');
-            const newsListEl = document.getElementById('modal-news-list');
-            if (analysis.news_list && analysis.news_list.length > 0) {
-                newsWrapper.classList.remove('hidden');
-                newsListEl.innerHTML = analysis.news_list.map(n => `
-                    <div class="text-xs border-l-2 border-blue-500/60 pl-3 py-1 bg-slate-900/60 rounded-r flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        ${n.link ? `<a href="${n.link}" target="_blank" rel="noopener" class="text-slate-200 hover:text-blue-400 font-medium transition-colors">${n.title} ↗</a>` : `<span class="text-slate-200 font-medium">${n.title}</span>`}
-                        <span class="text-slate-500 font-mono text-[11px] shrink-0">${n.date || ''}</span>
-                    </div>
-                `).join('');
-            } else {
-                newsWrapper.classList.add('hidden');
-            }
-
-            // 6. 繪製 ECharts 圖表
-            setTimeout(() => {
-                renderModalChart();
-            }, 60);
-        }
-
-        function updateModeButtonsUI() {
-            const btnCompare = document.getElementById('btn-mode-compare');
-            const btnPrice = document.getElementById('btn-mode-price');
-            if (currentChartMode === 'compare') {
-                btnCompare.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow cursor-pointer transition-all";
-                btnPrice.className = "px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white cursor-pointer transition-all";
-            } else {
-                btnPrice.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow cursor-pointer transition-all";
-                btnCompare.className = "px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white cursor-pointer transition-all";
-            }
-        }
-
-        function renderModalChart() {
-            const item = currentModalItem;
-            if (!item) return;
-
-            const chartDom = document.getElementById('echarts-container');
-            if (typeof echarts === 'undefined') {
-                chartDom.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 text-sm">圖表引擎載入中，請確認網路連線...</div>';
-                return;
-            }
-
-            if (chartInstance) {
-                chartInstance.dispose();
-            }
-            chartInstance = echarts.init(chartDom);
-
-            // 若後端尚未產生 history_1y，自動降級使用 sparkline 繪圖，確保圖表永遠有畫面
-            let dates = [];
-            let rawPrices = [];
-            let bench = null;
-
-            if (item.history_1y && item.history_1y.prices && item.history_1y.prices.length > 1) {
-                dates = item.history_1y.dates;
-                rawPrices = item.history_1y.prices;
-                bench = item.history_1y.benchmark;
-            } else if (item.sparkline && item.sparkline.length > 1) {
-                rawPrices = item.sparkline;
-                dates = rawPrices.map((_, i) => `T-${rawPrices.length - 1 - i}`);
-            } else {
-                chartDom.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 text-sm">正在等待系統排程寫入近一年歷史數據...</div>';
-                return;
-            }
-
-            let series = [];
-            let yAxisConfig = {};
-            let tooltipFormatter = null;
-
-            if (currentChartMode === 'compare' && bench && bench.prices && bench.prices.length === rawPrices.length) {
-                const baseAsset = rawPrices[0] || 1;
-                const baseBench = bench.prices[0] || 1;
-                const assetPct = rawPrices.map(p => +(((p - baseAsset) / baseAsset) * 100).toFixed(2));
-                const benchPct = bench.prices.map(p => +(((p - baseBench) / baseBench) * 100).toFixed(2));
-
-                yAxisConfig = {
-                    type: 'value',
-                    axisLabel: { color: '#94a3b8', formatter: '{value}%' },
-                    splitLine: { lineStyle: { color: '#1e293b' } }
-                };
-
-                series = [
-                    {
-                        name: item.name,
-                        type: 'line',
-                        data: assetPct,
-                        smooth: true,
-                        showSymbol: false,
-                        lineStyle: { width: 2.5, color: '#38bdf8' },
-                        itemStyle: { color: '#38bdf8' },
-                        areaStyle: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                { offset: 0, color: 'rgba(56, 189, 248, 0.25)' },
-                                { offset: 1, color: 'rgba(56, 189, 248, 0.0)' }
-                            ])
-                        }
-                    },
-                    {
-                        name: bench.name,
-                        type: 'line',
-                        data: benchPct,
-                        smooth: true,
-                        showSymbol: false,
-                        lineStyle: { width: 2, color: '#f59e0b', type: 'dashed' },
-                        itemStyle: { color: '#f59e0b' }
-                    }
-                ];
-
-                tooltipFormatter = function(params) {
-                    let html = `<div class="text-xs text-slate-300 font-mono mb-1.5 border-b border-slate-700 pb-1">${params[0].axisValue}</div>`;
-                    params.forEach((p, idx) => {
-                        const val = p.value > 0 ? `+${p.value}%` : `${p.value}%`;
-                        const rawP = idx === 0 ? rawPrices[p.dataIndex] : bench.prices[p.dataIndex];
-                        html += `<div class="flex items-center justify-between gap-5 text-xs mt-1">
-                            <span>${p.marker} ${p.seriesName}</span>
-                            <span class="font-bold text-white font-mono">${val} <span class="text-slate-400 font-normal">(${rawP})</span></span>
-                        </div>`;
-                    });
-                    if (params.length === 2) {
-                        const alpha = (params[0].value - params[1].value).toFixed(2);
-                        const alphaSign = alpha > 0 ? '+' : '';
-                        const alphaColor = alpha >= 0 ? '#f87171' : '#34d399';
-                        html += `<div class="mt-1.5 pt-1 border-t border-slate-800 flex justify-between text-xs">
-                            <span class="text-slate-400">超額報酬 (Alpha):</span>
-                            <span style="color:${alphaColor}" class="font-bold font-mono">${alphaSign}${alpha}%</span>
-                        </div>`;
-                    }
-                    return html;
-                };
-            } else {
-                const isChipBar = item.category && item.category.includes('籌碼') || String(item.price).includes('億');
-                const isUp = rawPrices[rawPrices.length - 1] >= rawPrices[0];
-                const mainColor = isUp ? '#f87171' : '#34d399';
-                const areaColor = isUp ? 'rgba(248, 113, 113, 0.22)' : 'rgba(52, 211, 153, 0.22)';
-
-                yAxisConfig = {
-                    type: 'value',
-                    scale: !isChipBar,
-                    axisLabel: { color: '#94a3b8' },
-                    splitLine: { lineStyle: { color: '#1e293b' } }
-                };
-
-                series = [
-                    {
-                        name: item.name,
-                        type: isChipBar ? 'bar' : 'line',
-                        data: rawPrices,
-                        smooth: true,
-                        showSymbol: false,
-                        lineStyle: { width: 2.5, color: mainColor },
-                        itemStyle: { 
-                            color: function(params) {
-                                if (isChipBar) return params.value >= 0 ? '#f87171' : '#34d399';
-                                return mainColor;
-                            }
-                        },
-                        areaStyle: isChipBar ? null : {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                { offset: 0, color: areaColor },
-                                { offset: 1, color: 'rgba(15, 23, 42, 0.0)' }
-                            ])
-                        }
-                    }
-                ];
-            }
-
-            const option = {
-                backgroundColor: 'transparent',
-                tooltip: {
-                    trigger: 'axis',
-                    backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                    borderColor: '#334155',
-                    textStyle: { color: '#f1f5f9' },
-                    formatter: tooltipFormatter
-                },
-                legend: {
-                    show: series.length > 1,
-                    top: 4,
-                    right: 12,
-                    textStyle: { color: '#e2e8f0', fontSize: 12 }
-                },
-                grid: { left: '2%', right: '3%', bottom: '14%', top: series.length > 1 ? '14%' : '8%', containLabel: true },
-                xAxis: {
-                    type: 'category',
-                    data: dates,
-                    axisLabel: { color: '#64748b', fontSize: 11 },
-                    axisLine: { lineStyle: { color: '#334155' } }
-                },
-                yAxis: yAxisConfig,
-                dataZoom: [
-                    { type: 'inside', start: 0, end: 100 },
-                    { type: 'slider', start: 0, end: 100, height: 18, bottom: 4, borderColor: '#1e293b', textStyle: { color: '#64748b' } }
-                ],
-                series: series
-            };
-
-            chartInstance.setOption(option);
-        }
-
-        function closeModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // 綁定彈窗內按鈕事件
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('btn-close-modal').addEventListener('click', closeModal);
-            document.getElementById('detail-modal').addEventListener('click', (e) => {
-                if (e.target.id === 'detail-modal') closeModal();
-            });
-            document.getElementById('btn-mode-compare').addEventListener('click', () => {
-                currentChartMode = 'compare';
-                updateModeButtonsUI();
-                renderModalChart();
-            });
-            document.getElementById('btn-mode-price').addEventListener('click', () => {
-                currentChartMode = 'price';
-                updateModeButtonsUI();
-                renderModalChart();
-            });
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal();
-            });
-            window.addEventListener('resize', () => {
-                if (chartInstance) chartInstance.resize();
-            });
-
-            // 動態載入 data.js 破除瀏覽器快取
-            const script = document.createElement('script');
-            script.src = 'data.js?v=' + new Date().getTime();
-            script.onload = renderDashboard;
-            script.onerror = () => {
-                document.getElementById('dashboard-content').innerHTML = '<div class="p-8 text-center text-red-400">無法載入 data.js，請確認 GitHub Actions 是否已執行完成。</div>';
-            };
-            document.head.appendChild(script);
-        });
-    </script>
+    initDashboard();
+  </script>
 </body>
 </html>
