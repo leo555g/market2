@@ -7,7 +7,7 @@ import urllib3
 # 忽略 SSL 憑證警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# 1. 定義資產與顯示順序（將「台股市場」獨立出來並排在「全球指數」正下方）
+# 1. 定義資產與顯示順序
 yf_assets = {
     "全球指數": {
         "標普 500": "^GSPC", 
@@ -55,7 +55,7 @@ yf_assets = {
 
 dashboard_data = {}
 
-# 2. 抓取全球金融報價與台股加權指數（含當日走勢）
+# 2. 抓取全球金融報價與台股加權指數（含漲跌點數、幅度與當日走勢）
 for category, tickers in yf_assets.items():
     dashboard_data[category] = []
     for name, ticker in tickers.items():
@@ -78,15 +78,21 @@ for category, tickers in yf_assets.items():
                         today *= 10.0
                         yesterday *= 10.0
                         scale_factor *= 10.0
-                        
-                pct = ((today - yesterday) / yesterday) * 100
+                
+                # 計算具體漲跌數字與漲跌幅
+                diff_val = today - yesterday
+                pct = (diff_val / yesterday) * 100
+                sign = "+" if diff_val > 0 else ""
                 
                 if category == "美債殖利率":
                     price_str = f"{today:.2f}%"
+                    diff_str = f"{sign}{diff_val:.2f}"
                 elif category == "外匯市場":
                     price_str = f"{today:.3f}"
+                    diff_str = f"{sign}{diff_val:.3f}"
                 else:
                     price_str = f"{today:.2f}"
+                    diff_str = f"{sign}{diff_val:.2f}"
                 
                 # 抓取當日 5 分鐘 K 線製作迷你走勢圖 (Sparkline)
                 sparkline = []
@@ -105,6 +111,7 @@ for category, tickers in yf_assets.items():
                 dashboard_data[category].append({
                     "name": name, 
                     "price": price_str, 
+                    "diff": diff_str,
                     "change": round(pct, 2),
                     "sparkline": sparkline
                 })
@@ -177,7 +184,7 @@ if not twse_success:
         {"name": "自營商買賣超", "price": "連線失敗", "change": 0}
     ]
 
-# 將三大法人附加到「台股市場」的台股加權指數後面，並確保排在第二順位
+# 將三大法人附加到「台股市場」的台股加權指數後面
 final_dashboard_data = {}
 for k, v in dashboard_data.items():
     if k == "台股市場":
