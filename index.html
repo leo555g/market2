@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>全球金融市場與台股籌碼監控儀表板</title>
-  <!-- Tailwind CSS -->
+  <title>全球金融市場與台股籌碼即時監控儀表板</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Apache ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-  <!-- Google Fonts: Noto Sans TC 強制繁體字型 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -16,29 +13,49 @@
       background-color: #0b0f19;
       color: #e2e8f0;
     }
-    .mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
     .card-bg {
       background: linear-gradient(145deg, #131b2e 0%, #0f1523 100%);
       border: 1px solid #1e293b;
+      transition: all 0.25s ease;
     }
-    .card-bg:hover {
-      border-color: #3b82f6;
+    .card-bg:hover { border-color: #3b82f6; }
+
+    /* 價格即時跳動時的紅綠閃爍動畫 (台股紅漲綠跌) */
+    @keyframes flashUp {
+      0% { background-color: rgba(244, 63, 94, 0.45); border-color: #fb7185; transform: scale(1.02); }
+      100% { background-color: transparent; border-color: #1e293b; transform: scale(1); }
     }
+    @keyframes flashDown {
+      0% { background-color: rgba(16, 185, 129, 0.45); border-color: #34d399; transform: scale(1.02); }
+      100% { background-color: transparent; border-color: #1e293b; transform: scale(1); }
+    }
+    .tick-up { animation: flashUp 0.9s ease-out; }
+    .tick-down { animation: flashDown 0.9s ease-out; }
   </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-  <!-- 頂部標題與更新狀態列 -->
-  <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4">
+  <!-- 頂部標題與即時跳動引擎控制台 -->
+  <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
-      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">涵蓋全球指數、美股盤前盤後、期貨夜盤、台股法人籌碼與公開資訊觀測站重大訊息</p>
+      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援美股盤前盤後、期貨夜盤、台股月營收與公開資訊觀測站重大訊息</p>
     </div>
-    <div class="mt-3 md:mt-0 flex items-center space-x-3">
-      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span id="last-updated" class="text-xs md:text-sm text-slate-300 mono">資料載入中...</span>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <!-- 即時跳動狀態指示器 -->
+      <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
+        <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span id="live-status" class="text-xs font-bold text-emerald-400">即時報價跳動中 (10秒自動巡檢)</span>
+      </div>
+
+      <!-- 選填：Finnhub WebSocket 美股秒級連線設定 -->
+      <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">
+        ⚡ 設定美股 WebSocket 秒級金鑰
+      </button>
+
+      <span id="last-updated" class="text-xs text-slate-400 mono">載入中...</span>
     </div>
   </header>
 
@@ -49,13 +66,12 @@
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
         <div>
           <div class="flex items-center gap-3">
-            <h2 id="chart-asset-title" class="text-xl font-bold text-white">點擊下方任一資產檢視走勢圖</h2>
+            <h2 id="chart-asset-title" class="text-xl font-bold text-white">點擊任一資產卡片檢視走勢圖</h2>
             <span id="chart-period-return" class="text-sm font-bold px-2.5 py-0.5 rounded bg-slate-800 mono"></span>
           </div>
           <p class="text-xs text-slate-400 mt-1">支援日內 5 分鐘走勢 (1D)、歷史區間切換，或自行指定任意起訖日期</p>
         </div>
 
-        <!-- 區間切換按鈕與自訂日期選擇器 -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1D (日內)</button>
           <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
@@ -77,30 +93,28 @@
 
     <!-- 專區 2：全球主要指數 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可切換上方走勢圖)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(即時跳動・點擊卡片可切換上方走勢圖)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 專區 3：美股重點科技股 (純代號 + 盤前/盤後即時顯示) -->
+    <!-- 專區 3：美股核心科技股 (純代號 + 盤前/盤後即時跳動) -->
     <section>
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-lg font-bold text-white border-l-4 border-indigo-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-slate-400 ml-2">(純代號顯示・自動偵測盤前／盤後報價)</span></h2>
-      </div>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-indigo-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-slate-400 ml-2">(純代號顯示・下方即時跳動盤前／盤後價格)</span></h2>
       <div id="grid-us-stocks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 專區 4：期貨與原物料商品 (當日收盤價 + 夜盤即時報價) -->
+    <!-- 專區 4：期貨與大宗商品 (當日收盤價 + 夜盤即時跳動) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主價格為日盤結算收盤・下方顯示夜盤最新報價)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示當日收盤價・下方即時跳動夜盤交易價格)</span></h2>
       <div id="grid-futures" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 5：台股重點權值股、最新財報核心數據(含月營收) 與 公開資訊觀測站重大訊息 -->
+    <!-- 專區 5：台股核心權值股 (最新財報核心數據 + 月營收 + 公開資訊觀測站重訊) -->
     <section class="space-y-6">
       <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">台股核心權值股・最新財報與月營收指標・公開資訊觀測站重大訊息</h2>
       <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-      <!-- 公開資訊觀測站 (MOPS) 即時重大訊息專欄 -->
+      <!-- 公開資訊觀測站 (MOPS) 當日重大訊息專欄 -->
       <div class="card-bg rounded-xl p-5">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
           <div class="flex items-center gap-2">
@@ -113,7 +127,7 @@
       </div>
     </section>
 
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (三大法人買賣超長條圖 + 融資融券變化圖) -->
+    <!-- 專區 6：台股與法人籌碼專區進階視覺化 -->
     <section>
       <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-purple-500 pl-3">台股與法人籌碼進階視覺化專區</h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -137,7 +151,7 @@
             <tr class="border-b border-slate-800 text-slate-400 text-xs">
               <th class="py-3 px-4">代號</th>
               <th class="py-3 px-4">最新收盤價</th>
-              <th class="py-3 px-4">盤前 / 盤後</th>
+              <th class="py-3 px-4">盤前 / 盤後即時價</th>
               <th class="py-3 px-4">本益比 (PE)</th>
               <th class="py-3 px-4">預估本益比 (Fwd PE)</th>
               <th class="py-3 px-4">EPS (TTM)</th>
@@ -152,7 +166,7 @@
       </div>
     </section>
 
-    <!-- 專區 8：外匯與美國公債殖利率 -->
+    <!-- 專區 8：全球外匯與美債殖利率 -->
     <section>
       <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率</h2>
       <div id="grid-fx-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
@@ -169,8 +183,12 @@
     let mainChart = null;
     let instChart = null;
     let marginChart = null;
+    let finnhubSocket = null;
 
-    // 台股習慣：紅漲綠跌
+    function safeId(symbol) {
+      return symbol.replace(/[^a-zA-Z0-9]/g, "_");
+    }
+
     function getColorClass(val) {
       if (val > 0) return "text-rose-400";
       if (val < 0) return "text-emerald-400";
@@ -183,18 +201,18 @@
       return `${sign}${Number(val).toFixed(2)}%`;
     }
 
-    // 建立通用報價卡片 (支援盤前/盤後/夜盤第二行顯示)
+    // 建立報價卡片 (綁定 DOM ID 供即時跳動與紅綠閃爍更新)
     function createQuoteCard(item, forceTickerOnly = false) {
       allAssetsMap[item.symbol] = item;
+      const domId = safeId(item.symbol);
       const titleText = forceTickerOnly ? item.symbol : item.name;
       const colorCls = getColorClass(item.change_pct);
 
-      // 盤前 / 盤後 / 夜盤 顯示區塊 (格式：1 +3% 盤前 / 夜盤)
-      let extHtml = "";
+      let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
       if (item.ext_session && item.ext_session.price !== null) {
         const extColor = getColorClass(item.ext_session.change_pct);
         extHtml = `
-          <div class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
+          <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
             <span class="${extColor} font-semibold">
               ${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}
             </span>
@@ -203,28 +221,28 @@
       }
 
       return `
-        <div onclick="selectAsset('${item.symbol}')" class="card-bg rounded-lg p-3.5 cursor-pointer transition-all hover:-translate-y-0.5">
+        <div id="card-${domId}" onclick="selectAsset('${item.symbol}')" class="card-bg rounded-lg p-3.5 cursor-pointer">
           <div class="flex items-center justify-between">
             <span class="font-bold text-white text-sm tracking-tight">${titleText}</span>
             <span class="text-[11px] text-slate-500 mono">${forceTickerOnly ? 'US' : item.symbol}</span>
           </div>
           <div class="mt-2 flex items-baseline justify-between mono">
-            <span class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
-            <span class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
+            <span id="price-${domId}" class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
+            <span id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
           </div>
           ${extHtml}
         </div>
       `;
     }
 
-    // 建立台股權值股完整卡片 (整合最新財報核心數據 + 月營收 + 公開資訊觀測站重訊)
+    // 台股權值股卡片
     function createTwStockCard(item) {
       allAssetsMap[item.symbol] = item;
+      const domId = safeId(item.symbol);
       const colorCls = getColorClass(item.change_pct);
       const f = item.fundamentals || {};
 
-      // 月營收區塊
-      let revHtml = `<div class="text-xs text-slate-400">月營收：尚無最新資料</div>`;
+      let revHtml = `<div class="text-xs text-slate-400 mt-2">月營收：等待最新一期資料更新</div>`;
       if (f.monthly_rev) {
         const momCls = getColorClass(f.monthly_rev.mom);
         const yoyCls = getColorClass(f.monthly_rev.yoy);
@@ -242,7 +260,6 @@
         `;
       }
 
-      // 該個股當日 MOPS 重大訊息
       let mopsHtml = "";
       if (item.mops_announcements && item.mops_announcements.length > 0) {
         const listItems = item.mops_announcements.slice(0, 2).map(m => `
@@ -268,20 +285,19 @@
       }
 
       return `
-        <div class="card-bg rounded-xl p-4 flex flex-col justify-between">
+        <div id="card-${domId}" class="card-bg rounded-xl p-4 flex flex-col justify-between">
           <div>
             <div onclick="selectAsset('${item.symbol}')" class="flex items-center justify-between cursor-pointer border-b border-slate-800 pb-2.5">
               <div>
                 <h3 class="font-bold text-base text-white">${item.name}</h3>
-                <span class="text-xs text-slate-400">點擊檢視歷史與日內走勢</span>
+                <span class="text-xs text-slate-400">點擊切換上方走勢圖</span>
               </div>
               <div class="text-right mono">
-                <div class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
-                <div class="text-xs font-bold ${colorCls}">${item.change > 0 ? '+' : ''}${item.change} (${formatSignedPct(item.change_pct)})</div>
+                <div id="price-${domId}" class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
+                <div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div>
               </div>
             </div>
 
-            <!-- 最新財報核心數據與獲利能力指標 (含月營收) -->
             <div class="mt-3">
               <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
               <div class="grid grid-cols-3 gap-2 text-xs mono bg-slate-900/40 p-2 rounded">
@@ -300,7 +316,194 @@
       `;
     }
 
-    // 切換選中資產並繪製走勢圖
+    // =====================================================
+    // 即時價格跳動與視覺閃爍更新引擎 (Live Tick Engine)
+    // =====================================================
+    function triggerCardFlash(symbol, isUp) {
+      const domId = safeId(symbol);
+      const card = document.getElementById(`card-${domId}`);
+      if (!card) return;
+      card.classList.remove("tick-up", "tick-down");
+      void card.offsetWidth; // 強制重繪觸發動畫
+      card.classList.add(isUp ? "tick-up" : "tick-down");
+    }
+
+    function updateAssetDomPrice(symbol, newMainPrice, newMainPct, extSessionObj = null) {
+      const item = allAssetsMap[symbol];
+      if (!item) return;
+      const domId = safeId(symbol);
+
+      // 判斷漲跌方向以觸發閃爍
+      const oldComparable = (extSessionObj && extSessionObj.price) ? (item.ext_session ? item.ext_session.price : item.price) : item.price;
+      const newComparable = (extSessionObj && extSessionObj.price) ? extSessionObj.price : newMainPrice;
+
+      if (oldComparable && newComparable && Number(oldComparable) !== Number(newComparable)) {
+        const isUp = Number(newComparable) > Number(oldComparable);
+        triggerCardFlash(symbol, isUp);
+      }
+
+      if (newMainPrice !== null && newMainPrice !== undefined) {
+        item.price = Number(newMainPrice).toFixed(2);
+        item.change_pct = Number(newMainPct).toFixed(2);
+        const pEl = document.getElementById(`price-${domId}`);
+        const pctEl = document.getElementById(`pct-${domId}`);
+        if (pEl) pEl.textContent = item.price;
+        if (pctEl) {
+          pctEl.textContent = formatSignedPct(item.change_pct);
+          pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct)}`;
+        }
+      }
+
+      if (extSessionObj) {
+        item.ext_session = extSessionObj;
+        const extEl = document.getElementById(`ext-${domId}`);
+        if (extEl) {
+          extEl.classList.remove("hidden");
+          extEl.className = "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono";
+          const extColor = getColorClass(extSessionObj.change_pct);
+          extEl.innerHTML = `
+            <span class="${extColor} font-semibold">
+              ${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}
+            </span>
+          `;
+        }
+        // 同步更新美股財報表格中的盤前/盤後欄位
+        const tblExt = document.getElementById(`tbl-ext-${domId}`);
+        if (tblExt) {
+          const extColor = getColorClass(extSessionObj.change_pct);
+          tblExt.innerHTML = `<span class="${extColor}">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`;
+        }
+      }
+
+      // 若目前正打開該資產的 1D 走勢圖，直接把最新跳動點位畫進圖表最後一根
+      if (currentAssetSymbol === symbol && currentRangeMode === "1D") {
+        const nowStr = new Date().toLocaleTimeString("zh-TW", { hour12: false, hour: "2-digit", minute: "2-digit" });
+        const plotPrice = Number(newComparable);
+        if (!isNaN(plotPrice) && item.intraday) {
+          if (item.intraday.length > 0 && item.intraday[item.intraday.length - 1].time === nowStr) {
+            item.intraday[item.intraday.length - 1].price = plotPrice;
+          } else {
+            item.intraday.push({ time: nowStr, price: plotPrice });
+          }
+          renderMainChart();
+        }
+      }
+    }
+
+    // 第一重：前端每 10 秒自動巡檢 Yahoo 即時報價 (免金鑰、涵蓋全球指數/美股盤前盤後/期貨夜盤)
+    async function pollLiveYahooQuotes() {
+      const symbols = Object.keys(allAssetsMap);
+      // 隨機挑選一組活躍標的進行無痛快速刷新
+      for (const sym of symbols) {
+        try {
+          const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
+          const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+          const resp = await fetch(proxyUrl);
+          if (!resp.ok) continue;
+          const data = await resp.json();
+          const res = data?.chart?.result?.[0];
+          if (!res) continue;
+
+          const meta = res.meta;
+          const quotes = res.indicators?.quote?.[0]?.close || [];
+          const validCloses = quotes.filter(v => v !== null && v !== undefined);
+          if (validCloses.length === 0) continue;
+
+          const latestTick = validCloses[validCloses.length - 1];
+          const item = allAssetsMap[sym];
+          const regClose = meta.regularMarketPrice || item.price;
+          const prevClose = meta.chartPreviousClose || meta.previousClose || item.prev_close || regClose;
+
+          if (item.asset_type === "futures") {
+            // 期貨：主欄位維持日盤結算價，下方即時跳動夜盤價
+            const daySettle = Number(item.price);
+            const nightPct = ((latestTick - daySettle) / daySettle) * 100;
+            updateAssetDomPrice(sym, daySettle, item.change_pct, {
+              label: "夜盤",
+              price: latestTick.toFixed(2),
+              change_pct: nightPct.toFixed(2)
+            });
+          } else if (item.asset_type === "us_stock") {
+            const twHour = new Date().getHours();
+            const isExtended = (twHour >= 16 && twHour < 22) || (twHour >= 5 && twHour < 9);
+            if (isExtended && Math.abs(latestTick - regClose) > 0.01) {
+              const lbl = (twHour >= 16 && twHour < 22) ? "盤前" : "盤後";
+              const extPct = ((latestTick - regClose) / regClose) * 100;
+              const regPct = ((regClose - prevClose) / prevClose) * 100;
+              updateAssetDomPrice(sym, regClose, regPct, {
+                label: lbl,
+                price: latestTick.toFixed(2),
+                change_pct: extPct.toFixed(2)
+              });
+            } else {
+              const pct = ((latestTick - prevClose) / prevClose) * 100;
+              updateAssetDomPrice(sym, latestTick, pct, item.ext_session);
+            }
+          } else {
+            const pct = ((latestTick - prevClose) / prevClose) * 100;
+            updateAssetDomPrice(sym, latestTick, pct, null);
+          }
+        } catch (e) {
+          // 忽略單一連線逾時
+        }
+      }
+      const nowTime = new Date().toLocaleTimeString("zh-TW", { hour12: false });
+      document.getElementById("last-updated").textContent = `即時跳動同步：${nowTime}`;
+    }
+
+    // 第二重：Finnhub WebSocket 美股毫秒級即時推播
+    function configureFinnhubKey() {
+      const saved = localStorage.getItem("FINNHUB_API_KEY") || "";
+      const key = prompt("請輸入免費的 Finnhub API Key (可於 finnhub.io 免費註冊取得)，輸入後美股將開啟 WebSocket 毫秒級跳動：", saved);
+      if (key !== null) {
+        localStorage.setItem("FINNHUB_API_KEY", key.trim());
+        startFinnhubWebSocket(key.trim());
+      }
+    }
+
+    function startFinnhubWebSocket(apiKey) {
+      if (!apiKey) return;
+      if (finnhubSocket) finnhubSocket.close();
+
+      finnhubSocket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
+      finnhubSocket.addEventListener("open", () => {
+        document.getElementById("live-status").textContent = "⚡ WebSocket 秒級連線中 + 全域即時巡檢";
+        ["NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"].forEach(sym => {
+          finnhubSocket.send(JSON.stringify({ type: "subscribe", symbol: sym }));
+        });
+      });
+
+      finnhubSocket.addEventListener("message", (event) => {
+        const msg = JSON.parse(event.data);
+        if (msg.type === "trade" && Array.isArray(msg.data)) {
+          const lastTrade = msg.data[msg.data.length - 1];
+          const sym = lastTrade.s;
+          const livePrice = lastTrade.p;
+          const item = allAssetsMap[sym];
+          if (!item) return;
+
+          const twHour = new Date().getHours();
+          const isPre = (twHour >= 16 && twHour < 21);
+          const isPost = (twHour >= 4 && twHour < 9);
+
+          if (isPre || isPost) {
+            const basePrice = Number(item.price);
+            const extPct = basePrice ? ((livePrice - basePrice) / basePrice) * 100 : 0;
+            updateAssetDomPrice(sym, item.price, item.change_pct, {
+              label: isPre ? "盤前" : "盤後",
+              price: livePrice.toFixed(2),
+              change_pct: extPct.toFixed(2)
+            });
+          } else {
+            const prev = Number(item.prev_close) || Number(item.price);
+            const pct = prev ? ((livePrice - prev) / prev) * 100 : 0;
+            updateAssetDomPrice(sym, livePrice, pct, item.ext_session);
+          }
+        }
+      });
+    }
+
+    // 走勢圖切換與自訂區間
     function selectAsset(symbol) {
       if (!allAssetsMap[symbol]) return;
       currentAssetSymbol = symbol;
@@ -357,15 +560,16 @@
         } else if (currentRangeMode === "YTD") {
           const currentYear = `${now.getFullYear()}-01-01`;
           filtered = hist.filter(d => d.date >= currentYear);
-        } else if (currentRangeMode === "CUSTOM" && customStart && customEnd) {
-          filtered = hist.filter(d => d.date >= customStart && d.date <= customEnd);
+        } else if (currentRangeMode === "CUSTOM") {
+          const s = customStart || document.getElementById("custom-start").value;
+          const e = customEnd || document.getElementById("custom-end").value;
+          filtered = hist.filter(d => d.date >= s && d.date <= e);
         }
 
         xData = filtered.map(d => d.date);
         yData = filtered.map(d => d.close);
       }
 
-      // 計算該區間累計漲跌幅
       const badge = document.getElementById("chart-period-return");
       if (yData.length >= 2) {
         const firstP = yData[0];
@@ -420,7 +624,6 @@
       }, true);
     }
 
-    // 繪製三大法人與融資融券圖表 (需求 #5)
     function renderChipCharts(chips) {
       if (!chips || !chips.dates || chips.dates.length === 0) return;
 
@@ -462,23 +665,18 @@
 
         document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated}`;
 
-        // 1. 全球指數
         document.getElementById("grid-indices").innerHTML =
           globalMarketData.indices.map(i => createQuoteCard(i, false)).join("");
 
-        // 2. 美股個股 (強制僅顯示純英文代號 + 盤前/盤後)
         document.getElementById("grid-us-stocks").innerHTML =
           globalMarketData.us_stocks.map(s => createQuoteCard(s, true)).join("");
 
-        // 3. 期貨與商品 (主收盤價 + 夜盤)
         document.getElementById("grid-futures").innerHTML =
           globalMarketData.futures_commodities.map(f => createQuoteCard(f, false)).join("");
 
-        // 4. 台股權值股 (含月營收與 MOPS)
         document.getElementById("grid-tw-stocks").innerHTML =
           globalMarketData.tw_stocks.map(t => createTwStockCard(t)).join("");
 
-        // 5. MOPS 重大訊息總表
         const mopsContainer = document.getElementById("mops-list");
         if (globalMarketData.mops_general && globalMarketData.mops_general.length > 0) {
           mopsContainer.innerHTML = globalMarketData.mops_general.map(m => `
@@ -497,10 +695,10 @@
           mopsContainer.innerHTML = `<div class="text-xs text-slate-400">目前公開資訊觀測站無當日最新重大訊息或處於非公告時段。</div>`;
         }
 
-        // 6. 美股財報表格 (純代號顯示)
         document.getElementById("table-us-fundamentals").innerHTML =
           globalMarketData.us_stocks.map(s => {
             const f = s.fundamentals || {};
+            const domId = safeId(s.symbol);
             let extText = "-";
             if (s.ext_session) {
               const cls = getColorClass(s.ext_session.change_pct);
@@ -510,7 +708,7 @@
               <tr class="hover:bg-slate-800/40">
                 <td class="py-2.5 px-4 font-bold text-white">${s.symbol}</td>
                 <td class="py-2.5 px-4 text-white">${s.price ?? 'N/A'} <span class="${getColorClass(s.change_pct)}">(${formatSignedPct(s.change_pct)})</span></td>
-                <td class="py-2.5 px-4">${extText}</td>
+                <td id="tbl-ext-${domId}" class="py-2.5 px-4">${extText}</td>
                 <td class="py-2.5 px-4">${f.pe ?? 'N/A'}</td>
                 <td class="py-2.5 px-4">${f.forward_pe ?? 'N/A'}</td>
                 <td class="py-2.5 px-4">${f.eps ?? 'N/A'}</td>
@@ -522,17 +720,22 @@
             `;
           }).join("");
 
-        // 7. 外匯與公債殖利率
         document.getElementById("grid-fx-bonds").innerHTML =
           globalMarketData.fx_bonds.map(x => createQuoteCard(x, false)).join("");
 
-        // 初始化預設自訂日期區間 (預設示範：去年 3 月 5 號到今年 8 月 10 號)
         document.getElementById("custom-start").value = "2025-03-05";
         document.getElementById("custom-end").value = "2026-08-10";
 
-        // 繪製預設走勢圖與籌碼圖
         selectAsset("^TWII");
         renderChipCharts(globalMarketData.tw_chips_visual);
+
+        // 啟動背景每 10 秒自動報價跳動巡檢與每 60 秒 JSON 同步
+        setInterval(pollLiveYahooQuotes, 10000);
+        setTimeout(pollLiveYahooQuotes, 2500);
+
+        // 若曾設定過 Finnhub Key，自動啟動 WebSocket 秒級連線
+        const savedKey = localStorage.getItem("FINNHUB_API_KEY");
+        if (savedKey) startFinnhubWebSocket(savedKey);
 
       } catch (err) {
         console.error("Failed loading market data:", err);
