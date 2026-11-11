@@ -23,6 +23,25 @@ yf_assets = {
     "台股市場": {
         "台股加權指數": "^TWII"
     },
+    "台股權值股": {
+        "台積電 (2330)": "2330.TW",
+        "聯發科 (2454)": "2454.TW",
+        "台達電 (2308)": "2308.TW",
+        "鴻海 (2317)": "2317.TW",
+        "日月光投控 (3711)": "3711.TW"
+    },
+    "美股科技股": {
+        "輝達 (NVDA)": "NVDA", 
+        "台積電 ADR (TSM)": "TSM", 
+        "博通 (AVGO)": "AVGO",
+        "超微 (AMD)": "AMD",
+        "蘋果 (AAPL)": "AAPL",
+        "微軟 (MSFT)": "MSFT",
+        "Google (GOOGL)": "GOOGL",
+        "亞馬遜 (AMZN)": "AMZN",
+        "Meta (META)": "META",
+        "特斯拉 (TSLA)": "TSLA"
+    },
     "外匯市場": {
         "USD/TWD": "USDTWD=X", 
         "美元指數 (DXY)": "DX-Y.NYB", 
@@ -45,17 +64,12 @@ yf_assets = {
         "黃豆期貨": "ZS=F",
         "小麥期貨": "ZW=F",
         "玉米期貨": "ZC=F"
-    },
-    "核心科技股": {
-        "輝達 (NVDA)": "NVDA", 
-        "台積電 (TSM)": "TSM", 
-        "AMD": "AMD"
     }
 }
 
 dashboard_data = {}
 
-# 2. 抓取全球金融報價與台股加權指數（含漲跌點數、幅度與當日走勢）
+# 2. 抓取全球金融報價與台股（含漲跌點數、幅度與當日走勢）
 for category, tickers in yf_assets.items():
     dashboard_data[category] = []
     for name, ticker in tickers.items():
