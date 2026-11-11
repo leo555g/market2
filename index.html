@@ -18,7 +18,7 @@
         // 繪製 SVG 迷你走勢圖 (含漸層底色)
         function createSparkline(sparkline, change) {
             if (!sparkline || sparkline.length < 2) return '';
-            const width = 85;
+            const width = 80;
             const height = 36;
             const min = Math.min(...sparkline);
             const max = Math.max(...sparkline);
@@ -46,18 +46,28 @@
         function createCard(item) {
             const color = getColor(item.change);
             const sign = getSign(item.change);
-            const showPct = item.price.includes('億') || item.price === '連線失敗' || item.price === '更新中';
-            const changeText = (!showPct && item.change !== null) ? `${sign}${item.change}%` : '';
-            const priceColor = showPct ? color : 'text-gray-900';
+            const isChip = item.price.includes('億') || item.price === '連線失敗' || item.price === '更新中';
+            
+            // 組合「漲跌點數」與「漲跌幅百分比」：例如 +245.50 (+1.05%)
+            let changeText = '';
+            if (!isChip && item.change !== null) {
+                if (item.diff !== undefined) {
+                    changeText = `${item.diff} (${sign}${item.change}%)`;
+                } else {
+                    changeText = `${sign}${item.change}%`;
+                }
+            }
+            
+            const priceColor = isChip ? color : 'text-gray-900';
             const sparklineSvg = createSparkline(item.sparkline, item.change);
             
             return `
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md transition-shadow">
                     <div class="flex flex-col justify-between min-w-0">
                         <h3 class="text-gray-600 font-medium text-sm truncate">${item.name}</h3>
-                        <div class="mt-2 flex items-baseline gap-2 flex-wrap">
-                            <span class="text-2xl font-bold ${priceColor}">${item.price}</span>
-                            <span class="text-xs font-semibold ${color}">${changeText}</span>
+                        <div class="mt-1.5 flex flex-col">
+                            <span class="text-2xl font-bold ${priceColor} leading-tight">${item.price}</span>
+                            ${changeText ? `<span class="text-xs font-semibold ${color} mt-1">${changeText}</span>` : ''}
                         </div>
                     </div>
                     ${sparklineSvg}
