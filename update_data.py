@@ -7,18 +7,21 @@ import urllib3
 # 忽略 SSL 憑證警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# 1. 定義資產與顯示順序（將「台股市場」獨立出來並排在「全球指數」正下方）
 yf_assets = {
     "全球指數": {
         "標普 500": "^GSPC", 
         "道瓊工業": "^DJI", 
         "納斯達克": "^IXIC", 
         "費城半導體": "^SOX", 
-        "台股指數": "^TWII", 
         "日經 225": "^N225", 
         "韓國 KOSPI": "^KS11",
         "英國富時 100": "^FTSE",
         "德國 DAX": "^GDAXI",
         "法國 CAC 40": "^FCHI"
+    },
+    "台股市場": {
+        "台股加權指數": "^TWII"
     },
     "外匯市場": {
         "USD/TWD": "USDTWD=X", 
@@ -52,7 +55,7 @@ yf_assets = {
 
 dashboard_data = {}
 
-# 1. 抓取全球金融報價與當日走勢
+# 2. 抓取全球金融報價與台股加權指數（含當日走勢）
 for category, tickers in yf_assets.items():
     dashboard_data[category] = []
     for name, ticker in tickers.items():
@@ -92,11 +95,9 @@ for category, tickers in yf_assets.items():
                     intra = intra.dropna(subset=['Close'])
                     if len(intra) > 5:
                         raw_pts = [float(x) * scale_factor for x in intra['Close'].tolist()]
-                        # 抽樣控制在 25 個點以內，確保檔案輕量且線條平滑
                         step = max(1, len(raw_pts) // 25)
                         sparkline = [round(x, 4) for x in raw_pts[::step]]
                     else:
-                        # 備援：若無分時資料則取近 5 日收盤價
                         sparkline = [round(float(x) * scale_factor, 4) for x in hist['Close'].tolist()]
                 except Exception:
                     sparkline = [round(float(x) * scale_factor, 4) for x in hist['Close'].tolist()]
@@ -110,8 +111,11 @@ for category, tickers in yf_assets.items():
         except Exception as e:
             print(f"Error {name}: {e}")
 
-# 2. 直連證交所三大法人網頁 (https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)
+# 3. 抓取證交所三大法人數據，並直接合併進「台股市場」區塊中
 twse_success = False
+twse_date_label = ""
+twse_chips = []
+
 session = requests.Session()
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
@@ -154,7 +158,8 @@ for i in range(7):
                     
                     fmt = lambda v: f"+{v} 億" if v > 0 else f"{v} 億"
                     
-                    dashboard_data[f"台股籌碼 ({target_date[:4]}/{target_date[4:6]}/{target_date[6:]})"] = [
+                    twse_date_label = f"{target_date[:4]}/{target_date[4:6]}/{target_date[6:]}"
+                    twse_chips = [
                         {"name": "外資買賣超", "price": fmt(f_yi), "change": 1 if f_yi > 0 else (-1 if f_yi < 0 else 0)},
                         {"name": "投信買賣超", "price": fmt(t_yi), "change": 1 if t_yi > 0 else (-1 if t_yi < 0 else 0)},
                         {"name": "自營商買賣超", "price": fmt(d_yi), "change": 1 if d_yi > 0 else (-1 if d_yi < 0 else 0)}
@@ -166,15 +171,24 @@ for i in range(7):
         print(f"嘗試抓取 {target_date} 失敗: {e}")
 
 if not twse_success:
-    dashboard_data["台股籌碼"] = [
+    twse_chips = [
         {"name": "外資買賣超", "price": "連線失敗", "change": 0},
         {"name": "投信買賣超", "price": "連線失敗", "change": 0},
         {"name": "自營商買賣超", "price": "連線失敗", "change": 0}
     ]
 
+# 將三大法人附加到「台股市場」的台股加權指數後面，並確保排在第二順位
+final_dashboard_data = {}
+for k, v in dashboard_data.items():
+    if k == "台股市場":
+        section_title = f"台股市場 (籌碼日期: {twse_date_label})" if twse_date_label else "台股市場"
+        final_dashboard_data[section_title] = v + twse_chips
+    else:
+        final_dashboard_data[k] = v
+
 # 紀錄最後更新時間 (台灣時間 UTC+8)
 tw_time_str = tw_now.strftime("%Y-%m-%d %H:%M")
 
-output_content = f"const lastUpdate = '{tw_time_str}';\nconst data = {json.dumps(dashboard_data, ensure_ascii=False)};"
+output_content = f"const lastUpdate = '{tw_time_str}';\nconst data = {json.dumps(final_dashboard_data, ensure_ascii=False)};"
 with open('data.js', 'w', encoding='utf-8') as f:
     f.write(output_content)
