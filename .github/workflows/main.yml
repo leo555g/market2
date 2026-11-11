@@ -2,15 +2,14 @@ name: High-Frequency Market Data Update
 
 on:
   schedule:
-    # 每 15 分鐘執行一次 (涵蓋台股日夜盤、歐股、美股盤前/盤中/盤後)
     - cron: '*/15 * * * *'
-  workflow_dispatch: # 支援手動一鍵觸發
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - 'update_data.py'
-      - 'index.html'
+      - 'requirements.txt'
 
 permissions:
   contents: write
@@ -18,6 +17,7 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,6 +48,6 @@ jobs:
             echo "No data changes to commit."
           else
             git commit -m "chore: auto-update market data $(date +'%Y-%m-%d %H:%M')"
-            git pull --rebase origin main
+            git pull --rebase -X theirs origin main || true
             git push origin main
           fi
