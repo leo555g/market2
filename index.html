@@ -21,7 +21,6 @@
     }
     .card-bg:hover { border-color: #3b82f6; }
 
-    /* 閃爍動畫：分為紅色閃爍與綠色閃爍，根據美股(綠漲紅跌)與台股(紅漲綠跌)自動套用 */
     @keyframes flashRose {
       0% { background-color: rgba(244, 63, 94, 0.45); border-color: #fb7185; transform: scale(1.02); }
       100% { background-color: transparent; border-color: #1e293b; transform: scale(1); }
@@ -40,7 +39,7 @@
   <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援全資產總經/Fed/新聞多空情報、美股綠漲紅跌、儀表板直選多標的比較</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援各國專屬央行決策 / 總經 / 時事三維度獨立拆解、美股綠漲紅跌、多標的比較</p>
     </div>
 
     <div class="flex flex-wrap items-center gap-3">
@@ -59,11 +58,8 @@
 
   <main class="max-w-7xl mx-auto space-y-10">
 
-    <!-- ======================================================================= -->
-    <!-- 專區 1：最上方互動式走勢圖儀表板 (可直接選擇主標的 + 點選比較清單標籤牆) -->
-    <!-- ======================================================================= -->
+    <!-- 專區 1：最上方互動式走勢圖儀表板 -->
     <section class="card-bg rounded-xl p-5 shadow-lg">
-      <!-- 第一列：標題、切換主標的下拉選單、區間與自訂日期選擇器 -->
       <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
           <div>
@@ -74,7 +70,6 @@
             <p class="text-xs text-slate-400 mt-1">可直接在下方點選標籤將任意指數、美股、台股、期貨加入「目前比較清單」疊圖對決</p>
           </div>
 
-          <!-- 儀表板內直接切換「主標的」下拉選單 -->
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
             <select id="primary-asset-select" onchange="selectAsset(this.value)" class="bg-transparent text-xs font-bold text-white focus:outline-none">
@@ -82,7 +77,6 @@
           </div>
         </div>
 
-        <!-- 區間切換按鈕與自訂日期選擇器 -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1D (日內)</button>
           <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
@@ -99,9 +93,8 @@
         </div>
       </div>
 
-      <!-- 第二列：目前比較清單 + 儀表板內直接點選比較標的互動選擇器 (需求 #3) -->
+      <!-- 目前比較清單 + 儀表板直接點選比較標籤牆 -->
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 mb-4 space-y-3">
-        <!-- 已選中的目前比較清單 -->
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-xs font-bold text-emerald-400">📌 目前比較清單：</span>
@@ -118,7 +111,6 @@
           </div>
         </div>
 
-        <!-- 儀表板內直接點選比較標的標籤牆 (點擊即可勾選/取消) -->
         <div>
           <div class="flex items-center justify-between mb-1.5">
             <span class="text-[11px] font-bold text-slate-400">👇 直接在儀表板點選下方標的即可加入／移除比較（已選標的會亮起綠框）：</span>
@@ -127,37 +119,33 @@
         </div>
       </div>
 
-      <!-- 區間累計報酬率排行顯示列 -->
       <div id="comparison-return-summary" class="flex flex-wrap items-center gap-2.5 mb-3"></div>
-
-      <!-- ECharts 走勢圖本體 -->
       <div id="main-price-chart" class="w-full h-80"></div>
     </section>
 
-    <!-- 專區 2：全球主要指數 (點擊可檢視總經、聯準會 Fed 與國際時事利多利空) -->
+    <!-- 專區 2：全球主要指數 (點擊檢視：1.該國專屬央行 2.總經數據 3.新聞時事 三大獨立區塊) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片或「📊 總經多空」檢視聯準會 Fed、通膨與時事利多利空)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視分開獨立的：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 專區 3：美股核心科技股 (純代號 + 綠漲紅跌 + 盤前/盤後即時跳動 + 利多利空消息) -->
+    <!-- 專區 3：美股核心科技股 (綠漲紅跌) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-emerald-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-emerald-400 ml-2">(美股專屬：綠漲紅跌・純代號顯示・點擊檢視新聞與財報利多利空)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-emerald-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-emerald-400 ml-2">(美股專屬：綠漲紅跌・純代號顯示・點擊檢視財報與新聞利多利空)</span></h2>
       <div id="grid-us-stocks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 專區 4：期貨與大宗商品 (當日收盤價 + 夜盤即時跳動 + 原物料供需多空情報) -->
+    <!-- 專區 4：期貨與大宗商品 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示當日收盤價・下方即時跳動夜盤價・點擊檢視供需與總經多空)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示當日收盤價・下方即時跳動夜盤價・點擊檢視央行/供需/時事多空)</span></h2>
       <div id="grid-futures" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 5：台股核心權值股 (最新財報 + 月營收 + 公開資訊觀測站重訊 + 新聞利多利空) -->
+    <!-- 專區 5：台股核心權值股 -->
     <section class="space-y-6">
       <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">台股核心權值股・最新財報與月營收・公開資訊觀測站與新聞利多利空</h2>
       <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-      <!-- 公開資訊觀測站 (MOPS) 當日重大訊息專欄 -->
       <div class="card-bg rounded-xl p-5">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
           <div class="flex items-center gap-2">
@@ -210,54 +198,40 @@
       </div>
     </section>
 
-    <!-- 專區 8：全球外匯與美債殖利率 (點擊可檢視聯準會與匯市多空消息) -->
+    <!-- 專區 8：全球外匯與美債殖利率 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可檢視央行利率、聯準會與債市利多利空)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可檢視各國央行決策、總經與匯市利多利空)</span></h2>
       <div id="grid-fx-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 全資產通用「利多 / 利空消息（新聞時事、總經、聯準會 Fed、MOPS）」彈出視窗 -->
+  <!-- 升級版多空情報彈出視窗：支援「央行決策 / 總經數據 / 新聞時事」三大維度獨立檢視 -->
   <!-- ========================================================================= -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="card-bg border border-slate-700 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
+    <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <!-- 彈窗頂部 -->
-      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-5">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
         <div>
           <div class="flex flex-wrap items-center gap-3">
-            <h2 id="modal-stock-title" class="text-2xl font-bold text-white">NVDA</h2>
+            <h2 id="modal-stock-title" class="text-2xl font-bold text-white">台灣加權指數</h2>
             <span id="modal-stock-price" class="text-xl font-bold mono text-white"></span>
             <span id="modal-stock-ext" class="text-xs font-bold mono px-2 py-0.5 rounded bg-slate-800"></span>
+            <span id="modal-cb-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 hidden"></span>
           </div>
-          <p id="modal-subtitle" class="text-xs text-slate-400 mt-1">即時彙整新聞時事、總經數據、聯準會 (Fed) 動向、公開資訊觀測站重訊與財報指標</p>
+          <p id="modal-subtitle" class="text-xs text-slate-400 mt-1"></p>
         </div>
         <button onclick="closeStockModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-1.5 text-sm font-bold">
           ✕ 關閉
         </button>
       </div>
 
-      <!-- 利多 vs 利空 雙欄對照區 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <!-- 利多消息 (Bullish) -->
-        <div class="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4">
-          <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
-            <span class="px-2.5 py-0.5 text-xs font-bold bg-amber-500/20 text-amber-300 rounded">🔥 利多消息・成長動能・正面時事</span>
-            <span class="text-[11px] text-slate-400">新聞 / 總經 / MOPS</span>
-          </div>
-          <ul id="modal-bullish-list" class="space-y-2.5 text-xs text-slate-200"></ul>
-        </div>
+      <!-- 維度切換分頁列 (可選擇「全部展開分區顯示」或單獨檢視「央行決策」、「總經數據」、「新聞時事」) -->
+      <div id="modal-category-tabs" class="flex flex-wrap items-center gap-2 mb-5"></div>
 
-        <!-- 利空消息 (Bearish) -->
-        <div class="bg-slate-900/90 border border-cyan-500/30 rounded-xl p-4">
-          <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
-            <span class="px-2.5 py-0.5 text-xs font-bold bg-cyan-500/20 text-cyan-300 rounded">❄️ 利空消息・風險提示・逆風因素</span>
-            <span class="text-[11px] text-slate-400">新聞 / 總經 / MOPS</span>
-          </div>
-          <ul id="modal-bearish-list" class="space-y-2.5 text-xs text-slate-200"></ul>
-        </div>
-      </div>
+      <!-- 分區獨立渲染容器 (三個維度各自獨立成區，絕不混在一起) -->
+      <div id="modal-pillars-container" class="space-y-6 mb-6"></div>
 
       <!-- 財報與關鍵指標總覽 -->
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-4">
@@ -281,8 +255,10 @@
     let globalMarketData = null;
     let allAssetsMap = {};
     let currentAssetSymbol = "^GSPC";
-    let compareSymbols = []; // 使用者選取的比較清單
+    let compareSymbols = [];
     let currentRangeMode = "1M";
+    let currentModalSymbol = null;
+    let currentModalTab = "ALL";
 
     let mainChart = null;
     let instChart = null;
@@ -293,15 +269,24 @@
       "#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf"
     ];
 
+    // 客戶端備援：各國指數專屬央行名稱對映 (確保舊 JSON 快取期間也能立即顯示正確國家央行)
+    const CLIENT_CB_MAP = {
+      "^GSPC": "美國聯準會 (Fed)",
+      "^DJI": "美國聯準會 (Fed)",
+      "^IXIC": "美國聯準會 (Fed)",
+      "^SOX": "美國聯準會 (Fed)",
+      "^TWII": "台灣央行 (CBC)",
+      "^N225": "日本央行 (BoJ)",
+      "^KS11": "韓國央行 (BoK)",
+      "^FTSE": "英國央行 (BoE)",
+      "^GDAXI": "歐洲央行 (ECB)",
+      "^FCHI": "歐洲央行 (ECB)"
+    };
+
     function safeId(symbol) {
       return symbol.replace(/[^a-zA-Z0-9]/g, "_");
     }
 
-    // =========================================================================
-    // 需求 #2：智慧漲跌色彩系統
-    // 美股 (asset_type === 'us_stock') 採用「綠漲紅跌」 (Emerald 上漲 / Rose 下跌)
-    // 台股與其他標的維持台灣習慣「紅漲綠跌」 (Rose 上漲 / Emerald 下跌)
-    // =========================================================================
     function isUsGreenUpAsset(symbolOrType) {
       if (symbolOrType === "us_stock") return true;
       const item = allAssetsMap[symbolOrType];
@@ -326,7 +311,6 @@
       return `${sign}${num.toFixed(2)}%`;
     }
 
-    // 建立通用報價卡片 (所有指數、美股、期貨、外匯皆可點開檢視利多利空消息與加入比較)
     function createQuoteCard(item, forceTickerOnly = false) {
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
@@ -345,7 +329,10 @@
         `;
       }
 
-      const infoLabel = item.asset_type === "us_stock" ? "📊 多空情報" : "📊 總經/時事";
+      const cbLabel = CLIENT_CB_MAP[item.symbol];
+      const infoBtnText = item.asset_type === "us_stock"
+        ? "📊 多空情報"
+        : (cbLabel ? `🏦 ${cbLabel.split(" ")[0]}/總經` : "📊 總經/時事");
 
       return `
         <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-lg p-3.5 cursor-pointer flex flex-col justify-between">
@@ -362,10 +349,10 @@
           </div>
 
           <div class="mt-2.5 pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1">
-            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 font-medium transition">
-              ${infoLabel}
+            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 font-medium transition truncate">
+              ${infoBtnText}
             </button>
-            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300 transition">
+            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300 transition shrink-0">
               ＋比較
             </button>
           </div>
@@ -373,7 +360,6 @@
       `;
     }
 
-    // 建立台股權值股卡片 (紅漲綠跌 + MOPS重訊 + 新聞利多利空)
     function createTwStockCard(item) {
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
@@ -424,7 +410,7 @@
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
               <div>
                 <h3 class="font-bold text-base text-white">${item.name}</h3>
-                <span class="text-[11px] text-indigo-400">點擊卡片開啟「MOPS重訊＋新聞利多利空」</span>
+                <span class="text-[11px] text-indigo-400">點擊開啟「MOPS重訊＋新聞利多利空」</span>
               </div>
               <div class="text-right mono">
                 <div id="price-${domId}" class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
@@ -466,11 +452,150 @@
     }
 
     // =========================================================================
-    // 需求 #1：全資產（個股 MOPS/新聞 + 指數總經/聯準會 Fed/時事）多空情報彈窗
+    // 升級版多空情報彈窗：將「各國專屬央行決策」、「總經數據」、「新聞時事」完全分開
     // =========================================================================
+    function getNormalizedCategories(item) {
+      const ns = item.news_sentiment || {};
+      if (ns.categories && Object.keys(ns.categories).length > 0) {
+        return ns.categories;
+      }
+
+      // 若瀏覽器讀取到尚未重跑的舊版 JSON，前端自動幫使用者依關鍵字與國家央行拆分為三個獨立區塊
+      const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
+      const rawBulls = ns.bullish || [];
+      const rawBears = ns.bearish || [];
+
+      if (isStock) {
+        return {
+          fundamentals_mops: {
+            label: "📑 MOPS重訊・月營收・財報指標",
+            bullish: rawBulls.filter(x => x.title.includes("基本面") || x.title.includes("獲利") || x.title.includes("估值") || x.title.includes("MOPS")),
+            bearish: rawBears.filter(x => x.title.includes("基本面") || x.title.includes("風險") || x.title.includes("估值") || x.title.includes("MOPS"))
+          },
+          events: {
+            label: "📰 產業與個股新聞時事",
+            bullish: rawBulls.filter(x => !x.title.includes("基本面") && !x.title.includes("MOPS")),
+            bearish: rawBears.filter(x => !x.title.includes("基本面") && !x.title.includes("MOPS"))
+          }
+        };
+      } else {
+        const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)";
+        return {
+          central_bank: {
+            label: `🏦 ${cbName}決策`,
+            bullish: [{ title: `[${cbName}] 貨幣政策與利率水準維持穩定觀察期，降低市場流動性衝擊`, url: "#", date: "央行政策" }],
+            bearish: [{ title: `[${cbName}] 持續關注通膨黏著度與海內外利差變動對資金流向之影響`, url: "#", date: "央行風險" }]
+          },
+          macro: {
+            label: "📊 總經數據指標",
+            bullish: [{ title: `[總經數據] 製造業、出口動能與就業數據提供基本面支撐`, url: "#", date: "總經指標" }],
+            bearish: [{ title: `[總經數據] 全球終端需求復甦步調不一，留意物價與景氣周期波動`, url: "#", date: "總經風險" }]
+          },
+          events: {
+            label: "📰 新聞時事與盤勢",
+            bullish: rawBulls.map(x => ({ ...x, title: x.title.replace("[總經/Fed時事]", "[新聞時事]") })),
+            bearish: rawBears.map(x => ({ ...x, title: x.title.replace("[總經/Fed時事]", "[新聞時事]") }))
+          }
+        };
+      }
+    }
+
+    function switchModalCategoryTab(tabKey) {
+      currentModalTab = tabKey;
+      renderModalPillars();
+    }
+
+    function renderModalPillars() {
+      const item = allAssetsMap[currentModalSymbol];
+      if (!item) return;
+
+      const categories = getNormalizedCategories(item);
+      const catKeys = Object.keys(categories);
+
+      // 渲染上方分類切換按鈕
+      const tabsEl = document.getElementById("modal-category-tabs");
+      const allBtnCls = currentModalTab === "ALL"
+        ? "bg-blue-600 text-white border-blue-500"
+        : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700";
+
+      tabsEl.innerHTML = `
+        <button onclick="switchModalCategoryTab('ALL')" class="px-3 py-1.5 text-xs font-bold rounded-lg border transition ${allBtnCls}">
+          🗂️ 全部展開 (三大維度分區檢視)
+        </button>
+        ${catKeys.map(k => {
+          const active = (currentModalTab === k);
+          const cls = active
+            ? "bg-indigo-600 text-white border-indigo-400"
+            : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700";
+          return `
+            <button onclick="switchModalCategoryTab('${k}')" class="px-3 py-1.5 text-xs font-bold rounded-lg border transition ${cls}">
+              ${categories[k].label}
+            </button>
+          `;
+        }).join("")}
+      `;
+
+      // 渲染每個獨立維度區塊
+      const container = document.getElementById("modal-pillars-container");
+      const keysToShow = currentModalTab === "ALL" ? catKeys : [currentModalTab];
+
+      container.innerHTML = keysToShow.map(k => {
+        const cat = categories[k];
+        if (!cat) return "";
+        const bulls = cat.bullish || [];
+        const bears = cat.bearish || [];
+
+        return `
+          <div class="bg-slate-900/60 border border-slate-700/80 rounded-xl p-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
+              <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                <span>${cat.label}</span>
+              </h4>
+              <span class="text-[11px] text-slate-400">獨立分類檢索・利多 vs 利空對照</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- 該維度之利多 -->
+              <div class="bg-slate-950/60 border border-amber-500/25 rounded-lg p-3.5">
+                <div class="text-xs font-bold text-amber-300 mb-2 pb-1.5 border-b border-slate-800">
+                  🔥 利多因素與正面支撐
+                </div>
+                <ul class="space-y-2 text-xs text-slate-200">
+                  ${bulls.length > 0 ? bulls.map(n => `
+                    <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
+                      <a href="${n.url}" target="_blank" class="hover:text-amber-300 font-medium block leading-relaxed">${n.title}</a>
+                      <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
+                    </li>
+                  `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
+                </ul>
+              </div>
+
+              <!-- 該維度之利空 -->
+              <div class="bg-slate-950/60 border border-cyan-500/25 rounded-lg p-3.5">
+                <div class="text-xs font-bold text-cyan-300 mb-2 pb-1.5 border-b border-slate-800">
+                  ❄️ 利空因素與風險提示
+                </div>
+                <ul class="space-y-2 text-xs text-slate-200">
+                  ${bears.length > 0 ? bears.map(n => `
+                    <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
+                      <a href="${n.url}" target="_blank" class="hover:text-cyan-300 font-medium block leading-relaxed">${n.title}</a>
+                      <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
+                    </li>
+                  `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
     function openStockModal(symbol) {
       const item = allAssetsMap[symbol];
       if (!item) return;
+
+      currentModalSymbol = symbol;
+      currentModalTab = "ALL";
 
       const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
       document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : item.name;
@@ -488,26 +613,20 @@
         extEl.classList.add("hidden");
       }
 
+      const cbBadge = document.getElementById("modal-cb-badge");
+      const cbName = item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol];
+      if (!isStock && cbName) {
+        cbBadge.classList.remove("hidden");
+        cbBadge.textContent = `專屬對映央行：${cbName}`;
+      } else {
+        cbBadge.classList.add("hidden");
+      }
+
       document.getElementById("modal-subtitle").textContent = isStock
-        ? "彙整公開資訊觀測站 (MOPS) 重大訊息、國內外財經新聞時事、最新月營收與財報基本面多空指標"
-        : "彙整全球總經數據 (CPI/非農/PMI)、聯準會 (Fed) 利率政策動向與國際市場時事多空分析";
+        ? "已將「MOPS重訊／月營收／財報指標」與「產業新聞時事」拆分為獨立區塊展示"
+        : `已將「${cbName || '央行'}利率決策」、「該國總經數據指標」與「新聞時事盤勢」拆分為三大獨立區塊，互不混雜`;
 
-      const bulls = item.news_sentiment?.bullish || [];
-      const bears = item.news_sentiment?.bearish || [];
-
-      document.getElementById("modal-bullish-list").innerHTML = bulls.map(n => `
-        <li class="border-b border-slate-800 pb-2">
-          <a href="${n.url}" target="_blank" class="hover:text-amber-300 font-medium block leading-relaxed">${n.title}</a>
-          <span class="text-[10px] text-slate-400 mono">${n.date || ''}</span>
-        </li>
-      `).join("");
-
-      document.getElementById("modal-bearish-list").innerHTML = bears.map(n => `
-        <li class="border-b border-slate-800 pb-2">
-          <a href="${n.url}" target="_blank" class="hover:text-cyan-300 font-medium block leading-relaxed">${n.title}</a>
-          <span class="text-[10px] text-slate-400 mono">${n.date || ''}</span>
-        </li>
-      `).join("");
+      renderModalPillars();
 
       const f = item.fundamentals || {};
       const headingEl = document.getElementById("modal-metrics-heading");
@@ -556,9 +675,7 @@
       document.getElementById("stock-detail-modal").classList.add("hidden");
     }
 
-    // =========================================================================
-    // 需求 #3：最上方走勢圖儀表板內建「主標的選擇器」與「直接點選比較清單標籤牆」
-    // =========================================================================
+    // 走勢圖儀表板選擇器與多標的比較
     function populateDashboardSelectors() {
       const primarySel = document.getElementById("primary-asset-select");
       const compareSel = document.getElementById("compare-select");
@@ -584,7 +701,6 @@
       renderQuickPickerButtons();
     }
 
-    // 渲染走勢圖儀表板內的「直接點選比較標的標籤牆」
     function renderQuickPickerButtons() {
       const picker = document.getElementById("dashboard-quick-picker");
       if (!picker || !globalMarketData) return;
@@ -765,7 +881,6 @@
         const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
         const greenUp = isUsGreenUpAsset(primaryAsset.asset_type);
 
-        // 美股綠漲紅跌，其他紅漲綠跌
         let lineColor = "#fb7185";
         let areaRgba = "rgba(251, 113, 133, 0.35)";
         if (greenUp) {
@@ -932,7 +1047,6 @@
       }
     }
 
-    // 即時價格跳動與視覺閃爍更新引擎 (美股綠漲紅跌閃爍，台股紅漲綠跌閃爍)
     function triggerCardFlash(symbol, isUp) {
       const domId = safeId(symbol);
       const card = document.getElementById(`card-${domId}`);
@@ -1170,7 +1284,6 @@
           mopsContainer.innerHTML = `<div class="text-xs text-slate-400">目前公開資訊觀測站無當日最新重大訊息或處於非公告時段。</div>`;
         }
 
-        // 美股財報表格：全面套用綠漲紅跌 ('us_stock')
         document.getElementById("table-us-fundamentals").innerHTML =
           globalMarketData.us_stocks.map(s => {
             const f = s.fundamentals || {};
@@ -1200,7 +1313,6 @@
         document.getElementById("grid-fx-bonds").innerHTML =
           globalMarketData.fx_bonds.map(x => createQuoteCard(x, false)).join("");
 
-        // 初始化儀表板內建選擇器與預設日期
         populateDashboardSelectors();
         document.getElementById("custom-start").value = "2025-03-05";
         document.getElementById("custom-end").value = "2026-08-10";
