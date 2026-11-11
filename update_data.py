@@ -82,113 +82,170 @@ FX_AND_BONDS = {
     "^TYX": "美國 30 年期公債殖利率"
 }
 
-# 利多與利空關鍵字字典 (中英雙語自動判讀)
+# 針對全球指數、期貨與總經的專屬搜尋關鍵字對映 (涵蓋聯準會 Fed、CPI、總經時事)
+MACRO_SEARCH_QUERIES = {
+    "^GSPC": "標普500 OR 美股 聯準會 OR 降息 OR 總經 OR 通膨",
+    "^DJI": "道瓊指數 OR 美股 聯準會 OR 經濟數據 OR 總經",
+    "^IXIC": "那斯達克 OR 科技股 聯準會 OR 美債殖利率 OR 財報",
+    "^SOX": "費城半導體 OR AI晶片 OR 半導體景氣 OR 資本支出",
+    "^TWII": "台股 加權指數 OR 外資買賣超 OR 央行 OR 景氣燈號 OR 總經",
+    "^N225": "日經指數 OR 日股 日本央行 OR 升息 OR 日圓匯率",
+    "^KS11": "韓股 KOSPI OR 韓國出口 OR 記憶體景氣",
+    "^FTSE": "英國股市 富時100 OR 英國央行 OR 歐洲經濟",
+    "^GDAXI": "德國股市 DAX OR 歐洲央行 OR 降息 OR 製造業PMI",
+    "^FCHI": "法國股市 CAC40 OR 歐洲央行 OR 歐元區經濟",
+    "ES=F": "美股期貨 OR 標普期貨 OR 聯準會 OR 非農就業",
+    "NQ=F": "那斯達克期貨 OR 科技股盤前 OR 美債殖利率",
+    "GC=F": "黃金價格 OR 金價 聯準會 OR 避險 OR 央行買金",
+    "SI=F": "白銀期貨 OR 貴金屬 工業需求",
+    "HG=F": "銅價 OR 銅期貨 製造業PMI OR 基礎建設",
+    "CL=F": "原油期貨 OR 油價 OPEC OR 中東地緣政治 OR 庫存",
+    "BZ=F": "布蘭特原油 OR 國際油價 OPEC OR 能源需求",
+    "^TNX": "美國10年期公債殖利率 OR 聯準會 降息 OR 通膨預期",
+    "^TYX": "美國30年期公債 OR 美債標售 OR 財政赤字 聯準會",
+    "DX-Y.NYB": "美元指數 OR 聯準會 利率決策 OR 非美貨幣",
+    "TWD=X": "台幣匯率 OR 美元兌台幣 外資匯出入 OR 台灣央行"
+}
+
+# 利多與利空關鍵字字典 (涵蓋個股財報、總經數據、聯準會 Fed 動向)
 BULL_KEYWORDS = [
     "創高", "新高", "成長", "大增", "暴增", "買超", "上調", "調升", "優於預期", "利多",
-    "獲利", "突破", "強勁", "擴產", "滿載", "看旺", "加碼", "大漲", "飆漲", "追價",
-    "beat", "surge", "soar", "upgrade", "bull", "record", "growth", "strong", "outperform", "buy", "rally"
+    "獲利", "突破", "強勁", "擴產", "滿載", "看旺", "加碼", "大漲", "飆漲", "反彈",
+    "降息", "鴿派", "軟著陸", "放緩", "回落", "寬鬆", "激勵", "支撐", "回流", "順差",
+    "beat", "surge", "soar", "upgrade", "bull", "record", "growth", "strong", "outperform", "buy", "rally", "dovish", "cut"
 ]
 BEAR_KEYWORDS = [
     "下跌", "重挫", "衰退", "減少", "賣超", "下調", "調降", "低於預期", "利空", "虧損",
     "跌破", "疲軟", "砍單", "修正", "看淡", "減碼", "大跌", "暴跌", "賣壓", "警告", "風險",
-    "miss", "drop", "plunge", "downgrade", "bear", "weak", "cut", "sell", "fall", "decline", "risk", "warn"
+    "升息", "鷹派", "通膨升溫", "停滯", "倒掛", "拋售", "外流", "關稅", "制裁", "衝突",
+    "miss", "drop", "plunge", "downgrade", "bear", "weak", "cut", "sell", "fall", "decline", "risk", "warn", "hawkish", "inflation"
 ]
 
-def fetch_stock_bull_bear_news(query_term, fundamentals, change_pct):
+def classify_and_fetch_news(symbol, display_name, asset_type, fundamentals, change_pct, yf_news_list=None):
     """
-    透過 Google News RSS (台灣繁體中文版) 抓取個股最新新聞，
-    並自動分類為「利多消息 (bullish)」與「利空消息 (bearish)」，
-    同時結合財報基本面指標生成補充分析點。
+    整合多來源新聞與時事：
+    1. Google News 繁體中文時事 / 總經 / 聯準會 (Fed) 情報
+    2. Yahoo Finance 官方新聞
+    3. 財報基本面 / 價格動能補充判讀
     """
     bullish = []
     bearish = []
+    seen_titles = set()
 
+    # 決定搜尋關鍵字：指數/期貨/總經採用總經與聯準會關鍵字；個股採用公司與財報新聞關鍵字
+    if symbol in MACRO_SEARCH_QUERIES:
+        query_str = MACRO_SEARCH_QUERIES[symbol]
+        default_source_tag = "總經/Fed時事"
+    elif asset_type == "tw_stock":
+        query_str = f"{display_name} 股價 OR 營收 OR 法說會 OR 財報"
+        default_source_tag = "台股新聞"
+    elif asset_type == "us_stock":
+        query_str = f"{symbol} 美股 OR 財報 OR 華爾街 OR 目標價"
+        default_source_tag = "美股新聞"
+    else:
+        query_str = f"{display_name} 市場 OR 總經 OR 聯準會"
+        default_source_tag = "市場時事"
+
+    def process_item(raw_title, link, date_str, tag_label):
+        title = to_trad(raw_title).strip()
+        if not title or title in seen_titles:
+            return
+        seen_titles.add(title)
+
+        # 若新聞提及聯準會/Fed/CPI/利率，自動升級標籤為 [Fed/總經]
+        actual_tag = tag_label
+        if any(k in title for k in ["聯準會", "Fed", "FED", "鮑爾", "降息", "升息", "利率", "CPI", "通膨", "非農", "央行", "GDP", "PMI"]):
+            actual_tag = "Fed/總經"
+
+        b_score = sum(1 for kw in BULL_KEYWORDS if kw.lower() in title.lower())
+        s_score = sum(1 for kw in BEAR_KEYWORDS if kw.lower() in title.lower())
+
+        obj = {
+            "title": f"[{actual_tag}] {title}",
+            "url": link if link else "#",
+            "date": date_str
+        }
+
+        if s_score > b_score:
+            bearish.append(obj)
+        elif b_score > s_score:
+            bullish.append(obj)
+        else:
+            if len(bullish) <= len(bearish):
+                bullish.append(obj)
+            else:
+                bearish.append(obj)
+
+    # A. 抓取 Google News RSS (繁體中文新聞、時事、總經、聯準會)
     try:
-        encoded_q = urllib.parse.quote(f"{query_term} 股價 OR 財報 OR 營收")
+        encoded_q = urllib.parse.quote(query_str)
         rss_url = f"https://news.google.com/rss/search?q={encoded_q}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
         headers = {"User-Agent": "Mozilla/5.0"}
         resp = requests.get(rss_url, headers=headers, timeout=8)
         if resp.status_code == 200:
             root = ET.fromstring(resp.content)
             for item in root.findall("./channel/item")[:12]:
-                raw_title = item.find("title").text if item.find("title") is not None else ""
-                link = item.find("link").text if item.find("link") is not None else "#"
-                pub_date = item.find("pubDate").text if item.find("pubDate") is not None else ""
-                title = to_trad(raw_title)
-
-                # 計算利多/利空權重
-                b_score = sum(1 for kw in BULL_KEYWORDS if kw.lower() in title.lower())
-                s_score = sum(1 for kw in BEAR_KEYWORDS if kw.lower() in title.lower())
-
-                news_obj = {
-                    "title": title,
-                    "url": link,
-                    "date": pub_date[:16] if pub_date else "最新消息"
-                }
-
-                if s_score > b_score:
-                    bearish.append(news_obj)
-                elif b_score > s_score:
-                    bullish.append(news_obj)
-                else:
-                    # 中性新聞依數量平衡分配
-                    if len(bullish) <= len(bearish):
-                        bullish.append(news_obj)
-                    else:
-                        bearish.append(news_obj)
+                r_title = item.find("title").text if item.find("title") is not None else ""
+                r_link = item.find("link").text if item.find("link") is not None else "#"
+                r_date = item.find("pubDate").text[:16] if item.find("pubDate") is not None and item.find("pubDate").text else "最新時事"
+                process_item(r_title, r_link, r_date, default_source_tag)
     except Exception as e:
-        print(f"[Warn] News RSS error for {query_term}: {e}")
+        print(f"[Warn] RSS error for {symbol}: {e}")
 
-    # 結合財報數據與價格動能自動補充基本面利多/利空觀點，確保內容紮實
-    rev_g_str = str(fundamentals.get("yoy_rev_growth", "N/A")).replace("%", "")
-    roe_str = str(fundamentals.get("roe", "N/A")).replace("%", "")
-    pe_val = fundamentals.get("pe", "N/A")
+    # B. 補充 Yahoo Finance 內建新聞
+    if yf_news_list and isinstance(yf_news_list, list):
+        for yn in yf_news_list[:6]:
+            try:
+                content = yn.get("content", yn)
+                y_title = content.get("title") or yn.get("title", "")
+                y_link = content.get("canonicalUrl", {}).get("url") or yn.get("link", "#")
+                if y_title:
+                    process_item(y_title, y_link, "外電快訊", "外電新聞")
+            except Exception:
+                pass
 
-    try:
-        if rev_g_str != "N/A" and float(rev_g_str) > 10:
-            bullish.append({
-                "title": f"【基本面利多】最新季度營收年增率達 +{rev_g_str}%，成長動能強勁",
-                "url": "#", "date": "財報指標"
-            })
-        elif rev_g_str != "N/A" and float(rev_g_str) < 0:
-            bearish.append({
-                "title": f"【基本面風險】最新季度營收年增率為 {rev_g_str}%，短期成長動能放緩",
-                "url": "#", "date": "財報指標"
-            })
-    except Exception:
-        pass
+    # C. 補充基本面或總經動能判讀
+    if asset_type in ["us_stock", "tw_stock"]:
+        rev_g_str = str(fundamentals.get("yoy_rev_growth", "N/A")).replace("%", "")
+        roe_str = str(fundamentals.get("roe", "N/A")).replace("%", "")
+        pe_val = fundamentals.get("pe", "N/A")
 
-    try:
-        if roe_str != "N/A" and float(roe_str) >= 15:
-            bullish.append({
-                "title": f"【獲利能力亮眼】股東權益報酬率 (ROE) 達 {roe_str}%，資本回報效率優異",
-                "url": "#", "date": "獲利指標"
-            })
-    except Exception:
-        pass
+        try:
+            if rev_g_str != "N/A" and float(rev_g_str) > 10:
+                bullish.append({"title": f"[基本面] 最新季度營收年增率達 +{rev_g_str}%，成長動能強勁", "url": "#", "date": "財報指標"})
+            elif rev_g_str != "N/A" and float(rev_g_str) < 0:
+                bearish.append({"title": f"[基本面] 最新季度營收年增率為 {rev_g_str}%，短期營收動能放緩", "url": "#", "date": "財報指標"})
+        except Exception:
+            pass
 
-    try:
-        if pe_val != "N/A" and float(pe_val) > 40:
-            bearish.append({
-                "title": f"【估值風險提示】目前本益比 (PE) 為 {pe_val} 倍，處於相對高估值區間，需留意追高風險",
-                "url": "#", "date": "估值指標"
-            })
-        elif pe_val != "N/A" and 0 < float(pe_val) <= 20:
-            bullish.append({
-                "title": f"【估值優勢】目前本益比 (PE) 僅 {pe_val} 倍，具備價值防禦空間",
-                "url": "#", "date": "估值指標"
-            })
-    except Exception:
-        pass
+        try:
+            if roe_str != "N/A" and float(roe_str) >= 15:
+                bullish.append({"title": f"[獲利能力] 股東權益報酬率 (ROE) 達 {roe_str}%，資本回報效率優異", "url": "#", "date": "獲利指標"})
+        except Exception:
+            pass
+
+        try:
+            if pe_val != "N/A" and float(pe_val) > 40:
+                bearish.append({"title": f"[估值風險] 目前本益比 (PE) 達 {pe_val} 倍，處於相對高檔位階，須留意追高波動", "url": "#", "date": "估值指標"})
+            elif pe_val != "N/A" and 0 < float(pe_val) <= 20:
+                bullish.append({"title": f"[估值優勢] 目前本益比 (PE) 為 {pe_val} 倍，具備價值防禦空間", "url": "#", "date": "估值指標"})
+        except Exception:
+            pass
+    else:
+        # 指數、期貨、外匯與美債之總經動態補充
+        if change_pct > 0:
+            bullish.append({"title": f"[市場動能] {to_trad(display_name)} 近期買盤支撐轉強，短線呈現多頭推升格局 ({change_pct:+.2f}%)", "url": "#", "date": "盤勢動能"})
+        elif change_pct < 0:
+            bearish.append({"title": f"[市場動能] {to_trad(display_name)} 短線遭遇調節賣壓或避險情緒影響 ({change_pct:+.2f}%)", "url": "#", "date": "盤勢動能"})
 
     if len(bullish) == 0:
-        bullish.append({"title": f"{query_term} 產業長線趨勢與法人關注度維持穩定", "url": "#", "date": "市場動態"})
+        bullish.append({"title": f"[市場動態] {to_trad(display_name)} 中長線基本面與市場流動性維持穩健", "url": "#", "date": "綜合研判"})
     if len(bearish) == 0:
-        bearish.append({"title": f"需留意全球總經利率政策與終端需求季節性波動對 {query_term} 之影響", "url": "#", "date": "風險提示"})
+        bearish.append({"title": f"[風險提示] 持續留意聯準會 (Fed) 利率路徑、通膨數據與地緣政治對 {to_trad(display_name)} 之影響", "url": "#", "date": "總經風險"})
 
     return {
-        "bullish": bullish[:5],
-        "bearish": bearish[:5]
+        "bullish": bullish[:6],
+        "bearish": bearish[:6]
     }
 
 
@@ -211,7 +268,7 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
     try:
         tk = yf.Ticker(symbol)
 
-        # A. 取得近 2 年歷史日線 (供 1W / 1M / YTD、任意自訂日期區間與多標的疊圖比較使用)
+        # A. 取得近 2 年歷史日線
         hist_2y = tk.history(period="2y", interval="1d", timeout=10)
         if not hist_2y.empty and "Close" in hist_2y.columns:
             hist_2y = hist_2y.dropna(subset=["Close"])
@@ -306,7 +363,7 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
                         "change_pct": round(night_pct, 2)
                     }
 
-        # 個股財報、獲利能力指標與利多利空新聞抓取
+        # D. 填寫統計/財報指標 (個股填財報，指數/期貨填52週高低點與振幅)
         if asset_type in ["us_stock", "tw_stock"]:
             pe = safe_float(info.get("trailingPE"), None)
             f_pe = safe_float(info.get("forwardPE"), None)
@@ -326,10 +383,28 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
                 "yoy_rev_growth": f"{round(rev_g * 100, 2)}%" if rev_g is not None else "N/A",
                 "monthly_rev": None
             }
+        else:
+            high_52 = safe_float(info.get("fiftyTwoWeekHigh"), None)
+            low_52 = safe_float(info.get("fiftyTwoWeekLow"), None)
+            day_h = safe_float(info.get("dayHigh"), None)
+            day_l = safe_float(info.get("dayLow"), None)
+            result["fundamentals"] = {
+                "high_52w": round(high_52, 2) if high_52 else "N/A",
+                "low_52w": round(low_52, 2) if low_52 else "N/A",
+                "day_high": round(day_h, 2) if day_h else "N/A",
+                "day_low": round(day_l, 2) if day_l else "N/A"
+            }
 
-            # 抓取利多與利空消息
-            search_key = display_name if asset_type == "tw_stock" else f"{symbol} 美股"
-            result["news_sentiment"] = fetch_stock_bull_bear_news(search_key, result["fundamentals"], result["change_pct"])
+        # E. 為所有資產 (含指數、個股、期貨、外匯美債) 抓取新聞、總經、聯準會利多利空消息
+        yf_news = []
+        try:
+            yf_news = tk.news or []
+        except Exception:
+            yf_news = []
+
+        result["news_sentiment"] = classify_and_fetch_news(
+            symbol, display_name, asset_type, result["fundamentals"], result["change_pct"], yf_news
+        )
 
     except Exception as e:
         print(f"[Warn] {symbol} error: {e}")
@@ -337,7 +412,7 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
     return result
 
 
-# 2. 公開資訊觀測站 (MOPS) 重大訊息
+# 2. 公開資訊觀測站 (MOPS) 重大訊息並同步寫入個股利多/利空清單
 def fetch_mops_material_info(target_stock_ids):
     mops_url = "https://openapi.twse.com.tw/v1/mops/t05st01"
     announcements = {sid: [] for sid in target_stock_ids}
@@ -409,16 +484,15 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict):
                             "yoy": yoy_val
                         }
 
-                        # 將月營收表現同步加入個股利多/利空消息
-                        if yoy_val > 10:
+                        if yoy_val >= 0:
                             s_obj["news_sentiment"]["bullish"].insert(0, {
-                                "title": f"【月營收利多】{latest_month} 營收 {val_yi} 億元，年增 +{yoy_val}%、月增 {mom_val}%",
+                                "title": f"[MOPS月營收] {latest_month} 營收 {val_yi} 億元，年增 +{yoy_val}%、月增 {mom_val:+.2f}%",
                                 "url": "https://mops.twse.com.tw/mops/#/web/home",
                                 "date": latest_month
                             })
-                        elif yoy_val < -5:
+                        else:
                             s_obj["news_sentiment"]["bearish"].insert(0, {
-                                "title": f"【月營收降溫】{latest_month} 營收 {val_yi} 億元，年減 {yoy_val}%、月增 {mom_val}%",
+                                "title": f"[MOPS月營收] {latest_month} 營收 {val_yi} 億元，年減 {yoy_val}%、月增 {mom_val:+.2f}%",
                                 "url": "https://mops.twse.com.tw/mops/#/web/home",
                                 "date": latest_month
                             })
@@ -475,10 +549,10 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    print("1. Fetching Global Indices...")
-    indices_data = [fetch_ticker_full_data(k, v, "standard") for k, v in INDICES.items()]
+    print("1. Fetching Global Indices (with Macro & Fed News)...")
+    indices_data = [fetch_ticker_full_data(k, v, "index") for k, v in INDICES.items()]
 
-    print("2. Fetching US Stocks (Ticker Only + Pre/Post Market + Bull/Bear News)...")
+    print("2. Fetching US Stocks (Ticker Only + Pre/Post Market + News)...")
     us_stocks_data = [fetch_ticker_full_data(sym, sym, "us_stock") for sym in US_STOCKS]
 
     print("3. Fetching TW Stocks...")
@@ -487,19 +561,31 @@ def main():
         tw_stocks_map[code] = fetch_ticker_full_data(meta["ticker"], meta["name"], "tw_stock")
         tw_stocks_map[code]["tw_code"] = code
 
-    print("4. Fetching MOPS Announcements...")
+    print("4. Fetching MOPS Announcements & Injecting into Stock Sentiment...")
     mops_by_stock, mops_latest_list = fetch_mops_material_info(list(TW_STOCKS.keys()))
     for code, s_obj in tw_stocks_map.items():
-        s_obj["mops_announcements"] = mops_by_stock.get(code, [])
+        anns = mops_by_stock.get(code, [])
+        s_obj["mops_announcements"] = anns
+        for m in anns[:3]:
+            subj = m["subject"]
+            m_obj = {
+                "title": f"[MOPS重訊] {subj}",
+                "url": m["url"],
+                "date": f"{m['date']} {m['time']}"
+            }
+            if any(k in subj for k in BEAR_KEYWORDS):
+                s_obj["news_sentiment"]["bearish"].insert(0, m_obj)
+            else:
+                s_obj["news_sentiment"]["bullish"].insert(0, m_obj)
 
     print("5. Fetching Monthly Revenue & Institutional Chips...")
     chip_chart_data = fetch_tw_revenue_and_chips(tw_stocks_map)
 
-    print("6. Fetching Futures & Commodities (Day Close + Night Session)...")
+    print("6. Fetching Futures & Commodities (Day Close + Night Session + News)...")
     futures_data = [fetch_ticker_full_data(k, v, "futures") for k, v in FUTURES_AND_COMMODITIES.items()]
 
     print("7. Fetching FX & Bonds...")
-    fx_bonds_data = [fetch_ticker_full_data(k, v, "standard") for k, v in FX_AND_BONDS.items()]
+    fx_bonds_data = [fetch_ticker_full_data(k, v, "fx_bond") for k, v in FX_AND_BONDS.items()]
 
     output_payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
