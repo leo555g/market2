@@ -1,36 +1,53 @@
-name: Daily Market Data Update
+name: High-Frequency Market Data Update
 
 on:
   schedule:
-    - cron: '30 8 * * 1-5'
-    - cron: '0 23 * * 0-4'
-  workflow_dispatch:
+    # 每 15 分鐘執行一次 (涵蓋台股日夜盤、歐股、美股盤前/盤中/盤後)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # 支援手動一鍵觸發
+  push:
+    branches:
+      - main
+    paths:
+      - 'update_data.py'
+      - 'index.html'
+
+permissions:
+  contents: write
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-      - name: 取得專案代碼
+      - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: 設定 Python 環境
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          
-      - name: 安裝相依套件
-        run: pip install -r requirements.txt
-        
-      - name: 執行資料更新腳本
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python update_data.py
-        
-      - name: 提交更新後的 data.js
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data.js
-          git commit -m "Auto-update market data" || exit 0
-          git pull --rebase
-          git push
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch Market Data and Generate JSON
+        env:
+          FINLAB_API_TOKEN: ${{ secrets.FINLAB_API_TOKEN }}
+        run: |
+          python update_data.py
+
+      - name: Commit and Push updated data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/market_data.json
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "chore: auto-update market data $(date +'%Y-%m-%d %H:%M')"
+            git pull --rebase origin main
+            git push origin main
+          fi
