@@ -1,4 +1,7 @@
-yfinance
-pandas
-requests
-urllib3
+yfinance>=0.2.40
+finlab>=1.1.0
+pandas>=2.0.0
+numpy>=1.24.0
+requests>=2.31.0
+opencc-python-reimplemented>=0.1.7
+pytz>=2024.1
