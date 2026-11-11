@@ -1,66 +1,500 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全球市場數據監控</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="data.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script>
+        let flatItemsMap = {};
+        let currentModalItem = null;
+        let chartInstance = null;
+        let currentChartMode = 'compare'; // 'compare' (相對報酬%) 或 'price' (絕對價格)
+
         function getColor(change) {
-            if (change > 0) return 'text-red-500';
-            if (change < 0) return 'text-green-500';
-            return 'text-gray-500';
+            if (change > 0) return 'text-red-400';
+            if (change < 0) return 'text-emerald-400';
+            return 'text-slate-400';
         }
         function getSign(change) {
             return change > 0 ? '+' : '';
         }
-        function createCard(item) {
+        
+        // 繪製卡片上的 SVG 迷你走勢圖
+        function createSparkline(sparkline, change) {
+            if (!sparkline || sparkline.length < 2) return '';
+            const width = 80;
+            const height = 36;
+            const min = Math.min(...sparkline);
+            const max = Math.max(...sparkline);
+            const range = (max - min) === 0 ? 1 : (max - min);
+            
+            const pts = sparkline.map((val, idx) => {
+                const x = (idx / (sparkline.length - 1)) * width;
+                const y = height - ((val - min) / range) * (height - 8) - 4;
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+            });
+            
+            const pointsStr = pts.join(' ');
+            const strokeColor = change > 0 ? '#f87171' : (change < 0 ? '#34d399' : '#94a3b8');
+            const fillColor = change > 0 ? 'rgba(248, 113, 113, 0.16)' : (change < 0 ? 'rgba(52, 211, 153, 0.16)' : 'rgba(148, 163, 184, 0.1)');
+            const areaPoints = `0,${height} ${pointsStr} ${width},${height}`;
+
+            return `
+                <svg width="${width}" height="${height}" class="overflow-visible shrink-0 ml-2">
+                    <polygon points="${areaPoints}" fill="${fillColor}" />
+                    <polyline fill="none" stroke="${strokeColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" points="${pointsStr}" />
+                </svg>
+            `;
+        }
+
+        function createCard(item, itemKey) {
             const color = getColor(item.change);
             const sign = getSign(item.change);
-            const changeText = item.change !== null ? `${sign}${item.change}%` : '-';
+            const isChip = item.price.includes('億') || item.price === '連線失敗' || item.price === '更新中';
+            
+            let changeText = '';
+            if (!isChip && item.change !== null) {
+                if (item.diff !== undefined) {
+                    changeText = `${item.diff} (${sign}${item.change}%)`;
+                } else {
+                    changeText = `${sign}${item.change}%`;
+                }
+            }
+            
+            const priceColor = isChip ? color : 'text-slate-100';
+            const sparklineSvg = createSparkline(item.sparkline, item.change);
+            
             return `
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <h3 class="text-gray-600 font-medium text-sm">${item.name}</h3>
-                    <div class="mt-2 flex items-baseline gap-2">
-                        <span class="text-2xl font-bold text-gray-900">${item.price}</span>
-                        <span class="text-sm font-semibold ${color}">${changeText}</span>
+                <div onclick="openModal('${itemKey}')" class="cursor-pointer group bg-slate-900/90 p-4 rounded-xl shadow-lg border border-slate-800 flex items-center justify-between hover:border-blue-500/60 hover:bg-slate-800/90 hover:-translate-y-0.5 transition-all duration-150">
+                    <div class="flex flex-col justify-between min-w-0">
+                        <div class="flex items-center gap-1.5">
+                            <h3 class="text-slate-300 group-hover:text-blue-400 font-medium text-sm truncate transition-colors">${item.name}</h3>
+                            <span class="text-[10px] text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">點擊詳情 ↗</span>
+                        </div>
+                        <div class="mt-1.5 flex flex-col">
+                            <span class="text-2xl font-bold ${priceColor} leading-tight tracking-tight">${item.price}</span>
+                            ${changeText ? `<span class="text-xs font-semibold ${color} mt-1">${changeText}</span>` : ''}
+                        </div>
                     </div>
+                    ${sparklineSvg}
                 </div>
             `;
         }
-        function createSection(title, data) {
-            const cards = data.map(createCard).join('');
+
+        function createSection(title, sectionData, secIdx) {
+            if (!sectionData || sectionData.length === 0) return '';
+            const cards = sectionData.map((item, idx) => {
+                const key = `item_${secIdx}_${idx}`;
+                flatItemsMap[key] = item;
+                return createCard(item, key);
+            }).join('');
             return `
-                <div class="mb-8">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">${title}</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div class="mb-9">
+                    <h2 class="text-xl font-bold text-slate-100 mb-4 border-l-4 border-blue-500 pl-3 tracking-wide">${title}</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         ${cards}
                     </div>
                 </div>
             `;
         }
-        window.onload = () => {
+
+        // 開啟詳情彈窗
+        function openModal(itemKey) {
+            const item = flatItemsMap[itemKey];
+            if (!item) return;
+            currentModalItem = item;
+            
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            // 標題與報價資訊
+            document.getElementById('modal-title').textContent = item.name;
+            document.getElementById('modal-category').textContent = item.category || '市場資產';
+            
+            const priceEl = document.getElementById('modal-price');
+            priceEl.textContent = item.price;
+            priceEl.className = `text-3xl font-black tracking-tight ${item.price.includes('億') ? getColor(item.change) : 'text-white'}`;
+
+            const changeEl = document.getElementById('modal-change');
+            const sign = getSign(item.change);
+            if (!item.price.includes('億') && item.change !== null) {
+                changeEl.textContent = `${item.diff || ''} (${sign}${item.change}%)`;
+                changeEl.className = `text-sm font-bold px-2.5 py-1 rounded-md bg-slate-800 ${getColor(item.change)}`;
+                changeEl.classList.remove('hidden');
+            } else {
+                changeEl.classList.add('hidden');
+            }
+
+            // 判斷是否有大盤對比資料
+            const hasBenchmark = item.history_1y && item.history_1y.benchmark && item.history_1y.benchmark.prices && item.history_1y.benchmark.prices.length > 0;
+            const modeSwitchEl = document.getElementById('chart-mode-switch');
+            if (hasBenchmark) {
+                modeSwitchEl.classList.remove('hidden');
+                currentChartMode = 'compare';
+                updateModeButtons();
+            } else {
+                modeSwitchEl.classList.add('hidden');
+                currentChartMode = 'price';
+            }
+
+            // 渲染利多與利空原因
+            const analysis = item.analysis || {};
+            const bulls = analysis.bull_factors && analysis.bull_factors.length > 0 ? analysis.bull_factors : ['暫無近期顯著利多催化劑'];
+            const bears = analysis.bear_factors && analysis.bear_factors.length > 0 ? analysis.bear_factors : ['暫無近期顯著利空風險'];
+            
+            document.getElementById('modal-bulls').innerHTML = bulls.map(b => `<li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">▲</span><span>${b}</span></li>`).join('');
+            document.getElementById('modal-bears').innerHTML = bears.map(b => `<li class="flex items-start gap-2"><span class="text-emerald-400 mt-0.5">▼</span><span>${b}</span></li>`).join('');
+
+            // 渲染個股財報區塊 (僅個股顯示)
+            const finSection = document.getElementById('modal-financials-section');
+            if (item.is_stock && item.financials) {
+                finSection.classList.remove('hidden');
+                const f = item.financials;
+                document.getElementById('fin-period').textContent = `財報基準季度：${f.period || '最新季度'}`;
+                document.getElementById('fin-rev').textContent = f.revenue || '-';
+                document.getElementById('fin-ni').textContent = f.net_income || '-';
+                document.getElementById('fin-eps').textContent = f.eps || '-';
+                document.getElementById('fin-gm').textContent = f.gross_margin || '-';
+                document.getElementById('fin-om').textContent = f.operating_margin || '-';
+                document.getElementById('fin-yoy').textContent = f.yoy_growth || '-';
+                document.getElementById('fin-pe').textContent = f.pe_ratio || '-';
+                document.getElementById('modal-earnings-note').textContent = analysis.earnings_note || '已整合最近一期財務報表關鍵指標。';
+            } else {
+                finSection.classList.add('hidden');
+            }
+
+            // 渲染公開說明與近期動態新聞
+            document.getElementById('modal-announcements').textContent = analysis.announcements || '近期無重大異常公開說明。';
+            
+            const newsContainer = document.getElementById('modal-news-list');
+            if (analysis.news_list && analysis.news_list.length > 0) {
+                newsContainer.innerHTML = analysis.news_list.map(n => `
+                    <div class="text-xs text-slate-300 border-l-2 border-slate-700 pl-2.5 py-0.5">
+                        <span class="text-slate-200">${n.title}</span>
+                        <span class="text-slate-500 ml-2 text-[11px]">${n.date}</span>
+                    </div>
+                `).join('');
+                document.getElementById('modal-news-wrapper').classList.remove('hidden');
+            } else {
+                document.getElementById('modal-news-wrapper').classList.add('hidden');
+            }
+
+            // 繪製 ECharts 圖表
+            setTimeout(() => {
+                renderModalChart();
+            }, 50);
+        }
+
+        function switchChartMode(mode) {
+            currentChartMode = mode;
+            updateModeButtons();
+            renderModalChart();
+        }
+
+        function updateModeButtons() {
+            const btnCompare = document.getElementById('btn-mode-compare');
+            const btnPrice = document.getElementById('btn-mode-price');
+            if (currentChartMode === 'compare') {
+                btnCompare.className = "px-3 py-1 text-xs font-semibold rounded-md bg-blue-600 text-white shadow";
+                btnPrice.className = "px-3 py-1 text-xs font-semibold rounded-md text-slate-400 hover:text-white";
+            } else {
+                btnPrice.className = "px-3 py-1 text-xs font-semibold rounded-md bg-blue-600 text-white shadow";
+                btnCompare.className = "px-3 py-1 text-xs font-semibold rounded-md text-slate-400 hover:text-white";
+            }
+        }
+
+        function renderModalChart() {
+            const item = currentModalItem;
+            if (!item || !item.history_1y || !item.history_1y.dates) return;
+
+            const chartDom = document.getElementById('echarts-container');
+            if (chartInstance) {
+                chartInstance.dispose();
+            }
+            chartInstance = echarts.init(chartDom);
+
+            const dates = item.history_1y.dates;
+            const rawPrices = item.history_1y.prices;
+            const bench = item.history_1y.benchmark;
+
+            let series = [];
+            let yAxisConfig = {};
+            let tooltipFormatter = null;
+
+            if (currentChartMode === 'compare' && bench && bench.prices && bench.prices.length > 0) {
+                // 計算自一年前起算的累積報酬率 (%)
+                const baseAsset = rawPrices[0] || 1;
+                const baseBench = bench.prices[0] || 1;
+                const assetPct = rawPrices.map(p => +(((p - baseAsset) / baseAsset) * 100).toFixed(2));
+                const benchPct = bench.prices.map(p => +(((p - baseBench) / baseBench) * 100).toFixed(2));
+
+                yAxisConfig = {
+                    type: 'value',
+                    axisLabel: { color: '#94a3b8', formatter: '{value}%' },
+                    splitLine: { lineStyle: { color: '#1e293b' } }
+                };
+
+                series = [
+                    {
+                        name: item.name,
+                        type: 'line',
+                        data: assetPct,
+                        smooth: true,
+                        showSymbol: false,
+                        lineStyle: { width: 2.5, color: '#38bdf8' },
+                        itemStyle: { color: '#38bdf8' },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(56, 189, 248, 0.25)' },
+                                { offset: 1, color: 'rgba(56, 189, 248, 0.0)' }
+                            ])
+                        }
+                    },
+                    {
+                        name: bench.name,
+                        type: 'line',
+                        data: benchPct,
+                        smooth: true,
+                        showSymbol: false,
+                        lineStyle: { width: 2, color: '#f59e0b', type: 'dashed' },
+                        itemStyle: { color: '#f59e0b' }
+                    }
+                ];
+
+                tooltipFormatter = function(params) {
+                    let html = `<div class="text-xs text-slate-300 font-mono mb-1">${params[0].axisValue}</div>`;
+                    params.forEach((p, idx) => {
+                        const val = p.value > 0 ? `+${p.value}%` : `${p.value}%`;
+                        const rawP = idx === 0 ? rawPrices[p.dataIndex] : bench.prices[p.dataIndex];
+                        html += `<div class="flex items-center justify-between gap-4 text-xs mt-1">
+                            <span>${p.marker} ${p.seriesName}</span>
+                            <span class="font-bold text-white">${val} <span class="text-slate-400 font-normal">(${rawP})</span></span>
+                        </div>`;
+                    });
+                    return html;
+                };
+            } else {
+                // 單一資產絕對價格走勢（或三大法人買賣超柱狀/折線圖）
+                const isUp = rawPrices[rawPrices.length - 1] >= rawPrices[0];
+                const mainColor = isUp ? '#f87171' : '#34d399';
+                const areaColor = isUp ? 'rgba(248, 113, 113, 0.22)' : 'rgba(52, 211, 153, 0.22)';
+
+                yAxisConfig = {
+                    type: 'value',
+                    scale: true,
+                    axisLabel: { color: '#94a3b8' },
+                    splitLine: { lineStyle: { color: '#1e293b' } }
+                };
+
+                series = [
+                    {
+                        name: item.name,
+                        type: item.category === '台股籌碼' ? 'bar' : 'line',
+                        data: rawPrices,
+                        smooth: true,
+                        showSymbol: false,
+                        lineStyle: { width: 2.5, color: mainColor },
+                        itemStyle: { 
+                            color: function(params) {
+                                if (item.category === '台股籌碼') {
+                                    return params.value >= 0 ? '#f87171' : '#34d399';
+                                }
+                                return mainColor;
+                            }
+                        },
+                        areaStyle: item.category === '台股籌碼' ? null : {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: areaColor },
+                                { offset: 1, color: 'rgba(15, 23, 42, 0.0)' }
+                            ])
+                        }
+                    }
+                ];
+            }
+
+            const option = {
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                    borderColor: '#334155',
+                    textStyle: { color: '#f1f5f9' },
+                    formatter: tooltipFormatter
+                },
+                legend: {
+                    show: series.length > 1,
+                    top: 0,
+                    right: 10,
+                    textStyle: { color: '#cbd5e1', fontSize: 12 }
+                },
+                grid: { left: '3%', right: '3%', bottom: '12%', top: '12%', containLabel: true },
+                xAxis: {
+                    type: 'category',
+                    data: dates,
+                    axisLabel: { color: '#64748b', fontSize: 11 },
+                    axisLine: { lineStyle: { color: '#334155' } }
+                },
+                yAxis: yAxisConfig,
+                dataZoom: [
+                    { type: 'inside', start: 0, end: 100 },
+                    { type: 'slider', start: 0, end: 100, height: 18, bottom: 4, borderColor: '#1e293b', textStyle: { color: '#64748b' } }
+                ],
+                series: series
+            };
+
+            chartInstance.setOption(option);
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.addEventListener('resize', () => {
+            if (chartInstance) chartInstance.resize();
+        });
+
+        function renderDashboard() {
             const container = document.getElementById('dashboard-content');
+            const timeEl = document.getElementById('update-time');
+            if (typeof lastUpdate !== 'undefined') {
+                timeEl.textContent = `最後更新時間：${lastUpdate}`;
+            }
             let html = '';
+            flatItemsMap = {};
             if (typeof data !== 'undefined' && Object.keys(data).length > 0) {
+                let secIdx = 0;
                 for (const [title, items] of Object.entries(data)) {
-                    html += createSection(title, items);
+                    html += createSection(title, items, secIdx++);
                 }
                 container.innerHTML = html;
             } else {
-                container.innerHTML = '<div class="p-8 text-center text-gray-500">正在等待系統更新資料...</div>';
+                container.innerHTML = '<div class="p-8 text-center text-slate-500">正在等待系統更新資料...</div>';
             }
+        }
+        
+        window.onload = () => {
+            const script = document.createElement('script');
+            script.src = 'data.js?t=' + new Date().getTime();
+            script.onload = renderDashboard;
+            document.head.appendChild(script);
         };
     </script>
 </head>
-<body class="bg-gray-50 p-6 md:p-12 font-sans">
-    <header class="mb-10 flex justify-between items-end">
+<body class="bg-slate-950 text-slate-100 p-6 md:p-12 font-sans min-h-screen selection:bg-blue-500 selection:text-white">
+    <header class="mb-10 flex flex-col md:flex-row md:justify-between md:items-end border-b border-slate-800/80 pb-6">
         <div>
-            <h1 class="text-3xl font-black text-gray-900">全球市場數據監控</h1>
-            <p class="text-gray-500 mt-2">每日收盤後自動化更新</p>
+            <h1 class="text-3xl font-black text-white tracking-tight">全球市場數據監控</h1>
+            <p class="text-slate-400 mt-2 text-sm">點擊任意標的卡片，即可檢視近一年走勢、大盤強弱對比、最新財報與利多利空分析</p>
         </div>
+        <div id="update-time" class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 mt-4 md:mt-0"></div>
     </header>
+    
     <main id="dashboard-content"></main>
+
+    <!-- 互動式詳情彈窗 (Modal) -->
+    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) closeModal()">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 md:p-8 relative">
+            
+            <!-- 彈窗頂部標題與報價 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
+                <div>
+                    <span id="modal-category" class="text-xs font-semibold text-blue-400 uppercase tracking-wider"></span>
+                    <div class="flex items-baseline gap-3 mt-1 flex-wrap">
+                        <h2 id="modal-title" class="text-2xl md:text-3xl font-black text-white"></h2>
+                        <span id="modal-price" class="text-3xl font-black text-white"></span>
+                        <span id="modal-change" class="text-sm font-bold px-2.5 py-1 rounded-md bg-slate-800"></span>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="self-end sm:self-center text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 p-2 rounded-lg transition-colors">
+                    ✕ 關閉
+                </button>
+            </div>
+
+            <!-- 近一年走勢與大盤對比圖表區 -->
+            <div class="mt-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h3 class="text-sm font-bold text-slate-300 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                        近一年歷史走勢與大盤相對強弱對比（支援滑鼠滾輪縮放）
+                    </h3>
+                    <div id="chart-mode-switch" class="flex bg-slate-950 p-1 rounded-lg border border-slate-800 self-start">
+                        <button id="btn-mode-compare" onclick="switchChartMode('compare')" class="px-3 py-1 text-xs font-semibold rounded-md bg-blue-600 text-white shadow">相對大盤報酬 (%)</button>
+                        <button id="btn-mode-price" onclick="switchChartMode('price')" class="px-3 py-1 text-xs font-semibold rounded-md text-slate-400 hover:text-white">絕對價格走勢</button>
+                    </div>
+                </div>
+                <div id="echarts-container" class="w-full h-80 md:h-96 bg-slate-950/60 rounded-xl border border-slate-800/80 p-2"></div>
+            </div>
+
+            <!-- 近期漲跌利多與利空原因 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div class="bg-red-950/20 border border-red-900/40 rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-red-400 mb-2.5 flex items-center gap-1.5">🔥 近期利多與支撐催化劑</h4>
+                    <ul id="modal-bulls" class="text-xs md:text-sm text-slate-200 space-y-2 leading-relaxed"></ul>
+                </div>
+                <div class="bg-emerald-950/20 border border-emerald-900/40 rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-emerald-400 mb-2.5 flex items-center gap-1.5">❄️ 近期利空與潛在風險</h4>
+                    <ul id="modal-bears" class="text-xs md:text-sm text-slate-200 space-y-2 leading-relaxed"></ul>
+                </div>
+            </div>
+
+            <!-- 個股專屬：最新財報數據整理 -->
+            <div id="modal-financials-section" class="mt-6 bg-slate-950/70 border border-slate-800 rounded-xl p-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
+                    <h4 class="text-base font-bold text-white flex items-center gap-2">📊 最新一期財報核心數據</h4>
+                    <span id="fin-period" class="text-xs font-mono text-slate-400 mt-1 sm:mt-0"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 text-center">
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">單季營收</div>
+                        <div id="fin-rev" class="text-sm font-bold text-white mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">稅後淨利</div>
+                        <div id="fin-ni" class="text-sm font-bold text-white mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">每股盈餘 (EPS)</div>
+                        <div id="fin-eps" class="text-sm font-bold text-amber-400 mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">毛利率</div>
+                        <div id="fin-gm" class="text-sm font-bold text-white mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">營業利益率</div>
+                        <div id="fin-om" class="text-sm font-bold text-white mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">營收年增率 (YoY)</div>
+                        <div id="fin-yoy" class="text-sm font-bold text-blue-400 mt-1"></div>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                        <div class="text-[11px] text-slate-400">本益比 (P/E)</div>
+                        <div id="fin-pe" class="text-sm font-bold text-white mt-1"></div>
+                    </div>
+                </div>
+                <div class="mt-4 bg-slate-900/90 p-3.5 rounded-lg border border-slate-800/80">
+                    <div class="text-xs font-bold text-blue-400 mb-1">💡 財報亮點與營運展望摘要：</div>
+                    <p id="modal-earnings-note" class="text-xs md:text-sm text-slate-300 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- 公司公開說明 / 重大訊息與新聞動態 -->
+            <div class="mt-6 bg-slate-950/70 border border-slate-800 rounded-xl p-5">
+                <h4 class="text-base font-bold text-white mb-2 flex items-center gap-2">📢 近期公開說明與市場重要動態</h4>
+                <p id="modal-announcements" class="text-xs md:text-sm text-slate-300 leading-relaxed bg-slate-900 p-3.5 rounded-lg border border-slate-800/80"></p>
+                
+                <div id="modal-news-wrapper" class="mt-4">
+                    <div class="text-xs font-semibold text-slate-400 mb-2">即時相關新聞追蹤：</div>
+                    <div id="modal-news-list" class="space-y-2"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
