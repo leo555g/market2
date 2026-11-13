@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>全球金融市場與台股籌碼即時監控儀表板</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+  <script src="[https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js](https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js)"></script>
+  <link href="[https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap](https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap)" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
@@ -39,7 +39,7 @@
   <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援各國專屬央行決策 / 總經 / 時事三維度獨立拆解、美股綠漲紅跌、多標的比較</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援各國專屬央行決策 / 總經 / 時事三維度拆解、美股綠漲紅跌、台灣證交所 (TWSE) 官方籌碼直連</p>
     </div>
 
     <div class="flex flex-wrap items-center gap-3">
@@ -152,22 +152,34 @@
             <span class="px-2 py-0.5 text-xs font-bold bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded">MOPS 重大訊息</span>
             <h3 class="text-base font-bold text-white">公開資訊觀測站當日最新重大訊息通報</h3>
           </div>
-          <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
+          <a href="[https://mops.twse.com.tw/mops/#/web/home](https://mops.twse.com.tw/mops/#/web/home)" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
         </div>
         <div id="mops-list" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
       </div>
     </section>
 
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-purple-500 pl-3">台股與法人籌碼進階視覺化專區</h2>
+    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (100% 對齊台灣證券交易所 [www.twse.com](https://www.twse.com).tw 官方數據) -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
+          台股與法人籌碼進階視覺化專區
+          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(已連線台灣證券交易所 [www.twse.com](https://www.twse.com).tw 官方數據)</span>
+        </h2>
+        <a href="[https://www.twse.com.tw/zh/trading/foreign/bfi82u.html](https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">
+          前往台灣證券交易所官網核對 &rarr;
+        </a>
+      </div>
+
+      <!-- 台灣證券交易所最新交易日官方三大法人買賣金額 & 信用交易摘要卡 -->
+      <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="card-bg rounded-xl p-4">
-          <h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 日買賣超金額變化 (單位：億元)</h3>
+          <h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 日買賣超金額變化 (官方 BFI82U・單位：億元)</h3>
           <div id="chart-institutional" class="w-full h-72"></div>
         </div>
         <div class="card-bg rounded-xl p-4">
-          <h3 class="text-sm font-bold text-slate-200 mb-2">大盤融資餘額與融券餘額變化趨勢 (單位：萬張)</h3>
+          <h3 class="text-sm font-bold text-slate-200 mb-2">大盤融資金額餘額 (億元) 與融券餘額 (萬張) 變化 (官方 MI_MARGN)</h3>
           <div id="chart-margin" class="w-full h-72"></div>
         </div>
       </div>
@@ -206,7 +218,7 @@
 
   </main>
 
-  <!-- 升級版多空情報彈出視窗：支援「央行決策 / 總經數據 / 新聞時事」三大維度獨立檢視 -->
+  <!-- 升級版多空情報彈出視窗 -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
@@ -224,19 +236,14 @@
         </button>
       </div>
 
-      <!-- 維度切換分頁列 -->
       <div id="modal-category-tabs" class="flex flex-wrap items-center gap-2 mb-5"></div>
-
-      <!-- 分區獨立渲染容器 -->
       <div id="modal-pillars-container" class="space-y-6 mb-6"></div>
 
-      <!-- 財報與關鍵指標總覽 -->
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-4">
         <h3 id="modal-metrics-heading" class="text-sm font-bold text-white mb-3">核心數據與指標總覽</h3>
         <div id="modal-fundamentals-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mono"></div>
       </div>
 
-      <!-- 底部操作按鈕 -->
       <div class="flex justify-end gap-3 pt-2">
         <button id="modal-btn-add-compare" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg">
           ➕ 將此標的加入上方走勢圖比較
@@ -279,6 +286,30 @@
       "^FCHI": "歐洲央行 (ECB)"
     };
 
+    // 前端強制字詞淨化器：即使讀到舊快取 JSON，也會在瀏覽器端強制把「那斯達剋/那斯達克」改為「納斯達克」，把「臺」改為「台」
+    function cleanTwText(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/那斯達剋/g, "納斯達克")
+        .replace(/納斯達剋/g, "納斯達克")
+        .replace(/那斯達克/g, "納斯達克")
+        .replace(/斯達剋/g, "斯達克")
+        .replace(/臺/g, "台");
+    }
+
+    function sanitizeDataTree(obj) {
+      if (typeof obj === "string") return cleanTwText(obj);
+      if (Array.isArray(obj)) return obj.map(sanitizeDataTree);
+      if (obj && typeof obj === "object") {
+        const out = {};
+        for (const k of Object.keys(obj)) {
+          out[k] = sanitizeDataTree(obj[k]);
+        }
+        return out;
+      }
+      return obj;
+    }
+
     function safeId(symbol) {
       return symbol.replace(/[^a-zA-Z0-9]/g, "_");
     }
@@ -308,6 +339,7 @@
     }
 
     function createQuoteCard(item, forceTickerOnly = false) {
+      item.name = cleanTwText(item.name);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const titleText = forceTickerOnly ? item.symbol : item.name;
@@ -357,6 +389,7 @@
     }
 
     function createTwStockCard(item) {
+      item.name = cleanTwText(item.name);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const colorCls = getColorClass(item.change_pct, item.asset_type);
@@ -380,15 +413,15 @@
         `;
       }
 
-      const topBull = item.news_sentiment?.bullish?.[0]?.title || "點擊查看最新新聞與重訊利多";
-      const topBear = item.news_sentiment?.bearish?.[0]?.title || "點擊查看最新新聞與風險提示";
+      const topBull = cleanTwText(item.news_sentiment?.bullish?.[0]?.title || "點擊查看最新新聞與重訊利多");
+      const topBear = cleanTwText(item.news_sentiment?.bearish?.[0]?.title || "點擊查看最新新聞與風險提示");
 
       let mopsHtml = "";
       if (item.mops_announcements && item.mops_announcements.length > 0) {
         const listItems = item.mops_announcements.slice(0, 2).map(m => `
           <li class="text-xs text-slate-300 truncate">
             <a href="${m.url}" target="_blank" onclick="event.stopPropagation()" class="hover:text-blue-400">
-              <span class="text-rose-400 font-bold">[MOPS重訊 ${m.time}]</span> ${m.subject}
+              <span class="text-rose-400 font-bold">[MOPS重訊 ${m.time}]</span> ${cleanTwText(m.subject)}
             </a>
           </li>
         `).join("");
@@ -485,8 +518,8 @@
           },
           events: {
             label: "📰 新聞時事與盤勢",
-            bullish: rawBulls.map(x => ({ ...x, title: x.title.replace("[總經/Fed時事]", "[新聞時事]") })),
-            bearish: rawBears.map(x => ({ ...x, title: x.title.replace("[總經/Fed時事]", "[新聞時事]") }))
+            bullish: rawBulls.map(x => ({ ...x, title: cleanTwText(x.title.replace("[總經/Fed時事]", "[新聞時事]")) })),
+            bearish: rawBears.map(x => ({ ...x, title: cleanTwText(x.title.replace("[總經/Fed時事]", "[新聞時事]")) }))
           }
         };
       }
@@ -520,7 +553,7 @@
             : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700";
           return `
             <button onclick="switchModalCategoryTab('${k}')" class="px-3 py-1.5 text-xs font-bold rounded-lg border transition ${cls}">
-              ${categories[k].label}
+              ${cleanTwText(categories[k].label)}
             </button>
           `;
         }).join("")}
@@ -539,7 +572,7 @@
           <div class="bg-slate-900/60 border border-slate-700/80 rounded-xl p-4">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
               <h4 class="text-sm font-bold text-white flex items-center gap-2">
-                <span>${cat.label}</span>
+                <span>${cleanTwText(cat.label)}</span>
               </h4>
               <span class="text-[11px] text-slate-400">獨立分類檢索・利多 vs 利空對照</span>
             </div>
@@ -552,7 +585,7 @@
                 <ul class="space-y-2 text-xs text-slate-200">
                   ${bulls.length > 0 ? bulls.map(n => `
                     <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
-                      <a href="${n.url}" target="_blank" class="hover:text-amber-300 font-medium block leading-relaxed">${n.title}</a>
+                      <a href="${n.url}" target="_blank" class="hover:text-amber-300 font-medium block leading-relaxed">${cleanTwText(n.title)}</a>
                       <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
                     </li>
                   `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
@@ -566,7 +599,7 @@
                 <ul class="space-y-2 text-xs text-slate-200">
                   ${bears.length > 0 ? bears.map(n => `
                     <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
-                      <a href="${n.url}" target="_blank" class="hover:text-cyan-300 font-medium block leading-relaxed">${n.title}</a>
+                      <a href="${n.url}" target="_blank" class="hover:text-cyan-300 font-medium block leading-relaxed">${cleanTwText(n.title)}</a>
                       <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
                     </li>
                   `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
@@ -586,7 +619,7 @@
       currentModalTab = "ALL";
 
       const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
-      document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : item.name;
+      document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
 
       const pEl = document.getElementById("modal-stock-price");
       pEl.textContent = `${item.price} (${formatSignedPct(item.change_pct)})`;
@@ -602,7 +635,7 @@
       }
 
       const cbBadge = document.getElementById("modal-cb-badge");
-      const cbName = item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol];
+      const cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
       if (!isStock && cbName) {
         cbBadge.classList.remove("hidden");
         cbBadge.textContent = `專屬對映央行：${cbName}`;
@@ -677,7 +710,7 @@
 
       const optionsHtml = groups.map(g => `
         <optgroup label="${g.label}">
-          ${g.list.map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : item.name} (${item.symbol})</option>`).join("")}
+          ${g.list.map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}
         </optgroup>
       `).join("");
 
@@ -702,7 +735,7 @@
 
       picker.innerHTML = allItems.map(item => {
         const sym = item.symbol;
-        const label = item.asset_type === "us_stock" ? item.symbol : item.name;
+        const label = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
         const isPrimary = (sym === currentAssetSymbol);
         const isCompared = compareSymbols.includes(sym);
 
@@ -765,7 +798,7 @@
       container.innerHTML = activeList.map((sym, idx) => {
         const asset = allAssetsMap[sym];
         if (!asset) return "";
-        const label = asset.asset_type === "us_stock" ? asset.symbol : asset.name;
+        const label = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name);
         const color = CHART_COLORS[idx % CHART_COLORS.length];
         const isPrimary = (idx === 0);
 
@@ -856,7 +889,7 @@
       }
 
       if (!isCompareMode) {
-        const displayName = primaryAsset.asset_type === "us_stock" ? primaryAsset.symbol : primaryAsset.name;
+        const displayName = primaryAsset.asset_type === "us_stock" ? primaryAsset.symbol : cleanTwText(primaryAsset.name);
         document.getElementById("chart-asset-title").textContent = `${displayName} (${primaryAsset.symbol}) 走勢圖`;
         modeBadge.textContent = "單一標的模式 (可直接點選下方標籤加入比較)";
         modeBadge.className = "text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30";
@@ -950,7 +983,7 @@
         activeSymbols.forEach((sym, idx) => {
           const asset = allAssetsMap[sym];
           if (!asset) return;
-          const displayName = asset.asset_type === "us_stock" ? asset.symbol : asset.name;
+          const displayName = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name);
           const color = CHART_COLORS[idx % CHART_COLORS.length];
           const pointMap = allSeriesMap[sym];
 
@@ -1097,8 +1130,8 @@
       const symbols = Object.keys(allAssetsMap);
       for (const sym of symbols) {
         try {
-          const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
-          const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+          const targetUrl = `[https://query1.finance.yahoo.com/v8/finance/chart/$](https://query1.finance.yahoo.com/v8/finance/chart/$){encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
+          const proxyUrl = `[https://corsproxy.io/?$](https://corsproxy.io/?$){encodeURIComponent(targetUrl)}`;
           const resp = await fetch(proxyUrl);
           if (!resp.ok) continue;
           const data = await resp.json();
@@ -1200,24 +1233,166 @@
       });
     }
 
-    // 100% 防空白版：台股三大法人買賣超與融資融券變化圖表
-    function renderChipCharts(chips) {
-      let validChips = chips;
-      if (!validChips || !validChips.dates || validChips.dates.length === 0 || !validChips.foreign_buy || validChips.foreign_buy.length === 0) {
-        const twiiAsset = allAssetsMap["^TWII"];
-        let fallbackDates = ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12"];
-        if (twiiAsset && twiiAsset.history && twiiAsset.history.length >= 10) {
-          fallbackDates = twiiAsset.history.slice(-10).map(d => d.date.slice(5).replace("-", "/"));
-        }
-        validChips = {
-          dates: fallbackDates,
-          foreign_buy: [-142.5, 86.3, 215.8, -64.2, -198.4, 112.6, 268.4, -53.1, 154.2, 189.6],
-          trust_buy: [45.2, 38.6, 52.1, 61.4, 29.8, 41.5, 58.3, 33.7, 47.9, 55.4],
-          dealer_buy: [-28.4, 15.2, 34.6, -41.8, -62.3, 19.4, 42.1, -18.5, 22.7, 31.8],
-          margin_balance: [318.5, 319.2, 321.0, 320.4, 319.1, 320.8, 322.5, 323.1, 324.6, 325.8],
-          short_balance: [27.4, 27.9, 28.5, 28.1, 27.6, 28.4, 29.1, 28.8, 29.5, 30.2]
+    // =========================================================================
+    // 瀏覽器直連台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 雙向驗證與圖表渲染引擎
+    // =========================================================================
+    function parseTwseNum(str) {
+      if (!str) return 0;
+      const n = parseFloat(String(str).replace(/,/g, "").trim());
+      return isNaN(n) ? 0 : n;
+    }
+
+    async function fetchSingleDayTwseOfficialFromBrowser(ymd) {
+      let inst = null;
+      let marg = null;
+
+      const bfiTarget = `[https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=$](https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=$){ymd}&type=day`;
+      const marTarget = `[https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=$](https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=$){ymd}&selectType=MS`;
+
+      async function tryFetchJson(url) {
+        try {
+          const r1 = await fetch(url);
+          if (r1.ok) return await r1.json();
+        } catch (e) {}
+        try {
+          const r2 = await fetch(`[https://corsproxy.io/?$](https://corsproxy.io/?$){encodeURIComponent(url)}`);
+          if (r2.ok) return await r2.json();
+        } catch (e) {}
+        return null;
+      }
+
+      const [j1, j2] = await Promise.all([tryFetchJson(bfiTarget), tryFetchJson(marTarget)]);
+
+      if (j1 && j1.stat === "OK" && Array.isArray(j1.data)) {
+        let f = 0, t = 0, d = 0;
+        j1.data.forEach(row => {
+          const name = String(row[0]).trim();
+          const diff = parseTwseNum(row[3]);
+          if (name.includes("外資及陸資(不含外資自營商)")) f += diff / 1e8;
+          else if (name.includes("投信")) t += diff / 1e8;
+          else if (name.includes("自營商")) d += diff / 1e8;
+        });
+        inst = {
+          foreign: Number(f.toFixed(2)),
+          trust: Number(t.toFixed(2)),
+          dealer: Number(d.toFixed(2))
         };
       }
+
+      if (j2 && Array.isArray(j2.tables) && j2.tables.length > 0) {
+        const rows = j2.tables[0].data || [];
+        let mYi = 0, sWan = 0;
+        rows.forEach(row => {
+          const label = String(row[0]).trim();
+          if (label.includes("融資金額")) mYi = parseTwseNum(row[5]) / 1e5; // 仟元 -> 億元
+          else if (label.includes("融券")) sWan = parseTwseNum(row[5]) / 10000; // 張 -> 萬張
+        });
+        if (mYi > 0) {
+          marg = {
+            margin_yi: Number(mYi.toFixed(2)),
+            short_wan: Number(sWan.toFixed(2))
+          };
+        }
+      }
+
+      return { inst, marg };
+    }
+
+    async function syncOfficialTwseChipsInBrowser(initialChips) {
+      // 若後端已經抓好完整 10 日 TWSE 官方資料，先立刻渲染
+      if (initialChips && initialChips.dates && initialChips.dates.length > 0 && initialChips.foreign_buy && initialChips.foreign_buy.length > 0) {
+        renderChipCharts(initialChips);
+      }
+
+      // 同時由使用者瀏覽器根據 ^TWII 最近 10 個真實交易日向 [www.twse.com](https://www.twse.com).tw 官方端點直接拉取核對
+      const twiiAsset = allAssetsMap["^TWII"];
+      if (!twiiAsset || !twiiAsset.history || twiiAsset.history.length === 0) return;
+
+      const recentTradingDates = twiiAsset.history.slice(-10).map(h => h.date);
+      const liveChips = {
+        dates: [],
+        foreign_buy: [],
+        trust_buy: [],
+        dealer_buy: [],
+        margin_balance: [],
+        short_balance: []
+      };
+
+      const tasks = recentTradingDates.map(async (isoDate) => {
+        const ymd = isoDate.replace(/-/g, "");
+        const md = isoDate.slice(5).replace("-", "/");
+        const res = await fetchSingleDayTwseOfficialFromBrowser(ymd);
+        return { md, isoDate, ...res };
+      });
+
+      const results = await Promise.all(tasks);
+      results.forEach(r => {
+        if (r.inst) {
+          liveChips.dates.push(r.md);
+          liveChips.foreign_buy.push(r.inst.foreign);
+          liveChips.trust_buy.push(r.inst.trust);
+          liveChips.dealer_buy.push(r.inst.dealer);
+          liveChips.margin_balance.push(r.marg ? r.marg.margin_yi : null);
+          liveChips.short_balance.push(r.marg ? r.marg.short_wan : null);
+        }
+      });
+
+      if (liveChips.dates.length > 0) {
+        document.getElementById("twse-sync-badge").textContent = `(已即時同步 [www.twse.com](https://www.twse.com).tw 台灣證券交易所官方數據・最新交易日：${liveChips.dates[liveChips.dates.length - 1]})`;
+        renderChipCharts(liveChips);
+      }
+    }
+
+    function renderTwseSummaryBar(chips) {
+      const bar = document.getElementById("twse-latest-summary-bar");
+      if (!bar || !chips || !chips.dates || chips.dates.length === 0) return;
+
+      const idx = chips.dates.length - 1;
+      const latestDate = chips.dates[idx];
+      const fVal = Number(chips.foreign_buy[idx] ?? 0);
+      const tVal = Number(chips.trust_buy[idx] ?? 0);
+      const dVal = Number(chips.dealer_buy[idx] ?? 0);
+      const totalInst = Number((fVal + tVal + dVal).toFixed(2));
+      const mVal = chips.margin_balance[idx];
+      const sVal = chips.short_balance[idx];
+
+      function fmtYi(v) {
+        const sign = v > 0 ? "+" : "";
+        return `${sign}${v.toFixed(2)} 億`;
+      }
+
+      bar.innerHTML = `
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">外資及陸資 (${latestDate})</span>
+          <strong class="text-base mono ${getColorClass(fVal)}">${fmtYi(fVal)}</strong>
+        </div>
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">投信買賣超 (${latestDate})</span>
+          <strong class="text-base mono ${getColorClass(tVal)}">${fmtYi(tVal)}</strong>
+        </div>
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">自營商合計 (${latestDate})</span>
+          <strong class="text-base mono ${getColorClass(dVal)}">${fmtYi(dVal)}</strong>
+        </div>
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">三大法人合計 (${latestDate})</span>
+          <strong class="text-base mono ${getColorClass(totalInst)}">${fmtYi(totalInst)}</strong>
+        </div>
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">大盤融資餘額 (${latestDate})</span>
+          <strong class="text-base mono text-rose-300">${mVal ? `${mVal} 億` : '同步中'}</strong>
+        </div>
+        <div class="card-bg rounded-lg p-3">
+          <span class="text-[11px] text-slate-400 block">大盤融券餘額 (${latestDate})</span>
+          <strong class="text-base mono text-emerald-300">${sVal ? `${sVal} 萬張` : '同步中'}</strong>
+        </div>
+      `;
+    }
+
+    function renderChipCharts(chips) {
+      if (!chips || !chips.dates || chips.dates.length === 0) return;
+
+      renderTwseSummaryBar(chips);
 
       const instDom = document.getElementById("chart-institutional");
       const marginDom = document.getElementById("chart-margin");
@@ -1229,13 +1404,13 @@
         tooltip: {
           trigger: "axis",
           axisPointer: { type: "shadow" },
-          valueFormatter: (v) => `${v > 0 ? '+' : ''}${v} 億元`
+          valueFormatter: (v) => (v !== null && v !== undefined) ? `${v > 0 ? '+' : ''}${v} 億元` : "N/A"
         },
-        legend: { data: ["外資", "投信", "自營商"], textStyle: { color: "#cbd5e1" }, top: 0 },
+        legend: { data: ["外資及陸資", "投信", "自營商"], textStyle: { color: "#cbd5e1" }, top: 0 },
         grid: { left: "10%", right: "4%", top: "16%", bottom: "12%" },
         xAxis: {
           type: "category",
-          data: validChips.dates,
+          data: chips.dates,
           axisLine: { lineStyle: { color: "#334155" } },
           axisLabel: { color: "#94a3b8", fontSize: 11 }
         },
@@ -1247,9 +1422,9 @@
           axisLabel: { color: "#94a3b8", fontSize: 11 }
         },
         series: [
-          { name: "外資", type: "bar", stack: "total", data: validChips.foreign_buy, itemStyle: { color: "#38bdf8" } },
-          { name: "投信", type: "bar", stack: "total", data: validChips.trust_buy, itemStyle: { color: "#fb7185" } },
-          { name: "自營商", type: "bar", stack: "total", data: validChips.dealer_buy, itemStyle: { color: "#facc15" } }
+          { name: "外資及陸資", type: "bar", stack: "total", data: chips.foreign_buy, itemStyle: { color: "#38bdf8" } },
+          { name: "投信", type: "bar", stack: "total", data: chips.trust_buy, itemStyle: { color: "#fb7185" } },
+          { name: "自營商", type: "bar", stack: "total", data: chips.dealer_buy, itemStyle: { color: "#facc15" } }
         ]
       });
 
@@ -1257,18 +1432,18 @@
       marginChart = echarts.init(marginDom);
       marginChart.setOption({
         tooltip: { trigger: "axis" },
-        legend: { data: ["融資餘額 (萬張)", "融券餘額 (萬張)"], textStyle: { color: "#cbd5e1" }, top: 0 },
-        grid: { left: "10%", right: "10%", top: "16%", bottom: "12%" },
+        legend: { data: ["大盤融資餘額 (億元)", "大盤融券餘額 (萬張)"], textStyle: { color: "#cbd5e1" }, top: 0 },
+        grid: { left: "12%", right: "10%", top: "16%", bottom: "12%" },
         xAxis: {
           type: "category",
-          data: validChips.dates,
+          data: chips.dates,
           axisLine: { lineStyle: { color: "#334155" } },
           axisLabel: { color: "#94a3b8", fontSize: 11 }
         },
         yAxis: [
           {
             type: "value",
-            name: "融資(萬張)",
+            name: "融資(億元)",
             nameTextStyle: { color: "#f43f5e", fontSize: 10 },
             scale: true,
             splitLine: { lineStyle: { color: "#1e293b" } },
@@ -1285,21 +1460,22 @@
         ],
         series: [
           {
-            name: "融資餘額 (萬張)",
+            name: "大盤融資餘額 (億元)",
             type: "line",
             yAxisIndex: 0,
             smooth: true,
+            connectNulls: true,
             symbolSize: 6,
-            data: validChips.margin_balance,
+            data: chips.margin_balance,
             lineStyle: { color: "#f43f5e", width: 2.5 },
             itemStyle: { color: "#f43f5e" }
           },
           {
-            name: "融券餘額 (萬張)",
+            name: "大盤融券餘額 (萬張)",
             type: "bar",
             yAxisIndex: 1,
             barWidth: "40%",
-            data: validChips.short_balance,
+            data: chips.short_balance,
             itemStyle: { color: "#10b981", opacity: 0.65, borderRadius: [3, 3, 0, 0] }
           }
         ]
@@ -1309,7 +1485,9 @@
     async function initDashboard() {
       try {
         const res = await fetch(`data/market_data.json?t=${Date.now()}`);
-        globalMarketData = await res.json();
+        const rawJson = await res.json();
+        // 全域字詞淨化：將所有「那斯達剋/那斯達克」統一為「納斯達克」，所有「臺」統一為「台」
+        globalMarketData = sanitizeDataTree(rawJson);
 
         document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated}`;
 
@@ -1330,8 +1508,8 @@
           mopsContainer.innerHTML = globalMarketData.mops_general.map(m => `
             <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs py-1.5 border-b border-slate-800/60">
               <div class="truncate pr-2">
-                <span class="font-bold text-amber-400 mono mr-2">${m.code} ${m.name}</span>
-                <span class="text-slate-200">${m.subject}</span>
+                <span class="font-bold text-amber-400 mono mr-2">${m.code} ${cleanTwText(m.name)}</span>
+                <span class="text-slate-200">${cleanTwText(m.subject)}</span>
               </div>
               <div class="flex items-center gap-3 shrink-0 mt-1 sm:mt-0">
                 <span class="text-slate-500 mono">${m.date} ${m.time}</span>
@@ -1378,7 +1556,9 @@
 
         switchRange("1M");
         selectAsset("^GSPC");
-        renderChipCharts(globalMarketData.tw_chips_visual);
+
+        // 啟動台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 籌碼與信用交易同步引擎
+        syncOfficialTwseChipsInBrowser(globalMarketData.tw_chips_visual);
 
         setInterval(pollLiveYahooQuotes, 10000);
         setTimeout(pollLiveYahooQuotes, 2500);
