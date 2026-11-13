@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-11-14 00:24:31 CST",
+  "last_updated": "2026-11-14 00:36:46 CST",
   "indices": [
     {
       "symbol": "^GSPC",
       "name": "S&P 500 指數",
       "asset_type": "index",
-      "price": 7515.09,
+      "price": 7529.37,
       "prev_close": 7592.4,
-      "change": -77.31,
-      "change_pct": -1.02,
+      "change": -63.03,
+      "change_pct": -0.83,
       "ext_session": null,
       "intraday": [
         {
@@ -101,7 +101,19 @@
         },
         {
           "time": "11:20",
-          "price": 7515.84
+          "price": 7516.97
+        },
+        {
+          "time": "11:25",
+          "price": 7529.52
+        },
+        {
+          "time": "11:30",
+          "price": 7527.92
+        },
+        {
+          "time": "11:35",
+          "price": 7529.37
         }
       ],
       "history": [
@@ -2111,7 +2123,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 7515.84
+          "close": 7529.37
         }
       ],
       "fundamentals": {
@@ -2247,9 +2259,9 @@
                 "date": "Thu, 25 Jun 2026"
               },
               {
-                "title": "[新聞時事] 【美股盤前1111】CPI高於預期為甚麼不用害怕？美股走勢無須過度悲觀？｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMivwNBVV95cUxORDUwMmxWUnZYS2tvZ2ZlUWw1d1pyZFg3Z29SOVhYM1BzQ0xqX25zX3piMDVJaTlFVFBVSU16UmpEeURYNTFkMUpDYmN3eVo2R2w3YTFYUjFtR3Q1OTZGTGExMGZQMi1hSXN4VDdGY1dINUFUaHhLY3QwNnZNMFppX2djQThoQ3oyS2FrMUxCNDhjM0wyMU5vZFFlNndsWi1Ma2FhR3Z4bTJVeWc4VXBPWWlrM0Y0ak5QUERpSUJOYk85dWNnTXNQVGotNFk5bE1tTTRXdDhaeEpOT19PMnREWklUazQtV1QzQVJEbnl2V3RxaFNHWHlZYlZyWmRrS25mNmluQnJldDBiWTlGamxhcjNjcnphLW5MTXRDVndlREZXSDQxMTVqZmFZWXd5RHhiWHl5RjRFRUJFTFQyUHIwNXVTb1dVTEo0NFNzcFVQMWVOMlUyVTBlTnF3RnJRejFvZV9FZmpfay1McllWUEtmRzVKaFI3bGJNdzBiV0ZYVWdxWG5LeU5FYVRSdGpVcHZxV2xtQVpoTkNaMC00WDViZEdwc0J0dk5zTGxQdG9jSXN6VmFhNXQ3VmpNQ3JQVGc?oc=5",
-                "date": "Wed, 11 Nov 2026"
+                "title": "[新聞時事] 華爾街押注美股上漲勢能將會吸收衝擊 下半年有望繼續走強 | 美股動態 | 國際 - 經濟日報",
+                "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5rQXFaY1lLamYwcVZqMTRKZXBnUnZ4cVpQbjVveFR6MVhVdUdrTG56SXV5WnZJQ1RUaHN5MXVadDBvbWdlRzlRTlBKVk15bW5wUWpWUU1kcnotZ2Jj?oc=5",
+                "date": "Fri, 03 Jul 2026"
               }
             ],
             "bearish": [
@@ -2274,9 +2286,9 @@
                 "date": "Thu, 10 Sep 2026"
               },
               {
-                "title": "[新聞時事] 美股跌勢加劇重挫標普500 複合因素衝擊市場信心 - Yahoo股市",
-                "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxPek5MOHpvTDZ4RmsyY2RzcFoxUllONDhpWTNYLThJamZreHYwdEllZjMxLV9sMW1tbW5zTGV6SkN4TmdxVHVzcXlDbTR0ZkRpc0dqQjRZdzltS0lkZjZKYmhqbldZOVpQbGh1NUxvbnd4NW12c2dZNW1EUnY4VDBCN2h3d3lCc3RuZGQ2dkVZRXJpLW5kWnQ4NWpBZmhhc1dabzZvS3VKOXZGNXB4NExOUG1jc3F6MWl2eEl0dHI3b0VBcnhkWnEzdnhJMnZTTU5xVGxHdDd2elB2UTkwcm1sZS1vdXJubTRMU01fMnlCMXptZUtRZWpQSmxld2FGbmJjOUhIS1lQZGc0eXBiVHNVODJMazUwVUZpYm1fRnlZV0JFUTBEdFNFSW1iODB2X2kxVUlQT2tEUjZlM0swWEV2TU9MeG5HQkpZZXktT3Nxa0s?oc=5",
-                "date": "Mon, 23 Mar 2026"
+                "title": "[新聞時事] 【美股盤前1102】費半暴跌，財報卻沒有你想像中的差？｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxOTmdzX3o3MjIzMWNaYzZrZzBiZW9la1BGaE5WdEJfNHgyZlZDTVdMa0ZqM2pkV3VBal9OdWZYWHFVczFWUUoyQU12Y255Y2g5eDZENjUzU2RBOUFQVkhwZUYwdmNrZ3lXMC1FUGpvRmx0RjAzVTRHRnBtekFGTzJGYjBBZUlURU55UXM2R0FVNlEwaGRnNnQwLUsxd2U3aXpZTVFHTkE1N0ZVSFpUaFZOaGRWVG9CVV9ET1BsZ2VhaW5JUHlPY2dXQ0tqYUc2alAxM1d6Nk1nUjNkdFNMQnZOczVySl8zRVo5ak1Ta3o2d2g4VERfalpFbjdDN2k1dXhrM3lpNEV4ejFSbHNXUGZSelRmLUVJQTVpWGFsdG1uV2FnMXViU3o3R3E5OEUxN29tT0dHQWM4YjVyQUNBcm5oRTJVTkc4V2NVNHFINWZTMDJIS2Q5c2lFS1NQcGNOdkZYbE9PM25YLXdYTTZaRVZPdktKVQ?oc=5",
+                "date": "Mon, 02 Nov 2026"
               }
             ]
           }
@@ -2321,10 +2333,10 @@
       "symbol": "^DJI",
       "name": "道瓊工業指數",
       "asset_type": "index",
-      "price": 52163.76,
+      "price": 52234.86,
       "prev_close": 52297.09,
-      "change": -133.33,
-      "change_pct": -0.25,
+      "change": -62.23,
+      "change_pct": -0.12,
       "ext_session": null,
       "intraday": [
         {
@@ -2417,7 +2429,19 @@
         },
         {
           "time": "11:20",
-          "price": 52163.76
+          "price": 52170.64
+        },
+        {
+          "time": "11:25",
+          "price": 52228.04
+        },
+        {
+          "time": "11:30",
+          "price": 52215.16
+        },
+        {
+          "time": "11:35",
+          "price": 52234.86
         }
       ],
       "history": [
@@ -4427,7 +4451,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 52163.23
+          "close": 52234.86
         }
       ],
       "fundamentals": {
@@ -4637,10 +4661,10 @@
       "symbol": "^IXIC",
       "name": "納斯達克指數",
       "asset_type": "index",
-      "price": 24928.16,
+      "price": 25000.55,
       "prev_close": 25366.09,
-      "change": -437.93,
-      "change_pct": -1.73,
+      "change": -365.54,
+      "change_pct": -1.44,
       "ext_session": null,
       "intraday": [
         {
@@ -4733,7 +4757,19 @@
         },
         {
           "time": "11:20",
-          "price": 24928.16
+          "price": 24937.74
+        },
+        {
+          "time": "11:25",
+          "price": 25000.43
+        },
+        {
+          "time": "11:30",
+          "price": 24995.25
+        },
+        {
+          "time": "11:35",
+          "price": 25000.55
         }
       ],
       "history": [
@@ -6743,7 +6779,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 24928.16
+          "close": 25000.55
         }
       ],
       "fundamentals": {
@@ -6780,9 +6816,9 @@
                 "date": "Wed, 11 Nov 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] 聯準會6月利率決策重點整理｜華許首秀、台北時間幾點公佈一次看懂 - 口袋證券",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBKMG5iYUxvcU8wMEhjR2xKNHJHVzBqc3R0U0pkME43NW85YlNJU2FhM3hCU2E5MUVreGtpdE1VUTlVNnJSZGdpTmhxR1BvUXBJWElETHlB?oc=5",
-                "date": "Tue, 16 Jun 2026"
+                "title": "[美國聯準會 (Fed)] 美聯儲規劃2027年策略會議該次會議將不公佈利率決策- 財經新聞 - PChome Online 新聞",
+                "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQaDQ2NWo5NzVxakxFSklaUzRUX0c4cUtsSVZXckNGSk11SlhYdzg0TGUyNHBWMnFKSlJ3Y2Z1S1JQRGtJVHJXZjdfSC12N0ZoU25ObWlueE9hY3pIQmpkTjl6bEtlcG53RFhsbl9HYVo4ZS1VV2lMclNyMjFSenlXRFN4Sm9VQ21qMkpsSw?oc=5",
+                "date": "Thu, 12 Nov 2026"
               }
             ],
             "bearish": [
@@ -6802,9 +6838,9 @@
                 "date": "Wed, 28 Oct 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] 美聯儲規劃2027年策略會議該次會議將不公佈利率決策- 財經新聞 - PChome Online 新聞",
-                "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQaDQ2NWo5NzVxakxFSklaUzRUX0c4cUtsSVZXckNGSk11SlhYdzg0TGUyNHBWMnFKSlJ3Y2Z1S1JQRGtJVHJXZjdfSC12N0ZoU25ObWlueE9hY3pIQmpkTjl6bEtlcG53RFhsbl9HYVo4ZS1VV2lMclNyMjFSenlXRFN4Sm9VQ21qMkpsSw?oc=5",
-                "date": "Thu, 12 Nov 2026"
+                "title": "[美國聯準會 (Fed)] 聯準會6月利率決策重點整理｜華許首秀、台北時間幾點公佈一次看懂 - 口袋證券",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBKMG5iYUxvcU8wMEhjR2xKNHJHVzBqc3R0U0pkME43NW85YlNJU2FhM3hCU2E5MUVreGtpdE1VUTlVNnJSZGdpTmhxR1BvUXBJWElETHlB?oc=5",
+                "date": "Tue, 16 Jun 2026"
               },
               {
                 "title": "[美國聯準會 (Fed)] 最新 10 月 FOMC 會議結果？FOMC 是什麼？ 近期 FOMC 會議紀要？ - StockFeel 股感",
@@ -6968,10 +7004,10 @@
       "symbol": "^SOX",
       "name": "費城半導體指數",
       "asset_type": "index",
-      "price": 9919.93,
+      "price": 9986.94,
       "prev_close": 10506.67,
-      "change": -586.74,
-      "change_pct": -5.58,
+      "change": -519.73,
+      "change_pct": -4.95,
       "ext_session": null,
       "intraday": [
         {
@@ -7064,7 +7100,19 @@
         },
         {
           "time": "11:20",
-          "price": 9919.93
+          "price": 9922.08
+        },
+        {
+          "time": "11:25",
+          "price": 9972.31
+        },
+        {
+          "time": "11:30",
+          "price": 9983.4
+        },
+        {
+          "time": "11:35",
+          "price": 9986.94
         }
       ],
       "history": [
@@ -9074,7 +9122,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 9919.93
+          "close": 9986.94
         }
       ],
       "fundamentals": {
@@ -9191,7 +9239,7 @@
               },
               {
                 "title": "[總經數據] 歐元下跌，強勁的美國 PMI 數據提振美聯儲加息押注 - FXStreet",
-                "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQZUcyNENPUkp4d1JLSVljNEFTakFnazdfd2N5bE43T3ExTkZMVV9ieUp3blJGRWxQbEZuVlRvMlk1WURrV09Nc20yUVVkVFEwMW9Tb0V1MVFIQXBDVXZmS1p5MHVyLUU3TE9hZkU1aEIxRTJvRGVMYlBrZHgyYkJBVktIQXdEQXpuLVFnY1hYeXlUV2NLamY1aTFwdXQzbjBoZm5CVlZTMURhSXZUWEl0TmhSWmRwTmZtNU0xZmNReFpQM2s?oc=5",
+                "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQZUcyNENPUkp4d1JLSVljNEFTakFnazdfd2N5bE43T3ExTkZMVV9ieUp3blJGRWxQbEZuVlRvMlk1WURrV09Nc20yUVVkVFEwMW9Tb0V1MVFIQXBDVXZmS1p5MHVyLUU3TE9hZkU1aEIxRTJvRGVMYlBrZHgyYkJBVktIQXdEQXpuLVFnY1hYeXlUV2NLamY1aTFwdXQzbjBoZm5CVlZTMURhSXZUWEl0TmhSWmRwTmZtNU0xZmNReFpQM2vSAcgBQVVfeXFMTmpUQVJFVVpjVGJXVEpDOU5YQVNCclBBWFlOaXZRWW1KRkJNcHVTQU9DeFc5XzZtbFFvdUo1TFZERmxLMkdOeXBHVk95Z2lLdTRMM1RCSE1EMUlOUFNlQjRjUjJyaG0zQW5xb1BpTXFIN3YxVl8wT25sSXd4Z2ZncTZXYTM4eGh4YWh1SGhTbUU4Qnctak0wZnRCNkprOXdtcDYyeldoemFHYl9jeHI5RnNWX0otN2hnanFzZy1YeDBJelY4aGZyeHo?oc=5",
                 "date": "Wed, 23 Sep 2026"
               }
             ]
@@ -9220,9 +9268,9 @@
                 "date": "Thu, 12 Nov 2026"
               },
               {
-                "title": "[新聞時事] 輝達、博通最新財報比較：962億美元對167億美元，誰的AI晶片動能更快？ - 口袋證券",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9NNVlhR3ZqX1hVd282Y1pSM2xQU3plTEtqeDhaaUxVT1JtSlpzeTlNNjNZQWluZ0tiSDE5eHowV1ZXVUxQeklpOGY0Rk1tN2N4V0dfSXV3?oc=5",
-                "date": "Fri, 16 Oct 2026"
+                "title": "[新聞時事] OpenAI聯手博通推AI晶片 台積電操刀望破輝達壟斷 - Yahoo股市",
+                "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxNbmVoLVhBckt6YjZjRktGOHUwQkRUX2Zmb0RqYS03NEpfUkFlejhRNDZDekxVZlFnRDhVU1JXb1dUcUJGaWFWOS1YYUE5U3ZfUUpWVlUybnEzdWpGNHpRUHRwaWJubGNTeFdYSzF5RHZ6dUh5eVlyMUtYa1liMndZa2dZMkhjUGpQaU9KVkt6NVZ3ZF9wY2VDOERFYy1OeXZ1TVEtUkpCMElsNlZ6QTl5d2IwTGpyNHIzZkFIWTlBTmp5S0JXZElYb1FFRDA5ZXpzZnlIZndqTkZWcVg0RU14NGZ0blk3d1VQeWJQeldCVTQ4aE9YNkdKNWcwS3FnOVhFYzgwVDY4c0RLbkNPZFVQZnJhNlFUVjBrT01SSDlYY2U1VGhsdk90R3RQT2Z1Q1h2SDJNVW11MHhFQ0ttV3M0?oc=5",
+                "date": "Wed, 24 Jun 2026"
               }
             ],
             "bearish": [
@@ -9242,14 +9290,14 @@
                 "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[新聞時事] OpenAI聯手博通推AI晶片 台積電操刀望破輝達壟斷 - Yahoo股市",
-                "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxNbmVoLVhBckt6YjZjRktGOHUwQkRUX2Zmb0RqYS03NEpfUkFlejhRNDZDekxVZlFnRDhVU1JXb1dUcUJGaWFWOS1YYUE5U3ZfUUpWVlUybnEzdWpGNHpRUHRwaWJubGNTeFdYSzF5RHZ6dUh5eVlyMUtYa1liMndZa2dZMkhjUGpQaU9KVkt6NVZ3ZF9wY2VDOERFYy1OeXZ1TVEtUkpCMElsNlZ6QTl5d2IwTGpyNHIzZkFIWTlBTmp5S0JXZElYb1FFRDA5ZXpzZnlIZndqTkZWcVg0RU14NGZ0blk3d1VQeWJQeldCVTQ4aE9YNkdKNWcwS3FnOVhFYzgwVDY4c0RLbkNPZFVQZnJhNlFUVjBrT01SSDlYY2U1VGhsdk90R3RQT2Z1Q1h2SDJNVW11MHhFQ0ttV3M0?oc=5",
-                "date": "Wed, 24 Jun 2026"
+                "title": "[新聞時事] 費城半導體指數上漲6%，重返一萬點：大摩指AI長期投資邏輯並未發生根本變化，偏好輝達與博通 - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxOUHBtTWhUNkNDTHJhSHRoNGFjRjk2dGRMQ1BIU1k4c3VEbHZGMnhEeUVBbTAtSnhHeXRyV3puaU12cTZ5eXJiejhXcFFNWEk1VXB5UG1YX1BZMm5fLWVCQmhfREdNTTVxSm44ejQyV0dBN244TlZrOTNncmRIVkhBQUtOdWZqbmZOdWVCNEMyOTBYdjZHQmhIV2tkYklkR2ZRVXlkZDNNSlFwVFh4TlFUSjVCSms2a2Y0aEV1NGl6Uld3ZGlZa0d2SUxPb2NkS093aks2eGx3WnpreUpoQV9xWk5HOHE0NVBxX3BodFltTWRSZHZvdWZITk1oNlhRQ0tWYXdRVUVoVjJ4QjRrU0xj?oc=5",
+                "date": "Mon, 09 Nov 2026"
               },
               {
-                "title": "[新聞時事] 看好台積電還會漲！外媒最新預測出爐 輝達、博通都靠它 - 自由財經",
-                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1GME1maWk3aXFwZ2VJOVhTLTBBRHNtSlJ2WkpnUi05aUtXWXkxQk5BWXlIVHptaFpOZTVMRlVHZDUtQXFRa1lYTHVzakp4X05qc1RqSllsRDhac3U5dWpB0gFkQVVfeXFMTkZNSzhhbEJUdWFfdS1NZWw1b2hiTnpNbU8zNkgwd014ZUpqMVpxcGY3Q0pwVlhiOHFWNlJqYmVoQTZxcGg5dHBtMVZwbHNNekhYVzRKV1UxOXY0ZXEyYnpnaHV6ZQ?oc=5",
-                "date": "Sat, 07 Nov 2026"
+                "title": "[新聞時事] 輝達、博通最新財報比較：962億美元對167億美元，誰的AI晶片動能更快？ - 口袋證券",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9NNVlhR3ZqX1hVd282Y1pSM2xQU3plTEtqeDhaaUxVT1JtSlpzeTlNNjNZQWluZ0tiSDE5eHowV1ZXVUxQeklpOGY0Rk1tN2N4V0dfSXV3?oc=5",
+                "date": "Fri, 16 Oct 2026"
               }
             ]
           }
@@ -11591,13 +11639,13 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 【1112台股盤後】台股開高走低迴測十日線！黃仁勳請辭輝達執行長考驗支撐，營收創高模範生鎖定【旺矽】、【台玻】、【精材】 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMipwVBVV95cUxPSzA0aGN6Tk5WSzRyektnT3BFR2x4QXpmRkVRQjY3ekVKRVMzZG5HbXpPc1NndW9lMFU4LUJMZDBaVTY4NjExcjY1T2poRTRpTEkyM1BlckdzMlRjQzU4SXFqRXlZbUJzM2lfTmhVWXNaUGUzY2hjQWFyRDk5dmI5bEdaQUVGRk1Rd0tIaXdIS2RCWk9HUEM3Y0p6MVRDTmh2aWh5MkpQSk01NW81ZGpuanBVTlFQc1BzNE5PdkN3NVhBN3d4YzdBUlBBdko3VW5MSkVtZjZfSGNmVzZfWTRmcXVGMlpueFZ2VEVqNzFEY0ZkUkE4eFE5Zk5IaW1HN3BKdy00ZlVnczFySnIyMmZGRUF6RXdTWGhmODc1d0ZGLTVDMHlOajRPZEt2UGE4NjVUOVl1SlVNc1hmOGg3cFdveUVfMTRiNmd3cnlnZjhQQWFmdm03NTVYeElNLVVOelVNaWs1SmVBWFhTcTFUQVU2S25VbXFCV1NzQ2NtZFE4ckVzaUQyX1pvQ3NaUjc1LWpNOV94VHVkNHY0X1E5RkN1cDZ2SWw0ZXJ5ZWF1MjZHbWdaV2dtQ2pBdE1maVpOeHJraEgtWm5nbE1zLXRvUjAwZkR2MldZYWhqQXZSRDJrZm5OOEFtX3RFdm1JOUN2RFhNTllNajF1Vmh6Wi1uRnB1Nm54cXJnZTBELWlSSTRJWUNqX3lJR3BmdzBNLUVKRTZ1ZDdhdVpIdDRRTHNhVEhtT3BWcEtKQmpDVVlkQTdYcTBOTWpFWW9QNlNDUVI0RDdqSkZpTExQQ25VR19KdzcwVWp4emxJa01Bc0FMd0NZdmpJMms2NVRkd3NmV0xUNGlJQXE0WGJ5X0VVRXk4cEw3Uks5cGFKM1FpQ3lObEdoQ0pxMGNTM1Jr?oc=5",
+                "title": "[新聞時事] 台股震盪955點收漲583點 成交量逾9162億 - 美麗島電子報",
+                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBwVnJoclM2SzI0WTItRnc1eElGdTl4Q0RLTmFWU1dsbXZfMzdOX3BLU3NJX3pvbnFXRFJGWDczVS1JYUlyVFVNVHR5UFY4V0czTEctRQ?oc=5",
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 未能守住44K！台股收漲583點 台積電漲10元 - PChome Online 新聞",
-                "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcDJKelRfVUN6cmVtRE1qa3JST05McmRlQlc1bEVvLVZFZlRHNGEwMDFkNDdrQkZFaTRYYUxIdWVUUDhnR2lRalBmOU9iazRBcVdRU3NVSHhhQTljUnp3RE5SYXIwQUdGODNhTm1Qa1VsaWg2ZEJUeFpISUdyRkdUcVNTQ3BLWWpad2xJ?oc=5",
+                "title": "[新聞時事] 【1112台股盤後】台股開高走低迴測十日線！黃仁勳請辭輝達執行長考驗支撐，營收創高模範生鎖定【旺矽】、【台玻】、【精材】 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMipwVBVV95cUxPSzA0aGN6Tk5WSzRyektnT3BFR2x4QXpmRkVRQjY3ekVKRVMzZG5HbXpPc1NndW9lMFU4LUJMZDBaVTY4NjExcjY1T2poRTRpTEkyM1BlckdzMlRjQzU4SXFqRXlZbUJzM2lfTmhVWXNaUGUzY2hjQWFyRDk5dmI5bEdaQUVGRk1Rd0tIaXdIS2RCWk9HUEM3Y0p6MVRDTmh2aWh5MkpQSk01NW81ZGpuanBVTlFQc1BzNE5PdkN3NVhBN3d4YzdBUlBBdko3VW5MSkVtZjZfSGNmVzZfWTRmcXVGMlpueFZ2VEVqNzFEY0ZkUkE4eFE5Zk5IaW1HN3BKdy00ZlVnczFySnIyMmZGRUF6RXdTWGhmODc1d0ZGLTVDMHlOajRPZEt2UGE4NjVUOVl1SlVNc1hmOGg3cFdveUVfMTRiNmd3cnlnZjhQQWFmdm03NTVYeElNLVVOelVNaWs1SmVBWFhTcTFUQVU2S25VbXFCV1NzQ2NtZFE4ckVzaUQyX1pvQ3NaUjc1LWpNOV94VHVkNHY0X1E5RkN1cDZ2SWw0ZXJ5ZWF1MjZHbWdaV2dtQ2pBdE1maVpOeHJraEgtWm5nbE1zLXRvUjAwZkR2MldZYWhqQXZSRDJrZm5OOEFtX3RFdm1JOUN2RFhNTllNajF1Vmh6Wi1uRnB1Nm54cXJnZTBELWlSSTRJWUNqX3lJR3BmdzBNLUVKRTZ1ZDdhdVpIdDRRTHNhVEhtT3BWcEtKQmpDVVlkQTdYcTBOTWpFWW9QNlNDUVI0RDdqSkZpTExQQ25VR19KdzcwVWp4emxJa01Bc0FMd0NZdmpJMms2NVRkd3NmV0xUNGlJQXE0WGJ5X0VVRXk4cEw3Uks5cGFKM1FpQ3lObEdoQ0pxMGNTM1Jr?oc=5",
                 "date": "Fri, 13 Nov 2026"
               },
               {
@@ -11618,8 +11666,8 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 台股震盪955點收漲583點 成交量逾9162億 - 美麗島電子報",
-                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBwVnJoclM2SzI0WTItRnc1eElGdTl4Q0RLTmFWU1dsbXZfMzdOX3BLU3NJX3pvbnFXRFJGWDczVS1JYUlyVFVNVHR5UFY4V0czTEctRQ?oc=5",
+                "title": "[新聞時事] 未能守住44K！台股收漲583點 台積電漲10元 - PChome Online 新聞",
+                "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcDJKelRfVUN6cmVtRE1qa3JST05McmRlQlc1bEVvLVZFZlRHNGEwMDFkNDdrQkZFaTRYYUxIdWVUUDhnR2lRalBmOU9iazRBcVdRU3NVSHhhQTljUnp3RE5SYXIwQUdGODNhTm1Qa1VsaWg2ZEJUeFpISUdyRkdUcVNTQ3BLWWpad2xJ?oc=5",
                 "date": "Fri, 13 Nov 2026"
               },
               {
@@ -14042,9 +14090,9 @@
                 "date": "Thu, 20 Nov 2025"
               },
               {
-                "title": "[新聞時事] 日股ETF 資產配置優選 - UDN",
-                "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5kLW81NDRIUjFxNVFxSm5pbUdmLXZxdFY5MWEtc3BobFJ0VFBQaXB5cUE4VjNvQmxDMExkQWhFV0E4b3Y0UEVTTHFMM2JlX0l0aGJj0gFYQVVfeXFMUEkwTTFCWEgyeDdFNXlQLUJmR1cybWFDaklKMGN6UkpXZVFFS09HUDJQWExxY1VrN2RNUk8xdTE1dkhCOEJOSGpjTWhpZ0tiSndETVI1dVY5NQ?oc=5",
-                "date": "Fri, 19 Jul 2024"
+                "title": "[新聞時事] 日股首破6萬點大關 日元貶值是把雙刃劍 ｜ 點經 - 香港01",
+                "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxPbENSMEdiY010OHFzMVlKajBPQVB2VWhrbHkzTkhRbk5jQUJIQzdWekVRS2lMdDRYc09FMWFnWXA2OGNTNm1Ic0lsZW11TTNJRnlxNVZEQ0V6RGc2NVIxcHlBYjBxMXFObWxPcTNNczNrTy0tbXhhajhyRk5NWjRHZmtURTJTNHZad0Fpb1NvRXo1clRLR2NRTG9QbE9TejVyaFBQVFV4RjJ5TVNvcE9vVXM2SW5sRHJtZmFxVzlDeTB0REFyd2cwdm0xQUlWZXVzNjAyRFhwRkVGV0piTlZWMFkwMlRpd3E0dFpqaEJPaEZHLVlVMEZUYnFpTVJKOEFuaFF5TDZ2UE4wMzJwdjlhaDZvYll6QjlxQ1duUjhjZUFmblN4OTlMczIzSlBzTlVMVUk3VFVvSjBmYVhkSTNoZ3VxMXZlM0ZiRlRvTmNoTnkxbkFYSklvZm10VWhCZw?oc=5",
+                "date": "Thu, 23 Apr 2026"
               }
             ],
             "bearish": [
@@ -14064,9 +14112,9 @@
                 "date": "Tue, 12 Dec 2023"
               },
               {
-                "title": "[新聞時事] 日股首破6萬點大關 日元貶值是把雙刃劍 ｜ 點經 - 香港01",
-                "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxPbENSMEdiY010OHFzMVlKajBPQVB2VWhrbHkzTkhRbk5jQUJIQzdWekVRS2lMdDRYc09FMWFnWXA2OGNTNm1Ic0lsZW11TTNJRnlxNVZEQ0V6RGc2NVIxcHlBYjBxMXFObWxPcTNNczNrTy0tbXhhajhyRk5NWjRHZmtURTJTNHZad0Fpb1NvRXo1clRLR2NRTG9QbE9TejVyaFBQVFV4RjJ5TVNvcE9vVXM2SW5sRHJtZmFxVzlDeTB0REFyd2cwdm0xQUlWZXVzNjAyRFhwRkVGV0piTlZWMFkwMlRpd3E0dFpqaEJPaEZHLVlVMEZUYnFpTVJKOEFuaFF5TDZ2UE4wMzJwdjlhaDZvYll6QjlxQ1duUjhjZUFmblN4OTlMczIzSlBzTlVMVUk3VFVvSjBmYVhkSTNoZ3VxMXZlM0ZiRlRvTmNoTnkxbkFYSklvZm10VWhCZw?oc=5",
-                "date": "Thu, 23 Apr 2026"
+                "title": "[新聞時事] 日股ETF 資產配置優選 - UDN",
+                "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5kLW81NDRIUjFxNVFxSm5pbUdmLXZxdFY5MWEtc3BobFJ0VFBQaXB5cUE4VjNvQmxDMExkQWhFV0E4b3Y0UEVTTHFMM2JlX0l0aGJj0gFYQVVfeXFMUEkwTTFCWEgyeDdFNXlQLUJmR1cybWFDaklKMGN6UkpXZVFFS09HUDJQWExxY1VrN2RNUk8xdTE1dkhCOEJOSGpjTWhpZ0tiSndETVI1dVY5NQ?oc=5",
+                "date": "Fri, 19 Jul 2024"
               },
               {
                 "title": "[新聞時事] 解密日股五萬點推手》從布匹商到全球巨擘，消費與科技並進的日本「生活商社」伊藤忠 - TechNews 科技新報",
@@ -16578,10 +16626,10 @@
       "symbol": "^FTSE",
       "name": "英國富時 100",
       "asset_type": "index",
-      "price": 10903.74,
+      "price": 10897.79,
       "prev_close": 10863.09,
-      "change": 40.65,
-      "change_pct": 0.37,
+      "change": 34.7,
+      "change_pct": 0.32,
       "ext_session": null,
       "intraday": [
         {
@@ -16974,7 +17022,19 @@
         },
         {
           "time": "16:05",
-          "price": 10903.74
+          "price": 10903.6
+        },
+        {
+          "time": "16:10",
+          "price": 10907.16
+        },
+        {
+          "time": "16:15",
+          "price": 10903.63
+        },
+        {
+          "time": "16:20",
+          "price": 10900.96
         }
       ],
       "history": [
@@ -19004,13 +19064,13 @@
         },
         {
           "date": "2026-11-13",
-          "close": 10903.74
+          "close": 10897.79
         }
       ],
       "fundamentals": {
         "high_52w": 10989.5,
         "low_52w": 9423.9,
-        "day_high": 10904.17,
+        "day_high": 10910.59,
         "day_low": 10836.63
       },
       "news_sentiment": {
@@ -19229,10 +19289,10 @@
       "symbol": "^GDAXI",
       "name": "德國 DAX 指數",
       "asset_type": "index",
-      "price": 26747.76,
+      "price": 26722.5,
       "prev_close": 26771.88,
-      "change": -24.12,
-      "change_pct": -0.09,
+      "change": -49.38,
+      "change_pct": -0.18,
       "ext_session": null,
       "intraday": [
         {
@@ -19625,7 +19685,19 @@
         },
         {
           "time": "17:05",
-          "price": 26747.99
+          "price": 26748.59
+        },
+        {
+          "time": "17:10",
+          "price": 26743.82
+        },
+        {
+          "time": "17:15",
+          "price": 26735.81
+        },
+        {
+          "time": "17:20",
+          "price": 26733.62
         }
       ],
       "history": [
@@ -21655,7 +21727,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 26747.76
+          "close": 26722.55
         }
       ],
       "fundamentals": {
@@ -21835,10 +21907,10 @@
       "symbol": "^FCHI",
       "name": "法國 CAC 40",
       "asset_type": "index",
-      "price": 8372.63,
+      "price": 8366.59,
       "prev_close": 8361.36,
-      "change": 11.27,
-      "change_pct": 0.13,
+      "change": 5.23,
+      "change_pct": 0.06,
       "ext_session": null,
       "intraday": [
         {
@@ -22231,7 +22303,19 @@
         },
         {
           "time": "17:05",
-          "price": 8373.31
+          "price": 8372.63
+        },
+        {
+          "time": "17:10",
+          "price": 8373.52
+        },
+        {
+          "time": "17:15",
+          "price": 8371.1
+        },
+        {
+          "time": "17:20",
+          "price": 8369.23
         }
       ],
       "history": [
@@ -24277,13 +24361,13 @@
         },
         {
           "date": "2026-11-13",
-          "close": 8373.31
+          "close": 8366.59
         }
       ],
       "fundamentals": {
         "high_52w": 8755.03,
         "low_52w": 7505.27,
-        "day_high": 8377.2,
+        "day_high": 8378.21,
         "day_low": 8337.9
       },
       "news_sentiment": {
@@ -24341,9 +24425,9 @@
                 "date": "Fri, 11 Sep 2026"
               },
               {
-                "title": "[歐洲央行 (ECB)] 英美歐央行官員齊放鷹！華勒示警下月恐升2碼 智庫估英國利率升至5% - 鉅亨網",
-                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE01anV5OVk1MkFobHptTDdqSUF5UTR3SjVNTmtnbm1BMGJybl9EdXVBbTdFTWlmdDRoUDRxd1QwU2tLSHNqRVJESm9BclM3VWs?oc=5",
-                "date": "Wed, 11 Nov 2026"
+                "title": "[歐洲央行 (ECB)] 歐洲央行升息預期與美元走弱帶動歐元走高 - www.tmgm.com",
+                "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNNlkxM2toTklOOGlkVk9Va2VtdmJTdnNZVXV6VksxSF9JVmVDX0Y3N3UwUDZHeUl2SmYxSE5ySTFOVFo0dlpEa1BObnR0Vlk2c18yY0NRQkNlTnpfTmtuVmthelpWVm0ycUhGVHpaaDhlNWJxRWF4THJTMHRzUHRCaWNrMGRnRTVpdjhmMVRZSHhLbERpa3RxNnBTUURLOTBNbUk4TEdveHZFVnVmZmZGWENfVVA3ZWIxOWJCcHluWVhjdWVYa0E?oc=5",
+                "date": "Mon, 09 Nov 2026"
               }
             ]
           },
@@ -24366,9 +24450,9 @@
                 "date": "Fri, 02 Oct 2026"
               },
               {
-                "title": "[總經數據] 未來一週前瞻：美國與歐元區 CPI 及美國銀行業財報 - tmgm.com",
-                "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOejBFYVFtS1lTR3ladFZ6VjZWTzNFT2twRWtxTFJLSTJHUWttUlU3Q0J6SmFTeWRVTm5VZTMxd0JlVF9CcTVud3VlUTJBSVE0MjB2ZnBScXlYTFNWQnA0VVUyQmdjc18zMDdrZjJBRVMxcmNudlFaNUJseHJuVU9Vc1gxZzJGbUNXa3g3UXU3MzY5bnFWaWc?oc=5",
-                "date": "Mon, 12 Oct 2026"
+                "title": "[總經數據] 國際財經：歐元區9月份CPI年增3.8%，創2023年9月來最高 - 富聯網",
+                "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQV1hFUXoxNDR0b0NUMGsycHlITVlaU0VJSWRpbW1uZFZEYmltYTByckxTcnhiTnlFbkoxM0o4Z1FMWTRVVFFFQ3oxcDYtRERZUlAtMUJ6MEROVnhMcHFTOTRtVGI5dlVzQ0UyLXc3S0R6RkJnMmV0QkpqTC05bDhWOFRicEt0U0h1?oc=5",
+                "date": "Mon, 05 Oct 2026"
               },
               {
                 "title": "[總經數據] 歐元區通膨突破3%大關 歐洲央行6月升息箭在弦上 - 鉅亨網",
@@ -24383,14 +24467,14 @@
                 "date": "總經逆風"
               },
               {
+                "title": "[總經數據] 歐元區與美國PMI初值、俄羅斯央行會議成市場焦點，日本9月CPI預估2.1% - BigGo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1LOC1JOUxuVGpMdC11SUo3NG1BaHJfdWZ2VEJHU244ZEVwMXA2ZjBQcjJnazBIZVh6YnRjZUkxbm5QX3p2dERnSDBuVlc5UklwdXhMLXluOE82dFZld1ludmwzSW0xeUpDNmdNN1NFT09DN2xRX1g1UTVB?oc=5",
+                "date": "Thu, 22 Oct 2026"
+              },
+              {
                 "title": "[總經數據] 歐元區5月CPI年增率升至3.2％ 強化ECB下週升息預期- 國際 - 工商時報",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE52VWUxLWE2eE1lODlGQXdNWjBYd3Q2TnNjMWJ6VlYtN1ZNRlJld1BnR2V3cDhUYmE0VjNKQjBTeC16ZTNVWUJqajhNZ1VfU0Zya19pQ29VSGw1VWpGcWJn?oc=5",
                 "date": "Tue, 02 Jun 2026"
-              },
-              {
-                "title": "[總經數據] 國際財經：歐元區9月份CPI年增3.8%，創2023年9月來最高 - 富聯網",
-                "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQV1hFUXoxNDR0b0NUMGsycHlITVlaU0VJSWRpbW1uZFZEYmltYTByckxTcnhiTnlFbkoxM0o4Z1FMWTRVVFFFQ3oxcDYtRERZUlAtMUJ6MEROVnhMcHFTOTRtVGI5dlVzQ0UyLXc3S0R6RkJnMmV0QkpqTC05bDhWOFRicEt0U0h1?oc=5",
-                "date": "Mon, 05 Oct 2026"
               },
               {
                 "title": "[總經數據] 全球5大央行第一槍！歐洲央行6/11升息1碼幾無懸念 - 自由財經",
@@ -24484,10 +24568,10 @@
       "symbol": "NVDA",
       "name": "NVDA",
       "asset_type": "us_stock",
-      "price": 159.69,
+      "price": 159.98,
       "prev_close": 166.19,
-      "change": -6.5,
-      "change_pct": -3.91,
+      "change": -6.21,
+      "change_pct": -3.74,
       "ext_session": null,
       "intraday": [
         {
@@ -24556,7 +24640,7 @@
         },
         {
           "time": "05:20",
-          "price": 170.5
+          "price": 170.44
         },
         {
           "time": "05:25",
@@ -24580,7 +24664,7 @@
         },
         {
           "time": "05:50",
-          "price": 170.72
+          "price": 170.74
         },
         {
           "time": "05:55",
@@ -24844,7 +24928,23 @@
         },
         {
           "time": "11:20",
-          "price": 159.69
+          "price": 159.79
+        },
+        {
+          "time": "11:25",
+          "price": 160.24
+        },
+        {
+          "time": "11:30",
+          "price": 160.34
+        },
+        {
+          "time": "11:35",
+          "price": 159.98
+        },
+        {
+          "time": "11:37",
+          "price": 159.98
         }
       ],
       "history": [
@@ -26854,12 +26954,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 159.66
+          "close": 159.97
         }
       ],
       "fundamentals": {
-        "pe": 20.19,
-        "forward_pe": 10.08,
+        "pe": 20.23,
+        "forward_pe": 10.09,
         "eps": 7.91,
         "gross_margin": "74.67%",
         "operating_margin": "65.21%",
@@ -26884,7 +26984,7 @@
                 "date": "獲利指標"
               },
               {
-                "title": "[估值優勢] 目前本益比 (PE) 為 20.19 倍，具備價值防禦空間",
+                "title": "[估值優勢] 目前本益比 (PE) 為 20.23 倍，具備價值防禦空間",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -26967,7 +27067,7 @@
             "date": "獲利指標"
           },
           {
-            "title": "[估值優勢] 目前本益比 (PE) 為 20.19 倍，具備價值防禦空間",
+            "title": "[估值優勢] 目前本益比 (PE) 為 20.23 倍，具備價值防禦空間",
             "url": "#",
             "date": "估值指標"
           },
@@ -27025,10 +27125,10 @@
       "symbol": "TSM",
       "name": "TSM",
       "asset_type": "us_stock",
-      "price": 394.47,
+      "price": 394.67,
       "prev_close": 405.49,
-      "change": -11.02,
-      "change_pct": -2.72,
+      "change": -10.82,
+      "change_pct": -2.67,
       "ext_session": null,
       "intraday": [
         {
@@ -27361,7 +27461,7 @@
         },
         {
           "time": "11:05",
-          "price": 393.84
+          "price": 393.77
         },
         {
           "time": "11:10",
@@ -27373,7 +27473,19 @@
         },
         {
           "time": "11:20",
-          "price": 394.47
+          "price": 394.29
+        },
+        {
+          "time": "11:25",
+          "price": 395.73
+        },
+        {
+          "time": "11:30",
+          "price": 395.46
+        },
+        {
+          "time": "11:35",
+          "price": 394.67
         }
       ],
       "history": [
@@ -29383,12 +29495,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 394.47
+          "close": 394.67
         }
       ],
       "fundamentals": {
-        "pe": 25.57,
-        "forward_pe": 16.87,
+        "pe": 25.58,
+        "forward_pe": 16.88,
         "eps": 15.43,
         "gross_margin": "65.85%",
         "operating_margin": "57.96%",
@@ -29539,10 +29651,10 @@
       "symbol": "AMD",
       "name": "AMD",
       "asset_type": "us_stock",
-      "price": 525.92,
+      "price": 525.06,
       "prev_close": 585.3,
-      "change": -59.38,
-      "change_pct": -10.15,
+      "change": -60.24,
+      "change_pct": -10.29,
       "ext_session": null,
       "intraday": [
         {
@@ -29899,7 +30011,23 @@
         },
         {
           "time": "11:20",
-          "price": 525.92
+          "price": 525.5
+        },
+        {
+          "time": "11:25",
+          "price": 526.66
+        },
+        {
+          "time": "11:30",
+          "price": 525.77
+        },
+        {
+          "time": "11:35",
+          "price": 525.14
+        },
+        {
+          "time": "11:37",
+          "price": 525.07
         }
       ],
       "history": [
@@ -31909,12 +32037,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 525.82
+          "close": 525.07
         }
       ],
       "fundamentals": {
-        "pe": 112.38,
-        "forward_pe": 29.73,
+        "pe": 112.19,
+        "forward_pe": 29.68,
         "eps": 4.68,
         "gross_margin": "56.0%",
         "operating_margin": "17.82%",
@@ -31936,7 +32064,7 @@
             ],
             "bearish": [
               {
-                "title": "[估值風險] 目前本益比 (PE) 達 112.38 倍，處於相對高檔位階，須留意追高波動",
+                "title": "[估值風險] 目前本益比 (PE) 達 112.19 倍，處於相對高檔位階，須留意追高波動",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -32034,7 +32162,7 @@
         ],
         "bearish": [
           {
-            "title": "[估值風險] 目前本益比 (PE) 達 112.38 倍，處於相對高檔位階，須留意追高波動",
+            "title": "[估值風險] 目前本益比 (PE) 達 112.19 倍，處於相對高檔位階，須留意追高波動",
             "url": "#",
             "date": "估值指標"
           },
@@ -32070,10 +32198,10 @@
       "symbol": "GOOGL",
       "name": "GOOGL",
       "asset_type": "us_stock",
-      "price": 294.27,
+      "price": 294.13,
       "prev_close": 298.7,
-      "change": -4.43,
-      "change_pct": -1.48,
+      "change": -4.57,
+      "change_pct": -1.53,
       "ext_session": null,
       "intraday": [
         {
@@ -32206,7 +32334,7 @@
         },
         {
           "time": "06:40",
-          "price": 301.81
+          "price": 301.73
         },
         {
           "time": "06:45",
@@ -32430,7 +32558,19 @@
         },
         {
           "time": "11:20",
-          "price": 294.29
+          "price": 294.3
+        },
+        {
+          "time": "11:25",
+          "price": 294.6
+        },
+        {
+          "time": "11:30",
+          "price": 294.3
+        },
+        {
+          "time": "11:35",
+          "price": 294.08
         }
       ],
       "history": [
@@ -34440,11 +34580,11 @@
         },
         {
           "date": "2026-11-13",
-          "close": 294.29
+          "close": 294.13
         }
       ],
       "fundamentals": {
-        "pe": 15.37,
+        "pe": 15.36,
         "forward_pe": 19.06,
         "eps": 19.15,
         "gross_margin": "60.86%",
@@ -34470,7 +34610,7 @@
                 "date": "獲利指標"
               },
               {
-                "title": "[估值優勢] 目前本益比 (PE) 為 15.37 倍，具備價值防禦空間",
+                "title": "[估值優勢] 目前本益比 (PE) 為 15.36 倍，具備價值防禦空間",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -34497,19 +34637,19 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] AI Agent 不必被單一模型綁死！Google 推 Gemini 4 Hydrogen，動態分工節省24% 配額 | TechOrange 科技報橘 - LINE TODAY",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9iSTNHMTROY2taSlBxZ3hLQ200V2I2ODlwVjIzMmN5ZUFVcHJkVHl2TVpubmxSN2F4dVdVeVZ5UHRoR05kdGZBV3lhOHhQSFROMjBjaENR?oc=5",
+                "title": "[新聞時事] Google 發表 Gemini 4 Hydrogen，AI 代理任務較上代快 2.5 倍 - INSIDE",
+                "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBjSDJQcmxVMXlnZXpYVEhXSU5GZEtTVUF2MXV3M3JvRWpJTERzU25VTmJKR0QyWUkyWGV6cnNlZ08wR3pyYXNyeFhKVm9LNVF6Yy1teEZTb3RLV0tWc2VQY1psV2Eyd3AyaE1VVmt1eTRXQQ?oc=5",
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] AMD搶下Google AI晶片關鍵角色！第五代EPYC進駐TPU系統 輝達競爭升溫 - 鉅亨網",
-                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56U2RfWTlPR051MWlIbURrclYzb01faWF5Z1NzVFdMRGZiOHdUTm5JalczMkFyWmI1eFpwbHJxOHVPRXNjSEloNC1ObmE3QXM?oc=5",
-                "date": "Tue, 10 Nov 2026"
+                "title": "[新聞時事] Google 推出全新 Gemini 4 Hydrogen：反應快 2.5 倍，稱霸全球 CP 值榜單 - TechNews 科技新報",
+                "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1CZWl0a1FKb3ZOVmNkVHVWRnlIcVY0VFBvd3JLVlQ4RWYzcERDTmdaLVYwS09Jdm1ObUoyWVNEQzFwWldPTEt6Q0djVGR5WkZIcG80QmxXdThiRzdoSVE?oc=5",
+                "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
-                "date": "Thu, 12 Nov 2026"
+                "title": "[新聞時事] Google發布Gemini 4 Hydrogen 速度提升2.5倍、拓展AI代理應用 - TVBS新聞網",
+                "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5GbWJ1R2lwemM0NWxnV3c3LURQbnF2WFRJM3lKZUNjRkNXX2k1bjVObHpZT2dTRmpxQ2JnMUFGdWRqM3h3cnpnbjFJYzJhUQ?oc=5",
+                "date": "Fri, 13 Nov 2026"
               }
             ],
             "bearish": [
@@ -34524,18 +34664,18 @@
                 "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[新聞時事] Google 發表 Gemini 4 Hydrogen，AI 代理任務較上代快 2.5 倍 - INSIDE",
-                "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBjSDJQcmxVMXlnZXpYVEhXSU5GZEtTVUF2MXV3M3JvRWpJTERzU25VTmJKR0QyWUkyWGV6cnNlZ08wR3pyYXNyeFhKVm9LNVF6Yy1teEZTb3RLV0tWc2VQY1psV2Eyd3AyaE1VVmt1eTRXQQ?oc=5",
-                "date": "Fri, 13 Nov 2026"
+                "title": "[新聞時事] AMD搶下Google AI晶片關鍵角色！第五代EPYC進駐TPU系統 輝達競爭升溫 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56U2RfWTlPR051MWlIbURrclYzb01faWF5Z1NzVFdMRGZiOHdUTm5JalczMkFyWmI1eFpwbHJxOHVPRXNjSEloNC1ObmE3QXM?oc=5",
+                "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[新聞時事] Google 推出全新 Gemini 4 Hydrogen：反應快 2.5 倍，稱霸全球 CP 值榜單 - TechNews 科技新報",
-                "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1CZWl0a1FKb3ZOVmNkVHVWRnlIcVY0VFBvd3JLVlQ4RWYzcERDTmdaLVYwS09Jdm1ObUoyWVNEQzFwWldPTEt6Q0djVGR5WkZIcG80QmxXdThiRzdoSVE?oc=5",
-                "date": "Fri, 13 Nov 2026"
+                "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
+                "date": "Thu, 12 Nov 2026"
               },
               {
-                "title": "[新聞時事] Google發布Gemini 4 Hydrogen 速度提升2.5倍、拓展AI代理應用 - TVBS新聞網",
-                "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5GbWJ1R2lwemM0NWxnV3c3LURQbnF2WFRJM3lKZUNjRkNXX2k1bjVObHpZT2dTRmpxQ2JnMUFGdWRqM3h3cnpnbjFJYzJhUQ?oc=5",
+                "title": "[新聞時事] Google 推出 Gemini 4 Hydrogen：搜尋 AI 模式更能理解複雜問題 - 蘋果仁",
+                "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE8wOUFMd1BmSHEyVWNHbEc2OVRGalhMdGFpMEVmZTFNVktTOHpSYXo5aTFGNTNWb2R5TEZnT01xVjc2ZHhZbUkxNll0WDU?oc=5",
                 "date": "Fri, 13 Nov 2026"
               }
             ]
@@ -34553,7 +34693,7 @@
             "date": "獲利指標"
           },
           {
-            "title": "[估值優勢] 目前本益比 (PE) 為 15.37 倍，具備價值防禦空間",
+            "title": "[估值優勢] 目前本益比 (PE) 為 15.36 倍，具備價值防禦空間",
             "url": "#",
             "date": "估值指標"
           },
@@ -34568,8 +34708,8 @@
             "date": "Fri, 13 Nov 2026"
           },
           {
-            "title": "[新聞時事] AI Agent 不必被單一模型綁死！Google 推 Gemini 4 Hydrogen，動態分工節省24% 配額 | TechOrange 科技報橘 - LINE TODAY",
-            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9iSTNHMTROY2taSlBxZ3hLQ200V2I2ODlwVjIzMmN5ZUFVcHJkVHl2TVpubmxSN2F4dVdVeVZ5UHRoR05kdGZBV3lhOHhQSFROMjBjaENR?oc=5",
+            "title": "[新聞時事] Google 發表 Gemini 4 Hydrogen，AI 代理任務較上代快 2.5 倍 - INSIDE",
+            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBjSDJQcmxVMXlnZXpYVEhXSU5GZEtTVUF2MXV3M3JvRWpJTERzU25VTmJKR0QyWUkyWGV6cnNlZ08wR3pyYXNyeFhKVm9LNVF6Yy1teEZTb3RLV0tWc2VQY1psV2Eyd3AyaE1VVmt1eTRXQQ?oc=5",
             "date": "Fri, 13 Nov 2026"
           }
         ],
@@ -34590,18 +34730,18 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "[新聞時事] Google 發表 Gemini 4 Hydrogen，AI 代理任務較上代快 2.5 倍 - INSIDE",
-            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBjSDJQcmxVMXlnZXpYVEhXSU5GZEtTVUF2MXV3M3JvRWpJTERzU25VTmJKR0QyWUkyWGV6cnNlZ08wR3pyYXNyeFhKVm9LNVF6Yy1teEZTb3RLV0tWc2VQY1psV2Eyd3AyaE1VVmt1eTRXQQ?oc=5",
-            "date": "Fri, 13 Nov 2026"
+            "title": "[新聞時事] AMD搶下Google AI晶片關鍵角色！第五代EPYC進駐TPU系統 輝達競爭升溫 - 鉅亨網",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56U2RfWTlPR051MWlIbURrclYzb01faWF5Z1NzVFdMRGZiOHdUTm5JalczMkFyWmI1eFpwbHJxOHVPRXNjSEloNC1ObmE3QXM?oc=5",
+            "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "[新聞時事] Google 推出全新 Gemini 4 Hydrogen：反應快 2.5 倍，稱霸全球 CP 值榜單 - TechNews 科技新報",
-            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1CZWl0a1FKb3ZOVmNkVHVWRnlIcVY0VFBvd3JLVlQ4RWYzcERDTmdaLVYwS09Jdm1ObUoyWVNEQzFwWldPTEt6Q0djVGR5WkZIcG80QmxXdThiRzdoSVE?oc=5",
-            "date": "Fri, 13 Nov 2026"
+            "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
+            "date": "Thu, 12 Nov 2026"
           },
           {
-            "title": "[新聞時事] Google發布Gemini 4 Hydrogen 速度提升2.5倍、拓展AI代理應用 - TVBS新聞網",
-            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5GbWJ1R2lwemM0NWxnV3c3LURQbnF2WFRJM3lKZUNjRkNXX2k1bjVObHpZT2dTRmpxQ2JnMUFGdWRqM3h3cnpnbjFJYzJhUQ?oc=5",
+            "title": "[新聞時事] Google 推出 Gemini 4 Hydrogen：搜尋 AI 模式更能理解複雜問題 - 蘋果仁",
+            "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE8wOUFMd1BmSHEyVWNHbEc2OVRGalhMdGFpMEVmZTFNVktTOHpSYXo5aTFGNTNWb2R5TEZnT01xVjc2ZHhZbUkxNll0WDU?oc=5",
             "date": "Fri, 13 Nov 2026"
           }
         ]
@@ -34611,10 +34751,10 @@
       "symbol": "META",
       "name": "META",
       "asset_type": "us_stock",
-      "price": 631.04,
+      "price": 632.3,
       "prev_close": 623.61,
-      "change": 7.43,
-      "change_pct": 1.19,
+      "change": 8.69,
+      "change_pct": 1.39,
       "ext_session": null,
       "intraday": [
         {
@@ -34967,7 +35107,23 @@
         },
         {
           "time": "11:20",
-          "price": 631.04
+          "price": 631.01
+        },
+        {
+          "time": "11:25",
+          "price": 632.76
+        },
+        {
+          "time": "11:30",
+          "price": 631.8
+        },
+        {
+          "time": "11:35",
+          "price": 632.42
+        },
+        {
+          "time": "11:37",
+          "price": 632.3
         }
       ],
       "history": [
@@ -35057,7 +35213,7 @@
         },
         {
           "date": "2024-12-13",
-          "close": 616.32
+          "close": 616.31
         },
         {
           "date": "2024-12-16",
@@ -36977,12 +37133,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 631.04
+          "close": 632.3
         }
       ],
       "fundamentals": {
-        "pe": 21.53,
-        "forward_pe": 17.73,
+        "pe": 21.57,
+        "forward_pe": 17.77,
         "eps": 29.31,
         "gross_margin": "81.03%",
         "operating_margin": "37.78%",
@@ -37007,7 +37163,7 @@
                 "date": "獲利指標"
               },
               {
-                "title": "[估值優勢] 目前本益比 (PE) 為 21.53 倍，具備價值防禦空間",
+                "title": "[估值優勢] 目前本益比 (PE) 為 21.57 倍，具備價值防禦空間",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -37090,7 +37246,7 @@
             "date": "獲利指標"
           },
           {
-            "title": "[估值優勢] 目前本益比 (PE) 為 21.53 倍，具備價值防禦空間",
+            "title": "[估值優勢] 目前本益比 (PE) 為 21.57 倍，具備價值防禦空間",
             "url": "#",
             "date": "估值指標"
           },
@@ -37148,10 +37304,10 @@
       "symbol": "TSLA",
       "name": "TSLA",
       "asset_type": "us_stock",
-      "price": 388.46,
+      "price": 389.06,
       "prev_close": 397.45,
-      "change": -8.99,
-      "change_pct": -2.26,
+      "change": -8.39,
+      "change_pct": -2.11,
       "ext_session": null,
       "intraday": [
         {
@@ -37228,7 +37384,7 @@
         },
         {
           "time": "05:30",
-          "price": 399.31
+          "price": 399.32
         },
         {
           "time": "05:35",
@@ -37248,7 +37404,7 @@
         },
         {
           "time": "05:55",
-          "price": 400.7
+          "price": 400.71
         },
         {
           "time": "06:00",
@@ -37272,7 +37428,7 @@
         },
         {
           "time": "06:25",
-          "price": 400.11
+          "price": 400.12
         },
         {
           "time": "06:30",
@@ -37292,7 +37448,7 @@
         },
         {
           "time": "06:50",
-          "price": 400.14
+          "price": 400.19
         },
         {
           "time": "06:55",
@@ -37352,7 +37508,7 @@
         },
         {
           "time": "08:05",
-          "price": 400.34
+          "price": 400.38
         },
         {
           "time": "08:10",
@@ -37508,7 +37664,19 @@
         },
         {
           "time": "11:20",
-          "price": 388.46
+          "price": 388.52
+        },
+        {
+          "time": "11:25",
+          "price": 390.82
+        },
+        {
+          "time": "11:30",
+          "price": 390.14
+        },
+        {
+          "time": "11:35",
+          "price": 389.06
         }
       ],
       "history": [
@@ -39518,12 +39686,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 388.44
+          "close": 389.06
         }
       ],
       "fundamentals": {
-        "pe": 426.88,
-        "forward_pe": 179.91,
+        "pe": 427.54,
+        "forward_pe": 180.19,
         "eps": 0.91,
         "gross_margin": "19.29%",
         "operating_margin": "3.03%",
@@ -39550,7 +39718,7 @@
                 "date": "財報指標"
               },
               {
-                "title": "[估值風險] 目前本益比 (PE) 達 426.88 倍，處於相對高檔位階，須留意追高波動",
+                "title": "[估值風險] 目前本益比 (PE) 達 427.54 倍，處於相對高檔位階，須留意追高波動",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -39607,9 +39775,9 @@
                 "date": "Mon, 19 Oct 2026"
               },
               {
-                "title": "[新聞時事] 《美股》就業遜 輝達盤中史高 SpaceX、Tesla嗨 - 新聞 - MoneyDJ",
-                "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPM2lmUzBfZ1ZJZHRTTERtdmJjelVwLW5lSzVOTjZSc21FUUpBQi1qQk1ZQ0x5aU5kU2lER2xIVzdvNHZjYXh0WjdXQjZncTFPVWU2Y3N3cC0tVTcwMXJ6dnp5cXAydE45MS0zaG9EZnpja1VlQ2JkNkZqRWhLMUtNT0ZJcXNlWTN6SkhDcW5NVGJUQQ?oc=5",
-                "date": "Mon, 05 Oct 2026"
+                "title": "[新聞時事] 特斯拉飛天車 Roadster 登場，下週3大財報重點搶先看！｜美股觀察｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMilwNBVV95cUxPOXA2eWtuMk5hdFZJOWxoaDRTN3BjRkktbTJiUVZrdmhpSWp0SzN1VThfR2t1LU52MDdIVGIwbEZ0NmJZc2tPT0p4MmRQMTcxLUlSUm1samtHMWZ2R0tveDJoYXhvMUstQ0N1RmFmYzQzNjRsVUdBNkVpZmE0UUhJVlZWWnNDdUJ0dnJxaXd3aDQxbC1ONGpKeHMteEdOMDNFWVBmNFBFa2FBMHBqdkU4aVBtMmI4emUzRE9ZMHVPcGIwcFV2d1VXMkFMeFlScHk2a1RrX1U1cTlvX1dFTVpLLXdfcFRKbkRoU2ZNOWNUei16all5M09ScDFYSXRYMmlVTlVwamRZVmNUeEx5d1MxdHd3T2U2OTZ1NWRvNm5FWlZQcURYZHEyZkoxS1NPRzJUTEFtU0JkWE1aYUhpeG13Qy1jQVdMbVFHWmhvbVZVM3l6NHFzV1UtMjZ3dkFCMGZVd3lJRkNiM3NaMXVnZlNobXJNSlVDMGktM2xhTGhOVnlZN05ZbU5NOXR1andRVV9xS0RvLV9POA?oc=5",
+                "date": "Mon, 19 Oct 2026"
               }
             ]
           }
@@ -39653,7 +39821,7 @@
             "date": "財報指標"
           },
           {
-            "title": "[估值風險] 目前本益比 (PE) 達 426.88 倍，處於相對高檔位階，須留意追高波動",
+            "title": "[估值風險] 目前本益比 (PE) 達 427.54 倍，處於相對高檔位階，須留意追高波動",
             "url": "#",
             "date": "估值指標"
           },
@@ -39684,10 +39852,10 @@
       "symbol": "AVGO",
       "name": "AVGO",
       "asset_type": "us_stock",
-      "price": 340.52,
+      "price": 341.86,
       "prev_close": 364.36,
-      "change": -23.84,
-      "change_pct": -6.54,
+      "change": -22.5,
+      "change_pct": -6.18,
       "ext_session": null,
       "intraday": [
         {
@@ -39720,7 +39888,7 @@
         },
         {
           "time": "04:35",
-          "price": 356.14
+          "price": 356.0
         },
         {
           "time": "04:40",
@@ -40044,7 +40212,19 @@
         },
         {
           "time": "11:20",
-          "price": 340.52
+          "price": 340.36
+        },
+        {
+          "time": "11:25",
+          "price": 342.12
+        },
+        {
+          "time": "11:30",
+          "price": 342.18
+        },
+        {
+          "time": "11:35",
+          "price": 341.76
         }
       ],
       "history": [
@@ -42054,12 +42234,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 340.52
+          "close": 341.86
         }
       ],
       "fundamentals": {
-        "pe": 43.49,
-        "forward_pe": 17.54,
+        "pe": 43.66,
+        "forward_pe": 17.56,
         "eps": 7.83,
         "gross_margin": "75.52%",
         "operating_margin": "48.81%",
@@ -42086,7 +42266,7 @@
             ],
             "bearish": [
               {
-                "title": "[估值風險] 目前本益比 (PE) 達 43.49 倍，處於相對高檔位階，須留意追高波動",
+                "title": "[估值風險] 目前本益比 (PE) 達 43.66 倍，處於相對高檔位階，須留意追高波動",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -42184,7 +42364,7 @@
         ],
         "bearish": [
           {
-            "title": "[估值風險] 目前本益比 (PE) 達 43.49 倍，處於相對高檔位階，須留意追高波動",
+            "title": "[估值風險] 目前本益比 (PE) 達 43.66 倍，處於相對高檔位階，須留意追高波動",
             "url": "#",
             "date": "估值指標"
           },
@@ -42220,10 +42400,10 @@
       "symbol": "AMZN",
       "name": "AMZN",
       "asset_type": "us_stock",
-      "price": 264.74,
+      "price": 264.5,
       "prev_close": 267.44,
-      "change": -2.7,
-      "change_pct": -1.01,
+      "change": -2.94,
+      "change_pct": -1.1,
       "ext_session": null,
       "intraday": [
         {
@@ -42577,6 +42757,18 @@
         {
           "time": "11:20",
           "price": 264.73
+        },
+        {
+          "time": "11:25",
+          "price": 264.96
+        },
+        {
+          "time": "11:30",
+          "price": 264.47
+        },
+        {
+          "time": "11:35",
+          "price": 264.5
         }
       ],
       "history": [
@@ -44586,12 +44778,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 264.73
+          "close": 264.5
         }
       ],
       "fundamentals": {
-        "pe": 21.4,
-        "forward_pe": 24.24,
+        "pe": 21.38,
+        "forward_pe": 24.22,
         "eps": 12.37,
         "gross_margin": "51.37%",
         "operating_margin": "13.09%",
@@ -44616,7 +44808,7 @@
                 "date": "獲利指標"
               },
               {
-                "title": "[估值優勢] 目前本益比 (PE) 為 21.4 倍，具備價值防禦空間",
+                "title": "[估值優勢] 目前本益比 (PE) 為 21.38 倍，具備價值防禦空間",
                 "url": "#",
                 "date": "估值指標"
               }
@@ -44699,7 +44891,7 @@
             "date": "獲利指標"
           },
           {
-            "title": "[估值優勢] 目前本益比 (PE) 為 21.4 倍，具備價值防禦空間",
+            "title": "[估值優勢] 目前本益比 (PE) 為 21.38 倍，具備價值防禦空間",
             "url": "#",
             "date": "估值指標"
           },
@@ -44757,10 +44949,10 @@
       "symbol": "AAPL",
       "name": "AAPL",
       "asset_type": "us_stock",
-      "price": 357.51,
+      "price": 358.18,
       "prev_close": 354.88,
-      "change": 2.63,
-      "change_pct": 0.74,
+      "change": 3.3,
+      "change_pct": 0.93,
       "ext_session": null,
       "intraday": [
         {
@@ -45117,7 +45309,19 @@
         },
         {
           "time": "11:20",
-          "price": 357.55
+          "price": 357.64
+        },
+        {
+          "time": "11:25",
+          "price": 358.48
+        },
+        {
+          "time": "11:30",
+          "price": 358.14
+        },
+        {
+          "time": "11:35",
+          "price": 358.18
         }
       ],
       "history": [
@@ -46219,7 +46423,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.25
+          "close": 271.24
         },
         {
           "date": "2025-12-19",
@@ -47127,12 +47331,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 357.51
+          "close": 358.18
         }
       ],
       "fundamentals": {
-        "pe": 39.81,
-        "forward_pe": 33.9,
+        "pe": 39.89,
+        "forward_pe": 33.97,
         "eps": 8.98,
         "gross_margin": "48.79%",
         "operating_margin": "33.01%",
@@ -47174,9 +47378,9 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] AI資本開支狂潮下的「異類」：蘋果(AAPL.US)支出繼續原地踏步，佔銷售額不足5% - Moomoo",
-                "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPRXQwX0FGMWsxU1ZzZnFodzlPVDVrdlFtbDlBenhsNUV4bEt2S1NlWHE2OUpoMEJFOUNvRC1KNWFSNXNZR0g1Q0NpenV2amRWSU5qLXdKTkt4MXduc0VPdkZmXzB6NGpnQkEwSlVDekhFUVo0MU1sQ3BLN2pXTW9Td0N2OHJybXBBMlVWNW11SDVBTE1BaVItWWVCX2lvUFYyZTdhUVR2dkxVYlNyc2c?oc=5",
-                "date": "Wed, 11 Nov 2026"
+                "title": "[新聞時事] AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
+                "date": "Mon, 04 May 2026"
               },
               {
                 "title": "[新聞時事] Apple (AAPL) 蘋果Q3財報，每股純益暴增29%創新高，股價卻重挫逾6%？ - 口袋證券",
@@ -47184,14 +47388,14 @@
                 "date": "Fri, 31 Jul 2026"
               },
               {
-                "title": "[新聞時事] 蘋果(AAPL)漲價背後，美光(MU)才是更大的訊號？｜美股評析｜豐雲學堂 2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxNaUcwQS1EczgtSXZhTUU5UkI1VnZqMTYwRVZ6cTktOUdxTVRaTkZMT2s3MC1vdXY5WXFUaHBWX3B1djlmWUI5OVlMZGIyQWt0ZUhxNE5iUFdkWWxEeWJ2dUFGdDk4SU15NWEtVVlsNVVrdzdTb25TU1g0YlM4Xy1mTXJSOHFxOG9GcllUaXhpa1J6QW5LX1dLVVdmZmdOQWhoT0dNUmFRMXlUNFZfdFBWOGpONnlVZG5RMng3eUVCOFkzRGxndFcycm4tTTFpT3NLcEpmV2h5dFdidUdZN3Ixc190a1pMVTF2c21LUW1jbmF4a1lZd0xzSUdRTTZpZWZrRzd4NVlNb1hSS2FEdUxFVkNVeGtHdVVmUGM3OTVFN2N5UnEyU3BxaVZHLTJDdTB1N2VMbVNUdU5EZ3lRbmg4ZnpHcmRvb3o3OTEzb3B1dWZmYm9BcXp6LVJRejF0Y2JPeTM1cDgzaUlMbGNyMDN6amd3?oc=5",
-                "date": "Fri, 26 Jun 2026"
-              },
-              {
                 "title": "[新聞時事] 蘋果 AAPL 2026Q2 財報解析｜營收 1,112 億美元創紀錄、iPhone 年增 22%、Services 再創新高一次看懂 - 口袋證券",
                 "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zMUJfX0oxZGdIeHhzVmpmeTdnSWRpWUIwUHdZMXpPa0RONTZXbUN4OGtjYUtIaDkyc0ppX3RaTFJLV29haldNVjFNQU1xWkhFMkIxQVdB?oc=5",
                 "date": "Mon, 04 May 2026"
+              },
+              {
+                "title": "[新聞時事] 蘋果(AAPL)股價創327美元歷史新高，兩款傳聞OLED新機上市時間表差在哪裡 - 口袋證券",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBON3dKdW03TVNpN052cXNDdzhqMGdoNHRtRE1pRW9jLWg4SWFzSDBoQnhhdW05OU9ZQjBNR3hnWjRKUWZaR01uWUY4dlZXT3hCb2xNcXZn?oc=5",
+                "date": "Fri, 17 Jul 2026"
               }
             ],
             "bearish": [
@@ -47201,9 +47405,14 @@
                 "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[新聞時事] AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
-                "date": "Mon, 04 May 2026"
+                "title": "[新聞時事] AI資本開支狂潮下的“異類”：蘋果(AAPL.US)支出繼續原地踏步，佔銷售額不足5% 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBXRVU4R3dJNEhfU2Rpd0UxMkE3VXRDdXdFY3c4RnVxampqUll2RkVyOXl3QWl5OENjZ2tlck9zcWhRUktCd0lMaUl6aGFUOEJJcTBvZnI4YkJBd2c1M1hQVzZwLXBicXpuRUhNZkkwMmg?oc=5",
+                "date": "Wed, 11 Nov 2026"
+              },
+              {
+                "title": "[新聞時事] 蘋果(AAPL)漲價背後，美光(MU)才是更大的訊號？｜美股評析｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxNaUcwQS1EczgtSXZhTUU5UkI1VnZqMTYwRVZ6cTktOUdxTVRaTkZMT2s3MC1vdXY5WXFUaHBWX3B1djlmWUI5OVlMZGIyQWt0ZUhxNE5iUFdkWWxEeWJ2dUFGdDk4SU15NWEtVVlsNVVrdzdTb25TU1g0YlM4Xy1mTXJSOHFxOG9GcllUaXhpa1J6QW5LX1dLVVdmZmdOQWhoT0dNUmFRMXlUNFZfdFBWOGpONnlVZG5RMng3eUVCOFkzRGxndFcycm4tTTFpT3NLcEpmV2h5dFdidUdZN3Ixc190a1pMVTF2c21LUW1jbmF4a1lZd0xzSUdRTTZpZWZrRzd4NVlNb1hSS2FEdUxFVkNVeGtHdVVmUGM3OTVFN2N5UnEyU3BxaVZHLTJDdTB1N2VMbVNUdU5EZ3lRbmg4ZnpHcmRvb3o3OTEzb3B1dWZmYm9BcXp6LVJRejF0Y2JPeTM1cDgzaUlMbGNyMDN6amd3?oc=5",
+                "date": "Fri, 26 Jun 2026"
               },
               {
                 "title": "[新聞時事] 蘋果(AAPL.US)成AI拋售“避風港” 伯恩斯坦：37倍市盈率依然“不貴” 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
@@ -47230,9 +47439,9 @@
             "date": "Fri, 13 Nov 2026"
           },
           {
-            "title": "[新聞時事] AI資本開支狂潮下的「異類」：蘋果(AAPL.US)支出繼續原地踏步，佔銷售額不足5% - Moomoo",
-            "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPRXQwX0FGMWsxU1ZzZnFodzlPVDVrdlFtbDlBenhsNUV4bEt2S1NlWHE2OUpoMEJFOUNvRC1KNWFSNXNZR0g1Q0NpenV2amRWSU5qLXdKTkt4MXduc0VPdkZmXzB6NGpnQkEwSlVDekhFUVo0MU1sQ3BLN2pXTW9Td0N2OHJybXBBMlVWNW11SDVBTE1BaVItWWVCX2lvUFYyZTdhUVR2dkxVYlNyc2c?oc=5",
-            "date": "Wed, 11 Nov 2026"
+            "title": "[新聞時事] AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
+            "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
+            "date": "Mon, 04 May 2026"
           },
           {
             "title": "[新聞時事] Apple (AAPL) 蘋果Q3財報，每股純益暴增29%創新高，股價卻重挫逾6%？ - 口袋證券",
@@ -47240,9 +47449,9 @@
             "date": "Fri, 31 Jul 2026"
           },
           {
-            "title": "[新聞時事] 蘋果(AAPL)漲價背後，美光(MU)才是更大的訊號？｜美股評析｜豐雲學堂 2026 年 11 月 - 永豐金證券",
-            "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxNaUcwQS1EczgtSXZhTUU5UkI1VnZqMTYwRVZ6cTktOUdxTVRaTkZMT2s3MC1vdXY5WXFUaHBWX3B1djlmWUI5OVlMZGIyQWt0ZUhxNE5iUFdkWWxEeWJ2dUFGdDk4SU15NWEtVVlsNVVrdzdTb25TU1g0YlM4Xy1mTXJSOHFxOG9GcllUaXhpa1J6QW5LX1dLVVdmZmdOQWhoT0dNUmFRMXlUNFZfdFBWOGpONnlVZG5RMng3eUVCOFkzRGxndFcycm4tTTFpT3NLcEpmV2h5dFdidUdZN3Ixc190a1pMVTF2c21LUW1jbmF4a1lZd0xzSUdRTTZpZWZrRzd4NVlNb1hSS2FEdUxFVkNVeGtHdVVmUGM3OTVFN2N5UnEyU3BxaVZHLTJDdTB1N2VMbVNUdU5EZ3lRbmg4ZnpHcmRvb3o3OTEzb3B1dWZmYm9BcXp6LVJRejF0Y2JPeTM1cDgzaUlMbGNyMDN6amd3?oc=5",
-            "date": "Fri, 26 Jun 2026"
+            "title": "[新聞時事] 蘋果 AAPL 2026Q2 財報解析｜營收 1,112 億美元創紀錄、iPhone 年增 22%、Services 再創新高一次看懂 - 口袋證券",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zMUJfX0oxZGdIeHhzVmpmeTdnSWRpWUIwUHdZMXpPa0RONTZXbUN4OGtjYUtIaDkyc0ppX3RaTFJLV29haldNVjFNQU1xWkhFMkIxQVdB?oc=5",
+            "date": "Mon, 04 May 2026"
           }
         ],
         "bearish": [
@@ -47257,9 +47466,14 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "[新聞時事] AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
-            "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
-            "date": "Mon, 04 May 2026"
+            "title": "[新聞時事] AI資本開支狂潮下的“異類”：蘋果(AAPL.US)支出繼續原地踏步，佔銷售額不足5% 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBXRVU4R3dJNEhfU2Rpd0UxMkE3VXRDdXdFY3c4RnVxampqUll2RkVyOXl3QWl5OENjZ2tlck9zcWhRUktCd0lMaUl6aGFUOEJJcTBvZnI4YkJBd2c1M1hQVzZwLXBicXpuRUhNZkkwMmg?oc=5",
+            "date": "Wed, 11 Nov 2026"
+          },
+          {
+            "title": "[新聞時事] 蘋果(AAPL)漲價背後，美光(MU)才是更大的訊號？｜美股評析｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+            "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxNaUcwQS1EczgtSXZhTUU5UkI1VnZqMTYwRVZ6cTktOUdxTVRaTkZMT2s3MC1vdXY5WXFUaHBWX3B1djlmWUI5OVlMZGIyQWt0ZUhxNE5iUFdkWWxEeWJ2dUFGdDk4SU15NWEtVVlsNVVrdzdTb25TU1g0YlM4Xy1mTXJSOHFxOG9GcllUaXhpa1J6QW5LX1dLVVdmZmdOQWhoT0dNUmFRMXlUNFZfdFBWOGpONnlVZG5RMng3eUVCOFkzRGxndFcycm4tTTFpT3NLcEpmV2h5dFdidUdZN3Ixc190a1pMVTF2c21LUW1jbmF4a1lZd0xzSUdRTTZpZWZrRzd4NVlNb1hSS2FEdUxFVkNVeGtHdVVmUGM3OTVFN2N5UnEyU3BxaVZHLTJDdTB1N2VMbVNUdU5EZ3lRbmg4ZnpHcmRvb3o3OTEzb3B1dWZmYm9BcXp6LVJRejF0Y2JPeTM1cDgzaUlMbGNyMDN6amd3?oc=5",
+            "date": "Fri, 26 Jun 2026"
           },
           {
             "title": "[新聞時事] 蘋果(AAPL.US)成AI拋售“避風港” 伯恩斯坦：37倍市盈率依然“不貴” 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
@@ -47273,10 +47487,10 @@
       "symbol": "MSFT",
       "name": "MSFT",
       "asset_type": "us_stock",
-      "price": 522.64,
+      "price": 523.56,
       "prev_close": 523.0,
-      "change": -0.36,
-      "change_pct": -0.07,
+      "change": 0.56,
+      "change_pct": 0.11,
       "ext_session": null,
       "intraday": [
         {
@@ -47369,7 +47583,7 @@
         },
         {
           "time": "05:50",
-          "price": 509.87
+          "price": 509.81
         },
         {
           "time": "05:55",
@@ -47633,7 +47847,19 @@
         },
         {
           "time": "11:20",
-          "price": 522.64
+          "price": 522.68
+        },
+        {
+          "time": "11:25",
+          "price": 523.07
+        },
+        {
+          "time": "11:30",
+          "price": 523.83
+        },
+        {
+          "time": "11:35",
+          "price": 523.55
         }
       ],
       "history": [
@@ -49643,12 +49869,12 @@
         },
         {
           "date": "2026-11-13",
-          "close": 522.53
+          "close": 523.55
         }
       ],
       "fundamentals": {
-        "pe": 27.28,
-        "forward_pe": 21.6,
+        "pe": 27.33,
+        "forward_pe": 21.64,
         "eps": 19.16,
         "gross_margin": "67.66%",
         "operating_margin": "47.1%",
@@ -50301,7 +50527,7 @@
         },
         {
           "date": "2025-02-25",
-          "close": 1028.88
+          "close": 1028.89
         },
         {
           "date": "2025-02-26",
@@ -50365,7 +50591,7 @@
         },
         {
           "date": "2025-03-20",
-          "close": 965.1
+          "close": 965.09
         },
         {
           "date": "2025-03-21",
@@ -50421,7 +50647,7 @@
         },
         {
           "date": "2025-04-11",
-          "close": 871.03
+          "close": 871.04
         },
         {
           "date": "2025-04-14",
@@ -52030,14 +52256,14 @@
                 "date": "Sun, 11 Oct 2026"
               },
               {
-                "title": "[新聞時事] (2330)台積電法說會 2026/10、台積電財報、台積電展望、台積電財報投資亮點｜理柴知道:法說最速報! - 方格子 - vocus",
-                "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBuZXQ1NllMZUlTUEp5UXlpRDJxeUR5UTExQUl3cG9DV21YZi1ZQzhNYmhnVnA1VGRULXlpU0FpandfNTRlRC1IdXBCcnhCcXp5NlIzTlc1ajVXcFpMMVHSAWNBVV95cUxPbmhTaEhhS2V5UVNleWIzUTFCZlRPbUVBX3Bza1h1R3daMjVSYVMtRUQ3eW5zeDFINk9yc0ZYZzZobWVwVjl1OG1jTF9YYVhBTmxjWVZEOEk4QjdNX0syLU9Uc0k?oc=5",
-                "date": "Thu, 15 Oct 2026"
+                "title": "[新聞時事] 台積電(2330)股價快半根漲停、7/16法說會先叩關3000元？目標價又被外資調升：有4成甜頭現在要追？ - 今週刊",
+                "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQTjcxN1pIY3FMNldxbi1SNU1oa0N2eDRNdWUtLUNwWEMteWpwaXh1SmcySVNsekxCVG5mbjdVU0liNU81NkJRRkRuOEJLNFcwUnFJeUxrME9BdFctYVF4RjRwLWUwd1NGTlU4c3NXbnR5dTYtR1IxWjFlMXg2NVFJXw?oc=5",
+                "date": "Tue, 30 Jun 2026"
               },
               {
-                "title": "[新聞時事] 台積電法說交出超狂財報，為何股價反跌？台股老手3大原因揭「利多出盡」真相：跌到「這價位」閉眼撿 - 今週刊",
-                "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNcTVXUkVyTnhzT3BjYlQ3ZE1oejhkVHpmSERZUTFjT2R2NmozTjVWeURfbnlaWjY2Z29weVQzcnRWODlVSlBwbHUxb2o5XzVfNWQ5MzJVbGhyYWxNd1dEN0VkVGNjclJTc2JBU2FEYlZqMk9JQU5kZndfaWZJdWZ4VQ?oc=5",
-                "date": "Fri, 17 Apr 2026"
+                "title": "[新聞時事] 【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、00919 群益台灣精選高息、00878 國泰永續高股息、2330 台積電、00406A 主動中信台灣收益(1110)｜豐雲學堂2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMivwVBVV95cUxPQUt3VV9XWnpQM3d4MS1kQ19ZWUNHLVJaSWFEaG5YUlJUWlFKVVlFV3lxSUZCdEVLTXhLNUVfMnVTTm1NUjVZVE53MUFHZFNHV1BoazdXdXd4NXZqS1p6eENtd2kwN2hLd0JhNUFTeXc3V1lBcTBaSDUwVEpDcVVURzdlQzFqbTJYb2RsTFBfNUVsaU9mSDdGOFNvc1FpbXZOemdmcUo2aHJyUUhfNWM5SVFFay1oT1llQjdTbG1XeExueVhzejNuT2VYZjBRWG9MQlFUZ2k2SndIWW1uVEY2V1FZWmtEQUdyRG1IRmxTMDdDUk5xbnFZMERyNU9nZHoybHRfOG50cHREdmJwa3ZBN2ZlcEhFSWtzSzRJcm5hb0lkWlJvc2JSMkNfcXRIcFFCblpNQm5tQUtua0gwQ1pkNEI0YUJEdTMyNS1YcmU4Z3FTMFZMZmdHczlHZTFHUnZSNEVmSlVucDZ1SUxhNEpERUpIaUx5c19hWkZZYlk0QnhtS3BYZjhoSktDRGlrWlFRSjlPbGNtWlZacGxoTzhmd3I5cGtZaENPU1JtVEpzSUVRRkdYSmM5QXZvTHR3bHBBeHMxb0xQcWR5eWUtUXZJZFZ5WHNkcTNlX2p0OE80NGhNb1J5S1Q1bmRnQ0FRUlkyLXlvX1dlRnZVckNrY0dUeTV5RDY0RkxTbDFsYWFxOFd3aFVoYTQ5M2ozNDBSWnBmWE9RajBKWUVyZHl1Q2FUOU5oOEkzLW1SaFZNYnYzV1REaFM3UWxWZ0hRa1c3a0pHWWNtbVVOaFVDMEhEUlFzeGdwUDhRb1JSLTBHMHctcnhuZURSeHE2X2swNmJ1OEltYmdDR3JsdjhMc1lDbDNzNTczdHE5ZlRqdEZPcE43cHpGSFdRX2YzdTdwWG82OTc5RzZaUWxYeWVsbnhEV3Jn?oc=5",
+                "date": "Tue, 10 Nov 2026"
               }
             ],
             "bearish": [
@@ -52052,9 +52278,14 @@
                 "date": "Wed, 14 Oct 2026"
               },
               {
-                "title": "[新聞時事] 財報亮眼股價卻重挫！台積電（2330）大跌引發AI泡沫疑慮 網：獲利了結 - UDN",
+                "title": "[新聞時事] 財報亮眼股價卻重挫！台積電（2330）大跌引發AI泡沫疑慮 網：獲利了結 - udn",
                 "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5LbmhZUjZiY1dEZGRDV1dIcDlfbGxFZC1uV2JTNnNzY0VNMm83Sldtbi1YY2RnVlBQVjlfUVI1N3lJbEZ3a3NRc2Ryc09XMTFkZEHSAVdBVV95cUxNM0pIc2JTa0NUdjQwamxoMnNtdTdDcktHUEUySjBQUFp5ME1JUHcxVE0xM3RmU2QzeXlTbjc0RzB3Z3dxVG5PbnlWN2pTNlRyVWdUaTJoaTg?oc=5",
                 "date": "Fri, 17 Jul 2026"
+              },
+              {
+                "title": "[新聞時事] (2330)台積電法說會 2026/10、台積電財報、台積電展望、台積電財報投資亮點｜理柴知道:法說最速報! - 方格子 - vocus",
+                "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBuZXQ1NllMZUlTUEp5UXlpRDJxeUR5UTExQUl3cG9DV21YZi1ZQzhNYmhnVnA1VGRULXlpU0FpandfNTRlRC1IdXBCcnhCcXp5NlIzTlc1ajVXcFpMMVHSAWNBVV95cUxPbmhTaEhhS2V5UVNleWIzUTFCZlRPbUVBX3Bza1h1R3daMjVSYVMtRUQ3eW5zeDFINk9yc0ZYZzZobWVwVjl1OG1jTF9YYVhBTmxjWVZEOEk4QjdNX0syLU9Uc0k?oc=5",
+                "date": "Thu, 15 Oct 2026"
               }
             ]
           }
@@ -52086,9 +52317,9 @@
             "date": "Sun, 11 Oct 2026"
           },
           {
-            "title": "[新聞時事] (2330)台積電法說會 2026/10、台積電財報、台積電展望、台積電財報投資亮點｜理柴知道:法說最速報! - 方格子 - vocus",
-            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBuZXQ1NllMZUlTUEp5UXlpRDJxeUR5UTExQUl3cG9DV21YZi1ZQzhNYmhnVnA1VGRULXlpU0FpandfNTRlRC1IdXBCcnhCcXp5NlIzTlc1ajVXcFpMMVHSAWNBVV95cUxPbmhTaEhhS2V5UVNleWIzUTFCZlRPbUVBX3Bza1h1R3daMjVSYVMtRUQ3eW5zeDFINk9yc0ZYZzZobWVwVjl1OG1jTF9YYVhBTmxjWVZEOEk4QjdNX0syLU9Uc0k?oc=5",
-            "date": "Thu, 15 Oct 2026"
+            "title": "[新聞時事] 台積電(2330)股價快半根漲停、7/16法說會先叩關3000元？目標價又被外資調升：有4成甜頭現在要追？ - 今週刊",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQTjcxN1pIY3FMNldxbi1SNU1oa0N2eDRNdWUtLUNwWEMteWpwaXh1SmcySVNsekxCVG5mbjdVU0liNU81NkJRRkRuOEJLNFcwUnFJeUxrME9BdFctYVF4RjRwLWUwd1NGTlU4c3NXbnR5dTYtR1IxWjFlMXg2NVFJXw?oc=5",
+            "date": "Tue, 30 Jun 2026"
           }
         ],
         "bearish": [
@@ -52108,9 +52339,14 @@
             "date": "Wed, 14 Oct 2026"
           },
           {
-            "title": "[新聞時事] 財報亮眼股價卻重挫！台積電（2330）大跌引發AI泡沫疑慮 網：獲利了結 - UDN",
+            "title": "[新聞時事] 財報亮眼股價卻重挫！台積電（2330）大跌引發AI泡沫疑慮 網：獲利了結 - udn",
             "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5LbmhZUjZiY1dEZGRDV1dIcDlfbGxFZC1uV2JTNnNzY0VNMm83Sldtbi1YY2RnVlBQVjlfUVI1N3lJbEZ3a3NRc2Ryc09XMTFkZEHSAVdBVV95cUxNM0pIc2JTa0NUdjQwamxoMnNtdTdDcktHUEUySjBQUFp5ME1JUHcxVE0xM3RmU2QzeXlTbjc0RzB3Z3dxVG5PbnlWN2pTNlRyVWdUaTJoaTg?oc=5",
             "date": "Fri, 17 Jul 2026"
+          },
+          {
+            "title": "[新聞時事] (2330)台積電法說會 2026/10、台積電財報、台積電展望、台積電財報投資亮點｜理柴知道:法說最速報! - 方格子 - vocus",
+            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBuZXQ1NllMZUlTUEp5UXlpRDJxeUR5UTExQUl3cG9DV21YZi1ZQzhNYmhnVnA1VGRULXlpU0FpandfNTRlRC1IdXBCcnhCcXp5NlIzTlc1ajVXcFpMMVHSAWNBVV95cUxPbmhTaEhhS2V5UVNleWIzUTFCZlRPbUVBX3Bza1h1R3daMjVSYVMtRUQ3eW5zeDFINk9yc0ZYZzZobWVwVjl1OG1jTF9YYVhBTmxjWVZEOEk4QjdNX0syLU9Uc0k?oc=5",
+            "date": "Thu, 15 Oct 2026"
           }
         ]
       },
@@ -56660,19 +56896,19 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 台達電連2日亮燈漲停！股民嗨喊：達哥回來了 - 自由財經",
-                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5weUcweDFwNnl2VEtJZ2hhQmI4QWRpSWRva2dudjJld2dDcWdGSkotYVpOMXhISFM1Q3NuejZMT0NsdFc2emxYNHpveXJzY1cwdXhNYUdmODdHM2xsX1ln0gFkQVVfeXFMTmszdklkLUUyUGNVRWdtNi1tVC0zV3Qzek8tOWotY1h5SmR1SXB0bGItMVp5ZVFaWjJrWGFoX2R6M28xc3ptaUMwaEdaVTZ0VFJleU80U3RCWkVKT3ppYV9RU191ag?oc=5",
-                "date": "Tue, 10 Nov 2026"
-              },
-              {
-                "title": "[新聞時事] 台達電(2308)股價5個月崩4成，現在能抄底？他1400元買進曾賺42％，如今獲利快吐光…達人揭3大致命傷 - 今週刊",
-                "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLXBXSEp3cFhQVGNSQzFwcGZKTExhMDV0OWEtd2F3TVZpYVVLRmtBOS1raGsxQnFKOFY5WW1WRjUxWW1lUlB6YU8zaTFKTVE5bHA0c1M4cWJLSDhVd3dxbmVoT2kxeEhsZ3FtYVJIeGdOTlE0RnQ3R3NEaGhvb3N6Uw?oc=5",
-                "date": "Wed, 28 Oct 2026"
+                "title": "[新聞時事] 台達電(2308)推800VDC預製電源系統 德州PCS產線預計2027年底開出 - 優分析UAnalyze",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1qWGRQSDZzYWk3emV6aVJFVlpzTFpGY3J1QVpQUV9CVUZZbmhBTUdsWEFuMFRDNVpfZ0htWllYS3N1MHdjZmNpSzI4RXVWZ3dnZG5CalJ3?oc=5",
+                "date": "Fri, 13 Nov 2026"
               },
               {
                 "title": "[新聞時事] 台達電（2308）獲利先成長，800V放量還要等什麼？ - 口袋證券",
                 "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE12c2VwSHpLZlhTanYzajFfRzFzc0x4emEwaWdxSFJaOWZYdlFEZWxkUkpVSDB0NjZ5TUJWdFMxWTdpT0ltNnJOejdWNXlQX29nWWR2OTZn?oc=5",
                 "date": "Wed, 07 Oct 2026"
+              },
+              {
+                "title": "[新聞時事] 台達電(2308)股價5個月崩4成，現在能抄底？他1400元買進曾賺42％，如今獲利快吐光…達人揭3大致命傷 - 今週刊",
+                "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLXBXSEp3cFhQVGNSQzFwcGZKTExhMDV0OWEtd2F3TVZpYVVLRmtBOS1raGsxQnFKOFY5WW1WRjUxWW1lUlB6YU8zaTFKTVE5bHA0c1M4cWJLSDhVd3dxbmVoT2kxeEhsZ3FtYVJIeGdOTlE0RnQ3R3NEaGhvb3N6Uw?oc=5",
+                "date": "Wed, 28 Oct 2026"
               },
               {
                 "title": "[新聞時事] 「電源大廠」醒來了！連拉兩根漲停板，10月營收創歷史新高！董事長一句話曝「後市端倪」 | 下班經濟學| 財經 - 風傳媒",
@@ -56687,19 +56923,24 @@
                 "date": "Tue, 10 Nov 2026"
               },
               {
+                "title": "[新聞時事] 台達電連2日亮燈漲停！股民嗨喊：達哥回來了 - 自由財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5weUcweDFwNnl2VEtJZ2hhQmI4QWRpSWRva2dudjJld2dDcWdGSkotYVpOMXhISFM1Q3NuejZMT0NsdFc2emxYNHpveXJzY1cwdXhNYUdmODdHM2xsX1ln0gFkQVVfeXFMTmszdklkLUUyUGNVRWdtNi1tVC0zV3Qzek8tOWotY1h5SmR1SXB0bGItMVp5ZVFaWjJrWGFoX2R6M28xc3ptaUMwaEdaVTZ0VFJleU80U3RCWkVKT3ppYV9RU191ag?oc=5",
+                "date": "Tue, 10 Nov 2026"
+              },
+              {
                 "title": "[新聞時事] 台達電展望外資按讚 目標價高盛估4,120元最高 - UDN",
                 "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBBa3k1TnhRQU9RMFF6YXJaU0RzSnZqS001ZHhsYmRBUEQwTGJvWTdZeWswSUt3NXJSYW1rTWV0OE83VVEwN0U1RDRVc2xRMW5O0gFWQVVfeXFMTzFvU1ZqYUp2aEx2a19MLTNGWGlLTnFKc05DREd0Z2NFSTI3M2w2MnFWV2hEelUwXzV5ZWNKR0dxSmV6U0w0YnhPU04tQk1vWHNJRWhtM1E?oc=5",
                 "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[新聞時事] 台達電(2308)推800VDC預製電源系統德州PCS產線預計2027年底開出 - 鉅亨網",
-                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5tS3AyZDk2M1E5WDR0dTJURnRoUlYxSFQ1YVAyVElpNHZjZzVqQldXbkxxTlFJajNwYjdVMG4wLXM4ZzIzOTg2MXktRFoxVXc?oc=5",
-                "date": "Fri, 13 Nov 2026"
-              },
-              {
                 "title": "[新聞時事] 營收速報 - 台達電(2308)10月營收746.66億元年增率高達30.12％｜新聞快訊｜豐雲學堂 - 永豐金證券",
                 "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE54blVlNDRvWGV4THhqczBWUHhVQ0wxM2ZmMDFwSmYzUXBWbFZIOU1Sdnd5VV9BUVUzdzhDZ2RmRVF3ZGJUenJNQUxLdE5wQ1J0U0lHcS1EZ2t5cmZWX1E1YjlQa3Fzam1fWGxXcW1tQzlXazI0bmc?oc=5",
                 "date": "Sun, 08 Nov 2026"
+              },
+              {
+                "title": "[新聞時事] 台達電 (2308) 做什麼的？4大業務、近年營收、公司優缺點與護城河 - 口袋證券",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9tYnV2N1prbXhtSFQyc2xVUXZBRHhGMG4xSm9Qd2dOc1ZxTmhNMVZEYmFrNVVFMXhULVY4NzdDbTFQWVpLb1NGd3paRFdYTl9Nb2dHTHlR?oc=5",
+                "date": "Fri, 16 Oct 2026"
               }
             ]
           }
@@ -56721,19 +56962,19 @@
             "date": "Fri, 13 Nov 2026"
           },
           {
-            "title": "[新聞時事] 台達電連2日亮燈漲停！股民嗨喊：達哥回來了 - 自由財經",
-            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5weUcweDFwNnl2VEtJZ2hhQmI4QWRpSWRva2dudjJld2dDcWdGSkotYVpOMXhISFM1Q3NuejZMT0NsdFc2emxYNHpveXJzY1cwdXhNYUdmODdHM2xsX1ln0gFkQVVfeXFMTmszdklkLUUyUGNVRWdtNi1tVC0zV3Qzek8tOWotY1h5SmR1SXB0bGItMVp5ZVFaWjJrWGFoX2R6M28xc3ptaUMwaEdaVTZ0VFJleU80U3RCWkVKT3ppYV9RU191ag?oc=5",
-            "date": "Tue, 10 Nov 2026"
-          },
-          {
-            "title": "[新聞時事] 台達電(2308)股價5個月崩4成，現在能抄底？他1400元買進曾賺42％，如今獲利快吐光…達人揭3大致命傷 - 今週刊",
-            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLXBXSEp3cFhQVGNSQzFwcGZKTExhMDV0OWEtd2F3TVZpYVVLRmtBOS1raGsxQnFKOFY5WW1WRjUxWW1lUlB6YU8zaTFKTVE5bHA0c1M4cWJLSDhVd3dxbmVoT2kxeEhsZ3FtYVJIeGdOTlE0RnQ3R3NEaGhvb3N6Uw?oc=5",
-            "date": "Wed, 28 Oct 2026"
+            "title": "[新聞時事] 台達電(2308)推800VDC預製電源系統 德州PCS產線預計2027年底開出 - 優分析UAnalyze",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1qWGRQSDZzYWk3emV6aVJFVlpzTFpGY3J1QVpQUV9CVUZZbmhBTUdsWEFuMFRDNVpfZ0htWllYS3N1MHdjZmNpSzI4RXVWZ3dnZG5CalJ3?oc=5",
+            "date": "Fri, 13 Nov 2026"
           },
           {
             "title": "[新聞時事] 台達電（2308）獲利先成長，800V放量還要等什麼？ - 口袋證券",
             "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE12c2VwSHpLZlhTanYzajFfRzFzc0x4emEwaWdxSFJaOWZYdlFEZWxkUkpVSDB0NjZ5TUJWdFMxWTdpT0ltNnJOejdWNXlQX29nWWR2OTZn?oc=5",
             "date": "Wed, 07 Oct 2026"
+          },
+          {
+            "title": "[新聞時事] 台達電(2308)股價5個月崩4成，現在能抄底？他1400元買進曾賺42％，如今獲利快吐光…達人揭3大致命傷 - 今週刊",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLXBXSEp3cFhQVGNSQzFwcGZKTExhMDV0OWEtd2F3TVZpYVVLRmtBOS1raGsxQnFKOFY5WW1WRjUxWW1lUlB6YU8zaTFKTVE5bHA0c1M4cWJLSDhVd3dxbmVoT2kxeEhsZ3FtYVJIeGdOTlE0RnQ3R3NEaGhvb3N6Uw?oc=5",
+            "date": "Wed, 28 Oct 2026"
           }
         ],
         "bearish": [
@@ -56748,19 +56989,24 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
+            "title": "[新聞時事] 台達電連2日亮燈漲停！股民嗨喊：達哥回來了 - 自由財經",
+            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5weUcweDFwNnl2VEtJZ2hhQmI4QWRpSWRva2dudjJld2dDcWdGSkotYVpOMXhISFM1Q3NuejZMT0NsdFc2emxYNHpveXJzY1cwdXhNYUdmODdHM2xsX1ln0gFkQVVfeXFMTmszdklkLUUyUGNVRWdtNi1tVC0zV3Qzek8tOWotY1h5SmR1SXB0bGItMVp5ZVFaWjJrWGFoX2R6M28xc3ptaUMwaEdaVTZ0VFJleU80U3RCWkVKT3ppYV9RU191ag?oc=5",
+            "date": "Tue, 10 Nov 2026"
+          },
+          {
             "title": "[新聞時事] 台達電展望外資按讚 目標價高盛估4,120元最高 - UDN",
             "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBBa3k1TnhRQU9RMFF6YXJaU0RzSnZqS001ZHhsYmRBUEQwTGJvWTdZeWswSUt3NXJSYW1rTWV0OE83VVEwN0U1RDRVc2xRMW5O0gFWQVVfeXFMTzFvU1ZqYUp2aEx2a19MLTNGWGlLTnFKc05DREd0Z2NFSTI3M2w2MnFWV2hEelUwXzV5ZWNKR0dxSmV6U0w0YnhPU04tQk1vWHNJRWhtM1E?oc=5",
             "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "[新聞時事] 台達電(2308)推800VDC預製電源系統德州PCS產線預計2027年底開出 - 鉅亨網",
-            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5tS3AyZDk2M1E5WDR0dTJURnRoUlYxSFQ1YVAyVElpNHZjZzVqQldXbkxxTlFJajNwYjdVMG4wLXM4ZzIzOTg2MXktRFoxVXc?oc=5",
-            "date": "Fri, 13 Nov 2026"
-          },
-          {
             "title": "[新聞時事] 營收速報 - 台達電(2308)10月營收746.66億元年增率高達30.12％｜新聞快訊｜豐雲學堂 - 永豐金證券",
             "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE54blVlNDRvWGV4THhqczBWUHhVQ0wxM2ZmMDFwSmYzUXBWbFZIOU1Sdnd5VV9BUVUzdzhDZ2RmRVF3ZGJUenJNQUxLdE5wQ1J0U0lHcS1EZ2t5cmZWX1E1YjlQa3Fzam1fWGxXcW1tQzlXazI0bmc?oc=5",
             "date": "Sun, 08 Nov 2026"
+          },
+          {
+            "title": "[新聞時事] 台達電 (2308) 做什麼的？4大業務、近年營收、公司優缺點與護城河 - 口袋證券",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9tYnV2N1prbXhtSFQyc2xVUXZBRHhGMG4xSm9Qd2dOc1ZxTmhNMVZEYmFrNVVFMXhULVY4NzdDbTFQWVpLb1NGd3paRFdYTl9Nb2dHTHlR?oc=5",
+            "date": "Fri, 16 Oct 2026"
           }
         ]
       },
@@ -59733,7 +59979,7 @@
         },
         {
           "date": "2025-04-23",
-          "close": 131.29
+          "close": 131.3
         },
         {
           "date": "2025-04-24",
@@ -59741,7 +59987,7 @@
         },
         {
           "date": "2025-04-25",
-          "close": 131.29
+          "close": 131.3
         },
         {
           "date": "2025-04-28",
@@ -59773,11 +60019,11 @@
         },
         {
           "date": "2025-05-08",
-          "close": 131.29
+          "close": 131.3
         },
         {
           "date": "2025-05-09",
-          "close": 131.29
+          "close": 131.3
         },
         {
           "date": "2025-05-12",
@@ -61399,13 +61645,13 @@
       "change_pct": -0.33,
       "ext_session": {
         "label": "夜盤",
-        "price": 7533.25,
-        "change_pct": -1.08
+        "price": 7553.75,
+        "change_pct": -0.81
       },
       "intraday": [
         {
           "time": "00:05",
-          "price": 7618.0
+          "price": 7618.25
         },
         {
           "time": "00:10",
@@ -61437,7 +61683,7 @@
         },
         {
           "time": "00:45",
-          "price": 7610.0
+          "price": 7609.75
         },
         {
           "time": "00:50",
@@ -61457,7 +61703,7 @@
         },
         {
           "time": "01:10",
-          "price": 7606.0
+          "price": 7606.25
         },
         {
           "time": "01:15",
@@ -61537,7 +61783,7 @@
         },
         {
           "time": "02:50",
-          "price": 7613.25
+          "price": 7613.5
         },
         {
           "time": "02:55",
@@ -61569,7 +61815,7 @@
         },
         {
           "time": "03:30",
-          "price": 7600.25
+          "price": 7600.0
         },
         {
           "time": "03:35",
@@ -61629,7 +61875,7 @@
         },
         {
           "time": "04:45",
-          "price": 7617.5
+          "price": 7617.25
         },
         {
           "time": "04:50",
@@ -61729,7 +61975,7 @@
         },
         {
           "time": "06:50",
-          "price": 7635.75
+          "price": 7636.0
         },
         {
           "time": "06:55",
@@ -61749,7 +61995,7 @@
         },
         {
           "time": "07:15",
-          "price": 7635.75
+          "price": 7635.5
         },
         {
           "time": "07:20",
@@ -61805,7 +62051,7 @@
         },
         {
           "time": "08:25",
-          "price": 7642.5
+          "price": 7642.75
         },
         {
           "time": "08:30",
@@ -61813,7 +62059,7 @@
         },
         {
           "time": "08:35",
-          "price": 7660.0
+          "price": 7660.5
         },
         {
           "time": "08:40",
@@ -61829,7 +62075,7 @@
         },
         {
           "time": "08:55",
-          "price": 7646.0
+          "price": 7645.75
         },
         {
           "time": "09:00",
@@ -61837,7 +62083,7 @@
         },
         {
           "time": "09:05",
-          "price": 7646.75
+          "price": 7647.0
         },
         {
           "time": "09:10",
@@ -61853,7 +62099,7 @@
         },
         {
           "time": "09:25",
-          "price": 7642.75
+          "price": 7642.5
         },
         {
           "time": "09:30",
@@ -61861,7 +62107,7 @@
         },
         {
           "time": "09:35",
-          "price": 7610.75
+          "price": 7610.5
         },
         {
           "time": "09:40",
@@ -61881,11 +62127,11 @@
         },
         {
           "time": "10:00",
-          "price": 7564.25
+          "price": 7564.0
         },
         {
           "time": "10:05",
-          "price": 7561.75
+          "price": 7562.0
         },
         {
           "time": "10:10",
@@ -61897,7 +62143,7 @@
         },
         {
           "time": "10:20",
-          "price": 7532.75
+          "price": 7532.5
         },
         {
           "time": "10:25",
@@ -61905,7 +62151,7 @@
         },
         {
           "time": "10:30",
-          "price": 7545.5
+          "price": 7545.25
         },
         {
           "time": "10:35",
@@ -61917,7 +62163,7 @@
         },
         {
           "time": "10:45",
-          "price": 7549.75
+          "price": 7550.0
         },
         {
           "time": "10:50",
@@ -61933,19 +62179,27 @@
         },
         {
           "time": "11:05",
-          "price": 7547.25
+          "price": 7547.0
         },
         {
           "time": "11:10",
-          "price": 7536.75
+          "price": 7537.0
         },
         {
           "time": "11:15",
-          "price": 7534.25
+          "price": 7533.75
         },
         {
           "time": "11:20",
-          "price": 7533.25
+          "price": 7537.25
+        },
+        {
+          "time": "11:25",
+          "price": 7549.75
+        },
+        {
+          "time": "11:30",
+          "price": 7553.75
         }
       ],
       "history": [
@@ -63963,7 +64217,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 7533.25
+          "close": 7552.25
         }
       ],
       "fundamentals": {
@@ -64164,13 +64418,13 @@
       "change_pct": -0.31,
       "ext_session": {
         "label": "夜盤",
-        "price": 27742.0,
-        "change_pct": -2.26
+        "price": 27863.5,
+        "change_pct": -1.84
       },
       "intraday": [
         {
           "time": "00:05",
-          "price": 28376.0
+          "price": 28372.75
         },
         {
           "time": "00:10",
@@ -64194,7 +64448,7 @@
         },
         {
           "time": "00:35",
-          "price": 28326.25
+          "price": 28325.75
         },
         {
           "time": "00:40",
@@ -64226,7 +64480,7 @@
         },
         {
           "time": "01:15",
-          "price": 28303.25
+          "price": 28303.0
         },
         {
           "time": "01:20",
@@ -64258,7 +64512,7 @@
         },
         {
           "time": "01:55",
-          "price": 28348.5
+          "price": 28347.5
         },
         {
           "time": "02:00",
@@ -64266,7 +64520,7 @@
         },
         {
           "time": "02:05",
-          "price": 28361.0
+          "price": 28360.5
         },
         {
           "time": "02:10",
@@ -64302,7 +64556,7 @@
         },
         {
           "time": "02:50",
-          "price": 28339.0
+          "price": 28337.5
         },
         {
           "time": "02:55",
@@ -64326,7 +64580,7 @@
         },
         {
           "time": "03:20",
-          "price": 28264.0
+          "price": 28263.75
         },
         {
           "time": "03:25",
@@ -64374,7 +64628,7 @@
         },
         {
           "time": "04:20",
-          "price": 28313.5
+          "price": 28311.0
         },
         {
           "time": "04:25",
@@ -64426,7 +64680,7 @@
         },
         {
           "time": "05:25",
-          "price": 28359.25
+          "price": 28360.25
         },
         {
           "time": "05:30",
@@ -64462,7 +64716,7 @@
         },
         {
           "time": "06:10",
-          "price": 28410.75
+          "price": 28410.5
         },
         {
           "time": "06:15",
@@ -64486,7 +64740,7 @@
         },
         {
           "time": "06:40",
-          "price": 28397.25
+          "price": 28397.0
         },
         {
           "time": "06:45",
@@ -64494,11 +64748,11 @@
         },
         {
           "time": "06:50",
-          "price": 28437.75
+          "price": 28438.5
         },
         {
           "time": "06:55",
-          "price": 28446.5
+          "price": 28445.5
         },
         {
           "time": "07:00",
@@ -64522,11 +64776,11 @@
         },
         {
           "time": "07:25",
-          "price": 28418.25
+          "price": 28417.5
         },
         {
           "time": "07:30",
-          "price": 28423.5
+          "price": 28424.5
         },
         {
           "time": "07:35",
@@ -64538,11 +64792,11 @@
         },
         {
           "time": "07:45",
-          "price": 28360.0
+          "price": 28358.75
         },
         {
           "time": "07:50",
-          "price": 28368.25
+          "price": 28367.5
         },
         {
           "time": "07:55",
@@ -64550,7 +64804,7 @@
         },
         {
           "time": "08:00",
-          "price": 28412.0
+          "price": 28412.75
         },
         {
           "time": "08:05",
@@ -64598,15 +64852,15 @@
         },
         {
           "time": "09:00",
-          "price": 28442.0
+          "price": 28441.75
         },
         {
           "time": "09:05",
-          "price": 28440.75
+          "price": 28441.0
         },
         {
           "time": "09:10",
-          "price": 28442.5
+          "price": 28443.5
         },
         {
           "time": "09:15",
@@ -64614,11 +64868,11 @@
         },
         {
           "time": "09:20",
-          "price": 28447.75
+          "price": 28448.0
         },
         {
           "time": "09:25",
-          "price": 28390.75
+          "price": 28390.25
         },
         {
           "time": "09:30",
@@ -64630,31 +64884,31 @@
         },
         {
           "time": "09:40",
-          "price": 28196.0
+          "price": 28196.5
         },
         {
           "time": "09:45",
-          "price": 28155.5
+          "price": 28156.0
         },
         {
           "time": "09:50",
-          "price": 28184.0
+          "price": 28184.5
         },
         {
           "time": "09:55",
-          "price": 28088.5
+          "price": 28087.25
         },
         {
           "time": "10:00",
-          "price": 27966.0
+          "price": 27968.0
         },
         {
           "time": "10:05",
-          "price": 27966.25
+          "price": 27965.75
         },
         {
           "time": "10:10",
-          "price": 27793.25
+          "price": 27793.75
         },
         {
           "time": "10:15",
@@ -64670,15 +64924,15 @@
         },
         {
           "time": "10:30",
-          "price": 27802.25
+          "price": 27801.75
         },
         {
           "time": "10:35",
-          "price": 27766.75
+          "price": 27767.25
         },
         {
           "time": "10:40",
-          "price": 27786.0
+          "price": 27785.25
         },
         {
           "time": "10:45",
@@ -64686,11 +64940,11 @@
         },
         {
           "time": "10:50",
-          "price": 27796.0
+          "price": 27796.5
         },
         {
           "time": "10:55",
-          "price": 27827.5
+          "price": 27826.75
         },
         {
           "time": "11:00",
@@ -64710,7 +64964,15 @@
         },
         {
           "time": "11:20",
-          "price": 27742.0
+          "price": 27776.5
+        },
+        {
+          "time": "11:25",
+          "price": 27848.0
+        },
+        {
+          "time": "11:30",
+          "price": 27863.5
         }
       ],
       "history": [
@@ -66728,14 +66990,14 @@
         },
         {
           "date": "2026-11-13",
-          "close": 27742.0
+          "close": 27863.5
         }
       ],
       "fundamentals": {
         "high_52w": 31616.5,
         "low_52w": 22961.5,
         "day_high": 28607.75,
-        "day_low": 27708.5
+        "day_low": 27695.25
       },
       "news_sentiment": {
         "mode": "index_three_pillars",
@@ -66802,14 +67064,14 @@
                 "date": "Tue, 20 Oct 2026"
               },
               {
+                "title": "[總經與供需] 美股開盤／CoreWeave大漲13%領軍AI股反彈 納斯達克漲1.6% - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1JaEtaWkZSR3BjWVJJWGJfRkg4YUNmRVBWdlpOQVJiRkJPTUZCMzBnQU94ZEZpWjlSeE9sSS1WVTZpbnF2Vl9nSW9YUmcxc2c?oc=5",
+                "date": "Wed, 11 Nov 2026"
+              },
+              {
                 "title": "[總經與供需] E-迷你納斯達克100指數 概述 - CME Group",
                 "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxObzZhTngwSVNMQVhZSWRfZ1pUaFlLVTJDMEhJcnl4Ul93V0htWW5IS0NFNmMxaFNlVXhqMHBVODUtODlvcl85cndOY1BuLTIyUDdUMVlFaFhHRG9McHhTLWZIRGZ0MmpQWG0xOVplQWNXMWd3OGtxc3hINlI5Mnh1WDJn?oc=5",
                 "date": "Fri, 09 Jun 2023"
-              },
-              {
-                "title": "[總經與供需] 今晚非農登場，小納斯達克等待利率重新定價 | 思儀李的貼文 | 鉅亨號 | Anue鉅亨 - 鉅亨號",
-                "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE4tdnpkelhRaUt3dWYxSGtmc3JYd0VTNU4zXzRremNpQkZja19maDloUzh4UFJReWdLMWZFT1pWVEItTGIxRzlQYg?oc=5",
-                "date": "Thu, 03 Sep 2026"
               }
             ],
             "bearish": [
@@ -66929,8 +67191,8 @@
       "change_pct": -2.88,
       "ext_session": {
         "label": "夜盤",
-        "price": 3881.8,
-        "change_pct": -0.09
+        "price": 3887.3,
+        "change_pct": 0.05
       },
       "intraday": [
         {
@@ -66939,7 +67201,7 @@
         },
         {
           "time": "00:05",
-          "price": 3919.6
+          "price": 3919.5
         },
         {
           "time": "00:10",
@@ -66951,7 +67213,7 @@
         },
         {
           "time": "00:20",
-          "price": 3920.4
+          "price": 3920.2
         },
         {
           "time": "00:25",
@@ -67011,7 +67273,7 @@
         },
         {
           "time": "01:35",
-          "price": 3898.5
+          "price": 3898.6
         },
         {
           "time": "01:40",
@@ -67027,7 +67289,7 @@
         },
         {
           "time": "01:55",
-          "price": 3905.0
+          "price": 3904.8
         },
         {
           "time": "02:00",
@@ -67043,7 +67305,7 @@
         },
         {
           "time": "02:15",
-          "price": 3899.3
+          "price": 3899.1
         },
         {
           "time": "02:20",
@@ -67147,7 +67409,7 @@
         },
         {
           "time": "04:25",
-          "price": 3898.8
+          "price": 3898.5
         },
         {
           "time": "04:30",
@@ -67287,7 +67549,7 @@
         },
         {
           "time": "07:20",
-          "price": 3899.1
+          "price": 3899.0
         },
         {
           "time": "07:25",
@@ -67343,7 +67605,7 @@
         },
         {
           "time": "08:30",
-          "price": 3908.0
+          "price": 3908.6
         },
         {
           "time": "08:35",
@@ -67387,7 +67649,7 @@
         },
         {
           "time": "09:25",
-          "price": 3891.7
+          "price": 3892.0
         },
         {
           "time": "09:30",
@@ -67419,7 +67681,7 @@
         },
         {
           "time": "10:05",
-          "price": 3889.0
+          "price": 3889.1
         },
         {
           "time": "10:10",
@@ -67435,7 +67697,7 @@
         },
         {
           "time": "10:25",
-          "price": 3881.3
+          "price": 3881.6
         },
         {
           "time": "10:30",
@@ -67455,7 +67717,7 @@
         },
         {
           "time": "10:50",
-          "price": 3878.1
+          "price": 3878.4
         },
         {
           "time": "10:55",
@@ -67467,7 +67729,7 @@
         },
         {
           "time": "11:05",
-          "price": 3881.9
+          "price": 3882.1
         },
         {
           "time": "11:10",
@@ -67479,7 +67741,15 @@
         },
         {
           "time": "11:20",
-          "price": 3881.8
+          "price": 3885.9
+        },
+        {
+          "time": "11:25",
+          "price": 3885.6
+        },
+        {
+          "time": "11:30",
+          "price": 3887.3
         }
       ],
       "history": [
@@ -69497,7 +69767,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 3881.8
+          "close": 3887.3
         }
       ],
       "fundamentals": {
@@ -69698,8 +69968,8 @@
       "change_pct": -3.68,
       "ext_session": {
         "label": "夜盤",
-        "price": 48.94,
-        "change_pct": -2.06
+        "price": 49.16,
+        "change_pct": -1.62
       },
       "intraday": [
         {
@@ -69708,7 +69978,7 @@
         },
         {
           "time": "00:05",
-          "price": 50.23
+          "price": 50.22
         },
         {
           "time": "00:10",
@@ -70104,11 +70374,11 @@
         },
         {
           "time": "08:20",
-          "price": 49.82
+          "price": 49.83
         },
         {
           "time": "08:25",
-          "price": 49.77
+          "price": 49.76
         },
         {
           "time": "08:30",
@@ -70248,7 +70518,15 @@
         },
         {
           "time": "11:20",
-          "price": 48.94
+          "price": 49.04
+        },
+        {
+          "time": "11:25",
+          "price": 49.13
+        },
+        {
+          "time": "11:30",
+          "price": 49.16
         }
       ],
       "history": [
@@ -72266,7 +72544,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 48.94
+          "close": 49.16
         }
       ],
       "fundamentals": {
@@ -72372,9 +72650,14 @@
             "label": "📰 新聞時事動態",
             "bullish": [
               {
-                "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
-                "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
-                "date": "Wed, 14 Jan 2026"
+                "title": "[新聞時事] 100盎司白銀期貨2807期貨價格、走勢、圖表 - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1GeHNwYm5kOWNsYjdGX0s3X0t5Zm9RLUdNVldBa3ZxdXUwTlFUbnJmTkV5STVya0xRcXlvY1F5X3dVQmV5dVpoTF94VFpJMTJBblNlY1hRTzA2dw?oc=5",
+                "date": "Wed, 22 Jul 2026"
+              },
+              {
+                "title": "[新聞時事] 白銀又遭資金撤離重擊 亞洲盤週四暴跌逾16% 反彈行情瞬間蒸發 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBvUEM4T0dCSFVrcmxta0FPNGlhbE1oc1BGTjYwRFl2ODY4ZV9TS1BwTDJmOUZPYmFRNS1kdGF3YVhCU3RrNXF0dF9mMEVOM2s?oc=5",
+                "date": "Thu, 05 Feb 2026"
               },
               {
                 "title": "[新聞時事] 白銀為何越漲越危險？一場沒有央行兜底的金融逼倉遊戲| 動區動趨-最具影響力的區塊鏈新聞媒體 - 動區動趨",
@@ -72385,33 +72668,28 @@
                 "title": "[新聞時事] 十張圖看懂白銀歷史性大漲：投資者需要知道的一切 - 群益期貨",
                 "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPbENPb25DTWlLVm1kSWN5QVZnZ01EN2NfT0xxSEtUVnc4YnRRcXVrazAwUDdPbF82NDRtSVlxM2YyYzdsd1htSk1Yd0JaM2pfWVIyeXdwZFNfVFRzUEZQazI0NUdCWm50UkJHajBqZUhWNjJSMkJMQzIxSklleGwwOGFlaGdBLVE0ZVctYjY3bVRuS3U3N3hqbERMVFBPR0Jq?oc=5",
                 "date": "Mon, 19 Jan 2026"
-              },
-              {
-                "title": "[新聞時事] NYMEX-白銀期貨價格 最大回撤曲線 / 回升曲線 MDD - MacroMicro",
-                "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNTnU2d1I2cC11ZmctaVE5ZFBSVEZkd21mc3hzUXg4Wk9TallqdTZNMi1wWDgtMzBwSTk0WG9oWGF1anpPSVJOTTZ4NDlUUlVrNE4ydHdaVDVDNEZQNmFwVXJrczBXNzRtaGM1YnZsT2x0RXM0U2lKak1GaHdkcXMtdFctTXM4WU9xZ2hRdG1lUkVWYnlUd1Nkam1ocXZwVkNLRUl2dGpaYXdqMmYxaU1OcA?oc=5",
-                "date": "Tue, 01 Aug 2023"
               }
             ],
             "bearish": [
+              {
+                "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
+                "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
+                "date": "Wed, 14 Jan 2026"
+              },
               {
                 "title": "[新聞時事] 歷史性暴跌後啟動新規！CME提高黃金、白銀期貨保證金 - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQZUNqbXN0RENlTW1xbnF3LU5CTEZmVFdtd3hCdE1WQ3Bmc3BGdWRldkRtRTNDUTJwLWFEX3pRRHYtVDgxckxrWnlwVllWOEpiVFJxTm9GUWphWlhtYXk5OVF1S2poWlFCOWVCOGJ6VGRIQjVYWjBucEFHMENwcm9IQm9ZZF9POGRSeVZ1TTFSVDcxSU1POGNsNW5MbVpTY0x5cURpdTVmdXJad1REZ3c2cXZqLWVMYUlKZTQzdXRQSlZiZFR6T3ItbTF2MEZGLUJ5VmNFZGFWZS1SelNTOVVmejRfenp6TU5uTFk1d1V4UlNVVnU0bnVvbTVFczRDajZBM0JzVjNVQzlHSFNKQWNYemZYbTVRYjZ0WkIwWUhqQXBXOTJPOWtRcXQ2ZDlGV1dnM1JWNXRfRnJvZ1EtNFFDTVlOODFlcGxWU3d5TDdwYkxXdGRsR1I3S28ydEV2UQ?oc=5",
                 "date": "Fri, 30 Jan 2026"
               },
               {
+                "title": "[新聞時事] 期貨交易員白銀期貨價格早晚會衝到50美元 - 公視新聞",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1ka0FkOUxaYncxQ2pMS2N1V3FINlk3Tno5bFdDZWhVRmV1WkNwSDNOZ0ktekY4dG1kd0wwd21jOEx4WVhpczgxa2FjNjhfMjA?oc=5",
+                "date": "Tue, 20 May 2025"
+              },
+              {
                 "title": "[新聞時事] 不是黃金！CNN爆這3種貴金屬今年漲幅已達100％ - 自由財經",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1pWEtGbEFJdHNtZWF6S3dfVUgxOE12VkU3MXQxd0JJbzd3WkRxanROYlhyanZVQUo5TzBhLXBFcFQyVGJPbE9DdzExZkZRNTJpWHBYYmo5NzBEZDVkZThz0gFkQVVfeXFMT2dkZ0NwSTFvVERJeDBwQWZvam1Qb2RIMmFXMHo0bVJ4SkdSQWtKQ2tIcU92SWVJVU9Qc3lUREpkaS0zRXgwei0zNHBJeWtnM1hJRzdvUEZHQ21YcHFMekxzOU5Kcg?oc=5",
                 "date": "Fri, 26 Dec 2025"
-              },
-              {
-                "title": "[新聞時事] AI 驅動金銀投資！散戶熱捧白銀期貨，市值一度超過輝達 - TechNews 科技新報",
-                "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNXd1bFV4WUpReGlBMmp1d2ZNV1lyZ3NNMm5xdUpYZVVqRmhEVlF0NHZxUFJOY3ZJVjFiV3hkT0x6R1hQbkRPSlRrUm84akp4eHJzTkEzYncwYzkxN2tCaEoySi15OTZ2eU1LMlNDSjdsd3J1SnRHaUFGelV3Uk1ENTVscXBTOUpTMEs4eTRQVFdkTEE2OXdBX2xwa2d3NUJiOWV2enFDWFBqU1pvNGZxTkxSRW5wQQ?oc=5",
-                "date": "Thu, 19 Feb 2026"
-              },
-              {
-                "title": "[新聞時事] 微型黃金和微型白銀期貨產品概述 - CME Group",
-                "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOOUV6NVJwZldYNWc1TzZmSnZ4ck1FQmZxTkVack5VeW9fRkczTmwyNEZ1SUdod1B2YldkQ2NZVUx6UzItNU1CVFhRblVIOFhCNlgzN2UzaDYxOFpLcnd5OW1nTzV2ckhmTWZvR1VpT0NQaGwyY0xZYnM0dmppLWhiWEYtTlZ3QTRsN0ZTd2FFT3hyWGdvd3JPclBOTVpISEk0b2d6c25mbFM1TEZpS2lvbzBGSG1GTVhXZEk5QmU5dV83cFNaTmRycVVBNUt3X0lMLTA2LWFjd0FjMFRwSFF4cTJrMGpBSDdvTmdwTzJtWi1FM0hzdUJYdEdhc2tmWlByRkxuLWxrZkJObm1kRVNNWnc2Nzc?oc=5",
-                "date": "Fri, 21 Jan 2022"
               }
             ]
           }
@@ -72428,9 +72706,9 @@
             "date": "Tue, 03 Nov 2026"
           },
           {
-            "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
-            "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
-            "date": "Wed, 14 Jan 2026"
+            "title": "[新聞時事] 100盎司白銀期貨2807期貨價格、走勢、圖表 - Moomoo",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1GeHNwYm5kOWNsYjdGX0s3X0t5Zm9RLUdNVldBa3ZxdXUwTlFUbnJmTkV5STVya0xRcXlvY1F5X3dVQmV5dVpoTF94VFpJMTJBblNlY1hRTzA2dw?oc=5",
+            "date": "Wed, 22 Jul 2026"
           }
         ],
         "bearish": [
@@ -72445,9 +72723,9 @@
             "date": "Thu, 10 Sep 2026"
           },
           {
-            "title": "[新聞時事] 歷史性暴跌後啟動新規！CME提高黃金、白銀期貨保證金 - Yahoo股市",
-            "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQZUNqbXN0RENlTW1xbnF3LU5CTEZmVFdtd3hCdE1WQ3Bmc3BGdWRldkRtRTNDUTJwLWFEX3pRRHYtVDgxckxrWnlwVllWOEpiVFJxTm9GUWphWlhtYXk5OVF1S2poWlFCOWVCOGJ6VGRIQjVYWjBucEFHMENwcm9IQm9ZZF9POGRSeVZ1TTFSVDcxSU1POGNsNW5MbVpTY0x5cURpdTVmdXJad1REZ3c2cXZqLWVMYUlKZTQzdXRQSlZiZFR6T3ItbTF2MEZGLUJ5VmNFZGFWZS1SelNTOVVmejRfenp6TU5uTFk1d1V4UlNVVnU0bnVvbTVFczRDajZBM0JzVjNVQzlHSFNKQWNYemZYbTVRYjZ0WkIwWUhqQXBXOTJPOWtRcXQ2ZDlGV1dnM1JWNXRfRnJvZ1EtNFFDTVlOODFlcGxWU3d5TDdwYkxXdGRsR1I3S28ydEV2UQ?oc=5",
-            "date": "Fri, 30 Jan 2026"
+            "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
+            "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
+            "date": "Wed, 14 Jan 2026"
           }
         ]
       }
@@ -72462,8 +72740,8 @@
       "change_pct": -1.44,
       "ext_session": {
         "label": "夜盤",
-        "price": 6.1,
-        "change_pct": -1.29
+        "price": 6.11,
+        "change_pct": -1.13
       },
       "intraday": [
         {
@@ -72764,7 +73042,7 @@
         },
         {
           "time": "06:10",
-          "price": 6.14
+          "price": 6.15
         },
         {
           "time": "06:15",
@@ -72864,7 +73142,7 @@
         },
         {
           "time": "08:15",
-          "price": 6.15
+          "price": 6.16
         },
         {
           "time": "08:20",
@@ -73013,6 +73291,14 @@
         {
           "time": "11:20",
           "price": 6.1
+        },
+        {
+          "time": "11:25",
+          "price": 6.11
+        },
+        {
+          "time": "11:30",
+          "price": 6.11
         }
       ],
       "history": [
@@ -75030,7 +75316,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 6.1
+          "close": 6.11
         }
       ],
       "fundamentals": {
@@ -75104,14 +75390,14 @@
                 "date": "Tue, 04 Aug 2026"
               },
               {
+                "title": "[總經與供需] 銅價衝破1.4萬美元 美國關稅拍板前庫存大增 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE16SV9XWTFBbWdQN3JKcVVIUVdBdGJtU0o5RmhPNFZlc1ZDLWJoVVlxdlNEQUpCQ0lsU29UcENEWXNpd1FsdDBRYzRNYWFlR1k?oc=5",
+                "date": "Wed, 05 Aug 2026"
+              },
+              {
                 "title": "[總經與供需] 美國「虹吸」全球銅庫存 倫銅突破14700美元創歷史新高 - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9SS2xmWjhWSGh6bDlrZG1la3dBZ3NseDJRaERLcVdac0hlRWhnNjJRSUQ5QW10Y0paT1NOMjFHV1lDU05VMVRieG1qLUtGWlE?oc=5",
                 "date": "Wed, 09 Sep 2026"
-              },
-              {
-                "title": "[總經與供需] 全球-三大交易所銅庫存量(LME、SHFE、COMEX加總) - MacroMicro",
-                "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxONE45ZHZWNXZnUWs1cHlTbER6NHpBOUF1a1JvWFgwU3BzXy1HV25fVGRDdTY3ZU5namxCNS1QcmhyTlRLZGpIXzItSERJZ3BLeFdWczU2STdPZ2tPbGl6c2R5YTdzMWtGUjJPblZiYXkxMnRHeC1fR3VSNmhzbThjQmlfTnE5Mzh1ejlzM1VSTEV2aUZ4LV9FN3Y5M3Z6d1laU2xLZl90OVQzOXdRVTJGOHgteVprTlg3?oc=5",
-                "date": "Thu, 29 Aug 2024"
               }
             ],
             "bearish": [
@@ -75126,9 +75412,14 @@
                 "date": "Tue, 20 Jan 2026"
               },
               {
-                "title": "[總經與供需] 國際銅價逼近歷史高點　投行喊價「缺口」恐延續至2030年 | 財經 | CTWANT - CTWANT",
-                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE4wZjBFN1E1WGtwbjJ6VVBEVmxxRWhoRnBYRTA3em5RWGpBam10TE9NSTNtU1BuTFVMX3hUTDBSZjdpNTJ2Q2xQZWtDbUp5MzDSAVRBVV95cUxQTVlCY1g1d1BUaS1qNDRvZ2VCa0J1aGpSR3Bub29QMkRxTUFrVFJwUWEzUUs4NERBdTg2LU5GMS1KOGFDeVJ5VHdjelRGVENOT0FXZXM?oc=5",
-                "date": "Sun, 11 Oct 2026"
+                "title": "[總經與供需] 全球-三大交易所銅庫存量(LME、SHFE、COMEX加總) - MacroMicro",
+                "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxONE45ZHZWNXZnUWs1cHlTbER6NHpBOUF1a1JvWFgwU3BzXy1HV25fVGRDdTY3ZU5namxCNS1QcmhyTlRLZGpIXzItSERJZ3BLeFdWczU2STdPZ2tPbGl6c2R5YTdzMWtGUjJPblZiYXkxMnRHeC1fR3VSNmhzbThjQmlfTnE5Mzh1ejlzM1VSTEV2aUZ4LV9FN3Y5M3Z6d1laU2xLZl90OVQzOXdRVTJGOHgteVprTlg3?oc=5",
+                "date": "Thu, 29 Aug 2024"
+              },
+              {
+                "title": "[總經與供需] 銅現貨價急漲，與期貨價差創5年最大，美國以外地區供給不安升溫 - BigGo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1ZNXNodEFwUWtmZ1JoZ0J5QzVPSllqdEtHNWRsLTNZNlh6WmNjdnhmUXM4c3VzUE5LMWJmRUt5UjZCa3BrMVZLY1FMVll0OE1qS1BPTmZNY3FKUmhQc2tuQUw4c29vX1RiVGltS3pQYXBpY1VtYTRibTVB?oc=5",
+                "date": "Tue, 18 Aug 2026"
               }
             ]
           },
@@ -75171,6 +75462,11 @@
                 "title": "[新聞時事] LME銅現貨溢價飆升！創紀錄價差暗示庫存爭奪戰打響 - 群益期貨",
                 "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQXzV4NjZSbmN4MEVWeFFIRzd0TU8wTU8tX3FUdm85YnN0RURqdTdnV0pFSXJwMFRtMzBqU2RuTFZoZF9ENTdPb0NZaEQ0cGRpQ05DV3BmVjhZSDJSV3YtM0VSb3Awc3JHLVFBUjV3X3dMRnQzNFpqQUNhcEpVZVEwb3Q4ckRpYnZSak5IdlYtcVJyTERtNk9fUUJrbTlEOHNj?oc=5",
                 "date": "Tue, 20 Jan 2026"
+              },
+              {
+                "title": "[新聞時事] 2026年銅期貨市場分析：多空分歧加劇，趨勢何去何從? - EBC Financial Group",
+                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAyMTRoZ1NLRTd1eVk1aU43bkQ1dzg1OEFmeUE4OXltazctVVZKMGNHbHdkeEZxcFFuM3NlSmpDQU9jd0ZpYnRnZmVRUlU5RlBUUTBOUg?oc=5",
+                "date": "Thu, 22 Jan 2026"
               }
             ]
           }
@@ -75221,8 +75517,8 @@
       "change_pct": 2.55,
       "ext_session": {
         "label": "夜盤",
-        "price": 89.1,
-        "change_pct": 0.41
+        "price": 88.56,
+        "change_pct": -0.2
       },
       "intraday": [
         {
@@ -75327,7 +75623,7 @@
         },
         {
           "time": "02:05",
-          "price": 88.59
+          "price": 88.58
         },
         {
           "time": "02:10",
@@ -75347,7 +75643,7 @@
         },
         {
           "time": "02:30",
-          "price": 88.76
+          "price": 88.78
         },
         {
           "time": "02:35",
@@ -75363,7 +75659,7 @@
         },
         {
           "time": "02:50",
-          "price": 88.33
+          "price": 88.32
         },
         {
           "time": "02:55",
@@ -75427,7 +75723,7 @@
         },
         {
           "time": "04:10",
-          "price": 88.52
+          "price": 88.53
         },
         {
           "time": "04:15",
@@ -75447,7 +75743,7 @@
         },
         {
           "time": "04:35",
-          "price": 88.66
+          "price": 88.64
         },
         {
           "time": "04:40",
@@ -75487,7 +75783,7 @@
         },
         {
           "time": "05:25",
-          "price": 88.02
+          "price": 88.01
         },
         {
           "time": "05:30",
@@ -75531,7 +75827,7 @@
         },
         {
           "time": "06:20",
-          "price": 88.22
+          "price": 88.23
         },
         {
           "time": "06:25",
@@ -75679,7 +75975,7 @@
         },
         {
           "time": "09:25",
-          "price": 89.42
+          "price": 89.41
         },
         {
           "time": "09:30",
@@ -75719,7 +76015,7 @@
         },
         {
           "time": "10:15",
-          "price": 89.3
+          "price": 89.31
         },
         {
           "time": "10:20",
@@ -75731,11 +76027,11 @@
         },
         {
           "time": "10:30",
-          "price": 89.17
+          "price": 89.16
         },
         {
           "time": "10:35",
-          "price": 88.93
+          "price": 88.95
         },
         {
           "time": "10:40",
@@ -75767,11 +76063,19 @@
         },
         {
           "time": "11:15",
-          "price": 89.09
+          "price": 89.08
         },
         {
           "time": "11:20",
-          "price": 89.1
+          "price": 88.99
+        },
+        {
+          "time": "11:25",
+          "price": 88.58
+        },
+        {
+          "time": "11:30",
+          "price": 88.56
         }
       ],
       "history": [
@@ -77789,7 +78093,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 89.1
+          "close": 88.56
         }
       ],
       "fundamentals": {
@@ -77990,8 +78294,8 @@
       "change_pct": 3.3,
       "ext_session": {
         "label": "夜盤",
-        "price": 96.49,
-        "change_pct": 0.7
+        "price": 95.89,
+        "change_pct": 0.07
       },
       "intraday": [
         {
@@ -78048,7 +78352,7 @@
         },
         {
           "time": "01:10",
-          "price": 96.01
+          "price": 96.02
         },
         {
           "time": "01:15",
@@ -78156,7 +78460,7 @@
         },
         {
           "time": "03:25",
-          "price": 95.87
+          "price": 95.85
         },
         {
           "time": "03:30",
@@ -78372,7 +78676,7 @@
         },
         {
           "time": "07:55",
-          "price": 96.09
+          "price": 96.13
         },
         {
           "time": "08:00",
@@ -78464,11 +78768,11 @@
         },
         {
           "time": "09:50",
-          "price": 97.08
+          "price": 97.07
         },
         {
           "time": "09:55",
-          "price": 96.86
+          "price": 96.85
         },
         {
           "time": "10:00",
@@ -78508,7 +78812,7 @@
         },
         {
           "time": "10:45",
-          "price": 96.04
+          "price": 96.05
         },
         {
           "time": "10:50",
@@ -78536,7 +78840,15 @@
         },
         {
           "time": "11:20",
-          "price": 96.49
+          "price": 96.36
+        },
+        {
+          "time": "11:25",
+          "price": 95.83
+        },
+        {
+          "time": "11:30",
+          "price": 95.89
         }
       ],
       "history": [
@@ -80554,7 +80866,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 96.49
+          "close": 95.89
         }
       ],
       "fundamentals": {
@@ -80576,9 +80888,9 @@
                 "date": "Thu, 12 Nov 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] 布蘭特原油升破100美元近二月首見…推升歐美公債殖利率走高| 全球財經| 全球 - UDN",
-                "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1Jbkwwc1NITUgteHp4OFFwXzI0UmJyVmd3eHN0UDZaUWg4enN1VWJlNDQ5LWd4V0d6RTh3VHZrendRWjE3X3I5LW95T252TWc2?oc=5",
-                "date": "Thu, 10 Sep 2026"
+                "title": "[美國聯準會 (Fed)] 布蘭特油價100美元、10年期美債殖利率5.3% 為何都降不下來？ - 經濟日報",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE8yU2ZfZEFQNERyeElLSWU0dnRxeXVNLW5uSXBWX0RZSnRxWUQyZnlnbDFEMWgwQjVJZTR0b2xvOVNCMEVSeVlLeHR1R3lYc2liUmUwYm5qQ05iUdIBX0FVX3lxTE41UnFxRldwb0RuanV3R2k5Um5BcHF5VFlQcU5CekpBSkVHUVNIWUZxQUwyNzl3NmUxU0VyMEFvVVdsN3AtUzVBN2p3QlRsLWV5d3pkUEdBYzZHMENGVnU4?oc=5",
+                "date": "Wed, 07 Oct 2026"
               },
               {
                 "title": "[美國聯準會 (Fed)] 布蘭特油價飆破107美元 英國20年期公債殖利率升至28年新高 | 信傳媒 - LINE TODAY",
@@ -80586,9 +80898,9 @@
                 "date": "Fri, 11 Sep 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] 全球市場雙重警報！油價飆破107美元、10年期美債殖利率攻上5% - 鉅亨網",
-                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBFNGFsaWljQmEzdERyZVhnM0FMUDhoQ19KcE1SbkFlQXZEdXl2TE9FZE02bjVPTnNaVDZuUjZZd2p0VHZHLXNFbEk3TERRRmM?oc=5",
-                "date": "Tue, 15 Sep 2026"
+                "title": "[美國聯準會 (Fed)] 國際油價又破百了！美股期貨盤前全面走低 道指期挫逾400點 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQaTdOUVVlcEdJWW9UaEZNOF9oUGpLUXNsRmI0QTVJbndXU2FNS1BhWWxCWF8tZzR1bEswMERQYWR6bzVubGYwQ0Nyb1BqYTg?oc=5",
+                "date": "Wed, 09 Sep 2026"
               }
             ],
             "bearish": [
@@ -80650,14 +80962,14 @@
                 "date": "Tue, 10 Nov 2026"
               },
               {
-                "title": "[總經與供需] 一桶油到底值多少？原油期貨報價已與市場脫鉤，這類能源成本才是左右通膨的真兇| 林彥呈| 財經 - 風傳媒",
-                "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9NbndGWlVzY0hudXo4ajNfbTh5TXR6ZUdfbi1sVUV0blZmTVF1X3RaRHM5eFRZam0zQXVlQUQ1RHZrNnpUMVlNTjZrV1NCdw?oc=5",
-                "date": "Thu, 08 Oct 2026"
-              },
-              {
                 "title": "[總經與供需] 布蘭特原油期貨上週日急漲 中東緊張、庫存緊俏與美元疲軟成主因 - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMirgNBVV95cUxQRXp2THFoWG5SLXF6Z2RVX1JnbHBQQlZEM0YwU3pqNVVlUkhXcW1HLUh6eHhYN3RfbWM4LTYzbTFuRTBrdmNpd2lsVnd0VmxWaVBSUS10QUVVRXh4UDU0YTI3bllLYzlZR2JfckZNVVRuUFl1TGprTGJtR0NFRHV3YXItZUh1MXNacm9RMDl5ZzF3X2prSXZTOXJfWG9sdmw2eHI5Z09qM2lxSzRZX1dpTjIwekZZcnNKb1dKbTBJckpQOEotTkxlUW9FLTNNdXdTR0RROWJjTHB1NDN6NmRTeFdkWXRYcnNETGFuLXE4ZFphaWVqay1qN0hQaHo5Mm11bWR0NVJyazBWVnFHR1FVSWtSUVozSlJxQ0pVSFplVVlKVXlDallRenpBQTBkU215LTlYakdjbGxodEJWTDJLMlpZbGlIN2JGTFlLNWNqWWtQdDZKakVib2JZaDVUS3FrVTJNOTFXWVVkWDNoSlFyby1qaUYtaDAzQm9yWHNRZ0xIVVdTczBxenhZS056VllXZ01JT2VVTUdrcUlzVlZJb1F4ejB4UVJFS290WXZ3?oc=5",
                 "date": "Sun, 19 Jul 2026"
+              },
+              {
+                "title": "[總經與供需] 國際油價暴漲近8％！美沙聯手空襲、庫存探底一次看懂 - 自由財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFAwYXYzNDFJbDlOWHlSTGpTQ0JzclJDZGJvNFdiTmtWdmV5Ymc0bUZiT1BGdjdNaWxnOUNrZFRxeExuVTJJRzJLQThOcm9zc0s3WmhPb3NVazR5ZU5GWWRV0gFkQVVfeXFMTlNnNjlNa2Flb2gyNm9TUTZqWGZkR0NLcGVlZGFSdEJVQmJJa1MwNFNBTmVHUXB2anFTTXFPUU9WZmRvSXNHeFpZRmFkbWRBbk9oNlRHSGJUN3htQ3NXbm9EcjY2bw?oc=5",
+                "date": "Thu, 30 Jul 2026"
               }
             ]
           },
@@ -80755,8 +81067,8 @@
       "change_pct": -5.17,
       "ext_session": {
         "label": "夜盤",
-        "price": 1009.5,
-        "change_pct": 2.0
+        "price": 1011.0,
+        "change_pct": 2.15
       },
       "intraday": [
         {
@@ -81085,7 +81397,7 @@
         },
         {
           "time": "06:55",
-          "price": 1010.5
+          "price": 1011.0
         },
         {
           "time": "07:00",
@@ -81297,7 +81609,15 @@
         },
         {
           "time": "11:20",
-          "price": 1009.5
+          "price": 1010.0
+        },
+        {
+          "time": "11:25",
+          "price": 1012.5
+        },
+        {
+          "time": "11:30",
+          "price": 1011.0
         }
       ],
       "history": [
@@ -83311,7 +83631,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 1009.0
+          "close": 1011.0
         }
       ],
       "fundamentals": {
@@ -83502,8 +83822,8 @@
       "change_pct": -0.16,
       "ext_session": {
         "label": "夜盤",
-        "price": 1233.25,
-        "change_pct": 0.51
+        "price": 1232.25,
+        "change_pct": 0.43
       },
       "intraday": [
         {
@@ -83552,7 +83872,7 @@
         },
         {
           "time": "00:55",
-          "price": 1232.0
+          "price": 1232.25
         },
         {
           "time": "01:00",
@@ -83796,7 +84116,7 @@
         },
         {
           "time": "06:00",
-          "price": 1234.75
+          "price": 1235.0
         },
         {
           "time": "06:05",
@@ -83948,7 +84268,7 @@
         },
         {
           "time": "09:55",
-          "price": 1239.75
+          "price": 1239.5
         },
         {
           "time": "10:00",
@@ -83996,7 +84316,7 @@
         },
         {
           "time": "10:55",
-          "price": 1236.5
+          "price": 1236.75
         },
         {
           "time": "11:00",
@@ -84016,7 +84336,15 @@
         },
         {
           "time": "11:20",
-          "price": 1233.25
+          "price": 1232.25
+        },
+        {
+          "time": "11:25",
+          "price": 1232.25
+        },
+        {
+          "time": "11:30",
+          "price": 1232.25
         }
       ],
       "history": [
@@ -86030,7 +86358,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 1233.25
+          "close": 1232.25
         }
       ],
       "fundamentals": {
@@ -86141,19 +86469,19 @@
                 "date": "Wed, 17 Jun 2026"
               },
               {
+                "title": "[新聞時事] 黃豆價格強彈大漲 川習通話點燃中國加碼採購希望 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBSNDdYd1NUeFJ1SnpTTEkwZHVxcXVZNUZvcjF2TGFGQm4zalZNUXZaNU5UVmlVT2dTWHNZNDlVaEVIbzBfOWNfT01JQzBZQlk?oc=5",
+                "date": "Thu, 05 Feb 2026"
+              },
+              {
                 "title": "[新聞時事] 大統益：美國需求支撐黃豆價格有利產品售價| 產經 - 中央社 CNA",
                 "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9qUDhfWXpROHZ6Qzh1SVZrOXk5T0VNVDlzbDI1UnRKZWgwVThSNl9YRkUyRVBhNHZueHFDX2JKVWYySEZKdmJ0YkwxNEtGZUoxclIzX2ZDU0Q0TWNqbEE?oc=5",
                 "date": "Fri, 11 Sep 2026"
               },
               {
-                "title": "[新聞時事] 大豆期貨(SOYBEAN-F)8月28日上漲2.03%：需求前景出現變化？ - TradingKey",
-                "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNZFE0RlJPZ0FsRnZpQjZjV0hQUl9meUl4Z2JxU28xWjQ2U3NXT21WX1p2X3JQc3NCWHliUUtOdTBZMktkeDM2WUk1X1RhR3hpYzl0OWxpUHFSM3VhX21ydEZEdHB2SlNKaWhwS3FnVlZpZGdpWmJlczdQNlFXT2pyVUtSWlVmTTE3bzN2MDVRMWxGbkNlMnVwMWJwM3M?oc=5",
-                "date": "Thu, 27 Aug 2026"
-              },
-              {
-                "title": "[新聞時事] CBOT-黃豆期貨價格 - MacroMicro",
-                "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE00akc5cGN0alYwWWFwM2hEQ1NVZXNLVktZdUZTaS1UTVBqTmpzZ2k2YndTeVMyNldid0pDenh0amZVUV9PTkRqN0NxOHlNMjE0OW0xWERNQlR2Z2hxZjRaR2ljZ0h2Zw?oc=5",
-                "date": "Thu, 02 Feb 2017"
+                "title": "[新聞時事] 近期穀物與油籽價格暴漲的背後原因是什麼？ - CME Group",
+                "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOYWQ4dWRXREUxN1FSc010UjhSS3NubXdUU1BUejFKVGR3WTZoODZxRXFvV2NfWE9Xa3BoU01qQWs0NUdPc2ZQLVZQUzZmMVZwcTJEcFJfT2ZBeTJNVTBGZk9PRWFqZGE4UkRLcDhQeHRqaU9qdGFCRFpzaHRmeWVGLTE2REthQ0x4bEFwYWZqX19maVY5RXdVWDctbVFhc2x4YzBpaW5mMVN1eHhidmF6V19CSXpZRDlWMHc?oc=5",
+                "date": "Mon, 21 Sep 2026"
               }
             ],
             "bearish": [
@@ -86168,9 +86496,9 @@
                 "date": "Tue, 10 Mar 2026"
               },
               {
-                "title": "[新聞時事] 近期穀物與油籽價格暴漲的背後原因是什麼？ - CME Group",
-                "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOYWQ4dWRXREUxN1FSc010UjhSS3NubXdUU1BUejFKVGR3WTZoODZxRXFvV2NfWE9Xa3BoU01qQWs0NUdPc2ZQLVZQUzZmMVZwcTJEcFJfT2ZBeTJNVTBGZk9PRWFqZGE4UkRLcDhQeHRqaU9qdGFCRFpzaHRmeWVGLTE2REthQ0x4bEFwYWZqX19maVY5RXdVWDctbVFhc2x4YzBpaW5mMVN1eHhidmF6V19CSXpZRDlWMHc?oc=5",
-                "date": "Mon, 21 Sep 2026"
+                "title": "[新聞時事] 大豆期貨(SOYBEAN-F)8月28日上漲2.03%：需求前景出現變化？ - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNZFE0RlJPZ0FsRnZpQjZjV0hQUl9meUl4Z2JxU28xWjQ2U3NXT21WX1p2X3JQc3NCWHliUUtOdTBZMktkeDM2WUk1X1RhR3hpYzl0OWxpUHFSM3VhX21ydEZEdHB2SlNKaWhwS3FnVlZpZGdpWmJlczdQNlFXT2pyVUtSWlVmTTE3bzN2MDVRMWxGbkNlMnVwMWJwM3M?oc=5",
+                "date": "Thu, 27 Aug 2026"
               },
               {
                 "title": "[新聞時事] 川習會或推遲 大豆期貨價格下跌逾2％ - 中時新聞網",
@@ -86740,6 +87068,14 @@
         },
         {
           "time": "11:20",
+          "price": 594.25
+        },
+        {
+          "time": "11:25",
+          "price": 595.0
+        },
+        {
+          "time": "11:30",
           "price": 594.75
         }
       ],
@@ -89458,6 +89794,14 @@
         {
           "time": "11:20",
           "price": 446.5
+        },
+        {
+          "time": "11:25",
+          "price": 446.5
+        },
+        {
+          "time": "11:30",
+          "price": 446.5
         }
       ],
       "history": [
@@ -91525,9 +91869,9 @@
                 "date": "Tue, 27 Oct 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-11 07:29:06 黃智勤 發佈 - MoneyDJ",
-                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQMDYxeC1fX1JyZlJQdUxZS1drNVpndTAtMXFxNTFxaExoVzA5eTVRNVh4RkNCSkRpUENGMlhqR2FhT0FGbUlldDZiOFR4ZkdoVGQ3a2ZkVVpmaU5PUGk0cGZjMkZWR1RFU2l2X01QeFZQV0dSaDV2MTZ0LXNoWEtzTXJuY3I0MHJnbnV2bFNEVEo1Tkk?oc=5",
-                "date": "Tue, 10 Nov 2026"
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-20 06:16:59 黃文章 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQRlBDQTRWY2N5RE14eHJ2RjdQRzFZbGpma0dPUmtjcFB4NTI3VVZVUnNrYVdYLWFxU1lwMHBtTWtKM001VGUwTy12UHp5N192YzNhTklyYl8xYnZ2eENkOUNBV0VMWFVMYWRKVmtWb2JILTM5N0ZHczRkaGJtTkYzbWRFWU9qei1UN2dlQWxTWW0zNzg?oc=5",
+                "date": "Tue, 20 Oct 2026"
               }
             ]
           },
@@ -91587,9 +91931,9 @@
                 "date": "Thu, 20 Aug 2026"
               },
               {
-                "title": "[新聞時事] 小麥、玉米漲瘋了！雙雙飆上3年多新高 背後原因竟不一樣 - 自由財經",
-                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9UODNTakhPVmlmVXRHTmxzWWw4MWpqRDZKZ2k4RU5nQnRVVUNTbGQ4ZktZcDJ4R1hXLThvZEdPOENBVHlpaUplT0NBV1hPX0hYdmdIMjEwb21jTGRGTnNv0gFkQVVfeXFMT3RNR3J1NVFfRDFIZmpnRU5vQkJRTmpydl9NM3hPV19xYkFWS1cxc09yRXZ1SmdCOXlZUldldFlJand4MnFhbWkwQ1dCdklHMGZEZGM3UzdrVGFlamNfVzd2MDJ5Yw?oc=5",
-                "date": "Sat, 29 Aug 2026"
+                "title": "[新聞時事] 玉米期貨(CORN-F)8月28日上漲5.57%：需求前景出現變化？ - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNSWdMREdlWGllUUdLMVV5bTdkalFkeVhMWldsYTMta1VjRWZTQmZBejBzUko2dXdZU1BxWFhLeXBMaWpXbHdhS3dEOGJPSGtYLTB3aVRuRUNtem1CV2VsT2duUHhtM3QyZEp5YnF1cG9XOVBXRWU5ZHlqZlhVRmZqdl9wamxtSGtqeDlSZnptdlV2U3pVbU9LaQ?oc=5",
+                "date": "Thu, 27 Aug 2026"
               },
               {
                 "title": "[新聞時事] 俄烏戰事不止 期貨運費齊揚成本壓力大！畜禽飼料4月起調漲0.5元 - 農傳媒",
@@ -91609,9 +91953,9 @@
                 "date": "Sat, 10 Oct 2026"
               },
               {
-                "title": "[新聞時事] 玉米期貨(CORN-F)8月28日上漲5.57%：需求前景出現變化？ - TradingKey",
-                "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNSWdMREdlWGllUUdLMVV5bTdkalFkeVhMWldsYTMta1VjRWZTQmZBejBzUko2dXdZU1BxWFhLeXBMaWpXbHdhS3dEOGJPSGtYLTB3aVRuRUNtem1CV2VsT2duUHhtM3QyZEp5YnF1cG9XOVBXRWU5ZHlqZlhVRmZqdl9wamxtSGtqeDlSZnptdlV2U3pVbU9LaQ?oc=5",
-                "date": "Thu, 27 Aug 2026"
+                "title": "[新聞時事] 美國農業部下調玉米收成預測，玉米期貨價格走高 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9jcTdBanNVSDlNZkVaQlJOZUc1NjYxa1M0dU11RGp5TzUwRDVxcllISjFaRWppeWQ2OEpyd1g0T1d5NXVCa1ppak13STIwSTR5V05aZndpby1LMmdZVy1VaktJeFdXVnp3dVZYUkg0WTRKNzlFdGc?oc=5",
+                "date": "Mon, 14 Sep 2026"
               },
               {
                 "title": "[新聞時事] 近期穀物與油籽價格暴漲的背後原因是什麼？ - CME Group",
@@ -92443,6 +92787,14 @@
         },
         {
           "time": "16:30",
+          "price": 32.88
+        },
+        {
+          "time": "16:35",
+          "price": 32.88
+        },
+        {
+          "time": "16:40",
           "price": 32.88
         }
       ],
@@ -95423,6 +95775,14 @@
         {
           "time": "16:25",
           "price": 6.66
+        },
+        {
+          "time": "16:30",
+          "price": 6.66
+        },
+        {
+          "time": "16:35",
+          "price": 6.66
         }
       ],
       "history": [
@@ -97694,7 +98054,7 @@
       "price": 1.1,
       "prev_close": 1.11,
       "change": -0.0,
-      "change_pct": -0.19,
+      "change_pct": -0.21,
       "ext_session": null,
       "intraday": [
         {
@@ -98491,6 +98851,14 @@
         },
         {
           "time": "16:30",
+          "price": 1.1
+        },
+        {
+          "time": "16:35",
+          "price": 1.1
+        },
+        {
+          "time": "16:40",
           "price": 1.1
         }
       ],
@@ -100609,14 +100977,14 @@
                 "date": "Tue, 27 Oct 2026"
               },
               {
+                "title": "[歐洲央行 / 聯準會] 市場預期聯準會將大幅升息，歐元跌至兩週低點 - www.tmgm.com",
+                "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPR0poUWxUUXphNEhmRHhLN20zampnVEQ2V0Z3cFE4YkFEZEJ0M2pyd1VvbG5zZ0ZXMk96U2toSi1CYWFMZWVlR2ZMUGZFS2V6YmlDdU9CU3MyMVJ4WThGSDl5UFVxNllKMHFjVndSTUJRdGMzTlNYaUh1TmpVdFVIYU9qMFltaFM2NW92Q3VEaGk1Q1BQendEejliaTdDUkhOcnY3bTQxbjlJcWhvczJTR1dUZ1ZNc3ZTUmlkUzVHbktRYXg2Tl9MdS1ScmdtNjlucDdScHpxQQ?oc=5",
+                "date": "Wed, 11 Nov 2026"
+              },
+              {
                 "title": "[歐洲央行 / 聯準會] EUR/USD：面臨下探1.10的風險 – ING - www.tmgm.com",
                 "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQMS1QUXYwSXUtRzhWWVRoc3p0OXZWR2tfSlAzNENtN3lDcGFockhteF9tWllfb3lfU0I4TFRCTlNuX2xidnh2SXhXMmJodWtORG1KU1g3RHVXOEkweXV1WmhDVnhPa1c0bk9sOFR1T2R1b1RIc05QU1hjSGhNM2hqWXlfM2h4N3BPSU5nd0ZtYXFCVktObjVISm9aN3d3aFdNcEFqVS1UNA?oc=5",
                 "date": "Thu, 12 Nov 2026"
-              },
-              {
-                "title": "[歐洲央行 / 聯準會] 市場預期聯準會將大幅升息，歐元跌至兩週低點 - www.tmgm.com",
-                "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQRGJIOUF1S3ZoUl9SS3MzUURJcW1LamhKVXRKdERGZkZsMzVFQ0QxTmVDaE5rSTlJTGl6Q3ZqdGwxalBDLVhnV1lfbG52cmc2cVI3NmhUMFlRUnR3dHliTVBEeFhONlBWN1ljUU1OMFY0aTMtdEt5RGR3aUEzXzhEaml3UURJMGlwV1pvS01OMV9HMHJJZGJ6T21PNEpkNGFzY3Yxb19BVEJrR1liUkpIbUtuR1NDR3c5cUxTREpVV1dYYU5zdGNNSWI5X1JFTk9RbW45Q09tQzNVOGR6?oc=5",
-                "date": "Wed, 11 Nov 2026"
               }
             ]
           },
@@ -100755,10 +101123,10 @@
       "symbol": "JPY=X",
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_bond",
-      "price": 159.87,
+      "price": 159.91,
       "prev_close": 159.84,
-      "change": 0.02,
-      "change_pct": 0.01,
+      "change": 0.06,
+      "change_pct": 0.04,
       "ext_session": null,
       "intraday": [
         {
@@ -100819,7 +101187,7 @@
         },
         {
           "time": "01:10",
-          "price": 159.88
+          "price": 159.89
         },
         {
           "time": "01:15",
@@ -101555,7 +101923,15 @@
         },
         {
           "time": "16:30",
-          "price": 159.87
+          "price": 159.9
+        },
+        {
+          "time": "16:35",
+          "price": 159.9
+        },
+        {
+          "time": "16:40",
+          "price": 159.91
         }
       ],
       "history": [
@@ -103629,7 +104005,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 159.87
+          "close": 159.9
         }
       ],
       "fundamentals": {
@@ -103822,7 +104198,7 @@
       "price": 1.32,
       "prev_close": 1.32,
       "change": -0.0,
-      "change_pct": -0.09,
+      "change_pct": -0.13,
       "ext_session": null,
       "intraday": [
         {
@@ -104619,6 +104995,14 @@
         },
         {
           "time": "16:30",
+          "price": 1.32
+        },
+        {
+          "time": "16:35",
+          "price": 1.32
+        },
+        {
+          "time": "16:40",
           "price": 1.32
         }
       ],
@@ -106888,10 +107272,10 @@
       "symbol": "DX-Y.NYB",
       "name": "美元指數 (DXY)",
       "asset_type": "fx_bond",
-      "price": 103.35,
+      "price": 103.34,
       "prev_close": 103.17,
-      "change": 0.17,
-      "change_pct": 0.17,
+      "change": 0.16,
+      "change_pct": 0.16,
       "ext_session": null,
       "intraday": [
         {
@@ -107440,7 +107824,15 @@
         },
         {
           "time": "11:20",
-          "price": 103.35
+          "price": 103.33
+        },
+        {
+          "time": "11:25",
+          "price": 103.32
+        },
+        {
+          "time": "11:30",
+          "price": 103.34
         }
       ],
       "history": [
@@ -109458,7 +109850,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 103.35
+          "close": 103.34
         }
       ],
       "fundamentals": {
@@ -109512,9 +109904,9 @@
                 "date": "Sat, 03 Oct 2026"
               },
               {
-                "title": "[美國聯準會 (Fed)] 風險偏好回升，美元指數（DXY）延續回落走勢，跌破102.00 - www.tmgm.com",
-                "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQTklCRC1hSjhWa2xIM2lPNm9ocGJwRHNQb0ZPamc0b2RtaG10ckEyR2t0dmdMV1N5aDVCUllkVjFRMkVsaUNUUlBZMnBIbXBocHJSVFhjalhNQVZHRmViN2VYVG9GXzduNTd4TDlBaU5rNC0yNHQ4MFotQTVMam03Z2hlNWlyUUlveEVuWXNucWxYMUw5VFVUV1lHbmczd2U2ZkJiREFGTkZfbkMxQXFHWGRRZkxPR0lKZDhtM1pPdEY0QjVXWTFEWVZtUVJXbWdjQl9wTHZJU1g?oc=5",
-                "date": "Mon, 09 Nov 2026"
+                "title": "[美國聯準會 (Fed)] 技術分析：央行周遇上美元指數最經典的走勢形態，哪些股票值得買入 - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOVmhwUHhJNE4tYjZBalZadHVDVWw0UmZiNkk5dEVqT0J2OXBnbkFRenBwN2NyY2YwcDhPZ1hCemNtYUxrbkdicHNHd25aejk0aThSTERJenNEX25uTDNsMUN4dUJRNHB2aVRsUThWN2g1WldQb2FWdE50SG51REtEdi02ZFJiTUxLRUNaNThvUzN6QjZGLWdGYThSYkR5ZDBzZFpObTRUODMyaGNud0JSR2llN2V6cFRqWEdYMFdvd21HZw?oc=5",
+                "date": "Mon, 15 Jun 2026"
               }
             ]
           },
@@ -109569,9 +109961,9 @@
                 "date": "Wed, 11 Nov 2026"
               },
               {
-                "title": "[新聞時事] 美元指數重回102！美元還會漲嗎？2026年底及2027年走勢預測 - TOP1markets",
-                "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNb2pOZDg2eEhCMkxOOTBQQ1NWYVpjc2JRSDlqSUtEOWR3YlJYNW9BX1dWWEQ0MGhNeVhycG5CX2huSnZNbmtEZFJhSHBJeXdVWGhJNUpxRVI0YjR5TXdqeTlYSjR6Q3NfR24zRUlfYnBWOEZISjZvb1ZkdGUwM3NqS3FrSWVTV2JtNElvdg?oc=5",
-                "date": "Wed, 11 Nov 2026"
+                "title": "[新聞時事] 美元為什麼還沒跌？2026下半年美元匯率走勢的三個關鍵｜豐雲學堂 2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMilgNBVV95cUxQMTdCX29uWnh5V0VOWmhndnkycDRZV0FRTFh5OWtTRENxdDN5aGtoTmlTRVlRNktvajk1M0dwejhsT0o4V2ZuQ2RRR3doR29HeWJRVVA4cHdBVENhbl9vWXdfem9aZGhZMkNrcnRTbUdBVnZpR2Vsamw3QnRJSi1wZjdLQnBKdmNOSllVbUU2Q0JyUTdHcGpRR0REWkxBd0hDcnJ1bDRjOHE3UlBkUl9LTFhCNFR1b1pwN21BTVlldGd0UHpkVllLZGYwUmtrTnE4M3M0Y0o4YzktMFhWa0xNUDVOaVZTM0pFMDRudGVJZ3hWOFI2ck5sS2JyZ3g4Z0doWi1jZi1HMGlFZVZyV2E4Sm1KdmFfUldKUTBLb29IRjNBYkRSV1NxMHVaOTJXZHgzZHJBeEloR1ZXRHhjUmphWUxBaDdoUXIwOGJSa185SFdEMzhmV0N4b01zQUJPTndQV09lUFVxZjUzWkp5WTRFQU5WaUdGR2trQ2JFUkRhNVNMTi1lbzBLLWlPc3dDMnJBblFpOGp3?oc=5",
+                "date": "Fri, 28 Aug 2026"
               },
               {
                 "title": "[新聞時事] 美元指數價格預測：關注102.50附近的對稱三角形頂部 - FXStreet",
@@ -109579,26 +109971,31 @@
                 "date": "Wed, 11 Nov 2026"
               },
               {
-                "title": "[新聞時事] 美元指數在101.70附近企穩，交易員等待美國CPI - FXStreet",
-                "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPWFpSU1R2c2YyeFhldllmMXhCSm0zMUtOaXAzamsyeUZ3dVBOMGh2ZUh2R3YwWnh5WTE5TGdEZkFUQVdMWGE2TlBzQXlWQ18yT25Vb2tGR1QydmEzS0R5dFlYTWRCc0wzWVN5WjlfOEQxTFA4Z2xhNElVUkcwUm1nWi1tUk05MWRTSk1PbVFGSHhJc1VOX2lWcXZtZ2diVm1Zc0xyNkdBNlNIS25KWDczMkZ5NnNpVXdDYnVMTG8zXzVsQ0R0SHhrZnZOdEltZlJkYjFjS0l3TjEtRjUyMk92VFhvRWY?oc=5",
-                "date": "Tue, 10 Nov 2026"
+                "title": "[新聞時事] 美元指數價格預測：DXY 試探 23.6% 斐波那契支撐位，102.00 下方有支撐 - tmgm.com",
+                "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPeWo3TjNwVnR3NTdoTjZ5M0YzSkFHdGlXdDdpQUYxekNuRFZqazB5OV80Qm1PQjktS29yc05ULVhqOVB1eWg5MG5pQ0NLY1NvOWU2cEFncGJTYXVkZ3Z4U1FmRzJ2OEJBdVg3M0lUR1B3WEJnWU5OckZqajRrZ2U0X1AxVXdGTW1jMnk3Y2hCY0V1OGdjcWF6NnlrRERIWlVteDkwQXdMNmpuclhneXRfWjhEa0RXSFhxRDhPM1hLM1NoLXBoR0xEdUUwZmFrVVVFWHNua3NGbDlEZ3ZkWXJB?oc=5",
+                "date": "Thu, 15 Oct 2026"
               }
             ],
             "bearish": [
               {
-                "title": "[新聞時事] 美國通膨數據公佈前，美元指數（DXY）跌幅收斂 - www.tmgm.com",
-                "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOdVdRclpqaGZYbE9rR3hUNkMtZ2ZTU1A4SmN5T1ZNNC1XWVlaQ3RiWmZJREw4WWZlNktJS0dFc0d0cFJkMERqVF8zLUcyblFyYWEzVTFISkdCVi1BMGxQVThCbENsLU9KLUotNktabHRfSXlWX1V1Zlk5QmljVzNBdWZiT1RIMk1jdzZab1lOb3FfVkYwWFJIVXEyVUN3dEtRT3BycFpVSWE1MG8wUzEzME01RFJaYVBGTUtfSVpPYTFORnVjSmNkSGZR?oc=5",
-                "date": "Tue, 10 Nov 2026"
-              },
-              {
-                "title": "[新聞時事] 美元為什麼還沒跌？2026下半年美元匯率走勢的三個關鍵｜豐雲學堂 2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMilgNBVV95cUxQMTdCX29uWnh5V0VOWmhndnkycDRZV0FRTFh5OWtTRENxdDN5aGtoTmlTRVlRNktvajk1M0dwejhsT0o4V2ZuQ2RRR3doR29HeWJRVVA4cHdBVENhbl9vWXdfem9aZGhZMkNrcnRTbUdBVnZpR2Vsamw3QnRJSi1wZjdLQnBKdmNOSllVbUU2Q0JyUTdHcGpRR0REWkxBd0hDcnJ1bDRjOHE3UlBkUl9LTFhCNFR1b1pwN21BTVlldGd0UHpkVllLZGYwUmtrTnE4M3M0Y0o4YzktMFhWa0xNUDVOaVZTM0pFMDRudGVJZ3hWOFI2ck5sS2JyZ3g4Z0doWi1jZi1HMGlFZVZyV2E4Sm1KdmFfUldKUTBLb29IRjNBYkRSV1NxMHVaOTJXZHgzZHJBeEloR1ZXRHhjUmphWUxBaDdoUXIwOGJSa185SFdEMzhmV0N4b01zQUJPTndQV09lUFVxZjUzWkp5WTRFQU5WaUdGR2trQ2JFUkRhNVNMTi1lbzBLLWlPc3dDMnJBblFpOGp3?oc=5",
-                "date": "Fri, 28 Aug 2026"
+                "title": "[新聞時事] 美元指數重回102！美元還會漲嗎？2026年底及2027年走勢預測 - TOP1markets",
+                "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNb2pOZDg2eEhCMkxOOTBQQ1NWYVpjc2JRSDlqSUtEOWR3YlJYNW9BX1dWWEQ0MGhNeVhycG5CX2huSnZNbmtEZFJhSHBJeXdVWGhJNUpxRVI0YjR5TXdqeTlYSjR6Q3NfR24zRUlfYnBWOEZISjZvb1ZkdGUwM3NqS3FrSWVTV2JtNElvdg?oc=5",
+                "date": "Wed, 11 Nov 2026"
               },
               {
                 "title": "[新聞時事] 美元指數（DXY）在 99.00 下方掙扎，觸及兩週低點，交易員關注美國通膨數據 - www.tmgm.com",
                 "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNVW1EMDVJZE12UEtQT215aGxBcmVkSllsaWl5ZHRjVGoyWUNHZDBKUzJEQW5OOWZ2T3J3TjBDODZSVE9VSjNLbUZ0M00zZWNrSjZTUnpkUThOYnI4aVhUX01CeE45ZnZCYnpnS0FZZ09sem0wMFZkRUJBUmlJQy10aFBsUmZ1M2tCd0J3Snpud21JcG9NY3AyVE1mMFJLS2YyX3BFcmJUaWd1ZEhrb2U1eWZnR25NcXd0d05zNlFJSkJLcml0MnlIRUpvV1laU1lCV3ZuMFhhS2xtSFNSSGV2ZFQtQ3ZRQjJj?oc=5",
                 "date": "Tue, 08 Sep 2026"
+              },
+              {
+                "title": "[新聞時事] 美元指數在101.70附近企穩，交易員等待美國CPI - FXStreet",
+                "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPWFpSU1R2c2YyeFhldllmMXhCSm0zMUtOaXAzamsyeUZ3dVBOMGh2ZUh2R3YwWnh5WTE5TGdEZkFUQVdMWGE2TlBzQXlWQ18yT25Vb2tGR1QydmEzS0R5dFlYTWRCc0wzWVN5WjlfOEQxTFA4Z2xhNElVUkcwUm1nWi1tUk05MWRTSk1PbVFGSHhJc1VOX2lWcXZtZ2diVm1Zc0xyNkdBNlNIS25KWDczMkZ5NnNpVXdDYnVMTG8zXzVsQ0R0SHhrZnZOdEltZlJkYjFjS0l3TjEtRjUyMk92VFhvRWY?oc=5",
+                "date": "Tue, 10 Nov 2026"
+              },
+              {
+                "title": "[新聞時事] 美元指數價格預測：下一輪牛市行情前的平靜 - FXStreet",
+                "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWWNUZmJYUFdXbkZoOXh6Y3ZVR2hWcmNIV1dzeUxaRk0wR05QUlVVem9vTkxmUlpFMTZtUld5TG1MVE1mdDM4X1prSmYzVDhCdFdLb1gtMGRzRzJpZ1BWanlsMkk3aXl1LUlNZ3hBeEMxV2xBSXR4UTZ0NFpMRWtGNklOcHU4bVotM2N1NVJ4WlFCNWY2VHNlZU5hVXpFOUJfS1RGQnVrNWo4Tl9neVBScnVyMV9YZw?oc=5",
+                "date": "Tue, 10 Nov 2026"
               }
             ]
           }
@@ -109632,9 +110029,9 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
-            "title": "[新聞時事] 美國通膨數據公佈前，美元指數（DXY）跌幅收斂 - www.tmgm.com",
-            "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOdVdRclpqaGZYbE9rR3hUNkMtZ2ZTU1A4SmN5T1ZNNC1XWVlaQ3RiWmZJREw4WWZlNktJS0dFc0d0cFJkMERqVF8zLUcyblFyYWEzVTFISkdCVi1BMGxQVThCbENsLU9KLUotNktabHRfSXlWX1V1Zlk5QmljVzNBdWZiT1RIMk1jdzZab1lOb3FfVkYwWFJIVXEyVUN3dEtRT3BycFpVSWE1MG8wUzEzME01RFJaYVBGTUtfSVpPYTFORnVjSmNkSGZR?oc=5",
-            "date": "Tue, 10 Nov 2026"
+            "title": "[新聞時事] 美元指數重回102！美元還會漲嗎？2026年底及2027年走勢預測 - TOP1markets",
+            "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNb2pOZDg2eEhCMkxOOTBQQ1NWYVpjc2JRSDlqSUtEOWR3YlJYNW9BX1dWWEQ0MGhNeVhycG5CX2huSnZNbmtEZFJhSHBJeXdVWGhJNUpxRVI0YjR5TXdqeTlYSjR6Q3NfR24zRUlfYnBWOEZISjZvb1ZkdGUwM3NqS3FrSWVTV2JtNElvdg?oc=5",
+            "date": "Wed, 11 Nov 2026"
           }
         ]
       }
@@ -109646,7 +110043,7 @@
       "price": 5.13,
       "prev_close": 5.1,
       "change": 0.03,
-      "change_pct": 0.51,
+      "change_pct": 0.59,
       "ext_session": null,
       "intraday": [
         {
@@ -109791,6 +110188,14 @@
         },
         {
           "time": "10:15",
+          "price": 5.13
+        },
+        {
+          "time": "10:20",
+          "price": 5.13
+        },
+        {
+          "time": "10:25",
           "price": 5.13
         }
       ],
@@ -111991,10 +112396,10 @@
       "symbol": "^TYX",
       "name": "美國 30 年期公債殖利率",
       "asset_type": "fx_bond",
-      "price": 5.46,
+      "price": 5.47,
       "prev_close": 5.43,
       "change": 0.03,
-      "change_pct": 0.52,
+      "change_pct": 0.63,
       "ext_session": null,
       "intraday": [
         {
@@ -112140,6 +112545,14 @@
         {
           "time": "10:15",
           "price": 5.46
+        },
+        {
+          "time": "10:20",
+          "price": 5.46
+        },
+        {
+          "time": "10:25",
+          "price": 5.47
         }
       ],
       "history": [
@@ -114149,7 +114562,7 @@
         },
         {
           "date": "2026-11-13",
-          "close": 5.46
+          "close": 5.47
         }
       ],
       "fundamentals": {
@@ -114260,14 +114673,14 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
-                "title": "[新聞時事] 美國國債 VS 公司債！公債殖利率為什麼牽動股市？帶你瞭解美債利率 - 口袋證券",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGRUYtUDVtTWRiRVZQSHhXa3lZVi1xbXhsZGttOUxhQTlMTVdJTmNHNERvRHk1TDdlSWN2OW82NFBqdEFwRko4aVlHMU5zb0JYNDY0Z2dR?oc=5",
-                "date": "Tue, 18 Aug 2026"
-              },
-              {
                 "title": "[新聞時事] 美30年期公債殖利率 恐升破6％ - 工商時報",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mMkJkcmViRWg5MTI3VUk2NXMzQ3lESGhTMDhWcG1FX0ROSTFuNlVkNmdRSXFKREU1ZWREaFpRc2x4QkRiZmxoV2JHcHVjVGp2YzBnVjlfd0VIWU96bld3?oc=5",
                 "date": "Thu, 01 Oct 2026"
+              },
+              {
+                "title": "[新聞時事] 美國國債 VS 公司債！公債殖利率為什麼牽動股市？帶你瞭解美債利率 - 口袋證券",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGRUYtUDVtTWRiRVZQSHhXa3lZVi1xbXhsZGttOUxhQTlMTVdJTmNHNERvRHk1TDdlSWN2OW82NFBqdEFwRko4aVlHMU5zb0JYNDY0Z2dR?oc=5",
+                "date": "Tue, 18 Aug 2026"
               },
               {
                 "title": "[新聞時事] 美債20年殖利率衝破5%，是金融危機警訊嗎？歷史、黃金、ETF一次看懂｜豐雲學堂2026 年 11 月 - 永豐金證券",
@@ -114292,9 +114705,9 @@
                 "date": "Fri, 23 Oct 2026"
               },
               {
-                "title": "[新聞時事] 美國公債價格暴跌 長期債殖利率再創24年新高 - 自由財經",
-                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5RaU9QVy1rQjZ2enhqdWcyUjNJamRaQnUwVkFhUmFlN2hKUEw4OElQQVY4OThPX21SQllBYXFTcTRsbS1NLU1jUVZJb1EwdDc0azJsZHlRR2Juc3NHWExZ0gFkQVVfeXFMT014Y1ptT1lIUWdoY2ZaSlpiaW9DTDN1eHRLUm05bkFfR3NxMHBaV3ZxaTFMQ2NfMmZVYXFwR3ZLakNjc1o4TjhPMkJtMVJXSUwzUVZkYkU0OFpXeHpkWkx6VXpIZg?oc=5",
-                "date": "Tue, 06 Oct 2026"
+                "title": "[新聞時事] 商周-美債殖利率衝5%，形成全球資金斷層線...為何0050或台積電可能被重估價？ - 商業週刊 - 商業週刊",
+                "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1CdmtYTnp6U0xNZk9fVkNnNDhZWGRHWXhUWE43V3BONjlTNFNnQWFMNTdoMkt6T1p4VE9DTVc3MmstNjNLOFdzbUZfOTVob01tekdfRGZEZEpQczNhYWRjZGx6WQ?oc=5",
+                "date": "Wed, 27 May 2026"
               }
             ]
           }
