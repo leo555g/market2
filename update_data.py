@@ -1,1149 +1,3 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>全球金融市場與台股籌碼即時監控儀表板</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-      background-color: #0b0f19;
-      color: #e2e8f0;
-    }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-    .card-bg {
-      background: linear-gradient(145deg, #131b2e 0%, #0f1523 100%);
-      border: 1px solid #1e293b;
-      transition: all 0.25s ease;
-    }
-    .card-bg:hover { border-color: #3b82f6; }
-
-    @keyframes flashRose {
-      0% { background-color: rgba(244, 63, 94, 0.45); border-color: #fb7185; transform: scale(1.02); }
-      100% { background-color: transparent; border-color: #1e293b; transform: scale(1); }
-    }
-    @keyframes flashEmerald {
-      0% { background-color: rgba(16, 185, 129, 0.45); border-color: #34d399; transform: scale(1.02); }
-      100% { background-color: transparent; border-color: #1e293b; transform: scale(1); }
-    }
-    .flash-rose { animation: flashRose 0.9s ease-out; }
-    .flash-emerald { animation: flashEmerald 0.9s ease-out; }
-  </style>
-</head>
-<body class="min-h-screen p-4 md:p-8">
-
-  <!-- 頂部標題與即時跳動引擎控制台 -->
-  <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
-    <div>
-      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・同步台灣證券交易所 (TWSE) 官方數據・各國央行 / 總經 / 時事三維度拆解・美股綠漲紅跌</p>
-    </div>
-
-    <div class="flex flex-wrap items-center gap-3">
-      <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
-        <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-        <span id="live-status" class="text-xs font-bold text-emerald-400">即時報價與證交所官方數據同步中</span>
-      </div>
-
-      <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">
-        ⚡ 設定美股 WebSocket 秒級金鑰
-      </button>
-
-      <span id="last-updated" class="text-xs text-slate-400 mono">載入中...</span>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto space-y-10">
-
-    <!-- 專區 1：最上方互動式走勢圖儀表板 -->
-    <section class="card-bg rounded-xl p-5 shadow-lg">
-      <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
-        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div>
-            <div class="flex flex-wrap items-center gap-2.5">
-              <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
-              <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
-            </div>
-            <p class="text-xs text-slate-400 mt-1">可直接在下方點選標籤將任意指數、美股、台股、期貨加入「目前比較清單」疊圖對決</p>
-          </div>
-
-          <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
-            <span class="text-xs text-slate-400 shrink-0">主標的：</span>
-            <select id="primary-asset-select" onchange="selectAsset(this.value)" class="bg-transparent text-xs font-bold text-white focus:outline-none">
-            </select>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1D (日內)</button>
-          <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
-          <button onclick="switchRange('1M')" id="btn-1M" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1M</button>
-          <button onclick="switchRange('YTD')" id="btn-YTD" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
-
-          <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
-            <span class="text-xs text-slate-400">自訂區間：</span>
-            <input type="date" id="custom-start" class="bg-transparent text-xs text-white mono focus:outline-none" />
-            <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="custom-end" class="bg-transparent text-xs text-white mono focus:outline-none" />
-            <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 目前比較清單 + 儀表板直接點選比較標籤牆 -->
-      <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 mb-4 space-y-3">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-bold text-emerald-400">📌 目前比較清單：</span>
-            <div id="compare-chips-container" class="flex flex-wrap items-center gap-2"></div>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <select id="compare-select" onchange="addSelectedCompareAsset()" class="bg-slate-800 border border-slate-700 text-xs text-white rounded px-2.5 py-1 focus:outline-none focus:border-blue-500">
-              <option value="">＋ 從完整清單搜尋加入比較...</option>
-            </select>
-            <button onclick="clearComparisons()" class="px-2.5 py-1 bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 border border-rose-500/30 text-xs font-bold rounded transition">
-              清除全部比較
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-bold text-slate-400">👇 直接在儀表板點選下方標的即可加入／移除比較（已選標的會亮起綠框）：</span>
-          </div>
-          <div id="dashboard-quick-picker" class="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1"></div>
-        </div>
-      </div>
-
-      <div id="comparison-return-summary" class="flex flex-wrap items-center gap-2.5 mb-3"></div>
-      <div id="main-price-chart" class="w-full h-80"></div>
-    </section>
-
-    <!-- 專區 2：全球主要指數 -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視分開獨立的：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
-      <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
-    </section>
-
-    <!-- 專區 3：美股核心科技股 (綠漲紅跌) -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-emerald-500 pl-3">美股核心科技股 <span class="text-xs font-normal text-emerald-400 ml-2">(美股專屬：綠漲紅跌・純代號顯示・點擊檢視財報與新聞利多利空)</span></h2>
-      <div id="grid-us-stocks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
-    </section>
-
-    <!-- 專區 4：期貨與大宗商品 -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-amber-500 pl-3">期貨與大宗商品 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示當日收盤價・下方即時跳動夜盤價・點擊檢視央行/供需/時事多空)</span></h2>
-      <div id="grid-futures" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
-    </section>
-
-    <!-- 專區 5：台股核心權值股 -->
-    <section class="space-y-6">
-      <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">台股核心權值股・最新財報與月營收・公開資訊觀測站與新聞利多利空</h2>
-      <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-
-      <div class="card-bg rounded-xl p-5">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 text-xs font-bold bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded">MOPS 重大訊息</span>
-            <h3 class="text-base font-bold text-white">公開資訊觀測站當日最新重大訊息通報</h3>
-          </div>
-          <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
-        </div>
-        <div id="mops-list" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
-      </div>
-    </section>
-
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (100% 同步台灣證券交易所 www.twse.com.tw 官方數據) -->
-    <section class="space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-        <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
-          台股與法人籌碼進階視覺化專區
-          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(資料來源：台灣證券交易所 www.twse.com.tw 官方統計報表)</span>
-        </h2>
-        <a href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">
-          前往台灣證券交易所官網核對 &rarr;
-        </a>
-      </div>
-
-      <!-- 證交所最新交易日三大法人買賣超官方金額摘要卡 -->
-      <div id="twse-latest-summary" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div class="card-bg rounded-xl p-4">
-          <h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 日買賣超金額變化 (單位：億元・證交所 BFI82U 官方數據)</h3>
-          <div id="chart-institutional" class="w-full h-72"></div>
-        </div>
-        <div class="card-bg rounded-xl p-4">
-          <h3 class="text-sm font-bold text-slate-200 mb-2">大盤融資餘額與融券餘額變化趨勢 (單位：萬張・證交所 MI_MARGN 官方數據)</h3>
-          <div id="chart-margin" class="w-full h-72"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 專區 7：美股最新財報核心數據與獲利能力指標 (綠漲紅跌) -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美股科技股：最新財報核心數據與獲利能力指標 <span class="text-xs font-normal text-emerald-400 ml-2">(美股綠漲紅跌・點擊任一列可開啟利多利空消息視窗)</span></h2>
-      <div class="card-bg rounded-xl overflow-x-auto">
-        <table class="w-full text-left border-collapse text-sm">
-          <thead>
-            <tr class="border-b border-slate-800 text-slate-400 text-xs">
-              <th class="py-3 px-4">代號</th>
-              <th class="py-3 px-4">最新收盤價</th>
-              <th class="py-3 px-4">盤前 / 盤後即時價</th>
-              <th class="py-3 px-4">本益比 (PE)</th>
-              <th class="py-3 px-4">預估本益比 (Fwd PE)</th>
-              <th class="py-3 px-4">EPS (TTM)</th>
-              <th class="py-3 px-4">毛利率</th>
-              <th class="py-3 px-4">營業利益率</th>
-              <th class="py-3 px-4">ROE</th>
-              <th class="py-3 px-4">季度營收年增率 (YoY)</th>
-              <th class="py-3 px-4">多空情報</th>
-            </tr>
-          </thead>
-          <tbody id="table-us-fundamentals" class="divide-y divide-slate-800/60 mono text-xs"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 專區 8：全球外匯與美債殖利率 -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可檢視各國央行決策、總經與匯市利多利空)</span></h2>
-      <div id="grid-fx-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-    </section>
-
-  </main>
-
-  <!-- 升級版多空情報彈出視窗 -->
-  <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
-      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
-        <div>
-          <div class="flex flex-wrap items-center gap-3">
-            <h2 id="modal-stock-title" class="text-2xl font-bold text-white">台灣加權指數</h2>
-            <span id="modal-stock-price" class="text-xl font-bold mono text-white"></span>
-            <span id="modal-stock-ext" class="text-xs font-bold mono px-2 py-0.5 rounded bg-slate-800"></span>
-            <span id="modal-cb-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 hidden"></span>
-          </div>
-          <p id="modal-subtitle" class="text-xs text-slate-400 mt-1"></p>
-        </div>
-        <button onclick="closeStockModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-1.5 text-sm font-bold">
-          ✕ 關閉
-        </button>
-      </div>
-
-      <div id="modal-category-tabs" class="flex flex-wrap items-center gap-2 mb-5"></div>
-      <div id="modal-pillars-container" class="space-y-6 mb-6"></div>
-
-      <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-4">
-        <h3 id="modal-metrics-heading" class="text-sm font-bold text-white mb-3">核心數據與指標總覽</h3>
-        <div id="modal-fundamentals-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mono"></div>
-      </div>
-
-      <div class="flex justify-end gap-3 pt-2">
-        <button id="modal-btn-add-compare" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg">
-          ➕ 將此標的加入上方走勢圖比較
-        </button>
-        <button onclick="closeStockModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-lg">
-          完成檢視
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let globalMarketData = null;
-    let allAssetsMap = {};
-    let currentAssetSymbol = "^GSPC";
-    let compareSymbols = [];
-    let currentRangeMode = "1M";
-    let currentModalSymbol = null;
-    let currentModalTab = "ALL";
-
-    let mainChart = null;
-    let instChart = null;
-    let marginChart = null;
-    let finnhubSocket = null;
-
-    const CHART_COLORS = [
-      "#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf"
-    ];
-
-    const CLIENT_CB_MAP = {
-      "^GSPC": "美國聯準會 (Fed)",
-      "^DJI": "美國聯準會 (Fed)",
-      "^IXIC": "美國聯準會 (Fed)",
-      "^SOX": "美國聯準會 (Fed)",
-      "^TWII": "台灣央行 (CBC)",
-      "^N225": "日本央行 (BoJ)",
-      "^KS11": "韓國央行 (BoK)",
-      "^FTSE": "英國央行 (BoE)",
-      "^GDAXI": "歐洲央行 (ECB)",
-      "^FCHI": "歐洲央行 (ECB)"
-    };
-
-    // =========================================================================
-    // 前端強制文字校正濾鏡：
-    // 即使讀到舊的 market_data.json，也會強制把「臺」改為「台」、「那斯達剋/那斯達克」改為「納斯達克」
-    // =========================================================================
-    function cleanTwText(str) {
-      if (!str || typeof str !== "string") return str;
-      return str
-        .replace(/臺/g, "台")
-        .replace(/那斯達剋/g, "納斯達克")
-        .replace(/納斯達剋/g, "納斯達克")
-        .replace(/那斯達克/g, "納斯達克")
-        .replace(/斯達剋/g, "斯達克")
-        .replace(/達剋/g, "達克");
-    }
-
-    function sanitizePayload(obj) {
-      if (typeof obj === "string") return cleanTwText(obj);
-      if (Array.isArray(obj)) return obj.map(sanitizePayload);
-      if (obj && typeof obj === "object") {
-        const out = {};
-        for (const k of Object.keys(obj)) {
-          out[k] = sanitizePayload(obj[k]);
-        }
-        return out;
-      }
-      return obj;
-    }
-
-    function safeId(symbol) {
-      return symbol.replace(/[^a-zA-Z0-9]/g, "_");
-    }
-
-    function isUsGreenUpAsset(symbolOrType) {
-      if (symbolOrType === "us_stock") return true;
-      const item = allAssetsMap[symbolOrType];
-      return item && item.asset_type === "us_stock";
-    }
-
-    function getColorClass(val, symbolOrType = null) {
-      const num = Number(val);
-      if (isNaN(num) || num === 0) return "text-slate-300";
-      const greenUp = isUsGreenUpAsset(symbolOrType);
-      if (greenUp) {
-        return num > 0 ? "text-emerald-400" : "text-rose-400";
-      } else {
-        return num > 0 ? "text-rose-400" : "text-emerald-400";
-      }
-    }
-
-    function formatSignedPct(val) {
-      if (val === null || val === undefined || isNaN(val)) return "0.00%";
-      const num = Number(val);
-      const sign = num > 0 ? "+" : "";
-      return `${sign}${num.toFixed(2)}%`;
-    }
-
-    function createQuoteCard(item, forceTickerOnly = false) {
-      item.name = cleanTwText(item.name);
-      allAssetsMap[item.symbol] = item;
-      const domId = safeId(item.symbol);
-      const titleText = forceTickerOnly ? item.symbol : item.name;
-      const colorCls = getColorClass(item.change_pct, item.asset_type);
-
-      let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
-      if (item.ext_session && item.ext_session.price !== null) {
-        const extColor = getColorClass(item.ext_session.change_pct, item.asset_type);
-        extHtml = `
-          <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
-            <span class="${extColor} font-semibold">
-              ${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}
-            </span>
-          </div>
-        `;
-      }
-
-      const cbLabel = CLIENT_CB_MAP[item.symbol];
-      const infoBtnText = item.asset_type === "us_stock"
-        ? "📊 多空情報"
-        : (cbLabel ? `🏦 ${cbLabel.split(" ")[0]}/總經` : "📊 總經/時事");
-
-      return `
-        <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-lg p-3.5 cursor-pointer flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-white text-sm tracking-tight">${titleText}</span>
-              <span class="text-[10px] text-slate-500 mono">${forceTickerOnly ? 'US' : item.symbol}</span>
-            </div>
-            <div class="mt-2 flex items-baseline justify-between mono">
-              <span id="price-${domId}" class="text-lg font-bold text-white">${item.price ?? 'N/A'}</span>
-              <span id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
-            </div>
-            ${extHtml}
-          </div>
-
-          <div class="mt-2.5 pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1">
-            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 font-medium transition truncate">
-              ${infoBtnText}
-            </button>
-            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300 transition shrink-0">
-              ＋比較
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    function createTwStockCard(item) {
-      item.name = cleanTwText(item.name);
-      allAssetsMap[item.symbol] = item;
-      const domId = safeId(item.symbol);
-      const colorCls = getColorClass(item.change_pct, item.asset_type);
-      const f = item.fundamentals || {};
-
-      let revHtml = `<div class="text-xs text-slate-400 mt-2">月營收：等待最新一期資料更新</div>`;
-      if (f.monthly_rev) {
-        const momCls = getColorClass(f.monthly_rev.mom, "tw_stock");
-        const yoyCls = getColorClass(f.monthly_rev.yoy, "tw_stock");
-        revHtml = `
-          <div class="bg-slate-900/70 rounded p-2.5 border border-slate-800/90 mt-2">
-            <div class="flex items-center justify-between text-xs mb-1">
-              <span class="font-bold text-amber-400">最新月營收 (${f.monthly_rev.month})</span>
-              <span class="mono font-bold text-white">${f.monthly_rev.revenue_yi}</span>
-            </div>
-            <div class="flex items-center justify-between text-xs mono">
-              <span>月增 (MoM): <strong class="${momCls}">${formatSignedPct(f.monthly_rev.mom)}</strong></span>
-              <span>年增 (YoY): <strong class="${yoyCls}">${formatSignedPct(f.monthly_rev.yoy)}</strong></span>
-            </div>
-          </div>
-        `;
-      }
-
-      const topBull = cleanTwText(item.news_sentiment?.bullish?.[0]?.title || "點擊查看最新新聞與重訊利多");
-      const topBear = cleanTwText(item.news_sentiment?.bearish?.[0]?.title || "點擊查看最新新聞與風險提示");
-
-      let mopsHtml = "";
-      if (item.mops_announcements && item.mops_announcements.length > 0) {
-        const listItems = item.mops_announcements.slice(0, 2).map(m => `
-          <li class="text-xs text-slate-300 truncate">
-            <a href="${m.url}" target="_blank" onclick="event.stopPropagation()" class="hover:text-blue-400">
-              <span class="text-rose-400 font-bold">[MOPS重訊 ${m.time}]</span> ${cleanTwText(m.subject)}
-            </a>
-          </li>
-        `).join("");
-        mopsHtml = `
-          <div class="mt-2.5 pt-2 border-t border-slate-800">
-            <div class="text-[11px] font-bold text-rose-400 mb-1">公開資訊觀測站最新公告：</div>
-            <ul class="space-y-1">${listItems}</ul>
-          </div>
-        `;
-      }
-
-      return `
-        <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 flex flex-col justify-between cursor-pointer">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-              <div>
-                <h3 class="font-bold text-base text-white">${item.name}</h3>
-                <span class="text-[11px] text-indigo-400">點擊開啟「MOPS重訊＋新聞利多利空」</span>
-              </div>
-              <div class="text-right mono">
-                <div id="price-${domId}" class="text-xl font-bold text-white">${item.price ?? 'N/A'}</div>
-                <div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div>
-              </div>
-            </div>
-
-            <div class="mt-3">
-              <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
-              <div class="grid grid-cols-3 gap-2 text-xs mono bg-slate-900/40 p-2 rounded">
-                <div><span class="text-slate-400 block text-[10px]">本益比 PE</span>${f.pe ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span>${f.eps ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">營益率</span>${f.operating_margin ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">季營收年增</span>${f.yoy_rev_growth ?? 'N/A'}</div>
-              </div>
-              ${revHtml}
-            </div>
-
-            <div class="mt-2.5 space-y-1 text-xs bg-slate-900/50 p-2 rounded border border-slate-800/80">
-              <div class="truncate text-amber-200"><strong class="text-amber-400">🔥 利多：</strong>${topBull}</div>
-              <div class="truncate text-cyan-200"><strong class="text-cyan-400">❄️ 利空：</strong>${topBear}</div>
-            </div>
-          </div>
-
-          ${mopsHtml}
-
-          <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between">
-            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">
-              📊 展開重訊與新聞利多利空
-            </button>
-            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300">
-              ＋加入走勢比較
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    function getNormalizedCategories(item) {
-      const ns = item.news_sentiment || {};
-      if (ns.categories && Object.keys(ns.categories).length > 0) {
-        return ns.categories;
-      }
-
-      const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
-      const rawBulls = ns.bullish || [];
-      const rawBears = ns.bearish || [];
-
-      if (isStock) {
-        return {
-          fundamentals_mops: {
-            label: "📑 MOPS重訊・月營收・財報指標",
-            bullish: rawBulls.filter(x => x.title.includes("基本面") || x.title.includes("獲利") || x.title.includes("估值") || x.title.includes("MOPS")),
-            bearish: rawBears.filter(x => x.title.includes("基本面") || x.title.includes("風險") || x.title.includes("估值") || x.title.includes("MOPS"))
-          },
-          events: {
-            label: "📰 產業與個股新聞時事",
-            bullish: rawBulls.filter(x => !x.title.includes("基本面") && !x.title.includes("MOPS")),
-            bearish: rawBears.filter(x => !x.title.includes("基本面") && !x.title.includes("MOPS"))
-          }
-        };
-      } else {
-        const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)";
-        return {
-          central_bank: {
-            label: `🏦 ${cbName}決策`,
-            bullish: [{ title: `[${cbName}] 貨幣政策與利率水準維持穩定觀察期，降低市場流動性衝擊`, url: "#", date: "央行政策" }],
-            bearish: [{ title: `[${cbName}] 持續關注通膨黏著度與海內外利差變動對資金流向之影響`, url: "#", date: "央行風險" }]
-          },
-          macro: {
-            label: "📊 總經數據指標",
-            bullish: [{ title: `[總經數據] 製造業、出口動能與就業數據提供基本面支撐`, url: "#", date: "總經指標" }],
-            bearish: [{ title: `[總經數據] 全球終端需求復甦步調不一，留意物價與景氣周期波動`, url: "#", date: "總經風險" }]
-          },
-          events: {
-            label: "📰 新聞時事與盤勢",
-            bullish: rawBulls.map(x => ({ ...x, title: cleanTwText(x.title.replace("[總經/Fed時事]", "[新聞時事]")) })),
-            bearish: rawBears.map(x => ({ ...x, title: cleanTwText(x.title.replace("[總經/Fed時事]", "[新聞時事]")) }))
-          }
-        };
-      }
-    }
-
-    function switchModalCategoryTab(tabKey) {
-      currentModalTab = tabKey;
-      renderModalPillars();
-    }
-
-    function renderModalPillars() {
-      const item = allAssetsMap[currentModalSymbol];
-      if (!item) return;
-
-      const categories = getNormalizedCategories(item);
-      const catKeys = Object.keys(categories);
-
-      const tabsEl = document.getElementById("modal-category-tabs");
-      const allBtnCls = currentModalTab === "ALL"
-        ? "bg-blue-600 text-white border-blue-500"
-        : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700";
-
-      tabsEl.innerHTML = `
-        <button onclick="switchModalCategoryTab('ALL')" class="px-3 py-1.5 text-xs font-bold rounded-lg border transition ${allBtnCls}">
-          🗂️ 全部展開 (三大維度分區檢視)
-        </button>
-        ${catKeys.map(k => {
-          const active = (currentModalTab === k);
-          const cls = active
-            ? "bg-indigo-600 text-white border-indigo-400"
-            : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700";
-          return `
-            <button onclick="switchModalCategoryTab('${k}')" class="px-3 py-1.5 text-xs font-bold rounded-lg border transition ${cls}">
-              ${cleanTwText(categories[k].label)}
-            </button>
-          `;
-        }).join("")}
-      `;
-
-      const container = document.getElementById("modal-pillars-container");
-      const keysToShow = currentModalTab === "ALL" ? catKeys : [currentModalTab];
-
-      container.innerHTML = keysToShow.map(k => {
-        const cat = categories[k];
-        if (!cat) return "";
-        const bulls = cat.bullish || [];
-        const bears = cat.bearish || [];
-
-        return `
-          <div class="bg-slate-900/60 border border-slate-700/80 rounded-xl p-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
-              <h4 class="text-sm font-bold text-white flex items-center gap-2">
-                <span>${cleanTwText(cat.label)}</span>
-              </h4>
-              <span class="text-[11px] text-slate-400">獨立分類檢索・利多 vs 利空對照</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="bg-slate-950/60 border border-amber-500/25 rounded-lg p-3.5">
-                <div class="text-xs font-bold text-amber-300 mb-2 pb-1.5 border-b border-slate-800">
-                  🔥 利多因素與正面支撐
-                </div>
-                <ul class="space-y-2 text-xs text-slate-200">
-                  ${bulls.length > 0 ? bulls.map(n => `
-                    <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
-                      <a href="${n.url}" target="_blank" class="hover:text-amber-300 font-medium block leading-relaxed">${cleanTwText(n.title)}</a>
-                      <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
-                    </li>
-                  `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
-                </ul>
-              </div>
-
-              <div class="bg-slate-950/60 border border-cyan-500/25 rounded-lg p-3.5">
-                <div class="text-xs font-bold text-cyan-300 mb-2 pb-1.5 border-b border-slate-800">
-                  ❄️ 利空因素與風險提示
-                </div>
-                <ul class="space-y-2 text-xs text-slate-200">
-                  ${bears.length > 0 ? bears.map(n => `
-                    <li class="border-b border-slate-800/70 pb-1.5 last:border-0">
-                      <a href="${n.url}" target="_blank" class="hover:text-cyan-300 font-medium block leading-relaxed">${cleanTwText(n.title)}</a>
-                      <span class="text-[10px] text-slate-500 mono">${n.date || ''}</span>
-                    </li>
-                  `).join("") : `<li class="text-slate-500">暫無新增項目</li>`}
-                </ul>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function openStockModal(symbol) {
-      const item = allAssetsMap[symbol];
-      if (!item) return;
-
-      currentModalSymbol = symbol;
-      currentModalTab = "ALL";
-
-      const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
-      document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
-
-      const pEl = document.getElementById("modal-stock-price");
-      pEl.textContent = `${item.price} (${formatSignedPct(item.change_pct)})`;
-      pEl.className = `text-xl font-bold mono ${getColorClass(item.change_pct, item.asset_type)}`;
-
-      const extEl = document.getElementById("modal-stock-ext");
-      if (item.ext_session && item.ext_session.price) {
-        extEl.classList.remove("hidden");
-        extEl.textContent = `${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}`;
-        extEl.className = `text-xs font-bold mono px-2 py-0.5 rounded bg-slate-800 ${getColorClass(item.ext_session.change_pct, item.asset_type)}`;
-      } else {
-        extEl.classList.add("hidden");
-      }
-
-      const cbBadge = document.getElementById("modal-cb-badge");
-      const cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
-      if (!isStock && cbName) {
-        cbBadge.classList.remove("hidden");
-        cbBadge.textContent = `專屬對映央行：${cbName}`;
-      } else {
-        cbBadge.classList.add("hidden");
-      }
-
-      document.getElementById("modal-subtitle").textContent = isStock
-        ? "已將「MOPS重訊／月營收／財報指標」與「產業新聞時事」拆分為獨立區塊展示"
-        : `已將「${cbName || '央行'}利率決策」、「該國總經數據指標」與「新聞時事盤勢」拆分為三大獨立區塊，互不混雜`;
-
-      renderModalPillars();
-
-      const f = item.fundamentals || {};
-      const headingEl = document.getElementById("modal-metrics-heading");
-      const gridEl = document.getElementById("modal-fundamentals-grid");
-
-      if (isStock) {
-        headingEl.textContent = "最新財報核心數據與獲利能力指標";
-        let revBlock = "";
-        if (f.monthly_rev) {
-          revBlock = `
-            <div><span class="text-slate-400 block text-[10px]">最新月營收 (${f.monthly_rev.month})</span><strong class="text-amber-400">${f.monthly_rev.revenue_yi}</strong></div>
-            <div><span class="text-slate-400 block text-[10px]">月營收 MoM / YoY</span>${formatSignedPct(f.monthly_rev.mom)} / ${formatSignedPct(f.monthly_rev.yoy)}</div>
-          `;
-        }
-        gridEl.innerHTML = `
-          <div><span class="text-slate-400 block text-[10px]">本益比 (PE)</span>${f.pe ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span>${f.forward_pe ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span>${f.eps ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">營業利益率</span>${f.operating_margin ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">季度營收年增 (YoY)</span>${f.yoy_rev_growth ?? 'N/A'}</div>
-          ${revBlock}
-        `;
-      } else {
-        headingEl.textContent = "關鍵價位與區間統計指標";
-        gridEl.innerHTML = `
-          <div><span class="text-slate-400 block text-[10px]">最新報價 / 收盤</span>${item.price ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">當日漲跌幅</span><strong class="${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</strong></div>
-          <div><span class="text-slate-400 block text-[10px]">52 週最高價</span>${f.high_52w ?? 'N/A'}</div>
-          <div><span class="text-slate-400 block text-[10px]">52 週最低價</span>${f.low_52w ?? 'N/A'}</div>
-        `;
-      }
-
-      const addBtn = document.getElementById("modal-btn-add-compare");
-      addBtn.onclick = () => {
-        toggleCompareSymbol(symbol);
-        closeStockModal();
-        document.getElementById("main-price-chart").scrollIntoView({ behavior: "smooth" });
-      };
-
-      document.getElementById("stock-detail-modal").classList.remove("hidden");
-    }
-
-    function closeStockModal() {
-      document.getElementById("stock-detail-modal").classList.add("hidden");
-    }
-
-    function populateDashboardSelectors() {
-      const primarySel = document.getElementById("primary-asset-select");
-      const compareSel = document.getElementById("compare-select");
-
-      const groups = [
-        { label: "全球主要指數", list: globalMarketData.indices },
-        { label: "美股核心科技股", list: globalMarketData.us_stocks },
-        { label: "台股核心權值股", list: globalMarketData.tw_stocks },
-        { label: "期貨與大宗商品", list: globalMarketData.futures_commodities },
-        { label: "外匯與美債殖利率", list: globalMarketData.fx_bonds }
-      ];
-
-      const optionsHtml = groups.map(g => `
-        <optgroup label="${g.label}">
-          ${g.list.map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}
-        </optgroup>
-      `).join("");
-
-      primarySel.innerHTML = optionsHtml;
-      primarySel.value = currentAssetSymbol;
-
-      compareSel.innerHTML = `<option value="">＋ 從完整清單搜尋加入比較...</option>` + optionsHtml;
-      renderQuickPickerButtons();
-    }
-
-    function renderQuickPickerButtons() {
-      const picker = document.getElementById("dashboard-quick-picker");
-      if (!picker || !globalMarketData) return;
-
-      const allItems = [
-        ...globalMarketData.indices,
-        ...globalMarketData.us_stocks,
-        ...globalMarketData.tw_stocks,
-        ...globalMarketData.futures_commodities,
-        ...globalMarketData.fx_bonds
-      ];
-
-      picker.innerHTML = allItems.map(item => {
-        const sym = item.symbol;
-        const label = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
-        const isPrimary = (sym === currentAssetSymbol);
-        const isCompared = compareSymbols.includes(sym);
-
-        let btnStyle = "bg-slate-800/80 text-slate-300 border-slate-700 hover:border-slate-500";
-        let prefix = "＋";
-        if (isPrimary) {
-          btnStyle = "bg-blue-600/40 text-blue-200 border-blue-400 font-bold cursor-default";
-          prefix = "★ 主標的:";
-        } else if (isCompared) {
-          btnStyle = "bg-emerald-600/30 text-emerald-200 border-emerald-400 font-bold";
-          prefix = "✓ 已比較:";
-        }
-
-        const clickHandler = isPrimary ? "" : `onclick="toggleCompareSymbol('${sym}')"`;
-
-        return `
-          <button ${clickHandler} class="text-[11px] px-2.5 py-1 rounded-md border transition ${btnStyle}">
-            ${prefix} ${label}
-          </button>
-        `;
-      }).join("");
-    }
-
-    function addSelectedCompareAsset() {
-      const sel = document.getElementById("compare-select");
-      const sym = sel.value;
-      if (!sym) return;
-      if (sym !== currentAssetSymbol && !compareSymbols.includes(sym)) {
-        compareSymbols.push(sym);
-      }
-      sel.value = "";
-      renderMainChart();
-    }
-
-    function toggleCompareSymbol(sym) {
-      if (sym === currentAssetSymbol) return;
-      const idx = compareSymbols.indexOf(sym);
-      if (idx >= 0) {
-        compareSymbols.splice(idx, 1);
-      } else {
-        compareSymbols.push(sym);
-      }
-      renderMainChart();
-    }
-
-    function removeCompareSymbol(sym) {
-      compareSymbols = compareSymbols.filter(s => s !== sym);
-      renderMainChart();
-    }
-
-    function clearComparisons() {
-      compareSymbols = [];
-      renderMainChart();
-    }
-
-    function renderCompareChips() {
-      const container = document.getElementById("compare-chips-container");
-      const activeList = [currentAssetSymbol, ...compareSymbols];
-
-      container.innerHTML = activeList.map((sym, idx) => {
-        const asset = allAssetsMap[sym];
-        if (!asset) return "";
-        const label = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name);
-        const color = CHART_COLORS[idx % CHART_COLORS.length];
-        const isPrimary = (idx === 0);
-
-        return `
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-800 text-white border border-slate-700">
-            <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
-            <span>${label} ${isPrimary ? '(主標的)' : ''}</span>
-            ${!isPrimary ? `<button onclick="removeCompareSymbol('${sym}')" class="text-slate-400 hover:text-rose-400 ml-1" title="移除比較">✕</button>` : ''}
-          </span>
-        `;
-      }).join("");
-
-      renderQuickPickerButtons();
-    }
-
-    function getFilteredSeriesPoints(asset, customStart = null, customEnd = null) {
-      if (!asset) return [];
-      if (currentRangeMode === "1D" && asset.intraday && asset.intraday.length > 0) {
-        return asset.intraday.map(d => ({ x: d.time, y: Number(d.price) }));
-      }
-      const hist = asset.history || [];
-      let filtered = hist;
-      const now = new Date();
-
-      if (currentRangeMode === "1W") {
-        filtered = hist.slice(-6);
-      } else if (currentRangeMode === "1M") {
-        filtered = hist.slice(-22);
-      } else if (currentRangeMode === "YTD") {
-        const currentYear = `${now.getFullYear()}-01-01`;
-        filtered = hist.filter(d => d.date >= currentYear);
-      } else if (currentRangeMode === "CUSTOM") {
-        const s = customStart || document.getElementById("custom-start").value;
-        const e = customEnd || document.getElementById("custom-end").value;
-        filtered = hist.filter(d => d.date >= s && d.date <= e);
-      }
-      return filtered.map(d => ({ x: d.date, y: Number(d.close) }));
-    }
-
-    function selectAsset(symbol) {
-      if (!allAssetsMap[symbol]) return;
-      currentAssetSymbol = symbol;
-      compareSymbols = compareSymbols.filter(s => s !== symbol);
-      const primarySel = document.getElementById("primary-asset-select");
-      if (primarySel) primarySel.value = symbol;
-      renderMainChart();
-    }
-
-    function switchRange(mode) {
-      currentRangeMode = mode;
-      document.querySelectorAll(".range-btn").forEach(btn => {
-        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
-      });
-      const activeBtn = document.getElementById(`btn-${mode}`);
-      if (activeBtn) {
-        activeBtn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white";
-      }
-      renderMainChart();
-    }
-
-    function applyCustomDateRange() {
-      const startVal = document.getElementById("custom-start").value;
-      const endVal = document.getElementById("custom-end").value;
-      if (!startVal || !endVal) {
-        alert("請先選擇自訂區間的「起始日期」與「結束日期」！");
-        return;
-      }
-      currentRangeMode = "CUSTOM";
-      document.querySelectorAll(".range-btn").forEach(btn => {
-        btn.className = "range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700";
-      });
-      renderMainChart(startVal, endVal);
-    }
-
-    function renderMainChart(customStart = null, customEnd = null) {
-      const primaryAsset = allAssetsMap[currentAssetSymbol];
-      if (!primaryAsset) return;
-
-      renderCompareChips();
-      const activeSymbols = [currentAssetSymbol, ...compareSymbols];
-      const isCompareMode = activeSymbols.length > 1;
-
-      const modeBadge = document.getElementById("chart-mode-badge");
-      const summaryEl = document.getElementById("comparison-return-summary");
-
-      if (!mainChart) {
-        mainChart = echarts.init(document.getElementById("main-price-chart"));
-      }
-
-      if (!isCompareMode) {
-        const displayName = primaryAsset.asset_type === "us_stock" ? primaryAsset.symbol : cleanTwText(primaryAsset.name);
-        document.getElementById("chart-asset-title").textContent = `${displayName} (${primaryAsset.symbol}) 走勢圖`;
-        modeBadge.textContent = "單一標的模式 (可直接點選下方標籤加入比較)";
-        modeBadge.className = "text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30";
-
-        const pts = getFilteredSeriesPoints(primaryAsset, customStart, customEnd);
-        const xData = pts.map(p => p.x);
-        const yData = pts.map(p => p.y);
-
-        const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
-        const greenUp = isUsGreenUpAsset(primaryAsset.asset_type);
-
-        let lineColor = "#fb7185";
-        let areaRgba = "rgba(251, 113, 133, 0.35)";
-        if (greenUp) {
-          lineColor = isUp ? "#34d399" : "#fb7185";
-          areaRgba = isUp ? "rgba(52, 211, 153, 0.35)" : "rgba(251, 113, 133, 0.35)";
-        } else {
-          lineColor = isUp ? "#fb7185" : "#34d399";
-          areaRgba = isUp ? "rgba(251, 113, 133, 0.35)" : "rgba(52, 211, 153, 0.35)";
-        }
-
-        if (yData.length >= 2) {
-          const pct = ((yData[yData.length - 1] - yData[0]) / yData[0]) * 100;
-          summaryEl.innerHTML = `
-            <span class="text-xs font-bold px-3 py-1 rounded bg-slate-800 mono ${getColorClass(pct, primaryAsset.asset_type)}">
-              ${displayName} 區間累計報酬率：${formatSignedPct(pct)} (${yData[0]} &rarr; ${yData[yData.length - 1]})
-            </span>
-          `;
-        } else {
-          summaryEl.innerHTML = `<span class="text-xs text-slate-400">區間資料點不足</span>`;
-        }
-
-        mainChart.setOption({
-          tooltip: { trigger: "axis" },
-          legend: { show: false },
-          grid: { left: "5%", right: "3%", top: "8%", bottom: "12%" },
-          xAxis: {
-            type: "category",
-            data: xData,
-            axisLine: { lineStyle: { color: "#334155" } },
-            axisLabel: { color: "#94a3b8", fontSize: 11 }
-          },
-          yAxis: {
-            type: "value",
-            scale: true,
-            splitLine: { lineStyle: { color: "#1e293b" } },
-            axisLabel: { color: "#94a3b8", fontSize: 11 }
-          },
-          dataZoom: [
-            { type: "inside", start: 0, end: 100 },
-            { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
-          ],
-          series: [{
-            name: displayName,
-            type: "line",
-            smooth: true,
-            symbol: "none",
-            data: yData,
-            lineStyle: { color: lineColor, width: 2.5 },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: areaRgba },
-                { offset: 1, color: "rgba(15, 23, 42, 0.0)" }
-              ])
-            }
-          }]
-        }, true);
-
-      } else {
-        document.getElementById("chart-asset-title").textContent = `多標的走勢與區間報酬率 (%) 對決比較`;
-        modeBadge.textContent = `多標的報酬率比較模式 (共 ${activeSymbols.length} 檔標的)`;
-        modeBadge.className = "text-xs font-bold px-2.5 py-0.5 rounded bg-emerald-600/30 text-emerald-300 border border-emerald-500/30";
-
-        const allSeriesMap = {};
-        const xSet = new Set();
-
-        activeSymbols.forEach(sym => {
-          const asset = allAssetsMap[sym];
-          const pts = getFilteredSeriesPoints(asset, customStart, customEnd);
-          allSeriesMap[sym] = {};
-          pts.forEach(p => {
-            xSet.add(p.x);
-            allSeriesMap[sym][p.x] = p.y;
-          });
-        });
-
-        const sortedX = Array.from(xSet).sort();
-        const echartsSeries = [];
-        const returnSummaries = [];
-
-        activeSymbols.forEach((sym, idx) => {
-          const asset = allAssetsMap[sym];
-          if (!asset) return;
-          const displayName = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name);
-          const color = CHART_COLORS[idx % CHART_COLORS.length];
-          const pointMap = allSeriesMap[sym];
-
-          let basePrice = null;
-          let lastValidPrice = null;
-          const normalizedY = [];
-
-          sortedX.forEach(xVal => {
-            const rawP = pointMap[xVal];
-            if (rawP !== undefined && rawP !== null && rawP > 0) {
-              if (basePrice === null) basePrice = rawP;
-              lastValidPrice = rawP;
-            }
-            if (basePrice !== null && lastValidPrice !== null) {
-              const pctChange = ((lastValidPrice - basePrice) / basePrice) * 100;
-              normalizedY.push(Number(pctChange.toFixed(2)));
-            } else {
-              normalizedY.push(null);
-            }
-          });
-
-          const validNorm = normalizedY.filter(v => v !== null);
-          const totalPct = validNorm.length > 0 ? validNorm[validNorm.length - 1] : 0.0;
-          returnSummaries.push({ name: displayName, pct: totalPct, color, assetType: asset.asset_type });
-
-          echartsSeries.push({
-            name: displayName,
-            type: "line",
-            smooth: true,
-            connectNulls: true,
-            symbol: "none",
-            data: normalizedY,
-            lineStyle: { color: color, width: 2.5 },
-            itemStyle: { color: color }
-          });
-        });
-
-        returnSummaries.sort((a, b) => b.pct - a.pct);
-        summaryEl.innerHTML = returnSummaries.map((r, i) => `
-          <div class="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs mono">
-            <span class="text-slate-400">#${i + 1}</span>
-            <span class="w-2 h-2 rounded-full" style="background-color: ${r.color}"></span>
-            <span class="font-bold text-white">${r.name}:</span>
-            <strong class="${getColorClass(r.pct, r.assetType)}">${formatSignedPct(r.pct)}</strong>
-          </div>
-        `).join("");
-
-        mainChart.setOption({
-          tooltip: {
-            trigger: "axis",
-            valueFormatter: (val) => (val !== null && val !== undefined) ? `${val > 0 ? '+' : ''}${val}%` : "N/A"
-          },
-          legend: {
-            show: true,
-            top: 0,
-            textStyle: { color: "#cbd5e1", fontSize: 12 }
-          },
-          grid: { left: "5%", right: "3%", top: "14%", bottom: "12%" },
-          xAxis: {
-            type: "category",
-            data: sortedX,
-            axisLine: { lineStyle: { color: "#334155" } },
-            axisLabel: { color: "#94a3b8", fontSize: 11 }
-          },
-          yAxis: {
-            type: "value",
-            scale: true,
-            axisLabel: {
-              color: "#94a3b8",
-              fontSize: 11,
-              formatter: (val) => `${val > 0 ? '+' : ''}${val}%`
-            },
-            splitLine: { lineStyle: { color: "#1e293b" } }
-          },
-          dataZoom: [
-            { type: "inside", start: 0, end: 100 },
-            { type: "slider", height: 18, bottom: 0, textStyle: { color: "#94a3b8" } }
-          ],
-          series: echartsSeries
-        }, true);
-      }
-    }
-
-    function triggerCardFlash(symbol, isUp) {
-      const domId = safeId(symbol);
-      const card = document.getElementById(`card-${domId}`);
-      if (!card) return;
-      card.classList.remove("flash-rose", "flash-emerald");
-      void card.offsetWidth;
-      const greenUp = isUsGreenUpAsset(symbol);
-      if (greenUp) {
-        card.classList.add(isUp ? "flash-emerald" : "flash-rose");
-      } else {
-        card.classList.add(isUp ? "flash-rose" : "flash-emerald");
-      }
-    }
-
-    function updateAssetDomPrice(symbol, newMainPrice, newMainPct, extSessionObj = null) {
-      const item = allAssetsMap[symbol];
-      if (!item) return;
-      const domId = safeId(symbol);
-
-      const oldComparable = (extSessionObj && extSessionObj.price) ? (item.ext_session ? item.ext_session.price : item.price) : item.price;
-      const newComparable = (extSessionObj && extSessionObj.price) ? extSessionObj.price : newMainPrice;
-
-      if (oldComparable && newComparable && Number(oldComparable) !== Number(newComparable)) {
-        triggerCardFlash(symbol, Number(newComparable) > Number(oldComparable));
-      }
-
-      if (newMainPrice !== null && newMainPrice !== undefined) {
-        item.price = Number(newMainPrice).toFixed(2);
-        item.change_pct = Number(newMainPct).toFixed(2);
-        const pEl = document.getElementById(`price-${domId}`);
-        const pctEl = document.getElementById(`pct-${domId}`);
-        if (pEl) pEl.textContent = item.price;
-        if (pctEl) {
-          pctEl.textContent = formatSignedPct(item.change_pct);
-          pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
-        }
-      }
-
-      if (extSessionObj) {
-        item.ext_session = extSessionObj;
-        const extEl = document.getElementById(`ext-${domId}`);
-        if (extEl) {
-          extEl.classList.remove("hidden");
-          extEl.className = "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono";
-          const extColor = getColorClass(extSessionObj.change_pct, item.asset_type);
-          extEl.innerHTML = `
-            <span class="${extColor} font-semibold">
-              ${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}
-            </span>
-          `;
-        }
-        const tblExt這兩個問題的根源我幫你徹底抓出來並修正了！
-
----
-
-## 一、 為什麼會出現「小那斯達剋」、「臺積電」以及「法人數據跟證交所官網不一樣」？
-
-1. **為什麼會出現「剋」跟「臺」？（元兇是 `OpenCC('s2twp')` 的強制字元替換）**
-   * `OpenCC` 簡轉繁套件在底層字典裡，只要看到「克」跟在特定字後面就會誤判成「克服」的「剋」，看到任何「台」就會強制改成教育部異體字「臺」（所以你上一張截圖連標題都變成「臺灣加權指數」、「臺積電」[cite: 2]）。
-   * **根治方法**：在 `to_trad()` 轉換器後面直接加上**「精準字詞鎖定字典」**，強制把所有 `臺` 統一替換回台灣財經界習慣的 **`台`**（`台積電`、`台達電`、`台股`、`台灣`、`台幣`），並將 `那斯達克` / `那斯達剋` 全面統一正名為 **`納斯達克`**（`納斯達克指數`、`小納斯達克期貨`）。
-2. **為什麼三大法人與融資融券數據跟台灣證券交易所（TWSE 官網）不一樣？**
-   * 上一版為了防止空白，寫了一組固定的保底數字（`-142.5, 86.3...`），且先前用 FinMind 抓的時候把「買賣超股數」跟「買賣超金額」混算了。
-   * **根治方法**：這次我們**直接對接台灣證券交易所官網（`https://www.twse.com.tw`）的兩個官方原始端點**，並且在前端（你的瀏覽器）也同步掛載證交所官網直連引擎（因為你人在台灣，你的瀏覽器直接連證交所官網 `www.twse.com.tw` 完全不會被擋 IP！）：
-     * **三大法人買賣金額統計表**：直連證交所 `rwd/zh/fund/BFI82U`，精準讀取官網公布的「外資及陸資(不含外資自營商)」、「投信」、「自營商(自行買賣+避險)」每日買賣差額，與證交所首頁分毫不差。
-     * **大盤融資融券餘額**：直連證交所 `rwd/zh/marginTrading/MI_MARGN`（信用交易統計），精準讀取大盤每日「融資餘額（仟元 ➔ 轉為億元）」與「融券餘額（交易單位：張 ➔ 萬張）」，完全對齊證交所官方數據。
-
----
-
-## 二、 檔案一：`update_data.py`（可直接全選刪除舊檔、整份複製貼上）
-
-請到 GitHub 點開 **`update_data.py`** ➔ 按右上角 ✏️ 編輯 ➔ **全選刪除後貼上以下完整程式碼** ➔ 按 **Commit changes...**：
-
-```python
 import os
 import json
 import time
@@ -1152,40 +6,37 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 import pytz
 import requests
+import urllib3
 import pandas as pd
 import numpy as np
 import yfinance as yf
 from opencc import OpenCC
 
-# 使用基礎簡轉繁，並加上「台灣財經專有名詞強制校正」避免出現「臺」或「剋」
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# 使用基礎簡轉繁，並加上台灣金融專有名詞強制校正
 cc = OpenCC('s2tw')
 
 def to_trad(text):
     if text is None:
         return ""
     s = cc.convert(str(text))
-    # 強制校正 OpenCC 誤轉字與統一財經慣用字
     replacements = {
         "那斯達剋": "納斯達克",
         "納斯達剋": "納斯達克",
         "那斯達克": "納斯達克",
         "斯達剋": "斯達克",
+        "達剋": "達克",
         "臺積電": "台積電",
         "臺達電": "台達電",
         "臺灣": "台灣",
         "臺股": "台股",
         "臺幣": "台幣",
         "臺指": "台指",
-        "臺企": "台企",
-        "臺塑": "台塑",
-        "臺化": "台化",
-        "臺泥": "台泥",
-        "臺哥大": "台哥大",
         "臺北": "台北"
     }
     for wrong, right in replacements.items():
         s = s.replace(wrong, right)
-    # 將剩餘異體「臺」統一轉為「台」
     s = s.replace("臺", "台")
     return s
 
@@ -1193,8 +44,8 @@ def safe_float(val, default=0.0):
     try:
         if val is None or pd.isna(val):
             return default
-        clean_str = str(val).replace(",", "").strip()
-        if clean_str == "" or clean_str == "--" or clean_str == "N/A":
+        clean_str = str(val).replace(",", "").replace("%", "").replace("--", "").strip()
+        if clean_str == "" or clean_str == "N/A":
             return default
         f = float(clean_str)
         return default if np.isnan(f) else f
@@ -1204,9 +55,6 @@ def safe_float(val, default=0.0):
 tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 
-# ==========================================
-# 1. 資產清單定義 (全面正名為「納斯達克」與「台」)
-# ==========================================
 INDICES = {
     "^GSPC": "S&P 500 指數",
     "^DJI": "道瓊工業指數",
@@ -1258,9 +106,6 @@ FX_AND_BONDS = {
     "^TYX": "美國 30 年期公債殖利率"
 }
 
-# ==========================================
-# 2. 各國指數專屬之「1. 央行決策」、「2. 總經數據」、「3. 新聞時事」設定表
-# ==========================================
 INDEX_COUNTRY_PROFILES = {
     "^GSPC": {
         "cb_name": "美國聯準會 (Fed)",
@@ -1386,7 +231,7 @@ def fetch_rss_bucket(query_str, tag_prefix, max_items=6):
 
     try:
         encoded_q = urllib.parse.quote(query_str)
-        rss_url = f"[https://news.google.com/rss/search?q=](https://news.google.com/rss/search?q=){encoded_q}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+        rss_url = f"https://news.google.com/rss/search?q={encoded_q}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
         headers = {"User-Agent": "Mozilla/5.0"}
         resp = requests.get(rss_url, headers=headers, timeout=8)
         if resp.status_code == 200:
@@ -1433,7 +278,7 @@ def fetch_rss_bucket(query_str, tag_prefix, max_items=6):
 def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, change_pct):
     if symbol in INDEX_COUNTRY_PROFILES:
         prof = INDEX_COUNTRY_PROFILES[symbol]
-        cb_name = prof["cb_name"]
+        cb_name = to_trad(prof["cb_name"])
 
         cb_bulls, cb_bears = fetch_rss_bucket(prof["cb_query"], cb_name, max_items=4)
         cb_bulls.insert(0, {"title": to_trad(prof["cb_baseline_bull"]), "url": "#", "date": "央行政策核心"})
@@ -1717,17 +562,14 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
     return result
 
 
-# ==========================================
-# 3. 公開資訊觀測站 (MOPS) 重大訊息
-# ==========================================
 def fetch_mops_material_info(target_stock_ids):
-    mops_url = "[https://openapi.twse.com.tw/v1/mops/t05st01](https://openapi.twse.com.tw/v1/mops/t05st01)"
+    mops_url = "https://openapi.twse.com.tw/v1/mops/t05st01"
     announcements = {sid: [] for sid in target_stock_ids}
     all_recent_mops = []
 
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
-        resp = requests.get(mops_url, headers=headers, timeout=10)
+        resp = requests.get(mops_url, headers=headers, timeout=10, verify=False)
         if resp.status_code == 200:
             data = resp.json()
             if isinstance(data, list):
@@ -1743,7 +585,7 @@ def fetch_mops_material_info(target_stock_ids):
                         "date": date_str,
                         "time": time_str,
                         "subject": subject,
-                        "url": "[https://mops.twse.com.tw/mops/#/web/home](https://mops.twse.com.tw/mops/#/web/home)"
+                        "url": "https://mops.twse.com.tw/mops/#/web/home"
                     }
                     if code in announcements:
                         announcements[code].append(record)
@@ -1754,28 +596,19 @@ def fetch_mops_material_info(target_stock_ids):
     return announcements, all_recent_mops[:15]
 
 
-# ==========================================
-# 4. 嚴格對齊台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 之三大法人買賣金額與信用交易統計
-# ==========================================
 def fetch_twse_official_single_day(dt_str):
-    """
-    直接向台灣證券交易所官網 API ([https://www.twse.com.tw](https://www.twse.com.tw)) 查詢指定日期 (YYYYMMDD) 之：
-    1. 三大法人買賣金額統計表 (rwd/zh/fund/BFI82U)：外資及陸資、投信、自營商(自行買賣+避險) 買賣差額 (單位：億元)
-    2. 信用交易統計 (rwd/zh/marginTrading/MI_MARGN)：大盤融資金額餘額(億元) / 融資張數(萬張) 與 融券餘額(萬張)
-    """
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Referer": "[https://www.twse.com.tw/zh/trading/foreign/bfi82u.html](https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)"
+        "Referer": "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html"
     }
 
     inst_res = None
     margin_res = None
 
-    # A. 抓取證交所官網 BFI82U 三大法人買賣金額統計表
     try:
-        bfi_url = f"[https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=](https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=){dt_str}&type=day"
-        r = requests.get(bfi_url, headers=headers, timeout=8)
+        bfi_url = f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate={dt_str}&type=day"
+        r = requests.get(bfi_url, headers=headers, timeout=8, verify=False)
         if r.status_code == 200:
             j = r.json()
             if j.get("stat") == "OK" and j.get("data"):
@@ -1784,9 +617,8 @@ def fetch_twse_official_single_day(dt_str):
                 dealer_diff = 0.0
                 for row in j["data"]:
                     name = str(row[0]).strip()
-                    # row[1]: 買進金額, row[2]: 賣出金額, row[3]: 買賣差額 (元)
                     diff_yuan = safe_float(row[3], 0.0)
-                    if "外資及陸資(不含外資自營商)" in name:
+                    if "外資及陸資" in name and "外資自營商" not in name:
                         foreign_diff += diff_yuan / 1e8
                     elif "投信" in name:
                         trust_diff += diff_yuan / 1e8
@@ -1800,10 +632,9 @@ def fetch_twse_official_single_day(dt_str):
     except Exception as e:
         print(f"[Warn] TWSE BFI82U ({dt_str}) error: {e}")
 
-    # B. 抓取證交所官網 MI_MARGN 信用交易統計 (大盤融資融券餘額)
     try:
-        mar_url = f"[https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=](https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=){dt_str}&selectType=MS"
-        r2 = requests.get(mar_url, headers=headers, timeout=8)
+        mar_url = f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date={dt_str}&selectType=MS"
+        r2 = requests.get(mar_url, headers=headers, timeout=8, verify=False)
         if r2.status_code == 200:
             j2 = r2.json()
             tables = j2.get("tables", [])
@@ -1813,14 +644,10 @@ def fetch_twse_official_single_day(dt_str):
                 s_wan = 0.0
                 for row in rows:
                     item_name = str(row[0]).strip()
-                    # 根據證交所官網「信用交易統計」大盤彙總表：
-                    # row[0]="融資(交易單位)" -> row[5] 今日餘額(張)
-                    # row[0]="融券(交易單位)" -> row[5] 今日餘額(張)
-                    # row[0]="融資金額(仟元)" -> row[5] 今日餘額(仟元)
-                    if "融資金額" in item_name:
-                        m_yi = safe_float(row[5], 0.0) / 1e5  # 仟元轉億元
-                    elif "融券" in item_name:
-                        s_wan = safe_float(row[5], 0.0) / 10000.0  # 張轉萬張
+                    if "融資金額" in item_name and len(row) >= 6:
+                        m_yi = safe_float(row[5], 0.0) / 1e5
+                    elif "融券" in item_name and len(row) >= 6:
+                        s_wan = safe_float(row[5], 0.0) / 10000.0
                 if m_yi > 0:
                     margin_res = {
                         "margin_yi": round(m_yi, 2),
@@ -1833,10 +660,6 @@ def fetch_twse_official_single_day(dt_str):
 
 
 def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
-    """
-    優先根據台灣加權指數最近 10 個真實交易日，逐日向台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw)
-    抓取真實三大法人買賣超金額 (億元) 與大盤融資餘額 (億元) / 融券餘額 (萬張)。
-    """
     chip_chart_data = {
         "dates": [],
         "foreign_buy": [],
@@ -1847,7 +670,6 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
         "margin_unit": "億元"
     }
 
-    # 1. 若有設定 FINLAB_API_TOKEN，抓取台股個股最新月營收
     token = os.environ.get("FINLAB_API_TOKEN")
     if token:
         try:
@@ -1876,7 +698,7 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
 
                         rev_item = {
                             "title": f"[MOPS月營收] {latest_month} 營收 {val_yi} 億元，年增 {yoy_val:+.2f}%、月增 {mom_val:+.2f}%",
-                            "url": "[https://mops.twse.com.tw/mops/#/web/home](https://mops.twse.com.tw/mops/#/web/home)",
+                            "url": "https://mops.twse.com.tw/mops/#/web/home",
                             "date": latest_month
                         }
                         if yoy_val >= 0:
@@ -1888,7 +710,6 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
         except Exception as e:
             print(f"[Warn] FinLab monthly revenue error: {e}")
 
-    # 2. 直接根據台股最近 10 個真實開盤日，向台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 抓取官方數據
     target_dates = twii_history_dates[-10:] if len(twii_history_dates) >= 10 else twii_history_dates
     for iso_d in target_dates:
         ymd = iso_d.replace("-", "")
@@ -1905,21 +726,17 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
             else:
                 chip_chart_data["margin_balance"].append(None)
                 chip_chart_data["short_balance"].append(None)
-        time.sleep(0.35)  # 遵守證交所連線頻率限制
+        time.sleep(0.35)
 
     return chip_chart_data
 
 
-# ==========================================
-# 5. 主程式執行入口
-# ==========================================
 def main():
     os.makedirs("data", exist_ok=True)
 
     print("1. Fetching Global Indices...")
     indices_data = [fetch_ticker_full_data(k, v, "index") for k, v in INDICES.items()]
 
-    # 提取台灣加權指數 (^TWII) 的真實開盤日期清單，供證交所 API 對齊查詢
     twii_dates = []
     for idx_obj in indices_data:
         if idx_obj["symbol"] == "^TWII" and idx_obj["history"]:
