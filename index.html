@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>全球金融市場與台股籌碼即時監控儀表板</title>
-  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-  <script src="[https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js](https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js)"></script>
-  <link href="[https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap](https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap)" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
@@ -152,20 +152,20 @@
             <span class="px-2 py-0.5 text-xs font-bold bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded">MOPS 重大訊息</span>
             <h3 class="text-base font-bold text-white">公開資訊觀測站當日最新重大訊息通報</h3>
           </div>
-          <a href="[https://mops.twse.com.tw/mops/#/web/home](https://mops.twse.com.tw/mops/#/web/home)" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
+          <a href="https://mops.twse.com.tw/mops/#/web/home" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">前往公開資訊觀測站 &rarr;</a>
         </div>
         <div id="mops-list" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
       </div>
     </section>
 
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (100% 對齊台灣證券交易所 [www.twse.com](https://www.twse.com).tw 官方數據) -->
+    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (100% 對齊台灣證券交易所 www.twse.com.tw 官方數據) -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
           台股與法人籌碼進階視覺化專區
-          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(已連線台灣證券交易所 [www.twse.com](https://www.twse.com).tw 官方數據)</span>
+          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(已連線台灣證券交易所 www.twse.com.tw 官方數據)</span>
         </h2>
-        <a href="[https://www.twse.com.tw/zh/trading/foreign/bfi82u.html](https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">
+        <a href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" target="_blank" rel="noopener" class="text-xs text-blue-400 hover:underline">
           前往台灣證券交易所官網核對 &rarr;
         </a>
       </div>
@@ -286,7 +286,6 @@
       "^FCHI": "歐洲央行 (ECB)"
     };
 
-    // 前端強制字詞淨化器：即使讀到舊快取 JSON，也會在瀏覽器端強制把「那斯達剋/那斯達克」改為「納斯達克」，把「臺」改為「台」
     function cleanTwText(str) {
       if (!str) return "";
       return String(str)
@@ -1130,8 +1129,8 @@
       const symbols = Object.keys(allAssetsMap);
       for (const sym of symbols) {
         try {
-          const targetUrl = `[https://query1.finance.yahoo.com/v8/finance/chart/$](https://query1.finance.yahoo.com/v8/finance/chart/$){encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
-          const proxyUrl = `[https://corsproxy.io/?$](https://corsproxy.io/?$){encodeURIComponent(targetUrl)}`;
+          const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1m&range=1d&includePrePost=true`;
+          const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
           const resp = await fetch(proxyUrl);
           if (!resp.ok) continue;
           const data = await resp.json();
@@ -1233,9 +1232,6 @@
       });
     }
 
-    // =========================================================================
-    // 瀏覽器直連台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 雙向驗證與圖表渲染引擎
-    // =========================================================================
     function parseTwseNum(str) {
       if (!str) return 0;
       const n = parseFloat(String(str).replace(/,/g, "").trim());
@@ -1246,8 +1242,8 @@
       let inst = null;
       let marg = null;
 
-      const bfiTarget = `[https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=$](https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=$){ymd}&type=day`;
-      const marTarget = `[https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=$](https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=$){ymd}&selectType=MS`;
+      const bfiTarget = `https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate=${ymd}&type=day`;
+      const marTarget = `https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date=${ymd}&selectType=MS`;
 
       async function tryFetchJson(url) {
         try {
@@ -1255,7 +1251,7 @@
           if (r1.ok) return await r1.json();
         } catch (e) {}
         try {
-          const r2 = await fetch(`[https://corsproxy.io/?$](https://corsproxy.io/?$){encodeURIComponent(url)}`);
+          const r2 = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
           if (r2.ok) return await r2.json();
         } catch (e) {}
         return null;
@@ -1268,7 +1264,7 @@
         j1.data.forEach(row => {
           const name = String(row[0]).trim();
           const diff = parseTwseNum(row[3]);
-          if (name.includes("外資及陸資(不含外資自營商)")) f += diff / 1e8;
+          if (name.includes("外資及陸資") && !name.includes("外資自營商")) f += diff / 1e8;
           else if (name.includes("投信")) t += diff / 1e8;
           else if (name.includes("自營商")) d += diff / 1e8;
         });
@@ -1284,8 +1280,8 @@
         let mYi = 0, sWan = 0;
         rows.forEach(row => {
           const label = String(row[0]).trim();
-          if (label.includes("融資金額")) mYi = parseTwseNum(row[5]) / 1e5; // 仟元 -> 億元
-          else if (label.includes("融券")) sWan = parseTwseNum(row[5]) / 10000; // 張 -> 萬張
+          if (label.includes("融資金額")) mYi = parseTwseNum(row[5]) / 1e5;
+          else if (label.includes("融券")) sWan = parseTwseNum(row[5]) / 10000;
         });
         if (mYi > 0) {
           marg = {
@@ -1299,12 +1295,10 @@
     }
 
     async function syncOfficialTwseChipsInBrowser(initialChips) {
-      // 若後端已經抓好完整 10 日 TWSE 官方資料，先立刻渲染
       if (initialChips && initialChips.dates && initialChips.dates.length > 0 && initialChips.foreign_buy && initialChips.foreign_buy.length > 0) {
         renderChipCharts(initialChips);
       }
 
-      // 同時由使用者瀏覽器根據 ^TWII 最近 10 個真實交易日向 [www.twse.com](https://www.twse.com).tw 官方端點直接拉取核對
       const twiiAsset = allAssetsMap["^TWII"];
       if (!twiiAsset || !twiiAsset.history || twiiAsset.history.length === 0) return;
 
@@ -1338,7 +1332,7 @@
       });
 
       if (liveChips.dates.length > 0) {
-        document.getElementById("twse-sync-badge").textContent = `(已即時同步 [www.twse.com](https://www.twse.com).tw 台灣證券交易所官方數據・最新交易日：${liveChips.dates[liveChips.dates.length - 1]})`;
+        document.getElementById("twse-sync-badge").textContent = `(已即時同步 www.twse.com.tw 台灣證券交易所官方數據・最新交易日：${liveChips.dates[liveChips.dates.length - 1]})`;
         renderChipCharts(liveChips);
       }
     }
@@ -1486,7 +1480,6 @@
       try {
         const res = await fetch(`data/market_data.json?t=${Date.now()}`);
         const rawJson = await res.json();
-        // 全域字詞淨化：將所有「那斯達剋/那斯達克」統一為「納斯達克」，所有「臺」統一為「台」
         globalMarketData = sanitizeDataTree(rawJson);
 
         document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated}`;
@@ -1557,7 +1550,6 @@
         switchRange("1M");
         selectAsset("^GSPC");
 
-        // 啟動台灣證券交易所官網 ([www.twse.com](https://www.twse.com).tw) 籌碼與信用交易同步引擎
         syncOfficialTwseChipsInBrowser(globalMarketData.tw_chips_visual);
 
         setInterval(pollLiveYahooQuotes, 10000);
