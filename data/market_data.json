@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "updated_at": "2026-11-14 09:14:20",
-=======
-  "updated_at": "2026-11-14 09:14:29",
->>>>>>> Stashed changes
+  "updated_at": "2026-11-14 09:16:11",
   "institutional": {
     "date": "2026-11-13",
     "foreign": 0.0,
@@ -222,14 +218,11 @@
       "change": 1.64
     },
     {
-<<<<<<< Updated upstream
       "date": "2026-11-10",
       "balance": 1693.09,
       "change": -8.29
     },
     {
-=======
->>>>>>> Stashed changes
       "date": "2026-11-11",
       "balance": 1718.02,
       "change": 24.94
@@ -297,14 +290,11 @@
       "change": 1.64
     },
     {
-<<<<<<< Updated upstream
       "date": "2026-11-10",
       "balance": 1693.09,
       "change": -8.29
     },
     {
-=======
->>>>>>> Stashed changes
       "date": "2026-11-11",
       "balance": 1718.02,
       "change": 24.94
