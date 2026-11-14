@@ -23,7 +23,7 @@
   <header class="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・總經實績與法說會倒數・各國央行 / 總經 / 時事三維度拆解・美股綠漲紅跌・週末自動顯示最新收盤數據</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會倒數實績・美債與外匯(美金+新台幣雙計價)・美股綠漲紅跌・週末自動顯示最新收盤數據</p>
     </div>
     <div class="flex flex-wrap items-center gap-3">
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -40,14 +40,14 @@
   <main class="max-w-7xl mx-auto space-y-10">
 
     <!-- ========================================================================= -->
-    <!-- 專區 0：全球重要總經日曆 (FOMC / 非農 / CPI / PPI) 倒數 + 最近一期實績/預期/前值 + 點擊深度分析 -->
+    <!-- 專區 0：全球重要總經日曆 (FOMC / 非農 / CPI / PPI / PCE / 零售銷售) & 法說會倒數 -->
     <!-- ========================================================================= -->
     <section class="card-bg rounded-xl p-4 md:p-5 shadow-lg border border-indigo-500/30">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3 mb-4">
         <div class="flex flex-wrap items-center gap-2.5">
           <span class="px-2.5 py-0.5 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">⏳ 總經日曆與最新實績</span>
-          <h2 class="text-base md:text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農就業 / CPI / PPI) & 超級法說會倒數計時</h2>
-          <span class="text-xs text-indigo-300">(點擊任一卡片可檢視官方分項數據、市場影響分析與 BLS/Fed 官方來源)</span>
+          <h2 class="text-base md:text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農 / CPI / PPI / PCE / 零售銷售) & 法說會倒數</h2>
+          <span class="text-xs text-indigo-300">(點擊任一卡片可檢視官方分項數據、市場影響分析與 BLS / BEA / Census 官方來源)</span>
         </div>
         <div class="flex items-center gap-2 shrink-0">
           <button onclick="customizeEarningsEvent()" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 rounded font-medium transition">
@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div id="macro-countdown-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3.5"></div>
+      <div id="macro-countdown-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-3"></div>
     </section>
 
     <!-- 專區 1：最上方互動式走勢圖儀表板 -->
@@ -68,7 +68,7 @@
               <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
               <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、期貨、美股、台股加入「目前比較清單」疊圖對決</p>
+            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、美債、外匯、期貨、美股、台股加入「目前比較清單」疊圖對決</p>
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
@@ -85,7 +85,7 @@
             <span class="text-xs text-slate-400">自訂區間：</span>
             <input type="date" id="custom-start" value="2025-03-05" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="custom-end" value="2026-11-14" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-end" value="2026-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -120,7 +120,32 @@
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 3：期貨與大宗商品專區 -->
+    <!-- ========================================================================= -->
+    <!-- 專區 3 (全新移動並獨立拆分)：美國公債殖利率專區 (在「全球主要指數」與「全球外匯」之間) -->
+    <!-- ========================================================================= -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">
+        美國公債殖利率專區
+        <span class="text-xs font-normal text-slate-400 ml-2">(涵蓋短中長天期美債殖利率・點擊卡片可檢視聯準會利率路徑與債市多空分析)</span>
+      </h2>
+      <div id="grid-us-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 專區 4 (全新移動並獨立拆分)：全球外匯專區 (含瑞士法郎・美金計價 + 新台幣計價雙重顯示) -->
+    <!-- ========================================================================= -->
+    <section>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
+        <h2 class="text-lg font-bold text-white border-l-4 border-teal-500 pl-3">
+          全球外匯專區 (美金計價 ＋ 新台幣 TWD 雙重計價)
+          <span class="text-xs font-normal text-teal-300 ml-2">(已加入瑞士法郎 CHF・下方自動換算即時新台幣兌換價格)</span>
+        </h2>
+        <span id="fx-twd-base-indicator" class="text-xs text-amber-300 mono">基準匯率：1 美元 = 32.45 新台幣</span>
+      </div>
+      <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3"></div>
+    </section>
+
+    <!-- 專區 5：期貨與大宗商品專區 -->
     <section class="space-y-5">
       <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">
         期貨與大宗商品專區
@@ -162,7 +187,7 @@
       </div>
     </section>
 
-    <!-- 專區 4：美股核心科技股・最新財報核心數據與獲利能力指標・新聞利多利空 -->
+    <!-- 專區 6：美股核心科技股・最新財報核心數據與獲利能力指標・新聞利多利空 -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">
@@ -173,7 +198,7 @@
       <div id="grid-us-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- 專區 5：台股核心權值股與 MOPS 重大訊息 -->
+    <!-- 專區 7：台股核心權值股與 MOPS 重大訊息 -->
     <section class="space-y-6">
       <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
         台股核心權值股・最新財報與月營收・公開資訊觀測站與新聞利多利空
@@ -193,7 +218,7 @@
       </div>
     </section>
 
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 -->
+    <!-- 專區 8：台股與法人籌碼專區進階視覺化 -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
@@ -224,17 +249,9 @@
       </div>
     </section>
 
-    <!-- 專區 7：全球外匯與美債殖利率 -->
-    <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-teal-500 pl-3">全球外匯與美債殖利率 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片可檢視各國央行決策、總經與匯市利多利空)</span></h2>
-      <div id="grid-fx-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-    </section>
-
   </main>
 
-  <!-- ========================================================================= -->
-  <!-- 彈出式視窗 A：全球重要總經日曆 (FOMC / 非農 / CPI / PPI) 深度數據與市場影響分析視窗 -->
-  <!-- ========================================================================= -->
+  <!-- 彈出式視窗 A：全球重要總經日曆深度數據與市場影響分析視窗 -->
   <div id="macro-detail-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-indigo-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-5">
@@ -248,7 +265,6 @@
         <button onclick="closeMacroModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-1.5 text-sm font-bold">✕ 關閉</button>
       </div>
 
-      <!-- 核心三欄對照卡：實際數據 (含月增率 MoM) vs 市場預期 vs 上個月數據 -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-6">
         <div class="bg-slate-900/90 border border-indigo-500/40 rounded-xl p-4">
           <span class="text-xs text-indigo-300 font-bold block mb-1">📌 本期實際數據 (含月增率 MoM)</span>
@@ -267,19 +283,16 @@
         </div>
       </div>
 
-      <!-- 官方分項數據細部拆解 -->
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-5">
         <h3 class="text-sm font-bold text-amber-300 mb-3">📊 官方報告關鍵分項數據拆解</h3>
         <div id="macro-modal-submetrics" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs"></div>
       </div>
 
-      <!-- 市場影響深度分析 (股市 / 美債殖利率 / 美元匯率 / Fed 政策路徑) -->
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-5">
         <h3 class="text-sm font-bold text-emerald-300 mb-3">💡 本次數據開出對金融市場之深度影響分析</h3>
         <ul id="macro-modal-impact-list" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
       </div>
 
-      <!-- 官方權威資料來源與驗證連結 -->
       <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="text-xs">
           <span class="text-slate-400 font-bold block">🏛️ 官方權威資料來源 (可點擊查驗原始報告)：</span>
@@ -290,9 +303,7 @@
     </div>
   </div>
 
-  <!-- ========================================================================= -->
   <!-- 彈出式視窗 B：個股與指數多空情報視窗 -->
-  <!-- ========================================================================= -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
@@ -351,8 +362,7 @@
     };
 
     // =========================================================================
-    // 重要總經日曆 (FOMC / 非農 NFP / CPI / PPI) & 超級法說會
-    // 包含：下一次倒數日程 + 最近一期官方已公布實績 (實際值含月增率 MoM / 預期值 / 上月前值 / 深度影響分析 / 官方來源)
+    // 7 大重要總經日曆 (FOMC / 非農 NFP / CPI / PPI / PCE / 美國零售銷售 / 法說會)
     // =========================================================================
     const MACRO_CALENDAR_CATEGORIES = [
       {
@@ -388,7 +398,7 @@
           sourceName: "美國聯準會 (Federal Reserve Board - FOMC Statement)",
           sourceLinks: [
             { label: "Fed FOMC 官方貨幣政策聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
-            { label: "J.P. Morgan / MUFG 10月 FOMC 報告", url: "https://am.jpmorgan.com/us/en/asset-management/adv/insights/portfolio-insights/fixed-income/fixed-income-perspectives/fomc-statement-october-2026/" }
+            { label: "J.P. Morgan 10月 FOMC 報告", url: "https://am.jpmorgan.com/us/en/asset-management/adv/insights/portfolio-insights/fixed-income/fixed-income-perspectives/fomc-statement-october-2026/" }
           ]
         }
       },
@@ -483,7 +493,7 @@
           expected: "月增 +0.4% MoM",
           prior: "年增 +6.3% / 月增 +1.4%",
           priorNote: "9月 PPI 月增高達 +1.4% MoM (年增 +6.3%)",
-          verdictBadge: "月增略低於預期・年增創高",
+          verdictBadge: "月增降溫・年增創高",
           verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30",
           subMetrics: [
             { label: "10月最終需求 PPI 月增率 / 年增率", val: "+0.3% MoM (低於預期 +0.4%) / 年增 +6.5% YoY (2022/11以來最高)" },
@@ -494,12 +504,86 @@
           impacts: [
             "【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月驚人的 +1.4% 大幅回落至 +0.3%，且略低於市場預期的 +0.4%（主要受惠柴油價格下跌 7.9% 與批發貿易利潤率回落），讓週五（11/13）美股與台股獲得短線喘息反彈空間。",
             "【年增率與核心指標警訊】儘管單月增速放緩，但整體 PPI 年增率攀升至 +6.5%（創 2022 年 11 月以來最高），且剔除食品、能源與貿易服務的「雙核心 PPI」月增仍達 +0.5%（年增 +4.9%），顯示上游金屬礦產、工業化學品與貨運成本仍在向中下游傳導。",
-            "【對 PCE 與供應鏈啟示】PPI 中計入聯準會最重視之核心 PCE 的醫療門診（+0.3%）、投資組合管理費（+0.7%）表現溫和偏升，預示月底公布的 10 月核心 PCE 仍將維持黏性，具備強大定價權的半導體與 AI 硬體龍頭較能轉嫁上游成本。"
+            "【對 PCE 與供應鏈啟示】PPI 中計入聯準會最重視之核心 PCE 的醫療門診（+0.3%）、投資組合管理費（+0.7%）表現溫和偏升，預示月底公布的 10 月核心 PCE 仍將維持黏性。"
           ],
           sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - PPI October 2026)",
           sourceLinks: [
             { label: "BLS 官方 10月 PPI 完整報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" },
             { label: "BLS 2026 M10 PPI 官方新聞稿", url: "https://www.bls.gov/news.release/ppi.nr0.htm" }
+          ]
+        }
+      },
+      {
+        id: "pce",
+        categoryName: "💳 美國 PCE 物價指數",
+        badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+        accentBorder: "border-l-4 border-l-cyan-500",
+        schedule: [
+          { title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" },
+          { title: "美國 12 月 PCE 個人消費支出物價", time: "2027-01-28T21:30:00+08:00", note: "與 Q4 GDP 初值同步由 BEA 發布" },
+          { title: "美國 1 月 PCE 個人消費支出物價", time: "2027-02-25T21:30:00+08:00", note: "BEA 官方個人所得與支出報告" }
+        ],
+        latestRelease: {
+          period: "2026年9月 PCE 報告 (10/29 發布)",
+          actual: "年增 +3.6% YoY",
+          momText: "月增率：+0.5% MoM (核心 +0.3%)",
+          expected: "年增 +3.5% (月增 +0.4%)",
+          prior: "年增 +3.4% / 月增 +0.3%",
+          priorNote: "8月整體 PCE 月增 +0.3% / 核心月增 +0.3% (年增 +3.1%)",
+          verdictBadge: "核心持平・整體偏熱",
+          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [
+            { label: "9月整體 PCE 物價指數 (年增 / 月增)", val: "年增 +3.6% YoY / 月增 +0.5% MoM (高於8月之 +0.3%)" },
+            { label: "9月核心 PCE (不含食品與能源，Fed首選指標)", val: "年增 +3.1% YoY / 月增 +0.3% MoM (與8月持平)" },
+            { label: "名目個人消費支出 (PCE) 單月增額", val: "月增 +$1,131 億美元 (服務支出 +$781億、商品 +$351億)" },
+            { label: "個人所得 (Personal Income) 與儲蓄率", val: "所得月增 +0.2% (+$545億美元) / 個人儲蓄率 3.8%" }
+          ],
+          impacts: [
+            "【聯準會首選通膨指標解讀】根據美國經濟分析局 (BEA 26-46) 官方報告，9 月核心 PCE 月增 +0.3%、年增 +3.1%，雖未進一步失控，但已連續多月卡在 3% 以上平台區；而整體 PCE 因能源與服務價格走揚，月增擴大至 +0.5%（年增 +3.6%）。",
+            "【消費支出強過所得增速】9 月美國名目個人消費支出大增 1,131 億美元，遠高於個人所得增幅（545 億美元），使個人儲蓄率降至 3.8%，顯示美國家庭動用儲蓄支撐強勁的服務與旅遊消費。",
+            "【市場展望與 11/25 下期焦點】由於 10 月 CPI（+0.4% MoM）與 PPI 醫療/金融分項偏堅挺，市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告，這將是 12 月 10 日 FOMC 會議前最後一份決定是否升息的關鍵拼圖。"
+          ],
+          sourceName: "美國經濟分析局 (U.S. Bureau of Economic Analysis - BEA 26-46)",
+          sourceLinks: [
+            { label: "BEA 官方 9月 PCE 完整報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" },
+            { label: "BEA Personal Income and Outlays 官網", url: "https://www.bea.gov/news/2026/personal-income-and-outlays-september-2026" }
+          ]
+        }
+      },
+      {
+        id: "retail",
+        categoryName: "🛍️ 美國零售銷售數據",
+        badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30",
+        accentBorder: "border-l-4 border-l-pink-500",
+        schedule: [
+          { title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" },
+          { title: "美國 11 月零售銷售 (含黑五購物季)", time: "2026-12-16T21:30:00+08:00", note: "檢驗年底感恩節與黑色星期五消費力" },
+          { title: "美國 12 月零售銷售報告", time: "2027-01-15T21:30:00+08:00", note: "U.S. Census Bureau 官方發布" }
+        ],
+        latestRelease: {
+          period: "2026年9月 零售銷售 (10/15 發布)",
+          actual: "$7,450 億 (年增 +4.7%)",
+          momText: "月增率：+0.8% MoM (核心 +0.9%)",
+          expected: "月增 +0.4% MoM",
+          prior: "月增 +1.3% MoM (上修)",
+          priorNote: "8月初值 +1.1% MoM，官方上修至 +1.3% ($7,393億美元)",
+          verdictBadge: "強勁超預期 (+0.4%)",
+          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [
+            { label: "9月零售與餐飲服務總銷售額", val: "$7,450.21 億美元 (月增 +0.8% MoM / 年增 +4.7% YoY)" },
+            { label: "核心零售銷售 (不含汽車與零件)", val: "$6,051.88 億美元 (月增 +0.9% MoM / 年增 +5.4% YoY)" },
+            { label: "雙核心零售 (不含汽車與加油站)", val: "$5,371.67 億美元 (月增 +0.2% MoM / 年增 +4.2% YoY)" },
+            { label: "前月數據修正 (8月零售銷售)", val: "由月增 +1.1% 上修至 +1.3% MoM ($7,393.22 億美元)" }
+          ],
+          impacts: [
+            "【美國內需極具韌性】根據美國人口普查局 (U.S. Census Bureau CB26-165) 官方報告，9 月零售銷售月增高達 +0.8%（遠超市場預期的 +0.4%），且 8 月增速更從 +1.1% 大幅上修至 +1.3%，第 3 季（7–9月）累計同比增長達 +5.5%，徹底打消消費衰退疑慮。",
+            "【分項亮點與結構】剔除汽車後的核心零售月增 +0.9%（年增 +5.4%），顯示電商無店鋪零售、餐飲服務與日常消費品需求暢旺，直接拉動美國 Q3 GDP 實質成長率表現。",
+            "【本週 11/17 重磅登場】台灣時間本週二（11/17）晚上 21:30 即將公布最新 10 月份美國零售銷售數據，若月增率持續明顯高於預期，將進一步鞏固『經濟不著陸 (No Landing)』與美債高殖利率格局，利好大型科技電商（如 AMZN）與台灣消費性電子代工龍頭。"
+          ],
+          sourceName: "美國人口普查局 (U.S. Census Bureau - Release CB26-165)",
+          sourceLinks: [
+            { label: "Census Bureau 官方 9月零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" },
+            { label: "Census Bureau 官方發布日程表", url: "https://www.census.gov/retail/release_schedule.html" }
           ]
         }
       },
@@ -598,7 +682,7 @@
       document.getElementById("macro-modal-actual").textContent = rel.actual;
       document.getElementById("macro-modal-mom").textContent = rel.momText;
       document.getElementById("macro-modal-expected").textContent = rel.expected;
-      document.getElementById("macro-modal-Surprise" in document ? "macro-modal-Surprise" : "macro-modal-surprise").innerHTML =
+      document.getElementById("macro-modal-surprise").innerHTML =
         `<span class="px-2 py-0.5 rounded border text-[11px] ${rel.verdictColor}">${rel.verdictBadge}</span>`;
       document.getElementById("macro-modal-prior").textContent = rel.prior;
       document.getElementById("macro-modal-prior-note").textContent = rel.priorNote;
@@ -645,8 +729,8 @@
         let urgencyBadge = "";
 
         if (diffMs <= 0 && diffMs > -7200000) {
-          countdownHtml = `<div class="text-sm font-bold text-rose-400 animate-pulse mono">🔴 數據公布 / 會議進行中！</div>`;
-          urgencyBadge = `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200 font-bold">LIVE</span>`;
+          countdownHtml = `<div class="text-xs font-bold text-rose-400 animate-pulse mono">🔴 公布/進行中！</div>`;
+          urgencyBadge = `<span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200 font-bold">LIVE</span>`;
         } else if (diffMs > 0) {
           const totalSec = Math.floor(diffMs / 1000);
           const days = Math.floor(totalSec / 86400);
@@ -658,55 +742,54 @@
           const isSoon = days < 4;
           const timeColor = isSoon ? "text-amber-300" : "text-white";
           urgencyBadge = isSoon
-            ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold">即將登場</span>`
-            : `<span class="text-[10px] text-slate-400 mono">下次倒數</span>`;
+            ? `<span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold">即將登場</span>`
+            : `<span class="text-[9px] text-slate-400 mono">倒數</span>`;
 
           countdownHtml = `
-            <div class="flex items-baseline gap-1 mono ${timeColor}">
-              <span class="text-lg font-bold">${days}</span><span class="text-[11px] text-slate-400 mr-0.5">天</span>
-              <span class="text-base font-bold">${pad(hours)}</span><span class="text-xs text-slate-400">:</span>
-              <span class="text-base font-bold">${pad(mins)}</span><span class="text-xs text-slate-400">:</span>
-              <span class="text-base font-bold text-emerald-400">${pad(secs)}</span>
+            <div class="flex items-baseline gap-0.5 mono ${timeColor}">
+              <span class="text-base font-bold">${days}</span><span class="text-[10px] text-slate-400 mr-0.5">天</span>
+              <span class="text-sm font-bold">${pad(hours)}</span><span class="text-[10px] text-slate-400">:</span>
+              <span class="text-sm font-bold">${pad(mins)}</span><span class="text-[10px] text-slate-400">:</span>
+              <span class="text-sm font-bold text-emerald-400">${pad(secs)}</span>
             </div>
           `;
         } else {
-          countdownHtml = `<div class="text-xs text-slate-400 mono">等待下一期日程更新</div>`;
+          countdownHtml = `<div class="text-xs text-slate-400 mono">等待更新</div>`;
         }
 
         const dtObj = new Date(activeEvt.time);
-        const formattedDate = `${dtObj.getFullYear()}/${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
+        const formattedDate = `${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
         const rel = cat.latestRelease;
 
         return `
-          <div onclick="openMacroModal('${cat.id}')" class="bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3.5 border border-slate-800 hover:border-indigo-500/60 ${cat.accentBorder} flex flex-col justify-between cursor-pointer transition-all hover:-translate-y-0.5">
+          <div onclick="openMacroModal('${cat.id}')" class="bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3 border border-slate-800 hover:border-indigo-500/60 ${cat.accentBorder} flex flex-col justify-between cursor-pointer transition-all hover:-translate-y-0.5">
             <div>
               <div class="flex items-center justify-between gap-1 mb-1">
-                <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${cat.badgeColor}">${cat.categoryName}</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border truncate ${cat.badgeColor}">${cat.categoryName}</span>
                 ${urgencyBadge}
               </div>
-              <h3 class="text-xs font-bold text-white leading-snug mt-1">${activeEvt.title}</h3>
-              <div class="mt-1.5 mb-1 flex items-center justify-between">
+              <h3 class="text-xs font-bold text-white leading-snug mt-1 line-clamp-1" title="${activeEvt.title}">${activeEvt.title}</h3>
+              <div class="mt-1 mb-1 flex items-center justify-between">
                 ${countdownHtml}
-                <span class="text-[10px] text-slate-400 mono">${formattedDate.slice(5)}</span>
+                <span class="text-[10px] text-slate-400 mono">${formattedDate}</span>
               </div>
 
-              <!-- 最近一期官方數據：實際值(含月增率 MoM) / 預期值 / 上月前值 -->
-              <div class="mt-2 pt-2 border-t border-slate-800/90 bg-slate-950/65 rounded-lg p-2 space-y-1">
+              <div class="mt-1.5 pt-1.5 border-t border-slate-800/90 bg-slate-950/65 rounded-lg p-2 space-y-1">
                 <div class="flex items-center justify-between text-[10px]">
-                  <span class="text-slate-400 font-semibold">${rel.period.split(" ")[0]}實績</span>
-                  <span class="px-1.5 py-0.2 rounded border text-[9px] font-bold ${rel.verdictColor}">${rel.verdictBadge}</span>
+                  <span class="text-slate-400 font-semibold truncate">${rel.period.split(" ")[0]}實績</span>
+                  <span class="px-1 py-0.2 rounded border text-[9px] font-bold shrink-0 ${rel.verdictColor}">${rel.verdictBadge}</span>
                 </div>
                 <div class="text-xs font-bold text-white mono">${rel.actual}</div>
-                <div class="text-[10px] font-bold text-emerald-400 mono">${rel.momText}</div>
+                <div class="text-[10px] font-bold text-emerald-400 mono truncate" title="${rel.momText}">${rel.momText}</div>
                 <div class="grid grid-cols-2 gap-1 pt-1 border-t border-slate-800/70 text-[10px] mono">
-                  <div><span class="text-slate-500 block">市場預期</span><span class="text-slate-200 font-semibold">${rel.expected}</span></div>
-                  <div><span class="text-slate-500 block">上月/前值</span><span class="text-slate-300 font-semibold">${rel.prior}</span></div>
+                  <div class="truncate"><span class="text-slate-500 block">預期</span><span class="text-slate-200 font-semibold">${rel.expected}</span></div>
+                  <div class="truncate"><span class="text-slate-500 block">上月</span><span class="text-slate-300 font-semibold">${rel.prior}</span></div>
                 </div>
               </div>
             </div>
 
-            <div class="mt-2.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-              <span class="text-indigo-400 font-bold hover:underline">📊 詳細數據與市場影響分析 &rarr;</span>
+            <div class="mt-2 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[10px]">
+              <span class="text-indigo-400 font-bold hover:underline">📊 影響分析與來源 &rarr;</span>
             </div>
           </div>
         `;
@@ -721,6 +804,7 @@
         .replace(/那斯達克/g, "納斯達克")
         .replace(/斯達剋/g, "斯達克")
         .replace(/達剋/g, "達克")
+        .replace(/瑞士法朗/g, "瑞士法郎")
         .replace(/臺/g, "台");
     }
 
@@ -759,7 +843,7 @@
 
     function getCleanSkeletonData() {
       try {
-        const cached = localStorage.getItem("MARKET2_REAL_CACHE_V3");
+        const cached = localStorage.getItem("MARKET2_REAL_CACHE_V4");
         if (cached) {
           const parsed = JSON.parse(cached);
           if (parsed && Array.isArray(parsed.indices) && parsed.indices.some(x => x.price && Number(x.price) > 0)) {
@@ -785,6 +869,21 @@
           makeSkeletonItem("^FTSE", "英國富時 100", "index"),
           makeSkeletonItem("^GDAXI", "德國 DAX 指數", "index"),
           makeSkeletonItem("^FCHI", "法國 CAC 40", "index")
+        ],
+        us_bonds: [
+          makeSkeletonItem("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"),
+          makeSkeletonItem("^FVX", "美國 5 年期公債殖利率", "us_bond"),
+          makeSkeletonItem("^TNX", "美國 10 年期公債殖利率", "us_bond"),
+          makeSkeletonItem("^TYX", "美國 30 年期公債殖利率", "us_bond")
+        ],
+        fx_rates: [
+          makeSkeletonItem("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"),
+          makeSkeletonItem("CHF=X", "美元/瑞士法郎 (USD/CHF)", "fx_rate"),
+          makeSkeletonItem("JPY=X", "美元/日圓 (USD/JPY)", "fx_rate"),
+          makeSkeletonItem("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"),
+          makeSkeletonItem("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"),
+          makeSkeletonItem("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"),
+          makeSkeletonItem("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")
         ],
         us_stocks: [
           makeSkeletonItem("NVDA", "NVDA", "us_stock", null, { pe: 55.4, forward_pe: 34.2, eps: 2.62, gross_margin: "75.1%", operating_margin: "62.1%", roe: "115.2%", yoy_rev_growth: "93.6%", bull: "[AI龍頭] 資料中心 Blackwell 與 Hopper 架構晶片需求強勁", bear: "[風險提示] 留意雲端巨頭資本支出節奏與高基期成長率比較" }),
@@ -819,16 +918,6 @@
           makeSkeletonItem("ZW=F", "小麥期貨", "futures", "agri_futures"),
           makeSkeletonItem("ZC=F", "玉米期貨", "futures", "agri_futures")
         ],
-        fx_bonds: [
-          makeSkeletonItem("TWD=X", "美元/台幣 (USD/TWD)", "fx_bond"),
-          makeSkeletonItem("CNY=X", "美元/人民幣 (USD/CNY)", "fx_bond"),
-          makeSkeletonItem("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_bond"),
-          makeSkeletonItem("JPY=X", "美元/日圓 (USD/JPY)", "fx_bond"),
-          makeSkeletonItem("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_bond"),
-          makeSkeletonItem("DX-Y.NYB", "美元指數 (DXY)", "fx_bond"),
-          makeSkeletonItem("^TNX", "美國 10 年期公債殖利率", "fx_bond"),
-          makeSkeletonItem("^TYX", "美國 30 年期公債殖利率", "fx_bond")
-        ],
         tw_chips_visual: JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS)),
         mops_general: []
       };
@@ -858,6 +947,60 @@
       return `${num > 0 ? "+" : ""}${num.toFixed(2)}%`;
     }
 
+    // =========================================================================
+    // 全球外匯「美金計價 ＋ 新台幣 (TWD) 計價」即時交叉匯率換算器
+    // =========================================================================
+    function getLatestUsdTwdRate() {
+      const twdItem = allAssetsMap["TWD=X"];
+      const p = twdItem && twdItem.price ? Number(twdItem.price) : 0;
+      return (p > 20 && p < 45) ? p : 32.45;
+    }
+
+    function computeTwdCrossQuoteText(symbol, rawPrice) {
+      const p = Number(rawPrice);
+      if (!p || isNaN(p) || p <= 0) return "新台幣換算同步中...";
+      const usdTwd = getLatestUsdTwdRate();
+
+      if (symbol === "TWD=X") {
+        const twdToUsd = 1 / p;
+        return `🇹🇼 1 美金 = ${p.toFixed(2)} 台幣 (1 台幣 = ${twdToUsd.toFixed(4)} 美金)`;
+      } else if (symbol === "CHF=X") {
+        // CHF=X 為 USD/CHF (1 美元兌換多少瑞郎)，故 1 瑞郎 = (USD/TWD) / (USD/CHF) 台幣
+        const chfInTwd = usdTwd / p;
+        return `🇹🇼 新台幣計價：1 瑞士法郎 ≈ ${chfInTwd.toFixed(2)} 台幣`;
+      } else if (symbol === "JPY=X") {
+        const jpyInTwd = usdTwd / p;
+        return `🇹🇼 新台幣計價：1 日圓 ≈ ${jpyInTwd.toFixed(4)} 台幣`;
+      } else if (symbol === "CNY=X") {
+        const cnyInTwd = usdTwd / p;
+        return `🇹🇼 新台幣計價：1 人民幣 ≈ ${cnyInTwd.toFixed(2)} 台幣`;
+      } else if (symbol === "EURUSD=X") {
+        // EURUSD=X 為 1 歐元兌多少美元，故 1 歐元 = EURUSD * USD/TWD 台幣
+        const eurInTwd = p * usdTwd;
+        return `🇹🇼 新台幣計價：1 歐元 ≈ ${eurInTwd.toFixed(2)} 台幣`;
+      } else if (symbol === "GBPUSD=X") {
+        const gbpInTwd = p * usdTwd;
+        return `🇹🇼 新台幣計價：1 英鎊 ≈ ${gbpInTwd.toFixed(2)} 台幣`;
+      } else if (symbol === "DX-Y.NYB") {
+        return `🇹🇼 美元兌新台幣基準：${usdTwd.toFixed(2)} 台幣`;
+      }
+      return "";
+    }
+
+    function refreshAllFxTwdSublabels() {
+      const usdTwd = getLatestUsdTwdRate();
+      const indEl = document.getElementById("fx-twd-base-indicator");
+      if (indEl) indEl.textContent = `基準匯率：1 美金 (USD) = ${usdTwd.toFixed(2)} 新台幣 (TWD)`;
+
+      ["TWD=X", "CHF=X", "JPY=X", "EURUSD=X", "GBPUSD=X", "CNY=X", "DX-Y.NYB"].forEach(sym => {
+        const item = allAssetsMap[sym];
+        const subEl = document.getElementById(`twd-cross-${safeId(sym)}`);
+        if (item && subEl && item.price && Number(item.price) > 0) {
+          subEl.textContent = computeTwdCrossQuoteText(sym, item.price);
+        }
+      });
+    }
+
     function createQuoteCard(item, forceTickerOnly = false) {
       item.name = cleanTwText(item.name);
       allAssetsMap[item.symbol] = item;
@@ -871,6 +1014,17 @@
         extHtml = `
           <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
             <span class="${extColor} font-semibold">${item.ext_session.price} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}</span>
+          </div>
+        `;
+      }
+
+      // 若為全球外匯卡片，額外顯示「新台幣 (TWD) 雙重計價」列
+      let twdCrossHtml = "";
+      if (item.asset_type === "fx_rate") {
+        const initCrossText = (item.price && Number(item.price) > 0) ? computeTwdCrossQuoteText(item.symbol, item.price) : "🇹🇼 新台幣換算同步中...";
+        twdCrossHtml = `
+          <div class="mt-1.5 pt-1.5 border-t border-slate-800/80">
+            <span id="twd-cross-${domId}" class="text-[11px] font-bold text-amber-300 mono block">${initCrossText}</span>
           </div>
         `;
       }
@@ -890,6 +1044,7 @@
               <span id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
             </div>
             ${extHtml}
+            ${twdCrossHtml}
           </div>
           <div class="mt-2.5 pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1">
             <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 font-medium transition truncate">${infoBtnText}</button>
@@ -1043,7 +1198,7 @@
           events: { label: "📰 產業與個股新聞時事", bullish: rawBulls, bearish: rawBears }
         };
       }
-      const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)";
+      const cbName = CLIENT_CB_MAP[item.symbol] || ("CHF" in item ? "瑞士央行 (SNB)" : "美國聯準會 (Fed)");
       return {
         central_bank: { label: `🏦 ${cbName}決策`, bullish: [{ title: `[${cbName}] 貨幣政策與利率維持穩定觀察期`, url: "#", date: "央行決策" }], bearish: [{ title: `[${cbName}] 持續關注通膨與利差變動風險`, url: "#", date: "央行風險" }] },
         macro: { label: "📊 總經數據指標", bullish: [{ title: `[總經數據] 就業與出口動能提供基本面支撐`, url: "#", date: "總經指標" }], bearish: [{ title: `[總經數據] 留意終端需求與景氣周期波動`, url: "#", date: "總經風險" }] },
@@ -1121,6 +1276,7 @@
       renderModalPillars();
 
       const f = item.fundamentals || {};
+      const extraTwd = item.asset_type === "fx_rate" ? `<div class="col-span-2"><span class="text-slate-400 block text-[10px]">新台幣交叉換算匯率</span><strong class="text-amber-300">${computeTwdCrossQuoteText(item.symbol, item.price)}</strong></div>` : "";
       document.getElementById("modal-fundamentals-grid").innerHTML = isStock ? `
         <div><span class="text-slate-400 block text-[10px]">本益比 (PE)</span>${f.pe ?? 'N/A'}</div>
         <div><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span>${f.forward_pe ?? 'N/A'}</div>
@@ -1132,8 +1288,7 @@
       ` : `
         <div><span class="text-slate-400 block text-[10px]">最新收盤報價</span>${item.price ?? 'N/A'}</div>
         <div><span class="text-slate-400 block text-[10px]">最新漲跌幅</span><strong class="${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</strong></div>
-        <div><span class="text-slate-400 block text-[10px]">52 週最高價</span>${f.high_52w ?? 'N/A'}</div>
-        <div><span class="text-slate-400 block text-[10px]">52 週最低價</span>${f.low_52w ?? 'N/A'}</div>
+        ${extraTwd}
       `;
 
       document.getElementById("modal-btn-add-compare").onclick = () => {
@@ -1153,12 +1308,13 @@
       const compareSel = document.getElementById("compare-select");
       const groups = [
         { label: "全球主要指數", list: globalMarketData.indices },
+        { label: "美國公債殖利率", list: globalMarketData.us_bonds },
+        { label: "全球外匯匯率", list: globalMarketData.fx_rates },
         { label: "期貨與大宗商品", list: globalMarketData.futures_commodities },
         { label: "美股核心科技股", list: globalMarketData.us_stocks },
-        { label: "台股核心權值股", list: globalMarketData.tw_stocks },
-        { label: "外匯與美債殖利率", list: globalMarketData.fx_bonds }
+        { label: "台股核心權值股", list: globalMarketData.tw_stocks }
       ];
-      const optionsHtml = groups.map(g => `<optgroup label="${g.label}">${g.list.map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}</optgroup>`).join("");
+      const optionsHtml = groups.map(g => `<optgroup label="${g.label}">${(g.list || []).map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}</optgroup>`).join("");
       primarySel.innerHTML = optionsHtml;
       primarySel.value = currentAssetSymbol;
       compareSel.innerHTML = `<option value="">＋ 從完整清單搜尋加入比較...</option>` + optionsHtml;
@@ -1168,7 +1324,14 @@
     function renderQuickPickerButtons() {
       const picker = document.getElementById("dashboard-quick-picker");
       if (!picker || !globalMarketData) return;
-      const allItems = [...globalMarketData.indices, ...globalMarketData.futures_commodities, ...globalMarketData.us_stocks, ...globalMarketData.tw_stocks, ...globalMarketData.fx_bonds];
+      const allItems = [
+        ...(globalMarketData.indices || []),
+        ...(globalMarketData.us_bonds || []),
+        ...(globalMarketData.fx_rates || []),
+        ...(globalMarketData.futures_commodities || []),
+        ...(globalMarketData.us_stocks || []),
+        ...(globalMarketData.tw_stocks || [])
+      ];
       picker.innerHTML = allItems.map(item => {
         const sym = item.symbol;
         const label = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
@@ -1532,7 +1695,8 @@
       for (let i = 0; i < ts.length; i++) {
         if (closes[i] !== null && closes[i] !== undefined && Number(closes[i]) > 0) {
           const dStr = new Date(ts[i] * 1000).toISOString().slice(0, 10);
-          newHist.push({ date: dStr, close: Number(closes[i].toFixed(2)) });
+          const dec = item.asset_type === "fx_rate" ? 4 : 2;
+          newHist.push({ date: dStr, close: Number(Number(closes[i]).toFixed(dec)) });
         }
       }
       if (newHist.length >= 2) {
@@ -1637,7 +1801,8 @@
         triggerCardFlash(symbol, Number(newComp) > Number(oldComp));
       }
       if (newMainPrice !== null && newMainPrice !== undefined && !isNaN(newMainPrice) && Number(newMainPrice) > 0) {
-        item.price = Number(newMainPrice).toFixed(2);
+        const dec = item.asset_type === "fx_rate" ? (symbol === "JPY=X" || symbol === "TWD=X" ? 2 : 4) : 2;
+        item.price = Number(newMainPrice).toFixed(dec);
         item.change_pct = Number(newMainPct).toFixed(2);
         const pEl = document.getElementById(`price-${domId}`);
         const pctEl = document.getElementById(`pct-${domId}`);
@@ -1645,6 +1810,10 @@
         if (pctEl) {
           pctEl.textContent = formatSignedPct(item.change_pct);
           pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
+        }
+        // 當外匯報價更新時，立即同步更新新台幣交叉匯率顯示
+        if (item.asset_type === "fx_rate") {
+          refreshAllFxTwdSublabels();
         }
       }
       if (extSessionObj) {
@@ -1670,18 +1839,19 @@
         const meta = res.meta || {};
         const ts = res.timestamp || [];
         const rawCloses = res.indicators?.quote?.[0]?.close || [];
+        const item = allAssetsMap[sym];
+        if (!item) return;
+
+        const dec = item.asset_type === "fx_rate" ? (sym === "JPY=X" || sym === "TWD=X" ? 2 : 4) : 2;
         const validPairs = [];
         for (let i = 0; i < ts.length; i++) {
           if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
             validPairs.push({
               date: new Date(ts[i] * 1000).toISOString().slice(0, 10),
-              close: Number(Number(rawCloses[i]).toFixed(2))
+              close: Number(Number(rawCloses[i]).toFixed(dec))
             });
           }
         }
-
-        const item = allAssetsMap[sym];
-        if (!item) return;
 
         if (validPairs.length >= 2 && (!item.history || item.history.length < 5)) {
           item.history = validPairs;
@@ -1720,9 +1890,10 @@
         const batch = symbols.slice(i, i + batchSize);
         await Promise.all(batch.map(sym => fetchSingleYahooQuoteWeekendSafe(sym)));
       }
+      refreshAllFxTwdSublabels();
       try {
         if (globalMarketData) {
-          localStorage.setItem("MARKET2_REAL_CACHE_V3", JSON.stringify(globalMarketData));
+          localStorage.setItem("MARKET2_REAL_CACHE_V4", JSON.stringify(globalMarketData));
         }
       } catch (e) {}
 
@@ -1781,6 +1952,48 @@
       document.getElementById("grid-futures-agri").innerHTML = agriSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
     }
 
+    // 相容舊版 fx_bonds 欄位，自動拆分為「美國公債殖利率 (us_bonds)」與「全球外匯 (fx_rates，含瑞士法郎 CHF=X)」
+    function normalizeBondsAndFx(data) {
+      const defaultBonds = [
+        makeSkeletonItem("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"),
+        makeSkeletonItem("^FVX", "美國 5 年期公債殖利率", "us_bond"),
+        makeSkeletonItem("^TNX", "美國 10 年期公債殖利率", "us_bond"),
+        makeSkeletonItem("^TYX", "美國 30 年期公債殖利率", "us_bond")
+      ];
+      const defaultFx = [
+        makeSkeletonItem("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"),
+        makeSkeletonItem("CHF=X", "美元/瑞士法郎 (USD/CHF)", "fx_rate"),
+        makeSkeletonItem("JPY=X", "美元/日圓 (USD/JPY)", "fx_rate"),
+        makeSkeletonItem("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"),
+        makeSkeletonItem("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"),
+        makeSkeletonItem("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"),
+        makeSkeletonItem("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")
+      ];
+
+      const existingMap = {};
+      [...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => {
+        existingMap[item.symbol] = item;
+      });
+
+      data.us_bonds = defaultBonds.map(b => {
+        if (existingMap[b.symbol]) {
+          existingMap[b.symbol].asset_type = "us_bond";
+          existingMap[b.symbol].name = b.name;
+          return existingMap[b.symbol];
+        }
+        return b;
+      });
+
+      data.fx_rates = defaultFx.map(f => {
+        if (existingMap[f.symbol]) {
+          existingMap[f.symbol].asset_type = "fx_rate";
+          existingMap[f.symbol].name = f.name;
+          return existingMap[f.symbol];
+        }
+        return f;
+      });
+    }
+
     function renderAllSections(dataPayload, isRealServerData = false) {
       globalMarketData = sanitizeDataTree(dataPayload);
 
@@ -1796,18 +2009,22 @@
         }
       }
 
+      normalizeBondsAndFx(globalMarketData);
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
       if (isRealServerData) {
-        try { localStorage.setItem("MARKET2_REAL_CACHE_V3", JSON.stringify(globalMarketData)); } catch (e) {}
+        try { localStorage.setItem("MARKET2_REAL_CACHE_V4", JSON.stringify(globalMarketData)); } catch (e) {}
       }
 
       document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '即時同步'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
+      document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
+      document.getElementById("grid-fx-rates").innerHTML = (globalMarketData.fx_rates || []).map(x => createQuoteCard(x, false)).join("");
       renderGroupedFutures(globalMarketData.futures_commodities);
       document.getElementById("grid-us-stocks").innerHTML = (globalMarketData.us_stocks || []).map(s => createUsStockRichCard(s)).join("");
       document.getElementById("grid-tw-stocks").innerHTML = (globalMarketData.tw_stocks || []).map(t => createTwStockCard(t)).join("");
-      document.getElementById("grid-fx-bonds").innerHTML = (globalMarketData.fx_bonds || []).map(x => createQuoteCard(x, false)).join("");
+
+      refreshAllFxTwdSublabels();
 
       const mopsContainer = document.getElementById("mops-list");
       if (globalMarketData.mops_general && globalMarketData.mops_general.length > 0) {
