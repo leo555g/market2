@@ -101,6 +101,7 @@ FX_RATES = {
     "GBPUSD=X": "英鎊/美元 (GBP/USD)",
     "CNY=X": "美元/人民幣 (USD/CNY)",
     "DX-Y.NYB": "美元指數 (DXY)"
+    "AUDUSD=X": "澳幣/美元 (AUD/USD)",
 }
 
 US_STOCKS = [
