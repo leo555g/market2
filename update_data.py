@@ -14,7 +14,6 @@ from opencc import OpenCC
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# 使用基礎簡轉繁，並加上台灣金融專有名詞強制校正
 cc = OpenCC('s2tw')
 
 def to_trad(text):
@@ -55,12 +54,16 @@ def safe_float(val, default=0.0):
 tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 
+# ==========================================
+# 1. 資產清單定義 (新增櫃買指數 ^TWO 與小道瓊期貨 YM=F，並將期貨分為四大類)
+# ==========================================
 INDICES = {
     "^GSPC": "S&P 500 指數",
     "^DJI": "道瓊工業指數",
     "^IXIC": "納斯達克指數",
     "^SOX": "費城半導體指數",
     "^TWII": "台灣加權指數",
+    "^TWO": "台灣櫃買指數",
     "^N225": "日經 225 指數",
     "^KS11": "韓國 KOSPI 指數",
     "^FTSE": "英國富時 100",
@@ -81,18 +84,20 @@ TW_STOCKS = {
     "3711": {"ticker": "3711.TW", "name": "3711 日月光投控"}
 }
 
+# 期貨四大分組：1.美股指數期貨 2.貴金屬與工業金屬 3.能源原油 4.農產品
 FUTURES_AND_COMMODITIES = {
-    "ES=F": "小S&P期貨",
-    "NQ=F": "小納斯達克期貨",
-    "GC=F": "黃金期貨",
-    "SI=F": "白銀期貨",
-    "HG=F": "銅期貨",
-    "CL=F": "WTI 原油期貨",
-    "BZ=F": "布蘭特原油期貨",
-    "PA=F": "鈀金期貨",
-    "ZS=F": "黃豆期貨",
-    "ZW=F": "小麥期貨",
-    "ZC=F": "玉米期貨"
+    "ES=F": {"name": "小S&P期貨", "group": "us_index_futures"},
+    "NQ=F": {"name": "小納斯達克期貨", "group": "us_index_futures"},
+    "YM=F": {"name": "小道瓊期貨", "group": "us_index_futures"},
+    "GC=F": {"name": "黃金期貨", "group": "metals_futures"},
+    "SI=F": {"name": "白銀期貨", "group": "metals_futures"},
+    "HG=F": {"name": "銅期貨", "group": "metals_futures"},
+    "PA=F": {"name": "鈀金期貨", "group": "metals_futures"},
+    "BZ=F": {"name": "布蘭特原油期貨", "group": "energy_futures"},
+    "CL=F": {"name": "WTI 原油期貨", "group": "energy_futures"},
+    "ZS=F": {"name": "黃豆期貨", "group": "agri_futures"},
+    "ZW=F": {"name": "小麥期貨", "group": "agri_futures"},
+    "ZC=F": {"name": "玉米期貨", "group": "agri_futures"}
 }
 
 FX_AND_BONDS = {
@@ -156,6 +161,16 @@ INDEX_COUNTRY_PROFILES = {
         "cb_baseline_bear": "[台灣央行 (CBC)] 央行持續透過存款準備率與選擇性信用管制調節房市資金，且台美利差牽動外資匯出入",
         "macro_baseline_bull": "[台灣總經] AI 與高效能運算帶動資通訊與半導體出口暢旺，台灣 CPI 通膨維持溫和可控",
         "macro_baseline_bear": "[台灣總經] 傳產與成熟製程復甦步伐不均，需留意外資於期現貨籌碼調節及新台幣匯率波動"
+    },
+    "^TWO": {
+        "cb_name": "台灣央行 (CBC)",
+        "cb_query": "台灣央行 理監事會 OR 重貼現率 OR 台灣資金動能 -爆料同學會",
+        "macro_query": "台灣 外銷訂單 OR 台灣PMI OR 中小型股 景氣燈號 -爆料同學會",
+        "events_query": "櫃買指數 OR OTC 中小型股 投信作帳 矽光子 CPO 半導體設備 -爆料同學會 -CMoney",
+        "cb_baseline_bull": "[台灣央行 (CBC)] 國內金融體系流動性充裕，內資與投信資金動能活絡支撐櫃買中小型股表現",
+        "cb_baseline_bear": "[台灣央行 (CBC)] 央行信用管制與資金控管使市場對高估值中小型股之追價意願較受利率預期牽動",
+        "macro_baseline_bull": "[台灣總經] AI 供應鏈外溢效應帶動上櫃半導體設備、光通訊 (CPO) 與散熱零組件營收成長",
+        "macro_baseline_bear": "[台灣總經] 櫃買市場散戶融資參與度高，當融資餘額增速過快時需留意短線多殺多震盪風險"
     },
     "^N225": {
         "cb_name": "日本央行 (BoJ)",
@@ -298,21 +313,9 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
             "mode": "index_three_pillars",
             "central_bank_name": cb_name,
             "categories": {
-                "central_bank": {
-                    "label": f"🏦 {cb_name}決策",
-                    "bullish": cb_bulls[:5],
-                    "bearish": cb_bears[:5]
-                },
-                "macro": {
-                    "label": "📊 總經數據指標",
-                    "bullish": m_bulls[:5],
-                    "bearish": m_bears[:5]
-                },
-                "events": {
-                    "label": "📰 新聞時事與盤勢",
-                    "bullish": ev_bulls[:5],
-                    "bearish": ev_bears[:5]
-                }
+                "central_bank": {"label": f"🏦 {cb_name}決策", "bullish": cb_bulls[:5], "bearish": cb_bears[:5]},
+                "macro": {"label": "📊 總經數據指標", "bullish": m_bulls[:5], "bearish": m_bears[:5]},
+                "events": {"label": "📰 新聞時事與盤勢", "bullish": ev_bulls[:5], "bearish": ev_bears[:5]}
             },
             "bullish": [cb_bulls[0], m_bulls[0], ev_bulls[0]],
             "bearish": [cb_bears[0], m_bears[0], ev_bears[0]]
@@ -390,14 +393,14 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
         if not news_bears:
             news_bears.append({"title": f"[新聞時事] 短線股價受國際科技股評價調整與籌碼換手影響", "url": "#", "date": "市場消息"})
 
-        combined_bulls = fund_bulls + news_bulls
-        combined_bears = fund_bears + news_bears
+        combined_bulls = news_bulls + fund_bulls
+        combined_bears = news_bears + fund_bears
 
         return {
             "mode": "stock_two_pillars",
             "categories": {
                 "fundamentals_mops": {
-                    "label": "📑 MOPS重訊・月營收・財報指標",
+                    "label": "📑 MOPS重訊・月營收・財報指標" if asset_type == "tw_stock" else "📑 最新財報核心數據與估值指標",
                     "bullish": fund_bulls[:5],
                     "bearish": fund_bears[:5]
                 },
@@ -412,11 +415,12 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
         }
 
 
-def fetch_ticker_full_data(symbol, display_name, asset_type="standard"):
+def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_group=None):
     result = {
         "symbol": symbol,
         "name": to_trad(display_name),
         "asset_type": asset_type,
+        "future_group": future_group,
         "price": 0.0,
         "prev_close": 0.0,
         "change": 0.0,
@@ -596,16 +600,30 @@ def fetch_mops_material_info(target_stock_ids):
     return announcements, all_recent_mops[:15]
 
 
-def fetch_twse_official_single_day(dt_str):
+# ==========================================
+# 4. 台灣證券交易所 (TWSE) + 證券櫃檯買賣中心 (TPEx) 當日即時官方融資融券與法人統計
+# ==========================================
+def fetch_twse_and_tpex_single_day(dt_obj):
+    """
+    直接以台灣日曆日查詢：
+    1. 證交所 (TWSE) 三大法人買賣金額統計表 (BFI82U)
+    2. 證交所 (TWSE) 集中市場大盤信用交易統計 (MI_MARGN) -> 上市大盤融資餘額(億元) & 融券餘額(萬張)
+    3. 櫃買中心 (TPEx) 上櫃股票融資融券餘額表 (margin_bal_result.php) -> 櫃買指數融資餘額(億元) & 櫃買融券餘額(萬張)
+    """
+    dt_str = dt_obj.strftime("%Y%m%d")
+    roc_year = dt_obj.year - 1911
+    roc_date_str = f"{roc_year}/{dt_obj.month:02d}/{dt_obj.day:02d}"
+
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Referer": "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html"
+        "Accept": "application/json, text/javascript, */*; q=0.01"
     }
 
     inst_res = None
-    margin_res = None
+    twse_margin_res = None
+    tpex_margin_res = None
 
+    # A. 證交所三大法人買賣金額 BFI82U
     try:
         bfi_url = f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate={dt_str}&type=day"
         r = requests.get(bfi_url, headers=headers, timeout=8, verify=False)
@@ -632,6 +650,7 @@ def fetch_twse_official_single_day(dt_str):
     except Exception as e:
         print(f"[Warn] TWSE BFI82U ({dt_str}) error: {e}")
 
+    # B. 證交所集中市場大盤融資融券餘額 MI_MARGN
     try:
         mar_url = f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date={dt_str}&selectType=MS"
         r2 = requests.get(mar_url, headers=headers, timeout=8, verify=False)
@@ -645,31 +664,54 @@ def fetch_twse_official_single_day(dt_str):
                 for row in rows:
                     item_name = str(row[0]).strip()
                     if "融資金額" in item_name and len(row) >= 6:
-                        m_yi = safe_float(row[5], 0.0) / 1e5
+                        m_yi = safe_float(row[5], 0.0) / 1e5  # 仟元 -> 億元
                     elif "融券" in item_name and len(row) >= 6:
-                        s_wan = safe_float(row[5], 0.0) / 10000.0
+                        s_wan = safe_float(row[5], 0.0) / 10000.0  # 張 -> 萬張
                 if m_yi > 0:
-                    margin_res = {
+                    twse_margin_res = {
                         "margin_yi": round(m_yi, 2),
                         "short_wan": round(s_wan, 2)
                     }
     except Exception as e:
         print(f"[Warn] TWSE MI_MARGN ({dt_str}) error: {e}")
 
-    return inst_res, margin_res
+    # C. 櫃買中心 (TPEx) 上櫃融資融券餘額統計 (讀取 tfootData_two 融資金仟元 與 tfootData_one 張數)
+    try:
+        tpex_url = f"https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d={roc_date_str}"
+        r3 = requests.get(tpex_url, headers=headers, timeout=8, verify=False)
+        if r3.status_code == 200:
+            j3 = r3.json()
+            tfoot2 = j3.get("tfootData_two", [])
+            tfoot1 = j3.get("tfootData_one", [])
+            # tfootData_two: [前資餘額(仟元), 資買, 資賣, 現償, 今日資餘額(仟元)...]
+            if tfoot2 and len(tfoot2) >= 5:
+                otc_m_yi = safe_float(tfoot2[4], 0.0) / 1e5
+                otc_s_wan = safe_float(tfoot1[14], 0.0) / 10000.0 if (tfoot1 and len(tfoot1) >= 15) else 0.0
+                if otc_m_yi > 0:
+                    tpex_margin_res = {
+                        "otc_margin_yi": round(otc_m_yi, 2),
+                        "otc_short_wan": round(otc_s_wan, 2)
+                    }
+    except Exception as e:
+        print(f"[Warn] TPEx Margin ({roc_date_str}) error: {e}")
+
+    return inst_res, twse_margin_res, tpex_margin_res
 
 
-def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
+def fetch_tw_revenue_and_chips(tw_stocks_dict):
     chip_chart_data = {
         "dates": [],
         "foreign_buy": [],
         "trust_buy": [],
         "dealer_buy": [],
-        "margin_balance": [],
-        "short_balance": [],
+        "margin_balance": [],      # 加權指數(上市)融資餘額 (億元)
+        "otc_margin_balance": [],  # 櫃買指數(上櫃)融資餘額 (億元)
+        "short_balance": [],       # 上市大盤融券餘額 (萬張)
+        "otc_short_balance": [],   # 櫃買融券餘額 (萬張)
         "margin_unit": "億元"
     }
 
+    # 1. 若有設定 FINLAB_API_TOKEN，抓取月營收
     token = os.environ.get("FINLAB_API_TOKEN")
     if token:
         try:
@@ -710,23 +752,37 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
         except Exception as e:
             print(f"[Warn] FinLab monthly revenue error: {e}")
 
-    target_dates = twii_history_dates[-10:] if len(twii_history_dates) >= 10 else twii_history_dates
-    for iso_d in target_dates:
-        ymd = iso_d.replace("-", "")
-        md_label = iso_d[5:].replace("-", "/")
-        inst_d, mar_d = fetch_twse_official_single_day(ymd)
-        if inst_d is not None:
-            chip_chart_data["dates"].append(md_label)
-            chip_chart_data["foreign_buy"].append(inst_d["foreign"])
-            chip_chart_data["trust_buy"].append(inst_d["trust"])
-            chip_chart_data["dealer_buy"].append(inst_d["dealer"])
-            if mar_d is not None:
-                chip_chart_data["margin_balance"].append(mar_d["margin_yi"])
-                chip_chart_data["short_balance"].append(mar_d["short_wan"])
-            else:
-                chip_chart_data["margin_balance"].append(None)
-                chip_chart_data["short_balance"].append(None)
-        time.sleep(0.35)
+    # 2. 直接以台灣當日日期 (now_tw.date()) 往回扫描最近 20 個日曆天，不依賴 Yahoo Finance 日期，確保當晚證交所一公布即刻抓到！
+    candidate_days = []
+    cur_d = now_tw.date()
+    for _ in range(22):
+        if cur_d.weekday() < 5:  # 週一至週五
+            candidate_days.append(cur_d)
+        cur_d -= datetime.timedelta(days=1)
+    candidate_days.reverse()
+
+    collected = []
+    for d_obj in candidate_days:
+        inst_d, twse_m, tpex_m = fetch_twse_and_tpex_single_day(d_obj)
+        # 只要三大法人或融資餘額任一項已在當晚公布，就納入當日最新紀錄
+        if inst_d is not None or twse_m is not None:
+            collected.append({
+                "label": d_obj.strftime("%m/%d"),
+                "inst": inst_d,
+                "twse_m": twse_m,
+                "tpex_m": tpex_m
+            })
+        time.sleep(0.3)
+
+    for rec in collected[-10:]:
+        chip_chart_data["dates"].append(rec["label"])
+        chip_chart_data["foreign_buy"].append(rec["inst"]["foreign"] if rec["inst"] else 0.0)
+        chip_chart_data["trust_buy"].append(rec["inst"]["trust"] if rec["inst"] else 0.0)
+        chip_chart_data["dealer_buy"].append(rec["inst"]["dealer"] if rec["inst"] else 0.0)
+        chip_chart_data["margin_balance"].append(rec["twse_m"]["margin_yi"] if rec["twse_m"] else None)
+        chip_chart_data["short_balance"].append(rec["twse_m"]["short_wan"] if rec["twse_m"] else None)
+        chip_chart_data["otc_margin_balance"].append(rec["tpex_m"]["otc_margin_yi"] if rec["tpex_m"] else None)
+        chip_chart_data["otc_short_balance"].append(rec["tpex_m"]["otc_short_wan"] if rec["tpex_m"] else None)
 
     return chip_chart_data
 
@@ -734,15 +790,10 @@ def fetch_tw_revenue_and_chips(tw_stocks_dict, twii_history_dates):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    print("1. Fetching Global Indices...")
+    print("1. Fetching Global Indices (including TPEx ^TWO)...")
     indices_data = [fetch_ticker_full_data(k, v, "index") for k, v in INDICES.items()]
 
-    twii_dates = []
-    for idx_obj in indices_data:
-        if idx_obj["symbol"] == "^TWII" and idx_obj["history"]:
-            twii_dates = [h["date"] for h in idx_obj["history"][-12:]]
-
-    print("2. Fetching US Stocks...")
+    print("2. Fetching US Stocks (with Fundamentals & Bull/Bear Sentiment)...")
     us_stocks_data = [fetch_ticker_full_data(sym, sym, "us_stock") for sym in US_STOCKS]
 
     print("3. Fetching TW Stocks...")
@@ -768,11 +819,14 @@ def main():
             else:
                 s_obj["news_sentiment"]["categories"]["fundamentals_mops"]["bullish"].insert(0, m_obj)
 
-    print("5. Fetching Official TWSE Institutional & Margin Data...")
-    chip_chart_data = fetch_tw_revenue_and_chips(tw_stocks_map, twii_dates)
+    print("5. Fetching Official TWSE & TPEx (OTC) Institutional & Margin Data...")
+    chip_chart_data = fetch_tw_revenue_and_chips(tw_stocks_map)
 
-    print("6. Fetching Futures & Commodities...")
-    futures_data = [fetch_ticker_full_data(k, v, "futures") for k, v in FUTURES_AND_COMMODITIES.items()]
+    print("6. Fetching Categorized Futures & Commodities (including YM=F)...")
+    futures_data = [
+        fetch_ticker_full_data(k, meta["name"], "futures", meta["group"])
+        for k, meta in FUTURES_AND_COMMODITIES.items()
+    ]
 
     print("7. Fetching FX & Bonds...")
     fx_bonds_data = [fetch_ticker_full_data(k, v, "fx_bond") for k, v in FX_AND_BONDS.items()]
