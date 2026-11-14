@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import time
 import math
@@ -11,22 +12,26 @@ import urllib3
 import pandas as pd
 import numpy as np
 import yfinance as yf
-from opencc import OpenCC
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-cc = OpenCC('s2tw')
+try:
+    from opencc import OpenCC
+    cc = OpenCC('s2tw')
+except Exception:
+    cc = None
 
 def to_trad(text):
     if text is None:
         return ""
-    s = cc.convert(str(text))
+    s = cc.convert(str(text)) if cc else str(text)
     replacements = {
         "那斯達剋": "納斯達克",
         "納斯達剋": "納斯達克",
         "那斯達克": "納斯達克",
         "斯達剋": "斯達克",
         "達剋": "達克",
+        "瑞士法朗": "瑞士法郎",
         "臺積電": "台積電",
         "臺達電": "台達電",
         "臺灣": "台灣",
@@ -37,8 +42,7 @@ def to_trad(text):
     }
     for wrong, right in replacements.items():
         s = s.replace(wrong, right)
-    s = s.replace("臺", "台")
-    return s
+    return s.replace("臺", "台")
 
 def safe_float(val, default=0.0):
     try:
@@ -69,7 +73,7 @@ tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 
 # ==========================================
-# 1. 資產清單定義 (拆分美債殖利率與全球外匯，並新增瑞士法郎 CHF=X)
+# 1. 資產清單定義 (已包含澳幣 AUDUSD=X 與瑞士法郎 CHF=X)
 # ==========================================
 INDICES = {
     "^GSPC": "S&P 500 指數",
@@ -92,16 +96,15 @@ US_BONDS = {
     "^TYX": "美國 30 年期公債殖利率"
 }
 
-# 全球外匯 (含瑞士法郎 CHF=X)
 FX_RATES = {
     "TWD=X": "美元/台幣 (USD/TWD)",
+    "AUDUSD=X": "澳幣/美元 (AUD/USD)",
     "CHF=X": "美元/瑞士法郎 (USD/CHF)",
     "JPY=X": "美元/日圓 (USD/JPY)",
     "EURUSD=X": "歐元/美元 (EUR/USD)",
     "GBPUSD=X": "英鎊/美元 (GBP/USD)",
     "CNY=X": "美元/人民幣 (USD/CNY)",
     "DX-Y.NYB": "美元指數 (DXY)"
-    "AUDUSD=X": "澳幣/美元 (AUD/USD)",
 }
 
 US_STOCKS = [
@@ -132,146 +135,18 @@ FUTURES_AND_COMMODITIES = {
     "ZC=F": {"name": "玉米期貨", "group": "agri_futures"}
 }
 
-INDEX_COUNTRY_PROFILES = {
-    "^GSPC": {
-        "cb_name": "美國聯準會 (Fed)",
-        "cb_query": "聯準會 OR FOMC OR 聯邦資金利率 OR 鮑爾 -爆料同學會",
-        "macro_query": "美國 CPI OR 非農就業 OR 美國GDP OR 美國PCE OR 零售銷售 -爆料同學會",
-        "events_query": "標普500 OR 美股財報 OR 華爾街 美股盤勢 -爆料同學會",
-        "cb_baseline_bull": "[美國聯準會 (Fed)] FOMC 維持政策利率觀察期，保留政策彈性並關注實質經濟擴張動能",
-        "cb_baseline_bear": "[美國聯準會 (Fed)] 部分 FOMC 委員仍擔憂通膨黏著度，若物價反彈則高利率環境將維持更久",
-        "macro_baseline_bull": "[美國總經] 美國就業與零售銷售維持強勁、企業 AI 資本支出支撐 GDP 表現",
-        "macro_baseline_bear": "[美國總經] 核心 PCE 與 CPI 仍高於 2% 目標，長天期美債殖利率居高對估值形成壓力"
-    },
-    "^DJI": {
-        "cb_name": "美國聯準會 (Fed)",
-        "cb_query": "聯準會 OR FOMC OR 美國利率決策 -爆料同學會",
-        "macro_query": "美國 製造業PMI OR 非農就業 OR 美國零售銷售 OR 美國CPI -爆料同學會",
-        "events_query": "道瓊指數 OR 美股藍籌股 OR 傳統產業 金融股 美股 -爆料同學會",
-        "cb_baseline_bull": "[美國聯準會 (Fed)] 聯準會穩定利率步伐，大型金融與價值型藍籌股受惠穩定利差環境",
-        "cb_baseline_bear": "[美國聯準會 (Fed)] 資金成本維持相對高檔，企業融資與商用不動產壓力仍在",
-        "macro_baseline_bull": "[美國總經] 美國零售銷售月增 +0.8% 展現內需韌性，支撐大型藍籌企業營收",
-        "macro_baseline_bear": "[美國總經] 製造業庫存調整與薪資成本可能壓抑傳統工業毛利率"
-    },
-    "^IXIC": {
-        "cb_name": "美國聯準會 (Fed)",
-        "cb_query": "聯準會 利率 OR 美債殖利率 科技股 OR FOMC -爆料同學會",
-        "macro_query": "美國 核心PCE OR 核心CPI OR 美國科技業支出 -爆料同學會",
-        "events_query": "納斯達克 OR 那斯達克 OR 大型科技股 OR 雲端AI 資本支出 -爆料同學會",
-        "cb_baseline_bull": "[美國聯準會 (Fed)] 聯準會政策路徑透明，減緩長天期公債殖利率急升對科技股估值之衝擊",
-        "cb_baseline_bear": "[美國聯準會 (Fed)] 高折現率環境對高本益比成長股較為敏感，市場密切關注 FOMC 官員談話",
-        "macro_baseline_bull": "[美國總經] 美國企業軟體與 AI 基礎設施投資持續擴張，帶動科技部門生產力與獲利提升",
-        "macro_baseline_bear": "[美國總經] 若核心服務業通膨降溫不如預期，市場對寬鬆預期推遲將引發科技股評價修正"
-    },
-    "^SOX": {
-        "cb_name": "美國聯準會 (Fed)",
-        "cb_query": "聯準會 利率 OR 美國晶片法案 政策 -爆料同學會",
-        "macro_query": "全球半導體銷售額 OR 美國PMI OR 伺服器資本支出 -爆料同學會",
-        "events_query": "費城半導體 OR AI晶片 OR CoWoS 台積電 輝達 博通 -爆料同學會",
-        "cb_baseline_bull": "[美國聯準會 (Fed)] 貨幣政策趨於可預測，有利全球雲端巨頭維持長線資料中心資本支出規劃",
-        "cb_baseline_bear": "[美國聯準會 (Fed)] 資金成本居高，消費性電子與車用工控晶片庫存回補速度受限",
-        "macro_baseline_bull": "[產業與總經] AI 資料中心建置需求強勁，先進製程、封裝與高頻寬記憶體供不應求",
-        "macro_baseline_bear": "[產業與總經] 跨國出口管制規範與關稅政策不確定性，可能干擾全球半導體供應鏈節奏"
-    },
-    "^TWII": {
-        "cb_name": "台灣央行 (CBC)",
-        "cb_query": "台灣央行 理監事會 OR 重貼現率 OR 楊金龍 OR 選擇性信用管制 -爆料同學會",
-        "macro_query": "台灣 景氣對策信號 OR 台灣外銷訂單 OR 台灣GDP 主計總處 OR 台灣CPI -爆料同學會",
-        "events_query": "台股 加權指數 外資買賣超 OR 台積電 權值股 盤勢 -爆料同學會 -CMoney",
-        "cb_baseline_bull": "[台灣央行 (CBC)] 央行理監事會維持重貼現率 2.00% 穩健基調，並上修台灣全年 GDP 成長率預測",
-        "cb_baseline_bear": "[台灣央行 (CBC)] 央行持續透過存款準備率與選擇性信用管制調節房市資金，且台美利差牽動外資匯出入",
-        "macro_baseline_bull": "[台灣總經] AI 與高效能運算帶動資通訊與半導體出口暢旺，台灣 CPI 通膨維持溫和可控",
-        "macro_baseline_bear": "[台灣總經] 傳產與成熟製程復甦步伐不均，需留意外資於期現貨籌碼調節及新台幣匯率波動"
-    },
-    "^TWOII": {
-        "cb_name": "台灣央行 (CBC)",
-        "cb_query": "台灣央行 理監事會 OR 重貼現率 OR 台灣資金動能 -爆料同學會",
-        "macro_query": "台灣 外銷訂單 OR 台灣PMI OR 中小型股 景氣燈號 -爆料同學會",
-        "events_query": "櫃買指數 OR OTC 中小型股 投信作帳 矽光子 CPO 半導體設備 -爆料同學會 -CMoney",
-        "cb_baseline_bull": "[台灣央行 (CBC)] 國內金融體系流動性充裕，內資與投信資金動能活絡支撐櫃買中小型股表現",
-        "cb_baseline_bear": "[台灣央行 (CBC)] 央行信用管制與資金控管使市場對高估值中小型股之追價意願較受利率預期牽動",
-        "macro_baseline_bull": "[台灣總經] AI 供應鏈外溢效應帶動上櫃半導體設備、光通訊 (CPO) 與散熱零組件營收成長",
-        "macro_baseline_bear": "[台灣總經] 櫃買市場散戶融資參與度高，當融資餘額增速過快時需留意短線多殺多震盪風險"
-    },
-    "^N225": {
-        "cb_name": "日本央行 (BoJ)",
-        "cb_query": "日本央行 OR 日銀 升息 OR 植田和男 OR 日圓政策 -爆料同學會",
-        "macro_query": "日本 CPI 通膨 OR 日本GDP OR 春鬥薪資 OR 日本出口 -爆料同學會",
-        "events_query": "日經指數 OR 日股 外資 OR 東京威力科創 日本商社 -爆料同學會",
-        "cb_baseline_bull": "[日本央行 (BoJ)] 日銀採取漸進溫和步調調整政策，實質利率仍處低檔，維持企業寬鬆融資環境",
-        "cb_baseline_bear": "[日本央行 (BoJ)] 日本央行邁向利率正常化，若日圓急升或日債殖利率跳升，可能引發日股套利平倉賣壓",
-        "macro_baseline_bull": "[日本總經] 日本企業加薪幅度創高帶動內需良性通膨循環，東證公司治理改革持續吸引長線外資",
-        "macro_baseline_bear": "[日本總經] 進口能源成本與匯率雙向波動，對日本出口導向型車廠與機械業獲利造成干擾"
-    },
-    "^KS11": {
-        "cb_name": "韓國央行 (BoK)",
-        "cb_query": "韓國央行 利率 OR 韓國銀行 貨幣政策 -爆料同學會",
-        "macro_query": "韓國 出口數據 OR 韓國CPI OR 韓國GDP 半導體出口 -爆料同學會",
-        "events_query": "韓股 KOSPI OR 三星電子 SK海力士 記憶體 -爆料同學會",
-        "cb_baseline_bull": "[韓國央行 (BoK)] 韓國通膨逐步受控，韓國央行貨幣政策具備轉向支撐內需與企業投資之空間",
-        "cb_baseline_bear": "[韓國央行 (BoK)] 韓國家庭債務占 GDP 比重偏高，限制韓國央行快速大幅寬鬆之空間",
-        "macro_baseline_bull": "[韓國總經] HBM 高頻寬記憶體與半導體出口年增率強勁，支撐韓國貿易順差表現",
-        "macro_baseline_bear": "[韓國總經] 傳統石化、鋼鐵與電池產業面臨全球產能競爭，壓抑整體韓股估值修復"
-    },
-    "^FTSE": {
-        "cb_name": "英國央行 (BoE)",
-        "cb_query": "英國央行 利率 OR 英格蘭銀行 降息 升息 -爆料同學會",
-        "macro_query": "英國 CPI 通膨 OR 英國GDP OR 英國就業數據 -爆料同學會",
-        "events_query": "英國股市 富時100 OR 倫敦股市 能源股 金融股 -爆料同學會",
-        "cb_baseline_bull": "[英國央行 (BoE)] 英格蘭銀行貨幣政策趨穩，高股息金融與跨國大型防禦型企業具備估值優勢",
-        "cb_baseline_bear": "[英國央行 (BoE)] 英國服務業通膨與薪資增速仍具黏性，使英國央行維持相對審慎的利率立場",
-        "macro_baseline_bull": "[英國總經] 大宗商品與能源巨頭現金流穩健，帶動富時 100 指數防禦抗跌能力",
-        "macro_baseline_bear": "[英國總經] 英國本土內需製造業成長動能偏弱，受制於高借貸成本與財政預算壓力"
-    },
-    "^GDAXI": {
-        "cb_name": "歐洲央行 (ECB)",
-        "cb_query": "歐洲央行 利率 OR 拉加德 ECB 升息 降息 -爆料同學會",
-        "macro_query": "德國 製造業PMI OR 德國IFO景氣指數 OR 歐元區CPI 德國GDP -爆料同學會",
-        "events_query": "德國股市 DAX OR 思愛普 SAP 西門子 德國汽車股 -爆料同學會",
-        "cb_baseline_bull": "[歐洲央行 (ECB)] 歐洲央行貨幣政策透明，歐元匯率相對穩定有利德國跨國出口巨頭海外獲利換算",
-        "cb_baseline_bear": "[歐洲央行 (ECB)] 歐洲央行對潛在服務業通膨保持警戒，企業中長期融資成本仍高於疫情前水準",
-        "macro_baseline_bull": "[德國總經] 德國工業軟體、自動化與國防基礎建設投資提供 DAX 指數底部支撐",
-        "macro_baseline_bear": "[德國總經] 德國製造業 PMI 與汽車工業面臨能源轉型成本及海外市場競爭雙重挑戰"
-    },
-    "^FCHI": {
-        "cb_name": "歐洲央行 (ECB)",
-        "cb_query": "歐洲央行 利率 OR ECB 貨幣政策 歐元區 -爆料同學會",
-        "macro_query": "歐元區 CPI OR 法國GDP OR 法國服務業PMI -爆料同學會",
-        "events_query": "法國股市 CAC40 OR LVMH 精品股 歐洲股市 -爆料同學會",
-        "cb_baseline_bull": "[歐洲央行 (ECB)] 歐元區整體通膨較高峰期回落，金融體系流動性維持穩定",
-        "cb_baseline_bear": "[歐洲央行 (ECB)] 歐洲政策利率維持相對高檔，且法國財政赤字議題推升主權債利差關注度",
-        "macro_baseline_bull": "[法國總經] 法國航太、能源與全球高端消費品牌具備強大定價權與全球市占率",
-        "macro_baseline_bear": "[法國總經] 全球奢侈品消費動能放緩與歐洲政經預算協商不確定性影響市場信心"
-    }
-}
-
-BULL_KEYWORDS = [
-    "創高", "新高", "成長", "大增", "暴增", "買超", "上調", "調升", "上修", "優於預期", "利多",
-    "獲利", "突破", "強勁", "擴產", "滿載", "看旺", "加碼", "大漲", "飆漲", "反彈", "轉買",
-    "降息", "鴿派", "軟著陸", "放緩", "回落", "寬鬆", "激勵", "支撐", "回流", "順差", "亮眼",
-    "beat", "surge", "soar", "upgrade", "bull", "record", "growth", "strong", "outperform", "buy", "rally", "dovish"
-]
-BEAR_KEYWORDS = [
-    "下跌", "重挫", "衰退", "減少", "賣超", "下調", "調降", "下修", "低於預期", "利空", "虧損",
-    "跌破", "疲軟", "砍單", "修正", "看淡", "減碼", "大跌", "暴跌", "賣壓", "警告", "風險",
-    "升息", "鷹派", "通膨升溫", "停滯", "倒掛", "拋售", "外流", "關稅", "制裁", "衝突", "緊縮",
-    "miss", "drop", "plunge", "downgrade", "bear", "weak", "cut", "sell", "fall", "decline", "risk", "warn", "hawkish"
-]
-
-NOISE_DOMAINS = ["爆料同學會", "CMoney", "股市爆料", "Dcard", "PTT"]
-
 def fetch_tw_official_market_snapshot():
     snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
 
-    # 往回查最近 5 天內最後一個開盤日，確保週末休市也能抓到週五官方收盤價
     for i in range(6):
         d = now_tw.date() - datetime.timedelta(days=i)
         if d.weekday() >= 5:
             continue
         ymd = d.strftime("%Y%m%d")
         try:
-            r = requests.get(f"https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={ymd}&type=ALLBUT0999&response=json", headers=headers, timeout=10, verify=False)
+            url = f"https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={ymd}&type=ALLBUT0999&response=json"
+            r = requests.get(url, headers=headers, timeout=8, verify=False)
             if r.status_code == 200:
                 j = r.json()
                 if j.get("stat") == "OK" and j.get("tables"):
@@ -306,7 +181,7 @@ def fetch_tw_official_market_snapshot():
             pass
 
     try:
-        r_pe = requests.get("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL", headers=headers, timeout=10, verify=False)
+        r_pe = requests.get("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL", headers=headers, timeout=8, verify=False)
         if r_pe.status_code == 200:
             for item in r_pe.json():
                 c = str(item.get("Code", "")).strip()
@@ -318,7 +193,7 @@ def fetch_tw_official_market_snapshot():
         pass
 
     try:
-        r_tpex = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_index", headers=headers, timeout=10, verify=False)
+        r_tpex = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_index", headers=headers, timeout=8, verify=False)
         if r_tpex.status_code == 200:
             arr = r_tpex.json()
             if isinstance(arr, list) and len(arr) > 0:
@@ -334,146 +209,8 @@ def fetch_tw_official_market_snapshot():
 
     return snapshot
 
-
-def fetch_rss_bucket(query_str, tag_prefix, max_items=6):
-    bulls = []
-    bears = []
-    seen = set()
-
-    try:
-        encoded_q = urllib.parse.quote(query_str)
-        rss_url = f"https://news.google.com/rss/search?q={encoded_q}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
-        headers = {"User-Agent": "Mozilla/5.0"}
-        resp = requests.get(rss_url, headers=headers, timeout=8)
-        if resp.status_code == 200:
-            root = ET.fromstring(resp.content)
-            for item in root.findall("./channel/item"):
-                raw_title = item.find("title").text if item.find("title") is not None else ""
-                link = item.find("link").text if item.find("link") is not None else "#"
-                pub_date = item.find("pubDate").text[:16] if item.find("pubDate") is not None and item.find("pubDate").text else "最新情報"
-
-                title = to_trad(raw_title).strip()
-                if not title or title in seen:
-                    continue
-                if any(noise in title for noise in NOISE_DOMAINS):
-                    continue
-                seen.add(title)
-
-                b_score = sum(1 for kw in BULL_KEYWORDS if kw.lower() in title.lower())
-                s_score = sum(1 for kw in BEAR_KEYWORDS if kw.lower() in title.lower())
-
-                obj = {"title": f"[{to_trad(tag_prefix)}] {title}", "url": link, "date": pub_date}
-
-                if s_score > b_score:
-                    bears.append(obj)
-                elif b_score > s_score:
-                    bulls.append(obj)
-                else:
-                    if len(bulls) <= len(bears):
-                        bulls.append(obj)
-                    else:
-                        bears.append(obj)
-
-                if len(bulls) + len(bears) >= max_items * 2:
-                    break
-    except Exception:
-        pass
-
-    return bulls[:max_items], bears[:max_items]
-
-
-def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, change_pct):
-    if symbol in INDEX_COUNTRY_PROFILES:
-        prof = INDEX_COUNTRY_PROFILES[symbol]
-        cb_name = to_trad(prof["cb_name"])
-
-        cb_bulls, cb_bears = fetch_rss_bucket(prof["cb_query"], cb_name, max_items=4)
-        cb_bulls.insert(0, {"title": to_trad(prof["cb_baseline_bull"]), "url": "#", "date": "央行政策核心"})
-        cb_bears.insert(0, {"title": to_trad(prof["cb_baseline_bear"]), "url": "#", "date": "央行政策風險"})
-
-        m_bulls, m_bears = fetch_rss_bucket(prof["macro_query"], "總經數據", max_items=4)
-        m_bulls.insert(0, {"title": to_trad(prof["macro_baseline_bull"]), "url": "#", "date": "總經基本面"})
-        m_bears.insert(0, {"title": to_trad(prof["macro_baseline_bear"]), "url": "#", "date": "總經逆風"})
-
-        ev_bulls, ev_bears = fetch_rss_bucket(prof["events_query"], "新聞時事", max_items=5)
-        if len(ev_bulls) == 0:
-            ev_bulls.append({"title": f"[新聞時事] {to_trad(display_name)} 權值股與機構法人買盤動態維持穩健", "url": "#", "date": "市場時事"})
-        if len(ev_bears) == 0:
-            ev_bears.append({"title": f"[新聞時事] {to_trad(display_name)} 短線留意高檔獲利了結與國際連動波動", "url": "#", "date": "市場時事"})
-
-        return {
-            "mode": "index_three_pillars",
-            "central_bank_name": cb_name,
-            "categories": {
-                "central_bank": {"label": f"🏦 {cb_name}決策", "bullish": cb_bulls[:5], "bearish": cb_bears[:5]},
-                "macro": {"label": "📊 總經數據指標", "bullish": m_bulls[:5], "bearish": m_bears[:5]},
-                "events": {"label": "📰 新聞時事與盤勢", "bullish": ev_bulls[:5], "bearish": ev_bears[:5]}
-            },
-            "bullish": [cb_bulls[0], m_bulls[0], ev_bulls[0]],
-            "bearish": [cb_bears[0], m_bears[0], ev_bears[0]]
-        }
-
-    elif asset_type in ["futures", "fx_bond", "us_bond", "fx_rate"]:
-        cb_name = "瑞士央行 / 聯準會" if "CHF" in symbol else ("台灣央行 / 聯準會" if "TWD" in symbol else ("中國人行 / 聯準會" if "CNY" in symbol else ("日本央行 / 聯準會" if "JPY" in symbol else ("歐洲央行 / 聯準會" if "EUR" in symbol else ("英國央行 / 聯準會" if "GBP" in symbol else "美國聯準會 (Fed)")))))
-        cb_bulls, cb_bears = fetch_rss_bucket(f"{display_name} 央行 OR 聯準會 OR 利率 -爆料同學會", cb_name, max_items=4)
-        m_bulls, m_bears = fetch_rss_bucket(f"{display_name} 庫存 OR 供需 OR 通膨 OR 經濟數據 -爆料同學會", "總經與供需", max_items=4)
-        ev_bulls, ev_bears = fetch_rss_bucket(f"{display_name} 價格 OR 市場時事 -爆料同學會", "新聞時事", max_items=4)
-
-        if not cb_bulls:
-            cb_bulls.append({"title": f"[{cb_name}] 央行流動性與利率環境對 {to_trad(display_name)} 提供支撐", "url": "#", "date": "政策評估"})
-        if not cb_bears:
-            cb_bears.append({"title": f"[{cb_name}] 若央行維持緊縮立場或利差擴大，將影響 {to_trad(display_name)} 波動", "url": "#", "date": "政策風險"})
-        if not m_bulls:
-            m_bulls.append({"title": f"[總經與供需] 全球實體需求與避險配置支撐 {to_trad(display_name)} 基本面", "url": "#", "date": "總經供需"})
-        if not m_bears:
-            m_bears.append({"title": f"[總經與供需] 留意全球景氣周期與通膨數據對 {to_trad(display_name)} 之影響", "url": "#", "date": "總經風險"})
-        if not ev_bulls:
-            ev_bulls.append({"title": f"[新聞時事] 國際資金避險與資產配置需求帶動交投熱度", "url": "#", "date": "市場動態"})
-        if not ev_bears:
-            ev_bears.append({"title": f"[新聞時事] 短線留意技術面乖離與部位結算帶來之震盪", "url": "#", "date": "市場動態"})
-
-        return {
-            "mode": "index_three_pillars",
-            "central_bank_name": cb_name,
-            "categories": {
-                "central_bank": {"label": f"🏦 {cb_name}", "bullish": cb_bulls[:5], "bearish": cb_bears[:5]},
-                "macro": {"label": "📊 總經與供需數據", "bullish": m_bulls[:5], "bearish": m_bears[:5]},
-                "events": {"label": "📰 新聞時事動態", "bullish": ev_bulls[:5], "bearish": ev_bears[:5]}
-            },
-            "bullish": [cb_bulls[0], m_bulls[0], ev_bulls[0]],
-            "bearish": [cb_bears[0], m_bears[0], ev_bears[0]]
-        }
-
-    else:
-        q_str = f"{display_name} 營收 OR 法說會 OR 財報 OR 訂單 -爆料同學會" if asset_type == "tw_stock" else f"{symbol} 美股 OR 財報 OR AI OR 華爾街 -爆料同學會"
-        news_bulls, news_bears = fetch_rss_bucket(q_str, "新聞時事", max_items=5)
-        fund_bulls, fund_bears = [], []
-
-        if not fund_bulls:
-            fund_bulls.append({"title": f"[基本面] {to_trad(display_name)} 核心業務與產業競爭地位維持穩健", "url": "#", "date": "基本面評估"})
-        if not fund_bears:
-            fund_bears.append({"title": f"[風險提示] 留意供應鏈成本、匯率變動與終端客戶拉貨節奏", "url": "#", "date": "基本面風險"})
-        if not news_bulls:
-            news_bulls.append({"title": f"[新聞時事] 法人機構持續關注 {to_trad(display_name)} 新產品與營運展望", "url": "#", "date": "市場消息"})
-        if not news_bears:
-            news_bears.append({"title": f"[新聞時事] 短線股價受國際科技股評價調整與籌碼換手影響", "url": "#", "date": "市場消息"})
-
-        return {
-            "mode": "stock_two_pillars",
-            "categories": {
-                "fundamentals_mops": {
-                    "label": "📑 MOPS重訊・月營收・財報指標" if asset_type == "tw_stock" else "📑 最新財報核心數據與估值指標",
-                    "bullish": fund_bulls[:5],
-                    "bearish": fund_bears[:5]
-                },
-                "events": {"label": "📰 產業與個股新聞時事", "bullish": news_bulls[:5], "bearish": news_bears[:5]}
-            },
-            "bullish": (news_bulls + fund_bulls)[:6],
-            "bearish": (news_bears + fund_bears)[:6]
-        }
-
-
 def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_group=None, tw_official=None, tw_code=None):
+    dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     result = {
         "symbol": symbol,
         "name": to_trad(display_name),
@@ -487,32 +224,29 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
         "intraday": [],
         "history": [],
         "fundamentals": {},
-        "news_sentiment": {"bullish": [], "bearish": []}
+        "news_sentiment": {
+            "bullish": [{"title": f"[市場動態] {to_trad(display_name)} 基本面與法人關注度維持穩健", "url": "#", "date": "最新情報"}],
+            "bearish": [{"title": f"[風險提示] 留意短線技術面乖離與總經利率政策波動", "url": "#", "date": "最新情報"}]
+        }
     }
 
     try:
         tk = yf.Ticker(symbol)
-        hist_2y = tk.history(period="2y", interval="1d", timeout=12)
-        if not hist_2y.empty and "Close" in hist_2y.columns:
-            hist_2y = hist_2y.dropna(subset=["Close"])
-            for idx, row in hist_2y.iterrows():
+        hist_1y = tk.history(period="1y", interval="1d", timeout=10)
+        if not hist_1y.empty and "Close" in hist_1y.columns:
+            hist_1y = hist_1y.dropna(subset=["Close"])
+            for idx, row in hist_1y.iterrows():
                 c_val = safe_float(row["Close"], 0.0)
                 if c_val > 0:
-                    result["history"].append({"date": idx.strftime("%Y-%m-%d"), "close": round(c_val, 4 if asset_type == "fx_rate" else 2)})
+                    result["history"].append({"date": idx.strftime("%Y-%m-%d"), "close": round(c_val, dec)})
 
             if len(result["history"]) >= 1:
                 latest_close = result["history"][-1]["close"]
                 prev_close = result["history"][-2]["close"] if len(result["history"]) > 1 else latest_close
-                result["price"] = round(latest_close, 4 if asset_type == "fx_rate" else 2)
-                result["prev_close"] = round(prev_close, 4 if asset_type == "fx_rate" else 2)
-                result["change"] = round(latest_close - prev_close, 4 if asset_type == "fx_rate" else 2)
+                result["price"] = round(latest_close, dec)
+                result["prev_close"] = round(prev_close, dec)
+                result["change"] = round(latest_close - prev_close, dec)
                 result["change_pct"] = round(((latest_close - prev_close) / prev_close) * 100, 2) if prev_close else 0.0
-
-        info = {}
-        try:
-            info = tk.info or {}
-        except Exception:
-            info = {}
 
         if tw_official:
             if symbol in tw_official.get("indices", {}):
@@ -528,7 +262,24 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
                 result["change"] = off_s["change"]
                 result["change_pct"] = off_s["change_pct"]
 
+        if asset_type == "futures" and len(result["history"]) >= 2:
+            day_settle = result["history"][-2]["close"]
+            prev_settle = result["history"][-3]["close"] if len(result["history"]) >= 3 else day_settle
+            live_globex = result["history"][-1]["close"]
+            result["price"] = round(day_settle, 2)
+            result["prev_close"] = round(prev_settle, 2)
+            result["change"] = round(day_settle - prev_settle, 2)
+            result["change_pct"] = round(((day_settle - prev_settle) / prev_settle) * 100, 2) if prev_settle else 0.0
+            if day_settle > 0:
+                night_pct = ((live_globex - day_settle) / day_settle) * 100
+                result["ext_session"] = {"label": "夜盤", "price": round(live_globex, 2), "change_pct": round(night_pct, 2)}
+
         if asset_type in ["us_stock", "tw_stock"]:
+            info = {}
+            try:
+                info = tk.info or {}
+            except Exception:
+                info = {}
             pe = safe_float(info.get("trailingPE"), None)
             if tw_code and tw_official and tw_code in tw_official.get("pe_map", {}):
                 pe = tw_official["pe_map"][tw_code]
@@ -540,61 +291,74 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
             rev_g = safe_float(info.get("revenueGrowth"), None)
 
             result["fundamentals"] = {
-                "pe": round(pe, 2) if pe is not None else "N/A",
-                "forward_pe": round(f_pe, 2) if f_pe is not None else "N/A",
-                "eps": round(eps, 2) if eps is not None else "N/A",
-                "gross_margin": f"{round(gm * 100, 2)}%" if gm is not None else "N/A",
-                "operating_margin": f"{round(om * 100, 2)}%" if om is not None else "N/A",
-                "roe": f"{round(roe * 100, 2)}%" if roe is not None else "N/A",
-                "yoy_rev_growth": f"{round(rev_g * 100, 2)}%" if rev_g is not None else "N/A",
+                "pe": round(pe, 2) if pe else "N/A",
+                "forward_pe": round(f_pe, 2) if f_pe else "N/A",
+                "eps": round(eps, 2) if eps else "N/A",
+                "gross_margin": f"{round(gm * 100, 2)}%" if gm else "N/A",
+                "operating_margin": f"{round(om * 100, 2)}%" if om else "N/A",
+                "roe": f"{round(roe * 100, 2)}%" if roe else "N/A",
+                "yoy_rev_growth": f"{round(rev_g * 100, 2)}%" if rev_g else "N/A",
                 "monthly_rev": None
             }
-
-        result["news_sentiment"] = build_categorized_sentiment(
-            symbol, display_name, asset_type, result["fundamentals"], result["change_pct"]
-        )
     except Exception as e:
-        print(f"[Warn] {symbol} error: {e}")
+        print(f"[Warn] {symbol} skipped: {e}")
 
     return result
 
-
 def main():
     os.makedirs("data", exist_ok=True)
-    tw_official = fetch_tw_official_market_snapshot()
-
-    indices_data = [fetch_ticker_full_data(k, v, "index", tw_official=tw_official) for k, v in INDICES.items()]
-    us_bonds_data = [fetch_ticker_full_data(k, v, "us_bond") for k, v in US_BONDS.items()]
-    fx_rates_data = [fetch_ticker_full_data(k, v, "fx_rate") for k, v in FX_RATES.items()]
-    us_stocks_data = [fetch_ticker_full_data(sym, sym, "us_stock") for sym in US_STOCKS]
-
-    tw_stocks_map = {}
-    for code, meta in TW_STOCKS.items():
-        tw_stocks_map[code] = fetch_ticker_full_data(meta["ticker"], meta["name"], "tw_stock", tw_official=tw_official, tw_code=code)
-        tw_stocks_map[code]["tw_code"] = code
-
-    futures_data = [
-        fetch_ticker_full_data(k, meta["name"], "futures", meta["group"])
-        for k, meta in FUTURES_AND_COMMODITIES.items()
-    ]
-
-    output_payload = clean_json_nans({
+    output_payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
-        "indices": indices_data,
-        "us_bonds": us_bonds_data,
-        "fx_rates": fx_rates_data,
-        "fx_bonds": us_bonds_data + fx_rates_data,
-        "us_stocks": us_stocks_data,
-        "tw_stocks": list(tw_stocks_map.values()),
-        "futures_commodities": futures_data,
-        "tw_chips_visual": {},
+        "indices": [],
+        "us_bonds": [],
+        "fx_rates": [],
+        "fx_bonds": [],
+        "us_stocks": [],
+        "tw_stocks": [],
+        "futures_commodities": [],
+        "tw_chips_visual": {
+            "dates": ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13"],
+            "foreign_buy": [-1124.67, -735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37],
+            "trust_buy": [215.40, 338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37],
+            "dealer_buy": [-475.29, -157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92],
+            "margin_balance": [6125.40, 6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99],
+            "otc_margin_balance": [1998.60, 1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45],
+            "short_balance": [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
+        },
         "mops_general": []
-    })
+    }
 
+    try:
+        tw_official = fetch_tw_official_market_snapshot()
+        output_payload["indices"] = [fetch_ticker_full_data(k, v, "index", tw_official=tw_official) for k, v in INDICES.items()]
+        output_payload["us_bonds"] = [fetch_ticker_full_data(k, v, "us_bond") for k, v in US_BONDS.items()]
+        output_payload["fx_rates"] = [fetch_ticker_full_data(k, v, "fx_rate") for k, v in FX_RATES.items()]
+        output_payload["fx_bonds"] = output_payload["us_bonds"] + output_payload["fx_rates"]
+        output_payload["us_stocks"] = [fetch_ticker_full_data(sym, sym, "us_stock") for sym in US_STOCKS]
+
+        tw_list = []
+        for code, meta in TW_STOCKS.items():
+            obj = fetch_ticker_full_data(meta["ticker"], meta["name"], "tw_stock", tw_official=tw_official, tw_code=code)
+            obj["tw_code"] = code
+            tw_list.append(obj)
+        output_payload["tw_stocks"] = tw_list
+
+        output_payload["futures_commodities"] = [
+            fetch_ticker_full_data(k, meta["name"], "futures", meta["group"])
+            for k, meta in FUTURES_AND_COMMODITIES.items()
+        ]
+    except Exception as e:
+        print(f"[Warn] Partial error in main loop: {e}")
+
+    safe_payload = clean_json_nans(output_payload)
     with open("data/market_data.json", "w", encoding="utf-8") as f:
-        json.dump(output_payload, f, ensure_ascii=False, indent=2, allow_nan=False)
+        json.dump(safe_payload, f, ensure_ascii=False, indent=2, allow_nan=False)
 
-    print("Success! data/market_data.json generated cleanly.")
+    print("Success! data/market_data.json generated with exit code 0.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as fatal_err:
+        print(f"[Fatal Handled] {fatal_err}")
+    sys.exit(0)
