@@ -55,7 +55,6 @@ def safe_float(val, default=0.0):
         return default
 
 def clean_json_nans(obj):
-    """確保輸出的 JSON 絕對不含非法 NaN 或 Infinity，防止前端讀取失敗"""
     if isinstance(obj, float):
         if math.isnan(obj) or math.isinf(obj):
             return None
@@ -70,7 +69,7 @@ tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 
 # ==========================================
-# 1. 資產清單定義 (修正台灣櫃買指數正確代號為 ^TWOII)
+# 1. 資產清單定義 (拆分美債殖利率與全球外匯，並新增瑞士法郎 CHF=X)
 # ==========================================
 INDICES = {
     "^GSPC": "S&P 500 指數",
@@ -84,6 +83,24 @@ INDICES = {
     "^FTSE": "英國富時 100",
     "^GDAXI": "德國 DAX 指數",
     "^FCHI": "法國 CAC 40"
+}
+
+US_BONDS = {
+    "^IRX": "美國 3 個月期國庫券殖利率",
+    "^FVX": "美國 5 年期公債殖利率",
+    "^TNX": "美國 10 年期公債殖利率",
+    "^TYX": "美國 30 年期公債殖利率"
+}
+
+# 全球外匯 (含瑞士法郎 CHF=X)
+FX_RATES = {
+    "TWD=X": "美元/台幣 (USD/TWD)",
+    "CHF=X": "美元/瑞士法郎 (USD/CHF)",
+    "JPY=X": "美元/日圓 (USD/JPY)",
+    "EURUSD=X": "歐元/美元 (EUR/USD)",
+    "GBPUSD=X": "英鎊/美元 (GBP/USD)",
+    "CNY=X": "美元/人民幣 (USD/CNY)",
+    "DX-Y.NYB": "美元指數 (DXY)"
 }
 
 US_STOCKS = [
@@ -114,27 +131,16 @@ FUTURES_AND_COMMODITIES = {
     "ZC=F": {"name": "玉米期貨", "group": "agri_futures"}
 }
 
-FX_AND_BONDS = {
-    "TWD=X": "美元/台幣 (USD/TWD)",
-    "CNY=X": "美元/人民幣 (USD/CNY)",
-    "EURUSD=X": "歐元/美元 (EUR/USD)",
-    "JPY=X": "美元/日圓 (USD/JPY)",
-    "GBPUSD=X": "英鎊/美元 (GBP/USD)",
-    "DX-Y.NYB": "美元指數 (DXY)",
-    "^TNX": "美國 10 年期公債殖利率",
-    "^TYX": "美國 30 年期公債殖利率"
-}
-
 INDEX_COUNTRY_PROFILES = {
     "^GSPC": {
         "cb_name": "美國聯準會 (Fed)",
         "cb_query": "聯準會 OR FOMC OR 聯邦資金利率 OR 鮑爾 -爆料同學會",
-        "macro_query": "美國 CPI OR 非農就業 OR 美國GDP OR 美國PMI OR 核心PCE -爆料同學會",
+        "macro_query": "美國 CPI OR 非農就業 OR 美國GDP OR 美國PCE OR 零售銷售 -爆料同學會",
         "events_query": "標普500 OR 美股財報 OR 華爾街 美股盤勢 -爆料同學會",
         "cb_baseline_bull": "[美國聯準會 (Fed)] FOMC 維持政策利率觀察期，保留政策彈性並關注實質經濟擴張動能",
         "cb_baseline_bear": "[美國聯準會 (Fed)] 部分 FOMC 委員仍擔憂通膨黏著度，若物價反彈則高利率環境將維持更久",
-        "macro_baseline_bull": "[美國總經] 美國就業市場維持韌性、企業資本支出與 AI 生產力投資強勁支撐 GDP 表現",
-        "macro_baseline_bear": "[美國總經] 核心通膨與長天期美債殖利率居高，對高估值股票形成折現率壓力"
+        "macro_baseline_bull": "[美國總經] 美國就業與零售銷售維持強勁、企業 AI 資本支出支撐 GDP 表現",
+        "macro_baseline_bear": "[美國總經] 核心 PCE 與 CPI 仍高於 2% 目標，長天期美債殖利率居高對估值形成壓力"
     },
     "^DJI": {
         "cb_name": "美國聯準會 (Fed)",
@@ -143,13 +149,13 @@ INDEX_COUNTRY_PROFILES = {
         "events_query": "道瓊指數 OR 美股藍籌股 OR 傳統產業 金融股 美股 -爆料同學會",
         "cb_baseline_bull": "[美國聯準會 (Fed)] 聯準會穩定利率步伐，大型金融與價值型藍籌股受惠穩定利差環境",
         "cb_baseline_bear": "[美國聯準會 (Fed)] 資金成本維持相對高檔，企業融資與商用不動產壓力仍在",
-        "macro_baseline_bull": "[美國總經] 美國內需消費與服務業韌性支撐大型藍籌企業營收",
+        "macro_baseline_bull": "[美國總經] 美國零售銷售月增 +0.8% 展現內需韌性，支撐大型藍籌企業營收",
         "macro_baseline_bear": "[美國總經] 製造業庫存調整與薪資成本可能壓抑傳統工業毛利率"
     },
     "^IXIC": {
         "cb_name": "美國聯準會 (Fed)",
         "cb_query": "聯準會 利率 OR 美債殖利率 科技股 OR FOMC -爆料同學會",
-        "macro_query": "美國 核心CPI OR 美國科技業支出 OR 美國GDP -爆料同學會",
+        "macro_query": "美國 核心PCE OR 核心CPI OR 美國科技業支出 -爆料同學會",
         "events_query": "納斯達克 OR 那斯達克 OR 大型科技股 OR 雲端AI 資本支出 -爆料同學會",
         "cb_baseline_bull": "[美國聯準會 (Fed)] 聯準會政策路徑透明，減緩長天期公債殖利率急升對科技股估值之衝擊",
         "cb_baseline_bear": "[美國聯準會 (Fed)] 高折現率環境對高本益比成長股較為敏感，市場密切關注 FOMC 官員談話",
@@ -253,60 +259,51 @@ BEAR_KEYWORDS = [
 
 NOISE_DOMAINS = ["爆料同學會", "CMoney", "股市爆料", "Dcard", "PTT"]
 
-# ==========================================
-# 2. 台灣證交所 (TWSE) 與櫃買中心 (TPEx) 官方精準報價與本益比校準器
-# ==========================================
 def fetch_tw_official_market_snapshot():
-    """
-    直接從台灣證交所與櫃買中心官方 OpenAPI / RWD 端點取得：
-    1. 台灣加權指數 (^TWII) 官方收盤點位與漲跌幅
-    2. 台灣櫃買指數 (^TWOII) 官方收盤點位與漲跌幅
-    3. 台股權值股官方收盤價与官方本益比 (BWIBBU_d)
-    """
-    snapshot = {
-        "indices": {},
-        "stocks": {},
-        "pe_map": {}
-    }
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-    }
+    snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
+    headers = {"User-Agent": "Mozilla/5.0"}
 
-    # A. 證交所 MI_INDEX 每日收盤行情 (加權指數 + 上市個股收盤價)
-    try:
-        r = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json&type=ALLBUT0999", headers=headers, timeout=10, verify=False)
-        if r.status_code == 200:
-            j = r.json()
-            for tbl in j.get("tables", []):
-                title = tbl.get("title", "")
-                data = tbl.get("data", [])
-                if "指數" in title:
-                    for row in data:
-                        if len(row) >= 5 and ("發行量加權股價指數" in str(row[0]) or "加權股價指數" in str(row[0])):
-                            p = safe_float(row[1], 0.0)
-                            chg = safe_float(row[3], 0.0)
-                            pct = safe_float(row[4], 0.0)
-                            if "-" in str(row[2]) or "跌" in str(row[2]) or "green" in str(row[2]):
-                                chg = -abs(chg)
-                                pct = -abs(pct)
-                            if p > 0:
-                                snapshot["indices"]["^TWII"] = {"price": round(p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
-                elif "每日收盤行情" in title:
-                    for row in data:
-                        code = str(row[0]).strip()
-                        if code in TW_STOCKS and len(row) >= 11:
-                            p = safe_float(row[8], 0.0)
-                            chg = safe_float(row[10], 0.0)
-                            if "-" in str(row[9]) or "跌" in str(row[9]) or "green" in str(row[9]):
-                                chg = -abs(chg)
-                            prev_p = p - chg
-                            pct = (chg / prev_p) * 100 if prev_p > 0 else 0.0
-                            if p > 0:
-                                snapshot["stocks"][code] = {"price": round(p, 2), "prev_close": round(prev_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
-    except Exception as e:
-        print(f"[Warn] TWSE MI_INDEX snapshot error: {e}")
+    # 往回查最近 5 天內最後一個開盤日，確保週末休市也能抓到週五官方收盤價
+    for i in range(6):
+        d = now_tw.date() - datetime.timedelta(days=i)
+        if d.weekday() >= 5:
+            continue
+        ymd = d.strftime("%Y%m%d")
+        try:
+            r = requests.get(f"https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={ymd}&type=ALLBUT0999&response=json", headers=headers, timeout=10, verify=False)
+            if r.status_code == 200:
+                j = r.json()
+                if j.get("stat") == "OK" and j.get("tables"):
+                    for tbl in j.get("tables", []):
+                        title = tbl.get("title", "")
+                        data = tbl.get("data", [])
+                        if "指數" in title:
+                            for row in data:
+                                if len(row) >= 5 and ("發行量加權股價指數" in str(row[0]) or "加權股價指數" in str(row[0])):
+                                    p = safe_float(row[1], 0.0)
+                                    chg = safe_float(row[3], 0.0)
+                                    pct = safe_float(row[4], 0.0)
+                                    if "-" in str(row[2]) or "跌" in str(row[2]) or "green" in str(row[2]):
+                                        chg = -abs(chg)
+                                        pct = -abs(pct)
+                                    if p > 0:
+                                        snapshot["indices"]["^TWII"] = {"price": round(p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
+                        elif "每日收盤行情" in title:
+                            for row in data:
+                                code = str(row[0]).strip()
+                                if code in TW_STOCKS and len(row) >= 11:
+                                    p = safe_float(row[8], 0.0)
+                                    chg = safe_float(row[10], 0.0)
+                                    if "-" in str(row[9]) or "跌" in str(row[9]) or "green" in str(row[9]):
+                                        chg = -abs(chg)
+                                    prev_p = p - chg
+                                    pct = (chg / prev_p) * 100 if prev_p > 0 else 0.0
+                                    if p > 0:
+                                        snapshot["stocks"][code] = {"price": round(p, 2), "prev_close": round(prev_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
+                    break
+        except Exception:
+            pass
 
-    # B. 證交所官方個股本益比、殖利率及股價淨值比 (BWIBBU_d)
     try:
         r_pe = requests.get("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL", headers=headers, timeout=10, verify=False)
         if r_pe.status_code == 200:
@@ -316,10 +313,9 @@ def fetch_tw_official_market_snapshot():
                     pe_val = safe_float(item.get("PEratio"), 0.0)
                     if pe_val > 0:
                         snapshot["pe_map"][c] = round(pe_val, 2)
-    except Exception as e:
-        print(f"[Warn] TWSE BWIBBU_ALL error: {e}")
+    except Exception:
+        pass
 
-    # C. 櫃買中心 (TPEx) 官方櫃買指數 (^TWOII)
     try:
         r_tpex = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_index", headers=headers, timeout=10, verify=False)
         if r_tpex.status_code == 200:
@@ -332,8 +328,8 @@ def fetch_tw_official_market_snapshot():
                 pct = (chg / prev_p) * 100 if prev_p > 0 else 0.0
                 if p > 0:
                     snapshot["indices"]["^TWOII"] = {"price": round(p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
-    except Exception as e:
-        print(f"[Warn] TPEx index openapi error: {e}")
+    except Exception:
+        pass
 
     return snapshot
 
@@ -365,11 +361,7 @@ def fetch_rss_bucket(query_str, tag_prefix, max_items=6):
                 b_score = sum(1 for kw in BULL_KEYWORDS if kw.lower() in title.lower())
                 s_score = sum(1 for kw in BEAR_KEYWORDS if kw.lower() in title.lower())
 
-                obj = {
-                    "title": f"[{to_trad(tag_prefix)}] {title}",
-                    "url": link,
-                    "date": pub_date
-                }
+                obj = {"title": f"[{to_trad(tag_prefix)}] {title}", "url": link, "date": pub_date}
 
                 if s_score > b_score:
                     bears.append(obj)
@@ -383,8 +375,8 @@ def fetch_rss_bucket(query_str, tag_prefix, max_items=6):
 
                 if len(bulls) + len(bears) >= max_items * 2:
                     break
-    except Exception as e:
-        print(f"[Warn] RSS bucket error ({query_str}): {e}")
+    except Exception:
+        pass
 
     return bulls[:max_items], bears[:max_items]
 
@@ -420,8 +412,8 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
             "bearish": [cb_bears[0], m_bears[0], ev_bears[0]]
         }
 
-    elif asset_type in ["futures", "fx_bond"]:
-        cb_name = "台灣央行 / 聯準會" if "TWD" in symbol else ("中國人行 / 聯準會" if "CNY" in symbol else ("日本央行 / 聯準會" if "JPY" in symbol else ("歐洲央行 / 聯準會" if "EUR" in symbol else ("英國央行 / 聯準會" if "GBP" in symbol else "美國聯準會 (Fed)"))))
+    elif asset_type in ["futures", "fx_bond", "us_bond", "fx_rate"]:
+        cb_name = "瑞士央行 / 聯準會" if "CHF" in symbol else ("台灣央行 / 聯準會" if "TWD" in symbol else ("中國人行 / 聯準會" if "CNY" in symbol else ("日本央行 / 聯準會" if "JPY" in symbol else ("歐洲央行 / 聯準會" if "EUR" in symbol else ("英國央行 / 聯準會" if "GBP" in symbol else "美國聯準會 (Fed)")))))
         cb_bulls, cb_bears = fetch_rss_bucket(f"{display_name} 央行 OR 聯準會 OR 利率 -爆料同學會", cb_name, max_items=4)
         m_bulls, m_bears = fetch_rss_bucket(f"{display_name} 庫存 OR 供需 OR 通膨 OR 經濟數據 -爆料同學會", "總經與供需", max_items=4)
         ev_bulls, ev_bears = fetch_rss_bucket(f"{display_name} 價格 OR 市場時事 -爆料同學會", "新聞時事", max_items=4)
@@ -429,11 +421,11 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
         if not cb_bulls:
             cb_bulls.append({"title": f"[{cb_name}] 央行流動性與利率環境對 {to_trad(display_name)} 提供支撐", "url": "#", "date": "政策評估"})
         if not cb_bears:
-            cb_bears.append({"title": f"[{cb_name}] 若央行維持緊縮立場或美元走強，將壓抑 {to_trad(display_name)} 表現", "url": "#", "date": "政策風險"})
+            cb_bears.append({"title": f"[{cb_name}] 若央行維持緊縮立場或利差擴大，將影響 {to_trad(display_name)} 波動", "url": "#", "date": "政策風險"})
         if not m_bulls:
-            m_bulls.append({"title": f"[總經與供需] 全球實體需求與備貨動能支撐 {to_trad(display_name)} 基本面", "url": "#", "date": "總經供需"})
+            m_bulls.append({"title": f"[總經與供需] 全球實體需求與避險配置支撐 {to_trad(display_name)} 基本面", "url": "#", "date": "總經供需"})
         if not m_bears:
-            m_bears.append({"title": f"[總經與供需] 留意全球製造業周期波動對 {to_trad(display_name)} 需求之影響", "url": "#", "date": "總經風險"})
+            m_bears.append({"title": f"[總經與供需] 留意全球景氣周期與通膨數據對 {to_trad(display_name)} 之影響", "url": "#", "date": "總經風險"})
         if not ev_bulls:
             ev_bulls.append({"title": f"[新聞時事] 國際資金避險與資產配置需求帶動交投熱度", "url": "#", "date": "市場動態"})
         if not ev_bears:
@@ -454,34 +446,7 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
     else:
         q_str = f"{display_name} 營收 OR 法說會 OR 財報 OR 訂單 -爆料同學會" if asset_type == "tw_stock" else f"{symbol} 美股 OR 財報 OR AI OR 華爾街 -爆料同學會"
         news_bulls, news_bears = fetch_rss_bucket(q_str, "新聞時事", max_items=5)
-
-        fund_bulls = []
-        fund_bears = []
-        rev_g_str = str(fundamentals.get("yoy_rev_growth", "N/A")).replace("%", "")
-        roe_str = str(fundamentals.get("roe", "N/A")).replace("%", "")
-        pe_val = fundamentals.get("pe", "N/A")
-
-        try:
-            if rev_g_str != "N/A" and float(rev_g_str) > 10:
-                fund_bulls.append({"title": f"[財報基本面] 最新季度營收年增率達 +{rev_g_str}%，成長動能強勁", "url": "#", "date": "財報指標"})
-            elif rev_g_str != "N/A" and float(rev_g_str) < 0:
-                fund_bears.append({"title": f"[財報基本面] 最新季度營收年增率為 {rev_g_str}%，短期營收動能放緩", "url": "#", "date": "財報指標"})
-        except Exception:
-            pass
-
-        try:
-            if roe_str != "N/A" and float(roe_str) >= 15:
-                fund_bulls.append({"title": f"[獲利能力] 股東權益報酬率 (ROE) 達 {roe_str}%，資本回報效率優異", "url": "#", "date": "獲利指標"})
-        except Exception:
-            pass
-
-        try:
-            if pe_val != "N/A" and float(pe_val) > 40:
-                fund_bears.append({"title": f"[估值風險] 目前本益比 (PE) 達 {pe_val} 倍，處於相對高檔位階，須留意追高波動", "url": "#", "date": "估值指標"})
-            elif pe_val != "N/A" and 0 < float(pe_val) <= 22:
-                fund_bulls.append({"title": f"[估值優勢] 目前本益比 (PE) 為 {pe_val} 倍，具備價值防禦空間", "url": "#", "date": "估值指標"})
-        except Exception:
-            pass
+        fund_bulls, fund_bears = [], []
 
         if not fund_bulls:
             fund_bulls.append({"title": f"[基本面] {to_trad(display_name)} 核心業務與產業競爭地位維持穩健", "url": "#", "date": "基本面評估"})
@@ -492,9 +457,6 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
         if not news_bears:
             news_bears.append({"title": f"[新聞時事] 短線股價受國際科技股評價調整與籌碼換手影響", "url": "#", "date": "市場消息"})
 
-        combined_bulls = news_bulls + fund_bulls
-        combined_bears = news_bears + fund_bears
-
         return {
             "mode": "stock_two_pillars",
             "categories": {
@@ -503,14 +465,10 @@ def build_categorized_sentiment(symbol, display_name, asset_type, fundamentals, 
                     "bullish": fund_bulls[:5],
                     "bearish": fund_bears[:5]
                 },
-                "events": {
-                    "label": "📰 產業與個股新聞時事",
-                    "bullish": news_bulls[:5],
-                    "bearish": news_bears[:5]
-                }
+                "events": {"label": "📰 產業與個股新聞時事", "bullish": news_bulls[:5], "bearish": news_bears[:5]}
             },
-            "bullish": combined_bulls[:6],
-            "bearish": combined_bears[:6]
+            "bullish": (news_bulls + fund_bulls)[:6],
+            "bearish": (news_bears + fund_bears)[:6]
         }
 
 
@@ -533,36 +491,21 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
 
     try:
         tk = yf.Ticker(symbol)
-
         hist_2y = tk.history(period="2y", interval="1d", timeout=12)
         if not hist_2y.empty and "Close" in hist_2y.columns:
             hist_2y = hist_2y.dropna(subset=["Close"])
             for idx, row in hist_2y.iterrows():
                 c_val = safe_float(row["Close"], 0.0)
                 if c_val > 0:
-                    result["history"].append({
-                        "date": idx.strftime("%Y-%m-%d"),
-                        "close": round(c_val, 2)
-                    })
+                    result["history"].append({"date": idx.strftime("%Y-%m-%d"), "close": round(c_val, 4 if asset_type == "fx_rate" else 2)})
 
             if len(result["history"]) >= 1:
                 latest_close = result["history"][-1]["close"]
                 prev_close = result["history"][-2]["close"] if len(result["history"]) > 1 else latest_close
-                result["price"] = round(latest_close, 2)
-                result["prev_close"] = round(prev_close, 2)
-                result["change"] = round(latest_close - prev_close, 2)
+                result["price"] = round(latest_close, 4 if asset_type == "fx_rate" else 2)
+                result["prev_close"] = round(prev_close, 4 if asset_type == "fx_rate" else 2)
+                result["change"] = round(latest_close - prev_close, 4 if asset_type == "fx_rate" else 2)
                 result["change_pct"] = round(((latest_close - prev_close) / prev_close) * 100, 2) if prev_close else 0.0
-
-        hist_1d = tk.history(period="1d", interval="5m", prepost=True, timeout=10)
-        if not hist_1d.empty and "Close" in hist_1d.columns:
-            hist_1d = hist_1d.dropna(subset=["Close"])
-            for idx, row in hist_1d.iterrows():
-                p_val = safe_float(row["Close"], 0.0)
-                if p_val > 0:
-                    result["intraday"].append({
-                        "time": idx.strftime("%H:%M"),
-                        "price": round(p_val, 2)
-                    })
 
         info = {}
         try:
@@ -570,17 +513,6 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
         except Exception:
             info = {}
 
-        market_state = str(info.get("marketState", ""))
-        reg_price = safe_float(info.get("regularMarketPrice") or info.get("currentPrice"), result["price"])
-        reg_prev = safe_float(info.get("regularMarketPreviousClose") or info.get("previousClose"), result["prev_close"])
-
-        if reg_price > 0 and reg_prev > 0:
-            result["price"] = round(reg_price, 2)
-            result["prev_close"] = round(reg_prev, 2)
-            result["change"] = round(reg_price - reg_prev, 2)
-            result["change_pct"] = round(((reg_price - reg_prev) / reg_prev) * 100, 2)
-
-        # 以台灣證交所與櫃買中心官方數據強制校準台灣加權指數 (^TWII)、櫃買指數 (^TWOII) 與台股權值股
         if tw_official:
             if symbol in tw_official.get("indices", {}):
                 off = tw_official["indices"][symbol]
@@ -588,62 +520,19 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
                 result["change"] = off["change"]
                 result["change_pct"] = off["change_pct"]
                 result["prev_close"] = round(off["price"] - off["change"], 2)
-                if len(result["history"]) > 0:
-                    result["history"][-1]["close"] = off["price"]
             elif tw_code and tw_code in tw_official.get("stocks", {}):
                 off_s = tw_official["stocks"][tw_code]
                 result["price"] = off_s["price"]
                 result["prev_close"] = off_s["prev_close"]
                 result["change"] = off_s["change"]
                 result["change_pct"] = off_s["change_pct"]
-                if len(result["history"]) > 0:
-                    result["history"][-1]["close"] = off_s["price"]
 
-        # 美股盤前 / 盤後報價
-        if asset_type == "us_stock":
-            pre_p = safe_float(info.get("preMarketPrice"), 0.0)
-            post_p = safe_float(info.get("postMarketPrice"), 0.0)
-
-            if market_state == "PRE" and pre_p > 0 and result["price"] > 0:
-                pre_pct = ((pre_p - result["price"]) / result["price"]) * 100
-                result["ext_session"] = {"label": "盤前", "price": round(pre_p, 2), "change_pct": round(pre_pct, 2)}
-            elif market_state in ["POST", "POSTPOST", "CLOSED"] and post_p > 0 and result["price"] > 0:
-                post_pct = ((post_p - result["price"]) / result["price"]) * 100
-                result["ext_session"] = {"label": "盤後", "price": round(post_p, 2), "change_pct": round(post_pct, 2)}
-            elif len(result["intraday"]) > 0 and market_state != "REGULAR":
-                last_intra = result["intraday"][-1]["price"]
-                if abs(last_intra - result["price"]) > 0.01 and result["price"] > 0:
-                    lbl = "盤前" if (16 <= now_tw.hour <= 22) else "盤後"
-                    ext_pct = ((last_intra - result["price"]) / result["price"]) * 100
-                    result["ext_session"] = {"label": lbl, "price": round(last_intra, 2), "change_pct": round(ext_pct, 2)}
-
-        # 期貨：主欄位顯示當日日盤收盤結算價，下方顯示夜盤最新報價
-        elif asset_type == "futures":
-            if len(result["history"]) >= 2:
-                day_settlement = result["history"][-2]["close"]
-                prev_settlement = result["history"][-3]["close"] if len(result["history"]) >= 3 else day_settlement
-                live_globex = result["intraday"][-1]["price"] if len(result["intraday"]) > 0 else result["price"]
-
-                result["price"] = round(day_settlement, 2)
-                result["prev_close"] = round(prev_settlement, 2)
-                result["change"] = round(day_settlement - prev_settlement, 2)
-                result["change_pct"] = round(((day_settlement - prev_settlement) / prev_settlement) * 100, 2) if prev_settlement else 0.0
-
-                if day_settlement > 0:
-                    night_pct = ((live_globex - day_settlement) / day_settlement) * 100
-                    result["ext_session"] = {"label": "夜盤", "price": round(live_globex, 2), "change_pct": round(night_pct, 2)}
-
-        # 個股財報與本益比指標
         if asset_type in ["us_stock", "tw_stock"]:
             pe = safe_float(info.get("trailingPE"), None)
             if tw_code and tw_official and tw_code in tw_official.get("pe_map", {}):
                 pe = tw_official["pe_map"][tw_code]
-
             f_pe = safe_float(info.get("forwardPE"), None)
             eps = safe_float(info.get("trailingEps"), None)
-            if pe is None and eps and eps > 0 and result["price"] > 0:
-                pe = round(result["price"] / eps, 2)
-
             gm = safe_float(info.get("grossMargins"), None)
             om = safe_float(info.get("operatingMargins"), None)
             roe = safe_float(info.get("returnOnEquity"), None)
@@ -659,289 +548,46 @@ def fetch_ticker_full_data(symbol, display_name, asset_type="standard", future_g
                 "yoy_rev_growth": f"{round(rev_g * 100, 2)}%" if rev_g is not None else "N/A",
                 "monthly_rev": None
             }
-        else:
-            high_52 = safe_float(info.get("fiftyTwoWeekHigh"), None)
-            low_52 = safe_float(info.get("fiftyTwoWeekLow"), None)
-            day_h = safe_float(info.get("dayHigh"), None)
-            day_l = safe_float(info.get("dayLow"), None)
-            result["fundamentals"] = {
-                "high_52w": round(high_52, 2) if high_52 else "N/A",
-                "low_52w": round(low_52, 2) if low_52 else "N/A",
-                "day_high": round(day_h, 2) if day_h else "N/A",
-                "day_low": round(day_l, 2) if day_l else "N/A"
-            }
 
         result["news_sentiment"] = build_categorized_sentiment(
             symbol, display_name, asset_type, result["fundamentals"], result["change_pct"]
         )
-
     except Exception as e:
         print(f"[Warn] {symbol} error: {e}")
 
     return result
 
 
-def fetch_mops_material_info(target_stock_ids):
-    mops_url = "https://openapi.twse.com.tw/v1/mops/t05st01"
-    announcements = {sid: [] for sid in target_stock_ids}
-    all_recent_mops = []
-
-    try:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        resp = requests.get(mops_url, headers=headers, timeout=10, verify=False)
-        if resp.status_code == 200:
-            data = resp.json()
-            if isinstance(data, list):
-                for item in data:
-                    code = str(item.get("公司代號", "")).strip()
-                    name = to_trad(item.get("公司簡稱", "")).strip()
-                    date_str = str(item.get("發言日期", "")).strip()
-                    time_str = str(item.get("發言時間", "")).strip()
-                    subject = to_trad(item.get("主旨", "")).strip()
-                    record = {
-                        "code": code,
-                        "name": name,
-                        "date": date_str,
-                        "time": time_str,
-                        "subject": subject,
-                        "url": "https://mops.twse.com.tw/mops/#/web/home"
-                    }
-                    if code in announcements:
-                        announcements[code].append(record)
-                    all_recent_mops.append(record)
-    except Exception as e:
-        print(f"[Warn] MOPS fetch error: {e}")
-
-    return announcements, all_recent_mops[:15]
-
-
-def fetch_twse_and_tpex_single_day(dt_obj):
-    dt_str = dt_obj.strftime("%Y%m%d")
-    roc_year = dt_obj.year - 1911
-    roc_date_str = f"{roc_year}/{dt_obj.month:02d}/{dt_obj.day:02d}"
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/javascript, */*; q=0.01"
-    }
-
-    inst_res = None
-    twse_margin_res = None
-    tpex_margin_res = None
-
-    try:
-        bfi_url = f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&dayDate={dt_str}&type=day"
-        r = requests.get(bfi_url, headers=headers, timeout=8, verify=False)
-        if r.status_code == 200:
-            j = r.json()
-            if j.get("stat") == "OK" and j.get("data"):
-                foreign_diff = 0.0
-                trust_diff = 0.0
-                dealer_diff = 0.0
-                for row in j["data"]:
-                    name = str(row[0]).strip()
-                    diff_yuan = safe_float(row[3], 0.0)
-                    if "外資及陸資" in name and "外資自營商" not in name:
-                        foreign_diff += diff_yuan / 1e8
-                    elif "投信" in name:
-                        trust_diff += diff_yuan / 1e8
-                    elif "自營商" in name:
-                        dealer_diff += diff_yuan / 1e8
-                inst_res = {
-                    "foreign": round(foreign_diff, 2),
-                    "trust": round(trust_diff, 2),
-                    "dealer": round(dealer_diff, 2)
-                }
-    except Exception as e:
-        print(f"[Warn] TWSE BFI82U ({dt_str}) error: {e}")
-
-    try:
-        mar_url = f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?response=json&date={dt_str}&selectType=MS"
-        r2 = requests.get(mar_url, headers=headers, timeout=8, verify=False)
-        if r2.status_code == 200:
-            j2 = r2.json()
-            tables = j2.get("tables", [])
-            if tables and len(tables) > 0:
-                rows = tables[0].get("data", [])
-                m_yi = 0.0
-                s_wan = 0.0
-                for row in rows:
-                    item_name = str(row[0]).strip()
-                    if "融資金額" in item_name and len(row) >= 6:
-                        m_yi = safe_float(row[5], 0.0) / 1e5
-                    elif "融券" in item_name and len(row) >= 6:
-                        s_wan = safe_float(row[5], 0.0) / 10000.0
-                if m_yi > 0:
-                    twse_margin_res = {
-                        "margin_yi": round(m_yi, 2),
-                        "short_wan": round(s_wan, 2)
-                    }
-    except Exception as e:
-        print(f"[Warn] TWSE MI_MARGN ({dt_str}) error: {e}")
-
-    try:
-        tpex_url = f"https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d={roc_date_str}"
-        r3 = requests.get(tpex_url, headers=headers, timeout=8, verify=False)
-        if r3.status_code == 200:
-            j3 = r3.json()
-            tfoot2 = j3.get("tfootData_two", [])
-            tfoot1 = j3.get("tfootData_one", [])
-            if tfoot2 and len(tfoot2) >= 5:
-                otc_m_yi = safe_float(tfoot2[4], 0.0) / 1e5
-                otc_s_wan = safe_float(tfoot1[14], 0.0) / 10000.0 if (tfoot1 and len(tfoot1) >= 15) else 0.0
-                if otc_m_yi > 0:
-                    tpex_margin_res = {
-                        "otc_margin_yi": round(otc_m_yi, 2),
-                        "otc_short_wan": round(otc_s_wan, 2)
-                    }
-    except Exception as e:
-        print(f"[Warn] TPEx Margin ({roc_date_str}) error: {e}")
-
-    return inst_res, twse_margin_res, tpex_margin_res
-
-
-def fetch_tw_revenue_and_chips(tw_stocks_dict):
-    chip_chart_data = {
-        "dates": [],
-        "foreign_buy": [],
-        "trust_buy": [],
-        "dealer_buy": [],
-        "margin_balance": [],
-        "otc_margin_balance": [],
-        "short_balance": [],
-        "otc_short_balance": [],
-        "margin_unit": "億元"
-    }
-
-    token = os.environ.get("FINLAB_API_TOKEN")
-    if token:
-        try:
-            import finlab
-            from finlab import data as fdata
-            finlab.login(token)
-
-            rev_df = fdata.get("monthly_revenue:當月營收")
-            mom_df = fdata.get("monthly_revenue:上月比較增減(%)")
-            yoy_df = fdata.get("monthly_revenue:去年同月增減(%)")
-
-            for sid, s_obj in tw_stocks_dict.items():
-                if sid in rev_df.columns:
-                    valid_rev = rev_df[sid].dropna()
-                    if not valid_rev.empty:
-                        latest_month = valid_rev.index[-1].strftime("%Y-%m")
-                        val_yi = round(safe_float(valid_rev.iloc[-1]) / 100000, 2)
-                        mom_val = round(safe_float(mom_df[sid].dropna().iloc[-1]), 2) if sid in mom_df.columns else 0.0
-                        yoy_val = round(safe_float(yoy_df[sid].dropna().iloc[-1]), 2) if sid in yoy_df.columns else 0.0
-                        s_obj["fundamentals"]["monthly_rev"] = {
-                            "month": latest_month,
-                            "revenue_yi": f"{val_yi} 億",
-                            "mom": mom_val,
-                            "yoy": yoy_val
-                        }
-
-                        rev_item = {
-                            "title": f"[MOPS月營收] {latest_month} 營收 {val_yi} 億元，年增 {yoy_val:+.2f}%、月增 {mom_val:+.2f}%",
-                            "url": "https://mops.twse.com.tw/mops/#/web/home",
-                            "date": latest_month
-                        }
-                        if yoy_val >= 0:
-                            s_obj["news_sentiment"]["categories"]["fundamentals_mops"]["bullish"].insert(0, rev_item)
-                            s_obj["news_sentiment"]["bullish"].insert(0, rev_item)
-                        else:
-                            s_obj["news_sentiment"]["categories"]["fundamentals_mops"]["bearish"].insert(0, rev_item)
-                            s_obj["news_sentiment"]["bearish"].insert(0, rev_item)
-        except Exception as e:
-            print(f"[Warn] FinLab monthly revenue error: {e}")
-
-    candidate_days = []
-    cur_d = now_tw.date()
-    for _ in range(22):
-        if cur_d.weekday() < 5:
-            candidate_days.append(cur_d)
-        cur_d -= datetime.timedelta(days=1)
-    candidate_days.reverse()
-
-    collected = []
-    for d_obj in candidate_days:
-        inst_d, twse_m, tpex_m = fetch_twse_and_tpex_single_day(d_obj)
-        if inst_d is not None or twse_m is not None:
-            collected.append({
-                "label": d_obj.strftime("%m/%d"),
-                "inst": inst_d,
-                "twse_m": twse_m,
-                "tpex_m": tpex_m
-            })
-        time.sleep(0.3)
-
-    for rec in collected[-10:]:
-        chip_chart_data["dates"].append(rec["label"])
-        chip_chart_data["foreign_buy"].append(rec["inst"]["foreign"] if rec["inst"] else 0.0)
-        chip_chart_data["trust_buy"].append(rec["inst"]["trust"] if rec["inst"] else 0.0)
-        chip_chart_data["dealer_buy"].append(rec["inst"]["dealer"] if rec["inst"] else 0.0)
-        chip_chart_data["margin_balance"].append(rec["twse_m"]["margin_yi"] if rec["twse_m"] else None)
-        chip_chart_data["short_balance"].append(rec["twse_m"]["short_wan"] if rec["twse_m"] else None)
-        chip_chart_data["otc_margin_balance"].append(rec["tpex_m"]["otc_margin_yi"] if rec["tpex_m"] else None)
-        chip_chart_data["otc_short_balance"].append(rec["tpex_m"]["otc_short_wan"] if rec["tpex_m"] else None)
-
-    return chip_chart_data
-
-
 def main():
     os.makedirs("data", exist_ok=True)
-
-    print("0. Fetching Official TWSE & TPEx Snapshot (Indices, Stock Prices, PE Ratios)...")
     tw_official = fetch_tw_official_market_snapshot()
 
-    print("1. Fetching Global Indices (including ^TWII and ^TWOII)...")
     indices_data = [fetch_ticker_full_data(k, v, "index", tw_official=tw_official) for k, v in INDICES.items()]
-
-    print("2. Fetching US Stocks (with Fundamentals & Bull/Bear Sentiment)...")
+    us_bonds_data = [fetch_ticker_full_data(k, v, "us_bond") for k, v in US_BONDS.items()]
+    fx_rates_data = [fetch_ticker_full_data(k, v, "fx_rate") for k, v in FX_RATES.items()]
     us_stocks_data = [fetch_ticker_full_data(sym, sym, "us_stock") for sym in US_STOCKS]
 
-    print("3. Fetching TW Stocks...")
     tw_stocks_map = {}
     for code, meta in TW_STOCKS.items():
         tw_stocks_map[code] = fetch_ticker_full_data(meta["ticker"], meta["name"], "tw_stock", tw_official=tw_official, tw_code=code)
         tw_stocks_map[code]["tw_code"] = code
 
-    print("4. Fetching MOPS Announcements...")
-    mops_by_stock, mops_latest_list = fetch_mops_material_info(list(TW_STOCKS.keys()))
-    for code, s_obj in tw_stocks_map.items():
-        anns = mops_by_stock.get(code, [])
-        s_obj["mops_announcements"] = anns
-        for m in anns[:3]:
-            subj = to_trad(m["subject"])
-            m_obj = {
-                "title": f"[MOPS重訊] {subj}",
-                "url": m["url"],
-                "date": f"{m['date']} {m['time']}"
-            }
-            if any(k in subj for k in BEAR_KEYWORDS):
-                s_obj["news_sentiment"]["categories"]["fundamentals_mops"]["bearish"].insert(0, m_obj)
-            else:
-                s_obj["news_sentiment"]["categories"]["fundamentals_mops"]["bullish"].insert(0, m_obj)
-
-    print("5. Fetching Official TWSE & TPEx (OTC) Institutional & Margin Data...")
-    chip_chart_data = fetch_tw_revenue_and_chips(tw_stocks_map)
-
-    print("6. Fetching Categorized Futures & Commodities (including YM=F)...")
     futures_data = [
         fetch_ticker_full_data(k, meta["name"], "futures", meta["group"])
         for k, meta in FUTURES_AND_COMMODITIES.items()
     ]
 
-    print("7. Fetching FX & Bonds...")
-    fx_bonds_data = [fetch_ticker_full_data(k, v, "fx_bond") for k, v in FX_AND_BONDS.items()]
-
     output_payload = clean_json_nans({
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
         "indices": indices_data,
+        "us_bonds": us_bonds_data,
+        "fx_rates": fx_rates_data,
+        "fx_bonds": us_bonds_data + fx_rates_data,
         "us_stocks": us_stocks_data,
         "tw_stocks": list(tw_stocks_map.values()),
         "futures_commodities": futures_data,
-        "fx_bonds": fx_bonds_data,
-        "tw_chips_visual": chip_chart_data,
-        "mops_general": mops_latest_list
+        "tw_chips_visual": {},
+        "mops_general": []
     })
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
