@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "last_updated": "2026-11-15 01:27:08 CST",
+=======
+  "last_updated": "2026-11-15 01:27:23 CST",
+>>>>>>> Stashed changes
   "indices": [
     {
       "symbol": "^GSPC",
@@ -44199,7 +44203,11 @@
         },
         {
           "date": "2025-12-18",
+<<<<<<< Updated upstream
           "close": 271.24
+=======
+          "close": 271.25
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-12-19",
