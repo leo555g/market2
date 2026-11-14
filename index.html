@@ -23,7 +23,7 @@
   <header class="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・總經與法說會倒數・各國央行 / 總經 / 時事三維度拆解・美股綠漲紅跌・週末自動顯示最新收盤數據</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・總經實績與法說會倒數・各國央行 / 總經 / 時事三維度拆解・美股綠漲紅跌・週末自動顯示最新收盤數據</p>
     </div>
     <div class="flex flex-wrap items-center gap-3">
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -39,22 +39,24 @@
 
   <main class="max-w-7xl mx-auto space-y-10">
 
-    <!-- 專區 0：重要總經日曆 (FOMC / 非農 NFP / CPI / PPI) 與超級法說會即時倒數 -->
+    <!-- ========================================================================= -->
+    <!-- 專區 0：全球重要總經日曆 (FOMC / 非農 / CPI / PPI) 倒數 + 最近一期實績/預期/前值 + 點擊深度分析 -->
+    <!-- ========================================================================= -->
     <section class="card-bg rounded-xl p-4 md:p-5 shadow-lg border border-indigo-500/30">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3 mb-4">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2.5 py-0.5 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">⏳ 關鍵總經與法說倒數</span>
-          <h2 class="text-base md:text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農就業 / CPI / PPI) & 重量級法說會倒數計時</h2>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="px-2.5 py-0.5 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">⏳ 總經日曆與最新實績</span>
+          <h2 class="text-base md:text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農就業 / CPI / PPI) & 超級法說會倒數計時</h2>
+          <span class="text-xs text-indigo-300">(點擊任一卡片可檢視官方分項數據、市場影響分析與 BLS/Fed 官方來源)</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="text-[11px] text-slate-400">均已換算為台灣時間 (CST)</span>
+        <div class="flex items-center gap-2 shrink-0">
           <button onclick="customizeEarningsEvent()" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 rounded font-medium transition">
             ⚙️ 自訂法說會日程
           </button>
         </div>
       </div>
 
-      <div id="macro-countdown-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"></div>
+      <div id="macro-countdown-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3.5"></div>
     </section>
 
     <!-- 專區 1：最上方互動式走勢圖儀表板 -->
@@ -112,13 +114,13 @@
       <div id="main-price-chart" class="w-full h-80"></div>
     </section>
 
-    <!-- 專區 2：全球主要指數 (含台灣加權指數 ^TWII 與台灣櫃買指數 ^TWOII) -->
+    <!-- 專區 2：全球主要指數 -->
     <section>
       <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視分開獨立的：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 3：期貨與大宗商品專區 (分為四大專屬群組) -->
+    <!-- 專區 3：期貨與大宗商品專區 -->
     <section class="space-y-5">
       <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">
         期貨與大宗商品專區
@@ -191,7 +193,7 @@
       </div>
     </section>
 
-    <!-- 專區 6：台股與法人籌碼專區進階視覺化 (同時涵蓋外資/投信/自營商買賣超 + 加權指數融資餘額 + 櫃買指數融資餘額) -->
+    <!-- 專區 6：台股與法人籌碼專區進階視覺化 -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
@@ -208,7 +210,6 @@
         </div>
       </div>
 
-      <!-- 6 格官方最新數據摘要卡：外資、投信、自營商、三大法人合計、加權融資餘額(含增減)、櫃買融資餘額(含增減) -->
       <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -231,7 +232,67 @@
 
   </main>
 
-  <!-- 彈出式多空情報視窗 -->
+  <!-- ========================================================================= -->
+  <!-- 彈出式視窗 A：全球重要總經日曆 (FOMC / 非農 / CPI / PPI) 深度數據與市場影響分析視窗 -->
+  <!-- ========================================================================= -->
+  <div id="macro-detail-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="card-bg border border-indigo-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-5">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span id="macro-modal-badge" class="text-xs font-bold px-2.5 py-0.5 rounded border"></span>
+            <h2 id="macro-modal-title" class="text-2xl font-bold text-white"></h2>
+          </div>
+          <p id="macro-modal-release-meta" class="text-xs text-slate-400 mt-1.5 mono"></p>
+        </div>
+        <button onclick="closeMacroModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-1.5 text-sm font-bold">✕ 關閉</button>
+      </div>
+
+      <!-- 核心三欄對照卡：實際數據 (含月增率 MoM) vs 市場預期 vs 上個月數據 -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-6">
+        <div class="bg-slate-900/90 border border-indigo-500/40 rounded-xl p-4">
+          <span class="text-xs text-indigo-300 font-bold block mb-1">📌 本期實際數據 (含月增率 MoM)</span>
+          <div id="macro-modal-actual" class="text-xl font-bold text-white mono"></div>
+          <div id="macro-modal-mom" class="text-xs font-bold text-emerald-400 mono mt-1"></div>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-4">
+          <span class="text-xs text-slate-400 font-bold block mb-1">🎯 市場預期數據 (Consensus)</span>
+          <div id="macro-modal-expected" class="text-xl font-bold text-slate-200 mono"></div>
+          <div id="macro-modal-surprise" class="text-xs font-bold mt-1"></div>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-4">
+          <span class="text-xs text-slate-400 font-bold block mb-1">⏪ 上個月 / 前期數據 (Prior)</span>
+          <div id="macro-modal-prior" class="text-xl font-bold text-slate-300 mono"></div>
+          <div id="macro-modal-prior-note" class="text-xs text-slate-400 mt-1"></div>
+        </div>
+      </div>
+
+      <!-- 官方分項數據細部拆解 -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-5">
+        <h3 class="text-sm font-bold text-amber-300 mb-3">📊 官方報告關鍵分項數據拆解</h3>
+        <div id="macro-modal-submetrics" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs"></div>
+      </div>
+
+      <!-- 市場影響深度分析 (股市 / 美債殖利率 / 美元匯率 / Fed 政策路徑) -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-5">
+        <h3 class="text-sm font-bold text-emerald-300 mb-3">💡 本次數據開出對金融市場之深度影響分析</h3>
+        <ul id="macro-modal-impact-list" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+      </div>
+
+      <!-- 官方權威資料來源與驗證連結 -->
+      <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="text-xs">
+          <span class="text-slate-400 font-bold block">🏛️ 官方權威資料來源 (可點擊查驗原始報告)：</span>
+          <span id="macro-modal-source-name" class="text-white font-medium mt-0.5 block"></span>
+        </div>
+        <div id="macro-modal-source-links" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 彈出式視窗 B：個股與指數多空情報視窗 -->
+  <!-- ========================================================================= -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
@@ -279,26 +340,20 @@
       "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)"
     };
 
-    // =========================================================================
-    // 台灣證券交易所 (TWSE) 與櫃買中心 (TPEx) 截至 2026/11/13 最新 10 個交易日官方真實基準數據
-    // 確保網頁打開 0.1 秒內「外資買賣超金額」、「加權指數融資餘額」、「櫃買指數融資餘額」100% 精準呈現、絕不消失！
-    // =========================================================================
     const OFFICIAL_VERIFIED_TW_CHIPS = {
       dates: ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13"],
-      // 證交所 BFI82U 官方外資及陸資(不含外資自營商)買賣超金額 (億元)
       foreign_buy: [-1124.67, -735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37],
-      // 證交所 BFI82U 官方投信買賣超金額 (億元)
       trust_buy: [215.40, 338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37],
-      // 證交所 BFI82U 官方自營商(自行+避險)買賣超金額 (億元)
       dealer_buy: [-475.29, -157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92],
-      // 證交所 MI_MARGN 官方上市大盤融資餘額 (億元) — 11/13 為 5365.99 億 (資增 31.24 億)，11/12 為 5334.75 億 (資減 76.83 億)
       margin_balance: [6125.40, 6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99],
-      // 櫃買中心 TPEx 官方上櫃(櫃買指數)融資餘額 (億元) — 11/13 為 1862.45 億 (資增 19.28 億)
       otc_margin_balance: [1998.60, 1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45],
-      // 證交所官方融券餘額 (萬張) — 11/13 為 20.88 萬張 (208,773 張)
       short_balance: [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
     };
 
+    // =========================================================================
+    // 重要總經日曆 (FOMC / 非農 NFP / CPI / PPI) & 超級法說會
+    // 包含：下一次倒數日程 + 最近一期官方已公布實績 (實際值含月增率 MoM / 預期值 / 上月前值 / 深度影響分析 / 官方來源)
+    // =========================================================================
     const MACRO_CALENDAR_CATEGORIES = [
       {
         id: "fomc",
@@ -306,11 +361,36 @@
         badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
         accentBorder: "border-l-4 border-l-blue-500",
         schedule: [
-          { title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與鮑爾記者會" },
+          { title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與主席記者會" },
           { title: "1月 FOMC 利率決策會議", time: "2027-01-28T03:00:00+08:00", note: "聯準會 2027 首場利率決策" },
-          { title: "3月 FOMC 利率決策 & 點陣圖", time: "2027-03-18T02:00:00+08:00", note: "含最新季度利率點陣圖" },
-          { title: "4月 FOMC 利率決策會議", time: "2027-04-29T02:00:00+08:00", note: "聯準會貨幣政策聲明" }
-        ]
+          { title: "3月 FOMC 利率決策 & 點陣圖", time: "2027-03-18T02:00:00+08:00", note: "含最新季度利率點陣圖" }
+        ],
+        latestRelease: {
+          period: "2026年10月 FOMC 會議 (10/28 發布)",
+          actual: "3.75% – 4.00%",
+          momText: "本月變動：0 bps (維持不變)",
+          expected: "3.75% – 4.00%",
+          prior: "3.75% – 4.00% (9月升1碼)",
+          priorNote: "2026年9月會議升息 +25 bps",
+          verdictBadge: "符合預期・鷹派暫停",
+          verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
+          subMetrics: [
+            { label: "聯邦資金利率目標區間", val: "3.75% – 4.00%" },
+            { label: "本次會議利率變動幅度", val: "0 bps (按兵不動)" },
+            { label: "投票結果與反對票", val: "2 票反對 (Cook 與 Hammack 主張升息 1 碼)" },
+            { label: "12月會議市場隱含升息機率", val: "約 80% – 88% 機率升息 25 bps" }
+          ],
+          impacts: [
+            "【貨幣政策路徑】聯準會在 9 月升息 1 碼後，於 10 月會議選擇暫停以評估前期緊縮對信貸與金融環境的滯後傳導；但聲明將經濟描述由「穩健 (solid)」上調為「強勁 (strong)」，保留後續升息空間。",
+            "【美債與美元影響】由於 Lisa Cook 與 Beth Hammack 兩位票委投下反對票主張直接升息，加上隨後的 10 月非農與 CPI 均偏熱，推升 10 年期與 30 年期美債殖利率維持高檔，美元指數獲得利差支撐。",
+            "【股市與科技股影響】主席 Warsh 於記者會強調強勁成長主要來自生產力與 AI 資本投資提升，緩解市場對「連續激進升息」的恐慌，使大型科技股與台股 AI 權值股在高利率環境下仍具基本面支撐。"
+          ],
+          sourceName: "美國聯準會 (Federal Reserve Board - FOMC Statement)",
+          sourceLinks: [
+            { label: "Fed FOMC 官方貨幣政策聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
+            { label: "J.P. Morgan / MUFG 10月 FOMC 報告", url: "https://am.jpmorgan.com/us/en/asset-management/adv/insights/portfolio-insights/fixed-income/fixed-income-perspectives/fomc-statement-october-2026/" }
+          ]
+        }
       },
       {
         id: "nfp",
@@ -320,9 +400,34 @@
         schedule: [
           { title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
           { title: "美國 12 月非農就業報告", time: "2027-01-08T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
-          { title: "美國 1 月非農就業報告", time: "2027-02-05T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
-          { title: "美國 2 月非農就業報告", time: "2027-03-05T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }
-        ]
+          { title: "美國 1 月非農就業報告", time: "2027-02-05T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }
+        ],
+        latestRelease: {
+          period: "2026年10月 非農就業報告 (11/06 發布)",
+          actual: "+16.5 萬人",
+          momText: "月增率：+0.10% MoM (失業率 4.1%)",
+          expected: "+6.5 萬人",
+          prior: "+6.0 萬人 (上修)",
+          priorNote: "9月初值 +2.9萬，官方上修至 +6.0萬人 (失業率 4.2%)",
+          verdictBadge: "遠超預期 (+10萬人)",
+          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [
+            { label: "10月非農新增就業人數", val: "+165,000 人 (遠高於過去12個月均值 4.8萬人)" },
+            { label: "總非農就業人口總數 (CES0000000001)", val: "159,293 仟人 (月增 +0.10% MoM)" },
+            { label: "10月官方失業率 (U-3)", val: "4.1% (較 9 月之 4.2% 微幅下降)" },
+            { label: "勞動參與率 / 製造業就業月增", val: "61.9% / 製造業月增 +19,000 人 (電子製造 +7,000)" }
+          ],
+          impacts: [
+            "【數據亮點】10 月非農新增就業達 16.5 萬人，不僅是 FactSet 市場共識預期（+6.5 萬人）的 2.5 倍以上，且 8 月與 9 月合計大幅上修（9 月由 +2.9 萬上修至 +6.0 萬人），加上電腦與電子產品製造業逆勢增加 7,000 個職位，破除經濟衰退疑慮。",
+            "【對聯準會與債市影響】強勁的就業報告搭配微降至 4.1% 的失業率，直接強化聯準會於 12 月會議再次升息 1 碼（25 bps）的底氣，短天期美債殖利率應聲走高。",
+            "【對美股與台股影響】雖然高利率預期壓抑高估值中小型股，但實體經濟需求與製造業擴張確認了企業獲利軟著陸，道瓊、標普與台股半導體權值股在消化利率預期後表現相對強韌。"
+          ],
+          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - USDL-26-1632)",
+          sourceLinks: [
+            { label: "BLS 官方 10月就業報告 PDF 原文", url: "https://www.bls.gov/news.release/pdf/empsit.pdf" },
+            { label: "BLS Employment Situation 官方摘要", url: "https://www.bls.gov/news.release/empsit.nr0.htm" }
+          ]
+        }
       },
       {
         id: "cpi",
@@ -332,9 +437,34 @@
         schedule: [
           { title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" },
           { title: "美國 12 月 CPI 消費者物價指數", time: "2027-01-13T21:30:00+08:00", note: "核心 CPI 與年增率關鍵指標" },
-          { title: "美國 1 月 CPI 消費者物價指數", time: "2027-02-11T21:30:00+08:00", note: "年度權重調整後首份 CPI 報告" },
-          { title: "美國 2 月 CPI 消費者物價指數", time: "2027-03-10T20:30:00+08:00", note: "3月 FOMC 會前關鍵通膨數據" }
-        ]
+          { title: "美國 1 月 CPI 消費者物價指數", time: "2027-02-11T21:30:00+08:00", note: "年度權重調整後首份 CPI 報告" }
+        ],
+        latestRelease: {
+          period: "2026年10月 CPI 報告 (11/10 發布)",
+          actual: "月增 +0.4% MoM",
+          momText: "核心 CPI 月增：+0.3% MoM",
+          expected: "月增 +0.3% MoM",
+          prior: "月增 +0.6% MoM",
+          priorNote: "9月整體 CPI 月增 +0.6% / 核心月增 +0.3%",
+          verdictBadge: "高於預期 (+0.1%)",
+          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [
+            { label: "10月整體 CPI 月增率 (Seasonally Adjusted)", val: "+0.4% MoM (高於市場預期的 +0.3%)" },
+            { label: "10月核心 CPI (不含食品與能源) 月增率", val: "+0.3% MoM (高於預期的 +0.2%，連三個月 +0.3%)" },
+            { label: "能源與食品分項月增率", val: "能源 +0.7% MoM (汽油 +1.0%) / 食品 +0.5% MoM" },
+            { label: "居住成本 (Shelter) / 官方年增率說明", val: "居住 +0.3% MoM (註：因2025年10月政府停擺缺基期，BLS未發布10月YoY)" }
+          ],
+          impacts: [
+            "【通膨黏著度分析】10 月整體 CPI 月增 +0.4%（雖較 9 月的 +0.6% 放緩，但仍高於市場共識的 +0.3%），核心 CPI 則連續第三個月維持在 +0.3% MoM（年化約 3.6%），顯示居住成本（+0.3%）與外食服務（+0.5%）價格依然具黏著度。",
+            "【官方特殊說明】根據美國勞工統計局 (BLS) 官方報告第 1 頁說明，由於 2025 年 10 月期間美國國會預算撥款中斷（Lapse in appropriations），BLS 當時未採集 2025 年 10 月基期數據，因此官方依規範不發布 2026 年 10 月的 12 個月年增率（YoY）。",
+            "【市場與利率影響】由於整體與核心月增率雙雙高於預期 0.1 個百分點，聯邦基金利率期貨對 12 月 FOMC 升息 1 碼（25 bps）的定價機率衝上 88%，對高估值成長股與長天期債券形成短線壓力。"
+          ],
+          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - CPI October 2026)",
+          sourceLinks: [
+            { label: "BLS 官方 10月 CPI 完整報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" },
+            { label: "Advisor Perspectives 10月 CPI 解析", url: "https://www.advisorperspectives.com/dshort/updates/2026/11/10/cpi-consumer-price-index-inflation-october-2026" }
+          ]
+        }
       },
       {
         id: "ppi",
@@ -344,9 +474,34 @@
         schedule: [
           { title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" },
           { title: "美國 12 月 PPI 生產者物價指數", time: "2027-01-14T21:30:00+08:00", note: "觀察上游能源與服務業成本傳導" },
-          { title: "美國 1 月 PPI 生產者物價指數", time: "2027-02-12T21:30:00+08:00", note: "企業毛利空間與批發物價領先指標" },
-          { title: "美國 2 月 PPI 生產者物價指數", time: "2027-03-12T20:30:00+08:00", note: "BLS 官方最終需求 PPI 報告" }
-        ]
+          { title: "美國 1 月 PPI 生產者物價指數", time: "2027-02-12T21:30:00+08:00", note: "企業毛利空間與批發物價領先指標" }
+        ],
+        latestRelease: {
+          period: "2026年10月 PPI 報告 (11/13 發布)",
+          actual: "年增 +6.5% YoY",
+          momText: "月增率：+0.3% MoM (核心 +0.3%)",
+          expected: "月增 +0.4% MoM",
+          prior: "年增 +6.3% / 月增 +1.4%",
+          priorNote: "9月 PPI 月增高達 +1.4% MoM (年增 +6.3%)",
+          verdictBadge: "月增略低於預期・年增創高",
+          verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30",
+          subMetrics: [
+            { label: "10月最終需求 PPI 月增率 / 年增率", val: "+0.3% MoM (低於預期 +0.4%) / 年增 +6.5% YoY (2022/11以來最高)" },
+            { label: "核心 PPI (不含食品、能源與貿易服務)", val: "月增 +0.5% MoM / 年增 +4.9% YoY" },
+            { label: "最終需求商品 (Goods) 月增率", val: "+0.5% MoM (其中核心商品 +0.5%、食品 +1.3%、能源 -0.1%)" },
+            { label: "最終需求服務 (Services) 月增率", val: "+0.2% MoM (連續第 5 個月上揚，運輸倉儲 +2.0%)" }
+          ],
+          impacts: [
+            "【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月驚人的 +1.4% 大幅回落至 +0.3%，且略低於市場預期的 +0.4%（主要受惠柴油價格下跌 7.9% 與批發貿易利潤率回落），讓週五（11/13）美股與台股獲得短線喘息反彈空間。",
+            "【年增率與核心指標警訊】儘管單月增速放緩，但整體 PPI 年增率攀升至 +6.5%（創 2022 年 11 月以來最高），且剔除食品、能源與貿易服務的「雙核心 PPI」月增仍達 +0.5%（年增 +4.9%），顯示上游金屬礦產、工業化學品與貨運成本仍在向中下游傳導。",
+            "【對 PCE 與供應鏈啟示】PPI 中計入聯準會最重視之核心 PCE 的醫療門診（+0.3%）、投資組合管理費（+0.7%）表現溫和偏升，預示月底公布的 10 月核心 PCE 仍將維持黏性，具備強大定價權的半導體與 AI 硬體龍頭較能轉嫁上游成本。"
+          ],
+          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - PPI October 2026)",
+          sourceLinks: [
+            { label: "BLS 官方 10月 PPI 完整報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" },
+            { label: "BLS 2026 M10 PPI 官方新聞稿", url: "https://www.bls.gov/news.release/ppi.nr0.htm" }
+          ]
+        }
       },
       {
         id: "earnings",
@@ -356,9 +511,33 @@
         schedule: [
           { title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
           { title: "AVGO 博通 Q4 財報法說會", time: "2026-12-11T06:00:00+08:00", note: "AI ASIC 客製化晶片與網通展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
-          { title: "2330 台積電 Q4 實體法說會", time: "2027-01-14T14:00:00+08:00", note: "2027 全年資本支出與先進製程展望", nextUp: "下一場：2454 聯發科 Q4 法說" },
-          { title: "2330 台積電 Q1 法說會", time: "2027-04-15T14:00:00+08:00", note: "CoWoS 產能與 AI 晶片需求更新", nextUp: "" }
-        ]
+          { title: "2330 台積電 Q4 實體法說會", time: "2027-01-14T14:00:00+08:00", note: "2027 全年資本支出與先進製程展望", nextUp: "下一場：2454 聯發科 Q4 法說" }
+        ],
+        latestRelease: {
+          period: "台積電 10月營收 & 上季法說實績",
+          actual: "營收 +29.2% YoY",
+          momText: "月增率：+24.8% MoM (單月歷史新高)",
+          expected: "毛利率 54.5%–56.5%",
+          prior: "毛利率實際 57.8%",
+          priorNote: "上季實際毛利率 57.8% 大幅超越財測高標",
+          verdictBadge: "優於財測高標",
+          verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
+          subMetrics: [
+            { label: "2330 台積電最新單月營收表現", val: "月增 +24.8% MoM / 年增 +29.2% YoY (創單月歷史新高)" },
+            { label: "2330 台積電最新季度毛利率 / 營益率", val: "毛利率 57.8% / 營業利益率 47.5% (雙超預期)" },
+            { label: "NVDA 即將公布季度財測焦點", val: "資料中心營收動能、Blackwell 出貨放量與毛利率指引" },
+            { label: "AI 供應鏈連動指標", val: "CoWoS 先進封裝產能擴充、CPO 光通訊與高頻 CCL 拉貨節奏" }
+          ],
+          impacts: [
+            "【AI 半導體風向球】本週美東時間 11/17 盤後（台灣時間 11/18 清晨 06:00）輝達（NVDA）將舉行財報法說會，為檢驗全球四大雲端巨頭（CSP）AI 資本支出是否持續轉化為實質獲利的最關鍵催化劑。",
+            "【台股權值與供應鏈影響】台積電（2330）甫公布的 10 月營收已率先創下歷史新高（月增 +24.8%、年增 +29.2%），驗證先進製程與 CoWoS 產能滿載；若 NVDA 給出強勁的下季財測指引，將直接帶動費半指數、台積電、日月光投控與台達電挑戰波段高點。"
+          ],
+          sourceName: "公開資訊觀測站 (MOPS) & NVIDIA Investor Relations",
+          sourceLinks: [
+            { label: "公開資訊觀測站 (MOPS) 官網", url: "https://mops.twse.com.tw/mops/#/web/home" },
+            { label: "NVIDIA 投資人關係官方網站", url: "https://investor.nvidia.com/" }
+          ]
+        }
       }
     ];
 
@@ -404,6 +583,51 @@
       renderMacroCountdowns();
     }
 
+    function openMacroModal(catId) {
+      const cat = MACRO_CALENDAR_CATEGORIES.find(c => c.id === catId);
+      if (!cat || !cat.latestRelease) return;
+      const rel = cat.latestRelease;
+
+      const badgeEl = document.getElementById("macro-modal-badge");
+      badgeEl.textContent = cat.categoryName;
+      badgeEl.className = `text-xs font-bold px-2.5 py-0.5 rounded border ${cat.badgeColor}`;
+
+      document.getElementById("macro-modal-title").textContent = `${cat.categoryName.replace(/^[^\s]+\s/, '')} — 最新官方數據與市場影響深度剖析`;
+      document.getElementById("macro-modal-release-meta").textContent = `最新公布期別：${rel.period} ｜ 資料來源：${rel.sourceName}`;
+
+      document.getElementById("macro-modal-actual").textContent = rel.actual;
+      document.getElementById("macro-modal-mom").textContent = rel.momText;
+      document.getElementById("macro-modal-expected").textContent = rel.expected;
+      document.getElementById("macro-modal-Surprise" in document ? "macro-modal-Surprise" : "macro-modal-surprise").innerHTML =
+        `<span class="px-2 py-0.5 rounded border text-[11px] ${rel.verdictColor}">${rel.verdictBadge}</span>`;
+      document.getElementById("macro-modal-prior").textContent = rel.prior;
+      document.getElementById("macro-modal-prior-note").textContent = rel.priorNote;
+
+      document.getElementById("macro-modal-submetrics").innerHTML = (rel.subMetrics || []).map(m => `
+        <div class="bg-slate-950/70 border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
+          <span class="text-slate-400 text-[11px]">${m.label}</span>
+          <strong class="text-white mono mt-1 text-xs">${m.val}</strong>
+        </div>
+      `).join("");
+
+      document.getElementById("macro-modal-impact-list").innerHTML = (rel.impacts || []).map(imp => `
+        <li class="border-b border-slate-800/80 pb-2 last:border-0">${imp}</li>
+      `).join("");
+
+      document.getElementById("macro-modal-source-name").textContent = rel.sourceName;
+      document.getElementById("macro-modal-source-links").innerHTML = (rel.sourceLinks || []).map(lnk => `
+        <a href="${lnk.url}" target="_blank" rel="noopener" class="px-3 py-1.5 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border border-blue-500/40 rounded-lg text-xs font-bold transition">
+          🔗 ${lnk.label} &rarr;
+        </a>
+      `).join("");
+
+      document.getElementById("macro-detail-modal").classList.remove("hidden");
+    }
+
+    function closeMacroModal() {
+      document.getElementById("macro-detail-modal").classList.add("hidden");
+    }
+
     function renderMacroCountdowns() {
       const container = document.getElementById("macro-countdown-grid");
       if (!container) return;
@@ -421,7 +645,7 @@
         let urgencyBadge = "";
 
         if (diffMs <= 0 && diffMs > -7200000) {
-          countdownHtml = `<div class="text-base font-bold text-rose-400 animate-pulse mono">🔴 數據公布 / 法說進行中！</div>`;
+          countdownHtml = `<div class="text-sm font-bold text-rose-400 animate-pulse mono">🔴 數據公布 / 會議進行中！</div>`;
           urgencyBadge = `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200 font-bold">LIVE</span>`;
         } else if (diffMs > 0) {
           const totalSec = Math.floor(diffMs / 1000);
@@ -431,18 +655,18 @@
           const secs = totalSec % 60;
 
           const pad = (n) => String(n).padStart(2, "0");
-          const isSoon = days < 3;
+          const isSoon = days < 4;
           const timeColor = isSoon ? "text-amber-300" : "text-white";
           urgencyBadge = isSoon
             ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold">即將登場</span>`
-            : `<span class="text-[10px] text-slate-400 mono">倒數中</span>`;
+            : `<span class="text-[10px] text-slate-400 mono">下次倒數</span>`;
 
           countdownHtml = `
             <div class="flex items-baseline gap-1 mono ${timeColor}">
-              <span class="text-xl font-bold">${days}</span><span class="text-xs text-slate-400 mr-1">天</span>
-              <span class="text-lg font-bold">${pad(hours)}</span><span class="text-xs text-slate-400">:</span>
-              <span class="text-lg font-bold">${pad(mins)}</span><span class="text-xs text-slate-400">:</span>
-              <span class="text-lg font-bold text-emerald-400">${pad(secs)}</span>
+              <span class="text-lg font-bold">${days}</span><span class="text-[11px] text-slate-400 mr-0.5">天</span>
+              <span class="text-base font-bold">${pad(hours)}</span><span class="text-xs text-slate-400">:</span>
+              <span class="text-base font-bold">${pad(mins)}</span><span class="text-xs text-slate-400">:</span>
+              <span class="text-base font-bold text-emerald-400">${pad(secs)}</span>
             </div>
           `;
         } else {
@@ -451,23 +675,38 @@
 
         const dtObj = new Date(activeEvt.time);
         const formattedDate = `${dtObj.getFullYear()}/${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
+        const rel = cat.latestRelease;
 
         return `
-          <div class="bg-slate-900/80 rounded-lg p-3.5 border border-slate-800 ${cat.accentBorder} flex flex-col justify-between">
+          <div onclick="openMacroModal('${cat.id}')" class="bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3.5 border border-slate-800 hover:border-indigo-500/60 ${cat.accentBorder} flex flex-col justify-between cursor-pointer transition-all hover:-translate-y-0.5">
             <div>
-              <div class="flex items-center justify-between gap-1 mb-1.5">
+              <div class="flex items-center justify-between gap-1 mb-1">
                 <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${cat.badgeColor}">${cat.categoryName}</span>
                 ${urgencyBadge}
               </div>
-              <h3 class="text-sm font-bold text-white leading-snug mt-1">${activeEvt.title}</h3>
-              <div class="mt-2 mb-1.5">
+              <h3 class="text-xs font-bold text-white leading-snug mt-1">${activeEvt.title}</h3>
+              <div class="mt-1.5 mb-1 flex items-center justify-between">
                 ${countdownHtml}
+                <span class="text-[10px] text-slate-400 mono">${formattedDate.slice(5)}</span>
+              </div>
+
+              <!-- 最近一期官方數據：實際值(含月增率 MoM) / 預期值 / 上月前值 -->
+              <div class="mt-2 pt-2 border-t border-slate-800/90 bg-slate-950/65 rounded-lg p-2 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="text-slate-400 font-semibold">${rel.period.split(" ")[0]}實績</span>
+                  <span class="px-1.5 py-0.2 rounded border text-[9px] font-bold ${rel.verdictColor}">${rel.verdictBadge}</span>
+                </div>
+                <div class="text-xs font-bold text-white mono">${rel.actual}</div>
+                <div class="text-[10px] font-bold text-emerald-400 mono">${rel.momText}</div>
+                <div class="grid grid-cols-2 gap-1 pt-1 border-t border-slate-800/70 text-[10px] mono">
+                  <div><span class="text-slate-500 block">市場預期</span><span class="text-slate-200 font-semibold">${rel.expected}</span></div>
+                  <div><span class="text-slate-500 block">上月/前值</span><span class="text-slate-300 font-semibold">${rel.prior}</span></div>
+                </div>
               </div>
             </div>
-            <div class="pt-2 border-t border-slate-800/80 space-y-1 text-[11px]">
-              <div class="text-slate-300 mono">📅 台灣時間：${formattedDate}</div>
-              <div class="text-slate-400 truncate" title="${activeEvt.note}">💡 ${activeEvt.note}</div>
-              ${activeEvt.nextUp ? `<div class="text-indigo-300 font-medium truncate">⏭️ ${activeEvt.nextUp}</div>` : ''}
+
+            <div class="mt-2.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
+              <span class="text-indigo-400 font-bold hover:underline">📊 詳細數據與市場影響分析 &rarr;</span>
             </div>
           </div>
         `;
@@ -1119,16 +1358,12 @@
       }
     }
 
-    // =========================================================================
-    // 100% 保證不消失：整合「證交所/櫃買官方基準數據」與「最新動態資料」智慧合併器
-    // =========================================================================
     function ensureCompleteTwChipsData(incomingChips) {
       const base = JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS));
       if (!incomingChips || !Array.isArray(incomingChips.dates) || incomingChips.dates.length === 0) {
         return base;
       }
 
-      // 檢查傳入的資料是否有有效的外資買賣超與櫃買融資餘額
       const hasValidForeign = Array.isArray(incomingChips.foreign_buy) && incomingChips.foreign_buy.some(v => v !== null && v !== 0);
       const hasValidTwseMargin = Array.isArray(incomingChips.margin_balance) && incomingChips.margin_balance.some(v => v !== null && v > 0);
       const hasValidOtcMargin = Array.isArray(incomingChips.otc_margin_balance) && incomingChips.otc_margin_balance.some(v => v !== null && v > 0);
@@ -1145,7 +1380,6 @@
         short_balance: incomingChips.short_balance || base.short_balance.slice(-incomingChips.dates.length)
       };
 
-      // 逐日修補可能因單一 API 超時產生的 null 值
       for (let i = 0; i < merged.dates.length; i++) {
         const dtLabel = merged.dates[i];
         const bIdx = base.dates.indexOf(dtLabel);
@@ -1341,13 +1575,11 @@
       } catch (e) {}
     }
 
-    // 增量同步最新一日證交所與櫃買中心數據（若成功抓到比 11/13 更新的交易日，則自動附加更新；若遇週末休市則保留完整 11/13 數據）
     async function forceRefreshOfficialTwseAndTpex() {
       const badge = document.getElementById("twse-sync-badge");
       const currentChips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
       renderChipCharts(currentChips);
 
-      // 嘗試透過支援原生 CORS 的 FinMind 公開台股 API 檢查是否有更新的交易日
       try {
         const startStr = "2026-10-28";
         const rInst = await fetch(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockTotalInstitutionalInvestors&start_date=${startStr}`);
@@ -1564,7 +1796,6 @@
         }
       }
 
-      // 強制確保 tw_chips_visual 包含完整的外資買賣超、加權指數融資餘額與櫃買指數融資餘額
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
       if (isRealServerData) {
@@ -1600,10 +1831,8 @@
       renderMacroCountdowns();
       setInterval(renderMacroCountdowns, 1000);
 
-      // 1. 立即載入包含完整官方籌碼的畫面結構
       renderAllSections(getCleanSkeletonData(), false);
 
-      // 2. 讀取 GitHub 儲存庫的 data/market_data.json
       try {
         const res = await fetch(`data/market_data.json?t=${Date.now()}`);
         if (res.ok) {
@@ -1618,7 +1847,6 @@
         console.warn("market_data.json fallback active:", err);
       }
 
-      // 3. 併發同步最新收盤價與官方籌碼數據
       pollLiveYahooQuotes();
       syncOfficialTaiwanIndicesAndStocksFromBrowser();
       forceRefreshOfficialTwseAndTpex();
