@@ -1,8 +1,12 @@
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "last_updated": "2026-11-15 01:27:08 CST",
 =======
   "last_updated": "2026-11-15 01:27:23 CST",
+>>>>>>> Stashed changes
+=======
+  "last_updated": "2026-11-15 01:28:11 CST",
 >>>>>>> Stashed changes
   "indices": [
     {
@@ -35787,7 +35791,7 @@
         },
         {
           "date": "2025-11-25",
-          "close": 177.4
+          "close": 177.39
         },
         {
           "date": "2025-11-26",
@@ -44204,7 +44208,11 @@
         {
           "date": "2025-12-18",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           "close": 271.24
+=======
+          "close": 271.25
+>>>>>>> Stashed changes
 =======
           "close": 271.25
 >>>>>>> Stashed changes
