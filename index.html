@@ -20,10 +20,10 @@
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-  <header class="max-w-7xl mx-auto mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
+  <header class="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4 gap-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-      <p class="text-slate-400 text-sm mt-1">純繁體中文・支援各國央行決策 / 總經 / 時事三維度拆解・美股綠漲紅跌・週末與休市自動顯示最新交易日收盤數據</p>
+      <p class="text-slate-400 text-sm mt-1">純繁體中文・總經與法說會倒數・各國央行 / 總經 / 時事三維度拆解・美股綠漲紅跌・週末自動顯示最新收盤數據</p>
     </div>
     <div class="flex flex-wrap items-center gap-3">
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -38,6 +38,27 @@
   </header>
 
   <main class="max-w-7xl mx-auto space-y-10">
+
+    <!-- ========================================================================= -->
+    <!-- 專區 0 (全新)：重要總經日曆 (FOMC / 非農 NFP / CPI / PPI) 與超級法說會即時倒數 -->
+    <!-- ========================================================================= -->
+    <section class="card-bg rounded-xl p-4 md:p-5 shadow-lg border border-indigo-500/30">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3 mb-4">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-0.5 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">⏳ 關鍵總經與法說倒數</span>
+          <h2 class="text-base md:text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農就業 / CPI / PPI) & 重量級法說會倒數計時</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] text-slate-400">均已換算為台灣時間 (CST)</span>
+          <button onclick="customizeEarningsEvent()" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 rounded font-medium transition">
+            ⚙️ 自訂法說會日程
+          </button>
+        </div>
+      </div>
+
+      <!-- 5 大倒數計時卡片 (FOMC、非農、CPI、PPI、法說會) -->
+      <div id="macro-countdown-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"></div>
+    </section>
 
     <!-- 專區 1：最上方互動式走勢圖儀表板 -->
     <section class="card-bg rounded-xl p-5 shadow-lg">
@@ -258,6 +279,186 @@
       "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)",
       "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)"
     };
+
+    // =========================================================================
+    // 重要總經日曆 (FOMC / 非農就業 NFP / CPI / PPI) & 重量級法說會官方日程庫
+    // 支援多階段自動推進：當一場結束後自動切換至下一場官方發布時間 (均為台灣時間 GMT+8)
+    // =========================================================================
+    const MACRO_CALENDAR_CATEGORIES = [
+      {
+        id: "fomc",
+        categoryName: "🏦 FOMC 利率決策",
+        badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+        accentBorder: "border-l-4 border-l-blue-500",
+        schedule: [
+          { title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與鮑爾記者會" },
+          { title: "1月 FOMC 利率決策會議", time: "2027-01-28T03:00:00+08:00", note: "聯準會 2027 首場利率決策" },
+          { title: "3月 FOMC 利率決策 & 點陣圖", time: "2027-03-18T02:00:00+08:00", note: "含最新季度利率點陣圖" },
+          { title: "4月 FOMC 利率決策會議", time: "2027-04-29T02:00:00+08:00", note: "聯準會貨幣政策聲明" }
+        ]
+      },
+      {
+        id: "nfp",
+        categoryName: "👷 美國非農就業 (NFP)",
+        badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+        accentBorder: "border-l-4 border-l-emerald-500",
+        schedule: [
+          { title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
+          { title: "美國 12 月非農就業報告", time: "2027-01-08T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
+          { title: "美國 1 月非農就業報告", time: "2027-02-05T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
+          { title: "美國 2 月非農就業報告", time: "2027-03-05T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }
+        ]
+      },
+      {
+        id: "cpi",
+        categoryName: "🔥 美國 CPI 通膨數據",
+        badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+        accentBorder: "border-l-4 border-l-rose-500",
+        schedule: [
+          { title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" },
+          { title: "美國 12 月 CPI 消費者物價指數", time: "2027-01-13T21:30:00+08:00", note: "核心 CPI 與年增率關鍵指標" },
+          { title: "美國 1 月 CPI 消費者物價指數", time: "2027-02-11T21:30:00+08:00", note: "年度權重調整後首份 CPI 報告" },
+          { title: "美國 2 月 CPI 消費者物價指數", time: "2027-03-10T20:30:00+08:00", note: "3月 FOMC 會前關鍵通膨數據" }
+        ]
+      },
+      {
+        id: "ppi",
+        categoryName: "🏭 美國 PPI 生產者物價",
+        badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+        accentBorder: "border-l-4 border-l-amber-500",
+        schedule: [
+          { title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" },
+          { title: "美國 12 月 PPI 生產者物價指數", time: "2027-01-14T21:30:00+08:00", note: "觀察上游能源與服務業成本傳導" },
+          { title: "美國 1 月 PPI 生產者物價指數", time: "2027-02-12T21:30:00+08:00", note: "企業毛利空間與批發物價領先指標" },
+          { title: "美國 2 月 PPI 生產者物價指數", time: "2027-03-12T20:30:00+08:00", note: "BLS 官方最終需求 PPI 報告" }
+        ]
+      },
+      {
+        id: "earnings",
+        categoryName: "🎙️ 超級財報 / 法說會",
+        badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+        accentBorder: "border-l-4 border-l-purple-500",
+        schedule: [
+          { title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
+          { title: "AVGO 博通 Q4 財報法說會", time: "2026-12-11T06:00:00+08:00", note: "AI ASIC 客製化晶片與網通展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
+          { title: "2330 台積電 Q4 實體法說會", time: "2027-01-14T14:00:00+08:00", note: "2027 全年資本支出與先進製程展望", nextUp: "下一場：2454 聯發科 Q4 法說" },
+          { title: "2330 台積電 Q1 法說會", time: "2027-04-15T14:00:00+08:00", note: "CoWoS 產能與 AI 晶片需求更新", nextUp: "" }
+        ]
+      }
+    ];
+
+    function getCustomEarningsList() {
+      try {
+        const raw = localStorage.getItem("MARKET2_CUSTOM_EARNINGS");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    function customizeEarningsEvent() {
+      const currentTitle = localStorage.getItem("MARKET2_CUSTOM_EARN_TITLE") || "2330 台積電 Q4 法說會";
+      const currentTime = localStorage.getItem("MARKET2_CUSTOM_EARN_TIME") || "2027-01-14 14:00";
+      const currentNote = localStorage.getItem("MARKET2_CUSTOM_EARN_NOTE") || "關注全年資本支出與 CoWoS 擴產進度";
+
+      const title = prompt("請輸入想置頂追蹤的「法說會 / 財報名稱」（若輸入空白則恢復預設 NVDA -> 台積電 自動排程）：", currentTitle);
+      if (title === null) return;
+      if (title.trim() === "") {
+        localStorage.removeItem("MARKET2_CUSTOM_EARNINGS");
+        renderMacroCountdowns();
+        return;
+      }
+      const timeStr = prompt("請輸入法說會台灣時間 (格式 YYYY-MM-DD HH:MM)：", currentTime);
+      if (!timeStr) return;
+      const noteStr = prompt("請輸入法說會觀察重點備註：", currentNote) || "重點法說會追蹤";
+
+      const isoTime = timeStr.trim().replace(" ", "T") + ":00+08:00";
+      if (isNaN(new Date(isoTime).getTime())) {
+        alert("時間格式不正確，請使用 YYYY-MM-DD HH:MM 格式（例如 2027-01-14 14:00）");
+        return;
+      }
+
+      localStorage.setItem("MARKET2_CUSTOM_EARN_TITLE", title.trim());
+      localStorage.setItem("MARKET2_CUSTOM_EARN_TIME", timeStr.trim());
+      localStorage.setItem("MARKET2_CUSTOM_EARN_NOTE", noteStr.trim());
+      localStorage.setItem("MARKET2_CUSTOM_EARNINGS", JSON.stringify([
+        { title: title.trim(), time: isoTime, note: noteStr.trim(), nextUp: "點擊右上角「⚙️ 自訂法說會日程」可隨時修改" }
+      ]));
+      renderMacroCountdowns();
+    }
+
+    function renderMacroCountdowns() {
+      const container = document.getElementById("macro-countdown-grid");
+      if (!container) return;
+
+      const nowMs = Date.now();
+      const customEarn = getCustomEarningsList();
+
+      container.innerHTML = MACRO_CALENDAR_CATEGORIES.map(cat => {
+        const list = (cat.id === "earnings" && customEarn) ? [...customEarn, ...cat.schedule] : cat.schedule;
+        // 找出第一場尚未過期的事件（給予 2 小時緩衝顯示「正在進行中」）
+        let activeEvt = list.find(e => new Date(e.time).getTime() + 7200000 > nowMs) || list[list.length - 1];
+        const targetMs = new Date(activeEvt.time).getTime();
+        const diffMs = targetMs - nowMs;
+
+        let countdownHtml = "";
+        let urgencyBadge = "";
+
+        if (diffMs <= 0 && diffMs > -7200000) {
+          countdownHtml = `<div class="text-base font-bold text-rose-400 animate-pulse mono">🔴 數據公布 / 法說進行中！</div>`;
+          urgencyBadge = `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200 font-bold">LIVE</span>`;
+        } else if (diffMs > 0) {
+          const totalSec = Math.floor(diffMs / 1000);
+          const days = Math.floor(totalSec / 86400);
+          const hours = Math.floor((totalSec % 86400) / 3600);
+          const mins = Math.floor((totalSec % 3600) / 60);
+          const secs = totalSec % 60;
+
+          const pad = (n) => String(n).padStart(2, "0");
+          const isSoon = days < 3;
+          const timeColor = isSoon ? "text-amber-300" : "text-white";
+          urgencyBadge = isSoon
+            ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold">即將登場</span>`
+            : `<span class="text-[10px] text-slate-400 mono">倒數中</span>`;
+
+          countdownHtml = `
+            <div class="flex items-baseline gap-1 mono ${timeColor}">
+              <span class="text-xl font-bold">${days}</span><span class="text-xs text-slate-400 mr-1">天</span>
+              <span class="text-lg font-bold">${pad(hours)}</span><span class="text-xs text-slate-400">:</span>
+              <span class="text-lg font-bold">${pad(mins)}</span><span class="text-xs text-slate-400">:</span>
+              <span class="text-lg font-bold text-emerald-400">${pad(secs)}</span>
+            </div>
+          `;
+        } else {
+          countdownHtml = `<div class="text-xs text-slate-400 mono">等待下一期日程更新</div>`;
+        }
+
+        const dtObj = new Date(activeEvt.time);
+        const formattedDate = `${dtObj.getFullYear()}/${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
+
+        return `
+          <div class="bg-slate-900/80 rounded-lg p-3.5 border border-slate-800 ${cat.accentBorder} flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-1 mb-1.5">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${cat.badgeColor}">${cat.categoryName}</span>
+                ${urgencyBadge}
+              </div>
+              <h3 class="text-sm font-bold text-white leading-snug mt-1">${activeEvt.title}</h3>
+              <div class="mt-2 mb-1.5">
+                ${countdownHtml}
+              </div>
+            </div>
+            <div class="pt-2 border-t border-slate-800/80 space-y-1 text-[11px]">
+              <div class="text-slate-300 mono">📅 台灣時間：${formattedDate}</div>
+              <div class="text-slate-400 truncate" title="${activeEvt.note}">💡 ${activeEvt.note}</div>
+              ${activeEvt.nextUp ? `<div class="text-indigo-300 font-medium truncate">⏭️ ${activeEvt.nextUp}</div>` : ''}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
 
     function cleanTwText(str) {
       if (!str) return "";
@@ -993,7 +1194,6 @@
       return null;
     }
 
-    // 抓取 1 年完整歷史日線（供走勢圖切換 1W/1M/YTD/自訂區間使用）
     async function fetchRealHistoryForSymbol(sym) {
       const item = allAssetsMap[sym];
       if (!item) return;
@@ -1023,9 +1223,7 @@
       }
     }
 
-    // 週末／休市智慧回溯：向證交所與櫃買中心查詢最新一個有效交易日（例如週五）的指數與個股收盤價
     async function syncOfficialTaiwanIndicesAndStocksFromBrowser() {
-      // 1. 櫃買中心官方櫃買指數 (^TWOII) - OpenAPI 自動回傳最近一個有效交易日
       try {
         const tpexIdx = await tryFetchViaMultiProxy("https://www.tpex.org.tw/openapi/v1/tpex_index");
         if (Array.isArray(tpexIdx) && tpexIdx.length > 0) {
@@ -1038,7 +1236,6 @@
         }
       } catch (e) {}
 
-      // 2. 證交所官方個股本益比 (BWIBBU_ALL) - OpenAPI 自動回傳最近一個有效交易日
       try {
         const bw = await tryFetchViaMultiProxy("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL");
         if (Array.isArray(bw)) {
@@ -1053,7 +1250,6 @@
         }
       } catch (e) {}
 
-      // 3. 證交所官方每日收盤行情 (MI_INDEX) - 若遇到週六日休市，自動往回查最近 5 天內最後一個開盤日（如週五）
       const cur = new Date();
       for (let i = 0; i < 6; i++) {
         const d = new Date(cur);
@@ -1090,7 +1286,7 @@
                 });
               }
             });
-            break; // 已成功抓到最近一個開盤日收盤數據，停止往回找
+            break;
           }
         } catch (e) {}
       }
@@ -1219,11 +1415,6 @@
       }
     }
 
-    // =========================================================================
-    // 全天候／週末休市相容報價引擎：
-    // 改用 range=5d&interval=1d 搭配 meta.regularMarketPrice，
-    // 就算週六、週日休市，也能 100% 取得前一日（週五）收盤價與漲跌幅，並以併發批次極速載入！
-    // =========================================================================
     async function fetchSingleYahooQuoteWeekendSafe(sym) {
       try {
         const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=1mo`;
@@ -1262,7 +1453,6 @@
         const pct = prevClose > 0 ? ((latestClose - prevClose) / prevClose) * 100 : 0;
 
         if (item.asset_type === "futures" && validPairs.length >= 2) {
-          // 期貨：主價格顯示前一日正規日盤收盤結算價，下方顯示最新電子盤/夜盤收盤報價
           const daySettle = validPairs[validPairs.length - 2].close;
           const prevSettle = validPairs.length >= 3 ? validPairs[validPairs.length - 3].close : daySettle;
           const dayPct = prevSettle > 0 ? ((daySettle - prevSettle) / prevSettle) * 100 : 0;
@@ -1280,13 +1470,11 @@
 
     async function pollLiveYahooQuotes() {
       const symbols = Object.keys(allAssetsMap);
-      // 分批併發請求 (每批 8 檔同時抓取，約 2 秒內全數更新完畢)
       const batchSize = 8;
       for (let i = 0; i < symbols.length; i += batchSize) {
         const batch = symbols.slice(i, i + batchSize);
         await Promise.all(batch.map(sym => fetchSingleYahooQuoteWeekendSafe(sym)));
       }
-      // 儲存最新真實收盤數據至瀏覽器快取，下次打開 0.1 秒直接顯示真實收盤價
       try {
         if (globalMarketData) {
           localStorage.setItem("MARKET2_REAL_CACHE_V2", JSON.stringify(globalMarketData));
@@ -1393,6 +1581,10 @@
     }
 
     async function initDashboard() {
+      // 啟動頂部「FOMC / 非農 / CPI / PPI / 法說會」每秒即時倒數計時器
+      renderMacroCountdowns();
+      setInterval(renderMacroCountdowns, 1000);
+
       // 1. 載入畫面結構
       renderAllSections(getCleanSkeletonData(), false);
 
