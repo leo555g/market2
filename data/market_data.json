@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "last_updated": "2026-11-14 17:30:21 CST",
+=======
+  "last_updated": "2026-11-14 17:30:15 CST",
+>>>>>>> Stashed changes
   "indices": [
     {
       "symbol": "^GSPC",
@@ -4923,6 +4927,7 @@
                 "date": "Fri, 13 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] 聯準會升息預期重擊金價，黃金料寫6月以來最慘單週 - BigGo 財經",
                 "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5UQVBBbDJEODJiajVSVm9EcWFKY29DVUxuQWNPbkcyeVc2eGNhSXFKX1dGT0ZkYkJEUzJwV2ExLUxyTXQtT2tXQUdsUm9UWTBYWlpOWmplaHhMd3kzaHhGU3Q2UUIzUVp0YXJiY0pxVEVSQXRvd1dtZ1JB?oc=5",
                 "date": "Fri, 13 Nov 2026"
@@ -4931,6 +4936,16 @@
                 "title": "[美國聯準會 (Fed)] 10月FOMC會議前瞻：9月升息後首度開會，三種情境與台美股影響｜美股觀察｜豐雲學堂2026 年 11 月 - 永豐金證券",
                 "url": "https://news.google.com/rss/articles/CBMizgNBVV95cUxQZzhaTW5jWTZmQ2ZFSU1SY1daUWVoazNSbWg2SmNsa012TWdUd0V2TTVWYkZ4UDNxVWtZbEp1SUl1cjU5R3NyQkVRYTB3R0RvMFpPdy1BbGJhSWxmaVQ1TVdnNXFzRUxZaGpPZ3ZfR0cwM09rdmdXUFRmLXhxT2ZMWFVGd1lWcnhxaTlXdmNqdnEwN2RodVlrRFB1ZFVrUVhIYkhhdmRRdm5DYlVzeXlORC0waldmRnZRYWtzSWluLXVDY0RkZ1U3NEhGWWxkX1dGOEpYeEhTZElCZnpJZEtINDNtc3VZcVl5cnIwRlp3N3dkZ3ZfZzE0dlZiM2JtQzlOaHUwZGl4Ym95UVF0dUQwOUJtTWcwRG9VVDVaMGtMUW4wS2JuUUlxeGtxVG4xUlNoX2RTVjR2OUFLVHpncGladTZFc21wOWNwVVduMUktVHR5STFzTE5XZGtIcENwcDFDV2YtYWE1MHBkcUJBbE90ZXNCdlRqZGNCZUZYcGw0WTNVdXRuZ0M0S0MzcmNPUnFIZ0hwSFZhLVQzaHZWWjN0THNTV1NPMFpXQ3ZOckhZYWxjMzlkX1M0bTM3bF9JVWJEeGJhS2I4cDJ5WDVUOFE?oc=5",
                 "date": "Wed, 28 Oct 2026"
+=======
+                "title": "[美國聯準會 (Fed)] 10月FOMC會議前瞻：9月升息後首度開會，三種情境與台美股影響｜美股觀察｜豐雲學堂2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMizgNBVV95cUxQZzhaTW5jWTZmQ2ZFSU1SY1daUWVoazNSbWg2SmNsa012TWdUd0V2TTVWYkZ4UDNxVWtZbEp1SUl1cjU5R3NyQkVRYTB3R0RvMFpPdy1BbGJhSWxmaVQ1TVdnNXFzRUxZaGpPZ3ZfR0cwM09rdmdXUFRmLXhxT2ZMWFVGd1lWcnhxaTlXdmNqdnEwN2RodVlrRFB1ZFVrUVhIYkhhdmRRdm5DYlVzeXlORC0waldmRnZRYWtzSWluLXVDY0RkZ1U3NEhGWWxkX1dGOEpYeEhTZElCZnpJZEtINDNtc3VZcVl5cnIwRlp3N3dkZ3ZfZzE0dlZiM2JtQzlOaHUwZGl4Ym95UVF0dUQwOUJtTWcwRG9VVDVaMGtMUW4wS2JuUUlxeGtxVG4xUlNoX2RTVjR2OUFLVHpncGladTZFc21wOWNwVVduMUktVHR5STFzTE5XZGtIcENwcDFDV2YtYWE1MHBkcUJBbE90ZXNCdlRqZGNCZUZYcGw0WTNVdXRuZ0M0S0MzcmNPUnFIZ0hwSFZhLVQzaHZWWjN0THNTV1NPMFpXQ3ZOckhZYWxjMzlkX1M0bTM3bF9JVWJEeGJhS2I4cDJ5WDVUOFE?oc=5",
+                "date": "Wed, 28 Oct 2026"
+              },
+              {
+                "title": "[美國聯準會 (Fed)] 聯準會升息預期重擊金價，黃金料寫6月以來最慘單週 - BigGo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5UQVBBbDJEODJiajVSVm9EcWFKY29DVUxuQWNPbkcyeVc2eGNhSXFKX1dGT0ZkYkJEUzJwV2ExLUxyTXQtT2tXQUdsUm9UWTBYWlpOWmplaHhMd3kzaHhGU3Q2UUIzUVp0YXJiY0pxVEVSQXRvd1dtZ1JB?oc=5",
+                "date": "Fri, 13 Nov 2026"
+>>>>>>> Stashed changes
               }
             ]
           },
@@ -5005,16 +5020,27 @@
                 "date": "Fri, 21 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 資金持續自高成長股抽離 法人點名金融股有這兩大優勢 - 經濟日報",
                 "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9nSXFNeGhKdEVWNEVLb3lkX3BrcUlWd1ZtX2VmTnJ2ZDZ4YVRkMFpNZk5GR0lMU2ZkdVFoaVJPdUhLMlNuazhmSHg4aW15cmVMWUFKd0ZwVFhJZ9IBX0FVX3lxTE13VDFrb1RlcnNPS1lGNkJZTHFWSENlUmVZSnhCemRxYXVSSi1ZWVE4c2ViUVlIVExxY1VmYlhvdElQbW9wa0FFazd3UU8xLTNoZC1ZZ0Zsd2pwUEZNQzdz?oc=5",
                 "date": "Fri, 23 Oct 2026"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 《美股》市場擔憂有所緩解 道瓊指數上漲0.52% - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZ1RpVEdUWmxHSnRVV1dzSkZkbWwxbmFmWDhRTFJ3d0VoQkg2dGRoOHRPSHRNRVAteTJvdmh6UUNXcEd0OEVUMnhubXByczBaVEJkWHNsMDJta184elhqbjBkUDZmd082bDlEUnlfYkNmclY2LVJyWXRHMVlOcWtmanhjcy1GWGUzOUFKWmd5WkpnQQ?oc=5",
                 "date": "Mon, 20 Oct 2025"
               },
               {
+<<<<<<< Updated upstream
+=======
+                "title": "[新聞時事] 資金持續自高成長股抽離 法人點名金融股有這兩大優勢 - 經濟日報",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9nSXFNeGhKdEVWNEVLb3lkX3BrcUlWd1ZtX2VmTnJ2ZDZ4YVRkMFpNZk5GR0lMU2ZkdVFoaVJPdUhLMlNuazhmSHg4aW15cmVMWUFKd0ZwVFhJZ9IBX0FVX3lxTE13VDFrb1RlcnNPS1lGNkJZTHFWSENlUmVZSnhCemRxYXVSSi1ZWVE4c2ViUVlIVExxY1VmYlhvdElQbW9wa0FFazd3UU8xLTNoZC1ZZ0Zsd2pwUEZNQzdz?oc=5",
+                "date": "Fri, 23 Oct 2026"
+              },
+              {
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 美股收紅 道瓊指數再創新高 資金轉向小型股 - Taiwan News",
                 "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1SOVdXTkRYT2xqYVZBWHdTVnVhNFp1TXdJVzlXc3pYME5YQVVReW9lQUhoZnN0bzEyLUpiNHd3UEo4aXUtLTJkQWVOTlhobnR0Z3FGd3FKTzM?oc=5",
                 "date": "Thu, 17 Oct 2024"
@@ -7552,8 +7578,13 @@
                 "date": "Sun, 18 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] Market Technology Acquisition Corp的每股資本支出 – NASDAQ:MTAK - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQZzl2ZWRNSTctelZnRjJvTFpGZXlDZk1rVng2Vlg3QWJoSjdvdDRrSWtMdjllWWRHZ1VrMnJIcTZROXRlbWZfbVJTc3ZXdkkxQWtlSXVJWF9kZjI2X0dtM09UdXVwSVo1T0FnWnczLUdzaTNRbjNPc3lVQjBLV0R4TlFIV2Nab092WndPcFhJb1pTVmdERXloZ18zdmY?oc=5",
+=======
+                "title": "[新聞時事] SANGRIX INC.的每股資本支出 – NASDAQ:SGRX - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPbXRPYm5KOFV1eG1HbEhnS2V6dU1UWkpYYWZIVkZkSGpiTVg4b3BwejlGT2dwUXZSd1ZYTXZJX2RlUzc3NDVWRVRUTnVlQTRySDQ5TkRRLWt4Z1ZNU2dDb3owakpvU1prSi1tS3dYTS1kbDhZaFZvSHdncE9qMXk1YlNuWHZhbHJVLTUtNEFmTHRNNjQtb1lMaWg1MFQ?oc=5",
+>>>>>>> Stashed changes
                 "date": "Wed, 11 Nov 2026"
               },
               {
@@ -7569,9 +7600,15 @@
             ],
             "bearish": [
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 摩根士丹利：美國大型科技股資本支出若縮手，韓國出口首當其衝；對美出口上看2,080億美元 - BigGo 財經",
                 "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1QQWY3RU5MX1F1UEhPcFFkMXlsU1pQQ0dLbk94Q0ZSMTJybXNhc01WYWllWkwtUXJFay1tLUhraDBtaTRpeWVjUFJsaVgtdVpWYXpCMjk3bVBwN0p2VW4tNG1rUC10SVVtUnE2MmszQ0V4LVFqRGxzYlV3?oc=5",
                 "date": "Fri, 30 Oct 2026"
+=======
+                "title": "[新聞時事] AI資本支出高峰提前至2027年，Dan Ives 下調大型科技股股權與債券發行預測25% - BigGo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBCT0Q5N3RxdFdwbXUxSGdaLXFTSlFhM2JTV1k4Sm14bTlTWFdUTU1MQUd2czhqRzNxUWxkN3RoNTVGQld1eVZRblZ6b1NsOVBzbzgzVjF5bFc2Yk1MNHFhV3VnMXVQeHBRS3dyb0Z4MUx2eVFXa0R1QUdB?oc=5",
+                "date": "Fri, 06 Nov 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 跌掉一個SpaceX！納斯達克100本月市值估蒸發逾2兆美元 - 鉅亨網",
@@ -7579,9 +7616,15 @@
                 "date": "Sat, 31 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] AI資本支出高峰提前至2027年，Dan Ives 下調大型科技股股權與債券發行預測25% - BigGo 財經",
                 "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBCT0Q5N3RxdFdwbXUxSGdaLXFTSlFhM2JTV1k4Sm14bTlTWFdUTU1MQUd2czhqRzNxUWxkN3RoNTVGQld1eVZRblZ6b1NsOVBzbzgzVjF5bFc2Yk1MNHFhV3VnMXVQeHBRS3dyb0Z4MUx2eVFXa0R1QUdB?oc=5",
                 "date": "Fri, 06 Nov 2026"
+=======
+                "title": "[新聞時事] 摩根士丹利：美國大型科技股資本支出若縮手，韓國出口首當其衝；對美出口上看2,080億美元 - BigGo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1QQWY3RU5MX1F1UEhPcFFkMXlsU1pQQ0dLbk94Q0ZSMTJybXNhc01WYWllWkwtUXJFay1tLUhraDBtaTRpeWVjUFJsaVgtdVpWYXpCMjk3bVBwN0p2VW4tNG1rUC10SVVtUnE2MmszQ0V4LVFqRGxzYlV3?oc=5",
+                "date": "Fri, 30 Oct 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 2027年雲端AI資本支出飆1.5兆美元！美銀看好「這些」個股重獲青睞 記憶體估值將大躍進 - FTNN 新聞網",
@@ -7625,9 +7668,15 @@
             "date": "總經逆風"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 摩根士丹利：美國大型科技股資本支出若縮手，韓國出口首當其衝；對美出口上看2,080億美元 - BigGo 財經",
             "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1QQWY3RU5MX1F1UEhPcFFkMXlsU1pQQ0dLbk94Q0ZSMTJybXNhc01WYWllWkwtUXJFay1tLUhraDBtaTRpeWVjUFJsaVgtdVpWYXpCMjk3bVBwN0p2VW4tNG1rUC10SVVtUnE2MmszQ0V4LVFqRGxzYlV3?oc=5",
             "date": "Fri, 30 Oct 2026"
+=======
+            "title": "[新聞時事] AI資本支出高峰提前至2027年，Dan Ives 下調大型科技股股權與債券發行預測25% - BigGo 財經",
+            "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBCT0Q5N3RxdFdwbXUxSGdaLXFTSlFhM2JTV1k4Sm14bTlTWFdUTU1MQUd2czhqRzNxUWxkN3RoNTVGQld1eVZRblZ6b1NsOVBzbzgzVjF5bFc2Yk1MNHFhV3VnMXVQeHBRS3dyb0Z4MUx2eVFXa0R1QUdB?oc=5",
+            "date": "Fri, 06 Nov 2026"
+>>>>>>> Stashed changes
           }
         ]
       }
@@ -10047,9 +10096,15 @@
                 "date": "Thu, 22 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經數據] 記憶體猛全球半導體銷售額估飆9成、首破1兆美元- 新聞 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQSk9QdmxQcFhZQVc1X2lRaU9pYk9oMFZhMFoxV0FNMHRYcHVYR3djOWpkNWtiVHQtcUtvWFRJMGxWTXRBTHFNNDVDcm9VUFdFZWU2dlBqd0JZZnJvUHlmSWhJX2NzdGlBeVhYNTlvMUpJMnNubzBXTmFhUFpUZ2VUQnJvcmVjLXdwZUVHN3dXZE1FZw?oc=5",
                 "date": "Wed, 03 Jun 2026"
+=======
+                "title": "[總經數據] 緯穎強攻伺服器 資本支出將躍進 - 經濟日報",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBuaTVFa3V6LTdvS2Z6UjZ3Tnc3azJNWDN1YXpub0lqUU8tMWQ1UHo3UzAzV1BqQS0zVnZUT2tOblZBR1BEMnh5bkFfU0RUcEFJa09TdmpxRzgwd9IBX0FVX3lxTE5hTDBtVG1aUzNTcFdqdlVqOENGcy04QnFIV19WMGwwYV8wQ2l3VVVQOVJNR1U5SFNabFd1enE0OU9iWVFHR0szaWJSNjBuVzNDbnI4ZUJFVHZlUjBHZ3hn?oc=5",
+                "date": "Fri, 11 Sep 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[總經數據] 美國PMI意外衝62個月新高 市場下一關緊盯9月30日PCE、GDP - 優分析UAnalyze",
@@ -10074,9 +10129,15 @@
                 "date": "Fri, 23 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經數據] 緯穎強攻伺服器 資本支出將躍進 - 經濟日報",
                 "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBuaTVFa3V6LTdvS2Z6UjZ3Tnc3azJNWDN1YXpub0lqUU8tMWQ1UHo3UzAzV1BqQS0zVnZUT2tOblZBR1BEMnh5bkFfU0RUcEFJa09TdmpxRzgwd9IBX0FVX3lxTE5hTDBtVG1aUzNTcFdqdlVqOENGcy04QnFIV19WMGwwYV8wQ2l3VVVQOVJNR1U5SFNabFd1enE0OU9iWVFHR0szaWJSNjBuVzNDbnI4ZUJFVHZlUjBHZ3hn?oc=5",
                 "date": "Fri, 11 Sep 2026"
+=======
+                "title": "[總經數據] 記憶體猛全球半導體銷售額估飆9成、首破1兆美元- 新聞 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQSk9QdmxQcFhZQVc1X2lRaU9pYk9oMFZhMFoxV0FNMHRYcHVYR3djOWpkNWtiVHQtcUtvWFRJMGxWTXRBTHFNNDVDcm9VUFdFZWU2dlBqd0JZZnJvUHlmSWhJX2NzdGlBeVhYNTlvMUpJMnNubzBXTmFhUFpUZ2VUQnJvcmVjLXdwZUVHN3dXZE1FZw?oc=5",
+                "date": "Wed, 03 Jun 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[總經數據] 全球半導體銷售額3月增長8成 - 日經中文網",
@@ -20293,6 +20354,14 @@
                 "title": "[新聞時事] 「反科技」成最強招牌 「這國」股市逆勢創新高 - Yahoo 財經",
                 "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxOblRlUWdyRURSZ1hCdTdfX2FmeTB2bUpfajdhMTJiMElLcDBVWjd5UE1adnRQSnRQTmR3OHZKWWUwZHRGSUJ1REE4c3Z2ZVpybUFacmtBOGQyRjNiS25QVGx3UlhIdThWcW1lZHR0dElGOVBVVFlqdms2OHZfX0FrbXdJdFNNU0JCQVVGbHZMNHZnZjhMLVJYcEJYa3YzN1BUVWJyMFlXNjh0U3o3WS1DUGhPanBOSGs4MFJNTnp1VlRNcVNYYXZWQmxKY081aFhkVmMyWFFsUWhSNGhGSTR0SVZjMkN3a3BlZGx6TmdtOWFQcE1DWDNMZzNMNUQwSU9GN3hSNkJPamJ4VXEwMjU1bk9ESHNYcXZPaFFLMVJrc2Fod3hUeXFuRFBTNktodw?oc=5",
                 "date": "Thu, 30 Jul 2026"
+<<<<<<< Updated upstream
+=======
+              },
+              {
+                "title": "[新聞時事] 銀行與礦業股領軍 英股富時100創5月來最大單日漲幅 - 民視財經網",
+                "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5PTk9qMmNXZDdsOHg2eHJkT0oyT0pscWdaX2xXaW5uMVNKLTFjeXdJTGtId24tQkxpS2tRYkpMNkhSc2ZUdlZ0NzUtanhWYnBWQ3A0NHNnNU1VODBGeE5vQ285bzVUdw?oc=5",
+                "date": "Wed, 04 Nov 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -20302,11 +20371,14 @@
                 "date": "Thu, 04 Jun 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 銀行與礦業股領軍 英股富時100創5月來最大單日漲幅 - 民視財經網",
                 "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5PTk9qMmNXZDdsOHg2eHJkT0oyT0pscWdaX2xXaW5uMVNKLTFjeXdJTGtId24tQkxpS2tRYkpMNkhSc2ZUdlZ0NzUtanhWYnBWQ3A0NHNnNU1VODBGeE5vQ285bzVUdw?oc=5",
                 "date": "Thu, 05 Nov 2026"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 中東衝突升溫油價破百！英國股市全面下挫創逾一個月新低 - 民視財經網",
                 "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9fVXQyV1F6QnEyeDZOMnpEam1Ea094NEQ4dDducXVoTWtZQjVTUjZjbnNBLWxOd3pXMW9nZFdkUVl1V05iVmZLM3FoSEJ4ZVZtUGk0RFIyTkwtWFY3dTJWUGs5dW1QUQ?oc=5",
                 "date": "Thu, 10 Sep 2026"
@@ -20320,6 +20392,14 @@
                 "title": "[新聞時事] 金價重挫拖累礦業股 英國富時100指數微跌收黑 - 民視財經網",
                 "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9WNTVjeC0teTZYWlVmTWRBYkUwbWszeGlyLWtSSVpDUVRfelR4STNWZUdMSVlTcXItTzE3d040a2owWVRyOTdqMWktX3pHN2xiM2Z4OHVTS0xxeU1rdmttYWdUYnY1Zw?oc=5",
                 "date": "Tue, 10 Nov 2026"
+<<<<<<< Updated upstream
+=======
+              },
+              {
+                "title": "[新聞時事] 科技股重挫！AI退潮南韓暴跌 倫敦股市逆勢創歷史新高 - 民視財經網",
+                "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBlVWVtblNOa1BmVXlYN1dfbVowcGh1RFdYQ3dxU0ZtTWRLQ2k3OV9rZ3pic0NQR1RZYlR6aU1jSGRtd0Rwb2FxMHNwUjlleDBmcWlLSk5sbW1mNlpwbzc0c1ItaVF4Zw?oc=5",
+                "date": "Wed, 29 Jul 2026"
+>>>>>>> Stashed changes
               }
             ]
           }
@@ -26649,7 +26729,11 @@
         },
         {
           "date": "2025-01-30",
+<<<<<<< Updated upstream
           "close": 124.32
+=======
+          "close": 124.33
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-01-31",
@@ -27065,7 +27149,11 @@
         },
         {
           "date": "2025-07-01",
+<<<<<<< Updated upstream
           "close": 152.92
+=======
+          "close": 152.93
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-07-02",
@@ -27269,7 +27357,11 @@
         },
         {
           "date": "2025-09-12",
+<<<<<<< Updated upstream
           "close": 177.39
+=======
+          "close": 177.4
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-09-15",
@@ -27477,7 +27569,11 @@
         },
         {
           "date": "2025-11-25",
+<<<<<<< Updated upstream
           "close": 177.39
+=======
+          "close": 177.4
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-11-26",
@@ -28541,11 +28637,14 @@
                 "title": "[新聞時事] 隔夜美股| 三大指數本週上漲英偉達(NVDA.US)本週累跌13% 市值跌破4萬美元關口作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
                 "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5raWI0N2UxSmcxX1p3a2NlSjY3VVczOG4tRlpjcGxwbXRFZURLQV9xM095WDN6U3RiVV9MUkRWTTMzejNISmtvOTZoR1cwVkR3b0N3RldHU1pTN1RkcURTYkFhUGZnWGg0Ri1sSUE5SFA?oc=5",
                 "date": "Sat, 14 Nov 2026"
+<<<<<<< Updated upstream
               },
               {
                 "title": "[新聞時事] 輝達財報要來了！緊盯3 大看點，關鍵就看Rubin 準不準時｜美股 NVDA｜豐雲學堂2026 年 11 月 - 永豐金證券",
                 "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQa3Vsb0VyUUp4Y2xtZFJMZnFnSWw3MEt5RXUxcklIT1llVXdoa0tRYkJtMUZ4MGxtZmd3SktScHA4cHZjMzNMTXhkNzVyVTlZaGZNZmlLbVhXYXlGV09jZFlTQlhHOWxrYW1rVVF4bFM3ZTlTNnJGdk56ZWh5NTM5ZjZQMFdXaDd5X0pYcjlCRU91RnNiZHJJNWNaVE1wTWlOQTd6YnFVR1ZZcFdJb1hOYjNYSFdYQ0p0eFZNUTNPYlJmT0VnVkRkSXNOWnRWZGpaOG1iWnpFMlkzdzRnU1lNdVVtNjBKOXhkYUFpYzdkSGYwbjRDck1uUU84eGhQb2NRaDVkTGdpSlhvOVFVdjhuaFFoTXgwSndQWlMzRzlrVGhtcUpLR2dlN3NIa1lZSDFWRXdwbEQ1WVdFRHJ4Qm9YcnBwSVN4ck9udEpqbW1TMU1rd0hmeDF3Q1Z0TmVKd3loUUxCZXgwQ29pN1BLOFlkWm4yYV8yOHRGek1QWVNQUU5RV09uMUl5SGdlS3pYc0JOZHMxcy12QXVfekha?oc=5",
                 "date": "Fri, 28 Aug 2026"
+=======
+>>>>>>> Stashed changes
               }
             ]
           }
@@ -28604,11 +28703,14 @@
             "date": "Sat, 14 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 輝達財報要來了！緊盯3 大看點，關鍵就看Rubin 準不準時｜美股 NVDA｜豐雲學堂2026 年 11 月 - 永豐金證券",
             "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQa3Vsb0VyUUp4Y2xtZFJMZnFnSWw3MEt5RXUxcklIT1llVXdoa0tRYkJtMUZ4MGxtZmd3SktScHA4cHZjMzNMTXhkNzVyVTlZaGZNZmlLbVhXYXlGV09jZFlTQlhHOWxrYW1rVVF4bFM3ZTlTNnJGdk56ZWh5NTM5ZjZQMFdXaDd5X0pYcjlCRU91RnNiZHJJNWNaVE1wTWlOQTd6YnFVR1ZZcFdJb1hOYjNYSFdYQ0p0eFZNUTNPYlJmT0VnVkRkSXNOWnRWZGpaOG1iWnpFMlkzdzRnU1lNdVVtNjBKOXhkYUFpYzdkSGYwbjRDck1uUU84eGhQb2NRaDVkTGdpSlhvOVFVdjhuaFFoTXgwSndQWlMzRzlrVGhtcUpLR2dlN3NIa1lZSDFWRXdwbEQ1WVdFRHJ4Qm9YcnBwSVN4ck9udEpqbW1TMU1rd0hmeDF3Q1Z0TmVKd3loUUxCZXgwQ29pN1BLOFlkWm4yYV8yOHRGek1QWVNQUU5RV09uMUl5SGdlS3pYc0JOZHMxcy12QXVfekha?oc=5",
             "date": "Fri, 28 Aug 2026"
           },
           {
+=======
+>>>>>>> Stashed changes
             "title": "[風險提示] 留意供應鏈成本、匯率變動與終端客戶拉貨節奏",
             "url": "#",
             "date": "基本面風險"
@@ -37326,38 +37428,66 @@
                 "date": "Wed, 04 Nov 2026"
               },
               {
-                "title": "[新聞時事] Google Gemini 4 Carbon全面上線，以較低價對打Anthropic Fable/Mythos 5.2 - iThome",
-                "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE15aF9aTmFnNDA1anNOS1owNGdFSDRQVjJnTGtkUHhOcE5ZeVJWaGlFeHhVbGtHWFAzNmpndHdjQzlCeFY2RUFkMGR0bk14QQ?oc=5",
-                "date": "Wed, 11 Nov 2026"
-              },
-              {
-                "title": "[新聞時事] 美校園 AI 引發爭議 谷歌教育科技遭家長團體抗議 - 商傳媒",
-                "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxQdGlBS193LVg0aHZJazJjSV82WmtGSjY2RUZMYXFWbGlFTXVCTVVTUG80Q056TGJDb1hPRVRJb2lmX2RqSFRLblQyUXhpODFJVkFISmJfRVNteDRlb1BIeGFneldTYUhEQUpLandUZG9nVlRzS0JrVHF0dmE4QWJQcWptLVAxcW5xSHMza1JGc21DcUQ3MHdKd1NWNmp3SlFvYlhENjN4Z0hOVVhUQUx3bkg3cDZxb2x6OUhZQWwwd2lWdENTMzc3S1N6Z3FHQlJuR2lncU5ObG9RZTRtRXl0ek0wdzc3a2ZIYTJuSGNhVzk1SXBOZVk2ZlNWV3lHbWZCUlplUmQyeFVCOUptNTNCQVhhbGdKQVRfMHdZSFNjY29YQ0p0cEI2OGlNbzFDZTZUSWg4dHpDLWpaclVBYi16NnZaYlhKZl9ia0NXX2hEVGV4blNWVHFzaHNR?oc=5",
-                "date": "Fri, 13 Nov 2026"
-              },
-              {
-                "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
-                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
-                "date": "Thu, 12 Nov 2026"
-              },
-              {
-                "title": "[新聞時事] Google 一年推四款TPU，8tx、8i Max 擴大 AI 版圖，台積電、欣興、創意受惠股一次看｜股市話題｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMi3gNBVV95cUxNRjFPWnZYX2N0cUdYRzlEVnphOHdGdkZJb21SQl9UbGhfamJ6UW9DT0plUm5CVktVODA3SmdDUTNqcFBXNlIxbEdETnJlMlh0dnE3eEY4bVlzSmNRa2QyamQ5WFo0YlRMa0JyVDl0Wm1UbGIzcE4zTzBiVkJIUzlfUkJ2NGh4QWQyWWxsY3NOekFfdkRJRXVhN0p3ZHVQYXNRRWtOV2xnMkdBQXQybVl4Yi1TZWZqZ3Q2R3p2dU1VVVdYbHBTLVp6VUtNQVREcV9kNGlTWDVlM2kzQXZxUWhNTUpwei1rOE1kTUhaX0lHcGVHVHNfSVBveEpqc3c5TjQ5emxWcnkwZnFVbkIwZDhldWJpMkNYSF9ZQWVNQUJwbkJJZGUwb3JQMWVBOXQxd1c2dXBibnVXUEo1UmFsSmhOZEh5LVRmM2RnTUpIWE5VVlJsbXlnb1Nac3JOdWRrTHE1WnRPZ1haYjRGdHhSOUhKV2JScmhkMU9TbkMzVlFZdHFtYkxKS2pvSldiaWxtemNPMEtac3p4UFJsUUxldHNKMkZmMnVzUHdjQU5BeXI3Q21pVjV2NHMxb3VMS2EyekU0SVdibzhLQ0dlLXBOTEdfOWNIUUZsR29NY0QwWFJn?oc=5",
-                "date": "Tue, 10 Nov 2026"
-              }
-            ],
-            "bearish": [
-              {
+<<<<<<< Updated upstream
+=======
                 "title": "[新聞時事] Google 推出全新 AI 模型 Gemini 4 Hydrogen 即日起不同方法都用到 - Yahoo",
                 "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSWVBSTJfSTVPdFhGOHpqbUlKelQwWVY4U2NSTFRuSUxYRk5MWjZ0bWxBdHJHXzktNUFCaTE1SWNmbmhBVGg0UFgzTEdkYUFhQXcxT3pXTU1saWFKVndVR3ZaejJScnhLZFUyaE5HZkdFcm9TdTk0Zzh1M2FjRkk4eU91SUtYMVZDY2x5d295UnEwM3BubTNhVlQ2LVRjbHBqeFZaOWhxZVdYdE9rOGdobXVqSQ?oc=5",
                 "date": "Sat, 14 Nov 2026"
               },
               {
+>>>>>>> Stashed changes
+                "title": "[新聞時事] Google Gemini 4 Carbon全面上線，以較低價對打Anthropic Fable/Mythos 5.2 - iThome",
+                "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE15aF9aTmFnNDA1anNOS1owNGdFSDRQVjJnTGtkUHhOcE5ZeVJWaGlFeHhVbGtHWFAzNmpndHdjQzlCeFY2RUFkMGR0bk14QQ?oc=5",
+                "date": "Wed, 11 Nov 2026"
+              },
+              {
+<<<<<<< Updated upstream
+                "title": "[新聞時事] 美校園 AI 引發爭議 谷歌教育科技遭家長團體抗議 - 商傳媒",
+                "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxQdGlBS193LVg0aHZJazJjSV82WmtGSjY2RUZMYXFWbGlFTXVCTVVTUG80Q056TGJDb1hPRVRJb2lmX2RqSFRLblQyUXhpODFJVkFISmJfRVNteDRlb1BIeGFneldTYUhEQUpLandUZG9nVlRzS0JrVHF0dmE4QWJQcWptLVAxcW5xSHMza1JGc21DcUQ3MHdKd1NWNmp3SlFvYlhENjN4Z0hOVVhUQUx3bkg3cDZxb2x6OUhZQWwwd2lWdENTMzc3S1N6Z3FHQlJuR2lncU5ObG9RZTRtRXl0ek0wdzc3a2ZIYTJuSGNhVzk1SXBOZVk2ZlNWV3lHbWZCUlplUmQyeFVCOUptNTNCQVhhbGdKQVRfMHdZSFNjY29YQ0p0cEI2OGlNbzFDZTZUSWg4dHpDLWpaclVBYi16NnZaYlhKZl9ia0NXX2hEVGV4blNWVHFzaHNR?oc=5",
+                "date": "Fri, 13 Nov 2026"
+              },
+              {
+=======
+>>>>>>> Stashed changes
+                "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
+                "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
+                "date": "Thu, 12 Nov 2026"
+              },
+              {
+<<<<<<< Updated upstream
+                "title": "[新聞時事] Google 一年推四款TPU，8tx、8i Max 擴大 AI 版圖，台積電、欣興、創意受惠股一次看｜股市話題｜豐雲學堂2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi3gNBVV95cUxNRjFPWnZYX2N0cUdYRzlEVnphOHdGdkZJb21SQl9UbGhfamJ6UW9DT0plUm5CVktVODA3SmdDUTNqcFBXNlIxbEdETnJlMlh0dnE3eEY4bVlzSmNRa2QyamQ5WFo0YlRMa0JyVDl0Wm1UbGIzcE4zTzBiVkJIUzlfUkJ2NGh4QWQyWWxsY3NOekFfdkRJRXVhN0p3ZHVQYXNRRWtOV2xnMkdBQXQybVl4Yi1TZWZqZ3Q2R3p2dU1VVVdYbHBTLVp6VUtNQVREcV9kNGlTWDVlM2kzQXZxUWhNTUpwei1rOE1kTUhaX0lHcGVHVHNfSVBveEpqc3c5TjQ5emxWcnkwZnFVbkIwZDhldWJpMkNYSF9ZQWVNQUJwbkJJZGUwb3JQMWVBOXQxd1c2dXBibnVXUEo1UmFsSmhOZEh5LVRmM2RnTUpIWE5VVlJsbXlnb1Nac3JOdWRrTHE1WnRPZ1haYjRGdHhSOUhKV2JScmhkMU9TbkMzVlFZdHFtYkxKS2pvSldiaWxtemNPMEtac3p4UFJsUUxldHNKMkZmMnVzUHdjQU5BeXI3Q21pVjV2NHMxb3VMS2EyekU0SVdibzhLQ0dlLXBOTEdfOWNIUUZsR29NY0QwWFJn?oc=5",
+                "date": "Tue, 10 Nov 2026"
+=======
+                "title": "[新聞時事] Google 推出 Gemini 4 Carbon！強化 AI 代理、資安與科學研究 - INSIDE",
+                "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE93VFRoM2E0aFI2QkZWTXZMMkkwdzhjR182UUtLQUpOaEZsS3NzeGwydGtySkVGYnprTnZxWXFVWHZudWVqd0JPMF9YVWhXOTk0c0pjY294eXcxOTM0MHVUc3ZGaUxhOGNQUlVvNGNfQ0RuUTYzRTRWXw?oc=5",
+                "date": "Wed, 11 Nov 2026"
+>>>>>>> Stashed changes
+              }
+            ],
+            "bearish": [
+              {
+<<<<<<< Updated upstream
+                "title": "[新聞時事] Google 推出全新 AI 模型 Gemini 4 Hydrogen 即日起不同方法都用到 - Yahoo",
+                "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSWVBSTJfSTVPdFhGOHpqbUlKelQwWVY4U2NSTFRuSUxYRk5MWjZ0bWxBdHJHXzktNUFCaTE1SWNmbmhBVGg0UFgzTEdkYUFhQXcxT3pXTU1saWFKVndVR3ZaejJScnhLZFUyaE5HZkdFcm9TdTk0Zzh1M2FjRkk4eU91SUtYMVZDY2x5d295UnEwM3BubTNhVlQ2LVRjbHBqeFZaOWhxZVdYdE9rOGdobXVqSQ?oc=5",
+                "date": "Sat, 14 Nov 2026"
+              },
+              {
+=======
+>>>>>>> Stashed changes
                 "title": "[新聞時事] AMD搶下Google AI晶片關鍵角色！第五代EPYC進駐TPU系統 輝達競爭升溫 - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56U2RfWTlPR051MWlIbURrclYzb01faWF5Z1NzVFdMRGZiOHdUTm5JalczMkFyWmI1eFpwbHJxOHVPRXNjSEloNC1ObmE3QXM?oc=5",
                 "date": "Tue, 10 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
+=======
+                "title": "[新聞時事] 美校園 AI 引發爭議 谷歌教育科技遭家長團體抗議 - 商傳媒",
+                "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxQdGlBS193LVg0aHZJazJjSV82WmtGSjY2RUZMYXFWbGlFTXVCTVVTUG80Q056TGJDb1hPRVRJb2lmX2RqSFRLblQyUXhpODFJVkFISmJfRVNteDRlb1BIeGFneldTYUhEQUpLandUZG9nVlRzS0JrVHF0dmE4QWJQcWptLVAxcW5xSHMza1JGc21DcUQ3MHdKd1NWNmp3SlFvYlhENjN4Z0hOVVhUQUx3bkg3cDZxb2x6OUhZQWwwd2lWdENTMzc3S1N6Z3FHQlJuR2lncU5ObG9RZTRtRXl0ek0wdzc3a2ZIYTJuSGNhVzk1SXBOZVk2ZlNWV3lHbWZCUlplUmQyeFVCOUptNTNCQVhhbGdKQVRfMHdZSFNjY29YQ0p0cEI2OGlNbzFDZTZUSWg4dHpDLWpaclVBYi16NnZaYlhKZl9ia0NXX2hEVGV4blNWVHFzaHNR?oc=5",
+                "date": "Fri, 13 Nov 2026"
+              },
+              {
+>>>>>>> Stashed changes
                 "title": "[新聞時事] AI Agent 不必被單一模型綁死！Google 推 Gemini 4 Hydrogen，動態分工節省 24% 配額 - TechOrange 科技報橘",
                 "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaEU5SXBFNHBaZm1OQmRjZ05jOXY5UlVXYVNpaVJ1TGxPNUxVM1R1NmZvVE5yU3N1VlZxLV94SDM2RmpGamxXQ19mQkNFcjBqZ1VZWklKTlc4N3V1cUZfNTVnUmFvU0VUWk5RazJxQi04NlQwRDU1ZXJQNTVUUWJaQVBZenZDNFNGNk0wSA?oc=5",
                 "date": "Fri, 13 Nov 2026"
@@ -37382,24 +37512,41 @@
             "date": "Wed, 04 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
+=======
+            "title": "[新聞時事] Google 推出全新 AI 模型 Gemini 4 Hydrogen 即日起不同方法都用到 - Yahoo",
+            "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSWVBSTJfSTVPdFhGOHpqbUlKelQwWVY4U2NSTFRuSUxYRk5MWjZ0bWxBdHJHXzktNUFCaTE1SWNmbmhBVGg0UFgzTEdkYUFhQXcxT3pXTU1saWFKVndVR3ZaejJScnhLZFUyaE5HZkdFcm9TdTk0Zzh1M2FjRkk4eU91SUtYMVZDY2x5d295UnEwM3BubTNhVlQ2LVRjbHBqeFZaOWhxZVdYdE9rOGdobXVqSQ?oc=5",
+            "date": "Sat, 14 Nov 2026"
+          },
+          {
+>>>>>>> Stashed changes
             "title": "[新聞時事] Google Gemini 4 Carbon全面上線，以較低價對打Anthropic Fable/Mythos 5.2 - iThome",
             "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE15aF9aTmFnNDA1anNOS1owNGdFSDRQVjJnTGtkUHhOcE5ZeVJWaGlFeHhVbGtHWFAzNmpndHdjQzlCeFY2RUFkMGR0bk14QQ?oc=5",
             "date": "Wed, 11 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 美校園 AI 引發爭議 谷歌教育科技遭家長團體抗議 - 商傳媒",
             "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxQdGlBS193LVg0aHZJazJjSV82WmtGSjY2RUZMYXFWbGlFTXVCTVVTUG80Q056TGJDb1hPRVRJb2lmX2RqSFRLblQyUXhpODFJVkFISmJfRVNteDRlb1BIeGFneldTYUhEQUpLandUZG9nVlRzS0JrVHF0dmE4QWJQcWptLVAxcW5xSHMza1JGc21DcUQ3MHdKd1NWNmp3SlFvYlhENjN4Z0hOVVhUQUx3bkg3cDZxb2x6OUhZQWwwd2lWdENTMzc3S1N6Z3FHQlJuR2lncU5ObG9RZTRtRXl0ek0wdzc3a2ZIYTJuSGNhVzk1SXBOZVk2ZlNWV3lHbWZCUlplUmQyeFVCOUptNTNCQVhhbGdKQVRfMHdZSFNjY29YQ0p0cEI2OGlNbzFDZTZUSWg4dHpDLWpaclVBYi16NnZaYlhKZl9ia0NXX2hEVGV4blNWVHFzaHNR?oc=5",
             "date": "Fri, 13 Nov 2026"
           },
           {
+=======
+>>>>>>> Stashed changes
             "title": "[新聞時事] 受 Google AI Overviews 影響 Reddit 流量下滑 13% - Business Insider Taiwan",
             "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJVWVKQnRfdkRBb1FhaEdvSkRMd3NSU2x1SjFoVlhldVBqUTJlYXZabWpnajN6OU04cmFuYkV6Q0s3MnQwOXdScFphSlE3LXVuUG9FRVhR?oc=5",
             "date": "Thu, 12 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] Google 一年推四款TPU，8tx、8i Max 擴大 AI 版圖，台積電、欣興、創意受惠股一次看｜股市話題｜豐雲學堂2026 年 11 月 - 永豐金證券",
             "url": "https://news.google.com/rss/articles/CBMi3gNBVV95cUxNRjFPWnZYX2N0cUdYRzlEVnphOHdGdkZJb21SQl9UbGhfamJ6UW9DT0plUm5CVktVODA3SmdDUTNqcFBXNlIxbEdETnJlMlh0dnE3eEY4bVlzSmNRa2QyamQ5WFo0YlRMa0JyVDl0Wm1UbGIzcE4zTzBiVkJIUzlfUkJ2NGh4QWQyWWxsY3NOekFfdkRJRXVhN0p3ZHVQYXNRRWtOV2xnMkdBQXQybVl4Yi1TZWZqZ3Q2R3p2dU1VVVdYbHBTLVp6VUtNQVREcV9kNGlTWDVlM2kzQXZxUWhNTUpwei1rOE1kTUhaX0lHcGVHVHNfSVBveEpqc3c5TjQ5emxWcnkwZnFVbkIwZDhldWJpMkNYSF9ZQWVNQUJwbkJJZGUwb3JQMWVBOXQxd1c2dXBibnVXUEo1UmFsSmhOZEh5LVRmM2RnTUpIWE5VVlJsbXlnb1Nac3JOdWRrTHE1WnRPZ1haYjRGdHhSOUhKV2JScmhkMU9TbkMzVlFZdHFtYkxKS2pvSldiaWxtemNPMEtac3p4UFJsUUxldHNKMkZmMnVzUHdjQU5BeXI3Q21pVjV2NHMxb3VMS2EyekU0SVdibzhLQ0dlLXBOTEdfOWNIUUZsR29NY0QwWFJn?oc=5",
             "date": "Tue, 10 Nov 2026"
+=======
+            "title": "[新聞時事] Google 推出 Gemini 4 Carbon！強化 AI 代理、資安與科學研究 - INSIDE",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE93VFRoM2E0aFI2QkZWTXZMMkkwdzhjR182UUtLQUpOaEZsS3NzeGwydGtySkVGYnprTnZxWXFVWHZudWVqd0JPMF9YVWhXOTk0c0pjY294eXcxOTM0MHVUc3ZGaUxhOGNQUlVvNGNfQ0RuUTYzRTRWXw?oc=5",
+            "date": "Wed, 11 Nov 2026"
+>>>>>>> Stashed changes
           },
           {
             "title": "[財報基本面] 最新季度營收年增率達 +24.7%，成長動能強勁",
@@ -37409,16 +37556,27 @@
         ],
         "bearish": [
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] Google 推出全新 AI 模型 Gemini 4 Hydrogen 即日起不同方法都用到 - Yahoo",
             "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSWVBSTJfSTVPdFhGOHpqbUlKelQwWVY4U2NSTFRuSUxYRk5MWjZ0bWxBdHJHXzktNUFCaTE1SWNmbmhBVGg0UFgzTEdkYUFhQXcxT3pXTU1saWFKVndVR3ZaejJScnhLZFUyaE5HZkdFcm9TdTk0Zzh1M2FjRkk4eU91SUtYMVZDY2x5d295UnEwM3BubTNhVlQ2LVRjbHBqeFZaOWhxZVdYdE9rOGdobXVqSQ?oc=5",
             "date": "Sat, 14 Nov 2026"
           },
           {
+=======
+>>>>>>> Stashed changes
             "title": "[新聞時事] AMD搶下Google AI晶片關鍵角色！第五代EPYC進駐TPU系統 輝達競爭升溫 - 鉅亨網",
             "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56U2RfWTlPR051MWlIbURrclYzb01faWF5Z1NzVFdMRGZiOHdUTm5JalczMkFyWmI1eFpwbHJxOHVPRXNjSEloNC1ObmE3QXM?oc=5",
             "date": "Tue, 10 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
+=======
+            "title": "[新聞時事] 美校園 AI 引發爭議 谷歌教育科技遭家長團體抗議 - 商傳媒",
+            "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxQdGlBS193LVg0aHZJazJjSV82WmtGSjY2RUZMYXFWbGlFTXVCTVVTUG80Q056TGJDb1hPRVRJb2lmX2RqSFRLblQyUXhpODFJVkFISmJfRVNteDRlb1BIeGFneldTYUhEQUpLandUZG9nVlRzS0JrVHF0dmE4QWJQcWptLVAxcW5xSHMza1JGc21DcUQ3MHdKd1NWNmp3SlFvYlhENjN4Z0hOVVhUQUx3bkg3cDZxb2x6OUhZQWwwd2lWdENTMzc3S1N6Z3FHQlJuR2lncU5ObG9RZTRtRXl0ek0wdzc3a2ZIYTJuSGNhVzk1SXBOZVk2ZlNWV3lHbWZCUlplUmQyeFVCOUptNTNCQVhhbGdKQVRfMHdZSFNjY29YQ0p0cEI2OGlNbzFDZTZUSWg4dHpDLWpaclVBYi16NnZaYlhKZl9ia0NXX2hEVGV4blNWVHFzaHNR?oc=5",
+            "date": "Fri, 13 Nov 2026"
+          },
+          {
+>>>>>>> Stashed changes
             "title": "[新聞時事] AI Agent 不必被單一模型綁死！Google 推 Gemini 4 Hydrogen，動態分工節省 24% 配額 - TechOrange 科技報橘",
             "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaEU5SXBFNHBaZm1OQmRjZ05jOXY5UlVXYVNpaVJ1TGxPNUxVM1R1NmZvVE5yU3N1VlZxLV94SDM2RmpGamxXQ19mQkNFcjBqZ1VZWklKTlc4N3V1cUZfNTVnUmFvU0VUWk5RazJxQi04NlQwRDU1ZXJQNTVUUWJaQVBZenZDNFNGNk0wSA?oc=5",
             "date": "Fri, 13 Nov 2026"
@@ -38448,7 +38606,11 @@
         },
         {
           "date": "2025-02-07",
+<<<<<<< Updated upstream
           "close": 710.44
+=======
+          "close": 710.45
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-02-10",
@@ -39096,7 +39258,11 @@
         },
         {
           "date": "2025-10-01",
+<<<<<<< Updated upstream
           "close": 714.92
+=======
+          "close": 714.91
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-10-02",
@@ -53284,7 +53450,11 @@
         },
         {
           "date": "2025-03-25",
+<<<<<<< Updated upstream
           "close": 390.57
+=======
+          "close": 390.58
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-03-26",
@@ -55595,7 +55765,11 @@
         },
         {
           "date": "2025-02-25",
+<<<<<<< Updated upstream
           "close": 1028.89
+=======
+          "close": 1028.88
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-02-26",
@@ -55659,7 +55833,11 @@
         },
         {
           "date": "2025-03-20",
+<<<<<<< Updated upstream
           "close": 965.1
+=======
+          "close": 965.09
+>>>>>>> Stashed changes
         },
         {
           "date": "2025-03-21",
@@ -59683,11 +59861,14 @@
                 "title": "[新聞時事] 博通強敵現身？聯發科 2454 ASIC 佈局位階對比：一文看懂 Google TPUv8 供應鏈紅利 - 口袋證券",
                 "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5LU2d5SUsxLVMtZVkyY09iLXFNc2pBUDBnZmtTTTJLTEliV2RyN241clVzWV9fYTQyc1VfdWwtZEJxeTJScUZSQVdMeEpBLWxfa2loc0xB?oc=5",
                 "date": "Wed, 29 Apr 2026"
+<<<<<<< Updated upstream
               },
               {
                 "title": "[新聞時事] 聯發科(2454)股價閃見2575元又拉回平盤，法說會前最後上車機會？3營運重點待蔡力行說清楚｜今周重磅 - 今週刊",
                 "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPUGpIVXF6OEt4VE00UmVoZVowQVNQTEVaX0puUHR6RFJ2RXE4SjRXcjRuWmlNWGRuOS0zYTgwekhYemZXT3AxRkFOb0R3aUp1VGcyUEVXV2ZVam4tNTh5T1ZkR3NBbU12RExDMDY2RmJ4bkIzTEIwRllDWndQTkRBRg?oc=5",
                 "date": "Mon, 27 Apr 2026"
+=======
+>>>>>>> Stashed changes
               }
             ]
           }
@@ -59746,11 +59927,14 @@
             "date": "Wed, 29 Apr 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 聯發科(2454)股價閃見2575元又拉回平盤，法說會前最後上車機會？3營運重點待蔡力行說清楚｜今周重磅 - 今週刊",
             "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPUGpIVXF6OEt4VE00UmVoZVowQVNQTEVaX0puUHR6RFJ2RXE4SjRXcjRuWmlNWGRuOS0zYTgwekhYemZXT3AxRkFOb0R3aUp1VGcyUEVXV2ZVam4tNTh5T1ZkR3NBbU12RExDMDY2RmJ4bkIzTEIwRllDWndQTkRBRg?oc=5",
             "date": "Mon, 27 Apr 2026"
           },
           {
+=======
+>>>>>>> Stashed changes
             "title": "[估值風險] 目前本益比 (PE) 達 66.27 倍，處於相對高檔位階，須留意追高波動",
             "url": "#",
             "date": "估值指標"
@@ -69687,9 +69871,15 @@
                 "date": "Thu, 08 May 2025"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] Japan 225期貨圖表 — NKD期貨行情 - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9IdW1sTjc3WWx5SUtleU0tWXBrbi16R0tRaVkwN2FsSHZrLXRVYXhfc040eWlsdGpTVWlYVWhQQ1plS3gxSFFFcHd1NjQ5NWhqdHNLVWxxNnc?oc=5",
                 "date": "Sat, 15 Jun 2019"
+=======
+                "title": "[新聞時事] E-Mini S&P 500 Dec 26 (ES=F) 期貨鏈 - Yahoo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE14QXMwQ1dwV0JXYTE1anBKcHAzeFhnbWNQb2ttNzR6QmQtQ0lGQmJUTW5iNldNNlJkSDBhTF9TRWtuYVZDU0lIRVplMEEtOFROZHd2c1BHQWJ5UjFMcmRv?oc=5",
+                "date": "Wed, 05 Jul 2017"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 黃金期貨突破每盎司4000美元 黃金ETF股價創新高 - 自由財經",
@@ -69709,9 +69899,15 @@
                 "date": "Mon, 24 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] E-Mini S&P 500 Dec 26 (ES=F) 期貨鏈 - Yahoo 財經",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE14QXMwQ1dwV0JXYTE1anBKcHAzeFhnbWNQb2ttNzR6QmQtQ0lGQmJUTW5iNldNNlJkSDBhTF9TRWtuYVZDU0lIRVplMEEtOFROZHd2c1BHQWJ5UjFMcmRv?oc=5",
                 "date": "Wed, 05 Jul 2017"
+=======
+                "title": "[新聞時事] Japan 225期貨圖表 — NKD期貨行情 - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9IdW1sTjc3WWx5SUtleU0tWXBrbi16R0tRaVkwN2FsSHZrLXRVYXhfc040eWlsdGpTVWlYVWhQQ1plS3gxSFFFcHd1NjQ5NWhqdHNLVWxxNnc?oc=5",
+                "date": "Sat, 15 Jun 2019"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 原油站上40美元，為何元大S&P原油正2 ETF市價卻越跌越低？這3個理由是關鍵 - 今週刊",
@@ -72670,6 +72866,7 @@
                 "date": "Tue, 20 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] 美股開盤／CoreWeave大漲13%領軍AI股反彈 納斯達克漲1.6% - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1JaEtaWkZSR3BjWVJJWGJfRkg4YUNmRVBWdlpOQVJiRkJPTUZCMzBnQU94ZEZpWjlSeE9sSS1WVTZpbnF2Vl9nSW9YUmcxc2c?oc=5",
                 "date": "Wed, 11 Nov 2026"
@@ -72678,6 +72875,11 @@
                 "title": "[總經與供需] E-迷你納斯達克100指數 概述 - CME Group",
                 "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxObzZhTngwSVNMQVhZSWRfZ1pUaFlLVTJDMEhJcnl4Ul93V0htWW5IS0NFNmMxaFNlVXhqMHBVODUtODlvcl85cndOY1BuLTIyUDdUMVlFaFhHRG9McHhTLWZIRGZ0MmpQWG0xOVplQWNXMWd3OGtxc3hINlI5Mnh1WDJn?oc=5",
                 "date": "Fri, 09 Jun 2023"
+=======
+                "title": "[總經與供需] 今晚非農登場，小納斯達克等待利率重新定價 | 思儀李的貼文 | 鉅亨號 | Anue鉅亨 - 鉅亨號",
+                "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE4tdnpkelhRaUt3dWYxSGtmc3JYd0VTNU4zXzRremNpQkZja19maDloUzh4UFJReWdLMWZFT1pWVEItTGIxRzlQYg?oc=5",
+                "date": "Thu, 03 Sep 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -72692,9 +72894,15 @@
                 "date": "Sat, 17 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] 美股盤前變臉！最新通膨數據高得嚇人　標普500期貨由紅翻黑 - ETtoday財經雲",
                 "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE54cURkRHBvX0NsellkRUg5aEVJR2U1VkFSWUhJcmZKNGxKN29hYmJqTDhOV3QyVkREX0FZOVU5RFlBWmVEbUl2SEExVkdMVmUwWHfSAVBBVV95cUxQUGNrZF9TYXJRb3B3YUdSTkNUWTVlajQ1dUZCQmx4YWxad0wzWGlJSk1MUUp2aHBBMWJlSENBejVOTEp5MU96UExZcUhpUTEyRw?oc=5",
                 "date": "Wed, 13 May 2026"
+=======
+                "title": "[總經與供需] E-迷你納斯達克100指數 概述 - CME Group",
+                "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxObzZhTngwSVNMQVhZSWRfZ1pUaFlLVTJDMEhJcnl4Ul93V0htWW5IS0NFNmMxaFNlVXhqMHBVODUtODlvcl85cndOY1BuLTIyUDdUMVlFaFhHRG9McHhTLWZIRGZ0MmpQWG0xOVplQWNXMWd3OGtxc3hINlI5Mnh1WDJn?oc=5",
+                "date": "Fri, 09 Jun 2023"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[總經與供需] 商周-通膨顯著降溫升息週期近尾聲財經主播詹璇依：把握美股黃金期微型期貨更好操作! - 商業週刊 - 商業週刊",
@@ -75684,9 +75892,15 @@
                 "date": "Wed, 28 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] 美股收盤》油價、美債殖利率飆！道瓊跌352點 台積電ADR下殺逾1％ - 自由財經",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5UVnJsanQ3b0d2OHdsVl82VkRxS0RIMjJUdGN2M29BR0tKSXhNM3JMd3RkS3FkRnVEcENUREZsWXhiRXlWeXdZeDJwNWdCWElrcG4yWTdJcmc5RnRKSzhV0gFkQVVfeXFMT1dGN3BwOXgtVk1RSDFzbmY0TTQySHVGNkpBUmxSQXEwYzY5eU5PMzB2UWlUZFhhbG5yYkpXYWtyMnl3Xzg3dWl2Q3pwTlFBUHlMVzVfTHpUa1FyenZJSGRpUmROWA?oc=5",
                 "date": "Thu, 24 Sep 2026"
+=======
+                "title": "[美國聯準會 (Fed)] 美股收盤》Fed維持利率不變！道瓊連3紅 台積電ADR收高 - 自由財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFB6WF9idF8xQ2pWZXotWDJ2eUdwQVYwMkNzcW9QTFJmWkgyYTBPUFZuemxQZnFBNkprRUJWQWJjTGlYUDBvZHd5ZkNIeERrdmxrY255eDVPVUlSc3Q4RVpV0gFkQVVfeXFMUGtrNkJfeUpmbHBJUkprbDFSYTBDN2RTNkRQX0Qzald2dUZDdXZleTl4S0FQNVlocGt3Y2pEc3EzVHE4YkVUMmF2MmZUUkZ5Y3VwM1h3bEtKYzExbFItSDZ3VEJKbw?oc=5",
+                "date": "Thu, 29 Oct 2026"
+>>>>>>> Stashed changes
               }
             ]
           },
@@ -75741,16 +75955,20 @@
             "label": "📰 新聞時事動態",
             "bullish": [
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 美國道瓊期貨盤後透露訊號，短期趨勢正在失衡| EBC金融集團 - EBC Financial Group",
                 "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBXZzVSZFJNUldpTXFmZXhKWXFIeDRVRFFOZEthdGR6c2tZVzIzZFhSVjkzTjZlNC1PdHhCdjdlbWNMWkF5LWRPX0Fkd2Q0Nzc4a2JhZQ?oc=5",
                 "date": "Thu, 19 Mar 2026"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 荷姆茲可能近日重新開放 道瓊期指大漲700點 - 自由財經",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE0wOXRlbzR2anpBOUtwQmZBSktycWRHTjFoSnJHZTdEMW5FWXczVGhqZl9zYXc5eGY4Wll0Z2xXWHlxcFBoSHJEQW1wTlg1RTZDUDBEVDAyQXF6aWZxVUsw?oc=5",
                 "date": "Tue, 04 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 美伊停火推升風險偏好 道瓊期貨大漲逾1300點 - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0UVFYZF9IRGVhWWNsdkswZnR1aDB2NnlaMTZOYzNBNG9IZVJUMTJydHVJaXFMakU1WS1kb3dYX2t1TnF3UW55UlZGd3BSdEU?oc=5",
                 "date": "Wed, 08 Apr 2026"
@@ -75759,6 +75977,16 @@
                 "title": "[新聞時事] 商周-道瓊指數是什麼？成分股為何？與小道瓊有何不同？如何投資？ - 商業週刊 - 商業週刊",
                 "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9vTWxnS1VqNjhWanVXaHRhRzlweEFnbGdVZ2ZhQlBwbVpobnhub0JCeEExMVc5S3pBUElxelM3aHpaZTZhT0xjZkxyYTBzNDVmQjVkQUZzb01IN0hsM3lfM0FQMUFLZw?oc=5",
                 "date": "Thu, 12 Sep 2024"
+=======
+                "title": "[新聞時事] 美國道瓊期貨盤後透露訊號，短期趨勢正在失衡| EBC金融集團 - EBC Financial Group",
+                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBXZzVSZFJNUldpTXFmZXhKWXFIeDRVRFFOZEthdGR6c2tZVzIzZFhSVjkzTjZlNC1PdHhCdjdlbWNMWkF5LWRPX0Fkd2Q0Nzc4a2JhZQ?oc=5",
+                "date": "Thu, 19 Mar 2026"
+              },
+              {
+                "title": "[新聞時事] 美伊停火推升風險偏好 道瓊期貨大漲逾1300點 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0UVFYZF9IRGVhWWNsdkswZnR1aDB2NnlaMTZOYzNBNG9IZVJUMTJydHVJaXFMakU1WS1kb3dYX2t1TnF3UW55UlZGd3BSdEU?oc=5",
+                "date": "Wed, 08 Apr 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -75773,9 +76001,15 @@
                 "date": "Wed, 10 Jun 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 川普威脅要伊朗付出代價 道瓊期指暴跌400點 - 自由時報",
                 "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBwY0hZWmpFa3c3ZUJWZVQ4eXNPMGc4THIzTWptay1oRXNnUFgtVERTYkZNM0h6ZlAxd1U1ZVR2MV9tZjVmV2tSbGd3N3ZOMHR0WFI4UFVIVHI?oc=5",
                 "date": "Wed, 10 Jun 2026"
+=======
+                "title": "[新聞時事] 商周-道瓊指數是什麼？成分股為何？與小道瓊有何不同？如何投資？ - 商業週刊 - 商業週刊",
+                "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9vTWxnS1VqNjhWanVXaHRhRzlweEFnbGdVZ2ZhQlBwbVpobnhub0JCeEExMVc5S3pBUElxelM3aHpaZTZhT0xjZkxyYTBzNDVmQjVkQUZzb01IN0hsM3lfM0FQMUFLZw?oc=5",
+                "date": "Thu, 12 Sep 2024"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 中東局勢升溫引爆油價漲勢，美股期貨道瓊、標普、那指應聲重挫 - Yahoo股市",
@@ -75797,9 +76031,15 @@
             "date": "Tue, 10 Nov 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 美國道瓊期貨盤後透露訊號，短期趨勢正在失衡| EBC金融集團 - EBC Financial Group",
             "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBXZzVSZFJNUldpTXFmZXhKWXFIeDRVRFFOZEthdGR6c2tZVzIzZFhSVjkzTjZlNC1PdHhCdjdlbWNMWkF5LWRPX0Fkd2Q0Nzc4a2JhZQ?oc=5",
             "date": "Thu, 19 Mar 2026"
+=======
+            "title": "[新聞時事] 荷姆茲可能近日重新開放 道瓊期指大漲700點 - 自由財經",
+            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE0wOXRlbzR2anpBOUtwQmZBSktycWRHTjFoSnJHZTdEMW5FWXczVGhqZl9zYXc5eGY4Wll0Z2xXWHlxcFBoSHJEQW1wTlg1RTZDUDBEVDAyQXF6aWZxVUsw?oc=5",
+            "date": "Tue, 04 Aug 2026"
+>>>>>>> Stashed changes
           }
         ],
         "bearish": [
@@ -78716,11 +78956,14 @@
                 "title": "[美國聯準會 (Fed)] 00635U (元大S&P黃金) 是什麼ETF？成分股、追蹤邏輯、黃金期貨投資工具全解析 - 口袋證券",
                 "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5vTlNmOUNkbk16UDJLT1dhZm9rSkkzZ2I4UGd3WnNHRm9Ua0w5TVhIS0EzblZlZGlDVF80emlWelhvNXp3MUhrTEFiYW04NlJSVDU1ZU1R?oc=5",
                 "date": "Mon, 24 Aug 2026"
+<<<<<<< Updated upstream
               },
               {
                 "title": "[美國聯準會 (Fed)] 黃金衝破4600美元！各國央行狂掃「去美元化」 - 東森新聞",
                 "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9sQ29jbjhxR1g1emtCZ0JMZ3RnRWQ4S2NxT2U1MjVSWW1YUnA0cXNBemlyLUhqWExVaTAySUp0MmVmcGlzWndpUE8yNTZtY1N1R1dTQXVCaw?oc=5",
                 "date": "Fri, 28 Aug 2026"
+=======
+>>>>>>> Stashed changes
               }
             ]
           },
@@ -81809,9 +82052,15 @@
                 "date": "Mon, 19 Jan 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 白銀為何越漲越危險？一場沒有央行兜底的金融逼倉遊戲| 動區動趨-最具影響力的區塊鏈新聞媒體 - 動區動趨",
                 "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBseFlMbWMyMXJiWVFWcXdqMjlHNERqZzMtckloNGh1QVppWENvdjdpVFNEbWdZMDE3Umd1bkZURTBhUW04V2xuLXZhZ2ZKZ05hRHRhZk1kODFVQ3RVSkgzRWwtZjlLOTJmMENDVE1VeFVqbS1SX1VMWjE0UzE?oc=5",
                 "date": "Sun, 14 Dec 2025"
+=======
+                "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
+                "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
+                "date": "Wed, 14 Jan 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] AI 驅動金銀投資！散戶熱捧白銀期貨，市值一度超過輝達 - TechNews 科技新報",
@@ -81831,9 +82080,20 @@
                 "date": "Sat, 31 Jan 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 爆炸性新品！芝商所推出100盎司白銀合約瞄準散戶，現金結算無 - 群益期貨",
                 "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSE8wTU55d2ZMYnFMcGZQVXJWY28yTTB2YzM3TVdzQm1ZUFRYWHVGMFVfcnFXcFd3TkF4aE5Bd3lrc2I5dkV0VkdoUTZZamllSk1FajFRTlF0TDFibWx0dmdpa2dxRUNOV2tWUHVjMkw1T1pQODd4RGQ3NW1wWmJpVWMxT0htRzVqWFhUc2YzV1NGY3hNWVM5TlFiOXFERDFZYUE2Nw?oc=5",
                 "date": "Wed, 14 Jan 2026"
+=======
+                "title": "[新聞時事] 白銀為何越漲越危險？一場沒有央行兜底的金融逼倉遊戲 - 動區動趨",
+                "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBseFlMbWMyMXJiWVFWcXdqMjlHNERqZzMtckloNGh1QVppWENvdjdpVFNEbWdZMDE3Umd1bkZURTBhUW04V2xuLXZhZ2ZKZ05hRHRhZk1kODFVQ3RVSkgzRWwtZjlLOTJmMENDVE1VeFVqbS1SX1VMWjE0UzE?oc=5",
+                "date": "Sun, 14 Dec 2025"
+              },
+              {
+                "title": "[新聞時事] LTN經濟通》「白銀星期四」歷史重演的炒作？ - 自由財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE05azFISUhOSVhmZGgybjNVUF8xU2Z6TkFxX2dZSkZoWFhEdE1SQTJlbXFhQXhjanNoUWE5Vk44anhabkVKd2FSdXgzQUJpdmVLRHdfS3A0ckZSSENUNFVF0gFkQVVfeXFMTnRQdXlpcndDaUNXMzJTeXhoNTFRSTJESG1Fc0R2X0t2OVNxNkZoTnZhUFBPQlBNOWFQcHI2eG1ULXJfZHAwOXBwQVcxemxPbkhidG1kT1BkRXJYS2pLRUxRWkVoZg?oc=5",
+                "date": "Mon, 23 Feb 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 讓白銀大暴跌的元兇找到了？驚傳歐州大行空頭斷頭 - 自由財經",
@@ -87826,6 +88086,7 @@
             "label": "📰 新聞時事動態",
             "bullish": [
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 倫敦黃金期貨“復活”！洲際交易所入場，挑戰紐約主導格局 - 群益期貨",
                 "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUk1vMHpHeXNXR2JuVU9mTXZkcVBRM0dIQ2wzZndCdW1FNzg4VV90UnE0RXZrMExzSVNyVFRsSkNWSGpfeVdjTzlacS00RDJOMXhRWHZEUXFYcjM4eXBvQkpTdGExTnZEMG1WclU4ampjeG11UHdmYXctLXMwem5obUFLeDZQWklUM3FnSWRDRQ?oc=5",
                 "date": "Tue, 06 Oct 2026"
@@ -87834,6 +88095,11 @@
                 "title": "[新聞時事] 不是黃金！CNN爆這3種貴金屬今年漲幅已達100％ - 自由財經",
                 "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1pWEtGbEFJdHNtZWF6S3dfVUgxOE12VkU3MXQxd0JJbzd3WkRxanROYlhyanZVQUo5TzBhLXBFcFQyVGJPbE9DdzExZkZRNTJpWHBYYmo5NzBEZDVkZThz0gFkQVVfeXFMT2dkZ0NwSTFvVERJeDBwQWZvam1Qb2RIMmFXMHo0bVJ4SkdSQWtKQ2tIcU92SWVJVU9Qc3lUREpkaS0zRXgwei0zNHBJeWtnM1hJRzdvUEZHQ21YcHFMekxzOU5Kcg?oc=5",
                 "date": "Fri, 26 Dec 2025"
+=======
+                "title": "[新聞時事] 鈀金跨期2701/2809 (PA2701-PA2809) 期貨 - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1fQUlmWXp0VzFuNEZ6UDZ4SWdxejFDWmxoUG5ZamdycGQ3anZTZ1NRd2RtRjdpV0RzOWlMRW9BeTNoX2E4SUFNdS1yaDVsUkRtcU41T2lfOWZjWWlnU0lmYUFB?oc=5",
+                "date": "Thu, 22 Oct 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 又創新高！黃金期現貨突破4500美元　鈀金飆到3年沒見過 - ETtoday財經雲",
@@ -87844,10 +88110,19 @@
                 "title": "[新聞時事] 金價今年大漲71% 這3種貴金屬價格更猛至少飆1倍 - 信傳媒",
                 "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBtQjBUdHdPVVhqUWRLZ29Ec1J4aDBCbWRDcHVBUGRRbEJmeEFhdTd4U2ZFbC1QX0lhMjFuUG85YVAwaEpmU1VCWnVEUDF0eXdrVzM4UmFMa0kyQQ?oc=5",
                 "date": "Mon, 29 Dec 2025"
+<<<<<<< Updated upstream
+=======
+              },
+              {
+                "title": "[新聞時事] 鈀金跨期2610/2809 (PA2610-PA2809) 期貨 - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE50ZlJnRWE3bDhERHU1ekUzUVNoMlV4czFZcUJHWHJrNVZpSWJqQjVpU1duVVR1U1NPdHFUTWN3UWJRNmJUclU2R2djV01SdVI1aWhpTC1VQTNLbS15a0lmMkRB?oc=5",
+                "date": "Tue, 21 Jul 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 鈀金跨期2701/2809 (PA2701-PA2809) 期貨 - Moomoo",
                 "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1fQUlmWXp0VzFuNEZ6UDZ4SWdxejFDWmxoUG5ZamdycGQ3anZTZ1NRd2RtRjdpV0RzOWlMRW9BeTNoX2E4SUFNdS1yaDVsUkRtcU41T2lfOWZjWWlnU0lmYUFB?oc=5",
                 "date": "Thu, 22 Oct 2026"
@@ -87856,6 +88131,11 @@
                 "title": "[新聞時事] 歷史性暴跌後啟動新規！CME提高黃金、白銀期貨保證金 - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IMV80X0t2RXF0XzFNZF9vUXd4M1c2akVWa3o3V1ZCd1V2aWhhVnRWdTljR1owRDRpX3BDTW9zdHVpRF8ybm1zOE5pNk1UdzA?oc=5",
                 "date": "Sat, 31 Jan 2026"
+=======
+                "title": "[新聞時事] 倫敦黃金期貨“復活”！洲際交易所入場，挑戰紐約主導格局 - 群益期貨",
+                "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUk1vMHpHeXNXR2JuVU9mTXZkcVBRM0dIQ2wzZndCdW1FNzg4VV90UnE0RXZrMExzSVNyVFRsSkNWSGpfeVdjTzlacS00RDJOMXhRWHZEUXFYcjM4eXBvQkpTdGExTnZEMG1WclU4ampjeG11UHdmYXctLXMwem5obUFLeDZQWklUM3FnSWRDRQ?oc=5",
+                "date": "Tue, 06 Oct 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 金銀之外：開啟鉑金與鈀金期貨的新交易機會 - CME Group",
@@ -87882,9 +88162,15 @@
             "date": "Wed, 12 Aug 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 倫敦黃金期貨“復活”！洲際交易所入場，挑戰紐約主導格局 - 群益期貨",
             "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUk1vMHpHeXNXR2JuVU9mTXZkcVBRM0dIQ2wzZndCdW1FNzg4VV90UnE0RXZrMExzSVNyVFRsSkNWSGpfeVdjTzlacS00RDJOMXhRWHZEUXFYcjM4eXBvQkpTdGExTnZEMG1WclU4ampjeG11UHdmYXctLXMwem5obUFLeDZQWklUM3FnSWRDRQ?oc=5",
             "date": "Tue, 06 Oct 2026"
+=======
+            "title": "[新聞時事] 鈀金跨期2701/2809 (PA2701-PA2809) 期貨 - Moomoo",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1fQUlmWXp0VzFuNEZ6UDZ4SWdxejFDWmxoUG5ZamdycGQ3anZTZ1NRd2RtRjdpV0RzOWlMRW9BeTNoX2E4SUFNdS1yaDVsUkRtcU41T2lfOWZjWWlnU0lmYUFB?oc=5",
+            "date": "Thu, 22 Oct 2026"
+>>>>>>> Stashed changes
           }
         ],
         "bearish": [
@@ -87899,9 +88185,15 @@
             "date": "Tue, 29 Sep 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 鈀金跨期2701/2809 (PA2701-PA2809) 期貨 - Moomoo",
             "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1fQUlmWXp0VzFuNEZ6UDZ4SWdxejFDWmxoUG5ZamdycGQ3anZTZ1NRd2RtRjdpV0RzOWlMRW9BeTNoX2E4SUFNdS1yaDVsUkRtcU41T2lfOWZjWWlnU0lmYUFB?oc=5",
             "date": "Thu, 22 Oct 2026"
+=======
+            "title": "[新聞時事] 倫敦黃金期貨“復活”！洲際交易所入場，挑戰紐約主導格局 - 群益期貨",
+            "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUk1vMHpHeXNXR2JuVU9mTXZkcVBRM0dIQ2wzZndCdW1FNzg4VV90UnE0RXZrMExzSVNyVFRsSkNWSGpfeVdjTzlacS00RDJOMXhRWHZEUXFYcjM4eXBvQkpTdGExTnZEMG1WclU4ampjeG11UHdmYXctLXMwem5obUFLeDZQWklUM3FnSWRDRQ?oc=5",
+            "date": "Tue, 06 Oct 2026"
+>>>>>>> Stashed changes
           }
         ]
       }
@@ -96676,6 +96968,7 @@
                 "date": "Wed, 11 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] 中國大陸加大採購美國大豆 芝加哥大豆期貨創2024年以來新高 | 國際焦點 | 國際 - 經濟日報",
                 "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE14Mm56bmI2N2JBQzBhSEt2Q1lHOVlPZ2pHODFvUmprcDlZSzBWd1JDZzJZU21jZzZYVTY1a3Nla0VMU0YyaXFTX0NXZ3k5dWw0RzFIQmk5cENDUQ?oc=5",
                 "date": "Fri, 28 Aug 2026"
@@ -96684,6 +96977,16 @@
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-05 06:15:14 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPSkQ4M190dVhmMm9Zbjlxczg1cUUzUzd5akJqYk1DVlBacDdZNC1DZkxzc095YnRLOE5FYUVhbWlkY0NUMzRsMEJLWFFhVEpjcUhwSXRQZ1JuX3BqUjdRMHgyRWo2cV9acnZrY0pkbVdxVzV6OVBWVXV4d0oxd1RvalFFTjBCcC1oaG52TGZYX0xqU3M?oc=5",
                 "date": "Wed, 04 Nov 2026"
+=======
+                "title": "[美國聯準會 (Fed)] 大豆期貨(SOYBEAN-F)7月5日上漲2.05%：關注異動內因 - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNWJxX3Voemhra1owSTFobmNiengycVpkTnl2dWFsWWZqdlJ3TTU0cnNlZC1mbUFIWnpUNTFFUkJPZDNxQ0RadzJtMDgwd09oZmt5SklkalFId0o5MVFvMUZxWHVoR1J0RTdYNEFPcDc4VFkzSFdVdWxFb2hnYUh3QkhYR3d3QW02NzJPRDJmTkFvcVBrOWx0OXR5RlQ?oc=5",
+                "date": "Sun, 05 Jul 2026"
+              },
+              {
+                "title": "[美國聯準會 (Fed)] 黃豆價格強彈大漲 川習通話點燃中國加碼採購希望 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBSNDdYd1NUeFJ1SnpTTEkwZHVxcXVZNUZvcjF2TGFGQm4zalZNUXZaNU5UVmlVT2dTWHNZNDlVaEVIbzBfOWNfT01JQzBZQlk?oc=5",
+                "date": "Thu, 05 Feb 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -96698,9 +97001,15 @@
                 "date": "Fri, 18 Sep 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] 大豆期貨(SOYBEAN-F)7月5日上漲2.05%：關注異動內因 - TradingKey",
                 "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNWJxX3Voemhra1owSTFobmNiengycVpkTnl2dWFsWWZqdlJ3TTU0cnNlZC1mbUFIWnpUNTFFUkJPZDNxQ0RadzJtMDgwd09oZmt5SklkalFId0o5MVFvMUZxWHVoR1J0RTdYNEFPcDc4VFkzSFdVdWxFb2hnYUh3QkhYR3d3QW02NzJPRDJmTkFvcVBrOWx0OXR5RlQ?oc=5",
                 "date": "Sun, 05 Jul 2026"
+=======
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-05 06:15:14 黃文章 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPSkQ4M190dVhmMm9Zbjlxczg1cUUzUzd5akJqYk1DVlBacDdZNC1DZkxzc095YnRLOE5FYUVhbWlkY0NUMzRsMEJLWFFhVEpjcUhwSXRQZ1JuX3BqUjdRMHgyRWo2cV9acnZrY0pkbVdxVzV6OVBWVXV4d0oxd1RvalFFTjBCcC1oaG52TGZYX0xqU3M?oc=5",
+                "date": "Wed, 04 Nov 2026"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[美國聯準會 (Fed)] 00693U 期街口S&P黃豆 ETF 是甚麼？配息嗎？績效、風險與投資解析 - 口袋證券",
@@ -99537,6 +99846,7 @@
                 "date": "Fri, 14 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-27 06:15:02 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQYU02V2RNNUxGQ0ZXaGVMaGx5Y2tWQmRpYXFkZlBFUHBlemdGWnBka2JFMGpybDcxdnp3bElYWDN6MmE1MGt6ejl4clJXblZzM2tJTWtwVEpudDJMTGVXS1ltdk5LX1lrQmJ5Um1NTUw0ZUduMjhPcHdHdVpOMTljbm5kazdHY0R1WlFGTTRrMTlETGc?oc=5",
                 "date": "Tue, 27 Oct 2026"
@@ -99550,6 +99860,21 @@
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-30 06:15:25 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNQ0RuWDBFQjVIbHNzV2h1QkZqbDZDcURwYmo3N2thaFFxMUZRUlBxWTJNNWtEN2tfVjZ4YllvVUU0NjlnRGphNnhWczdpU0J4VENIaVVkbUd5MkxQMm00SWo1NC1PNWhrY1hCdlBTZEhmalo1MW02QS1xVE9wVnZmU2FyXzJIN09xYXdZMGtsMVNTRE0?oc=5",
                 "date": "Fri, 30 Oct 2026"
+=======
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-13 07:31:19 黃智勤 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNE41ZWNXTEEtSkVaTlJ3LUpwLURzanZPeU1abTN6UGxvQzJQU2xDS1FZYU1NanBfaF9TeU5pOXVvM242VXp4dWl0bHdIblFMM2dKTFpaRklMY01ZTUxSZkJ0ckNzX3M1RHJqVkduOHVrdEhDdWNwQnMxS0xDdGZoTXlkRHVMVTg1TFl5aGhudkNFUWs?oc=5",
+                "date": "Thu, 12 Nov 2026"
+              },
+              {
+                "title": "[美國聯準會 (Fed)] 微型小麥期貨主連(2612)期貨價格、走勢、圖表 - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5RWXRuT2tQUGFrRkV0a0hnWE5Hc0JMdXI0dE9PeUJFMUlZX0wxMEdjYkhjRnB5ZGxYUkt5NUN4cUdZOVg3QmZvclBOcjJuUGVob1VPRWN2UDc4UQ?oc=5",
+                "date": "Sat, 05 Jul 2025"
+              },
+              {
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-27 06:15:02 黃文章 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQYU02V2RNNUxGQ0ZXaGVMaGx5Y2tWQmRpYXFkZlBFUHBlemdGWnBka2JFMGpybDcxdnp3bElYWDN6MmE1MGt6ejl4clJXblZzM2tJTWtwVEpudDJMTGVXS1ltdk5LX1lrQmJ5Um1NTUw0ZUduMjhPcHdHdVpOMTljbm5kazdHY0R1WlFGTTRrMTlETGc?oc=5",
+                "date": "Tue, 27 Oct 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -99559,19 +99884,33 @@
                 "date": "Mon, 10 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] 微型小麥期貨主連(2612)期貨價格、走勢、圖表 - Moomoo",
                 "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5RWXRuT2tQUGFrRkV0a0hnWE5Hc0JMdXI0dE9PeUJFMUlZX0wxMEdjYkhjRnB5ZGxYUkt5NUN4cUdZOVg3QmZvclBOcjJuUGVob1VPRWN2UDc4UQ?oc=5",
                 "date": "Sat, 05 Jul 2025"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[美國聯準會 (Fed)] 美元指數飆上19個月新高 聯準會鷹派預期壓抑商品與主要貨幣 - 蕃新聞",
                 "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1rOUlrTjQyY0lKbkNmTEh3d2s4aEpSbHVUYmhvWFhPVEZXOE9EZW9CanNJOE9fbGNDVl84N1hITEVJY0ZwUTBzN2JraV9RYS1ma1E?oc=5",
                 "date": "Thu, 12 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-13 07:31:19 黃智勤 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNE41ZWNXTEEtSkVaTlJ3LUpwLURzanZPeU1abTN6UGxvQzJQU2xDS1FZYU1NanBfaF9TeU5pOXVvM242VXp4dWl0bHdIblFMM2dKTFpaRklMY01ZTUxSZkJ0ckNzX3M1RHJqVkduOHVrdEhDdWNwQnMxS0xDdGZoTXlkRHVMVTg1TFl5aGhudkNFUWs?oc=5",
                 "date": "Thu, 12 Nov 2026"
+=======
+                "title": "[美國聯準會 (Fed)] 實質利率 vs 大宗 - MacroMicro",
+                "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE8wclRTb0RkUU5hcmRnaVpRc0lIYVA5cF9NSVFCZjhzOUZpVXpQNkhWenhKT0tpS2Y1Uy1GU3h3aWRLRGRMaWhRQVJ3X0hBaGM4SUZRdTdpT2VBR1FFSHpXYVRGS1l2ajlEZW50WVE0aVlldw?oc=5",
+                "date": "Wed, 06 Jul 2022"
+              },
+              {
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-12 07:36:50 黃智勤 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNSXZuSTMwcW9JbnhINlNQV1VxTDlJc3BESTI3b3pVZ0t2alJ4b3huR2RMMmJOWVJvTS1pWjl3aTZrX2MwbFJKTG5Mcy1xWDcxMjI4bzUybF9oTzJ6QlBCbXVPSTlacS1hV2E1Nk9QaFIxZHk5TFFkUW9lQ2IxT1hqVllwdEFaY2gzTHF5cUlVQ0ttMlE?oc=5",
+                "date": "Wed, 11 Nov 2026"
+>>>>>>> Stashed changes
               }
             ]
           },
@@ -99594,9 +99933,15 @@
                 "date": "Sun, 12 Sep 2021"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] 全球-小麥供需動能 - MacroMicro",
                 "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5DSFNCZk8yOTVMOUF6NUJqNW8wQmNIU29EUjljeFZnc2gxMzNnbjFzVUF0RUkwOHVPVHduWEVCX0Y0WUE4U3lMV2s4YzdMTno0OEtHZkU5bnB5aWdCSnZBSlR2c09ONEx2MVFUSHZ5Y21rZw?oc=5",
                 "date": "Thu, 02 Feb 2017"
+=======
+                "title": "[總經與供需] 《農產品》擔憂黑海供應 CBOT小麥上漲2.4% - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUlFMYjJjejZGVzBoa2xnWU5KcUs0MGhmSHpfRGhZZ0tNT3JaY1g0MC1CWEd5eG9YTVhhRHUtUEhtV3JfTDVYa0ZROVNsbzB3TC1ENGpOUkRwUVAxb3p4aEtoczRQSlZ1QWtHNWNjd0hnUXNhdmtpSU5PUDY5VDlPeE5HVktkVGsycGgxZ0xOaVBtQQ?oc=5",
+                "date": "Fri, 14 Aug 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -99641,9 +99986,15 @@
                 "date": "Mon, 10 Aug 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 小麥期貨(WHEAT-F)8月12日上漲2.02%：你需要關注這些信息 - TradingKey",
                 "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOU2FLal9Rekh1WVhKejJIOTVxRGU3Uzc0emkxbENWZi10SlNscVBkSnRGMHpseVVNSHNEcHFDVzNwMFp4a0drNUFhNWU4cF9YR1F5b0F5TzR5THhEMHB6R20tOV9rV1B3SUxTTE4tM3pUTEczbEZkWGFLM0lwTU91cDZZSldleng3aEU3ZVNVc0lqYmlCTldvcGhR?oc=5",
                 "date": "Tue, 11 Aug 2026"
+=======
+                "title": "[新聞時事] CBOT-小麥期貨價格 - MacroMicro",
+                "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9MM21jZkN6bE1raXo1dXh5SEJaNl9fdXVBNHBrN3VpRXFiejBHQ1JydjZYVW9xLUNnQ2Q5QXgwTm1rS0JleUc3Qm5qY1pqdVlrRmFmbEJXV0ZqX2dGcmVkcDdJUQ?oc=5",
+                "date": "Thu, 02 Feb 2017"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -99663,9 +100014,15 @@
                 "date": "Mon, 01 Dec 2025"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] CBOT-小麥期貨價格 - MacroMicro",
                 "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9MM21jZkN6bE1raXo1dXh5SEJaNl9fdXVBNHBrN3VpRXFiejBHQ1JydjZYVW9xLUNnQ2Q5QXgwTm1rS0JleUc3Qm5qY1pqdVlrRmFmbEJXV0ZqX2dGcmVkcDdJUQ?oc=5",
                 "date": "Thu, 02 Feb 2017"
+=======
+                "title": "[新聞時事] 小麥期貨(WHEAT-F)8月12日上漲2.02%：你需要關注這些信息 - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOU2FLal9Rekh1WVhKejJIOTVxRGU3Uzc0emkxbENWZi10SlNscVBkSnRGMHpseVVNSHNEcHFDVzNwMFp4a0drNUFhNWU4cF9YR1F5b0F5TzR5THhEMHB6R20tOV9rV1B3SUxTTE4tM3pUTEczbEZkWGFLM0lwTU91cDZZSldleng3aEU3ZVNVc0lqYmlCTldvcGhR?oc=5",
+                "date": "Tue, 11 Aug 2026"
+>>>>>>> Stashed changes
               }
             ]
           }
@@ -102413,11 +102770,14 @@
                 "date": "Sat, 05 Jul 2025"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-13 06:16:20 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQZklGaDNPS3Y3LXFlLUhTZm9Ncm5FeUtmYjdYY0pRd25wX2ExeDlrZ05RWWNycGh0TUs3Vmk0TkxyUnB5cHBLNHBWUUhwVUdVTGNDTGVLQU50dFZVWFJSSlo5RndMS3Y2MV9Ma1YtblpiTkcwX0hMTmRHRFBGeElSa1NIYm1QUHJwTkJlNjNaWWNnZkE?oc=5",
                 "date": "Tue, 13 Oct 2026"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-27 06:15:02 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQYU02V2RNNUxGQ0ZXaGVMaGx5Y2tWQmRpYXFkZlBFUHBlemdGWnBka2JFMGpybDcxdnp3bElYWDN6MmE1MGt6ejl4clJXblZzM2tJTWtwVEpudDJMTGVXS1ltdk5LX1lrQmJ5Um1NTUw0ZUduMjhPcHdHdVpOMTljbm5kazdHY0R1WlFGTTRrMTlETGc?oc=5",
                 "date": "Tue, 27 Oct 2026"
@@ -102426,6 +102786,14 @@
                 "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-10-20 06:16:59 黃文章 發佈 - MoneyDJ",
                 "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQRlBDQTRWY2N5RE14eHJ2RjdQRzFZbGpma0dPUmtjcFB4NTI3VVZVUnNrYVdYLWFxU1lwMHBtTWtKM001VGUwTy12UHp5N192YzNhTklyYl8xYnZ2eENkOUNBV0VMWFVMYWRKVmtWb2JILTM5N0ZHczRkaGJtTkYzbWRFWU9qei1UN2dlQWxTWW0zNzg?oc=5",
                 "date": "Tue, 20 Oct 2026"
+<<<<<<< Updated upstream
+=======
+              },
+              {
+                "title": "[美國聯準會 (Fed)] MoneyDJ新聞 2026-11-11 07:29:06 黃智勤 發佈 - MoneyDJ",
+                "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQMDYxeC1fX1JyZlJQdUxZS1drNVpndTAtMXFxNTFxaExoVzA5eTVRNVh4RkNCSkRpUENGMlhqR2FhT0FGbUlldDZiOFR4ZkdoVGQ3a2ZkVVpmaU5PUGk0cGZjMkZWR1RFU2l2X01QeFZQV0dSaDV2MTZ0LXNoWEtzTXJuY3I0MHJnbnV2bFNEVEo1Tkk?oc=5",
+                "date": "Tue, 10 Nov 2026"
+>>>>>>> Stashed changes
               }
             ]
           },
@@ -105809,9 +106177,15 @@
                 "date": "Thu, 11 Jun 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 新台幣走勢預測，2026-2030年長期展望| EBC金融集團 - EBC Financial Group",
                 "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5BT05xaVJKdmRtbGxldzJxNnVkazUzVUhOUnVrSUdBQUFPV0ZLMHFXeHFwTEtPYkVlYm9FcnE0N1ZObTBDeVhObWotVDdTTmVFSldvcw?oc=5",
                 "date": "Thu, 02 Apr 2026"
+=======
+                "title": "[新聞時事] 美元/新台幣 (USDTWD=X) 過往股價及數據 - Yahoo 財經",
+                "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBabDJDQWhSaXk2bTF1RmpCTlpzUUNOVkNseEI2NHlaZHcxSUdaWWs0M2pxMXBETUhmSDlZR3Fab1d0dUZaS0F0bWVoUHUzdy1KRDFuRGxoaHBMYnFNVnJieWhXVG4?oc=5",
+                "date": "Mon, 02 Mar 2020"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[新聞時事] 美元降息預期反覆！2026美元匯率漲跌走勢預測及美元投資攻略 - Mitrade",
@@ -105819,31 +106193,54 @@
                 "date": "Mon, 11 May 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 【外匯好好玩】USDTWD、EURUSD霧煞煞？外匯報價一看就懂 - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPSmJZQzNqaUQtNkdRTkZnMi1sMUhrcGdhWXdnOVZUSTAwU1BDQm5zdUpoVS1KSEZZcGZCVDg0bUU0MHByU3ZJT0tUODQ5dmtEY2p5YlZqS1lwQjItYUxhSnVHRTljcEZYeHJRWWloeGt2OWtpdFZSUTZsS29COFBPTWJOc0xKWTRlSmFtMVVGNmFRMXR4UGpBWkMxUDUyQndTMVJhc1ZWMlFLdzJXd2w4X2dSaVlEQzRicFZ3YnRES0VTN0JBYjRpak5pRTg0ako1U2pMbXZialRSemVaVloxeDh6Q2Y1OFhuS2s5UjdNTnh2V2h5YXVqWENkZ2VqSlJhY2FfNTZETzNoOHBWbU9uRWhTY1dLMV9XRTB6Qi1TYU9KRzMt?oc=5",
                 "date": "Mon, 18 Mar 2019"
+=======
+                "title": "[新聞時事] 【台股收市】台股造好，台灣加權指數收升1.55% 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vRkVrN3A0ZzFaRUtja1BfbVhaejFSbjNya0g5UkpOblpkTVRtc2FkeENvbGoyUUNBUDZvTWJaMmRIcDRTemNJeUprQ2ZYdUwwOXZiNEhnVTl2cVRyUkM2WS1Ea2dEcmlMdnNFVm1HQlc?oc=5",
+                "date": "Fri, 13 Nov 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
               {
+<<<<<<< Updated upstream
+=======
+                "title": "[新聞時事] 新台幣走勢預測，2026-2030年長期展望| EBC金融集團 - EBC Financial Group",
+                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5BT05xaVJKdmRtbGxldzJxNnVkazUzVUhOUnVrSUdBQUFPV0ZLMHFXeHFwTEtPYkVlYm9FcnE0N1ZObTBDeVhObWotVDdTTmVFSldvcw?oc=5",
+                "date": "Thu, 02 Apr 2026"
+              },
+              {
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 外匯速報 - 美元/台幣(USDTWD) 大跌0.51%，報32.708元 - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1nUDBLNWhGSFBNeFYwNHNqbFhueExEeTZwMU9JMWg0WERKUFJseng4MVlMNWMybTExM1NuUHJmS2QtXzdzZWZvTUVYZzFkaDVIeTltSWYyTDZBeGctM1dTTXh5Wm4?oc=5",
                 "date": "Fri, 06 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 美元/新台幣 (USDTWD=X) 過往股價及數據 - Yahoo 財經",
                 "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBabDJDQWhSaXk2bTF1RmpCTlpzUUNOVkNseEI2NHlaZHcxSUdaWWs0M2pxMXBETUhmSDlZR3Fab1d0dUZaS0F0bWVoUHUzdy1KRDFuRGxoaHBMYnFNVnJieWhXVG4?oc=5",
                 "date": "Mon, 02 Mar 2020"
               },
               {
+=======
+>>>>>>> Stashed changes
                 "title": "[新聞時事] 外匯速報 - 美元/台幣(USDTWD) 大跌0.31%，報32.775元 - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5LQW9zZjhYSlU5aEd2M3hjWE5KcHR4UWZMWk9PN3B1ekkxWDNvb2J4OVpYZGNaRXZabE5WWjFwOU9POUoxWW5uSVdwX3VGd0Q0aThLNGY0RmcxVERiOU80dW92NzE?oc=5",
                 "date": "Fri, 06 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[新聞時事] 【台股收市】台股造好，台灣加權指數收升1.55% 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
                 "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vRkVrN3A0ZzFaRUtja1BfbVhaejFSbjNya0g5UkpOblpkTVRtc2FkeENvbGoyUUNBUDZvTWJaMmRIcDRTemNJeUprQ2ZYdUwwOXZiNEhnVTl2cVRyUkM2WS1Ea2dEcmlMdnNFVm1HQlc?oc=5",
                 "date": "Fri, 13 Nov 2026"
+=======
+                "title": "[新聞時事] 【外匯好好玩】USDTWD、EURUSD霧煞煞？外匯報價一看就懂 - Yahoo股市",
+                "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPSmJZQzNqaUQtNkdRTkZnMi1sMUhrcGdhWXdnOVZUSTAwU1BDQm5zdUpoVS1KSEZZcGZCVDg0bUU0MHByU3ZJT0tUODQ5dmtEY2p5YlZqS1lwQjItYUxhSnVHRTljcEZYeHJRWWloeGt2OWtpdFZSUTZsS29COFBPTWJOc0xKWTRlSmFtMVVGNmFRMXR4UGpBWkMxUDUyQndTMVJhc1ZWMlFLdzJXd2w4X2dSaVlEQzRicFZ3YnRES0VTN0JBYjRpak5pRTg0ako1U2pMbXZialRSemVaVloxeDh6Q2Y1OFhuS2s5UjdNTnh2V2h5YXVqWENkZ2VqSlJhY2FfNTZETzNoOHBWbU9uRWhTY1dLMV9XRTB6Qi1TYU9KRzMt?oc=5",
+                "date": "Mon, 18 Mar 2019"
+>>>>>>> Stashed changes
               }
             ]
           }
@@ -105877,9 +106274,15 @@
             "date": "Thu, 11 Jun 2026"
           },
           {
+<<<<<<< Updated upstream
             "title": "[新聞時事] 外匯速報 - 美元/台幣(USDTWD) 大跌0.51%，報32.708元 - TradingView",
             "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1nUDBLNWhGSFBNeFYwNHNqbFhueExEeTZwMU9JMWg0WERKUFJseng4MVlMNWMybTExM1NuUHJmS2QtXzdzZWZvTUVYZzFkaDVIeTltSWYyTDZBeGctM1dTTXh5Wm4?oc=5",
             "date": "Fri, 06 Nov 2026"
+=======
+            "title": "[新聞時事] 新台幣走勢預測，2026-2030年長期展望| EBC金融集團 - EBC Financial Group",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5BT05xaVJKdmRtbGxldzJxNnVkazUzVUhOUnVrSUdBQUFPV0ZLMHFXeHFwTEtPYkVlYm9FcnE0N1ZObTBDeVhObWotVDdTTmVFSldvcw?oc=5",
+            "date": "Thu, 02 Apr 2026"
+>>>>>>> Stashed changes
           }
         ]
       }
@@ -108909,9 +109312,15 @@
                 "date": "Sun, 26 Apr 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] 後年升破7！大摩：人民幣未來兩年有望升值 未來一年將象徵性降息10-20個基點 - 鉅亨網",
                 "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5hd2YwbTJvdUhheWZuLXJLajViWjFsU1NNSE1nNkM0M3I0NW9iM1RjcS14bUxJYS1fcmhKZm54VlQ3czQ2ODc1VjZIMzJZOVk?oc=5",
                 "date": "Wed, 19 Nov 2025"
+=======
+                "title": "[總經與供需] 人民幣(離岸) - MacroMicro",
+                "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1lZWRqNlhRS0szekk3bF94d2EtMld2MkMzYWJZZklVX3N1WTNYUmsyeVBEcGphaGZla2VfUHlXWllXTlF4a1hqRXpCaXQ0Z3BtM3A4MUlzMA?oc=5",
+                "date": "Thu, 21 Jan 2016"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -108926,9 +109335,15 @@
                 "date": "Tue, 13 Jan 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] 人民幣(離岸) - MacroMicro",
                 "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1lZWRqNlhRS0szekk3bF94d2EtMld2MkMzYWJZZklVX3N1WTNYUmsyeVBEcGphaGZla2VfUHlXWllXTlF4a1hqRXpCaXQ0Z3BtM3A4MUlzMA?oc=5",
                 "date": "Thu, 21 Jan 2016"
+=======
+                "title": "[總經與供需] 7.35→7.01！人民幣2025年強升收官 專家：2026年可望穩定升值 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE95ZkJpalhvYmhFTm1oVGRfMFFxZ0NfV0FLc1N1RjBWa0ZkN2x2UE43a0lMYUJ1OTljc01zcWtHQ05LZlBYelFVTEJlOUc1d0U?oc=5",
+                "date": "Tue, 30 Dec 2025"
+>>>>>>> Stashed changes
               },
               {
                 "title": "[總經與供需] 高盛︰北京容許人民幣「漸進升值」每年升3-5% 兌美元未來兩年見6.0、五年後見5.5 - 香港經濟日報HKET",
@@ -112275,8 +112690,13 @@
                 "date": "Mon, 28 Sep 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[總經與供需] EUR/USD 匯價預測：市場擔憂聯準會激進緊縮，推升美元 - www.tmgm.com",
                 "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPcEJHRjNMdVV1VElmUUk4RXBOVVBva2hVWktxUE1HdnAtWkFodkQ2WElPZkJZYXd2Qk52Sm5NVDVpZUw5cXAzd0JWMHNqVmJ5YzRVdmszUWFtQzl2RXQxQnhZSi0zZ01YQnppVElFX2RKb1VZOXVHNUt0eUV5RzZmR3VNeXVBOUd0djZmU3hDZmx1cElWOUVpVHdmbEMwdm1fSnNRaVFpOFJNUm13VW9LVU5oWno3RnhITTJkZmhXVkdUcDhrZThXd09MRElaby1uWWJyTWNn?oc=5",
+=======
+                "title": "[總經與供需] 美國通膨高於預期，推升聯準會升息預期，歐元跌破1.1200 - www.tmgm.com",
+                "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNaDlTR3FaRXhvUG9zMG10QUVia2YyeDdSOWJoTHJsdm53OWRfeTdvejFCNUlOX0lDS1dwb3d2SDRNZDlnemRpQUx0NnpmR185eVRiLWw5VGxGcXFpSmdmNmF3MUNIOGpDV3F4QXo0WkhyUmx3SXFkczl4Mm5rTksyS3licVgyMUtNSnFkWEwwOFlrbkZUT3djd1NDUHBDZGVHNW9yTi1BSEtDbzRoQ1A1THh4S0ZzZFlwZ1JZTlVNdFBsQzN0NWZDSF9ZM2p2bkxtNG9Z?oc=5",
+>>>>>>> Stashed changes
                 "date": "Tue, 10 Nov 2026"
               },
               {
@@ -118880,6 +119300,7 @@
                 "date": "Fri, 16 Oct 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[英國央行 / 聯準會] 美元全面走弱，英鎊觸及盤中高點1.3420 - www.tmgm.com",
                 "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOZ243VHhjRUdKUEZHUzlFOERiajZFRVZYb21PQk9Zb215aHZTZWZMV3JpZlVzeC1WelZzZGs2UXNOUWJCZFYtLXdFTllPZVZlN0x5bllacHF4Wi15czNORnlsMXpxUkdMQ05UWllUNWJ4TTc4dkZUUEhLRXN2R2l4TENfZWNaZ1dHM0Y0RFNjYVcyN0didUxIUW5BYkMxWmhtTkRkOF8ycDdDak1zUFZES2kzUTNyRzdRMkV3Qlg1eDRFTkg3elNRRlg2Q2Zna2xDVXVCZS1TakxIU3BpTU91ZQ?oc=5",
                 "date": "Tue, 10 Nov 2026"
@@ -118888,6 +119309,16 @@
                 "title": "[英國央行 / 聯準會] 英鎊/美元(GBPUSD)10月20日上漲0.51%：原因揭秘 - TradingKey",
                 "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNSEVlMjg0M3VfWU5adllxSHVib3pEbkxQUmM2R1d3dEFZUWFQcXkxVXR5VzFDTkUzUmxZYlk2RU4yMTJVRzhPaHJfMUVER21INHRsOEgxSXNoOXdobmFDR0tZVmRzbHJSVTlsMmk2VmJmdUZmNl9PaVVJb1FLbmZNRWsxdWdFNnVXVmJaald1RTJpd21neURHaw?oc=5",
                 "date": "Tue, 20 Oct 2026"
+=======
+                "title": "[英國央行 / 聯準會] 2026英鎊匯率走勢分析：英國央行政策如何影響英鎊未來市場？ - EBC Financial Group",
+                "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9qbnpQOTNpTTNOX3BwZWNRYUJ3OE9rQmFKQ1hXRndndFd0SFhRcm1VaW5LOUtFVjRLTkJ5T2x2bGxXZ0tfMWlUUVAyTXU4N3RidU81Mg?oc=5",
+                "date": "Fri, 24 Jul 2026"
+              },
+              {
+                "title": "[英國央行 / 聯準會] 英鎊/美元(GBPUSD)9月16日波動加劇：這些因素值得關注 - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPWGNocEh4Qkh1VnZYa1lPNU4xNkluRHhqT1JYal9oYjRZMWtQU2pXdTB5LURLak5lc2lONDRXYndibUIyMXRPTnpsNzg1SlI4QkI4WnNnZGF2THVVcHk4YVhJN19QY0M0T0JoNmt5d0xTZTdNWjQtd2Q1T21PUVRBSFhSN2oyRGJvZEp5SGtKN2NaQURRX2JtaQ?oc=5",
+                "date": "Wed, 16 Sep 2026"
+>>>>>>> Stashed changes
               }
             ],
             "bearish": [
@@ -118902,6 +119333,7 @@
                 "date": "Fri, 06 Nov 2026"
               },
               {
+<<<<<<< Updated upstream
                 "title": "[英國央行 / 聯準會] 英國央行利率決議來襲！英鎊匯率上漲or下跌？ - Mitrade",
                 "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAwU2QzN0N2ZEk4RS1pV1I3TU1nZ2FoeTBXQzhHVDYyZnJMVmFyQi02TkZiX3NCRUdWbVotM3VQMVlocE5rMTBCdmw1UHBLNEpBakpqMEdQZFF3aUY4VE5sTUhIWkFyUXRJRFhJY09ucVh2R083bEE?oc=5",
                 "date": "Wed, 29 Jul 2026"
@@ -118910,6 +119342,16 @@
                 "title": "[英國央行 / 聯準會] 英鎊/美元(GBPUSD)9月16日波動加劇：這些因素值得關注 - TradingKey",
                 "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPWGNocEh4Qkh1VnZYa1lPNU4xNkluRHhqT1JYal9oYjRZMWtQU2pXdTB5LURLak5lc2lONDRXYndibUIyMXRPTnpsNzg1SlI4QkI4WnNnZGF2THVVcHk4YVhJN19QY0M0T0JoNmt5d0xTZTdNWjQtd2Q1T21PUVRBSFhSN2oyRGJvZEp5SGtKN2NaQURRX2JtaQ?oc=5",
                 "date": "Wed, 16 Sep 2026"
+=======
+                "title": "[英國央行 / 聯準會] 美元全面走弱，英鎊觸及盤中高點1.3420 - www.tmgm.com",
+                "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOZ243VHhjRUdKUEZHUzlFOERiajZFRVZYb21PQk9Zb215aHZTZWZMV3JpZlVzeC1WelZzZGs2UXNOUWJCZFYtLXdFTllPZVZlN0x5bllacHF4Wi15czNORnlsMXpxUkdMQ05UWllUNWJ4TTc4dkZUUEhLRXN2R2l4TENfZWNaZ1dHM0Y0RFNjYVcyN0didUxIUW5BYkMxWmhtTkRkOF8ycDdDak1zUFZES2kzUTNyRzdRMkV3Qlg1eDRFTkg3elNRRlg2Q2Zna2xDVXVCZS1TakxIU3BpTU91ZQ?oc=5",
+                "date": "Tue, 10 Nov 2026"
+              },
+              {
+                "title": "[英國央行 / 聯準會] 英國央行利率決議來襲！英鎊匯率上漲or下跌？ - Mitrade",
+                "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAwU2QzN0N2ZEk4RS1pV1I3TU1nZ2FoeTBXQzhHVDYyZnJMVmFyQi02TkZiX3NCRUdWbVotM3VQMVlocE5rMTBCdmw1UHBLNEpBakpqMEdQZFF3aUY4VE5sTUhIWkFyUXRJRFhJY09ucVh2R083bEE?oc=5",
+                "date": "Wed, 29 Jul 2026"
+>>>>>>> Stashed changes
               }
             ]
           },
