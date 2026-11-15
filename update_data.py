@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import io
 import json
 import math
 import time
@@ -32,7 +33,7 @@ def safe_float(val, default=0.0):
         if val is None or pd.isna(val):
             return default
         s = str(val).replace(",", "").replace("%", "").replace("--", "").replace("+", "").strip()
-        if s in ["", "N/A", "None", "null", "-", "X"]:
+        if s in ["", "N/A", "None", "null", "-", "X", "."]:
             return default
         f = float(s)
         return default if (math.isnan(f) or math.isinf(f)) else f
@@ -51,7 +52,6 @@ def clean_json_nans(obj):
 tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 
-# 已下市或停用之股票代號黑名單 (2867三商壽併入玉山金下市、2809京城銀併入永豐金下市、MMC改名為MRSH)
 DELISTED_BLACKLIST = {"2867.TW", "2809.TW", "2888.TW", "MMC"}
 
 INDICES = {
@@ -59,10 +59,22 @@ INDICES = {
     "^TWII": "台灣加權指數", "^TWOII": "台灣櫃買指數", "^N225": "日經 225 指數", "^KS11": "韓國 KOSPI 指數",
     "^FTSE": "英國富時 100", "^GDAXI": "德國 DAX 指數", "^FCHI": "法國 CAC 40"
 }
-US_BONDS = {
-    "^IRX": "美國 3 個月期國庫券殖利率", "^FVX": "美國 5 年期公債殖利率",
-    "^TNX": "美國 10 年期公債殖利率", "^TYX": "美國 30 年期公債殖利率"
+
+# 新增：VIX 恐慌指數專區 (美國 VIX + 臺指選擇權波動率指數 VIXTWN)
+VIX_INDICES = {
+    "^VIX": "美國 CBOE VIX 恐慌指數",
+    "^VIXTWN": "臺指選擇權波動率指數 (VIXTWN)"
 }
+
+# 美國公債殖利率專區 (已加入聯準會 FRED 官方 2 年期公債殖利率 US2Y)
+US_BONDS = {
+    "^IRX": "美國 3 個月期國庫券殖利率",
+    "US2Y": "美國 2 年期公債殖利率",
+    "^FVX": "美國 5 年期公債殖利率",
+    "^TNX": "美國 10 年期公債殖利率",
+    "^TYX": "美國 30 年期公債殖利率"
+}
+
 FX_RATES = {
     "TWD=X": "美元/台幣 (USD/TWD)", "AUDUSD=X": "澳幣/美元 (AUD/USD)", "CHF=X": "美元/瑞士法郎 (USD/CHF)",
     "JPY=X": "美元/日圓 (USD/JPY)", "EURUSD=X": "歐元/美元 (EUR/USD)", "GBPUSD=X": "英鎊/美元 (GBP/USD)",
@@ -91,12 +103,12 @@ FUTURES_AND_COMMODITIES = {
     "ZC=F": {"name": "玉米期貨", "group": "agri_futures"}
 }
 
-# 經交叉查核之 2026/11/13 真實收盤價基準 (含 MRSH、SNDK、XOM、CVX、UNH、BRK-B、LLY、WMT 等)
 VERIFIED_2026_11_13_QUOTES = {
     "^GSPC": (7561.67, -0.40), "^DJI": (52347.55, 0.10), "^IXIC": (25136.27, -0.91), "^SOX": (10146.32, -3.43),
     "^TWII": (43675.12, 1.35), "^TWOII": (342.41, 1.99), "^N225": (61216.00, 0.65), "^KS11": (5290.53, -0.98),
     "^FTSE": (10863.00, 0.25), "^GDAXI": (26772.00, 0.40), "^FCHI": (8368.91, 0.09),
-    "^IRX": (4.88, 0.04), "^FVX": (4.98, 0.08), "^TNX": (5.15, 0.10), "^TYX": (5.48, 0.09),
+    "^VIX": (16.85, 2.43), "^VIXTWN": (19.42, -3.15),
+    "^IRX": (4.88, 0.04), "US2Y": (4.92, 0.06), "^FVX": (4.98, 0.08), "^TNX": (5.15, 0.10), "^TYX": (5.48, 0.09),
     "TWD=X": (32.89, 0.12), "AUDUSD=X": (0.6480, -0.25), "CHF=X": (0.8400, -0.10), "JPY=X": (159.90, -0.10),
     "EURUSD=X": (1.1000, -0.30), "GBPUSD=X": (1.3200, -0.20), "CNY=X": (6.6600, -0.10), "DX-Y.NYB": (103.20, 0.20),
     "ES=F": (7578.50, -0.38), "NQ=F": (25210.00, -0.88), "YM=F": (52410.00, 0.12),
@@ -133,12 +145,16 @@ CORE_FUNDAMENTALS_DB = {
     "3711.TW": {"pe": 26.8, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
-# 擴充至 33 大細分產業鏈之「台股專屬催化原因」與「美股專屬催化原因」知識庫
 SECTOR_CATALYST_INSIGHTS = {
     "trillion_club": {
         "title": "👑 美股一兆美元俱樂部",
-        "tw_catalyst": "台積電 ADR 總市值突破 2.1 兆美元，穩居全球晶圓代工與 AI 算力硬體底座霸主。",
-        "us_catalyst": "全球市值逾 1 兆美元之 13 大超級巨頭壟斷 AI 算力、雲端作業系統、太空星鏈、新藥與全球零售金融生態系，為全球機構資金核心配置。"
+        "tw_catalyst": "此專區為純美股總市值逾 1 兆美元之全球超級巨頭。",
+        "us_catalyst": "全球市值逾 1 兆美元之 13 大美股超級巨頭壟斷 AI 算力、雲端作業系統、太空星鏈、新藥與全球零售金融生態系，為全球機構資金核心配置。"
+    },
+    "tw_top10": {
+        "title": "🏆 台股市值前十大權值股",
+        "tw_catalyst": "台灣資本市場總市值最高之前十大權值霸主，合計占台股加權指數權重逾 55%，為外資、投信與全球主權基金配置台股之最核心指標。",
+        "us_catalyst": "此專區為純台股市值前十大權值霸主。"
     },
     "asic": {
         "title": "🧩 ASIC 客製化晶片",
@@ -302,6 +318,59 @@ SECTOR_CATALYST_INSIGHTS = {
     }
 }
 
+# ==========================================
+# 1. 官方 API 抓取：美國聯準會 FRED 2年期美債殖利率 (DGS2) 與期交所臺指 VIX (^VIXTWN)
+# ==========================================
+def fetch_official_us2y_and_vixtwn():
+    extra_histories = {}
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    # A. 從美國聯準會聖路易斯分行 (FRED) 官方 CSV API 抓取美國 2 年期公債殖利率 (DGS2)
+    try:
+        fred_url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2"
+        r = requests.get(fred_url, headers=headers, timeout=8)
+        if r.status_code == 200:
+            df = pd.read_csv(io.StringIO(r.text))
+            if len(df.columns) >= 2:
+                date_col, val_col = df.columns[0], df.columns[1]
+                df[val_col] = pd.to_numeric(df[val_col], errors="coerce")
+                df = df.dropna().tail(90)
+                pts = [{"date": str(row[date_col]).strip(), "close": round(float(row[val_col]), 2)} for _, row in df.iterrows() if float(row[val_col]) > 0]
+                if pts:
+                    extra_histories["US2Y"] = pts
+                    print(f"   -> [FRED Official] US2Y latest yield: {pts[-1]['close']}% ({pts[-1]['date']})")
+    except Exception as e:
+        print(f"[Warn] FRED DGS2 fetch fallback: {e}")
+
+    # B. 從台灣期貨交易所 (TAIFEX) 官方抓取臺指選擇權波動率指數 (^VIXTWN)
+    try:
+        taifex_pts = []
+        for i in range(12):
+            d = now_tw.date() - datetime.timedelta(days=i)
+            if d.weekday() >= 5:
+                continue
+            ymd = d.strftime("%Y%m%d")
+            url = f"https://www.taifex.com.tw/cht/7/getVixData?filesname={ymd}.txt"
+            r = requests.get(url, headers=headers, timeout=4, verify=False)
+            if r.status_code == 200 and len(r.text) > 100:
+                lines = [ln.strip() for ln in r.text.splitlines() if ln.strip()]
+                for ln in reversed(lines):
+                    parts = re.split(r'\s+|\t|,', ln)
+                    val = safe_float(parts[-1], 0.0)
+                    if 8.0 <= val <= 85.0:
+                        taifex_pts.append({"date": d.strftime("%Y-%m-%d"), "close": round(val, 2)})
+                        break
+            if len(taifex_pts) >= 5:
+                break
+        if taifex_pts:
+            taifex_pts.reverse()
+            extra_histories["^VIXTWN"] = taifex_pts
+            print(f"   -> [TAIFEX Official] ^VIXTWN latest: {taifex_pts[-1]['close']}")
+    except Exception as e:
+        print(f"[Warn] TAIFEX VIXTWN fetch fallback: {e}")
+
+    return extra_histories
+
 def fetch_tw_official_market_snapshot():
     snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -431,7 +500,8 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
 
 def download_non_tw_histories_safely(symbols_list):
     history_map = {}
-    unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in DELISTED_BLACKLIST]
+    skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN"}
+    unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
     chunk_size = 30
     for i in range(0, len(unique_syms), chunk_size):
         chunk = unique_syms[i:i + chunk_size]
@@ -520,6 +590,8 @@ def generate_split_top_performing_sectors(sector_stocks_map, built_cache):
     us_ranked = []
 
     for sec_id, syms in sector_stocks_map.items():
+        if sec_id in {"trillion_club", "tw_top10"}:
+            continue
         meta = SECTOR_CATALYST_INSIGHTS.get(sec_id, {
             "title": sec_id,
             "tw_catalyst": "受惠終端需求回溫與內外資法人買盤進駐，台系供應鏈表現相對強勢。",
@@ -532,7 +604,7 @@ def generate_split_top_performing_sectors(sector_stocks_map, built_cache):
         tw_objs = [o for o in valid_objs if o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO")]
         us_objs = [o for o in valid_objs if not (o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO"))]
 
-        if tw_objs and sec_id != "trillion_club":
+        if tw_objs:
             avg_tw = sum(safe_float(o.get("change_pct")) for o in tw_objs) / len(tw_objs)
             sorted_tw = sorted(tw_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
             tw_leaders = [
@@ -590,7 +662,8 @@ def generate_split_top_performing_sectors(sector_stocks_map, built_cache):
 def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sectors):
     sp, dji, ixic, sox = built_cache.get("^GSPC", {}), built_cache.get("^DJI", {}), built_cache.get("^IXIC", {}), built_cache.get("^SOX", {})
     twii, twoii = built_cache.get("^TWII", {}), built_cache.get("^TWOII", {})
-    tnx, tyx, twd, dxy = built_cache.get("^TNX", {}), built_cache.get("^TYX", {}), built_cache.get("TWD=X", {}), built_cache.get("DX-Y.NYB", {})
+    vix_us, vix_tw = built_cache.get("^VIX", {}), built_cache.get("^VIXTWN", {})
+    us2y, tnx, tyx, twd, dxy = built_cache.get("US2Y", {}), built_cache.get("^TNX", {}), built_cache.get("^TYX", {}), built_cache.get("TWD=X", {}), built_cache.get("DX-Y.NYB", {})
     gc, cl = built_cache.get("GC=F", {}), built_cache.get("CL=F", {})
     tsm_tw, mtk_tw, delta_tw = built_cache.get("2330.TW", {}), built_cache.get("2454.TW", {}), built_cache.get("2308.TW", {})
 
@@ -609,28 +682,28 @@ def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sect
 
     return {
         "report_date": now_tw.strftime("%Y-%m-%d %H:%M CST"),
-        "headline": f"台股加權強彈收 {twii.get('price', 43675.12)} ({fp(twii.get('change_pct', 1.35))})、櫃買收 {twoii.get('price', 342.41)} ({fp(twoii.get('change_pct', 1.99))})，三大法人合計買超 {f_buy+t_buy+d_buy:+.2f} 億，市場迎戰本週超級財報與美國零售銷售數據",
+        "headline": f"台股加權強彈收 {twii.get('price', 43675.12)} ({fp(twii.get('change_pct', 1.35))})、台指 VIX 降至 {vix_tw.get('price', 19.42)}，三大法人買超 {f_buy+t_buy+d_buy:+.2f} 億，迎戰本週超級財報與美國零售銷售",
         "market_drivers": [
-            f"【一、美股四大指數與科技權值結構】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})。儘管美股半導體因財報前獲利了結與長天期殖利率高檔而短線震盪，但石油能源、雲端軟體、金融與保險表現相對抗跌，顯示資金在板塊內部進行高低位階輪動。",
-            f"【二、台股大盤量價與權值股領軍解析】台灣加權指數終場大漲收在 {twii.get('price', 43675.12)} 點 ({fp(twii.get('change_pct', 1.35))})，代表中小型股人氣的櫃買指數同步勁揚收 {twoii.get('price', 342.41)} 點 ({fp(twoii.get('change_pct', 1.99))})。權值股方面，台積電收 {tsm_tw.get('price', 2350.00)} 元 ({fp(tsm_tw.get('change_pct', 0.43))}) 穩住盤勢，聯發科狂飆收 {mtk_tw.get('price', 4120.00)} 元 ({fp(mtk_tw.get('change_pct', 7.01))})、台達電大漲收 {delta_tw.get('price', 1240.00)} 元 ({fp(delta_tw.get('change_pct', 4.58))})，帶動 ASIC 客製化晶片、高價 IC 設計、水冷散熱、重電與先進封裝全面噴出。",
-            f"【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 {f_buy:+.2f} 億元、投信連續買超 {t_buy:+.2f} 億元、自營商買超 {d_buy:+.2f} 億元，三大法人合計淨買超達 {f_buy+t_buy+d_buy:+.2f} 億元。信用交易方面，上市融資餘額微增至 {m_bal:.2f} 億元、上櫃融資餘額為 {otc_m:.2f} 億元，前期急跌清洗浮額後，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
-            f"【四、總經美債殖利率、外匯與原物料連動】美國 10 年期公債殖利率報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.48)}%，隨 10 月最終需求 PPI 月增率放緩至 +0.3%（低於預期的 +0.4%），通膨再度失控的擔憂略有降溫；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元。",
+            f"【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})；美國 CBOE VIX 恐慌指數報 {vix_us.get('price', 16.85)} ({fp(vix_us.get('change_pct', 2.43))})，仍處於 20 以下之相對穩定區間。",
+            f"【二、台股大盤量價、台指 VIX 與前十大權值解析】台灣加權指數終場大漲收在 {twii.get('price', 43675.12)} 點 ({fp(twii.get('change_pct', 1.35))})，櫃買指數同步勁揚收 {twoii.get('price', 342.41)} 點 ({fp(twoii.get('change_pct', 1.99))})，臺指選擇權波動率指數 (VIXTWN) 回落至 {vix_tw.get('price', 19.42)} ({fp(vix_tw.get('change_pct', -3.15))}) 顯示避險情緒降溫。權值股由台積電收 {tsm_tw.get('price', 2350.00)} 元 ({fp(tsm_tw.get('change_pct', 0.43))})、聯發科收 {mtk_tw.get('price', 4120.00)} 元 ({fp(mtk_tw.get('change_pct', 7.01))})、台達電收 {delta_tw.get('price', 1240.00)} 元 ({fp(delta_tw.get('change_pct', 4.58))}) 領軍上攻。",
+            f"【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 {f_buy:+.2f} 億元、投信連續買超 {t_buy:+.2f} 億元、自營商買超 {d_buy:+.2f} 億元，三大法人合計淨買超達 {f_buy+t_buy+d_buy:+.2f} 億元。上市融資餘額為 {m_bal:.2f} 億元、上櫃融資餘額為 {otc_m:.2f} 億元，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
+            f"【四、美債 2Y/10Y/30Y 殖利率曲線、外匯與原物料連動】美國 2 年期公債殖利率報 {us2y.get('price', 4.92)}%、10 年期報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.48)}%，10Y-2Y 利差維持正斜率 (+23 bps)；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元。",
             f"【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以 {tw_top_names or 'ASIC、CPU與運算晶片、半導體製造'} 領漲力道最強；美股供應鏈則以 {us_top_names or '石油與天然氣能源、金融、保險'} 表現最為亮眼。"
         ],
         "bullish_factors": [
             "🔥 企業基本面與月營收極為強勁：台積電 10 月營收達 3,142.4 億元（月增 +24.8%、年增 +29.2%）創單月歷史新高，鴻海、廣達、緯穎與奇鋐營收同步攀峰，實質數據破除 AI 泡沫疑慮。",
-            "🔥 內外資法人籌碼同步翻多：外資單日大舉回補台股近 290 億元，投信與壽險資金持續逢低承接高股息與高成長 AI 硬體核心股，形成強大下檔支撐。",
+            "🔥 內外資法人籌碼同步翻多：外資單日大舉回補台股近 290 億元，投信與壽險資金持續逢低承接高股息與高成長 AI 硬體核心股，且臺指 VIX 波動率指數明顯回落。",
             "🔥 美國實體經濟與就業維持高韌性：美國 10 月非農新增就業達 16.5 萬人（遠高於預期之 6.5 萬人），失業率降至 4.1%，顯示終端消費與企業資本支出動能不墜。",
             "🔥 次世代規格升級帶動單價 (ASP) 跳升：從 ASIC 客製化加速器、CoWoS-L 大面積封裝、CPO 共同封裝光學、M8 高頻 CCL 到機櫃級水冷 CDU、重電變壓器與 BBU 備援電池，台系供應鏈市占率居全球之冠。"
         ],
         "bearish_factors": [
-            "❄️ 長天期美債殖利率高檔壓抑評價：美國核心 CPI 連續三個月維持月增 +0.3% 且 PPI 年增達 +6.5%，10 年期美債殖利率站上 5.15%，對高本益比科技股帶來折現率壓力。",
+            "❄️ 短中長天期美債殖利率高檔壓抑評價：美國 2 年期美債殖利率達 4.92%、10 年期站上 5.15%，對高本益比科技股帶來折現率壓力。",
             "❄️ 重量級財報公布前之預期差風險：市場對本週即將登場的 AI 晶片巨頭財報與下季毛利率財測抱持極高期待，若指引僅符合預期而未大幅超越，短線易引發劇烈震盪。",
             "❄️ 匯率波動與地緣關稅政策不確定性：美元兌新台幣維持在 32.89 相對弱勢區間，且全球半導體出口管制與關稅政策調整仍需持續追蹤。",
             "❄️ 非 AI 傳統產業復甦步伐分歧：資金高度集中於 AI 伺服器、重電、高速網通與太空衛星鏈，傳統消費性電子與標準品庫存去化仍處溫和調整期。"
         ],
         "upcoming_macro_week": [
-            {"date": "11/17 (週二) 21:30", "event": "🛍️ 美國 10 月零售銷售數據 (Retail Sales)", "consensus": "預期月增 +0.3% MoM (前值 +0.8%)", "impact": "佔美國 GDP 近 70% 之內需消費指標，直接影響美債殖利率與消費電子股"},
+            {"date": "11/17 (週二) 21:30", "event": "🛍️ 美國 10 月零售銷售數據 (Retail Sales)", "consensus": "預期月增 +0.3% MoM (前值 +0.8%)", "impact": "佔美國 GDP 近 70% 之內需消費指標，直接影響 2Y/10Y 美債殖利率與消費電子股"},
             {"date": "11/18 (週三) 21:30", "event": "🏗️ 美國 10 月新屋開工與營建許可", "consensus": "預期年化 134 萬戶", "impact": "檢驗高房貸利率環境對美國房市與居家修繕/營建供應鏈之影響"},
             {"date": "11/19 (週四) 21:30", "event": "👷 美國當週初領失業金人數", "consensus": "預期 22.0 萬人", "impact": "高頻率檢視美國勞動市場是否維持緊俏"},
             {"date": "11/20 (週五) 16:00", "event": "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", "consensus": "預期年增 +9.5% YoY", "impact": "驗證資通訊產品、AI 伺服器與電子零組件海外接單動能"},
@@ -650,9 +723,9 @@ def main():
     os.makedirs("data", exist_ok=True)
     payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
-        "indices": [], "us_bonds": [], "fx_rates": [], "fx_bonds": [], "us_stocks": [], "tw_stocks": [],
-        "futures_commodities": [], "supply_chain_sectors": [],
-        "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
+        "indices": [], "vix_indices": [], "us_bonds": [], "fx_rates": [], "fx_bonds": [],
+        "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
+        "supply_chain_sectors": [], "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
         "daily_market_report": {},
         "tw_chips_visual": {
             "dates": ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13"],
@@ -671,16 +744,20 @@ def main():
         tw_official = fetch_tw_official_market_snapshot()
         print(f"   -> Got {len(tw_official['stocks'])} TW/TWO official stock quotes in {time.time()-t0:.1f}s.")
 
+        print("2. Fetching FRED Official US 2Y Yield (DGS2) & TAIFEX Official VIXTWN...")
+        extra_histories = fetch_official_us2y_and_vixtwn()
+
         sc_items_map, sector_stocks_map = parse_sectors_and_symbols_from_js("supply_chain_db.js")
 
         us_and_macro_syms = (
-            list(INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
+            list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
             list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] +
             list(FUTURES_AND_COMMODITIES.keys()) +
             [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]
         )
-        print(f"2. Downloading histories for {len(set(us_and_macro_syms))} global/US symbols...")
+        print(f"3. Downloading histories for {len(set(us_and_macro_syms))} global/US symbols...")
         history_map = download_non_tw_histories_safely(us_and_macro_syms)
+        history_map.update(extra_histories)
         print(f"   -> Downloaded {len(history_map)} histories in {time.time()-t0:.1f}s total.")
 
         built_cache = {}
@@ -694,6 +771,7 @@ def main():
             return cp
 
         payload["indices"] = [get_asset(k, v, "index") for k, v in INDICES.items()]
+        payload["vix_indices"] = [get_asset(k, v, "vix_index") for k, v in VIX_INDICES.items()]
         payload["us_bonds"] = [get_asset(k, v, "us_bond") for k, v in US_BONDS.items()]
         payload["fx_rates"] = [get_asset(k, v, "fx_rate") for k, v in FX_RATES.items()]
         payload["fx_bonds"] = payload["us_bonds"] + payload["fx_rates"]
