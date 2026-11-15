@@ -242,9 +242,7 @@
       </div>
     </section>
 
-    <!-- ========================================================================= -->
-    <!-- 專區 9 (全新)：視窗一最下方「每日市場深度報告 (今日漲跌主因 / 利多利空 / 未來一週總經與重量級財報預告)」 -->
-    <!-- ========================================================================= -->
+    <!-- 專區 9：視窗一最下方「每日市場深度報告 (今日漲跌主因 / 利多利空 / 未來一週總經與重量級財報預告)」 -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
@@ -257,13 +255,11 @@
         <span id="daily-report-date" class="text-xs text-slate-400 mono shrink-0 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800"></span>
       </div>
 
-      <!-- 第一部分：今日市場漲跌核心原因拆解 -->
       <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
         <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌核心原因剖析</h3>
         <ul id="daily-report-drivers" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
       </div>
 
-      <!-- 第二部分：市場結構性利多 vs 利空因素對照 -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="bg-slate-900/75 border border-emerald-500/25 rounded-xl p-4">
           <h3 class="text-sm font-bold text-emerald-300 mb-3 pb-2 border-b border-slate-800">🔥 二、當前市場關鍵利多支撐因素</h3>
@@ -275,7 +271,6 @@
         </div>
       </div>
 
-      <!-- 第三部分：未來一週重要總經數據公布日程 vs 重量級大公司財報法說預告 -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="bg-slate-900/75 border border-indigo-500/25 rounded-xl p-4">
           <h3 class="text-sm font-bold text-indigo-300 mb-3 pb-2 border-b border-slate-800">📅 四、未來一週重要經濟數據公布預告</h3>
@@ -290,9 +285,7 @@
 
   </main>
 
-  <!-- ========================================================================= -->
   <!-- 視窗二 (獨立切換視窗)：26 大細分產業鏈上中下游深度追蹤室 (#view-supply-chain) -->
-  <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
     <div class="card-bg rounded-xl p-5 border border-indigo-500/40 shadow-xl">
@@ -500,7 +493,6 @@
       short_balance: [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
     };
 
-    // 解決美股與核心資產在 market_data.json 尚未抓完前顯示「同步中...」的保底快取字典 (一旦抓到最新 JSON 或即時報價會立即被覆蓋)
     const FALLBACK_QUOTE_SNAPSHOT = {
       "^GSPC": [5985.38, 0.42], "^DJI": [43958.19, 0.31], "^IXIC": [19286.78, 0.65], "^SOX": [5182.45, 1.15],
       "^TWII": [44257.15, 1.48], "^TWOII": [265.84, 0.86], "^N225": [39149.43, 0.28], "^KS11": [2482.57, -0.35],
@@ -601,9 +593,9 @@
       }
     ];
 
-    // 渲染視窗一最下方「每日市場深度報告」
+    // 渲染視窗一最下方「每日市場深度報告」（自動優先讀取後端 market_data.json 產出的最新報告）
     function renderDailyMarketReport() {
-      const rep = window.DAILY_MARKET_REPORT_DATA;
+      const rep = (globalMarketData && globalMarketData.daily_market_report && globalMarketData.daily_market_report.headline) ? globalMarketData.daily_market_report : window.DAILY_MARKET_REPORT_DATA;
       if (!rep) return;
       document.getElementById("daily-report-date").textContent = `報告日期：${rep.report_date}`;
       document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
@@ -805,7 +797,6 @@
       return Number(val).toFixed(dec);
     }
 
-    // 視窗二：讀取 supply_chain_db.js 內的 26 大產業鏈
     function switchScMarketFilter(mode) {
       currentScMarket = mode;
       ["TW", "US", "SPLIT"].forEach(m => {
@@ -2314,13 +2305,9 @@
       renderMacroCountdowns();
       setInterval(renderMacroCountdowns, 1000);
 
-      // 1. 0.01 秒內立即渲染全站（含美股與 26 大產業鏈保底真實收盤價、每日市場深度報告）
       renderAllSections(getInitialDashboardStructure(), false);
-
-      // 2. 載入 GitHub Actions 產出的 data/market_data.json
       await tryLoadMarketJson();
 
-      // 3. 背景自動抓取主標的 K 線走勢
       if (!allAssetsMap[currentAssetSymbol]?.history?.length) {
         fetchSingleYahooQuoteAndHistory(currentAssetSymbol);
       }
