@@ -1,13 +1,5 @@
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  "last_updated": "2026-11-15 11:30:26 CST",
-=======
-  "last_updated": "2026-11-15 11:30:43 CST",
->>>>>>> Stashed changes
-=======
-  "last_updated": "2026-11-15 11:32:00 CST",
->>>>>>> Stashed changes
+  "last_updated": "2026-11-15 11:53:50 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -10447,13 +10439,12 @@
       "name": "美國 3 個月期國庫券殖利率",
       "asset_type": "us_bond",
       "future_group": null,
-      "price": 0.0,
-      "prev_close": 0.0,
-      "change": 0.0,
-      "change_pct": 0.0,
+      "price": 4.12,
+      "prev_close": 4.13,
+      "change": -0.01,
+      "change_pct": -0.24,
       "ext_session": null,
       "intraday": [],
-<<<<<<< Updated upstream
       "history": [
         {
           "date": "2025-11-13",
@@ -11464,9 +11455,6 @@
           "close": 4.12
         }
       ],
-=======
-      "history": [],
->>>>>>> Stashed changes
       "fundamentals": {
         "pe": "N/A",
         "forward_pe": "N/A",
@@ -23267,13 +23255,12 @@
       "name": "美國 3 個月期國庫券殖利率",
       "asset_type": "us_bond",
       "future_group": null,
-      "price": 0.0,
-      "prev_close": 0.0,
-      "change": 0.0,
-      "change_pct": 0.0,
+      "price": 4.12,
+      "prev_close": 4.13,
+      "change": -0.01,
+      "change_pct": -0.24,
       "ext_session": null,
       "intraday": [],
-<<<<<<< Updated upstream
       "history": [
         {
           "date": "2025-11-13",
@@ -24284,9 +24271,6 @@
           "close": 4.12
         }
       ],
-=======
-      "history": [],
->>>>>>> Stashed changes
       "fundamentals": {
         "pe": "N/A",
         "forward_pe": "N/A",
@@ -36126,7 +36110,7 @@
         },
         {
           "date": "2025-11-25",
-          "close": 177.39
+          "close": 177.4
         },
         {
           "date": "2025-11-26",
@@ -43391,7 +43375,7 @@
       ],
       "fundamentals": {
         "pe": 44.32,
-        "forward_pe": 17.83,
+        "forward_pe": 17.87,
         "eps": 7.83,
         "gross_margin": "75.52%",
         "operating_margin": "48.81%",
@@ -44574,7 +44558,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.25
+          "close": 271.24
         },
         {
           "date": "2025-12-19",
@@ -46535,7 +46519,7 @@
       ],
       "fundamentals": {
         "pe": 27.34,
-        "forward_pe": 21.66,
+        "forward_pe": 21.65,
         "eps": 19.16,
         "gross_margin": "67.66%",
         "operating_margin": "47.1%",
@@ -103107,15 +103091,7 @@
                 },
                 {
                   "date": "2026-01-05",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                   "close": 117.06
-=======
-                  "close": 117.05
->>>>>>> Stashed changes
-=======
-                  "close": 117.06
->>>>>>> Stashed changes
                 },
                 {
                   "date": "2026-01-06",
@@ -110148,7 +110124,7 @@
                 },
                 {
                   "date": "2025-11-25",
-                  "close": 177.39
+                  "close": 177.4
                 },
                 {
                   "date": "2025-11-26",
@@ -147835,15 +147811,7 @@
               ],
               "fundamentals": {
                 "pe": 44.32,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 "forward_pe": 17.87,
-=======
-                "forward_pe": 17.83,
->>>>>>> Stashed changes
-=======
-                "forward_pe": 17.83,
->>>>>>> Stashed changes
                 "eps": 7.83,
                 "gross_margin": "75.52%",
                 "operating_margin": "48.81%",
@@ -148960,11 +148928,7 @@
                 },
                 {
                   "date": "2025-11-25",
-<<<<<<< Updated upstream
                   "close": 177.4
-=======
-                  "close": 177.39
->>>>>>> Stashed changes
                 },
                 {
                   "date": "2025-11-26",
@@ -187626,11 +187590,7 @@
                 },
                 {
                   "date": "2025-11-25",
-<<<<<<< Updated upstream
                   "close": 177.4
-=======
-                  "close": 177.39
->>>>>>> Stashed changes
                 },
                 {
                   "date": "2025-11-26",
@@ -209421,15 +209381,7 @@
                 },
                 {
                   "date": "2026-04-14",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                   "close": 1359.34
-=======
-                  "close": 1359.33
->>>>>>> Stashed changes
-=======
-                  "close": 1359.34
->>>>>>> Stashed changes
                 },
                 {
                   "date": "2026-04-15",
