@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經日曆・美台雙VIX恐慌指數・美債完整殖利率曲線(含2Y)・34大產業鏈(台股前十大/美股兆元)・每日深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經日曆・美台雙VIX恐慌指數・美債完整殖利率曲線(含2Y)・39大產業鏈(台美權值嚴格分流)・每日深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -48,10 +48,10 @@
           <span>📊 視窗一：全球市場・VIX恐慌指數・台股籌碼・每日深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：34大細分產業鏈追蹤室 (台股前十大權值 / 美股兆元俱樂部 / 台美強勢榜)</span>
+          <span>🔬 視窗二：39大細分產業鏈追蹤室 (台股前十大權值 / 美股兆元俱樂部 / 台美強勢榜)</span>
         </button>
       </div>
-      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「34大產業鏈獨立視窗」之間切換</span>
+      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「39大產業鏈獨立視窗」之間切換</span>
     </div>
   </header>
 
@@ -133,11 +133,11 @@
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 新增專區 2.5：VIX 恐慌指數專區 (美國 VIX + 臺指選擇權波動率指數 VIXTWN) -->
+    <!-- 專區 2.5：VIX 恐慌指數專區 (美國 VIX 綠漲紅跌 + 臺指選擇權波動率指數 VIXTWN 紅漲綠跌) -->
     <section>
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
-          ⚠️ VIX 恐慌指數專區 (美國 CBOE VIX ＋ 臺指選擇權波動率指數 VIXTWN)
+          ⚠️ VIX 恐慌指數專區 (美國 CBOE VIX 綠漲紅跌 ＋ 臺指選擇權波動率指數 VIXTWN 紅漲綠跌)
           <span class="text-xs font-normal text-rose-300 ml-2">(即時監控美股與台股選擇權市場避險情緒・數值 &lt;20 為穩定、20~30 為警戒、&gt;30 為高度恐慌)</span>
         </h2>
         <span class="text-xs text-slate-400 mono">資料來源：CBOE / 台灣期貨交易所 (TAIFEX)</span>
@@ -145,7 +145,7 @@
       <div id="grid-vix-indices" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </section>
 
-    <!-- 專區 3：美國公債殖利率專區 (已加入聯準會 FRED 官方 2 年期美債殖利率 US2Y，共 5 檔完整曲線) -->
+    <!-- 專區 3：美國公債殖利率專區 (含聯準會 FRED 官方 2 年期美債殖利率 US2Y) -->
     <section>
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-cyan-500 pl-3">
@@ -303,7 +303,7 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 視窗二：34 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
+  <!-- 視窗二：39 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
   <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
@@ -330,9 +330,9 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">34 大細分產業鏈上、中、下游垂直整合追蹤室 (含台股前十大權值 & 美股兆元俱樂部)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室 (台股前十大權值 / 美股兆元俱樂部嚴格分流)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">涵蓋台股市值前十大權值股、美股一兆美元俱樂部、石油能源、ASIC、記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、光學鏡頭、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、重電、塑化、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、觀光餐飲、民生消費</p>
+          <p class="text-xs text-slate-400 mt-1">台股專區顯示「🏆 台股市值前十大權值股」、美股專區顯示「👑 美股一兆美元俱樂部」，並涵蓋水泥、鋼鐵、通信網路、電子零組件、伺服器滑軌等全產業鏈</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
@@ -342,7 +342,7 @@
       <div class="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold text-white">🌍 選擇要檢視的市場供應鏈：</span>
-          <span class="text-[11px] text-slate-400">(台股紅漲綠跌・美股綠漲紅跌且純代號顯示)</span>
+          <span class="text-[11px] text-slate-400">(台股僅顯示台股前十大權值・美股僅顯示美股一兆美元俱樂部)</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button id="sc-mkt-TW" onclick="switchScMarketFilter('TW')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition bg-rose-600 text-white shadow">
@@ -357,12 +357,12 @@
         </div>
       </div>
 
-      <!-- 跨產業供應鏈串接地圖 (頂部並排展示「🏆 台股市值前十大權值股」與「👑 美股一兆美元俱樂部」) -->
+      <!-- 跨產業供應鏈串接地圖 (根據當前選擇的台股/美股模式，動態切換顯示「🏆 台股市值前十大權值股」或「👑 美股一兆美元俱樂部」) -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
-          <button onclick="selectScSector('tw_top10')" class="px-2.5 py-1 rounded bg-rose-500/25 hover:bg-rose-600 text-rose-200 font-bold border border-rose-500/40 transition">🏆 台股市值前十大權值股</button>
-          <button onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-emerald-500/25 hover:bg-emerald-600 text-emerald-200 font-bold border border-emerald-500/40 transition">👑 美股一兆美元俱樂部</button>
+          <button id="quick-nav-tw-top10" onclick="selectScSector('tw_top10')" class="px-2.5 py-1 rounded bg-rose-500/25 hover:bg-rose-600 text-rose-200 font-bold border border-rose-500/40 transition">🏆 台股市值前十大權值股</button>
+          <button id="quick-nav-us-trillion" onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-emerald-500/25 hover:bg-emerald-600 text-emerald-200 font-bold border border-emerald-500/40 transition hidden">👑 美股一兆美元俱樂部</button>
           <span class="text-slate-500">｜</span>
           <button onclick="selectScSector('silicon_wafer')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">① 矽晶圓</button>
           <span class="text-slate-500">&rarr;</span>
@@ -389,8 +389,14 @@
           <button onclick="selectScSector('ccl')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑩ CCL</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('pcb')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑪ PCB</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('elec_parts')" class="px-2.5 py-1 rounded bg-sky-500/20 hover:bg-sky-600 text-sky-200 font-medium transition">🔌 電子零組件</button>
           <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('server_rail')" class="px-2.5 py-1 rounded bg-sky-500/20 hover:bg-sky-600 text-sky-200 font-bold transition">🗄️ 伺服器滑軌</button>
+          <span class="text-slate-500">+</span>
           <button onclick="selectScSector('cpo')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑫ CPO</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('telecom_net')" class="px-2.5 py-1 rounded bg-cyan-500/20 hover:bg-cyan-600 text-cyan-200 font-medium transition">📡 通信網路</button>
           <span class="text-slate-500">+</span>
           <button onclick="selectScSector('optics_lens')" class="px-2.5 py-1 rounded bg-cyan-500/20 hover:bg-cyan-600 text-cyan-200 font-medium transition">📷 光學鏡頭</button>
           <span class="text-slate-500">+</span>
@@ -400,13 +406,9 @@
           <span class="text-slate-500">+</span>
           <button onclick="selectScSector('heavy_elec')" class="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-600 text-emerald-200 font-medium transition">⚡ 重電</button>
           <span class="text-slate-500">｜</span>
-          <button onclick="selectScSector('leo_satellite')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🛰️ 低軌衛星</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('space_tech')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🚀 太空</button>
-          <span class="text-slate-500">｜</span>
-          <button onclick="selectScSector('insurance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">☂️ 保險</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('finance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏦 金融</button>
+          <button onclick="selectScSector('cement')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🧱 水泥</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('steel')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🔩 鋼鐵</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('construction')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏗️ 營建</button>
           <span class="text-slate-500">+</span>
@@ -575,6 +577,10 @@
       "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
       "COP": [118.40, 1.12], "EOG": [136.80, 0.95], "SLB": [48.90, 0.65], "BKR": [44.20, 0.88],
       "KMI": [28.50, 0.72], "WMB": [58.40, 0.81], "OKE": [104.60, 0.90], "MPC": [168.50, 1.20], "PSX": [138.20, 1.05], "VLO": [142.80, 0.95],
+      "NUE": [158.40, 0.85], "STLD": [136.20, 0.92], "CLF": [14.80, 0.55], "RS": [308.50, 0.74], "SCCO": [116.80, 0.60],
+      "MLM": [612.40, 0.88], "VMC": [284.60, 0.79], "CRH": [98.50, 1.10], "EXP": [292.30, 0.65],
+      "VZ": [43.80, 0.52], "T": [23.40, 0.68], "MSI": [488.20, 0.95], "NOK": [4.65, 0.40], "ERIC": [8.20, 0.45],
+      "FLEX": [38.90, 1.15], "SANM": [76.40, 0.82], "LFUS": [254.60, 0.64],
       "2330.TW": [2350.00, 0.43], "2454.TW": [4120.00, 7.01], "2308.TW": [1240.00, 4.58],
       "2317.TW": [241.00, 4.05], "3711.TW": [598.00, 2.05], "2303.TW": [101.50, 9.54], "3653.TW": [5345.00, 5.20], "2408.TW": [377.00, 3.85]
     };
@@ -758,7 +764,7 @@
               <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]">
-              <span class="text-slate-400">34大細分產業鏈追蹤</span>
+              <span class="text-slate-400">39大細分產業鏈追蹤</span>
               <span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span>
             </div>
           </div>
@@ -906,11 +912,12 @@
       return String(sym).endsWith(".TW") || String(sym).endsWith(".TWO");
     }
 
+    // 美國 CBOE VIX (^VIX) 與美股 (us_stock) 一律採用「綠漲紅跌」；臺指 VIX (^VIXTWN) 與台股則採用「紅漲綠跌」
     function isUsGreenUpAsset(symbolOrType) {
-      if (symbolOrType === "us_stock") return true;
+      if (symbolOrType === "^VIX" || symbolOrType === "us_stock") return true;
       const item = allAssetsMap[symbolOrType];
-      if (item && item.asset_type === "us_stock") return true;
-      if (typeof symbolOrType === "string" && !isTwSymbol(symbolOrType) && !symbolOrType.startsWith("^") && !symbolOrType.includes("=") && symbolOrType !== "US2Y") return true;
+      if (item && (item.symbol === "^VIX" || item.asset_type === "us_stock")) return true;
+      if (typeof symbolOrType === "string" && !isTwSymbol(symbolOrType) && !symbolOrType.startsWith("^") && !symbolOrType.includes("=") && symbolOrType !== "US2Y" && symbolOrType !== "tw_stock" && symbolOrType !== "index" && symbolOrType !== "us_bond" && symbolOrType !== "fx_rate" && symbolOrType !== "futures" && symbolOrType !== "vix_index") return true;
       return false;
     }
 
@@ -941,15 +948,14 @@
       return Number(val).toFixed(dec);
     }
 
-    // 建立 VIX 恐慌指數專屬視覺卡片 (含情緒燈號與避險解讀)
+    // VIX 恐慌指數卡片：美國 ^VIX 採用綠漲紅跌、臺指 ^VIXTWN 採用紅漲綠跌
     function createVixRichCard(item) {
       item.name = cleanTwText(item.name);
       applyVerifiedNov13IfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const val = Number(item.price) || 18.0;
-      const pct = Number(item.change_pct) || 0;
-      const colorCls = pct > 0 ? "text-rose-400" : (pct < 0 ? "text-emerald-400" : "text-slate-300");
+      const colorCls = getColorClass(item.change_pct, item.symbol);
 
       let regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🟢 市場情緒平穩 (&lt;20)</span>`;
       let regimeDesc = item.symbol === "^VIX"
@@ -964,7 +970,9 @@
         regimeDesc = "波動率處於 20 至 30 之間，顯示市場面對重大財報或總經數據公布前夕，避險買盤有所升溫。";
       }
 
-      const marketFlag = item.symbol === "^VIX" ? "🇺🇸 美股標普500波動率 (CBOE)" : "🇹🇼 台灣期交所臺指選波動率 (TAIFEX)";
+      const marketFlag = item.symbol === "^VIX"
+        ? "🇺🇸 美股標普500波動率 (CBOE・綠漲紅跌)"
+        : "🇹🇼 台灣期交所臺指選波動率 (TAIFEX・紅漲綠跌)";
 
       return `
         <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 border border-rose-500/30 cursor-pointer flex flex-col justify-between">
@@ -1012,6 +1020,7 @@
       }
     }
 
+    // 切換台股 / 美股 / 同屏模式時，嚴格隔離「台股市值前十大權值股 (tw_top10)」與「美股一兆美元俱樂部 (trillion_club)」
     function switchScMarketFilter(mode) {
       currentScMarket = mode;
       ["TW", "US", "SPLIT"].forEach(m => {
@@ -1025,6 +1034,30 @@
           btn.className = "px-4 py-1.5 rounded-lg text-xs font-bold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
         }
       });
+
+      // 動態切換上方快速導覽列的專屬權值按鈕
+      const navTwTop10 = document.getElementById("quick-nav-tw-top10");
+      const navUsTrillion = document.getElementById("quick-nav-us-trillion");
+      if (navTwTop10 && navUsTrillion) {
+        if (mode === "TW") {
+          navTwTop10.classList.remove("hidden");
+          navUsTrillion.classList.add("hidden");
+        } else if (mode === "US") {
+          navTwTop10.classList.add("hidden");
+          navUsTrillion.classList.remove("hidden");
+        } else {
+          navTwTop10.classList.remove("hidden");
+          navUsTrillion.classList.remove("hidden");
+        }
+      }
+
+      // 若從美股切回台股時正停留在 trillion_club，自動切到 tw_top10；反之從台股切到美股時正停留在 tw_top10，自動切到 trillion_club
+      if (mode === "TW" && currentScSectorId === "trillion_club") {
+        currentScSectorId = "tw_top10";
+      } else if (mode === "US" && currentScSectorId === "tw_top10") {
+        currentScSectorId = "trillion_club";
+      }
+
       scCompareSymbols = [];
       renderSupplyChainView();
     }
@@ -1061,6 +1094,15 @@
       }));
     }
 
+    // 依當前市場模式過濾產業鏈：台股模式隱藏 onlyMarket==="US"；美股模式隱藏 onlyMarket==="TW"
+    function getMarketFilteredSectors(allSectors) {
+      return allSectors.filter(sec => {
+        if (currentScMarket === "TW" && (sec.onlyMarket === "US" || sec.id === "trillion_club")) return false;
+        if (currentScMarket === "US" && (sec.onlyMarket === "TW" || sec.id === "tw_top10")) return false;
+        return true;
+      });
+    }
+
     function filterItemsByScMarket(itemsList) {
       if (currentScMarket === "TW") return itemsList.filter(x => isTwSymbol(x.symbol));
       if (currentScMarket === "US") return itemsList.filter(x => !isTwSymbol(x.symbol));
@@ -1069,8 +1111,8 @@
 
     function filterScByCategory(catName) {
       currentScCategory = catName;
-      const sectors = getSupplyChainSectorsData();
-      const filtered = catName === "ALL" ? sectors : sectors.filter(s => s.category === catName);
+      const marketSectors = getMarketFilteredSectors(getSupplyChainSectorsData());
+      const filtered = catName === "ALL" ? marketSectors : marketSectors.filter(s => s.category === catName);
       if (filtered.length > 0 && !filtered.some(s => s.id === currentScSectorId)) {
         currentScSectorId = filtered[0].id;
         scCompareSymbols = [];
@@ -1080,18 +1122,12 @@
 
     function selectScSector(sectorId) {
       currentScSectorId = sectorId;
-      // 點選「🏆 台股市值前十大權值股」時，若目前在純美股視角，自動切換至純台股視角
       if (sectorId === "tw_top10" && currentScMarket === "US") {
         switchScMarketFilter("TW");
         return;
       }
-      // 點選「👑 美股一兆美元俱樂部」時，若目前在純台股視角，自動切換至純美股視角
       if (sectorId === "trillion_club" && currentScMarket === "TW") {
         switchScMarketFilter("US");
-        return;
-      }
-      if (sectorId === "oil_energy" && currentScMarket === "TW") {
-        switchScMarketFilter("SPLIT");
         return;
       }
       scCompareSymbols = [];
@@ -1156,8 +1192,10 @@
 
     function renderSupplyChainView() {
       renderTopPerformingSectors();
-      const allSectors = getSupplyChainSectorsData();
-      if (!allSectors.length) return;
+      const rawAllSectors = getSupplyChainSectorsData();
+      const marketSectors = getMarketFilteredSectors(rawAllSectors);
+      if (!marketSectors.length) return;
+
       const categories = [
         "ALL",
         "指標權值專區",
@@ -1173,17 +1211,18 @@
 
       document.getElementById("sc-category-filter").innerHTML = categories.map(c => {
         const isAct = currentScCategory === c;
-        const count = c === "ALL" ? allSectors.length : allSectors.filter(s => s.category === c).length;
+        const count = c === "ALL" ? marketSectors.length : marketSectors.filter(s => s.category === c).length;
         return `
           <button onclick="filterScByCategory('${c}')" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition ${isAct ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800/90 text-slate-300 border-slate-700 hover:bg-slate-700'}">
-            ${c === "ALL" ? `🗂️ 全部 ${allSectors.length} 大產業` : c} (${count})
+            ${c === "ALL" ? `🗂️ 當前市場全部 (${count})` : `${c} (${count})`}
           </button>
         `;
       }).join("");
 
-      const visibleSectors = currentScCategory === "ALL" ? allSectors : allSectors.filter(s => s.category === currentScCategory);
-      const activeSec = allSectors.find(s => s.id === currentScSectorId) || visibleSectors[0] || allSectors[0];
+      const visibleSectors = currentScCategory === "ALL" ? marketSectors : marketSectors.filter(s => s.category === currentScCategory);
+      const activeSec = marketSectors.find(s => s.id === currentScSectorId) || visibleSectors[0] || marketSectors[0];
       if (!activeSec) return;
+      currentScSectorId = activeSec.id;
 
       if (scCompareSymbols.length === 0) {
         activeSec.stages.forEach(stg => {
@@ -1195,7 +1234,6 @@
 
       document.getElementById("sc-sector-tabs").innerHTML = visibleSectors.map(s => {
         const isAct = s.id === activeSec.id;
-        // 針對純台股「tw_top10」或純美股「trillion_club」，標籤計數自動顯示該專區實際檔數
         const rawStgItems = s.stages.flatMap(st => st.items);
         const mktItems = (s.id === "tw_top10" || s.id === "trillion_club") ? rawStgItems : filterItemsByScMarket(rawStgItems);
         const uniqueMktItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
@@ -1218,12 +1256,12 @@
       }).join("");
 
       const upSectorButtons = (activeSec.upLinks || []).map(uid => {
-        const found = allSectors.find(x => x.id === uid);
+        const found = marketSectors.find(x => x.id === uid);
         return found ? `<button onclick="selectScSector('${found.id}')" class="px-2 py-0.5 rounded bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 border border-sky-500/30 text-[11px] font-bold transition">&larr; 上游關聯：${found.title}</button>` : "";
       }).join("");
 
       const downSectorButtons = (activeSec.downLinks || []).map(did => {
-        const found = allSectors.find(x => x.id === did);
+        const found = marketSectors.find(x => x.id === did);
         return found ? `<button onclick="selectScSector('${found.id}')" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold transition">下游應用：${found.title} &rarr;</button>` : "";
       }).join("");
 
@@ -1611,11 +1649,11 @@
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const titleText = forceTickerOnly ? item.symbol : item.name;
-      const colorCls = getColorClass(item.change_pct, item.asset_type);
+      const colorCls = getColorClass(item.change_pct, item.symbol);
 
       let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
       if (item.ext_session && item.ext_session.price !== null && Number(item.ext_session.price) > 0) {
-        const extColor = getColorClass(item.ext_session.change_pct, item.asset_type);
+        const extColor = getColorClass(item.ext_session.change_pct, item.symbol);
         extHtml = `
           <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
             <span class="${extColor} font-semibold">${formatDisplayPrice(item.ext_session.price, item.symbol)} ${formatSignedPct(item.ext_session.change_pct)} ${item.ext_session.label}</span>
@@ -1859,7 +1897,7 @@
       document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
       const pEl = document.getElementById("modal-stock-price");
       pEl.textContent = `${formatDisplayPrice(item.price, item.symbol)} (${formatSignedPct(item.change_pct)})`;
-      pEl.className = `text-xl font-bold mono ${getColorClass(item.change_pct, item.asset_type)}`;
+      pEl.className = `text-xl font-bold mono ${getColorClass(item.change_pct, item.symbol)}`;
 
       const cbBadge = document.getElementById("modal-cb-badge");
       const cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
@@ -1888,7 +1926,7 @@
         <div><span class="text-slate-400 block text-[10px]">季度營收年增</span>${f.yoy_rev_growth ?? 'N/A'}</div>
       ` : `
         <div><span class="text-slate-400 block text-[10px]">最新收盤報價</span>${formatDisplayPrice(item.price, item.symbol)}</div>
-        <div><span class="text-slate-400 block text-[10px]">最新漲跌幅</span><strong class="${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</strong></div>
+        <div><span class="text-slate-400 block text-[10px]">最新漲跌幅</span><strong class="${getColorClass(item.change_pct, item.symbol)}">${formatSignedPct(item.change_pct)}</strong></div>
         ${extraTwd}
       `;
 
@@ -2061,12 +2099,12 @@
         const xData = pts.map(p => p.x);
         const yData = pts.map(p => p.y);
         const isUp = yData.length >= 2 ? yData[yData.length - 1] >= yData[0] : true;
-        const greenUp = isUsGreenUpAsset(primaryAsset.asset_type);
+        const greenUp = isUsGreenUpAsset(primaryAsset.symbol);
         const lineColor = greenUp ? (isUp ? "#34d399" : "#fb7185") : (isUp ? "#fb7185" : "#34d399");
 
         if (yData.length >= 2) {
           const pct = ((yData[yData.length - 1] - yData[0]) / yData[0]) * 100;
-          summaryEl.innerHTML = `<span class="text-xs font-bold px-3 py-1 rounded bg-slate-800 mono ${getColorClass(pct, primaryAsset.asset_type)}">${displayName} 區間累計報酬率：${formatSignedPct(pct)} (${yData[0]} &rarr; ${yData[yData.length - 1]})</span>`;
+          summaryEl.innerHTML = `<span class="text-xs font-bold px-3 py-1 rounded bg-slate-800 mono ${getColorClass(pct, primaryAsset.symbol)}">${displayName} 區間累計報酬率：${formatSignedPct(pct)} (${yData[0]} &rarr; ${yData[yData.length - 1]})</span>`;
         } else {
           summaryEl.innerHTML = `<span class="text-xs text-slate-400">正在載入歷史走勢線圖...</span>`;
         }
@@ -2105,12 +2143,12 @@
             return (baseP && lastP) ? Number((((lastP - baseP) / baseP) * 100).toFixed(2)) : null;
           });
           const validNorm = normY.filter(v => v !== null);
-          returnSummaries.push({ name: displayName, pct: validNorm.length ? validNorm[validNorm.length - 1] : 0, color, assetType: asset.asset_type });
+          returnSummaries.push({ name: displayName, pct: validNorm.length ? validNorm[validNorm.length - 1] : 0, color, symbol: asset.symbol });
           echartsSeries.push({ name: displayName, type: "line", smooth: true, connectNulls: true, symbol: "none", data: normY, lineStyle: { color, width: 2.5 } });
         });
 
         returnSummaries.sort((a, b) => b.pct - a.pct);
-        summaryEl.innerHTML = returnSummaries.map((r, i) => `<div class="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs mono"><span class="text-slate-400">#${i + 1}</span><span class="w-2 h-2 rounded-full" style="background-color: ${r.color}"></span><span class="font-bold text-white">${r.name}:</span><strong class="${getColorClass(r.pct, r.assetType)}">${formatSignedPct(r.pct)}</strong></div>`).join("");
+        summaryEl.innerHTML = returnSummaries.map((r, i) => `<div class="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs mono"><span class="text-slate-400">#${i + 1}</span><span class="w-2 h-2 rounded-full" style="background-color: ${r.color}"></span><span class="font-bold text-white">${r.name}:</span><strong class="${getColorClass(r.pct, r.symbol)}">${formatSignedPct(r.pct)}</strong></div>`).join("");
 
         mainChart.setOption({
           tooltip: { trigger: "axis", valueFormatter: (v) => v !== null ? `${v > 0 ? '+' : ''}${v}%` : "N/A" },
@@ -2285,7 +2323,9 @@
         if (pEl) pEl.textContent = item.price;
         if (pctEl) {
           pctEl.textContent = formatSignedPct(item.change_pct);
-          pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
+          pctEl.className = item.asset_type === "vix_index"
+            ? `text-sm font-bold ${getColorClass(item.change_pct, item.symbol)}`
+            : `text-xs font-bold ${getColorClass(item.change_pct, item.symbol)}`;
         }
 
         document.querySelectorAll(`.sc-price-${domId}`).forEach(el => { el.textContent = item.price; });
@@ -2306,7 +2346,7 @@
           extEl.className = "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono";
           extEl.innerHTML = item.asset_type === "us_stock"
             ? `<span class="text-slate-400 text-[11px]">盤前/盤後報價：</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-bold">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`
-            : `<span class="${getColorClass(extSessionObj.change_pct, item.asset_type)} font-semibold">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`;
+            : `<span class="${getColorClass(extSessionObj.change_pct, item.symbol)} font-semibold">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`;
         }
       }
     }
