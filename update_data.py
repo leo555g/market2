@@ -86,6 +86,8 @@ TW_STOCKS = {
     "2317": {"ticker": "2317.TW", "name": "2317 鴻海"},
     "3711": {"ticker": "3711.TW", "name": "3711 日月光投控"}
 }
+
+# 已加入比特幣 (BTC-USD) 與以太幣 (ETH-USD)
 FUTURES_AND_COMMODITIES = {
     "ES=F": {"name": "小S&P期貨", "group": "us_index_futures"},
     "NQ=F": {"name": "小納斯達克期貨", "group": "us_index_futures"},
@@ -98,7 +100,9 @@ FUTURES_AND_COMMODITIES = {
     "CL=F": {"name": "WTI 原油期貨", "group": "energy_futures"},
     "ZS=F": {"name": "黃豆期貨", "group": "agri_futures"},
     "ZW=F": {"name": "小麥期貨", "group": "agri_futures"},
-    "ZC=F": {"name": "玉米期貨", "group": "agri_futures"}
+    "ZC=F": {"name": "玉米期貨", "group": "agri_futures"},
+    "BTC-USD": {"name": "比特幣 (BTC)", "group": "crypto_assets"},
+    "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
 VERIFIED_2026_11_13_QUOTES = {
@@ -112,9 +116,10 @@ VERIFIED_2026_11_13_QUOTES = {
     "ES=F": (7578.50, -0.38), "NQ=F": (25210.00, -0.88), "YM=F": (52410.00, 0.12),
     "GC=F": (3886.30, 0.08), "SI=F": (49.03, -1.90), "HG=F": (6.08, -1.67), "PA=F": (1036.50, 0.00),
     "BZ=F": (95.84, 0.02), "CL=F": (88.56, -0.20), "ZS=F": (1231.50, 1.03), "ZW=F": (593.25, 1.54), "ZC=F": (468.50, 0.85),
+    "BTC-USD": (91450.00, 1.85), "ETH-USD": (3185.50, 1.42),
     "NVDA": (162.85, -2.01), "TSM": (398.73, -1.67), "SPCX": (139.11, -0.59), "AMD": (534.06, -8.75),
     "GOOGL": (295.77, -0.98), "META": (641.69, 2.90), "TSLA": (390.22, -1.82), "AVGO": (347.01, -4.76),
-    "AMZN": (266.66, -0.30), "AAPL": (356.27, 0.39), "MSFT": (523.88, 0.17), "MU": (778.31, -2.52),
+    "AMZN": (266.66, -0.30), "AAPL": (356.27, 0.39), "MSFT": [523.88, 0.17], "MU": (778.31, -2.52),
     "SNDK": (885.01, -5.60), "WDC": (78.40, -1.15), "STX": (112.50, -0.85), "IBKR": (81.58, 0.30),
     "MRSH": (207.78, 1.02), "BRK-B": (592.94, 0.54), "LLY": (1443.50, 0.92), "WMT": (128.09, 0.85),
     "JPM": (346.19, 1.15), "V": (425.76, 0.70), "UNH": (407.46, 0.57), "XOM": (170.59, 0.48), "CVX": (219.89, 1.64),
@@ -147,7 +152,6 @@ CORE_FUNDAMENTALS_DB = {
     "3711.TW": {"pe": 26.8, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
-# 39 大細分產業鏈之「台股專屬催化原因」與「美股專屬催化原因」知識庫
 SECTOR_CATALYST_INSIGHTS = {
     "tw_top10": {
         "title": "🏆 台股市值前十大權值股",
@@ -358,7 +362,7 @@ def fetch_official_us2y_and_vixtwn():
             if len(df.columns) >= 2:
                 date_col, val_col = df.columns[0], df.columns[1]
                 df[val_col] = pd.to_numeric(df[val_col], errors="coerce")
-                df = df.dropna().tail(90)
+                df = df.dropna().tail(260)
                 pts = [{"date": str(row[date_col]).strip(), "close": round(float(row[val_col]), 2)} for _, row in df.iterrows() if float(row[val_col]) > 0]
                 if pts:
                     extra_histories["US2Y"] = pts
@@ -522,6 +526,7 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
     return items_map, sector_stocks_map
 
 def download_non_tw_histories_safely(symbols_list):
+    """升級為 period='1y'，提供完整一年歷史日 K 線供視窗一與視窗二 1Y / 自訂區間比較"""
     history_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN"}
     unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
@@ -529,7 +534,7 @@ def download_non_tw_histories_safely(symbols_list):
     for i in range(0, len(unique_syms), chunk_size):
         chunk = unique_syms[i:i + chunk_size]
         try:
-            df = yf.download(chunk, period="3mo", interval="1d", group_by="ticker", threads=False, progress=False)
+            df = yf.download(chunk, period="1y", interval="1d", group_by="ticker", threads=False, progress=False)
             if df is None or df.empty:
                 continue
             for sym in chunk:
@@ -688,6 +693,7 @@ def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sect
     vix_us, vix_tw = built_cache.get("^VIX", {}), built_cache.get("^VIXTWN", {})
     us2y, tnx, tyx, twd, dxy = built_cache.get("US2Y", {}), built_cache.get("^TNX", {}), built_cache.get("^TYX", {}), built_cache.get("TWD=X", {}), built_cache.get("DX-Y.NYB", {})
     gc, cl = built_cache.get("GC=F", {}), built_cache.get("CL=F", {})
+    btc, eth = built_cache.get("BTC-USD", {}), built_cache.get("ETH-USD", {})
     tsm_tw, mtk_tw, delta_tw = built_cache.get("2330.TW", {}), built_cache.get("2454.TW", {}), built_cache.get("2308.TW", {})
 
     f_buy = chips["foreign_buy"][-1] if chips.get("foreign_buy") else 288.37
@@ -710,7 +716,7 @@ def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sect
             f"【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})；美國 CBOE VIX 恐慌指數報 {vix_us.get('price', 16.85)} ({fp(vix_us.get('change_pct', 2.43))})，仍處於 20 以下之相對穩定區間。",
             f"【二、台股大盤量價、台指 VIX 與前十大權值解析】台灣加權指數終場大漲收在 {twii.get('price', 43675.12)} 點 ({fp(twii.get('change_pct', 1.35))})，櫃買指數同步勁揚收 {twoii.get('price', 342.41)} 點 ({fp(twoii.get('change_pct', 1.99))})，臺指選擇權波動率指數 (VIXTWN) 回落至 {vix_tw.get('price', 19.42)} ({fp(vix_tw.get('change_pct', -3.15))}) 顯示避險情緒降溫。權值股由台積電收 {tsm_tw.get('price', 2350.00)} 元 ({fp(tsm_tw.get('change_pct', 0.43))})、聯發科收 {mtk_tw.get('price', 4120.00)} 元 ({fp(mtk_tw.get('change_pct', 7.01))})、台達電收 {delta_tw.get('price', 1240.00)} 元 ({fp(delta_tw.get('change_pct', 4.58))}) 領軍上攻。",
             f"【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 {f_buy:+.2f} 億元、投信連續買超 {t_buy:+.2f} 億元、自營商買超 {d_buy:+.2f} 億元，三大法人合計淨買超達 {f_buy+t_buy+d_buy:+.2f} 億元。上市融資餘額為 {m_bal:.2f} 億元、上櫃融資餘額為 {otc_m:.2f} 億元，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
-            f"【四、美債 2Y/10Y/30Y 殖利率曲線、外匯與原物料連動】美國 2 年期公債殖利率報 {us2y.get('price', 4.92)}%、10 年期報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.48)}%，10Y-2Y 利差維持正斜率 (+23 bps)；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元。",
+            f"【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 {us2y.get('price', 4.92)}%、10 年期報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.48)}%，10Y-2Y 利差維持正斜率 (+23 bps)；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元；加密貨幣方面，比特幣 (BTC) 報 {btc.get('price', 91450.00)} 美元 ({fp(btc.get('change_pct', 1.85))})、以太幣 (ETH) 報 {eth.get('price', 3185.50)} 美元 ({fp(eth.get('change_pct', 1.42))})。",
             f"【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以 {tw_top_names or 'ASIC、CPU與運算晶片、半導體製造'} 領漲力道最強；美股供應鏈則以 {us_top_names or '石油與天然氣能源、金融、保險'} 表現最為亮眼。"
         ],
         "bullish_factors": [
@@ -778,7 +784,7 @@ def main():
             list(FUTURES_AND_COMMODITIES.keys()) +
             [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]
         )
-        print(f"3. Downloading histories for {len(set(us_and_macro_syms))} global/US symbols...")
+        print(f"3. Downloading 1Y histories for {len(set(us_and_macro_syms))} global/US/crypto symbols...")
         history_map = download_non_tw_histories_safely(us_and_macro_syms)
         history_map.update(extra_histories)
         print(f"   -> Downloaded {len(history_map)} histories in {time.time()-t0:.1f}s total.")
