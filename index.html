@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・台美獨立強勢族群排行・每日市場深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・33大產業鏈與台美獨立強勢榜・每日市場深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -48,10 +48,10 @@
           <span>📊 視窗一：全球市場・台股籌碼・每日市場深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：26大細分產業鏈追蹤室 & 台美獨立強勢族群</span>
+          <span>🔬 視窗二：33大細分產業鏈追蹤室 (含美股兆元俱樂部 & 台美獨立強勢榜)</span>
         </button>
       </div>
-      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「26大產業鏈獨立視窗」之間切換</span>
+      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「33大產業鏈獨立視窗」之間切換</span>
     </div>
   </header>
 
@@ -190,7 +190,7 @@
     <section class="space-y-4">
       <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">
         美股核心科技股・最新財報核心數據與獲利能力指標・新聞利多利空
-        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含 SpaceX 等核心巨頭)</span>
+        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含盤前／盤後報價)</span>
       </h2>
       <div id="grid-us-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
@@ -285,7 +285,7 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 視窗二：26 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
+  <!-- 視窗二：33 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
   <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
@@ -312,9 +312,9 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">26 大細分產業鏈上、中、下游垂直整合追蹤室</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">33 大細分產業鏈上、中、下游垂直整合追蹤室 (含美股一兆美元俱樂部)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">已完整納入記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、民生消費</p>
+          <p class="text-xs text-slate-400 mt-1">涵蓋美股兆元俱樂部、石油能源、ASIC、記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、光學鏡頭、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、重電、塑化、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、觀光餐飲、民生消費</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
@@ -339,43 +339,59 @@
         </div>
       </div>
 
-      <!-- 跨產業供應鏈串接地圖 (導覽按鈕標題均為純淨名稱：太空、金融) -->
+      <!-- 跨產業供應鏈串接地圖 (所有導覽按鈕均為純淨產業名稱，已納入兆元俱樂部、ASIC、光學鏡頭、重電、塑化、石油能源、觀光餐飲) -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-amber-500/25 hover:bg-amber-600 text-amber-200 font-bold border border-amber-500/40 transition">👑 美股一兆美元俱樂部</button>
+          <span class="text-slate-500">｜</span>
           <button onclick="selectScSector('silicon_wafer')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">① 矽晶圓</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('semiconductor')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">② 半導體製程</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('cpu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">③ CPU與運算</button>
+          <button onclick="selectScSector('asic')" class="px-2.5 py-1 rounded bg-indigo-500/25 hover:bg-indigo-600 text-indigo-200 font-bold transition">③ ASIC</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('memory')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">④ 記憶體</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('tgv')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑤ TGV玻璃基板</button>
+          <button onclick="selectScSector('cpu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">④ CPU與運算</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('ic_substrate')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑥ 載板</button>
+          <button onclick="selectScSector('memory')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑤ 記憶體</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('osat')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑦ 封測</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('fiberglass')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑧ 玻纖布</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('ccl')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑨ CCL</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('pcb')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑩ PCB</button>
-          <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('cpo')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑪ CPO</button>
+          <button onclick="selectScSector('tgv')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑥ TGV玻璃基板</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('thermal')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑫ 散熱</button>
+          <button onclick="selectScSector('ic_substrate')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑦ 載板</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('osat')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑧ 封測</button>
+          <span class="text-slate-500">｜</span>
+          <button onclick="selectScSector('oil_energy')" class="px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-600 text-rose-200 font-medium transition">🛢️ 石油能源</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('plastics')" class="px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-600 text-rose-200 font-medium transition">🧪 塑化</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('fiberglass')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑨ 玻纖布</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('ccl')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑩ CCL</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('pcb')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑪ PCB</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('cpo')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑫ CPO</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('bbu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑬ BBU</button>
+          <button onclick="selectScSector('optics_lens')" class="px-2.5 py-1 rounded bg-cyan-500/20 hover:bg-cyan-600 text-cyan-200 font-medium transition">📷 光學鏡頭</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('thermal')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑬ 散熱</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('bbu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑭ BBU</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('heavy_elec')" class="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-600 text-emerald-200 font-medium transition">⚡ 重電</button>
           <span class="text-slate-500">｜</span>
           <button onclick="selectScSector('leo_satellite')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🛰️ 低軌衛星</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('space_tech')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🚀 太空</button>
           <span class="text-slate-500">｜</span>
+          <button onclick="selectScSector('insurance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">☂️ 保險</button>
+          <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('finance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏦 金融</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('construction')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏗️ 營建</button>
+          <span class="text-slate-500">+</span>
+          <button onclick="selectScSector('tourism_dining')" class="px-2.5 py-1 rounded bg-pink-500/20 hover:bg-pink-600 text-pink-200 font-medium transition">🏨 觀光餐飲</button>
         </div>
       </div>
 
@@ -496,10 +512,10 @@
 
     let currentScMarket = "TW";
     let currentScCategory = "ALL";
-    let currentScSectorId = "memory";
+    let currentScSectorId = "asic";
     let currentScRange = "1M";
     let scCompareSymbols = [];
-    let currentTopMarket = "TW"; // 預設視窗二強勢榜顯示台股
+    let currentTopMarket = "TW";
 
     let mainChart = null, instChart = null, marginChart = null, scChart = null, finnhubSocket = null;
 
@@ -532,7 +548,12 @@
       "BZ=F": [95.84, 0.02], "CL=F": [88.56, -0.20], "ZS=F": [1231.50, 1.03], "ZW=F": [593.25, 1.54], "ZC=F": [468.50, 0.85],
       "NVDA": [162.85, -2.01], "TSM": [398.73, -1.67], "SPCX": [139.11, -0.59], "AMD": [534.06, -8.75],
       "GOOGL": [295.77, -0.98], "META": [641.69, 2.90], "TSLA": [390.22, -1.82], "AVGO": [347.01, -4.76],
-      "AMZN": [266.66, -0.30], "AAPL": [356.27, 0.39], "MSFT": [523.88, 0.17], "MU": [778.31, -2.52], "IBKR": [81.58, 0.30],
+      "AMZN": [266.66, -0.30], "AAPL": [356.27, 0.39], "MSFT": [523.88, 0.17], "MU": [778.31, -2.52],
+      "SNDK": [885.01, -5.60], "WDC": [78.40, -1.15], "STX": [112.50, -0.85], "IBKR": [81.58, 0.30],
+      "MRSH": [207.78, 1.02], "BRK-B": [592.94, 0.54], "LLY": [1443.50, 0.92], "WMT": [128.09, 0.85],
+      "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
+      "COP": [118.40, 1.12], "EOG": [136.80, 0.95], "SLB": [48.90, 0.65], "BKR": [44.20, 0.88],
+      "KMI": [28.50, 0.72], "WMB": [58.40, 0.81], "OKE": [104.60, 0.90], "MPC": [168.50, 1.20], "PSX": [138.20, 1.05], "VLO": [142.80, 0.95],
       "2330.TW": [2350.00, 0.43], "2454.TW": [4120.00, 7.01], "2308.TW": [1240.00, 4.58],
       "2317.TW": [241.00, 4.05], "3711.TW": [598.00, 2.05], "2303.TW": [101.50, 9.54], "3653.TW": [5345.00, 5.20], "2408.TW": [377.00, 3.85]
     };
@@ -697,7 +718,7 @@
         }).join("");
 
         return `
-          <div onclick="selectScSector('${sec.sector_id}'); document.getElementById('sc-sector-metrics-bar').scrollIntoView({ behavior: 'smooth' });" class="bg-slate-900/90 hover:bg-slate-900 rounded-xl p-4 border border-slate-800 hover:border-rose-500/50 cursor-pointer transition-all flex flex-col justify-between shadow-md">
+          <div onclick="switchScMarketFilter('${currentTopMarket}'); selectScSector('${sec.sector_id}'); document.getElementById('sc-sector-metrics-bar').scrollIntoView({ behavior: 'smooth' });" class="bg-slate-900/90 hover:bg-slate-900 rounded-xl p-4 border border-slate-800 hover:border-rose-500/50 cursor-pointer transition-all flex flex-col justify-between shadow-md">
             <div>
               <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5 mb-2.5">
                 <div class="flex items-center gap-2">
@@ -716,7 +737,7 @@
               <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]">
-              <span class="text-slate-400">26大細分產業鏈追蹤</span>
+              <span class="text-slate-400">33大細分產業鏈追蹤</span>
               <span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span>
             </div>
           </div>
@@ -960,6 +981,11 @@
 
     function selectScSector(sectorId) {
       currentScSectorId = sectorId;
+      // 若點擊「美股一兆美元俱樂部」或「石油能源」，若當前處於純台股視角且該區以美股為主，自動切換為台美同屏或美股視角
+      if ((sectorId === "trillion_club" || sectorId === "oil_energy") && currentScMarket === "TW") {
+        switchScMarketFilter("SPLIT");
+        return;
+      }
       scCompareSymbols = [];
       renderSupplyChainView();
     }
@@ -994,7 +1020,7 @@
         : `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">🇹🇼 TW</span>`;
 
       return `
-        <div id="sc-card-${domId}" onclick="openStockModal('${item.symbol}')" class="bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3.5 border ${isSelected ? 'border-emerald-500/70' : 'border-slate-800'} cursor-pointer transition-all">
+        <div id="sc-card-${domId}" onclick="openStockModal('${item.symbol}')" class="sc-card-${domId} bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3.5 border ${isSelected ? 'border-emerald-500/70' : 'border-slate-800'} cursor-pointer transition-all">
           <div class="flex items-start justify-between gap-2">
             <div>
               <div class="flex flex-wrap items-center gap-1.5">
@@ -1005,8 +1031,8 @@
               <p class="text-[11px] text-indigo-300 font-medium mt-1">🎯 ${item.role}</p>
             </div>
             <div class="text-right mono shrink-0">
-              <div id="sc-price-${domId}" class="text-base font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div>
-              <div id="sc-pct-${domId}" class="text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</div>
+              <div id="sc-price-${domId}" class="sc-price-${domId} text-base font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div>
+              <div id="sc-pct-${domId}" class="sc-pct-${domId} text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</div>
             </div>
           </div>
 
@@ -1024,14 +1050,25 @@
       renderTopPerformingSectors();
       const allSectors = getSupplyChainSectorsData();
       if (!allSectors.length) return;
-      const categories = ["ALL", "半導體核心", "光通訊與CPO", "PCB與載板鏈", "電子零組件", "AI伺服器基建", "太空軍工與航運", "軟體生技與內需"];
+      const categories = [
+        "ALL",
+        "美股兆元與能源",
+        "半導體核心",
+        "光通訊與光學",
+        "PCB與載板鏈",
+        "電子零組件",
+        "AI與重電基建",
+        "傳產營建與能源",
+        "太空軍工與航運",
+        "軟體生技與金融"
+      ];
 
       document.getElementById("sc-category-filter").innerHTML = categories.map(c => {
         const isAct = currentScCategory === c;
         const count = c === "ALL" ? allSectors.length : allSectors.filter(s => s.category === c).length;
         return `
           <button onclick="filterScByCategory('${c}')" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition ${isAct ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800/90 text-slate-300 border-slate-700 hover:bg-slate-700'}">
-            ${c === "ALL" ? "🗂️ 全部 26 大產業" : c} (${count})
+            ${c === "ALL" ? `🗂️ 全部 ${allSectors.length} 大產業` : c} (${count})
           </button>
         `;
       }).join("");
@@ -1043,15 +1080,16 @@
       if (scCompareSymbols.length === 0) {
         activeSec.stages.forEach(stg => {
           const matching = filterItemsByScMarket(stg.items);
-          if (matching[0]) scCompareSymbols.push(matching[0].symbol);
-          if (matching[1]) scCompareSymbols.push(matching[1].symbol);
+          if (matching[0] && !scCompareSymbols.includes(matching[0].symbol)) scCompareSymbols.push(matching[0].symbol);
+          if (matching[1] && !scCompareSymbols.includes(matching[1].symbol)) scCompareSymbols.push(matching[1].symbol);
         });
       }
 
       document.getElementById("sc-sector-tabs").innerHTML = visibleSectors.map(s => {
         const isAct = s.id === activeSec.id;
         const mktItems = filterItemsByScMarket(s.stages.flatMap(st => st.items));
-        const validPcts = mktItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
+        const uniqueMktItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
+        const validPcts = uniqueMktItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
         const avgPct = validPcts.length ? validPcts.reduce((a, b) => a + b, 0) / validPcts.length : 0;
         const colorType = currentScMarket === "US" ? "us_stock" : "tw_stock";
 
@@ -1061,7 +1099,7 @@
               <span class="text-xs font-bold text-white truncate">${s.title}</span>
             </div>
             <div class="flex items-center justify-between text-[10px] mono mt-1.5">
-              <span class="text-slate-400">${currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')}・${mktItems.length}檔</span>
+              <span class="text-slate-400">${currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')}・${uniqueMktItems.length}檔</span>
               <span class="font-bold ${getColorClass(avgPct, colorType)}">${formatSignedPct(avgPct)}</span>
             </div>
           </button>
@@ -1078,7 +1116,8 @@
         return found ? `<button onclick="selectScSector('${found.id}')" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold transition">下游應用：${found.title} &rarr;</button>` : "";
       }).join("");
 
-      const secItems = filterItemsByScMarket(activeSec.stages.flatMap(st => st.items));
+      const secItemsRaw = filterItemsByScMarket(activeSec.stages.flatMap(st => st.items));
+      const secItems = Array.from(new Map(secItemsRaw.map(item => [item.symbol, item])).values());
       const sortedByPct = [...secItems].sort((a, b) => Number(b.change_pct || 0) - Number(a.change_pct || 0));
       const topGainer = sortedByPct[0];
       const validPcts = secItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
@@ -1115,7 +1154,7 @@
 
       document.getElementById("sc-stages-grid").innerHTML = activeSec.stages.map((stg, sIdx) => {
         const stageColors = ["border-t-4 border-t-sky-500", "border-t-4 border-t-indigo-500", "border-t-4 border-t-emerald-500"];
-        const stageBadges = ["上游 (Upstream)", "中游 (Midstream)", "下游 (Downstream)"];
+        const stageBadges = ["第一階段 / 上游", "第二階段 / 中游", "第三階段 / 下游"];
         const twList = stg.items.filter(x => isTwSymbol(x.symbol));
         const usList = stg.items.filter(x => !isTwSymbol(x.symbol));
 
@@ -1123,11 +1162,11 @@
         if (currentScMarket === "TW") {
           bodyHtml = twList.length > 0
             ? `<div class="space-y-3">${twList.map(buildScStockCardHtml).join("")}</div>`
-            : `<div class="text-xs text-slate-500 py-4 text-center">此階段以國際美股大廠為主，可切換至「🇺🇸 美股供應鏈」檢視</div>`;
+            : `<div class="text-xs text-slate-500 py-4 text-center">此階段以國際美股大廠為主，可切換至「🇺🇸 美股供應鏈」或「🌐 台美同屏」檢視</div>`;
         } else if (currentScMarket === "US") {
           bodyHtml = usList.length > 0
             ? `<div class="space-y-3">${usList.map(buildScStockCardHtml).join("")}</div>`
-            : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主，可切換至「🇹🇼 台股供應鏈」檢視</div>`;
+            : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主，可切換至「🇹🇼 台股供應鏈」或「🌐 台美同屏」檢視</div>`;
         } else {
           bodyHtml = `
             <div class="space-y-4">
@@ -1397,7 +1436,7 @@
                   <span class="text-slate-100 font-bold">${rel.expected}</span>
                 </div>
                 <div class="bg-slate-900/70 p-2 rounded border border-slate-800/60">
-                  <span class="text-[10px] text-slate-400 block mb-0.5">🇰 上個月數據</span>
+                  <span class="text-[10px] text-slate-400 block mb-0.5">⏪ 上個月數據</span>
                   <span class="text-slate-300 font-bold">${rel.prior}</span>
                 </div>
               </div>
@@ -2099,11 +2138,18 @@
 
     function triggerCardFlash(symbol, isUp) {
       const domId = safeId(symbol);
-      const card = document.getElementById(`card-${domId}`) || document.getElementById(`sc-card-${domId}`);
-      if (!card) return;
-      card.classList.remove("flash-rose", "flash-emerald");
-      void card.offsetWidth;
-      card.classList.add(isUsGreenUpAsset(symbol) ? (isUp ? "flash-emerald" : "flash-rose") : (isUp ? "flash-rose" : "flash-emerald"));
+      const cls = isUsGreenUpAsset(symbol) ? (isUp ? "flash-emerald" : "flash-rose") : (isUp ? "flash-rose" : "flash-emerald");
+      const mainCard = document.getElementById(`card-${domId}`);
+      if (mainCard) {
+        mainCard.classList.remove("flash-rose", "flash-emerald");
+        void mainCard.offsetWidth;
+        mainCard.classList.add(cls);
+      }
+      document.querySelectorAll(`.sc-card-${domId}`).forEach(card => {
+        card.classList.remove("flash-rose", "flash-emerald");
+        void card.offsetWidth;
+        card.classList.add(cls);
+      });
     }
 
     function updateAssetDomPrice(symbol, newMainPrice, newMainPct, extSessionObj = null) {
@@ -2129,13 +2175,12 @@
           pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
         }
 
-        const scPEl = document.getElementById(`sc-price-${domId}`);
-        const scPctEl = document.getElementById(`sc-pct-${domId}`);
-        if (scPEl) scPEl.textContent = item.price;
-        if (scPctEl) {
-          scPctEl.textContent = formatSignedPct(item.change_pct);
-          scPctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
-        }
+        // 同步更新同一產業鏈或跨產業鏈多重出現的所有同名股票卡片
+        document.querySelectorAll(`.sc-price-${domId}`).forEach(el => { el.textContent = item.price; });
+        document.querySelectorAll(`.sc-pct-${domId}`).forEach(el => {
+          el.textContent = formatSignedPct(item.change_pct);
+          el.className = `sc-pct-${domId} text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
+        });
 
         if (item.asset_type === "fx_rate") refreshAllFxTwdSublabels();
       }
