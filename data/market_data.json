@@ -1,8 +1,12 @@
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "last_updated": "2026-11-15 11:30:26 CST",
 =======
   "last_updated": "2026-11-15 11:30:43 CST",
+>>>>>>> Stashed changes
+=======
+  "last_updated": "2026-11-15 11:32:00 CST",
 >>>>>>> Stashed changes
   "indices": [
     {
@@ -10443,12 +10447,13 @@
       "name": "美國 3 個月期國庫券殖利率",
       "asset_type": "us_bond",
       "future_group": null,
-      "price": 4.12,
-      "prev_close": 4.13,
-      "change": -0.01,
-      "change_pct": -0.24,
+      "price": 0.0,
+      "prev_close": 0.0,
+      "change": 0.0,
+      "change_pct": 0.0,
       "ext_session": null,
       "intraday": [],
+<<<<<<< Updated upstream
       "history": [
         {
           "date": "2025-11-13",
@@ -11459,6 +11464,9 @@
           "close": 4.12
         }
       ],
+=======
+      "history": [],
+>>>>>>> Stashed changes
       "fundamentals": {
         "pe": "N/A",
         "forward_pe": "N/A",
@@ -21129,10 +21137,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6621,
+      "price": 6.6712,
       "prev_close": 6.6704,
-      "change": -0.0083,
-      "change_pct": -0.12,
+      "change": 0.0008,
+      "change_pct": 0.01,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -22177,8 +22185,8 @@
           "close": 6.6704
         },
         {
-          "date": "2026-11-14",
-          "close": 6.6621
+          "date": "2026-11-15",
+          "close": 6.6712
         }
       ],
       "fundamentals": {
@@ -23259,12 +23267,13 @@
       "name": "美國 3 個月期國庫券殖利率",
       "asset_type": "us_bond",
       "future_group": null,
-      "price": 4.12,
-      "prev_close": 4.13,
-      "change": -0.01,
-      "change_pct": -0.24,
+      "price": 0.0,
+      "prev_close": 0.0,
+      "change": 0.0,
+      "change_pct": 0.0,
       "ext_session": null,
       "intraday": [],
+<<<<<<< Updated upstream
       "history": [
         {
           "date": "2025-11-13",
@@ -24275,6 +24284,9 @@
           "close": 4.12
         }
       ],
+=======
+      "history": [],
+>>>>>>> Stashed changes
       "fundamentals": {
         "pe": "N/A",
         "forward_pe": "N/A",
@@ -33943,10 +33955,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6621,
+      "price": 6.6712,
       "prev_close": 6.6704,
-      "change": -0.0083,
-      "change_pct": -0.12,
+      "change": 0.0008,
+      "change_pct": 0.01,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -34991,8 +35003,8 @@
           "close": 6.6704
         },
         {
-          "date": "2026-11-14",
-          "close": 6.6621
+          "date": "2026-11-15",
+          "close": 6.6712
         }
       ],
       "fundamentals": {
@@ -36114,7 +36126,7 @@
         },
         {
           "date": "2025-11-25",
-          "close": 177.4
+          "close": 177.39
         },
         {
           "date": "2025-11-26",
@@ -103096,9 +103108,13 @@
                 {
                   "date": "2026-01-05",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   "close": 117.06
 =======
                   "close": 117.05
+>>>>>>> Stashed changes
+=======
+                  "close": 117.06
 >>>>>>> Stashed changes
                 },
                 {
@@ -110132,7 +110148,7 @@
                 },
                 {
                   "date": "2025-11-25",
-                  "close": 177.4
+                  "close": 177.39
                 },
                 {
                   "date": "2025-11-26",
@@ -147820,7 +147836,11 @@
               "fundamentals": {
                 "pe": 44.32,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 "forward_pe": 17.87,
+=======
+                "forward_pe": 17.83,
+>>>>>>> Stashed changes
 =======
                 "forward_pe": 17.83,
 >>>>>>> Stashed changes
@@ -148940,7 +148960,11 @@
                 },
                 {
                   "date": "2025-11-25",
+<<<<<<< Updated upstream
                   "close": 177.4
+=======
+                  "close": 177.39
+>>>>>>> Stashed changes
                 },
                 {
                   "date": "2025-11-26",
@@ -187602,7 +187626,11 @@
                 },
                 {
                   "date": "2025-11-25",
+<<<<<<< Updated upstream
                   "close": 177.4
+=======
+                  "close": 177.39
+>>>>>>> Stashed changes
                 },
                 {
                   "date": "2025-11-26",
@@ -209394,9 +209422,13 @@
                 {
                   "date": "2026-04-14",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   "close": 1359.34
 =======
                   "close": 1359.33
+>>>>>>> Stashed changes
+=======
+                  "close": 1359.34
 >>>>>>> Stashed changes
                 },
                 {
