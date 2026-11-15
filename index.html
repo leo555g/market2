@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・26大產業鏈與每日強勢族群・每日市場深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・台美獨立強勢族群排行・每日市場深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -48,7 +48,7 @@
           <span>📊 視窗一：全球市場・台股籌碼・每日市場深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：26大細分產業鏈追蹤室 & 每日強勢族群解析</span>
+          <span>🔬 視窗二：26大細分產業鏈追蹤室 & 台美獨立強勢族群</span>
         </button>
       </div>
       <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「26大產業鏈獨立視窗」之間切換</span>
@@ -190,7 +190,7 @@
     <section class="space-y-4">
       <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">
         美股核心科技股・最新財報核心數據與獲利能力指標・新聞利多利空
-        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含盤前／盤後報價)</span>
+        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含 SpaceX 等核心巨頭)</span>
       </h2>
       <div id="grid-us-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
@@ -241,7 +241,7 @@
       </div>
     </section>
 
-    <!-- 專區 9：視窗一最下方「每日市場深度報告 (五大維度詳細剖析)」 -->
+    <!-- 專區 9：視窗一最下方「每日市場深度報告」 -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
@@ -285,21 +285,24 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 視窗二：26 大細分產業鏈上中下游深度追蹤室 + 每日強勢族群專區 -->
+  <!-- 視窗二：26 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
   <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
-    <!-- 新增專區：視窗二「每日強勢細分產業鏈排行與領漲原因深度解析」 -->
+    <!-- 視窗二上方專區：台美股獨立強勢族群雷達 -->
     <div class="card-bg rounded-xl p-5 border border-rose-500/40 shadow-xl">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 border-b border-slate-800 pb-3.5 mb-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-4">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded animate-pulse">🔥 每日強勢族群雷達</span>
-            <h2 class="text-lg md:text-xl font-bold text-white">今日最強勢細分產業鏈排行 & 領漲原因深度解析</h2>
+            <h2 id="sc-top-radar-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股今日最強勢細分產業鏈排行 & 領漲原因深度解析</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">自動統計 26 大產業鏈當日平均漲幅、前三大領漲指標股與背後基本面催化原因（點擊任一強勢族群卡片可直接跳轉檢視完整上中下游清單）</p>
+          <p class="text-xs text-slate-400 mt-1">獨立追蹤台股與美股當日平均漲幅、前三大領漲指標股與基本面催化原因（點擊任一強勢族群卡片可直接跳轉檢視完整上中下游清單）</p>
         </div>
-        <span class="text-xs text-amber-300 mono shrink-0">點擊卡片快速切換對應產業鏈 &darr;</span>
+        <div class="flex items-center gap-2 shrink-0 bg-slate-900 p-1 rounded-lg border border-slate-800">
+          <button id="top-market-btn-tw" onclick="switchTopMarketTab('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股強勢榜</button>
+          <button id="top-market-btn-us" onclick="switchTopMarketTab('US')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white">🇺🇸 美股強勢榜</button>
+        </div>
       </div>
       <div id="sc-top-performing-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </div>
@@ -311,7 +314,7 @@
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
             <h2 class="text-xl md:text-2xl font-bold text-white">26 大細分產業鏈上、中、下游垂直整合追蹤室</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">涵蓋記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、民生消費</p>
+          <p class="text-xs text-slate-400 mt-1">已完整納入記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、民生消費</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
@@ -336,7 +339,7 @@
         </div>
       </div>
 
-      <!-- 跨產業供應鏈串接地圖 (所有按鈕標題均為純淨產業名稱，不含任何公司名稱) -->
+      <!-- 跨產業供應鏈串接地圖 (導覽按鈕標題均為純淨名稱：太空、金融) -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
@@ -496,6 +499,7 @@
     let currentScSectorId = "memory";
     let currentScRange = "1M";
     let scCompareSymbols = [];
+    let currentTopMarket = "TW"; // 預設視窗二強勢榜顯示台股
 
     let mainChart = null, instChart = null, marginChart = null, scChart = null, finnhubSocket = null;
 
@@ -595,7 +599,7 @@
         }
       },
       {
-        id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-l-purple-500",
+        id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500",
         schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }],
         latestRelease: {
           period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
@@ -637,14 +641,38 @@
       `).join("");
     }
 
-    // 視窗二：渲染「每日強勢細分產業鏈排行與領漲原因深度解析」
+    function switchTopMarketTab(market) {
+      currentTopMarket = market;
+      const btnTw = document.getElementById("top-market-btn-tw");
+      const btnUs = document.getElementById("top-market-btn-us");
+      const titleEl = document.getElementById("sc-top-radar-title");
+
+      if (market === "TW") {
+        btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow";
+        btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
+        if (titleEl) titleEl.textContent = "🇹🇼 台股今日最強勢細分產業鏈排行 & 領漲原因深度解析";
+      } else {
+        btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-emerald-600 text-white shadow";
+        btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
+        if (titleEl) titleEl.textContent = "🇺🇸 美股今日最強勢細分產業鏈排行 & 領漲原因深度解析";
+      }
+      renderTopPerformingSectors();
+    }
+
     function renderTopPerformingSectors() {
       const container = document.getElementById("sc-top-performing-grid");
       if (!container) return;
 
-      const list = (globalMarketData && Array.isArray(globalMarketData.top_performing_sectors) && globalMarketData.top_performing_sectors.length > 0)
-        ? globalMarketData.top_performing_sectors
-        : (window.DEFAULT_TOP_PERFORMING_SECTORS || []);
+      let list = [];
+      if (currentTopMarket === "TW") {
+        list = (globalMarketData && Array.isArray(globalMarketData.tw_top_sectors) && globalMarketData.tw_top_sectors.length > 0)
+          ? globalMarketData.tw_top_sectors
+          : (window.DEFAULT_TW_TOP_SECTORS || []);
+      } else {
+        list = (globalMarketData && Array.isArray(globalMarketData.us_top_sectors) && globalMarketData.us_top_sectors.length > 0)
+          ? globalMarketData.us_top_sectors
+          : (window.DEFAULT_US_TOP_SECTORS || []);
+      }
 
       container.innerHTML = list.slice(0, 6).map((sec, idx) => {
         const rankColors = [
@@ -653,8 +681,7 @@
           "bg-emerald-500/25 text-emerald-300 border-emerald-500/50"
         ];
         const rBadgeCls = rankColors[idx] || "bg-indigo-500/20 text-indigo-300 border-indigo-500/40";
-        const twPct = Number(sec.tw_avg_pct ?? sec.avg_pct ?? 0);
-        const usPct = Number(sec.us_avg_pct ?? 0);
+        const avgPct = Number(sec.avg_pct ?? 0);
 
         const leadersHtml = (sec.leaders || []).map(ld => {
           const liveItem = allAssetsMap[ld.symbol];
@@ -678,12 +705,8 @@
                   <h3 class="text-base font-bold text-white">${sec.title}</h3>
                 </div>
                 <div class="text-right mono">
-                  <span class="text-[10px] text-slate-400 block">台股均漲 / 美股均漲</span>
-                  <div class="text-xs font-bold">
-                    <span class="${getColorClass(twPct, 'tw_stock')}">${formatSignedPct(twPct)}</span>
-                    <span class="text-slate-600 mx-0.5">/</span>
-                    <span class="${getColorClass(usPct, 'us_stock')}">${formatSignedPct(usPct)}</span>
-                  </div>
+                  <span class="text-[10px] text-slate-400 block">族群平均漲跌</span>
+                  <strong class="text-sm font-bold ${getColorClass(avgPct, currentTopMarket === 'US' ? 'us_stock' : 'tw_stock')}">${formatSignedPct(avgPct)}</strong>
                 </div>
               </div>
               <div class="mb-2.5">
@@ -1374,7 +1397,7 @@
                   <span class="text-slate-100 font-bold">${rel.expected}</span>
                 </div>
                 <div class="bg-slate-900/70 p-2 rounded border border-slate-800/60">
-                  <span class="text-[10px] text-slate-400 block mb-0.5">⏪ 上個月數據</span>
+                  <span class="text-[10px] text-slate-400 block mb-0.5">🇰 上個月數據</span>
                   <span class="text-slate-300 font-bold">${rel.prior}</span>
                 </div>
               </div>
