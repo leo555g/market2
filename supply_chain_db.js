@@ -1,5 +1,5 @@
 // ============================================================================
-// supply_chain_db.js (純淨產業標題 + 每日強勢族群剖析 + 詳細版每日市場深度報告)
+// supply_chain_db.js (台美股強勢族群雙榜獨立版 + 純淨產業標題 + 詳細版每日市場報告)
 // ============================================================================
 
 window.DAILY_MARKET_REPORT_DATA = {
@@ -10,7 +10,7 @@ window.DAILY_MARKET_REPORT_DATA = {
     "【二、台股大盤量價與權值股領軍解析】台灣加權指數終場大漲 583.25 點收在 43,675.12 點 (+1.35%)，代表中小型股人氣的櫃買指數同步勁揚收 342.41 點 (+1.99%)。權值股方面，台積電收 2,350.00 元 (+0.43%) 穩住盤勢，聯發科強勢狂飆收 4,120.00 元 (+7.01%)、台達電大漲收 1,240.00 元 (+4.58%)、鴻海收 241.00 元 (+4.05%)、日月光投控收 598.00 元 (+2.05%)，帶動高價 IC 設計、水冷散熱、電源機櫃與先進封裝全面噴出。",
     "【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 +288.37 億元、投信連續買超 +82.37 億元、自營商買超 +68.92 億元，三大法人合計淨買超達 +439.66 億元。信用交易方面，上市融資餘額溫和增加 31.24 億元至 5,365.99 億元、上櫃融資餘額增加 19.28 億元至 1,862.45 億元，前期急跌清洗浮額後，籌碼面呈現『外資回補、投信作帳、融資安定』的偏多格局。",
     "【四、總經美債殖利率、外匯與原物料連動】美國 10 年期公債殖利率報 5.15%、30 年期報 5.48%，隨 10 月最終需求 PPI 月增率放緩至 +0.3%（低於預期的 +0.4%），通膨再度失控的擔憂略有降溫；美元指數報 103.20、美元兌新台幣報 32.89，黃金期貨報 3,886.30 美元、WTI 原油報 88.56 美元，能源價格回穩有助減輕製造業成本壓力。",
-    "【五、盤面最強勢領漲族群聚焦】今日 26 大細分產業鏈中，以『CPU 與 AI 運算晶片』、『半導體製造與設備』、『散熱』、『BBU 備援電池單元』與『記憶體』表現最為亮眼，資金明顯集中於具備實質 10 月營收創高支撐及 2027 年明確訂單能見度之次產業。"
+    "【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以『CPU 與 AI 運算晶片 (+4.12%)』、『半導體製造與設備 (+3.88%)』、『散熱 (+3.56%)』領漲力道最強；美股供應鏈則以『金融 (+0.95%)』、『資安 (+0.82%)』、『民生消費 (+0.68%)』表現最為穩健。"
   ],
   bullish_factors: [
     "🔥 企業基本面與月營收極為強勁：台積電 10 月營收達 3,142.4 億元（月增 +24.8%、年增 +29.2%）創單月歷史新高，鴻海、廣達、緯穎與奇鋐營收同步攀峰，實質數據破除 AI 泡沫疑慮。",
@@ -40,87 +40,171 @@ window.DAILY_MARKET_REPORT_DATA = {
   ]
 };
 
-// 視窗二：每日強勢細分產業鏈排行與強勢原因剖析 (當後端 market_data.json 載入時會動態更新最新漲幅)
-window.DEFAULT_TOP_PERFORMING_SECTORS = [
+// 🇹🇼 台股強勢細分產業鏈獨立榜單 (紅漲綠跌)
+window.DEFAULT_TW_TOP_SECTORS = [
   {
     sector_id: "cpu",
+    market: "TW",
     title: "🧠 CPU 與 AI 運算晶片",
-    avg_pct: 2.85,
-    tw_avg_pct: 4.12,
-    us_avg_pct: 0.45,
+    avg_pct: 4.12,
+    stock_count: 14,
     leaders: [
       { symbol: "2454.TW", name: "2454 聯發科", price: 4120.00, change_pct: 7.01, asset_type: "tw_stock" },
       { symbol: "3661.TW", name: "3661 世芯-KY", price: 3280.00, change_pct: 4.62, asset_type: "tw_stock" },
       { symbol: "5274.TWO", name: "5274 信驊", price: 4650.00, change_pct: 3.95, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：2454 聯發科 (+7.01%)、3661 世芯-KY (+4.62%)、5274 信驊 (+3.95%)】雲端巨頭自研 AI ASIC 晶片與 ARM 架構伺服器 CPU 滲透率攀升，旗艦邊緣 AI SoC 拉貨強勁，帶動高價 IC 設計、矽智財 IP 與遠端管理晶片 (BMC) 領軍大漲。"
+    reason: "【台股領漲指標：2454 聯發科 (+7.01%)、3661 世芯-KY (+4.62%)、5274 信驊 (+3.95%)】雲端巨頭自研 AI ASIC 晶片與 ARM 架構運算滲透率攀升，旗艦邊緣 AI SoC 拉貨強勁，帶動台系高價 IC 設計、矽智財 IP 與遠端管理晶片 (BMC) 領軍大漲。"
   },
   {
     sector_id: "semiconductor",
+    market: "TW",
     title: "🏭 半導體製造與設備",
-    avg_pct: 2.64,
-    tw_avg_pct: 3.88,
-    us_avg_pct: 0.62,
+    avg_pct: 3.88,
+    stock_count: 14,
     leaders: [
       { symbol: "2303.TW", name: "2303 聯電", price: 101.50, change_pct: 9.54, asset_type: "tw_stock" },
       { symbol: "3680.TWO", name: "3680 家登", price: 548.00, change_pct: 4.38, asset_type: "tw_stock" },
       { symbol: "2404.TW", name: "2404 漢唐", price: 432.00, change_pct: 3.60, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：2303 聯電 (+9.54%)、3680 家登 (+4.38%)、2404 漢唐 (+3.60%)】成熟製程龍頭切入矽光子中介層與高壓 PMIC 代工引發外資大舉回補，加上 2 奈米與先進封裝廠務無塵室工程進入認列高峰，晶圓代工與設備廠齊揚。"
+    reason: "【台股領漲指標：2303 聯電 (+9.54%)、3680 家登 (+4.38%)、2404 漢唐 (+3.60%)】成熟製程龍頭切入矽光子中介層與高壓 PMIC 代工引發外資大舉回補，加上 2 奈米與先進封裝廠務無塵室工程進入認列高峰，晶圓代工與設備廠齊揚。"
   },
   {
     sector_id: "thermal",
+    market: "TW",
     title: "❄️ 散熱",
-    avg_pct: 2.48,
-    tw_avg_pct: 3.56,
-    us_avg_pct: 1.15,
+    avg_pct: 3.56,
+    stock_count: 14,
     leaders: [
       { symbol: "3653.TW", name: "3653 健策", price: 5345.00, change_pct: 5.20, asset_type: "tw_stock" },
       { symbol: "2308.TW", name: "2308 台達電", price: 1240.00, change_pct: 4.58, asset_type: "tw_stock" },
       { symbol: "3017.TW", name: "3017 奇鋐", price: 718.00, change_pct: 3.91, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：3653 健策 (+5.20%)、2308 台達電 (+4.58%)、3017 奇鋐 (+3.91%)】高功耗 AI 機櫃全面標配液冷方案，晶片級微流道均熱片 (MCL)、水冷板 (Cold Plate)、冷卻液分配裝置 (CDU) 與快接頭出貨持續放量。"
+    reason: "【台股領漲指標：3653 健策 (+5.20%)、2308 台達電 (+4.58%)、3017 奇鋐 (+3.91%)】高功耗 AI 機櫃全面標配液冷方案，台系晶片級微流道均熱片 (MCL)、水冷板 (Cold Plate)、CDU 與水冷快接頭 (UQD) 出貨持續放量。"
   },
   {
     sector_id: "bbu",
+    market: "TW",
     title: "🔋 BBU 備援電池單元",
-    avg_pct: 2.35,
-    tw_avg_pct: 3.42,
-    us_avg_pct: 1.08,
+    avg_pct: 3.42,
+    stock_count: 15,
     leaders: [
       { symbol: "2308.TW", name: "2308 台達電", price: 1240.00, change_pct: 4.58, asset_type: "tw_stock" },
       { symbol: "6781.TW", name: "6781 AES-KY", price: 985.00, change_pct: 4.23, asset_type: "tw_stock" },
       { symbol: "3211.TWO", name: "3211 順達", price: 216.50, change_pct: 3.84, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：2308 台達電 (+4.58%)、6781 AES-KY (+4.23%)、3211 順達 (+3.84%)】次世代 AI 伺服器機櫃將高倍率鋰電池 BBU 與高瓦數 Power Shelf 列為標準配備，加上北美資料中心電網級變壓器需求強勁，成為法人作帳核心。"
+    reason: "【台股領漲指標：2308 台達電 (+4.58%)、6781 AES-KY (+4.23%)、3211 順達 (+3.84%)】次世代 AI 伺服器機櫃將高倍率鋰電池 BBU 與高瓦數 Power Shelf 列為標準配備，加上重電變壓器外銷強勁，成為台股法人作帳核心。"
   },
   {
     sector_id: "memory",
+    market: "TW",
     title: "💾 記憶體",
-    avg_pct: 1.92,
-    tw_avg_pct: 2.95,
-    us_avg_pct: -0.45,
+    avg_pct: 2.95,
+    stock_count: 13,
     leaders: [
       { symbol: "2408.TW", name: "2408 南亞科", price: 377.00, change_pct: 3.85, asset_type: "tw_stock" },
       { symbol: "8299.TWO", name: "8299 群聯", price: 615.00, change_pct: 3.36, asset_type: "tw_stock" },
       { symbol: "6239.TW", name: "6239 力成", price: 168.50, change_pct: 2.74, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：2408 南亞科 (+3.85%)、8299 群聯 (+3.36%)、6239 力成 (+2.74%)】HBM3e 12層與 HBM4 產能排擠標準型 DRAM 供給，帶動高階 DDR5 與企業級 SSD 控制晶片、記憶體封測訂單同步走揚。"
+    reason: "【台股領漲指標：2408 南亞科 (+3.85%)、8299 群聯 (+3.36%)、6239 力成 (+2.74%)】HBM 產能排擠標準型 DRAM 供給，帶動台系高階 DDR5 顆粒製造、PCIe Gen5 SSD 控制晶片與專業記憶體封測廠訂單同步走揚。"
   },
   {
     sector_id: "pcb",
+    market: "TW",
     title: "🟩 PCB 印刷電路板",
-    avg_pct: 1.85,
-    tw_avg_pct: 2.68,
-    us_avg_pct: 0.75,
+    avg_pct: 2.68,
+    stock_count: 18,
     leaders: [
       { symbol: "2317.TW", name: "2317 鴻海", price: 241.00, change_pct: 4.05, asset_type: "tw_stock" },
       { symbol: "2368.TW", name: "2368 金像電", price: 248.50, change_pct: 3.54, asset_type: "tw_stock" },
       { symbol: "2313.TW", name: "2313 華通", price: 82.60, change_pct: 2.86, asset_type: "tw_stock" }
     ],
-    reason: "【領漲指標：2317 鴻海 (+4.05%)、2368 金像電 (+3.54%)、2313 華通 (+2.86%)】高層數 AI 伺服器主板 (UBB/OAM) 與低軌衛星高階 HDI 板產能稼動率滿載，帶動上游微鑽針與下游伺服器系統組裝廠營收創高。"
+    reason: "【台股領漲指標：2317 鴻海 (+4.05%)、2368 金像電 (+3.54%)、2313 華通 (+2.86%)】高層數 AI 伺服器主板 (UBB/OAM) 與低軌衛星高階 HDI 板產能稼動率滿載，帶動台系 PCB 龍頭、微鑽針與下游伺服器 ODM 組裝廠營收創高。"
   }
 ];
+
+// 🇺🇸 美股強勢細分產業鏈獨立榜單 (綠漲紅跌・純代號顯示)
+window.DEFAULT_US_TOP_SECTORS = [
+  {
+    sector_id: "finance",
+    market: "US",
+    title: "🏦 金融",
+    avg_pct: 0.95,
+    stock_count: 17,
+    leaders: [
+      { symbol: "JPM", name: "JPM", price: 242.80, change_pct: 1.15, asset_type: "us_stock" },
+      { symbol: "BAC", name: "BAC", price: 45.90, change_pct: 1.05, asset_type: "us_stock" },
+      { symbol: "IBKR", name: "IBKR", price: 81.58, change_pct: 0.30, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：JPM (+1.15%)、BAC (+1.05%)、IBKR (+0.30%)】高利率環境支撐美國大型商業銀行淨利差 (NIM)，資本市場併購復甦與量化電子交易量創高，帶動華爾街投行、跨國電子券商與資產管理巨頭獲利穩健增長。"
+  },
+  {
+    sector_id: "cybersecurity",
+    market: "US",
+    title: "🔐 資安",
+    avg_pct: 0.82,
+    stock_count: 11,
+    leaders: [
+      { symbol: "CRWD", name: "CRWD", price: 348.90, change_pct: 1.60, asset_type: "us_stock" },
+      { symbol: "PANW", name: "PANW", price: 392.50, change_pct: 1.28, asset_type: "us_stock" },
+      { symbol: "NOW", name: "NOW", price: 1018.40, change_pct: 0.94, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：CRWD (+1.60%)、PANW (+1.28%)、NOW (+0.94%)】企業加速導入 AI 驅動之零信任雲端端點安全與企業 IT 工作流自動化軟體，推升美系資安與企業雲端軟體巨頭經常性訂閱營收 (ARR)。"
+  },
+  {
+    sector_id: "thermal",
+    market: "US",
+    title: "❄️ 散熱",
+    avg_pct: 0.78,
+    stock_count: 5,
+    leaders: [
+      { symbol: "VRT", name: "VRT", price: 126.80, change_pct: 2.45, asset_type: "us_stock" },
+      { symbol: "ETN", name: "ETN", price: 368.40, change_pct: 1.40, asset_type: "us_stock" },
+      { symbol: "MOD", name: "MOD", price: 132.50, change_pct: 0.85, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：VRT (+2.45%)、ETN (+1.40%)、MOD (+0.85%)】北美超大規模資料中心加速建置機櫃級液冷熱交換器、流體連接器與精密溫控基礎設施，美系資料中心熱管理與電力基建龍頭在手訂單續創歷史新高。"
+  },
+  {
+    sector_id: "bbu",
+    market: "US",
+    title: "🔋 BBU 備援電池單元",
+    avg_pct: 0.74,
+    stock_count: 5,
+    leaders: [
+      { symbol: "GEV", name: "GEV", price: 338.50, change_pct: 1.90, asset_type: "us_stock" },
+      { symbol: "ETN", name: "ETN", price: 368.40, change_pct: 1.40, asset_type: "us_stock" },
+      { symbol: "ENS", name: "ENS", price: 104.20, change_pct: 0.65, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：GEV (+1.90%)、ETN (+1.40%)、ENS (+0.65%)】北美 AI 資料中心用電量激增，推動燃氣渦輪發電、電網級高壓配電設備與工業級資料中心備援電池巨頭獲機構法人長線配置。"
+  },
+  {
+    sector_id: "biotech",
+    market: "US",
+    title: "🧬 生技",
+    avg_pct: 0.68,
+    stock_count: 14,
+    leaders: [
+      { symbol: "ISRG", name: "ISRG", price: 532.40, change_pct: 1.35, asset_type: "us_stock" },
+      { symbol: "LLY", name: "LLY", price: 812.40, change_pct: 0.92, asset_type: "us_stock" },
+      { symbol: "UNH", name: "UNH", price: 592.40, change_pct: 0.82, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：ISRG (+1.35%)、LLY (+0.92%)、UNH (+0.82%)】在美債殖利率高檔震盪之際，具備剛性醫療需求的微創手術機器人、GLP-1 代謝新藥與大型醫療保險照護巨頭展現強勁防禦性與獲利成長。"
+  },
+  {
+    sector_id: "consumer",
+    market: "US",
+    title: "🛒 民生消費",
+    avg_pct: 0.64,
+    stock_count: 12,
+    leaders: [
+      { symbol: "COST", name: "COST", price: 928.50, change_pct: 1.10, asset_type: "us_stock" },
+      { symbol: "WMT", name: "WMT", price: 84.60, change_pct: 0.92, asset_type: "us_stock" },
+      { symbol: "MCD", name: "MCD", price: 296.40, change_pct: 0.48, asset_type: "us_stock" }
+    ],
+    reason: "【美股領漲指標：COST (+1.10%)、WMT (+0.92%)、MCD (+0.48%)】迎接年底歐美感恩節與聖誕購物旺季，北美會員制倉儲量販與全通路零售巨頭展現強勁抗通膨聚客力與市占率擴張。"
+  }
+];
+
+window.DEFAULT_TOP_PERFORMING_SECTORS = window.DEFAULT_TW_TOP_SECTORS;
 
 // 26 大核心細分產業鏈 (所有主標題 title、副標題 sub 與階段標題 u/m/d 均 100% 純淨，絕不包含任何公司名稱！)
 const RAW_26_SECTORS = [
@@ -217,7 +301,7 @@ const RAW_26_SECTORS = [
   { id: "defense", cat: "太空軍工與航運", title: "🛡️ 軍工", sub: "軍用防彈複合材料、軍規強固電腦、高教機、長程無人機與國艦國造", upLinks: ["space_tech", "leo_satellite"], downLinks: [],
     u: "上游：軍規強固型電腦、AI 戰場情資與防彈材料", uL: [["3005.TW","3005 神基","全球前二大軍警用強固型電腦霸主"],["3708.TW","3708 上緯投控","航太與無人機用高強度碳纖維複合材料"],["PLTR","PLTR","Palantir (千億美元)：美軍與北約 AI 戰場決策分析平台霸主"]],
     m: "中游：軍用無人機 (UAV)、飛彈防禦與艦艇建造", mL: [["8033.TW","8033 雷虎","軍用商規長程無人直升機、自殺無人機與無人艇先驅"],["5371.TWO","5371 中光電","上櫃百億指標：旗下智能機器人量產軍警偵察無人機"],["6753.TW","6753 龍德造船","高效能穿浪雙體巡邏艦製造廠"],["3008.TW","3008 大立光","上市千億霸主：高階光學鏡頭與無人機/機器人視覺感測"],["RTX","RTX","RTX 雷神 (千億美元)：愛國者防空飛彈與軍用雷達全球霸主"],["GD","GD","General Dynamics 通用動力 (千億美元級)：核潛艦、戰車與商務機巨頭"],["AVAV","AVAV","AeroVironment：美軍彈簧刀自殺無人機製造龍頭"]],
-    d: "下游：國防主承包商、高教機與潛艦國造總成", dL: [["2634.TW","2634 漢翔","勇鷹號高教機量產、F-16V 構改維保與無人機反制系統"],["2208.TW","2208 台船","潛艦國造与大型海巡軍用艦艇建造基地"],["2630.TW","2630 亞航","軍用直升機、定翼機維修與光纖陀螺儀無人機"],["LMT","LMT","Lockheed Martin (千億美元)：F-35 戰機與飛彈全球第一大軍工巨頭"],["NOC","NOC","Northrop Grumman：B-21 隱形轟炸機與戰略防禦霸主"]] },
+    d: "下游：國防主承包商、高教機與潛艦國造總成", dL: [["2634.TW","2634 漢翔","勇鷹號高教機量產、F-16V 構改維保與無人機反制系統"],["2208.TW","2208 台船","潛艦國造與大型海巡軍用艦艇建造基地"],["2630.TW","2630 亞航","軍用直升機、定翼機維修與光纖陀螺儀無人機"],["LMT","LMT","Lockheed Martin (千億美元)：F-35 戰機與飛彈全球第一大軍工巨頭"],["NOC","NOC","Northrop Grumman：B-21 隱形轟炸機與戰略防禦霸主"]] },
 
   { id: "shipping", cat: "太空軍工與航運", title: "🚢 航運", sub: "港埠集散倉儲、全球遠洋/近洋貨櫃船隊、海岬型散裝船、航空貨運至物流承攬", upLinks: [], downLinks: ["consumer"],
     u: "上游：貨櫃集散倉儲、碼頭裝卸與貨櫃租賃", uL: [["2607.TW","2607 榮運","大型貨櫃集散場、造櫃與船隊租賃"],["2613.TW","2613 中櫃","基隆、台中與高雄港碼頭貨櫃裝卸營運"]],
