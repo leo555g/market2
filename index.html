@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・26大產業鏈(台美分區)・每日市場深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・26大產業鏈與每日強勢族群・每日市場深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -48,7 +48,7 @@
           <span>📊 視窗一：全球市場・台股籌碼・每日市場深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：26大細分產業鏈追蹤室 (含營建・台股千億/美股千億美元指標)</span>
+          <span>🔬 視窗二：26大細分產業鏈追蹤室 & 每日強勢族群解析</span>
         </button>
       </div>
       <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「26大產業鏈獨立視窗」之間切換</span>
@@ -190,7 +190,7 @@
     <section class="space-y-4">
       <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">
         美股核心科技股・最新財報核心數據與獲利能力指標・新聞利多利空
-        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含 SpaceX (SPCX) 等核心巨頭)</span>
+        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・含盤前／盤後報價)</span>
       </h2>
       <div id="grid-us-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
@@ -241,13 +241,13 @@
       </div>
     </section>
 
-    <!-- 專區 9：視窗一最下方「每日市場深度報告」 -->
+    <!-- 專區 9：視窗一最下方「每日市場深度報告 (五大維度詳細剖析)」 -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">📑 每日盤後與盤前深度報告</span>
-            <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告</h2>
+            <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告 (五大維度完整拆解)</h2>
           </div>
           <p id="daily-report-headline" class="text-sm text-indigo-300 font-semibold mt-2"></p>
         </div>
@@ -255,8 +255,8 @@
       </div>
 
       <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
-        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌核心原因剖析</h3>
-        <ul id="daily-report-drivers" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌五大核心原因深度剖析 (美股結構 / 台股量價 / 法人籌碼 / 債匯連動 / 領漲族群)</h3>
+        <ul id="daily-report-drivers" class="space-y-3 text-xs text-slate-200 leading-relaxed"></ul>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -284,17 +284,34 @@
 
   </main>
 
-  <!-- 視窗二：26 大細分產業鏈上中下游深度追蹤室 -->
+  <!-- ========================================================================= -->
+  <!-- 視窗二：26 大細分產業鏈上中下游深度追蹤室 + 每日強勢族群專區 -->
+  <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
+
+    <!-- 新增專區：視窗二「每日強勢細分產業鏈排行與領漲原因深度解析」 -->
+    <div class="card-bg rounded-xl p-5 border border-rose-500/40 shadow-xl">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 border-b border-slate-800 pb-3.5 mb-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded animate-pulse">🔥 每日強勢族群雷達</span>
+            <h2 class="text-lg md:text-xl font-bold text-white">今日最強勢細分產業鏈排行 & 領漲原因深度解析</h2>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">自動統計 26 大產業鏈當日平均漲幅、前三大領漲指標股與背後基本面催化原因（點擊任一強勢族群卡片可直接跳轉檢視完整上中下游清單）</p>
+        </div>
+        <span class="text-xs text-amber-300 mono shrink-0">點擊卡片快速切換對應產業鏈 &darr;</span>
+      </div>
+      <div id="sc-top-performing-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
 
     <div class="card-bg rounded-xl p-5 border border-indigo-500/40 shadow-xl">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">26 大細分產業鏈上、中、下游垂直整合追蹤室 (含台股千億/上櫃百億 & 美股千億美元巨頭)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">26 大細分產業鏈上、中、下游垂直整合追蹤室</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">已完整納入營建不動產、記憶體、TGV、矽晶圓、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、CPU、封測、衛星、太空(SpaceX/SPCX)、軍工、航運、資安、生技、保險、金融(IBKR/統一證)、民生消費</p>
+          <p class="text-xs text-slate-400 mt-1">涵蓋記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、民生消費</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
@@ -319,6 +336,7 @@
         </div>
       </div>
 
+      <!-- 跨產業供應鏈串接地圖 (所有按鈕標題均為純淨產業名稱，不含任何公司名稱) -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
@@ -332,7 +350,7 @@
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('tgv')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑤ TGV玻璃基板</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('ic_substrate')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑥ 載板(ABF)</button>
+          <button onclick="selectScSector('ic_substrate')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑥ 載板</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('osat')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑦ 封測</button>
           <span class="text-slate-500">&rarr;</span>
@@ -348,11 +366,13 @@
           <span class="text-slate-500">+</span>
           <button onclick="selectScSector('bbu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑬ BBU</button>
           <span class="text-slate-500">｜</span>
-          <button onclick="selectScSector('space_tech')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🚀 太空(SPCX)</button>
+          <button onclick="selectScSector('leo_satellite')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🛰️ 低軌衛星</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('finance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏦 金融(IBKR/統一證)</button>
+          <button onclick="selectScSector('space_tech')" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-600 text-purple-200 font-medium transition">🚀 太空</button>
+          <span class="text-slate-500">｜</span>
+          <button onclick="selectScSector('finance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏦 金融</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('construction')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏗️ 營建不動產</button>
+          <button onclick="selectScSector('construction')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏗️ 營建</button>
         </div>
       </div>
 
@@ -458,7 +478,6 @@
   </div>
 
   <script>
-    // 強制清除先前含有舊假數據的所有歷史快取！
     try {
       ["MARKET2_REAL_CACHE_V3", "MARKET2_REAL_CACHE_V4", "MARKET2_LIVE_CACHE_V5", "MARKET2_LIVE_CACHE_V6"].forEach(k => localStorage.removeItem(k));
     } catch (e) {}
@@ -497,7 +516,6 @@
       short_balance: [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
     };
 
-    // 2026年11月13日 週五官方真實收盤價基準庫 (全面修正為真實 2026/11/13 行情，絕無 2024 舊數字)
     const VERIFIED_NOV13_2026_QUOTES = {
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
       "^TWII": [43675.12, 1.35], "^TWOII": [342.41, 1.99], "^N225": [61216.00, 0.65], "^KS11": [5290.53, -0.98],
@@ -593,7 +611,7 @@
       if (!rep) return;
       document.getElementById("daily-report-date").textContent = `報告日期：${rep.report_date}`;
       document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
-      document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map(d => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${d}</li>`).join("");
+      document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map(d => `<li class="border-b border-slate-800/70 pb-2.5 last:border-0">${d}</li>`).join("");
       document.getElementById("daily-report-bulls").innerHTML = (rep.bullish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
       document.getElementById("daily-report-bears").innerHTML = (rep.bearish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
 
@@ -617,6 +635,70 @@
           <div class="text-[11px] text-slate-300">🔍 觀察重點：${e.focus}</div>
         </div>
       `).join("");
+    }
+
+    // 視窗二：渲染「每日強勢細分產業鏈排行與領漲原因深度解析」
+    function renderTopPerformingSectors() {
+      const container = document.getElementById("sc-top-performing-grid");
+      if (!container) return;
+
+      const list = (globalMarketData && Array.isArray(globalMarketData.top_performing_sectors) && globalMarketData.top_performing_sectors.length > 0)
+        ? globalMarketData.top_performing_sectors
+        : (window.DEFAULT_TOP_PERFORMING_SECTORS || []);
+
+      container.innerHTML = list.slice(0, 6).map((sec, idx) => {
+        const rankColors = [
+          "bg-rose-500/25 text-rose-300 border-rose-500/50",
+          "bg-amber-500/25 text-amber-300 border-amber-500/50",
+          "bg-emerald-500/25 text-emerald-300 border-emerald-500/50"
+        ];
+        const rBadgeCls = rankColors[idx] || "bg-indigo-500/20 text-indigo-300 border-indigo-500/40";
+        const twPct = Number(sec.tw_avg_pct ?? sec.avg_pct ?? 0);
+        const usPct = Number(sec.us_avg_pct ?? 0);
+
+        const leadersHtml = (sec.leaders || []).map(ld => {
+          const liveItem = allAssetsMap[ld.symbol];
+          const pVal = liveItem && Number(liveItem.price) > 0 ? liveItem.price : ld.price;
+          const pctVal = liveItem && liveItem.change_pct !== undefined ? liveItem.change_pct : ld.change_pct;
+          return `
+            <span onclick="event.stopPropagation(); openStockModal('${ld.symbol}')" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-900 border border-slate-700/80 hover:border-blue-400 text-[11px] mono cursor-pointer transition">
+              <span class="text-white font-bold">${ld.name}</span>
+              <span class="text-slate-400">${formatDisplayPrice(pVal, ld.symbol)}</span>
+              <strong class="${getColorClass(pctVal, ld.asset_type)}">${formatSignedPct(pctVal)}</strong>
+            </span>
+          `;
+        }).join("");
+
+        return `
+          <div onclick="selectScSector('${sec.sector_id}'); document.getElementById('sc-sector-metrics-bar').scrollIntoView({ behavior: 'smooth' });" class="bg-slate-900/90 hover:bg-slate-900 rounded-xl p-4 border border-slate-800 hover:border-rose-500/50 cursor-pointer transition-all flex flex-col justify-between shadow-md">
+            <div>
+              <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5 mb-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold px-2 py-0.5 rounded border mono ${rBadgeCls}">TOP ${idx + 1}</span>
+                  <h3 class="text-base font-bold text-white">${sec.title}</h3>
+                </div>
+                <div class="text-right mono">
+                  <span class="text-[10px] text-slate-400 block">台股均漲 / 美股均漲</span>
+                  <div class="text-xs font-bold">
+                    <span class="${getColorClass(twPct, 'tw_stock')}">${formatSignedPct(twPct)}</span>
+                    <span class="text-slate-600 mx-0.5">/</span>
+                    <span class="${getColorClass(usPct, 'us_stock')}">${formatSignedPct(usPct)}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2.5">
+                <span class="text-[10px] text-slate-400 font-bold block mb-1">🚀 領漲指標股 (點擊個股可看詳情)：</span>
+                <div class="flex flex-wrap gap-1.5">${leadersHtml}</div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">26大細分產業鏈追蹤</span>
+              <span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span>
+            </div>
+          </div>
+        `;
+      }).join("");
     }
 
     function applyVerifiedNov13IfMissing(item) {
@@ -705,6 +787,7 @@
         sView.classList.remove("hidden");
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
+        renderTopPerformingSectors();
         renderSupplyChainView();
         setTimeout(() => { if (scChart) scChart.resize(); }, 80);
       } else {
@@ -915,6 +998,7 @@
     }
 
     function renderSupplyChainView() {
+      renderTopPerformingSectors();
       const allSectors = getSupplyChainSectorsData();
       if (!allSectors.length) return;
       const categories = ["ALL", "半導體核心", "光通訊與CPO", "PCB與載板鏈", "電子零組件", "AI伺服器基建", "太空軍工與航運", "軟體生技與內需"];
@@ -1429,7 +1513,7 @@
               <div>
                 <div class="flex items-center gap-2">
                   <h3 class="font-bold text-lg text-white mono tracking-tight">${item.symbol}</h3>
-                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">US 科技股</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">US 權值股</span>
                 </div>
                 <span class="text-[11px] text-indigo-400">點擊開啟「財報指標＋新聞利多利空」</span>
               </div>
@@ -2067,7 +2151,6 @@
       return null;
     }
 
-    // 瀏覽器端直接拉取證交所與櫃買中心全市場 1,800 檔上市櫃收盤行情，秒速填滿視窗二所有台股價格！
     async function syncAllTwseAndTpexOfficialPricesInBrowser() {
       try {
         const twseAll = await tryFetchViaMultiProxy("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL");
@@ -2297,6 +2380,7 @@
       refreshAllFxTwdSublabels();
       getSupplyChainSectorsData();
       renderDailyMarketReport();
+      renderTopPerformingSectors();
 
       const mopsContainer = document.getElementById("mops-list");
       if (globalMarketData.mops_general && globalMarketData.mops_general.length > 0) {
@@ -2337,13 +2421,9 @@
       renderMacroCountdowns();
       setInterval(renderMacroCountdowns, 1000);
 
-      // 1. 立即以查驗過的 2026/11/13 真實收盤基準渲染全站
       renderAllSections(getInitialDashboardStructure());
-
-      // 2. 載入 GitHub Actions 產出的 data/market_data.json
       await tryLoadMarketJson();
 
-      // 3. 瀏覽器背景自動同步證交所與櫃買中心全市場 1,800 檔收盤價，確保視窗二所有台股 100% 顯示正確收盤價
       syncAllTwseAndTpexOfficialPricesInBrowser();
       fetchSingleYahooQuoteAndHistory(currentAssetSymbol);
 
