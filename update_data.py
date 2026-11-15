@@ -124,34 +124,138 @@ CORE_FUNDAMENTALS_DB = {
     "3711.TW": {"pe": 26.8, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
-# 26 大細分產業鏈之基本面驅動與強勢原因分析知識庫 (標題純淨，不含任何公司名稱)
+# 26 大細分產業鏈之「台股專屬催化原因 (tw_catalyst)」與「美股專屬催化原因 (us_catalyst)」知識庫
 SECTOR_CATALYST_INSIGHTS = {
-    "memory": {"title": "💾 記憶體", "catalyst": "HBM3e 12層與 HBM4 產能排擠標準型 DRAM 供給，帶動 DDR5 合約價與高頻寬記憶體封測訂單同步走揚，外資與投信回補高價控制 IC 與顆粒製造廠。"},
-    "tgv": {"title": "🔬 TGV 玻璃基板", "catalyst": "次世代 AI 超級晶片封裝面積倍增，晶圓代工龍頭與美系晶片巨頭加速驗證玻璃核心基板 (Glass Core)，激勵雷射改質、濕蝕刻與貼膜設備廠強勢表態。"},
-    "silicon_wafer": {"title": "💿 矽晶圓", "catalyst": "12 吋先進製程磊晶晶圓與 CoWoS 承載晶圓需求強勁，加上 2 奈米/3 奈米高階再生晶圓產能滿載，推升晶圓材料與鑽石碟耗材族群買氣。"},
-    "semiconductor": {"title": "🏭 半導體製造與設備", "catalyst": "2 奈米與先進封裝廠務無塵室工程進入認列高峰，成熟製程廠切入矽光子中介層與高壓 PMIC 代工，帶動晶圓代工、EUV 光罩載具與廠務族群齊揚。"},
-    "cpu": {"title": "🧠 CPU 與 AI 運算晶片", "catalyst": "雲端巨頭自研 AI ASIC 晶片與 ARM 架構伺服器 CPU 滲透率攀升，旗艦邊緣 AI SoC 拉貨強勁，高價 IC 設計、矽智財 IP 與遠端管理晶片 (BMC) 領軍大漲。"},
-    "osat": {"title": "🔍 封測", "catalyst": "AI GPU 與大型 ASIC 測試時間倍增，CoWoS 與晶圓級封裝委外訂單外溢至一線封測廠，高頻垂直探針卡 (VPC)、同軸測試座與系統級測試 (SLT) 營運動能強勁。"},
-    "optical": {"title": "🌐 光通訊", "catalyst": "北美 CSP 巨頭全面升級 800G 並導入 1.6T 光收發模組，上游磷化銦 CW 雷射磊晶、高芯數光纖跳接線與白牌高速交換器出貨暢旺。"},
-    "cpo": {"title": "💡 CPO 共同封裝光學", "catalyst": "為突破機櫃間銅線訊號損耗與功耗瓶頸，51.2T / 102.4T 交換器加速導入矽光子光學引擎與保偏光纖陣列 (FAU)，吸引法人買盤高度鎖定。"},
-    "fiberglass": {"title": "🧵 玻纖布", "catalyst": "AI 伺服器與 800G 交換器對超低介電 (Low-Dk1/Dk2) 與石英玻纖布需求爆發，高階電子布窯爐產能吃緊引發漲價效應。"},
-    "ccl": {"title": "🟧 CCL 銅箔基板", "catalyst": "GB200/GB300 機櫃與高階交換器全面採用 M7/M8 等級超低損耗銅箔基板與 HVLP 高頻銅箔，單位價值與毛利率顯著跳升。"},
-    "pcb": {"title": "🟩 PCB 印刷電路板", "catalyst": "高層數 AI 伺服器主板 (UBB/OAM) 與低軌衛星高階 HDI 板產能稼動率滿載，帶動上游微鑽針與下游伺服器系統組裝廠營收創高。"},
-    "ic_substrate": {"title": "🔲 載板", "catalyst": "AI 加速器晶片尺寸持續放大，耗用高達 16 層以上之超大面積 ABF 載板，稼動率回升帶動載板三雄與 AOI 檢測設備轉強。"},
-    "passive_comp": {"title": "🔋 被動元件", "catalyst": "AI 伺服器與 AI PC 對耐高溫高容值 MLCC、一體成型功率電感、導電高分子固態電容及高頻連接器用量倍增，產品組合持續優化。"},
-    "power_semi": {"title": "⚡ 功率元件", "catalyst": "資料中心 48V 高壓直流供電架構與電動車逆變器推升高效能 PMIC、SiC 碳化矽與 GaN 氮化鎵功率元件需求。"},
-    "thermal": {"title": "❄️ 散熱", "catalyst": "高功耗 AI 機櫃全面標配液冷方案，水冷板 (Cold Plate)、冷卻液分配裝置 (CDU)、快接頭 (UQD) 與晶片級微流道均熱片出貨放量。"},
-    "bbu": {"title": "🔋 BBU 備援電池單元", "catalyst": "次世代 AI 伺服器機櫃將高倍率鋰電池 BBU 與高瓦數 Power Shelf 列為標準配備，加上北美資料中心變壓器與重電設備外銷強勁，成為盤面吸金焦點。"},
-    "leo_satellite": {"title": "🛰️ 低軌衛星", "catalyst": "全球低軌衛星發射量與手機直連衛星用戶數高速成長，帶動台系衛星高階 PCB、毫米波中空波導元件、砷化鎵 PA 與地面接收站供應鏈。"},
-    "space_tech": {"title": "🚀 太空", "catalyst": "商業重型火箭密集發射與全球航太客機積壓訂單龐大，推升航太級超合金鍛造、發動機渦輪扣件與機匣精密加工廠稼動率。"},
-    "defense": {"title": "🛡️ 軍工", "catalyst": "全球地緣政治推升國防預算，軍用商規長程無人機、強固型電腦、高教機維保與國艦國造標案進入密集交付期。"},
-    "shipping": {"title": "🚢 航運", "catalyst": "歐美長約運價支撐貨櫃航運高獲利與高殖利率優勢，同時 AI 伺服器空運急單推升航空貨運運價維持高檔。"},
-    "cybersecurity": {"title": "🔐 資安", "catalyst": "企業上雲與主權 AI 落地帶動零信任雲端防護、硬體信任根 (PUF) 晶片與 7x24 SOC 資安威脅監控剛性需求。"},
-    "biotech": {"title": "🧬 生技", "catalyst": "高毛利新藥海外藥證授權、跨國生物藥 CDMO 代工訂單增長，以及全球減重與腫瘤新藥銷售暢旺帶動生技醫材買氣。"},
-    "insurance": {"title": "☂️ 保險", "catalyst": "長天期美債殖利率維持高檔提升壽險經常性避險後收益率，純產險公司亦受惠核保利潤穩健與高配息題材。"},
-    "finance": {"title": "🏦 金融", "catalyst": "台美股市交投熱絡與 ETF 規模擴張直接挹注綜合證券與期貨商經紀、自營收益，銀行金控則受惠存放利差與財富管理手續費高成長。"},
-    "construction": {"title": "🏗️ 營建", "catalyst": "高科技大廠海內外擴廠帶動無塵室機電統包、鋼結構與預拌混凝土需求，商辦廠辦開發與都更建案進入完工交屋認列高峰。"},
-    "consumer": {"title": "🛒 民生消費", "catalyst": "歐美服飾製鞋品牌庫存回補帶動機能成衣與運動鞋代工出貨，內需連鎖超商、百貨美妝與餐飲集團受惠旺季消費動能。"}
+    "memory": {
+        "title": "💾 記憶體",
+        "tw_catalyst": "HBM 產能排擠標準型 DRAM 供給，帶動台系高階 DDR5 顆粒製造、PCIe Gen5 SSD 控制晶片與專業記憶體封測廠訂單同步走揚。",
+        "us_catalyst": "北美雲端資料中心對高頻寬記憶體 (HBM3e/HBM4)、企業級大容量 NAND 與近線儲存硬碟需求強勁，推升美系記憶體與儲存設備廠營運動能。"
+    },
+    "tgv": {
+        "title": "🔬 TGV 玻璃基板",
+        "tw_catalyst": "次世代大面積先進封裝加速驗證玻璃核心基板，激勵台系濕蝕刻、壓膜烘烤與雷射改質設備聯盟獲法人買盤青睞。",
+        "us_catalyst": "美系晶片大廠與特種玻璃母材龍頭領先推進伺服器等級 TGV 玻璃基板標準，帶動上游高純度玻璃晶圓與薄膜填孔設備需求。"
+    },
+    "silicon_wafer": {
+        "title": "💿 矽晶圓",
+        "tw_catalyst": "12 吋先進製程磊晶矽晶圓、CoWoS 承載晶圓與 2 奈米再生晶圓需求滿載，推升台系矽晶圓與 CMP 鑽石碟耗材廠表現。",
+        "us_catalyst": "全球晶圓廠擴產帶動電子級高純度特用氣體與半導體晶圓材料長期合約需求穩健增長。"
+    },
+    "semiconductor": {
+        "title": "🏭 半導體製造與設備",
+        "tw_catalyst": "2 奈米與先進封裝廠務無塵室工程進入認列高峰，成熟製程廠切入矽光子中介層與高壓 PMIC 代工，帶動台系晶圓代工、EUV 光罩載具與廠務族群齊揚。",
+        "us_catalyst": "全球先進製程與 HBM 擴產推動微影曝光、原子層沉積 (ALD)、晶圓蝕刻與製程良率檢測設備巨頭訂單能見度直達 2027 年。"
+    },
+    "cpu": {
+        "title": "🧠 CPU 與 AI 運算晶片",
+        "tw_catalyst": "雲端巨頭自研 AI ASIC 晶片與 ARM 架構運算滲透率攀升，旗艦邊緣 AI SoC 拉貨強勁，帶動台系高價 IC 設計、矽智財 IP 與遠端管理晶片 (BMC) 領軍大漲。",
+        "us_catalyst": "北美四大 CSP 持續擴大 AI 超級晶片與伺服器 CPU 資本支出，帶動美系 GPU/ASIC 設計巨頭與企業級 AI 伺服器品牌商營收高成長。"
+    },
+    "osat": {
+        "title": "🔍 封測",
+        "tw_catalyst": "AI GPU 與大型 ASIC 測試時間倍增，CoWoS 先進封裝委外訂單外溢，帶動台系封測龍頭、高頻垂直探針卡 (VPC) 與同軸測試座營收創高。",
+        "us_catalyst": "先進封裝複雜度提升推升美系 ATE 自動測試機台、晶圓探針卡與高頻高速訊號量測設備採購規模。"
+    },
+    "optical": {
+        "title": "🌐 光通訊",
+        "tw_catalyst": "北美資料中心全面升級 800G 並導入 1.6T 光模組，帶動台系磷化銦 CW 雷射磊晶、高芯數光纖跳接線與 800G 白牌交換器出貨暢旺。",
+        "us_catalyst": "AI 算力叢集互連頻寬急遽擴張，推升美系高速 EML 雷射晶片、800G/1.6T 光收發模組與雲端乙太網交換器巨頭訂單。"
+    },
+    "cpo": {
+        "title": "💡 CPO 共同封裝光學",
+        "tw_catalyst": "51.2T / 102.4T 交換器加速導入 COUPE 矽光子平台與保偏光纖陣列 (FAU)，吸引法人資金鎖定台系矽光子封測與晶圓級光學檢測設備鏈。",
+        "us_catalyst": "美系網通晶片霸主領航推出次世代 CPO 共同封裝光學交換器與高功率外部雷射光源，奠定下一代 AI 資料中心光互連標準。"
+    },
+    "fiberglass": {
+        "title": "🧵 玻纖布",
+        "tw_catalyst": "AI 伺服器與 800G 交換器對超低介電 (Low-Dk1/Dk2) 與石英玻纖布需求爆發，台系高階電子布池窯產能吃緊引發漲價效應。",
+        "us_catalyst": "高純度石英材料與特種玻璃纖維複合材料受惠高速通訊與航太國防高頻基板需求支撐。"
+    },
+    "ccl": {
+        "title": "🟧 CCL 銅箔基板",
+        "tw_catalyst": "AI 伺服器機櫃與 800G 交換器全面採用 M7/M8 超低損耗銅箔基板與 HVLP 高頻銅箔，台系 CCL 三雄與高頻銅箔廠產品組合與毛利率顯著跳升。",
+        "us_catalyst": "美系高頻微波基板與特用電子化學材料受惠衛星通訊、車用毫米波雷達與高速資料中心需求。"
+    },
+    "pcb": {
+        "title": "🟩 PCB 印刷電路板",
+        "tw_catalyst": "高層數 AI 伺服器主板 (UBB/OAM) 與低軌衛星高階 HDI 板稼動率滿載，帶動台系 PCB 龍頭、微鑽針與下游伺服器 ODM 組裝廠營收創高。",
+        "us_catalyst": "北美國防航太高可靠度 PCB 與雲端資料中心硬體製造服務 (EMS) 訂單維持強勁成長。"
+    },
+    "ic_substrate": {
+        "title": "🔲 載板",
+        "tw_catalyst": "AI 加速器晶片尺寸持續放大，耗用高達 16 層以上之超大面積 ABF 載板，稼動率回升帶動台系載板三雄與 AOI 檢測設備轉強。",
+        "us_catalyst": "高階覆晶載板封裝整合與先進載板 3D 光學檢測設備受惠大面積 AI 晶片封裝良率提升需求。"
+    },
+    "passive_comp": {
+        "title": "🔋 被動元件",
+        "tw_catalyst": "AI 伺服器與 AI PC 對耐高溫高容值 MLCC、一體成型功率電感、固態電容及高頻 CPU 插槽連接器用量倍增，台系龍頭廠獲利結構優化。",
+        "us_catalyst": "全球 AI 機櫃高速背板線束、高頻連接器與車用高壓連接系統需求強勁，推升美系連接器巨頭營收。"
+    },
+    "power_semi": {
+        "title": "⚡ 功率元件",
+        "tw_catalyst": "資料中心高壓直流供電架構與車用逆變器推升高效能 PMIC、功率導線架與化合物半導體代工需求。",
+        "us_catalyst": "AI GPU 垂直供電電源管理晶片 (PMIC) 與工業/車用類比電源 IC 庫存回補，支撐美系功率與類比晶片大廠表現。"
+    },
+    "thermal": {
+        "title": "❄️ 散熱",
+        "tw_catalyst": "高功耗 AI 機櫃全面標配液冷方案，台系晶片級微流道均熱片 (MCL)、水冷板 (Cold Plate)、CDU 與水冷快接頭 (UQD) 出貨持續放量。",
+        "us_catalyst": "北美超大規模資料中心加速建置機櫃級液冷熱交換器與精密溫控基礎設施，帶動美系熱管理基建龍頭訂單飽滿。"
+    },
+    "bbu": {
+        "title": "🔋 BBU 備援電池單元",
+        "tw_catalyst": "次世代 AI 伺服器機櫃將高倍率鋰電池 BBU 與高瓦數 Power Shelf 列為標配，加上重電變壓器外銷強勁，成為台股盤面吸金焦點。",
+        "us_catalyst": "北美 AI 資料中心用電量激增，推動燃氣渦輪發電、電網級配電設備與大型不斷電系統巨頭強勢增長。"
+    },
+    "leo_satellite": {
+        "title": "🛰️ 低軌衛星",
+        "tw_catalyst": "全球低軌衛星密集發射與地面接收設備換機潮，帶動台系衛星高階 HDI 板、毫米波中空波導元件、砷化鎵 PA 與地面路由器代工廠出貨。",
+        "us_catalyst": "低軌衛星寬頻用戶數高速增長並正式商用手機直連衛星服務，推升美系衛星營運商與太空通訊巨頭估值。"
+    },
+    "space_tech": {
+        "title": "🚀 太空",
+        "tw_catalyst": "全球商用客機積壓訂單龐大與發動機維保需求暢旺，推升台系航太級超合金鍛造、渦輪扣件與機匣精密加工廠稼動率。",
+        "us_catalyst": "商業重型火箭密集發射、月球探索任務與高毛利航太專利零組件需求強勁，帶動美系太空與航太發動機巨頭走強。"
+    },
+    "defense": {
+        "title": "🛡️ 軍工",
+        "tw_catalyst": "國防自主預算與無人機標案進入密集交付期，激勵台系軍規強固型電腦、無人機與軍用艦艇維保供應鏈。",
+        "us_catalyst": "全球地緣政治推升北約與美國國防預算，AI 戰場決策平台、防空飛彈系統與自殺無人機大廠訂單續創歷史新高。"
+    },
+    "shipping": {
+        "title": "🚢 航運",
+        "tw_catalyst": "歐美長約運價支撐貨櫃航運高獲利與高殖利率優勢，同時 AI 伺服器空運急單推升台系航空貨運營收維持高檔。",
+        "us_catalyst": "北美西岸海鐵聯運與跨境包裹物流受惠年底購物旺季備貨需求，支撐美系鐵路與快遞物流巨頭表現。"
+    },
+    "cybersecurity": {
+        "title": "🔐 資安",
+        "tw_catalyst": "企業上雲與金融政府資安合規要求升級，帶動台系硬體信任根 (PUF) 矽智財、電信級網安硬體與 7x24 SOC 監控服務成長。",
+        "us_catalyst": "企業加速導入 AI 驅動之零信任雲端端點安全與企業工作流自動化軟體，推升美系資安與雲端軟體巨頭訂閱營收 (ARR)。"
+    },
+    "biotech": {
+        "title": "🧬 生技",
+        "tw_catalyst": "高毛利新藥海外藥證授權、跨國生物藥 CDMO 代工訂單增長與連鎖藥局展店效應，帶動台系生技醫材買氣。",
+        "us_catalyst": "GLP-1 代謝減重新藥、腫瘤免疫療法與微創手術機器人全球銷量強勁，支撐美系跨國製藥與高階醫材巨頭。"
+    },
+    "insurance": {
+        "title": "☂️ 保險",
+        "tw_catalyst": "長天期美債殖利率維持高檔提升壽險經常性避險後收益率，純產險公司亦受惠核保利潤穩健與高配息題材。",
+        "us_catalyst": "北美車險與商業產險保費定價能力強勁，加上高利率環境挹注龐大浮存金投資收益，推升美系產險與保險經紀巨頭表現。"
+    },
+    "finance": {
+        "title": "🏦 金融",
+        "tw_catalyst": "台股交投熱絡與 ETF 規模擴張直接挹注綜合證券與期貨商經紀、自營收益，銀行金控則受惠存放利差與財富管理手續費高成長。",
+        "us_catalyst": "高利率環境支撐大型銀行淨利差，資本市場併購與量化電子交易量創高帶動華爾街投行、跨國電子券商與私募巨頭獲利。"
+    },
+    "construction": {
+        "title": "🏗️ 營建",
+        "tw_catalyst": "科技大廠擴廠帶動無塵室機電統包、鋼結構與預拌混凝土需求，商辦廠辦開發與都更建案進入完工交屋認列高峰。",
+        "us_catalyst": "北美 AI 資料中心不動產 (REITs) 租金強勁，加上大型基礎建設帶動重型工程機械與建材零售巨頭營運。"
+    },
+    "consumer": {
+        "title": "🛒 民生消費",
+        "tw_catalyst": "歐美服飾製鞋品牌庫存回補帶動台系機能成衣與運動鞋代工出貨，內需連鎖超商、百貨美妝與餐飲受惠旺季消費。",
+        "us_catalyst": "北美會員制倉儲量販與大型折扣零售商展現強勁抗通膨聚客力，全球線上旅遊預訂與連鎖餐飲需求穩健。"
+    }
 }
 
 def fetch_tw_official_market_snapshot():
@@ -256,7 +360,6 @@ def fetch_tw_official_market_snapshot():
     return snapshot
 
 def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
-    """同時提取所有個股代號與 26 大產業的歸屬關係，供強勢族群自動排行使用"""
     items_map = {}
     sector_stocks_map = {}
     if not os.path.exists(js_path):
@@ -366,11 +469,19 @@ def build_asset_object(symbol, display_name, asset_type, future_group, history_m
 
     return res
 
-def generate_top_performing_sectors(sector_stocks_map, built_cache):
-    """計算 26 大產業鏈之台股/美股平均漲幅、領漲股，並產生『每日強勢族群與強勢原因分析』"""
-    ranked = []
+def generate_split_top_performing_sectors(sector_stocks_map, built_cache):
+    """
+    將強勢族群拆分為『台股強勢族群排行 (tw_top_sectors)』與『美股強勢族群排行 (us_top_sectors)』兩個完全獨立的榜單！
+    """
+    tw_ranked = []
+    us_ranked = []
+
     for sec_id, syms in sector_stocks_map.items():
-        meta = SECTOR_CATALYST_INSIGHTS.get(sec_id, {"title": sec_id, "catalyst": "受惠終端需求回溫與法人買盤進駐，族群表現相對強勢。"})
+        meta = SECTOR_CATALYST_INSIGHTS.get(sec_id, {
+            "title": sec_id,
+            "tw_catalyst": "受惠終端需求回溫與內外資法人買盤進駐，台系供應鏈表現相對強勢。",
+            "us_catalyst": "受惠企業資本支出與機構買盤支撐，美系指標大廠表現穩健。"
+        })
         valid_objs = [built_cache[s] for s in syms if s in built_cache and safe_float(built_cache[s].get("price")) > 0]
         if not valid_objs:
             continue
@@ -378,40 +489,64 @@ def generate_top_performing_sectors(sector_stocks_map, built_cache):
         tw_objs = [o for o in valid_objs if o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO")]
         us_objs = [o for o in valid_objs if not (o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO"))]
 
-        avg_all = sum(safe_float(o.get("change_pct")) for o in valid_objs) / len(valid_objs)
-        avg_tw = sum(safe_float(o.get("change_pct")) for o in tw_objs) / len(tw_objs) if tw_objs else avg_all
-        avg_us = sum(safe_float(o.get("change_pct")) for o in us_objs) / len(us_objs) if us_objs else avg_all
+        # 1. 台股獨立榜單運算
+        if tw_objs:
+            avg_tw = sum(safe_float(o.get("change_pct")) for o in tw_objs) / len(tw_objs)
+            sorted_tw = sorted(tw_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
+            tw_leaders = [
+                {
+                    "symbol": x["symbol"],
+                    "name": x["name"],
+                    "price": x["price"],
+                    "change_pct": round(safe_float(x.get("change_pct")), 2),
+                    "asset_type": "tw_stock",
+                    "role": x.get("role", "")
+                }
+                for x in sorted_tw[:3]
+            ]
+            tw_top_str = "、".join([f"{ld['name']} ({'+' if ld['change_pct']>0 else ''}{ld['change_pct']:.2f}%)" for ld in tw_leaders])
+            tw_ranked.append({
+                "sector_id": sec_id,
+                "market": "TW",
+                "title": meta["title"],
+                "avg_pct": round(avg_tw, 2),
+                "stock_count": len(tw_objs),
+                "leaders": tw_leaders,
+                "reason": to_trad(f"【台股領漲指標：{tw_top_str}】{meta['tw_catalyst']}")
+            })
 
-        sorted_objs = sorted(valid_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
-        leaders = [
-            {
-                "symbol": x["symbol"],
-                "name": x["symbol"] if x["asset_type"] == "us_stock" else x["name"],
-                "price": x["price"],
-                "change_pct": round(safe_float(x.get("change_pct")), 2),
-                "asset_type": x["asset_type"],
-                "role": x.get("role", "")
-            }
-            for x in sorted_objs[:3]
-        ]
+        # 2. 美股獨立榜單運算
+        if us_objs:
+            avg_us = sum(safe_float(o.get("change_pct")) for o in us_objs) / len(us_objs)
+            sorted_us = sorted(us_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
+            us_leaders = [
+                {
+                    "symbol": x["symbol"],
+                    "name": x["symbol"],
+                    "price": x["price"],
+                    "change_pct": round(safe_float(x.get("change_pct")), 2),
+                    "asset_type": "us_stock",
+                    "role": x.get("role", "")
+                }
+                for x in sorted_us[:3]
+            ]
+            us_top_str = "、".join([f"{ld['symbol']} ({'+' if ld['change_pct']>0 else ''}{ld['change_pct']:.2f}%)" for ld in us_leaders])
+            us_ranked.append({
+                "sector_id": sec_id,
+                "market": "US",
+                "title": meta["title"],
+                "avg_pct": round(avg_us, 2),
+                "stock_count": len(us_objs),
+                "leaders": us_leaders,
+                "reason": to_trad(f"【美股領漲指標：{us_top_str}】{meta['us_catalyst']}")
+            })
 
-        top_str = "、".join([f"{ld['name']} ({'+' if ld['change_pct']>0 else ''}{ld['change_pct']:.2f}%)" for ld in leaders])
-        reason_detail = f"【領漲指標：{top_str}】{meta['catalyst']}"
+    tw_ranked.sort(key=lambda x: x["avg_pct"], reverse=True)
+    us_ranked.sort(key=lambda x: x["avg_pct"], reverse=True)
 
-        ranked.append({
-            "sector_id": sec_id,
-            "title": meta["title"],
-            "avg_pct": round(avg_all, 2),
-            "tw_avg_pct": round(avg_tw, 2),
-            "us_avg_pct": round(avg_us, 2),
-            "leaders": leaders,
-            "reason": to_trad(reason_detail)
-        })
+    return tw_ranked[:6], us_ranked[:6]
 
-    ranked.sort(key=lambda x: x["tw_avg_pct"], reverse=True)
-    return ranked[:8]
-
-def generate_daily_market_report(built_cache, chips, top_sectors):
+def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sectors):
     sp, dji, ixic, sox = built_cache.get("^GSPC", {}), built_cache.get("^DJI", {}), built_cache.get("^IXIC", {}), built_cache.get("^SOX", {})
     twii, twoii = built_cache.get("^TWII", {}), built_cache.get("^TWOII", {})
     tnx, tyx, twd, dxy = built_cache.get("^TNX", {}), built_cache.get("^TYX", {}), built_cache.get("TWD=X", {}), built_cache.get("DX-Y.NYB", {})
@@ -428,17 +563,18 @@ def generate_daily_market_report(built_cache, chips, top_sectors):
         val = safe_float(v)
         return f"+{val:.2f}%" if val > 0 else f"{val:.2f}%"
 
-    top_sec_names = "、".join([f"{s['title']} (台股均漲 {fp(s['tw_avg_pct'])})" for s in (top_sectors[:3] if top_sectors else [])])
+    tw_top_names = "、".join([f"{s['title']} ({fp(s['avg_pct'])})" for s in (tw_top_sectors[:3] if tw_top_sectors else [])])
+    us_top_names = "、".join([f"{s['title']} ({fp(s['avg_pct'])})" for s in (us_top_sectors[:3] if us_top_sectors else [])])
 
     return {
         "report_date": now_tw.strftime("%Y-%m-%d %H:%M CST"),
         "headline": f"台股加權強彈收 {twii.get('price', 43675.12)} ({fp(twii.get('change_pct', 1.35))})、櫃買收 {twoii.get('price', 342.41)} ({fp(twoii.get('change_pct', 1.99))})，三大法人合計買超 {f_buy+t_buy+d_buy:+.2f} 億，市場迎戰本週超級財報與美國零售銷售數據",
         "market_drivers": [
-            f"【一、美股四大指數與科技權值結構】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})。儘管美股半導體因財報前獲利了結與長天期殖利率高檔而短線震盪，但雲端軟體與大型社群巨頭表現相對抗跌，顯示資金在科技板塊內部進行高低位階輪動。",
+            f"【一、美股四大指數與科技權值結構】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})。儘管美股半導體因財報前獲利了結與長天期殖利率高檔而短線震盪，但雲端軟體、金融與民生消費表現相對抗跌，顯示資金在板塊內部進行高低位階輪動。",
             f"【二、台股大盤量價與權值股領軍解析】台灣加權指數終場大漲收在 {twii.get('price', 43675.12)} 點 ({fp(twii.get('change_pct', 1.35))})，代表中小型股人氣的櫃買指數同步勁揚收 {twoii.get('price', 342.41)} 點 ({fp(twoii.get('change_pct', 1.99))})。權值股方面，台積電收 {tsm_tw.get('price', 2350.00)} 元 ({fp(tsm_tw.get('change_pct', 0.43))}) 穩住盤勢，聯發科狂飆收 {mtk_tw.get('price', 4120.00)} 元 ({fp(mtk_tw.get('change_pct', 7.01))})、台達電大漲收 {delta_tw.get('price', 1240.00)} 元 ({fp(delta_tw.get('change_pct', 4.58))})，帶動高價 IC 設計、水冷散熱與先進封裝全面噴出。",
             f"【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 {f_buy:+.2f} 億元、投信連續買超 {t_buy:+.2f} 億元、自營商買超 {d_buy:+.2f} 億元，三大法人合計淨買超達 {f_buy+t_buy+d_buy:+.2f} 億元。信用交易方面，上市融資餘額微增至 {m_bal:.2f} 億元、上櫃融資餘額為 {otc_m:.2f} 億元，前期急跌清洗浮額後，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
             f"【四、總經美債殖利率、外匯與原物料連動】美國 10 年期公債殖利率報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.48)}%，隨 10 月最終需求 PPI 月增率放緩至 +0.3%（低於預期的 +0.4%），通膨再度失控的擔憂略有降溫；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元，油價穩定有助減輕企業生產成本壓力。",
-            f"【五、盤面最強勢領漲族群聚焦】今日 26 大細分產業鏈中，以 {top_sec_names or 'CPU與運算晶片、半導體製造、散熱與BBU'} 表現最為亮眼，資金明顯集中於具備實質 10 月營收創高支撐及 2027 年明確訂單能見度之次產業。"
+            f"【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以 {tw_top_names or 'CPU與運算晶片、半導體製造、散熱'} 領漲力道最強；美股供應鏈則以 {us_top_names or '金融、資安、散熱'} 表現最為穩健。"
         ],
         "bullish_factors": [
             "🔥 企業基本面與月營收極為強勁：台積電 10 月營收達 3,142.4 億元（月增 +24.8%、年增 +29.2%）創單月歷史新高，鴻海、廣達、緯穎與奇鋐營收同步攀峰，實質數據破除 AI 泡沫疑慮。",
@@ -474,7 +610,9 @@ def main():
     payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
         "indices": [], "us_bonds": [], "fx_rates": [], "fx_bonds": [], "us_stocks": [], "tw_stocks": [],
-        "futures_commodities": [], "supply_chain_sectors": [], "top_performing_sectors": [], "daily_market_report": {},
+        "futures_commodities": [], "supply_chain_sectors": [],
+        "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
+        "daily_market_report": {},
         "tw_chips_visual": {
             "dates": ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13"],
             "foreign_buy": [-1124.67, -735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37],
@@ -530,9 +668,11 @@ def main():
             sc_flat.append(q)
         payload["supply_chain_sectors"] = [{"id": "all_synced_items", "stages": [{"stage_name": "synced", "items": sc_flat}]}]
 
-        top_sectors = generate_top_performing_sectors(sector_stocks_map, built_cache)
-        payload["top_performing_sectors"] = top_sectors
-        payload["daily_market_report"] = generate_daily_market_report(built_cache, payload["tw_chips_visual"], top_sectors)
+        tw_top, us_top = generate_split_top_performing_sectors(sector_stocks_map, built_cache)
+        payload["tw_top_sectors"] = tw_top
+        payload["us_top_sectors"] = us_top
+        payload["top_performing_sectors"] = tw_top
+        payload["daily_market_report"] = generate_daily_market_report(built_cache, payload["tw_chips_visual"], tw_top, us_top)
     except Exception as e:
         print(f"[Warn] Main loop partial error: {e}")
 
