@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "last_updated": "2026-11-15 11:30:26 CST",
+=======
+  "last_updated": "2026-11-15 11:30:43 CST",
+>>>>>>> Stashed changes
   "indices": [
     {
       "symbol": "^GSPC",
@@ -43375,7 +43379,7 @@
       ],
       "fundamentals": {
         "pe": 44.32,
-        "forward_pe": 17.87,
+        "forward_pe": 17.83,
         "eps": 7.83,
         "gross_margin": "75.52%",
         "operating_margin": "48.81%",
@@ -44558,7 +44562,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.24
+          "close": 271.25
         },
         {
           "date": "2025-12-19",
@@ -46519,7 +46523,7 @@
       ],
       "fundamentals": {
         "pe": 27.34,
-        "forward_pe": 21.65,
+        "forward_pe": 21.66,
         "eps": 19.16,
         "gross_margin": "67.66%",
         "operating_margin": "47.1%",
@@ -103091,7 +103095,11 @@
                 },
                 {
                   "date": "2026-01-05",
+<<<<<<< Updated upstream
                   "close": 117.06
+=======
+                  "close": 117.05
+>>>>>>> Stashed changes
                 },
                 {
                   "date": "2026-01-06",
@@ -147811,7 +147819,11 @@
               ],
               "fundamentals": {
                 "pe": 44.32,
+<<<<<<< Updated upstream
                 "forward_pe": 17.87,
+=======
+                "forward_pe": 17.83,
+>>>>>>> Stashed changes
                 "eps": 7.83,
                 "gross_margin": "75.52%",
                 "operating_margin": "48.81%",
@@ -209381,7 +209393,11 @@
                 },
                 {
                   "date": "2026-04-14",
+<<<<<<< Updated upstream
                   "close": 1359.34
+=======
+                  "close": 1359.33
+>>>>>>> Stashed changes
                 },
                 {
                   "date": "2026-04-15",
