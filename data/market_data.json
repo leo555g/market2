@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "last_updated": "2026-11-15 17:23:54 CST",
+=======
+  "last_updated": "2026-11-15 17:24:03 CST",
+>>>>>>> Stashed changes
   "indices": [
     {
       "symbol": "^GSPC",
@@ -290918,7 +290922,11 @@
     }
   ],
   "daily_market_report": {
+<<<<<<< Updated upstream
     "report_date": "2026-11-15 17:23 CST",
+=======
+    "report_date": "2026-11-15 17:24 CST",
+>>>>>>> Stashed changes
     "headline": "台股加權收 43675.12 (+1.35%)、費半 (-3.43%)，外資單日買超 288.37 億，聚焦本週 NVDA 財報與美國零售銷售",
     "market_drivers": [
       "【美股與美債動態】S&P 500 收 7561.67 (-0.40%)，費半指數收 10146.32 (-3.43%)；10 年期美債殖利率報 5.15%，隨 10 月 PPI 月增放緩至 +0.3%，舒緩通膨焦慮。",
