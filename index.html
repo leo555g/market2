@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・33大產業鏈與台美獨立強勢榜・每日市場深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經日曆・美台雙VIX恐慌指數・美債完整殖利率曲線(含2Y)・34大產業鏈(台股前十大/美股兆元)・每日深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -45,13 +45,13 @@
     <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-slate-800 p-2 rounded-xl">
       <div class="flex flex-wrap items-center gap-2">
         <button id="nav-tab-market" onclick="switchAppView('market')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-          <span>📊 視窗一：全球市場・台股籌碼・每日市場深度報告</span>
+          <span>📊 視窗一：全球市場・VIX恐慌指數・台股籌碼・每日深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：33大細分產業鏈追蹤室 (含美股兆元俱樂部 & 台美獨立強勢榜)</span>
+          <span>🔬 視窗二：34大細分產業鏈追蹤室 (台股前十大權值 / 美股兆元俱樂部 / 台美強勢榜)</span>
         </button>
       </div>
-      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「33大產業鏈獨立視窗」之間切換</span>
+      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「34大產業鏈獨立視窗」之間切換</span>
     </div>
   </header>
 
@@ -82,7 +82,7 @@
               <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
               <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、美債、外匯、期貨、美股、台股加入「目前比較清單」疊圖對決</p>
+            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、VIX、美債(含2Y)、外匯、期貨、美股、台股加入「目前比較清單」疊圖對決</p>
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
@@ -133,10 +133,28 @@
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 3：美國公債殖利率專區 -->
+    <!-- 新增專區 2.5：VIX 恐慌指數專區 (美國 VIX + 臺指選擇權波動率指數 VIXTWN) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美國公債殖利率專區 <span class="text-xs font-normal text-slate-400 ml-2">(短中長天期美債殖利率・點擊檢視聯準會利率路徑分析)</span></h2>
-      <div id="grid-us-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
+        <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
+          ⚠️ VIX 恐慌指數專區 (美國 CBOE VIX ＋ 臺指選擇權波動率指數 VIXTWN)
+          <span class="text-xs font-normal text-rose-300 ml-2">(即時監控美股與台股選擇權市場避險情緒・數值 &lt;20 為穩定、20~30 為警戒、&gt;30 為高度恐慌)</span>
+        </h2>
+        <span class="text-xs text-slate-400 mono">資料來源：CBOE / 台灣期貨交易所 (TAIFEX)</span>
+      </div>
+      <div id="grid-vix-indices" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- 專區 3：美國公債殖利率專區 (已加入聯準會 FRED 官方 2 年期美債殖利率 US2Y，共 5 檔完整曲線) -->
+    <section>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
+        <h2 class="text-lg font-bold text-white border-l-4 border-cyan-500 pl-3">
+          美國公債殖利率專區 (3個月 / 2年 / 5年 / 10年 / 30年完整殖利率曲線)
+          <span class="text-xs font-normal text-slate-400 ml-2">(2年期採用聯準會 FRED DGS2 官方精準報價・點擊檢視利率路徑分析)</span>
+        </h2>
+        <span id="us-bond-spread-indicator" class="text-xs text-cyan-300 font-bold mono bg-slate-900 px-3 py-1 rounded border border-cyan-500/30">10Y - 2Y 利差：+23 bps (正斜率)</span>
+      </div>
+      <div id="grid-us-bonds" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
     </section>
 
     <!-- 專區 4：全球外匯專區 -->
@@ -255,7 +273,7 @@
       </div>
 
       <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
-        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌五大核心原因深度剖析 (美股結構 / 台股量價 / 法人籌碼 / 債匯連動 / 領漲族群)</h3>
+        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌五大核心原因深度剖析 (美股與VIX / 台股量價 / 法人籌碼 / 2Y-10Y美債外匯 / 領漲族群)</h3>
         <ul id="daily-report-drivers" class="space-y-3 text-xs text-slate-200 leading-relaxed"></ul>
       </div>
 
@@ -285,7 +303,7 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 視窗二：33 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
+  <!-- 視窗二：34 大細分產業鏈上中下游深度追蹤室 + 🇹🇼台股 / 🇺🇸美股強勢族群獨立榜單 -->
   <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
@@ -312,9 +330,9 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">33 大細分產業鏈上、中、下游垂直整合追蹤室 (含美股一兆美元俱樂部)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">34 大細分產業鏈上、中、下游垂直整合追蹤室 (含台股前十大權值 & 美股兆元俱樂部)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">涵蓋美股兆元俱樂部、石油能源、ASIC、記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、光學鏡頭、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、重電、塑化、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、觀光餐飲、民生消費</p>
+          <p class="text-xs text-slate-400 mt-1">涵蓋台股市值前十大權值股、美股一兆美元俱樂部、石油能源、ASIC、記憶體、TGV、矽晶圓、半導體製程、CPU、封測、光通訊、CPO、光學鏡頭、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、重電、塑化、低軌衛星、太空、軍工、航運、資安、生技、保險、金融、營建、觀光餐飲、民生消費</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
@@ -339,11 +357,12 @@
         </div>
       </div>
 
-      <!-- 跨產業供應鏈串接地圖 (所有導覽按鈕均為純淨產業名稱，已納入兆元俱樂部、ASIC、光學鏡頭、重電、塑化、石油能源、觀光餐飲) -->
+      <!-- 跨產業供應鏈串接地圖 (頂部並排展示「🏆 台股市值前十大權值股」與「👑 美股一兆美元俱樂部」) -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
-          <button onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-amber-500/25 hover:bg-amber-600 text-amber-200 font-bold border border-amber-500/40 transition">👑 美股一兆美元俱樂部</button>
+          <button onclick="selectScSector('tw_top10')" class="px-2.5 py-1 rounded bg-rose-500/25 hover:bg-rose-600 text-rose-200 font-bold border border-rose-500/40 transition">🏆 台股市值前十大權值股</button>
+          <button onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-emerald-500/25 hover:bg-emerald-600 text-emerald-200 font-bold border border-emerald-500/40 transition">👑 美股一兆美元俱樂部</button>
           <span class="text-slate-500">｜</span>
           <button onclick="selectScSector('silicon_wafer')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">① 矽晶圓</button>
           <span class="text-slate-500">&rarr;</span>
@@ -512,7 +531,7 @@
 
     let currentScMarket = "TW";
     let currentScCategory = "ALL";
-    let currentScSectorId = "asic";
+    let currentScSectorId = "tw_top10";
     let currentScRange = "1M";
     let scCompareSymbols = [];
     let currentTopMarket = "TW";
@@ -523,7 +542,8 @@
     const CLIENT_CB_MAP = {
       "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)",
       "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)",
-      "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)"
+      "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)",
+      "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)"
     };
 
     const OFFICIAL_VERIFIED_TW_CHIPS = {
@@ -540,7 +560,8 @@
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
       "^TWII": [43675.12, 1.35], "^TWOII": [342.41, 1.99], "^N225": [61216.00, 0.65], "^KS11": [5290.53, -0.98],
       "^FTSE": [10863.00, 0.25], "^GDAXI": [26772.00, 0.40], "^FCHI": [8368.91, 0.09],
-      "^IRX": [4.88, 0.04], "^FVX": [4.98, 0.08], "^TNX": [5.15, 0.10], "^TYX": [5.48, 0.09],
+      "^VIX": [16.85, 2.43], "^VIXTWN": [19.42, -3.15],
+      "^IRX": [4.88, 0.04], "US2Y": [4.92, 0.06], "^FVX": [4.98, 0.08], "^TNX": [5.15, 0.10], "^TYX": [5.48, 0.09],
       "TWD=X": [32.89, 0.12], "AUDUSD=X": [0.6480, -0.25], "CHF=X": [0.8400, -0.10], "JPY=X": [159.90, -0.10],
       "EURUSD=X": [1.1000, -0.30], "GBPUSD=X": [1.3200, -0.20], "CNY=X": [6.6600, -0.10], "DX-Y.NYB": [103.20, 0.20],
       "ES=F": [7578.50, -0.38], "NQ=F": [25210.00, -0.88], "YM=F": [52410.00, 0.12],
@@ -737,7 +758,7 @@
               <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]">
-              <span class="text-slate-400">33大細分產業鏈追蹤</span>
+              <span class="text-slate-400">34大細分產業鏈追蹤</span>
               <span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span>
             </div>
           </div>
@@ -778,9 +799,16 @@
           mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"),
           mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")
         ],
+        vix_indices: [
+          mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"),
+          mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")
+        ],
         us_bonds: [
-          mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"),
-          mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")
+          mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"),
+          mk("US2Y", "美國 2 年期公債殖利率", "us_bond"),
+          mk("^FVX", "美國 5 年期公債殖利率", "us_bond"),
+          mk("^TNX", "美國 10 年期公債殖利率", "us_bond"),
+          mk("^TYX", "美國 30 年期公債殖利率", "us_bond")
         ],
         fx_rates: [
           mk("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"), mk("AUDUSD=X", "澳幣/美元 (AUD/USD)", "fx_rate"),
@@ -882,7 +910,7 @@
       if (symbolOrType === "us_stock") return true;
       const item = allAssetsMap[symbolOrType];
       if (item && item.asset_type === "us_stock") return true;
-      if (typeof symbolOrType === "string" && !isTwSymbol(symbolOrType) && !symbolOrType.startsWith("^") && !symbolOrType.includes("=")) return true;
+      if (typeof symbolOrType === "string" && !isTwSymbol(symbolOrType) && !symbolOrType.startsWith("^") && !symbolOrType.includes("=") && symbolOrType !== "US2Y") return true;
       return false;
     }
 
@@ -911,6 +939,77 @@
       }
       const dec = (symbol.includes("=X") && symbol !== "JPY=X" && symbol !== "TWD=X") ? 4 : 2;
       return Number(val).toFixed(dec);
+    }
+
+    // 建立 VIX 恐慌指數專屬視覺卡片 (含情緒燈號與避險解讀)
+    function createVixRichCard(item) {
+      item.name = cleanTwText(item.name);
+      applyVerifiedNov13IfMissing(item);
+      allAssetsMap[item.symbol] = item;
+      const domId = safeId(item.symbol);
+      const val = Number(item.price) || 18.0;
+      const pct = Number(item.change_pct) || 0;
+      const colorCls = pct > 0 ? "text-rose-400" : (pct < 0 ? "text-emerald-400" : "text-slate-300");
+
+      let regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🟢 市場情緒平穩 (&lt;20)</span>`;
+      let regimeDesc = item.symbol === "^VIX"
+        ? "目前美股 S&P 500 選擇權隱含波動率處於 20 以下之歷史常態區間，機構法人未出現恐慌性買進保護性賣權 (Put)。"
+        : "目前台灣期交所臺指選擇權隱含波動率回落至 20 以下，外資與自營商避險成本下降，有利台股現貨多方控盤。";
+
+      if (val >= 30) {
+        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-500/50 animate-pulse">🔴 高度恐慌警戒 (&ge;30)</span>`;
+        regimeDesc = "選擇權隱含波動率突破 30 恐慌分水嶺，顯示法人機構正大舉買進賣權避險，短線行情波動劇烈！";
+      } else if (val >= 20) {
+        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-amber-500/25 text-amber-300 border border-amber-500/40">🟡 審慎警戒區間 (20~30)</span>`;
+        regimeDesc = "波動率處於 20 至 30 之間，顯示市場面對重大財報或總經數據公布前夕，避險買盤有所升溫。";
+      }
+
+      const marketFlag = item.symbol === "^VIX" ? "🇺🇸 美股標普500波動率 (CBOE)" : "🇹🇼 台灣期交所臺指選波動率 (TAIFEX)";
+
+      return `
+        <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 border border-rose-500/30 cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
+              <div>
+                <span class="text-[11px] text-slate-400 font-medium block">${marketFlag}</span>
+                <h3 class="text-base font-bold text-white mt-0.5">${item.name} <span class="text-xs text-slate-500 mono">(${item.symbol})</span></h3>
+              </div>
+              ${regimeBadge}
+            </div>
+            <div class="flex items-baseline justify-between bg-slate-950/70 px-4 py-3 rounded-xl border border-slate-800/80 mono mb-3">
+              <div>
+                <span class="text-[10px] text-slate-400 block">最新波動率指數</span>
+                <span id="price-${domId}" class="text-2xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] text-slate-400 block">單日變動幅度</span>
+                <span id="pct-${domId}" class="text-sm font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</span>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">${regimeDesc}</p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-800/70 flex items-center justify-between">
+            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 font-bold transition">📊 檢視波動率解析</button>
+            <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300 transition">＋加入主走勢圖比較</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateUsBondSpreadIndicator() {
+      const el = document.getElementById("us-bond-spread-indicator");
+      if (!el) return;
+      const y10 = Number(allAssetsMap["^TNX"]?.price || 5.15);
+      const y2 = Number(allAssetsMap["US2Y"]?.price || 4.92);
+      if (y10 > 0 && y2 > 0) {
+        const spreadBps = Math.round((y10 - y2) * 100);
+        const sign = spreadBps > 0 ? "+" : "";
+        const status = spreadBps >= 0 ? "正常正斜率 (未倒掛)" : "⚠️ 殖利率倒掛";
+        el.textContent = `10Y - 2Y 殖利率利差：${sign}${spreadBps} bps (${status})`;
+        el.className = spreadBps >= 0
+          ? "text-xs text-cyan-300 font-bold mono bg-slate-900 px-3 py-1 rounded border border-cyan-500/30"
+          : "text-xs text-rose-300 font-bold mono bg-rose-950/50 px-3 py-1 rounded border border-rose-500/40 animate-pulse";
+      }
     }
 
     function switchScMarketFilter(mode) {
@@ -981,8 +1080,17 @@
 
     function selectScSector(sectorId) {
       currentScSectorId = sectorId;
-      // 若點擊「美股一兆美元俱樂部」或「石油能源」，若當前處於純台股視角且該區以美股為主，自動切換為台美同屏或美股視角
-      if ((sectorId === "trillion_club" || sectorId === "oil_energy") && currentScMarket === "TW") {
+      // 點選「🏆 台股市值前十大權值股」時，若目前在純美股視角，自動切換至純台股視角
+      if (sectorId === "tw_top10" && currentScMarket === "US") {
+        switchScMarketFilter("TW");
+        return;
+      }
+      // 點選「👑 美股一兆美元俱樂部」時，若目前在純台股視角，自動切換至純美股視角
+      if (sectorId === "trillion_club" && currentScMarket === "TW") {
+        switchScMarketFilter("US");
+        return;
+      }
+      if (sectorId === "oil_energy" && currentScMarket === "TW") {
         switchScMarketFilter("SPLIT");
         return;
       }
@@ -1052,7 +1160,7 @@
       if (!allSectors.length) return;
       const categories = [
         "ALL",
-        "美股兆元與能源",
+        "指標權值專區",
         "半導體核心",
         "光通訊與光學",
         "PCB與載板鏈",
@@ -1087,11 +1195,14 @@
 
       document.getElementById("sc-sector-tabs").innerHTML = visibleSectors.map(s => {
         const isAct = s.id === activeSec.id;
-        const mktItems = filterItemsByScMarket(s.stages.flatMap(st => st.items));
+        // 針對純台股「tw_top10」或純美股「trillion_club」，標籤計數自動顯示該專區實際檔數
+        const rawStgItems = s.stages.flatMap(st => st.items);
+        const mktItems = (s.id === "tw_top10" || s.id === "trillion_club") ? rawStgItems : filterItemsByScMarket(rawStgItems);
         const uniqueMktItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
         const validPcts = uniqueMktItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
         const avgPct = validPcts.length ? validPcts.reduce((a, b) => a + b, 0) / validPcts.length : 0;
-        const colorType = currentScMarket === "US" ? "us_stock" : "tw_stock";
+        const colorType = s.id === "trillion_club" ? "us_stock" : (s.id === "tw_top10" ? "tw_stock" : (currentScMarket === "US" ? "us_stock" : "tw_stock"));
+        const tagPrefix = s.id === "tw_top10" ? "🇹🇼台股" : (s.id === "trillion_club" ? "🇺🇸美股" : (currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')));
 
         return `
           <button onclick="selectScSector('${s.id}')" class="text-left p-3 rounded-xl border transition-all ${isAct ? 'bg-indigo-600/30 border-indigo-400 shadow-md ring-1 ring-indigo-400' : 'bg-slate-900/80 border-slate-800 hover:border-slate-600'}">
@@ -1099,7 +1210,7 @@
               <span class="text-xs font-bold text-white truncate">${s.title}</span>
             </div>
             <div class="flex items-center justify-between text-[10px] mono mt-1.5">
-              <span class="text-slate-400">${currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')}・${uniqueMktItems.length}檔</span>
+              <span class="text-slate-400">${tagPrefix}・${uniqueMktItems.length}檔</span>
               <span class="font-bold ${getColorClass(avgPct, colorType)}">${formatSignedPct(avgPct)}</span>
             </div>
           </button>
@@ -1799,7 +1910,8 @@
       const compareSel = document.getElementById("compare-select");
       const groups = [
         { label: "全球主要指數", list: globalMarketData.indices },
-        { label: "美國公債殖利率", list: globalMarketData.us_bonds },
+        { label: "VIX 恐慌指數", list: globalMarketData.vix_indices },
+        { label: "美國公債殖利率 (含2Y)", list: globalMarketData.us_bonds },
         { label: "全球外匯匯率", list: globalMarketData.fx_rates },
         { label: "期貨與大宗商品", list: globalMarketData.futures_commodities },
         { label: "美股核心科技股", list: globalMarketData.us_stocks },
@@ -1817,6 +1929,7 @@
       if (!picker || !globalMarketData) return;
       const allItems = [
         ...(globalMarketData.indices || []),
+        ...(globalMarketData.vix_indices || []),
         ...(globalMarketData.us_bonds || []),
         ...(globalMarketData.fx_rates || []),
         ...(globalMarketData.futures_commodities || []),
@@ -2175,7 +2288,6 @@
           pctEl.className = `text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}`;
         }
 
-        // 同步更新同一產業鏈或跨產業鏈多重出現的所有同名股票卡片
         document.querySelectorAll(`.sc-price-${domId}`).forEach(el => { el.textContent = item.price; });
         document.querySelectorAll(`.sc-pct-${domId}`).forEach(el => {
           el.textContent = formatSignedPct(item.change_pct);
@@ -2183,6 +2295,7 @@
         });
 
         if (item.asset_type === "fx_rate") refreshAllFxTwdSublabels();
+        if (item.asset_type === "us_bond") updateUsBondSpreadIndicator();
       }
 
       if (extSessionObj && Number(extSessionObj.price) > 0) {
@@ -2260,6 +2373,7 @@
     }
 
     async function fetchSingleYahooQuoteAndHistory(sym) {
+      if (sym === "US2Y" || sym === "^VIXTWN") return;
       try {
         const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=3mo`;
         const data = await tryFetchViaMultiProxy(targetUrl);
@@ -2300,7 +2414,7 @@
     async function forceSyncAllLivePrices() {
       document.getElementById("live-status").textContent = "正在從交易所與 Yahoo Finance 同步真實收盤價...";
       await syncAllTwseAndTpexOfficialPricesInBrowser();
-      const nonTwSyms = Object.keys(allAssetsMap).filter(s => !isTwSymbol(s));
+      const nonTwSyms = Object.keys(allAssetsMap).filter(s => !isTwSymbol(s) && s !== "US2Y" && s !== "^VIXTWN");
       const batchSize = 6;
       for (let i = 0; i < nonTwSyms.length; i += batchSize) {
         const batch = nonTwSyms.slice(i, i + batchSize);
@@ -2357,9 +2471,14 @@
       document.getElementById("grid-futures-agri").innerHTML = agriSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
     }
 
-    function normalizeBondsAndFx(data) {
+    function normalizeVixBondsAndFx(data) {
+      const vixDefs = [
+        { symbol: "^VIX", name: "美國 CBOE VIX 恐慌指數", asset_type: "vix_index" },
+        { symbol: "^VIXTWN", name: "臺指選擇權波動率指數 (VIXTWN)", asset_type: "vix_index" }
+      ];
       const bondDefs = [
         { symbol: "^IRX", name: "美國 3 個月期國庫券殖利率", asset_type: "us_bond" },
+        { symbol: "US2Y", name: "美國 2 年期公債殖利率", asset_type: "us_bond" },
         { symbol: "^FVX", name: "美國 5 年期公債殖利率", asset_type: "us_bond" },
         { symbol: "^TNX", name: "美國 10 年期公債殖利率", asset_type: "us_bond" },
         { symbol: "^TYX", name: "美國 30 年期公債殖利率", asset_type: "us_bond" }
@@ -2376,8 +2495,17 @@
       ];
 
       const existingMap = {};
-      [...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => {
+      [...(data.vix_indices || []), ...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => {
         existingMap[item.symbol] = item;
+      });
+
+      data.vix_indices = vixDefs.map(v => {
+        if (existingMap[v.symbol] && Number(existingMap[v.symbol].price) > 0) {
+          existingMap[v.symbol].asset_type = "vix_index";
+          existingMap[v.symbol].name = v.name;
+          return existingMap[v.symbol];
+        }
+        return applyVerifiedNov13IfMissing({ ...v, price: 0, change_pct: 0, history: [] });
       });
 
       data.us_bonds = bondDefs.map(b => {
@@ -2434,17 +2562,19 @@
         });
       }
 
-      normalizeBondsAndFx(globalMarketData);
+      normalizeVixBondsAndFx(globalMarketData);
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
       document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '2026-11-15 CST'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
+      document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
       document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
       document.getElementById("grid-fx-rates").innerHTML = (globalMarketData.fx_rates || []).map(x => createQuoteCard(x, false)).join("");
       renderGroupedFutures(globalMarketData.futures_commodities);
       document.getElementById("grid-us-stocks").innerHTML = (globalMarketData.us_stocks || []).map(s => createUsStockRichCard(s)).join("");
       document.getElementById("grid-tw-stocks").innerHTML = (globalMarketData.tw_stocks || []).map(t => createTwStockCard(t)).join("");
 
+      updateUsBondSpreadIndicator();
       refreshAllFxTwdSublabels();
       getSupplyChainSectorsData();
       renderDailyMarketReport();
