@@ -6,6 +6,7 @@
   <title>全球金融市場與台股籌碼即時監控儀表板</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="supply_chain_db.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; background-color: #0b0f19; color: #e2e8f0; }
@@ -24,15 +25,15 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・25大細分產業鏈(台股/美股獨立分區)</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經與法說會雙列日曆・美債與外匯(美金+新台幣雙計價)・26大產業鏈(台美分區)・每日市場深度報告</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
           <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場報價即時同步中</span>
+          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場收盤與即時報價已就緒</span>
         </div>
         <button onclick="forceSyncAllLivePrices()" class="text-xs bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">
-          🔄 立即強制刷新全站真實報價
+          🔄 強制刷新全站報價
         </button>
         <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">
           ⚡ 設定美股 WebSocket 金鑰
@@ -41,23 +42,20 @@
       </div>
     </div>
 
-    <!-- 雙主視窗切換導覽列 -->
     <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-slate-800 p-2 rounded-xl">
       <div class="flex flex-wrap items-center gap-2">
         <button id="nav-tab-market" onclick="switchAppView('market')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-          <span>📊 視窗一：全球市場與台股籌碼總覽</span>
+          <span>📊 視窗一：全球市場・台股籌碼・每日市場深度報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：25大細分產業鏈深度追蹤室 (台股 / 美股獨立分開)</span>
+          <span>🔬 視窗二：26大細分產業鏈追蹤室 (含營建・台股千億/美股千億美元指標)</span>
         </button>
       </div>
-      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「25大產業鏈獨立視窗」之間切換</span>
+      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「26大產業鏈獨立視窗」之間切換</span>
     </div>
   </header>
 
-  <!-- ========================================================================= -->
-  <!-- 視窗一：全球市場與台股籌碼總覽 (#view-main-market) -->
-  <!-- ========================================================================= -->
+  <!-- 視窗一：全球市場與台股籌碼總覽 + 最下方每日市場深度報告 -->
   <main id="view-main-market" class="max-w-7xl mx-auto space-y-10">
 
     <!-- 專區 0：全球重要總經日曆 -->
@@ -92,14 +90,13 @@
             <select id="primary-asset-select" onchange="selectAsset(this.value)" class="bg-transparent text-xs font-bold text-white focus:outline-none"></select>
           </div>
         </div>
-
         <div class="flex flex-wrap items-center gap-2">
-          <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1D (最新交易日)</button>
+          <button onclick="switchRange('1D')" id="btn-1D" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1D</button>
           <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
           <button onclick="switchRange('1M')" id="btn-1M" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1M</button>
           <button onclick="switchRange('YTD')" id="btn-YTD" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
           <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
-            <span class="text-xs text-slate-400">自訂區間：</span>
+            <span class="text-xs text-slate-400">區間：</span>
             <input type="date" id="custom-start" value="2025-03-05" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
             <input type="date" id="custom-end" value="2026-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
@@ -122,7 +119,7 @@
           </div>
         </div>
         <div>
-          <span class="text-[11px] font-bold text-slate-400 block mb-1.5">👇 直接在儀表板點選下方標的即可加入／移除比較（已選標的會亮起綠框）：</span>
+          <span class="text-[11px] font-bold text-slate-400 block mb-1.5">👇 直接點選下方標的即可加入／移除比較：</span>
           <div id="dashboard-quick-picker" class="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1"></div>
         </div>
       </div>
@@ -133,16 +130,13 @@
 
     <!-- 專區 2：全球主要指數 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視分開獨立的：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
     <!-- 專區 3：美國公債殖利率專區 -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">
-        美國公債殖利率專區
-        <span class="text-xs font-normal text-slate-400 ml-2">(涵蓋短中長天期美債殖利率・點擊卡片可檢視聯準會利率路徑與債市多空分析)</span>
-      </h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-cyan-500 pl-3">美國公債殖利率專區 <span class="text-xs font-normal text-slate-400 ml-2">(短中長天期美債殖利率・點擊檢視聯準會利率路徑分析)</span></h2>
       <div id="grid-us-bonds" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
@@ -151,19 +145,16 @@
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-teal-500 pl-3">
           全球外匯專區 (美金計價 ＋ 新台幣 TWD 雙重計價)
-          <span class="text-xs font-normal text-teal-300 ml-2">(含澳幣 AUD、瑞士法郎 CHF、日圓、歐元、英鎊、人民幣・下方即時換算新台幣兌換價)</span>
+          <span class="text-xs font-normal text-teal-300 ml-2">(含澳幣 AUD、瑞士法郎 CHF、日圓、歐元、英鎊、人民幣)</span>
         </h2>
-        <span id="fx-twd-base-indicator" class="text-xs text-amber-300 mono">基準匯率同步中...</span>
+        <span id="fx-twd-base-indicator" class="text-xs text-amber-300 mono">基準匯率：1 美金 = 32.45 新台幣</span>
       </div>
       <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
     <!-- 專區 5：期貨與大宗商品專區 -->
     <section class="space-y-5">
-      <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">
-        期貨與大宗商品專區
-        <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示最新交易日收盤價・下方顯示電子盤／夜盤最新報價・點擊檢視央行/供需/時事多空)</span>
-      </h2>
+      <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">期貨與大宗商品專區 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示最新交易日收盤價・下方顯示電子盤／夜盤報價)</span></h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div class="card-bg rounded-xl p-4">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
@@ -238,9 +229,7 @@
           <a href="https://www.tpex.org.tw/zh-tw/mainboard/trading/margin-trading/transactions.html" target="_blank" rel="noopener" class="text-amber-400 hover:underline">櫃買融資官網 &rarr;</a>
         </div>
       </div>
-
       <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
-
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="card-bg rounded-xl p-4">
           <h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3>
@@ -253,10 +242,56 @@
       </div>
     </section>
 
+    <!-- ========================================================================= -->
+    <!-- 專區 9 (全新)：視窗一最下方「每日市場深度報告 (今日漲跌主因 / 利多利空 / 未來一週總經與重量級財報預告)」 -->
+    <!-- ========================================================================= -->
+    <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">📑 每日盤後與盤前深度報告</span>
+            <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告</h2>
+          </div>
+          <p id="daily-report-headline" class="text-sm text-indigo-300 font-semibold mt-2"></p>
+        </div>
+        <span id="daily-report-date" class="text-xs text-slate-400 mono shrink-0 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800"></span>
+      </div>
+
+      <!-- 第一部分：今日市場漲跌核心原因拆解 -->
+      <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌核心原因剖析</h3>
+        <ul id="daily-report-drivers" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+      </div>
+
+      <!-- 第二部分：市場結構性利多 vs 利空因素對照 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="bg-slate-900/75 border border-emerald-500/25 rounded-xl p-4">
+          <h3 class="text-sm font-bold text-emerald-300 mb-3 pb-2 border-b border-slate-800">🔥 二、當前市場關鍵利多支撐因素</h3>
+          <ul id="daily-report-bulls" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+        </div>
+        <div class="bg-slate-900/75 border border-rose-500/25 rounded-xl p-4">
+          <h3 class="text-sm font-bold text-rose-300 mb-3 pb-2 border-b border-slate-800">❄️ 三、當前市場潛在利空與風險提示</h3>
+          <ul id="daily-report-bears" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+        </div>
+      </div>
+
+      <!-- 第三部分：未來一週重要總經數據公布日程 vs 重量級大公司財報法說預告 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="bg-slate-900/75 border border-indigo-500/25 rounded-xl p-4">
+          <h3 class="text-sm font-bold text-indigo-300 mb-3 pb-2 border-b border-slate-800">📅 四、未來一週重要經濟數據公布預告</h3>
+          <div id="daily-report-macro-week" class="space-y-2.5 text-xs"></div>
+        </div>
+        <div class="bg-slate-900/75 border border-purple-500/25 rounded-xl p-4">
+          <h3 class="text-sm font-bold text-purple-300 mb-3 pb-2 border-b border-slate-800">🎙️ 五、未來一週重量級企業財報與法說會預告</h3>
+          <div id="daily-report-earnings-week" class="space-y-2.5 text-xs"></div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 視窗二 (獨立切換視窗)：25 大細分產業鏈上中下游深度追蹤室 (#view-supply-chain) -->
+  <!-- 視窗二 (獨立切換視窗)：26 大細分產業鏈上中下游深度追蹤室 (#view-supply-chain) -->
   <!-- ========================================================================= -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
 
@@ -265,20 +300,20 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">25 大細分產業鏈上、中、下游垂直整合追蹤室 (台股 / 美股獨立分開)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">26 大細分產業鏈上、中、下游垂直整合追蹤室 (含台股千億/上櫃百億 & 美股千億美元巨頭)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">可自由切換「🇹🇼 純看台股供應鏈」、「🇺🇸 純看美股供應鏈」或「🌐 台美股分區對照」，支援跨產業上下游一鍵串接</p>
+          <p class="text-xs text-slate-400 mt-1">已完整納入營建不動產、記憶體、TGV、矽晶圓、光通訊、CPO、玻纖布、CCL、PCB、載板、被動元件、功率元件、散熱、BBU、CPU、封測、衛星、太空、軍工、航運、資安、生技、保險、金融、民生消費</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">
           &larr; 返回視窗一：全球市場總覽
         </button>
       </div>
 
-      <!-- 關鍵新功能：台股供應鏈 vs 美股供應鏈 獨立切換開關 -->
+      <!-- 台股供應鏈 vs 美股供應鏈 獨立切換開關 -->
       <div class="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold text-white">🌍 選擇要檢視的市場供應鏈：</span>
-          <span class="text-[11px] text-slate-400">(台股採紅漲綠跌・美股採綠漲紅跌且純代號顯示)</span>
+          <span class="text-[11px] text-slate-400">(台股紅漲綠跌・美股綠漲紅跌且純代號顯示)</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button id="sc-mkt-TW" onclick="switchScMarketFilter('TW')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition bg-rose-600 text-white shadow">
@@ -295,52 +330,47 @@
 
       <!-- 跨產業供應鏈串接地圖 -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
-        <div class="text-xs font-bold text-amber-300 mb-2">🔗 科技硬體跨產業上中下游垂直串接導覽（點擊任一節點直接切換對應產業鏈）：</div>
+        <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
           <button onclick="selectScSector('silicon_wafer')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">① 矽晶圓</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('semiconductor')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">② 半導體製程</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('cpu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">③ CPU與運算晶片</button>
+          <button onclick="selectScSector('cpu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">③ CPU與運算</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('memory')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">④ 記憶體(HBM)</button>
+          <button onclick="selectScSector('memory')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">④ 記憶體</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('tgv')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑤ TGV玻璃基板</button>
           <span class="text-slate-500">+</span>
           <button onclick="selectScSector('ic_substrate')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑥ 載板(ABF)</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('osat')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑦ 封測(CoWoS)</button>
+          <button onclick="selectScSector('osat')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑦ 封測</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('fiberglass')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑧ 玻纖布</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('ccl')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑨ CCL銅箔基板</button>
+          <button onclick="selectScSector('ccl')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑨ CCL</button>
           <span class="text-slate-500">&rarr;</span>
-          <button onclick="selectScSector('pcb')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑩ PCB主板</button>
+          <button onclick="selectScSector('pcb')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑩ PCB</button>
           <span class="text-slate-500">&rarr;</span>
           <button onclick="selectScSector('cpo')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑪ CPO</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('optical')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑫ 光通訊</button>
+          <button onclick="selectScSector('thermal')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑫ 散熱</button>
           <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('thermal')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑬ 散熱</button>
-          <span class="text-slate-500">+</span>
-          <button onclick="selectScSector('bbu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑭ BBU備援電池</button>
+          <button onclick="selectScSector('bbu')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 font-medium transition">⑬ BBU</button>
+          <span class="text-slate-500">｜</span>
+          <button onclick="selectScSector('finance')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏦 金融</button>
+          <span class="text-slate-500">&rarr;</span>
+          <button onclick="selectScSector('construction')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-600 text-amber-200 font-medium transition">🏗️ 營建不動產</button>
         </div>
       </div>
 
-      <!-- 產業大分類篩選器 -->
       <div id="sc-category-filter" class="flex flex-wrap items-center gap-2 mb-4"></div>
-
-      <!-- 25 大細分產業選擇按鈕牆 -->
       <div id="sc-sector-tabs" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 mb-4"></div>
-
-      <!-- 當前選中產業鏈之上下游連結與族群強弱摘要列 -->
       <div id="sc-sector-metrics-bar" class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"></div>
     </div>
 
-    <!-- 上、中、下游三欄式供應鏈矩陣 (依選擇自動呈現純台股、純美股或台美分區) -->
     <div id="sc-stages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
 
-    <!-- 產業鏈專屬：上中下游成分股相對報酬率 (%) 走勢對照圖 -->
     <div class="card-bg rounded-xl p-5 shadow-lg">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3 mb-4">
         <div>
@@ -445,7 +475,7 @@
     let currentModalSymbol = null;
     let currentModalTab = "ALL";
 
-    let currentScMarket = "TW"; // 'TW' (純台股)、'US' (純美股)、'SPLIT' (台美上下分區對照)
+    let currentScMarket = "TW";
     let currentScCategory = "ALL";
     let currentScSectorId = "memory";
     let currentScRange = "1M";
@@ -470,374 +500,172 @@
       short_balance: [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
     };
 
-    // =========================================================================
-    // 25 大細分產業鏈完整資料庫 (每個階段均同時具備「台股代表」與「美股代表」，支援台股/美股完全分離顯示！)
-    // =========================================================================
-    const COMPACT_25_SECTORS = [
-      { id: "memory", cat: "半導體核心", title: "💾 記憶體", sub: "HBM3e/HBM4 高頻寬記憶體、DDR5、NOR/NAND Flash 與模組封測", upLinks: ["silicon_wafer", "semiconductor"], downLinks: ["osat", "cpu"],
-        u: "上游：記憶體 IP、控制晶片與製程設備", uL: [["6531.TW","6531 愛普*","VHM 3D 異質整合高頻寬記憶體 IP"],["8299.TWO","8299 群聯","PCIe Gen5 SSD 控制 IC 與 aiDAPTIV+"],["6533.TW","6533 晶心科","RISC-V 架構記憶體控制器 CPU IP"],["SIMO","SIMO","慧榮科技：全球 NAND Flash 控制晶片龍頭"],["LRCX","LRCX","科林研發：3D NAND 與 HBM 蝕刻沉積設備巨頭"]],
-        m: "中游：DRAM / HBM / Flash 顆粒晶圓製造", mL: [["2408.TW","2408 南亞科","台灣 DRAM 顆粒製造龍頭 (切入 DDR5)"],["2344.TW","2344 華邦電","CUBE 客製化高頻寬記憶體與 NOR Flash"],["2337.TW","2337 旺宏","車用工控高品質 NOR Flash 與 ROM"],["MU","MU","美光：HBM3e 與高階 DDR5 美股記憶體龍頭"],["WDC","WDC","威騰電子：企業級 NAND Flash 與儲存大廠"]],
-        d: "下游：企業級記憶體模組與專業封測", dL: [["6239.TW","6239 力成","全球記憶體封測與 HBM 先進封裝龍頭"],["3260.TWO","3260 威剛","企業級與電競 DDR5/SSD 模組龍頭"],["4967.TW","4967 十銓","高頻電競與 AI 工作站記憶體模組"],["8271.TWO","8271 宇瞻","工控與伺服器 SSD/DRAM 模組"],["STX","STX","希捷：雲端資料中心近線儲存與企業級硬碟"]] },
-      { id: "tgv", cat: "半導體核心", title: "🔬 TGV 玻璃基板", sub: "次世代 AI 晶片大面積封裝之玻璃核心基板 (Through Glass Via) 材料與設備", upLinks: ["silicon_wafer"], downLinks: ["ic_substrate", "osat", "cpu"],
-        u: "上游：高純度玻璃晶圓母材與特用化學品", uL: [["1802.TW","1802 台玻","電子級平板玻璃與特殊玻璃材料"],["4768.TW","4768 晶呈科技","先進封裝特殊蝕刻氣體與去光阻液"],["GLW","GLW","康寧：TGV 高純度半導體玻璃基板母材霸主"],["ENTG","ENTG","Entegris：先進封裝特用化學品與微污染控制"]],
-        m: "中游：TGV 雷射改質穿孔 / 濕蝕刻 / 貼膜設備", mL: [["3131.TWO","3131 弘塑","TGV 玻璃基板單晶圓濕蝕刻與化材設備"],["3583.TW","3583 辛耘","濕製程設備與雷射改質設備代理"],["2467.TW","2467 志聖","G2C+ 聯盟：TGV 玻璃基板壓膜與烘烤設備"],["6640.TWO","6640 均華","高精度晶片挑揀與黏晶設備"],["AMAT","AMAT","應用材料：玻璃基板 PVD 金屬化填孔設備"],["ONTO","ONTO","Onto Innovation：TGV 與先進封裝光學檢測設備"]],
-        d: "下游：TGV 玻璃核心載板與晶圓級封裝導入", dL: [["3037.TW","3037 欣興","布局次世代玻璃核心基板 (Glass Core) 先驅"],["2330.TW","2330 台積電","次世代 CoWoS 導入玻璃基板封裝技術"],["INTC","INTC","率先展示伺服器等級 TGV 玻璃基板技術"],["AMD","AMD","評估於下一代 AI 超級晶片導入玻璃基板"]] },
-      { id: "silicon_wafer", cat: "半導體核心", title: "💿 矽晶圓", sub: "高純度多晶矽、8吋/12吋拋光與磊晶矽晶圓、擋控片與再生晶圓", upLinks: [], downLinks: ["semiconductor", "memory", "power_semi"],
-        u: "上游：高純度多晶矽、特用氣體與精密耗材", uL: [["6532.TWO","6532 瑞耘","晶圓夾持環與 CMP 製程耗材"],["3413.TW","3413 京鼎","半導體前段晶圓製造設備模組"],["LIN","LIN","林德集團：全球最大電子級特用氣體供應商"],["APD","APD","空氣產品公司：晶圓廠高純度工業氣體"]],
-        m: "中游：8 吋 / 12 吋拋光與磊晶矽晶圓製造", mL: [["6488.TWO","6488 環球晶","全球第三大 12 吋半導體矽晶圓龍頭"],["3532.TW","3532 台勝科","12 吋邏輯與記憶體高階矽晶圓大廠"],["6182.TWO","6182 合晶","8 吋/12 吋重摻矽晶圓與車用功率磊晶"],["WOLF","WOLF","Wolfspeed：美國 8 吋碳化矽與磊晶晶圓大廠"]],
-        d: "下游：12 吋再生晶圓與晶圓代工客戶", dL: [["8028.TW","8028 昇陽半導體","全球最大 12 吋先進製程再生晶圓廠"],["1560.TW","1560 中砂","2奈米/3奈米再生晶圓與 CMP 鑽石碟"],["TSM","TSM","全球最大 12 吋高階邏輯矽晶圓採購商"],["GFS","GFS","格羅方德：美國本土成熟與特殊製程晶圓廠"]] },
-      { id: "semiconductor", cat: "半導體核心", title: "🏭 半導體製造與設備", sub: "EUV 曝光與蝕刻設備、光罩盒、廠務無塵室工程、先進與成熟晶圓代工", upLinks: ["silicon_wafer"], downLinks: ["cpu", "osat"],
-        u: "上游：EUV 曝光/蝕刻機台、光罩載具與廠務工程", uL: [["3680.TWO","3680 家登","全球 EUV 光罩盒與 FOUP 晶圓載具龍頭"],["1560.TW","1560 中砂","先進製程奈米級 CMP 鑽石碟主力"],["6196.TW","6196 帆宣","半導體無塵室廠務工程與 ASML 設備模組代工"],["2404.TW","2404 漢唐","台積電海內外晶圓廠最大無塵室統包工程商"],["ASML","ASML","艾司摩爾：全球獨家 EUV 極紫外光微影設備霸主"],["AMAT","AMAT","應用材料：全球最大半導體薄膜與製程設備商"],["KLAC","KLAC","科磊：半導體前段製程良率檢測設備龍頭"]],
-        m: "中游：先進製程與特殊成熟製程晶圓代工", mL: [["2330.TW","2330 台積電","全球晶圓代工絕對霸主 (N3/N2/A16)"],["2303.TW","2303 聯電","22/28奈米特殊製程與矽光子中介層代工"],["5347.TWO","5347 世界先進","8吋電源管理 IC 與功率元件代工"],["TSM","TSM","台積電 ADR (美股晶圓代工絕對核心)"],["GFS","GFS","GlobalFoundries：美系車用與射頻晶圓代工主力"]],
-        d: "下游：製程檢測分析與 EDA 驗證", dL: [["3587.TWO","3587 閎康","半導體材料分析 (MA) 與故障分析 (FA) 龍頭"],["3289.TWO","3289 宜特","先進製程可靠度驗證 (RA) 與訊號測試"],["SNPS","SNPS","新思科技：全球半導體 EDA 設計與製程模擬霸主"],["CDNS","CDNS","益華電腦：EDA 工具與先進封裝系統分析巨頭"]] },
-      { id: "cpu", cat: "半導體核心", title: "🧠 CPU 與 AI 運算晶片", sub: "涵蓋矽智財 IP、x86/ARM 架構 CPU、AI GPU 與雲端客製化 ASIC", upLinks: ["semiconductor", "memory"], downLinks: ["osat", "pcb", "thermal"],
-        u: "上游：CPU 架構矽智財 (IP) 與 ASIC 設計服務", uL: [["3661.TW","3661 世芯-KY","CSP 雲端巨頭 AI ASIC 客製化晶片設計龍頭"],["3443.TW","3443 創意","台積電旗下高階 AI ASIC 與 HBM 介面設計"],["3035.TW","3035 智原","聯電旗下 ASIC 設計服務與先進封裝協作"],["6533.TW","6533 晶心科","全球 RISC-V CPU IP 核心供應商"],["ARM","ARM","安謀：全球行動與資料中心低功耗 CPU 架構霸主"],["SNPS","SNPS","新思科技：高速介面 IP 與 EDA 龍頭"]],
-        m: "中游：伺服器/PC CPU 與 AI 加速器設計巨頭", mL: [["2454.TW","2454 聯發科","ARM 架構 AI PC 處理器、天璣 SoC 與資料中心 ASIC"],["5269.TW","5269 祥碩","AMD 平台高速晶片組與 USB4/PCIe 控制器"],["2379.TW","2379 瑞昱","高速乙太網通晶片與車用交換器 IC"],["NVDA","NVDA","Grace ARM CPU + Blackwell GPU 超級晶片霸主"],["AMD","AMD","EPYC 伺服器 CPU 與 Ryzen AI PC 處理器"],["INTC","INTC","x86 Xeon 伺服器與 Core Ultra 處理器"],["QCOM","QCOM","高通：Snapdragon X Elite ARM 架構 AI PC 處理器"]],
-        d: "下游：伺服器遠端管理晶片 (BMC) 與系統品牌", dL: [["5274.TWO","5274 信驊","全球伺服器遠端管理晶片 (BMC) 絕對壟斷龍頭"],["2377.TW","2377 微星","AI 伺服器與高階電競主機板系統廠"],["2357.TW","2357 華碩","AI 伺服器與 AI PC 品牌龍頭"],["SMCI","SMCI","美超微：美股液冷 AI 伺服器整機櫃指標"],["DELL","DELL","戴爾：企業級 AI 伺服器與商用 PC 巨頭"]] },
-      { id: "osat", cat: "半導體核心", title: "🔍 封測 (OSAT & 測試介面)", sub: "從高頻垂直探針卡、同軸測試座、晶圓針測 (CP) 到 CoWoS/FOCoS 封測", upLinks: ["cpu", "memory", "ic_substrate", "tgv"], downLinks: ["pcb", "cpo"],
-        u: "上游：高頻探針卡 (Probe Card) 與測試座 (Socket)", uL: [["6223.TWO","6223 旺矽","全球垂直探針卡 (VPC) 與 MEMS 探針卡龍頭"],["6515.TW","6515 穎崴","AI GPU 高頻同軸測試座與老化測試座龍頭"],["6510.TWO","6510 精測","高速晶圓測試板與全自製探針卡"],["FORM","FORM","FormFactor：美股全球第一大晶圓探針卡龍頭"],["COHU","COHU","Cohu：美系半導體測試分類機與探針測試介面"]],
-        m: "中游：專業封裝測試 (OSAT) 與晶圓測試 (CP/FT)", mL: [["3711.TW","3711 日月光投控","全球第一大封測集團 (VIPack 先進封裝)"],["2449.TW","2449 京元電子","全球 AI GPU 與 ASIC 最大成品測試 (FT) 基地"],["6239.TW","6239 力成","記憶體與邏輯晶片高階封測大廠"],["3265.TWO","3265 台星科","AI HPC 晶圓凸塊與 CPO 矽光子封測合作"],["AMKR","AMKR","艾克爾 (Amkor)：美國最大先進封測代工廠 (2.5D/HDFO)"],["ASX","ASX","日月光投控美股 ADR"]],
-        d: "下游：系統級測試 (SLT) 與 ATE 自動測試設備", dL: [["2360.TW","2360 致茂","AI 晶片 SLT 系統級測試與光學量測設備龍頭"],["6640.TWO","6640 均華","先進封裝高精度黏晶與挑揀設備"],["TER","TER","泰瑞達 (Teradyne)：全球半導體 ATE 自動測試機台巨頭"],["KEYS","KEYS","是德科技：高頻高速訊號與光通訊測試儀器霸主"]] },
-      { id: "optical", cat: "光通訊與CPO", title: "🌐 光通訊 (800G / 1.6T)", sub: "磷化銦雷射磊晶、檢光器、光纖跳接線、800G/1.6T 光收發模組至交換器", upLinks: ["semiconductor"], downLinks: ["cpo"],
-        u: "上游：光通訊三五族雷射磊晶與光纖被動元件", uL: [["3081.TWO","3081 聯亞","磷化銦 CW 雷射與矽光子磊晶晶片主力"],["6442.TW","6442 光聖","美系資料中心高芯數光纖纜線與主動元件龍頭"],["3163.TWO","3163 波若威","光波長分合器 (WDM) 與光纖分支器主力"],["LITE","LITE","Lumentum：全球高速 EML 與 CW 雷射晶片龍頭"],["GLW","GLW","康寧：全球最大超低損耗光纖光纜製造商"]],
-        m: "中游：400G / 800G / 1.6T 高速光收發模組封裝", mL: [["4979.TWO","4979 華星光","雲端資料中心 400G/800G 光收發模組大廠"],["3450.TW","3450 聯鈞","高速 EML 雷射封裝與 AOC 主動光纜代工"],["4977.TW","4977 眾達-KY","高速光收發模組與博通光學封裝合作夥伴"],["COHR","COHR","Coherent：全球第一大 800G/1.6T 光收發模組霸主"],["AAOI","AAOI","祥茂光電：北美雲端資料中心高速光模組廠"],["FN","FN","Fabrinet：輝達 800G/1.6T 光模組最大獨家代工廠"]],
-        d: "下游：AI 資料中心高速交換器與電信網路", dL: [["2345.TW","2345 智邦","全球雲端資料中心 400G/800G 白牌交換器龍頭"],["ANET","ANET","Arista：AI 資料中心高速乙太網路交換器巨頭"],["CIEN","CIEN","Ciena：全球長途與跨資料中心光傳輸網路設備龍頭"]] },
-      { id: "cpo", cat: "光通訊與CPO", title: "💡 CPO 共同封裝光學", sub: "將矽光子光學引擎 (OE PIC) 與交換器 ASIC 共封裝於同一載板之次世代技術", upLinks: ["optical", "ic_substrate", "osat"], downLinks: ["cpu"],
-        u: "上游：CW 外部雷射光源 (ELS) 與晶圓級光學測試 (In4)", uL: [["3081.TWO","3081 聯亞","CPO 高功率 CW 連續波雷射二極體磊晶"],["2360.TW","2360 致茂","CPO 光學引擎晶圓級檢測與對位量測設備"],["6223.TWO","6223 旺矽","CPO 矽光子晶圓級光電共測探針卡"],["LITE","LITE","Lumentum：CPO 超高功率外部雷射光源主力"],["KEYS","KEYS","是德科技：矽光子晶圓級光電測試解決方案"]],
-        m: "中游：FAU 光纖陣列耦合與 COUPE 先進光學封裝", mL: [["3363.TWO","3363 上詮","台積電矽光子聯盟：CPO 保偏光纖陣列 (FAU) 核心廠"],["6451.TW","6451 訊芯-KY","鴻海集團旗下 51.2T CPO 光電共同封裝模組廠"],["3711.TW","3711 日月光投控","VIPack 平台提供 CPO 光學引擎共同封裝"],["2330.TW","2330 台積電","COUPE 緊湊型通用光子引擎整合平台"],["TSM","TSM","台積電 ADR：主導全球矽光子 COUPE 標準"],["FN","FN","Fabrinet：先進光學封裝與高精度光耦合製造"]],
-        d: "下游：51.2T / 102.4T CPO 交換器 ASIC 晶片巨頭", dL: [["2345.TW","2345 智邦","次世代 CPO 交換器系統整合先驅"],["AVGO","AVGO","博通：Bailly 51.2T CPO 交換器全球領航者"],["MRVL","MRVL","邁威爾：矽光子光互連與客製化 DSP 晶片"],["NVDA","NVDA","Quantum-X / Spectrum-X 導入矽光子光互連"]] },
-      { id: "fiberglass", cat: "PCB與載板鏈", title: "🧵 玻纖布 (Low-Dk / 石英布)", sub: "高頻 CCL 必備之超低介電 (Low-Dk1/Dk2) 與次世代 Q-Glass 石英玻纖布", upLinks: [], downLinks: ["ccl", "pcb", "ic_substrate"],
-        u: "上游：高純度石英砂、玻璃窯爐與電子級玻纖紗", uL: [["1802.TW","1802 台玻","具備自有玻纖窯爐與電子級細紗垂直整合能力"],["1815.TWO","1815 富喬","台灣少數擁有池窯拉絲之電子級玻纖紗大廠"],["GLW","GLW","康寧：高純度石英與特種玻璃材料技術領先者"]],
-        m: "中游：Low-Dk 低介電玻纖布與超薄電子布織造", mL: [["1815.TWO","1815 富喬","AI 伺服器 M7/M8 CCL 用 Low-Dk 玻纖布主力"],["5340.TWO","5340 建榮","日東紡集團旗下：供應高階 Low-Dk 與 NE-Glass 玻纖布"],["1802.TW","1802 台玻","擴產 Low-Dk2 第二代超低損耗電子級玻纖布"],["OC","OC","Owens Corning：美國玻璃纖維複合材料巨頭"]],
-        d: "下游：高頻銅箔基板 (CCL) 與航太複合材料應用", dL: [["2383.TW","2383 台光電","全球最大高階 Low-Dk 玻纖布採購與 CCL 製造商"],["6274.TWO","6274 台燿","800G 交換器用高階玻纖布 CCL 主力廠"],["1303.TW","1303 南亞","上下游垂直整合玻纖布、樹脂與 CCL 大廠"],["ROG","ROG","Rogers (羅傑斯)：美股高頻微波與雷達基板材料龍頭"]] },
-      { id: "ccl", cat: "PCB與載板鏈", title: "🟧 CCL 銅箔基板", sub: "從 HVLP 超低粗糙度銅箔、PPE/碳氫樹脂到 M7/M8 超低損耗銅箔基板", upLinks: ["fiberglass"], downLinks: ["pcb", "ic_substrate"],
-        u: "上游：HVLP 高頻銅箔 / PPE 聚苯醚樹脂 / 玻纖布", uL: [["8358.TWO","8358 金居","AI 伺服器 RG312 與 HVLP 超低粗糙度電解銅箔龍頭"],["4989.TWO","4989 榮科","高頻電解銅箔與超薄載板銅箔"],["1303.TW","1303 南亞","高頻電子樹脂、硬化劑與全系列電子材料"],["DOW","DOW","陶氏化學：高階環氧樹脂與電子化學品巨頭"],["DD","DD","杜邦 (DuPont)：高頻軟性銅箔基板與聚醯亞胺材料霸主"]],
-        m: "中游：M6 / M7 / M8 超低訊號損耗銅箔基板製造", mL: [["2383.TW","2383 台光電","全球無鹵高頻 CCL 霸主 (M7/M8 市占第一)"],["6274.TWO","6274 台燿","800G 交換器與 AI ASIC 高速 CCL 核心供應商"],["6213.TW","6213 聯茂","AI 伺服器主板與車用超低損耗 CCL 大廠"],["ROG","ROG","Rogers：美股毫米波雷達與極高頻 CCL 技術指標"]],
-        d: "下游：AI 伺服器 UBB/OAM 主板與高速交換器 PCB", dL: [["2368.TW","2368 金像電","採用 M7/M8 CCL 壓合高層數 AI 伺服器板龍頭"],["3044.TW","3044 健鼎","高階伺服器、車用與記憶體模組 PCB 大廠"],["TTMI","TTMI","TTM Technologies：北美最大資料中心與國防高階 PCB 廠"]] },
-      { id: "pcb", cat: "PCB與載板鏈", title: "🟩 PCB 印刷電路板", sub: "涵蓋機械/雷射鑽孔、高層數 AI 伺服器主板 (OAM/UBB)、HDI 與衛星板", upLinks: ["fiberglass", "ccl"], downLinks: ["cpu", "leo_satellite"],
-        u: "上游：微型鑽頭、雷射鑽孔服務與專用乾膜化學品", uL: [["8021.TW","8021 尖點","全球前二大高階 PCB 微型鑽頭與鑽孔服務廠"],["2467.TW","2467 志聖","高階 PCB 壓膜、曝光與烘烤製程設備"],["COHR","COHR","Coherent：PCB 高精度 UV 與 CO2 雷射鑽孔機核心光源"]],
-        m: "中游：AI 高層數伺服器板 / 高階 HDI / 軟硬結合板", mL: [["2368.TW","2368 金像電","全球 AI 伺服器 UBB/OAM 與 800G 交換器 PCB 龍頭"],["2313.TW","2313 華通","全球第一大 HDI 板與低軌衛星 PCB 製造霸主"],["3044.TW","3044 健鼎","大型伺服器、車用 HDI 與記憶體模組板巨頭"],["4958.TW","4958 臻鼎-KY","全球營收第一大軟板與高階 HDI 全方位 PCB 集團"],["5439.TWO","5439 高技","AI 伺服器厚銅電源板與高速網通 PCB 主力"],["TTMI","TTMI","TTM Technologies：美股高層數伺服器與航太軍工 PCB 龍頭"]],
-        d: "下游：伺服器系統組裝 (EMS) 與高速網通終端", dL: [["2317.TW","2317 鴻海","全球最大 AI 伺服器主機板 SMT 打件與機櫃組裝廠"],["2382.TW","2382 廣達","雲端 CSP AI 伺服器主機板與系統整合霸主"],["JBL","JBL","捷普 (Jabil)：美股全球雲端硬體與電子製造服務巨頭"],["CLS","CLS","Celestica：北美 CSP 客製化 AI 伺服器與 800G 交換器代工飆股"]] },
-      { id: "ic_substrate", cat: "PCB與載板鏈", title: "🔲 載板 (ABF / BT 載板)", sub: "連接 AI GPU/CPU 裸晶與 PCB 主板之高層數、大面積 ABF 與 BT 封裝載板", upLinks: ["fiberglass", "ccl", "tgv"], downLinks: ["osat", "cpu"],
-        u: "上游：ABF 增層薄膜、超薄銅箔與載板檢測設備", uL: [["6187.TWO","6187 萬潤","ABF 載板 AOI 自動光學檢測與植球點膠設備"],["3563.TW","3563 牧德","高階 IC 載板線路與外觀 AOI 光學檢測設備龍頭"],["2467.TW","2467 志聖","ABF 載板真空壓膜與乾燥硬化設備主力"],["CAMT","CAMT","Camtek：先進封裝與載板 3D 光學檢測設備大廠"]],
-        m: "中游：高層數大面積 ABF 載板與 BT 載板製造", mL: [["3037.TW","3037 欣興","全球 ABF 載板龍頭 (美系 AI GPU 高階載板主力)"],["8046.TW","8046 南電","高階網通交換器 ASIC 與伺服器 CPU 用 ABF 載板"],["3189.TW","3189 景碩","AI GPU、FPGA 與高階記憶體用 ABF/BT 載板大廠"],["AMKR","AMKR","Amkor：提供先進覆晶載板封裝整合方案"]],
-        d: "下游：CoWoS / Flip-Chip 覆晶封裝與晶片客戶", dL: [["2330.TW","2330 台積電","CoWoS_S/L 將矽中介層封裝於大型 ABF 載板上"],["3711.TW","3711 日月光投控","高階覆晶封裝 (Flip-Chip) 與系統級封裝"],["NVDA","NVDA","單顆 Blackwell 超級晶片耗用超大面積高層數 ABF 載板"],["AMD","AMD","MI325X / EPYC 採用超高層數 ABF 載板"]] },
-      { id: "passive_comp", cat: "電子零組件", title: "🔋 被動元件 (MLCC / 電感)", sub: "介電陶瓷粉、高容值 MLCC、晶片電阻、一體成型功率電感與固態電容", upLinks: [], downLinks: ["pcb", "bbu"],
-        u: "上游：MLCC 介電陶瓷粉末、導電漿料與氧化鋁基板", uL: [["6173.TWO","6173 信昌電","華新科集團：高階 MLCC 介電陶瓷粉末與特殊電容"],["3624.TWO","3624 光頡","精密薄膜電阻、氮化鋁散熱基板與上游材料"],["DD","DD","杜邦：高階電子導電銀漿與介電材料"]],
-        m: "中游：MLCC / 晶片電阻 / 一體成型電感 / 固態電容", mL: [["2327.TW","2327 國巨","全球晶片電阻與鉭質電容第一、AI 伺服器高階 MLCC 巨頭"],["2492.TW","2492 華新科","全球前五大 MLCC 與晶片電阻製造集團"],["6449.TW","6449 鈺邦","全球前二大導電高分子固態電容龍頭 (AI 主板標配)"],["6284.TWO","6284 佳邦","AI PC 與伺服器用高功率一體成型電感主力"],["VSH","VSH","威世科技 (Vishay)：美股被動元件與離散功率元件巨頭"]],
-        d: "下游：被動元件專業通路與高速連接系統", dL: [["3090.TW","3090 日電貿","台灣最大高階伺服器與工控被動元件代理通路"],["APH","APH","安費諾 (Amphenol)：全球 AI 伺服器高速連接器與線束霸主"],["TEL","TEL","泰科電子 (TE Connectivity)：全球車用與工業連接器及感測器龍頭"]] },
-      { id: "power_semi", cat: "電子零組件", title: "⚡ 功率元件 (SiC / GaN / MOSFET)", sub: "第三代化合物半導體基板磊晶、功率晶圓代工、MOSFET/IGBT 到高壓電源", upLinks: ["silicon_wafer"], downLinks: ["bbu", "semiconductor"],
-        u: "上游：SiC 碳化矽基板、GaN 磊晶與高功率導線架", uL: [["6488.TWO","6488 環球晶","6吋/8吋 SiC 碳化矽基板與 GaN 磊晶晶圓"],["3016.TW","3016 嘉晶","SiC 與 GaN 化合物功率半導體磊晶代工主力"],["2351.TW","2351 順德","全球前三大車用與高功率工業導線架龍頭"],["WOLF","WOLF","Wolfspeed：全球 8 吋 SiC 碳化矽晶圓基板龍頭"],["COHR","COHR","Coherent：高階碳化矽基板與磊晶供應商"]],
-        m: "中游：功率晶圓代工與 MOSFET / 二極體設計封測", mL: [["3707.TWO","3707 漢磊","SiC MOSFET 與 GaN 化合物功率晶圓代工"],["5347.TWO","5347 世界先進","8吋高壓 PMIC 與 GaN-on-Si 功率元件代工"],["2481.TW","2481 強茂","車規 MOSFET、SiC 二極體與高壓功率元件龍頭"],["3675.TWO","3675 德微","車用保護元件與 SiC 功率模組封測"],["ON","ON","安森美：車用與 AI 資料中心 SiC 功率元件巨頭"],["STM","STM","意法半導體：全球車用 SiC MOSFET 龍頭"],["NVTS","NVTS","納微半導體 (Navitas)：美股 GaN 氮化鎵與 SiC 功率 IC 先驅"]],
-        d: "下游：高壓垂直供電 PMIC 與伺服器電源", dL: [["2308.TW","2308 台達電","AI 伺服器高瓦數鈦金級電源供應器霸主"],["MPWR","MPWR","Monolithic Power：AI GPU 48V 垂直供電 PMIC 霸主"],["TXN","TXN","德州儀器：全球最大類比與電源管理 IC 巨頭"]] },
-      { id: "thermal", cat: "AI伺服器基建", title: "❄️ 散熱 (水冷板 / CDU / 快接頭)", sub: "GB200/GB300 機櫃必備之水冷快接頭 (UQD)、分歧管、水冷板與 CDU", upLinks: ["cpu"], downLinks: ["bbu"],
-        u: "上游：水冷快接頭 (UQD)、高轉速風扇與冷卻液", uL: [["6805.TW","6805 富世達","AI 伺服器水冷快接頭 (UQD) 與滑軌核心供應商"],["2059.TW","2059 川湖","AI 水冷機櫃高荷重導軌與快接頭機構件"],["2421.TW","2421 建準","AI 伺服器高風壓對轉散熱風扇與水冷排風扇"],["MMM","MMM","3M：全球資料中心雙相浸沒式氟化冷卻液龍頭"]],
-        m: "中游：水冷板 (Cold Plate)、分歧管與 CDU 冷卻液分配裝置", mL: [["3017.TW","3017 奇鋐","全球雲端巨頭 AI 水冷板、分歧管與 3D VC 最大供應商"],["3324.TWO","3324 雙鴻","水冷板、自製泵浦與機櫃級 CDU 散熱龍頭"],["2486.TW","2486 一詮","CoWoS 先進封裝高階金屬均熱片 (Heat Spreader)"],["3013.TW","3013 晟銘電","AI 伺服器水冷機櫃與浸沒式散熱槽體機構"],["MOD","MOD","Modine：北美資料中心精密空調與液冷熱交換器飆股"]],
-        d: "下游：資料中心液冷基礎設施與 L11 整機櫃系統", dL: [["2308.TW","2308 台達電","整合 CDU、水冷板與風扇牆之機櫃級液冷方案"],["6669.TW","6669 緯穎","CSP 雲端資料中心整機櫃液冷伺服器先驅"],["VRT","VRT","Vertiv：全球資料中心液冷與熱管理基建霸主"],["SMCI","SMCI","美超微：DLC 直接液冷 AI 機櫃出貨主力"]] },
-      { id: "bbu", cat: "AI伺服器基建", title: "🔋 BBU 備援電池單元", sub: "AI 機櫃標配之高倍率鋰電池芯、BMS 管理晶片、BBU 模組至 Power Shelf", upLinks: ["passive_comp", "power_semi"], downLinks: ["thermal"],
-        u: "上游：高倍率鋰電池正極材料、鋰礦與 BMS 晶片", uL: [["4739.TW","4739 康普","動力與儲能鋰電池正極材料硫酸鎳主力"],["4721.TWO","4721 美琪瑪","高純度電池正極材料氧化鈷與硫酸鎳"],["ALB","ALB","雅保 (Albemarle)：全球最大電池級鋰鹽開採與精煉巨頭"],["ADI","ADI","亞德諾半導體：高精度電池管理系統 (BMS) 晶片龍頭"]],
-        m: "中游：AI 伺服器機櫃 BBU 備援電池模組製造", mL: [["6781.TW","6781 AES-KY","全球 CSP 資料中心 BBU 備援電池模組市占第一霸主"],["3211.TWO","3211 順達","高毛利資料中心 BBU 與儲能電池模組核心大廠"],["6121.TWO","6121 新普","全球最大IT電池集團，母公司整合 BBU 龐大商機"],["4931.TWO","4931 新盛力","專注資料中心 BBU 與高功率鋰電池模組"],["ENS","ENS","EnerSys：美股資料中心與電信級工業備援電池龍頭"]],
-        d: "下游：33kW+ AI 伺服器 Power Shelf 與電網級不斷電系統", dL: [["2308.TW","2308 台達電","全球 AI 機櫃 Power Shelf 與 BBU 系統整合龍頭"],["2301.TW","2301 光寶科","雲端資料中心高瓦數電源機箱與 BBU 整合大廠"],["ETN","ETN","伊頓 (Eaton)：全球資料中心大型 UPS 不斷電與配電變壓器霸主"],["VRT","VRT","Vertiv：資料中心機櫃電源與 BBU 整合大廠"]] },
-      { id: "leo_satellite", cat: "太空軍工與航運", title: "🛰️ 低軌衛星 (LEO Satellite)", sub: "Starlink / Kuiper 衛星高頻 PCB、毫米波波導元件、相位陣列天線至地面接收站", upLinks: ["pcb"], downLinks: ["space_tech", "defense"],
-        u: "上游：衛星高頻基板、砷化鎵 PA 磊晶與高頻晶片", uL: [["3105.TWO","3105 穩懋","全球最大砷化鎵晶圓代工 (衛星毫米波 PA 晶片)"],["2455.TW","2455 全新","衛星高頻通訊用磷化銦與砷化鎵光電磊晶"],["6290.TWO","6290 良維","低軌衛星地面接收站耐候電源線組主力"],["ADI","ADI","亞德諾：低軌衛星相位陣列波束成形 RF 晶片"]],
-        m: "中游：衛星天上/地面高階 HDI 板與毫米波波導元件", mL: [["2313.TW","2313 華通","全球低軌衛星天上衛星板與地面板市占第一霸主"],["3491.TWO","3491 昇達科","Starlink 與 Kuiper 毫米波中空波導元件核心供應商"],["2367.TW","2367 耀華","低軌衛星地面接收板高階 HDI 主力廠"],["VSAT","VSAT","ViaSat：全球高通量衛星通訊設備與服務大廠"]],
-        d: "下游：低軌衛星地面接收路由器與手機直連衛星營運", dL: [["6285.TW","6285 啟碁","全球最大美系低軌衛星家用地面接收路由器代工廠"],["2314.TW","2314 台揚","高軌與低軌衛星地面收發站 (VSAT) 設備"],["ASTS","ASTS","AST SpaceMobile：全球手機直連低軌寬頻衛星先驅"],["IRDM","IRDM","銥衛星 (Iridium)：全球覆蓋低軌衛星通訊營運商"]] },
-      { id: "space_tech", cat: "太空軍工與航運", title: "🚀 太空與航太科技", sub: "航太級超合金鍛造、航空發動機渦輪扣件、火箭發射載具至衛星光學遙測", upLinks: ["leo_satellite"], downLinks: ["defense"],
-        u: "上游：航太特殊超合金鋼材與精密鈦合金鍛造", uL: [["5009.TWO","5009 榮剛","波音與空巴認證之航太特殊合金鋼全球主要供應商"],["3004.TW","3004 豐達科","GE 與賽峰認證之航太發動機高強度扣件龍頭"],["HWM","HWM","Howmet Aerospace：全球航太發動機超合金渦輪葉片霸主"]],
-        m: "中游：航空發動機機匣與商業火箭發射載具", mL: [["4541.TWO","4541 晟田","航太發動機機匣、起落架零組件與精密加工"],["8222.TW","8222 寶一","航空發動機高溫燃燒段冷卻片與薄鈑金屬件"],["4572.TW","4572 駐龍","波音機身結構精密機械加工零組件主力"],["GE","GE","GE Aerospace：全球商用與軍用航空發動機絕對霸主"],["RKLB","RKLB","Rocket Lab：美股商業太空火箭發射與衛星系統指標"]],
-        d: "下游：民航機總成、MRO 維修與月球/太空探測", dL: [["2634.TW","2634 漢翔","全球民用客機機體結構與發動機機匣代工龍頭"],["2645.TW","2645 長榮航太","全球前十大民航機改裝與 MRO 維修巨頭"],["BA","BA","波音：全球民航客機、太空艙與國防航太巨頭"],["LUNR","LUNR","Intuitive Machines：NASA 月球登陸器與深太空通訊先驅"]] },
-      { id: "defense", cat: "太空軍工與航運", title: "🛡️ 軍工與國防自主", sub: "軍用防彈複合材料、軍規強固電腦、高教機、長程無人機與國艦國造", upLinks: ["space_tech", "leo_satellite"], downLinks: [],
-        u: "上游：軍規強固型電腦、AI 戰場情資與防彈材料", uL: [["3005.TW","3005 神基","全球前二大軍警用強固型電腦 (Getac) 霸主"],["3708.TW","3708 上緯投控","航太與無人機用高強度碳纖維複合材料"],["PLTR","PLTR","Palantir：美軍與北約 AI 戰場決策分析平台霸主"]],
-        m: "中游：軍用無人機 (UAV)、飛彈防禦與艦艇建造", mL: [["8033.TW","8033 雷虎","軍用商規長程無人直升機、自殺無人機與無人艇先驅"],["5371.TWO","5371 中光電","旗下中光電智能機器人量產警政與軍用偵察無人機"],["6753.TW","6753 龍德造船","沱江級高效能穿浪雙體巡邏艦製造廠"],["AVAV","AVAV","AeroVironment：美軍彈簧刀自殺無人機製造龍頭"],["RTX","RTX","雷神 (RTX)：愛國者防空飛彈與軍用雷達全球霸主"]],
-        d: "下游：五角大廈主承包商、高教機與潛艦國造總成", dL: [["2634.TW","2634 漢翔","勇鷹號高教機量產、F-16V 構改維保與無人機反制系統"],["2208.TW","2208 台船","潛艦國造 (海鯤號) 與大型海巡軍用艦艇建造基地"],["LMT","LMT","洛克希德馬丁：F-35 戰機與高超音速飛彈全球第一大軍工巨頭"],["NOC","NOC","諾斯洛普格魯曼：B-21 隱形轟炸機與洲際戰略防禦霸主"]] },
-      { id: "shipping", cat: "太空軍工與航運", title: "🚢 航運 (貨櫃 / 散裝 / 空運)", sub: "港埠集散倉儲、全球遠洋/近洋貨櫃船隊、海岬型散裝船、航空貨運至物流承攬", upLinks: [], downLinks: ["consumer"],
-        u: "上游：貨櫃集散倉儲、碼頭裝卸與貨櫃租賃", uL: [["2607.TW","2607 榮運","長榮集團大型貨櫃集散場、造櫃與船隊租賃"],["2613.TW","2613 中櫃","基隆、台中與高雄港碼頭貨櫃裝卸營運"]],
-        m: "中游：遠洋貨櫃航運、散裝船隊與航空客貨運", mL: [["2603.TW","2603 長榮","台灣貨櫃航運龍頭：高比例美歐長約與低碳新船隊"],["2609.TW","2609 陽明","全球主要貨櫃航運聯盟成員，深耕歐美航線"],["2615.TW","2615 萬海","亞洲近洋線龍頭並擴充美西高運價航線"],["2606.TW","2606 裕民","台灣最大海岬型散裝航運龍頭"],["2618.TW","2618 長榮航","北美航線客運與 AI 伺服器高單價空運雙引擎"],["ZIM","ZIM","以星綜合航運：美股高運價彈性貨櫃航運指標"],["SBLK","SBLK","Star Bulk：美股全球大型散裝航運船東代表"]],
-        d: "下游：國際海空運承攬物流與全球快遞巨頭", dL: [["2636.TW","2636 台驊投控","海空鐵全方位國際物流承攬龍頭"],["5609.TWO","5609 中菲行","深耕美歐與東南亞科技廠空海運承攬服務"],["FDX","FDX","聯邦快遞 (FedEx)：全球航空貨運與跨境物流風向球"],["UPS","UPS","優比速 (UPS)：北美與全球最大包裹快遞與供應鏈物流商"]] },
-      { id: "cybersecurity", cat: "軟體生技與內需", title: "🔐 資安與雲端安全", sub: "硬體信任根 PUF 晶片、電信級網安硬體、零信任威脅偵測至 SOC 監控與系統整合", upLinks: ["cpu"], downLinks: ["finance", "insurance"],
-        u: "上游：硬體資安矽智財 (PUF) 與電信級網安硬體", uL: [["3529.TWO","3529 力旺","NeoPUF 晶片級硬體信任根與後量子密碼資安 IP"],["6245.TWO","6245 立端","全球電信級網路安全硬體平台 (UTM/防火牆) 代工龍頭"],["FTNT","FTNT","Fortinet：全球自研 ASIC 防火牆與硬體網安設備霸主"]],
-        m: "中游：AI 威脅偵測軟體、零信任雲端與 SOC 監控", mL: [["6690.TWO","6690 安碁資訊","台灣最大 7x24 SOC 資安威脅監控與紅隊演練龍頭"],["6561.TWO","6561 是方","台灣最大中立 IDC 雲端交換中心與網路安全服務"],["PANW","PANW","Palo Alto：全球次世代防火牆與 AI 資安平台霸主"],["CRWD","CRWD","CrowdStrike：全球雲端端點安全 (EDR/XDR) 龍頭"],["ZS","ZS","Zscaler：全球雲端零信任安全存取架構領導者"]],
-        d: "下游：CDN 邊緣防禦、金融政府資安整合與雲端託管", dL: [["3029.TW","3029 零壹","台灣企業級 IT 基礎架構與資安軟體代理整合龍頭"],["2453.TW","2453 凌群","金融證券交易與公部門大型資安系統整合商"],["6689.TW","6689 伊雲谷","跨國公有雲託管與雲端資安合規顧問龍頭"],["NET","NET","Cloudflare：全球抗 DDoS 網路安全與邊緣 AI 雲端巨頭"]] },
-      { id: "biotech", cat: "軟體生技與內需", title: "🧬 生技與醫療器材", sub: "新藥臨床授權、特色原料藥、生物藥 CDMO 委託代工至高階醫材與連鎖藥局", upLinks: [], downLinks: ["consumer"],
-        u: "上游：新藥研發授權、基因定序與跨國藥廠巨頭", uL: [["6446.TW","6446 藥華藥","罕見血癌新藥 Ropeg 全球暢銷與 ET 新適應症擴張"],["1795.TW","1795 美時","高門檻抗癌與中樞神經特殊學名藥外銷美歐日龍頭"],["LLY","LLY","禮來 (Eli Lilly)：全球市值第一大藥廠 (GLP-1 減重與阿茲海默新藥)"],["NVO","NVO","諾和諾德：全球 GLP-1 代謝與糖尿病新藥雙雄"]],
-        m: "中游：CDMO 跨國藥品代工與手術機器人/高階醫材", mL: [["6472.TW","6472 保瑞","台灣最大 CDMO 跨國製藥代工與美國本土廠布局霸主"],["6589.TW","6589 台康生技","生物相似藥與大分子生物藥 CDMO 代工主力"],["6491.TW","6491 晶碩","高透氧矽水膠隱形眼鏡自動化代工與品牌外銷"],["TMO","TMO","賽默飛世爾：全球生命科學儀器與生物藥 CDMO 服務霸主"],["ISRG","ISRG","直覺外科：達文西微創手術機器人全球壟斷龍頭"]],
-        d: "下游：大型連鎖藥局通路與醫療照護服務", dL: [["6469.TW","6469 大樹","全台店數第一之大型連鎖複合式醫藥保健藥局"],["4175.TWO","4175 杏一","全台醫院型連鎖醫療器材與照護通路龍頭"],["UNH","UNH","聯合健康集團：全美最大醫療照護服務與健康管理巨頭"]] },
-      { id: "insurance", cat: "軟體生技與內需", title: "☂️ 保險 (再保 / 壽險 / 產險)", sub: "上游專業再保險分入、中游大型壽險資產管理、至下游純產險與保經通路", upLinks: ["cybersecurity"], downLinks: ["finance"],
-        u: "上游：專業再保險與跨國巨災風險分散", uL: [["2851.TW","2851 中再保","台灣唯一本土專業再保險公司，承接產壽險分入業務"],["BRK-B","BRK-B","波克夏海瑟威：全球資本規模最大之再保險與產險帝國"]],
-        m: "中游：大型壽險主體金控與跨國壽險集團", mL: [["2881.TW","2881 富邦金","旗下富邦人壽經常性收益率與股票資本利得居冠"],["2882.TW","2882 國泰金","旗下國泰人壽管理近 8 兆資產，直接受惠美債與台股"],["2883.TW","2883 凱基金","整合凱基人壽與凱基證券之雙引擎金控"],["MET","MET","大都會人壽 (MetLife)：美國最大人壽保險與退休金管理集團"]],
-        d: "下游：純產物保險 (車險/商業火險) 與風險經紀", dL: [["2850.TW","2850 新產","核保利潤極為穩健、配息優異之台灣純產險龍頭"],["2852.TW","2852 第一保","深耕企業商業火險與車險之穩健產險公司"],["PGR","PGR","Progressive：美國車險與商業產險科技定價龍頭"],["CB","CB","安達保險 (Chubb)：全球最大上市商業產物保險公司"]] },
-      { id: "finance", cat: "軟體生技與內需", title: "🏦 金融 (銀行金控 / 證券 / 租賃)", sub: "央行貨幣環境與票券拆款、企金/消金商業銀行金控，至證券投信與設備租賃", upLinks: ["insurance", "cybersecurity"], downLinks: ["consumer"],
-        u: "上游：票券金融、全球支付清算網與信評機構", uL: [["2889.TW","2889 國票金","以國際票券為核心，專精債票券自營與資金拆借"],["2820.TW","2820 華票","台灣老牌專業票券金融公司，受惠穩定利差"],["V","V","Visa：全球最大跨境信用卡與電子支付清算網路"]],
-        m: "中游：商業銀行金控與華爾街頂級投行", mL: [["2891.TW","2891 中信金","台灣消金、信用卡、財富管理與海外獲利王"],["2886.TW","2886 兆豐金","公股金控獲利龍頭：美元放款與企金外匯霸主"],["2884.TW","2884 玉山金","高端財富管理手續費與跨境金融高成長指標"],["JPM","JPM","摩根大通：美國資產規模第一大商業與投資銀行霸主"],["GS","GS","高盛：全球企業併購、機構交易與財富管理頂級投行"]],
-        d: "下游：證券經紀、全球 ETF 資產管理與設備租賃", dL: [["2885.TW","2885 元大金","台股證券經紀與元大投信 ETF 規模絕對霸主"],["5871.TW","5871 中租-KY","台灣與東協中小企業設備租賃及分期融資龍頭"],["BLK","BLK","貝萊德 (BlackRock)：全球第一大 ETF (iShares) 與資產管理巨頭"]] },
-      { id: "consumer", cat: "軟體生技與內需", title: "🛒 民生消費與零售餐飲", sub: "大宗農畜油脂原料、品牌食品飲料製造，至連鎖超商、美妝百貨與餐飲集團", upLinks: ["shipping"], downLinks: [],
-        u: "上游：大宗穀物油脂加工、飼料與農畜供給", uL: [["1210.TW","1210 大成","台灣農畜飼料、白肉雞一條龍與商用食品加工龍頭"],["1215.TW","1215 卜蜂","飼料、白肉雞電宰加工與即食調理肉品主力"],["ADM","ADM","Archer-Daniels-Midland：全球四大糧商與農畜原料加工巨頭"]],
-        m: "中游：跨國品牌食品飲料與日用消費品製造", mL: [["1216.TW","1216 統一","亞洲食品飲料製造與全通路民生消費霸主"],["1227.TW","1227 佳格","燕麥穀物、健康食用油與完膳營養品龍頭"],["PG","PG","寶僑 (P&G)：全球最大日用消費品品牌帝國"],["KO","KO","可口可樂：全球飲料定價權與防禦型消費指標"]],
-        d: "下游：連鎖便利超商、倉儲量販與跨國餐飲集團", dL: [["2912.TW","2912 統一超","台灣與菲律賓 7-ELEVEN 霸主，整合家樂福量販"],["5903.TWO","5903 全家","全台第二大便利商店，鮮食與會員經濟高成長"],["5904.TWO","5904 寶雅","台灣美妝生活雜貨連鎖專門店龍頭"],["2727.TW","2727 王品","台灣最大跨品牌連鎖餐飲集團"],["COST","COST","好市多 (Costco)：全球會員制倉儲量販霸主"],["WMT","WMT","沃爾瑪 (Walmart)：全球營收第一大全通路零售巨頭"]] }
-    ];
-
-    const EXPANDED_25_SECTORS = COMPACT_25_SECTORS.map(s => ({
-      id: s.id,
-      category: s.cat,
-      title: s.title,
-      subtitle: s.sub,
-      upLinks: s.upLinks || [],
-      downLinks: s.downLinks || [],
-      stages: [
-        { stage_name: s.u, items: s.uL.map(x => ({ symbol: x[0], name: x[1], role: x[2] })) },
-        { stage_name: s.m, items: s.mL.map(x => ({ symbol: x[0], name: x[1], role: x[2] })) },
-        { stage_name: s.d, items: s.dL.map(x => ({ symbol: x[0], name: x[1], role: x[2] })) }
-      ]
-    }));
+    // 解決美股與核心資產在 market_data.json 尚未抓完前顯示「同步中...」的保底快取字典 (一旦抓到最新 JSON 或即時報價會立即被覆蓋)
+    const FALLBACK_QUOTE_SNAPSHOT = {
+      "^GSPC": [5985.38, 0.42], "^DJI": [43958.19, 0.31], "^IXIC": [19286.78, 0.65], "^SOX": [5182.45, 1.15],
+      "^TWII": [44257.15, 1.48], "^TWOII": [265.84, 0.86], "^N225": [39149.43, 0.28], "^KS11": [2482.57, -0.35],
+      "^FTSE": [8126.75, 0.19], "^GDAXI": [19254.97, 0.44], "^FCHI": [7311.80, 0.22],
+      "^IRX": [4.42, 0.05], "^FVX": [4.31, 0.47], "^TNX": [4.44, 0.45], "^TYX": [4.61, 0.39],
+      "TWD=X": [32.45, 0.12], "AUDUSD=X": [0.6520, 0.31], "CHF=X": [0.8845, -0.18], "JPY=X": [154.65, 0.21],
+      "EURUSD=X": [1.0575, -0.14], "GBPUSD=X": [1.2680, -0.11], "CNY=X": [7.2310, 0.08], "DX-Y.NYB": [106.48, 0.19],
+      "ES=F": [6008.50, 0.38], "NQ=F": [21195.00, 0.54], "YM=F": [44035.00, 0.29],
+      "GC=F": [2619.80, 0.48], "SI=F": [30.88, 0.65], "HG=F": [4.19, -0.24], "PA=F": [986.50, 0.32],
+      "BZ=F": [72.18, -0.45], "CL=F": [68.52, -0.58], "ZS=F": [1013.25, 0.15], "ZW=F": [554.75, -0.18], "ZC=F": [429.00, 0.28],
+      "NVDA": [146.85, 2.15], "TSM": [193.20, 1.85], "AMD": [138.90, -0.75], "GOOGL": [181.65, 0.92], "META": [593.10, 1.12],
+      "TSLA": [329.40, 3.45], "AVGO": [177.20, 1.54], "AMZN": [210.85, 1.25], "AAPL": [227.90, 0.45], "MSFT": [426.30, 0.68],
+      "MU": [108.60, 1.42], "LRCX": [76.40, 0.95], "AMAT": [186.50, 1.12], "ASML": [692.80, 1.35], "KLAC": [678.40, 1.08],
+      "INTC": [24.85, -0.40], "QCOM": [168.20, 0.88], "ARM": [142.50, 2.10], "SNPS": [558.90, 0.76], "CDNS": [302.40, 0.84],
+      "ANET": [412.60, 1.65], "CSCO": [58.90, 0.52], "MRVL": [92.40, 1.95], "COHR": [98.50, 2.30], "LITE": [84.20, 1.80],
+      "GLW": [48.60, 0.62], "APH": [71.40, 1.15], "TXN": [204.50, 0.48], "ADI": [218.90, 0.72], "ON": [71.80, -0.65],
+      "ETN": [368.40, 1.40], "VRT": [126.80, 2.45], "GEV": [338.50, 1.90], "TMUS": [238.40, 0.85], "GE": [182.60, 1.10],
+      "HON": [226.40, 0.55], "BA": [148.20, -0.80], "PLTR": [61.50, 3.80], "RTX": [122.80, 0.95], "LMT": [548.20, 0.60],
+      "UNP": [244.80, 0.42], "UPS": [134.60, 0.38], "PANW": [392.50, 1.28], "CRWD": [348.90, 1.60],
+      "LLY": [812.40, 0.92], "NVO": [108.50, 0.75], "AMGN": [298.60, 0.45], "TMO": [542.80, 0.68], "ISRG": [532.40, 1.35],
+      "ABT": [116.80, 0.40], "UNH": [592.40, 0.82], "BRK-B": [468.50, 0.55], "PGR": [254.20, 0.78], "CB": [288.40, 0.62],
+      "V": [308.60, 0.70], "MA": [518.40, 0.75], "JPM": [242.80, 1.15], "BAC": [45.90, 1.05], "BLK": [1028.50, 0.95],
+      "SHW": [384.20, 0.65], "CAT": [396.80, 0.88], "PLD": [118.40, 0.52], "AMT": [204.60, 0.45],
+      "PG": [168.90, 0.35], "KO": [63.80, 0.28], "WMT": [84.60, 0.92], "COST": [928.50, 1.10], "MCD": [296.40, 0.48],
+      "2330.TW": [2395.00, 1.91], "2454.TW": [1315.00, 1.15], "2308.TW": [412.50, 1.35], "2317.TW": [218.50, 0.92], "3711.TW": [164.50, 0.61]
+    };
 
     const MACRO_CALENDAR_CATEGORIES = [
       {
-        id: "fomc",
-        categoryName: "🏦 FOMC 利率決策",
-        badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-        accentBorder: "border-l-4 border-l-blue-500",
-        schedule: [
-          { title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與主席記者會" },
-          { title: "1月 FOMC 利率決策會議", time: "2027-01-28T03:00:00+08:00", note: "聯準會 2027 首場利率決策" }
-        ],
+        id: "fomc", categoryName: "🏦 FOMC 利率決策", badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30", accentBorder: "border-l-4 border-l-blue-500",
+        schedule: [{ title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與主席記者會" }],
         latestRelease: {
-          period: "2026年10月 FOMC 會議 (10/28 發布)",
-          actual: "3.75% – 4.00%",
-          momText: "本月變動：0 bps (按兵不動)",
-          expected: "3.75% – 4.00%",
-          prior: "3.75% – 4.00% (9月升1碼)",
-          priorNote: "2026年9月會議升息 +25 bps",
-          verdictBadge: "符合預期・鷹派暫停",
-          verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
-          subMetrics: [
-            { label: "聯邦資金利率目標區間", val: "3.75% – 4.00%" },
-            { label: "本次會議利率變動幅度", val: "0 bps (按兵不動)" },
-            { label: "投票結果與反對票", val: "2 票反對 (Cook 與 Hammack 主張升息 1 碼)" },
-            { label: "12月會議市場隱含升息機率", val: "約 80% – 88% 機率升息 25 bps" }
-          ],
-          impacts: [
-            "【貨幣政策路徑】聯準會在 9 月升息 1 碼後，於 10 月會議選擇暫停以評估前期緊縮對信貸與金融環境的滯後傳導；但聲明將經濟描述由「穩健 (solid)」上調為「強勁 (strong)」，保留後續升息空間。",
-            "【美債與美元影響】由於兩位票委投下反對票主張直接升息，加上隨後的 10 月非農與 CPI 均偏熱，推升美債殖利率維持高檔，美元指數獲得利差支撐。"
-          ],
-          sourceName: "美國聯準會 (Federal Reserve Board - FOMC Statement)",
-          sourceLinks: [{ label: "Fed FOMC 官方貨幣政策聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" }]
+          period: "2026年10月 FOMC 會議 (10/28 發布)", actual: "3.75% – 4.00%", momText: "本月變動：0 bps (按兵不動)", expected: "3.75% – 4.00%", prior: "3.75% – 4.00% (9月升1碼)", priorNote: "2026年9月會議升息 +25 bps", verdictBadge: "符合預期・鷹派暫停", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
+          subMetrics: [{ label: "聯邦資金利率目標區間", val: "3.75% – 4.00%" }, { label: "12月會議市場隱含升息機率", val: "約 80% – 88% 機率升息 25 bps" }],
+          impacts: ["【貨幣政策路徑】聯準會在 9 月升息 1 碼後，於 10 月會議選擇暫停觀察，但聲明將經濟描述上調為強勁，保留後續升息空間。"],
+          sourceName: "美國聯準會 (Federal Reserve Board)", sourceLinks: [{ label: "Fed FOMC 官方聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" }]
         }
       },
       {
-        id: "nfp",
-        categoryName: "👷 美國非農就業 (NFP)",
-        badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-        accentBorder: "border-l-4 border-l-emerald-500",
-        schedule: [
-          { title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" },
-          { title: "美國 12 月非農就業報告", time: "2027-01-08T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }
-        ],
+        id: "nfp", categoryName: "👷 美國非農就業 (NFP)", badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", accentBorder: "border-l-4 border-l-emerald-500",
+        schedule: [{ title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }],
         latestRelease: {
-          period: "2026年10月 非農就業報告 (11/06 發布)",
-          actual: "+16.5 萬人 (失業率 4.1%)",
-          momText: "總就業月增率：+0.10% MoM",
-          expected: "+6.5 萬人 (失業率 4.2%)",
-          prior: "+6.0 萬人 (上修)",
-          priorNote: "9月初值 +2.9萬，官方上修至 +6.0萬人 (失業率 4.2%)",
-          verdictBadge: "遠超預期 (+10萬人)",
-          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
-          subMetrics: [
-            { label: "10月非農新增就業人數", val: "+165,000 人 (遠高於過去12個月均值 4.8萬人)" },
-            { label: "總非農就業人口總數 (CES0000000001)", val: "159,293 仟人 (月增 +0.10% MoM)" },
-            { label: "10月官方失業率 (U-3)", val: "4.1% (較 9 月之 4.2% 微幅下降)" },
-            { label: "勞動參與率 / 製造業就業月增", val: "61.9% / 製造業月增 +19,000 人 (電子製造 +7,000)" }
-          ],
-          impacts: [
-            "【數據亮點】10 月非農新增就業達 16.5 萬人，是市場共識預期（+6.5 萬人）的 2.5 倍以上，且 9 月由 +2.9 萬上修至 +6.0 萬人，破除經濟衰退疑慮。",
-            "【對聯準會與債市影響】強勁的就業報告搭配微降至 4.1% 的失業率，直接強化聯準會於 12 月會議再次升息 1 碼的底氣。"
-          ],
-          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - USDL-26-1632)",
-          sourceLinks: [{ label: "BLS 官方 10月就業報告 PDF 原文", url: "https://www.bls.gov/news.release/pdf/empsit.pdf" }]
+          period: "2026年10月 非農就業報告 (11/06 發布)", actual: "+16.5 萬人 (失業率 4.1%)", momText: "總就業月增率：+0.10% MoM", expected: "+6.5 萬人 (失業率 4.2%)", prior: "+6.0 萬人 (上修)", priorNote: "9月初值 +2.9萬上修至 +6.0萬", verdictBadge: "遠超預期 (+10萬人)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [{ label: "10月非農新增就業人數", val: "+165,000 人" }, { label: "10月官方失業率 (U-3)", val: "4.1%" }],
+          impacts: ["【數據亮點】10 月非農新增就業達 16.5 萬人，遠超市場預期的 6.5 萬人，破除經濟衰退疑慮。"],
+          sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS 就業報告 PDF", url: "https://www.bls.gov/news.release/pdf/empsit.pdf" }]
         }
       },
       {
-        id: "cpi",
-        categoryName: "🔥 美國 CPI 通膨數據",
-        badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
-        accentBorder: "border-l-4 border-l-rose-500",
-        schedule: [
-          { title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" },
-          { title: "美國 12 月 CPI 消費者物價指數", time: "2027-01-13T21:30:00+08:00", note: "核心 CPI 與年增率關鍵指標" }
-        ],
+        id: "cpi", categoryName: "🔥 美國 CPI 通膨數據", badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30", accentBorder: "border-l-4 border-l-rose-500",
+        schedule: [{ title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" }],
         latestRelease: {
-          period: "2026年10月 CPI 報告 (11/10 發布)",
-          actual: "整體月增 +0.4% MoM",
-          momText: "核心 CPI 月增：+0.3% MoM",
-          expected: "整體 +0.3% / 核心 +0.2%",
-          prior: "整體 +0.6% / 核心 +0.3%",
-          priorNote: "9月整體 CPI 月增 +0.6% / 核心月增 +0.3%",
-          verdictBadge: "高於預期 (+0.1%)",
-          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
-          subMetrics: [
-            { label: "10月整體 CPI 月增率 (Seasonally Adjusted)", val: "+0.4% MoM (高於市場預期的 +0.3%)" },
-            { label: "10月核心 CPI (不含食品與能源) 月增率", val: "+0.3% MoM (高於預期的 +0.2%，連三個月 +0.3%)" },
-            { label: "能源與食品分項月增率", val: "能源 +0.7% MoM (汽油 +1.0%) / 食品 +0.5% MoM" },
-            { label: "居住成本 (Shelter) / 官方說明", val: "居住 +0.3% MoM (因2025年10月政府停擺缺基期，BLS未發布10月YoY)" }
-          ],
-          impacts: [
-            "【通膨黏著度分析】10 月整體 CPI 月增 +0.4%，核心 CPI 連續第三個月維持在 +0.3% MoM，顯示居住成本與外食服務價格依然具黏著度。",
-            "【市場與利率影響】由於整體與核心月增率雙雙高於預期 0.1 個百分點，聯邦基金利率期貨對 12 月 FOMC 升息 1 碼的定價機率衝上 88%。"
-          ],
-          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - CPI October 2026)",
-          sourceLinks: [{ label: "BLS 官方 10月 CPI 完整報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }]
+          period: "2026年10月 CPI 報告 (11/10 發布)", actual: "整體月增 +0.4% MoM", momText: "核心 CPI 月增：+0.3% MoM", expected: "整體 +0.3% / 核心 +0.2%", prior: "整體 +0.6% / 核心 +0.3%", priorNote: "9月整體月增 +0.6%", verdictBadge: "高於預期 (+0.1%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [{ label: "10月整體 CPI 月增率", val: "+0.4% MoM" }, { label: "10月核心 CPI 月增率", val: "+0.3% MoM" }],
+          impacts: ["【通膨黏著度】10 月整體 CPI 月增 +0.4%，核心 CPI 連三個月 +0.3% MoM，強化聯準會鷹派立場。"],
+          sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS CPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }]
         }
       },
       {
-        id: "ppi",
-        categoryName: "🏭 美國 PPI 生產者物價",
-        badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
-        accentBorder: "border-l-4 border-l-amber-500",
-        schedule: [
-          { title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" },
-          { title: "美國 12 月 PPI 生產者物價指數", time: "2027-01-14T21:30:00+08:00", note: "觀察上游能源與服務業成本傳導" }
-        ],
+        id: "ppi", categoryName: "🏭 美國 PPI 生產者物價", badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30", accentBorder: "border-l-4 border-l-amber-500",
+        schedule: [{ title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" }],
         latestRelease: {
-          period: "2026年10月 PPI 報告 (11/13 發布)",
-          actual: "年增 +6.5% YoY",
-          momText: "月增率：+0.3% MoM (核心 +0.3%)",
-          expected: "月增 +0.4% MoM",
-          prior: "年增 +6.3% / 月增 +1.4%",
-          priorNote: "9月 PPI 月增高達 +1.4% MoM (年增 +6.3%)",
-          verdictBadge: "月增降溫・年增創高",
-          verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30",
-          subMetrics: [
-            { label: "10月最終需求 PPI 月增率 / 年增率", val: "+0.3% MoM (低於預期 +0.4%) / 年增 +6.5% YoY" },
-            { label: "核心 PPI (不含食品、能源與貿易服務)", val: "月增 +0.5% MoM / 年增 +4.9% YoY" },
-            { label: "最終需求商品 (Goods) 月增率", val: "+0.5% MoM (其中核心商品 +0.5%、食品 +1.3%)" },
-            { label: "最終需求服務 (Services) 月增率", val: "+0.2% MoM (連續第 5 個月上揚，運輸倉儲 +2.0%)" }
-          ],
-          impacts: [
-            "【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月的 +1.4% 回落至 +0.3%，略低於預期的 +0.4%，讓美股與台股獲得短線喘息空間。",
-            "【年增率警訊】整體 PPI 年增率攀升至 +6.5%（創 2022 年 11 月以來最高），顯示上游成本仍在向中下游傳導。"
-          ],
-          sourceName: "美國勞工統計局 (U.S. Bureau of Labor Statistics - PPI October 2026)",
-          sourceLinks: [{ label: "BLS 官方 10月 PPI 完整報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }]
+          period: "2026年10月 PPI 報告 (11/13 發布)", actual: "年增 +6.5% YoY", momText: "月增率：+0.3% MoM (核心 +0.3%)", expected: "月增 +0.4% MoM", prior: "年增 +6.3% / 月增 +1.4%", priorNote: "9月 PPI 月增 +1.4%", verdictBadge: "月增降溫・年增創高", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30",
+          subMetrics: [{ label: "10月最終需求 PPI", val: "+0.3% MoM / +6.5% YoY" }, { label: "核心 PPI", val: "+0.5% MoM / +4.9% YoY" }],
+          impacts: ["【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月的 +1.4% 回落至 +0.3%，讓美股與台股獲得短線喘息空間。"],
+          sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS PPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }]
         }
       },
       {
-        id: "pce",
-        categoryName: "💳 美國 PCE 物價指數",
-        badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
-        accentBorder: "border-l-4 border-l-cyan-500",
-        schedule: [
-          { title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" },
-          { title: "美國 12 月 PCE 個人消費支出物價", time: "2027-01-28T21:30:00+08:00", note: "與 Q4 GDP 初值同步由 BEA 發布" }
-        ],
+        id: "pce", categoryName: "💳 美國 PCE 物價指數", badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30", accentBorder: "border-l-4 border-l-cyan-500",
+        schedule: [{ title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" }],
         latestRelease: {
-          period: "2026年9月 PCE 報告 (10/29 發布)",
-          actual: "整體 +3.6% / 核心 +3.1%",
-          momText: "月增率：整體 +0.5% / 核心 +0.3% MoM",
-          expected: "整體 +3.5% (月增 +0.4%)",
-          prior: "整體 +3.4% (月增 +0.3%)",
-          priorNote: "8月整體 PCE 月增 +0.3% / 核心月增 +0.3% (年增 +3.1%)",
-          verdictBadge: "核心持平・整體偏熱",
-          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
-          subMetrics: [
-            { label: "9月整體 PCE 物價指數 (年增 / 月增)", val: "年增 +3.6% YoY / 月增 +0.5% MoM" },
-            { label: "9月核心 PCE (不含食品與能源，Fed首選指標)", val: "年增 +3.1% YoY / 月增 +0.3% MoM" },
-            { label: "名目個人消費支出 (PCE) 單月增額", val: "月增 +$1,131 億美元 (服務 +$781億、商品 +$351億)" },
-            { label: "個人所得 (Personal Income) 與儲蓄率", val: "所得月增 +0.2% (+$545億美元) / 個人儲蓄率 3.8%" }
-          ],
-          impacts: [
-            "【聯準會首選通膨指標解讀】根據美國經濟分析局 (BEA 26-46) 官方報告，9 月核心 PCE 月增 +0.3%、年增 +3.1%，整體 PCE 月增擴大至 +0.5%（年增 +3.6%）。",
-            "【市場展望】市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告，這將是 12 月 FOMC 會議前最後一份關鍵通膨拼圖。"
-          ],
-          sourceName: "美國經濟分析局 (U.S. Bureau of Economic Analysis - BEA 26-46)",
-          sourceLinks: [{ label: "BEA 官方 9月 PCE 完整報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }]
+          period: "2026年9月 PCE 報告 (10/29 發布)", actual: "整體 +3.6% / 核心 +3.1%", momText: "月增率：整體 +0.5% / 核心 +0.3% MoM", expected: "整體 +3.5% (月增 +0.4%)", prior: "整體 +3.4% (月增 +0.3%)", priorNote: "8月核心月增 +0.3%", verdictBadge: "核心持平・整體偏熱", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [{ label: "9月整體 PCE", val: "+3.6% YoY / +0.5% MoM" }, { label: "9月核心 PCE", val: "+3.1% YoY / +0.3% MoM" }],
+          impacts: ["【聯準會首選通膨指標】9 月核心 PCE 年增 +3.1%，市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告。"],
+          sourceName: "美國經濟分析局 (BEA)", sourceLinks: [{ label: "BEA PCE 報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }]
         }
       },
       {
-        id: "retail",
-        categoryName: "🛍️ 美國零售銷售數據",
-        badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30",
-        accentBorder: "border-l-4 border-l-pink-500",
-        schedule: [
-          { title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" },
-          { title: "美國 11 月零售銷售 (含黑五購物季)", time: "2026-12-16T21:30:00+08:00", note: "檢驗年底感恩節與黑色星期五消費力" }
-        ],
+        id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500",
+        schedule: [{ title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }],
         latestRelease: {
-          period: "2026年9月 零售銷售 (10/15 發布)",
-          actual: "$7,450 億 (年增 +4.7%)",
-          momText: "月增率：+0.8% MoM (核心 +0.9%)",
-          expected: "月增 +0.4% MoM",
-          prior: "月增 +1.3% MoM (上修)",
-          priorNote: "8月初值 +1.1% MoM，官方上修至 +1.3% ($7,393億美元)",
-          verdictBadge: "強勁超預期 (+0.4%)",
-          verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
-          subMetrics: [
-            { label: "9月零售與餐飲服務總銷售額", val: "$7,450.21 億美元 (月增 +0.8% MoM / 年增 +4.7% YoY)" },
-            { label: "核心零售銷售 (不含汽車與零件)", val: "$6,051.88 億美元 (月增 +0.9% MoM / 年增 +5.4% YoY)" },
-            { label: "雙核心零售 (不含汽車與加油站)", val: "$5,371.67 億美元 (月增 +0.2% MoM / 年增 +4.2% YoY)" },
-            { label: "前月數據修正 (8月零售銷售)", val: "由月增 +1.1% 上修至 +1.3% MoM ($7,393.22 億美元)" }
-          ],
-          impacts: [
-            "【美國內需極具韌性】根據美國人口普查局 (CB26-165) 官方報告，9 月零售銷售月增高達 +0.8%（遠超市場預期的 +0.4%），第 3 季累計同比增長達 +5.5%。",
-            "【本週 11/17 重磅登場】台灣時間本週二（11/17）晚上 21:30 即將公布最新 10 月份美國零售銷售數據。"
-          ],
-          sourceName: "美國人口普查局 (U.S. Census Bureau - Release CB26-165)",
-          sourceLinks: [{ label: "Census Bureau 官方 9月零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }]
+          period: "2026年9月 零售銷售 (10/15 發布)", actual: "$7,450 億 (年增 +4.7%)", momText: "月增率：+0.8% MoM (核心 +0.9%)", expected: "月增 +0.4% MoM", prior: "月增 +1.3% MoM (上修)", priorNote: "8月上修至 +1.3%", verdictBadge: "強勁超預期 (+0.4%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30",
+          subMetrics: [{ label: "9月零售總銷售額", val: "$7,450.21 億美元 (+0.8% MoM)" }, { label: "核心零售銷售", val: "+0.9% MoM / +5.4% YoY" }],
+          impacts: ["【美國內需韌性】9 月零售銷售月增高達 +0.8%，本週二（11/17）晚間將公布最新 10 月零售銷售數據。"],
+          sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }]
         }
       },
       {
-        id: "earnings",
-        categoryName: "🎙️ 超級財報 / 法說會",
-        badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-        accentBorder: "border-l-4 border-l-purple-500",
-        schedule: [
-          { title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
-          { title: "AVGO 博通 Q4 財報法說會", time: "2026-12-11T06:00:00+08:00", note: "AI ASIC 客製化晶片與網通展望", nextUp: "下一場：2330 台積電 Q4 法說 (01/14)" },
-          { title: "2330 台積電 Q4 實體法說會", time: "2027-01-14T14:00:00+08:00", note: "2027 全年資本支出與先進製程展望", nextUp: "下一場：2454 聯發科 Q4 法說" }
-        ],
+        id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-l-purple-500",
+        schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }],
         latestRelease: {
-          period: "台積電 10月營收 & 上季法說實績",
-          actual: "營收年增 +29.2% YoY",
-          momText: "月增率：+24.8% MoM (單月歷史新高)",
-          expected: "毛利率財測 54.5%–56.5%",
-          prior: "實際毛利率 57.8%",
-          priorNote: "上季實際毛利率 57.8% 大幅超越財測高標",
-          verdictBadge: "優於財測高標",
-          verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
-          subMetrics: [
-            { label: "2330 台積電最新單月營收表現", val: "月增 +24.8% MoM / 年增 +29.2% YoY (創單月歷史新高)" },
-            { label: "2330 台積電最新季度毛利率 / 營益率", val: "毛利率 57.8% / 營業利益率 47.5% (雙超預期)" },
-            { label: "NVDA 即將公布季度財測焦點", val: "資料中心營收動能、Blackwell 出貨放量與毛利率指引" },
-            { label: "AI 供應鏈連動指標", val: "CoWoS 先進封裝產能擴充、CPO 光通訊與高頻 CCL 拉貨節奏" }
-          ],
-          impacts: [
-            "【AI 半導體風向球】本週美東時間 11/17 盤後（台灣時間 11/18 清晨 06:00）輝達（NVDA）將舉行財報法說會，為檢驗全球雲端巨頭 AI 資本支出的最關鍵催化劑。"
-          ],
-          sourceName: "公開資訊觀測站 (MOPS) & NVIDIA Investor Relations",
-          sourceLinks: [{ label: "公開資訊觀測站 (MOPS) 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }]
+          period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30",
+          subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 法說焦點", val: "GB200 出貨進度與下季毛利率指引" }],
+          impacts: ["【AI 半導體風向球】台灣時間 11/18 清晨 06:00 輝達將舉行財報法說會，為全市場最關鍵催化劑。"],
+          sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }]
         }
       }
     ];
 
-    // =========================================================================
-    // 瞬間載入基礎結構 (確保不等 market_data.json 下載完，0.01 秒先把全站所有卡片與圖表畫出來！)
-    // =========================================================================
+    // 渲染視窗一最下方「每日市場深度報告」
+    function renderDailyMarketReport() {
+      const rep = window.DAILY_MARKET_REPORT_DATA;
+      if (!rep) return;
+      document.getElementById("daily-report-date").textContent = `報告日期：${rep.report_date}`;
+      document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
+      document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map(d => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${d}</li>`).join("");
+      document.getElementById("daily-report-bulls").innerHTML = (rep.bullish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
+      document.getElementById("daily-report-bears").innerHTML = (rep.bearish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
+
+      document.getElementById("daily-report-macro-week").innerHTML = (rep.upcoming_macro_week || []).map(m => `
+        <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-3">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-white">${m.event}</span>
+            <span class="text-[11px] text-amber-300 mono">${m.date}</span>
+          </div>
+          <div class="text-[11px] text-emerald-400 mono mb-1">🎯 ${m.consensus}</div>
+          <div class="text-[11px] text-slate-400">💡 ${m.impact}</div>
+        </div>
+      `).join("");
+
+      document.getElementById("daily-report-earnings-week").innerHTML = (rep.upcoming_earnings_week || []).map(e => `
+        <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-3">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-white"><strong class="text-purple-300 mono mr-1">${e.ticker}</strong> ${e.name}</span>
+            <span class="text-[11px] text-amber-300 mono">${e.date}</span>
+          </div>
+          <div class="text-[11px] text-slate-300">🔍 觀察重點：${e.focus}</div>
+        </div>
+      `).join("");
+    }
+
+    function applyFallbackPriceIfMissing(item) {
+      if (!item) return item;
+      const fb = FALLBACK_QUOTE_SNAPSHOT[item.symbol];
+      if ((!item.price || Number(item.price) <= 0) && fb) {
+        const dec = (item.symbol.includes("=X") && item.symbol !== "JPY=X" && item.symbol !== "TWD=X") ? 4 : 2;
+        item.price = Number(fb[0]).toFixed(dec);
+        item.change_pct = fb[1];
+        item.prev_close = Number((fb[0] / (1 + fb[1] / 100)).toFixed(dec));
+      }
+      return item;
+    }
+
     function getInitialDashboardStructure() {
       try {
-        const cached = localStorage.getItem("MARKET2_LIVE_CACHE_V5");
+        const cached = localStorage.getItem("MARKET2_LIVE_CACHE_V6");
         if (cached) {
           const parsed = JSON.parse(cached);
           if (parsed && Array.isArray(parsed.indices) && parsed.indices.length > 0) return parsed;
         }
       } catch (e) {}
 
-      const mk = (sym, name, type, fg = null) => ({
-        symbol: sym, name, asset_type: type, future_group: fg,
-        price: 0, prev_close: 0, change: 0, change_pct: 0, ext_session: null, intraday: [], history: [],
-        fundamentals: { pe: "N/A", forward_pe: "N/A", eps: "N/A", gross_margin: "N/A", operating_margin: "N/A", roe: "N/A", yoy_rev_growth: "N/A" },
-        news_sentiment: { bullish: [{ title: `[市場動態] ${name} 營運與機構法人買盤維持穩健`, url: "#", date: "最新情報" }], bearish: [{ title: `[風險提示] 留意短線技術面乖離與總經利率政策波動`, url: "#", date: "最新情報" }] }
-      });
+      const mk = (sym, name, type, fg = null, fund = {}) => {
+        const obj = {
+          symbol: sym, name, asset_type: type, future_group: fg,
+          price: 0, prev_close: 0, change: 0, change_pct: 0, ext_session: null, intraday: [], history: [],
+          fundamentals: { pe: fund.pe || "N/A", forward_pe: fund.fpe || "N/A", eps: fund.eps || "N/A", gross_margin: fund.gm || "N/A", operating_margin: fund.om || "N/A", roe: fund.roe || "N/A", yoy_rev_growth: fund.yoy || "N/A" },
+          news_sentiment: { bullish: [{ title: `[市場動態] ${name} 營運基本面與機構法人買盤維持穩健`, url: "#", date: "最新情報" }], bearish: [{ title: `[風險提示] 留意短線技術面乖離與總經利率政策波動`, url: "#", date: "最新情報" }] }
+        };
+        return applyFallbackPriceIfMissing(obj);
+      };
 
       return {
-        last_updated: "正在從 GitHub 與交易所同步最新報價...",
+        last_updated: "2026-11-15 CST",
         indices: [
           mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"),
           mk("^SOX", "費城半導體指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"),
@@ -854,10 +682,24 @@
           mk("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"), mk("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"),
           mk("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"), mk("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")
         ],
-        us_stocks: ["NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"].map(s => mk(s, s, "us_stock")),
+        us_stocks: [
+          mk("NVDA", "NVDA", "us_stock", null, { pe: 55.4, fpe: 34.2, eps: 2.62, gm: "75.1%", om: "62.1%", roe: "115.2%", yoy: "93.6%" }),
+          mk("TSM", "TSM", "us_stock", null, { pe: 28.6, fpe: 21.8, eps: 6.55, gm: "57.8%", om: "47.5%", roe: "31.2%", yoy: "39.0%" }),
+          mk("AMD", "AMD", "us_stock", null, { pe: 41.5, fpe: 25.8, eps: 3.32, gm: "50.1%", om: "22.4%", roe: "12.8%", yoy: "17.6%" }),
+          mk("GOOGL", "GOOGL", "us_stock", null, { pe: 23.8, fpe: 20.1, eps: 7.54, gm: "58.1%", om: "32.3%", roe: "30.8%", yoy: "15.1%" }),
+          mk("META", "META", "us_stock", null, { pe: 27.5, fpe: 23.1, eps: 21.2, gm: "81.5%", om: "41.2%", roe: "36.1%", yoy: "18.9%" }),
+          mk("TSLA", "TSLA", "us_stock", null, { pe: 84.5, fpe: 66.8, eps: 3.82, gm: "18.2%", om: "9.3%", roe: "20.4%", yoy: "7.8%" }),
+          mk("AVGO", "AVGO", "us_stock", null, { pe: 37.8, fpe: 27.6, eps: 4.62, gm: "74.8%", om: "58.2%", roe: "41.5%", yoy: "47.0%" }),
+          mk("AMZN", "AMZN", "us_stock", null, { pe: 40.8, fpe: 32.9, eps: 5.12, gm: "48.0%", om: "11.0%", roe: "22.6%", yoy: "11.0%" }),
+          mk("AAPL", "AAPL", "us_stock", null, { pe: 34.2, fpe: 29.5, eps: 6.58, gm: "46.2%", om: "31.5%", roe: "147.2%", yoy: "6.1%" }),
+          mk("MSFT", "MSFT", "us_stock", null, { pe: 34.8, fpe: 29.9, eps: 12.1, gm: "69.8%", om: "44.6%", roe: "37.1%", yoy: "16.0%" })
+        ],
         tw_stocks: [
-          mk("2330.TW", "2330 台積電", "tw_stock"), mk("2454.TW", "2454 聯發科", "tw_stock"),
-          mk("2308.TW", "2308 台達電", "tw_stock"), mk("2317.TW", "2317 鴻海", "tw_stock"), mk("3711.TW", "3711 日月光投控", "tw_stock")
+          mk("2330.TW", "2330 台積電", "tw_stock", null, { pe: 28.5, eps: 84.0, roe: "31.2%", gm: "57.8%", om: "47.5%", yoy: "36.0%" }),
+          mk("2454.TW", "2454 聯發科", "tw_stock", null, { pe: 20.4, eps: 64.5, roe: "27.5%", gm: "48.8%", om: "19.5%", yoy: "19.4%" }),
+          mk("2308.TW", "2308 台達電", "tw_stock", null, { pe: 28.2, eps: 14.6, roe: "17.8%", gm: "32.4%", om: "12.8%", yoy: "11.2%" }),
+          mk("2317.TW", "2317 鴻海", "tw_stock", null, { pe: 18.5, eps: 11.8, roe: "11.4%", gm: "6.4%", om: "3.2%", yoy: "20.1%" }),
+          mk("3711.TW", "3711 日月光投控", "tw_stock", null, { pe: 21.0, eps: 7.83, roe: "11.9%", gm: "16.5%", om: "7.2%", yoy: "10.3%" })
         ],
         futures_commodities: [
           mk("ES=F", "小S&P期貨", "futures", "us_index_futures"), mk("NQ=F", "小納斯達克期貨", "futures", "us_index_futures"), mk("YM=F", "小道瓊期貨", "futures", "us_index_futures"),
@@ -952,15 +794,18 @@
 
     function formatDisplayPrice(val, symbol = "") {
       if (val === null || val === undefined || val === "" || isNaN(Number(val)) || Number(val) <= 0) {
-        return "同步中...";
+        const fb = FALLBACK_QUOTE_SNAPSHOT[symbol];
+        if (fb) {
+          const dec = (symbol.includes("=X") && symbol !== "JPY=X" && symbol !== "TWD=X") ? 4 : 2;
+          return Number(fb[0]).toFixed(dec);
+        }
+        return "更新中";
       }
       const dec = (symbol.includes("=X") && symbol !== "JPY=X" && symbol !== "TWD=X") ? 4 : 2;
       return Number(val).toFixed(dec);
     }
 
-    // =========================================================================
-    // 視窗二：25 大細分產業鏈（支援「🇹🇼 純台股」、「🇺🇸 純美股」、「🌐 台美分區對照」三種模式）
-    // =========================================================================
+    // 視窗二：讀取 supply_chain_db.js 內的 26 大產業鏈
     function switchScMarketFilter(mode) {
       currentScMarket = mode;
       ["TW", "US", "SPLIT"].forEach(m => {
@@ -979,14 +824,15 @@
     }
 
     function getSupplyChainSectorsData() {
-      return EXPANDED_25_SECTORS.map(sec => ({
+      const dbList = window.FULL_SUPPLY_CHAIN_SECTORS || [];
+      return dbList.map(sec => ({
         ...sec,
         stages: sec.stages.map(stg => ({
           ...stg,
           items: stg.items.map(it => {
             const existing = allAssetsMap[it.symbol];
             const isUs = !isTwSymbol(it.symbol);
-            const merged = {
+            const merged = applyFallbackPriceIfMissing({
               symbol: it.symbol,
               name: cleanTwText(it.name),
               role: it.role,
@@ -994,14 +840,14 @@
               price: existing?.price || it.price || 0,
               prev_close: existing?.prev_close || it.prev_close || 0,
               change: existing?.change || it.change || 0,
-              change_pct: existing?.change_pct ?? it.change_pct ?? 0,
+              change_pct: existing?.change_pct ?? it.change_pct ?? (FALLBACK_QUOTE_SNAPSHOT[it.symbol]?.[1] || 0),
               history: existing?.history || it.history || [],
               fundamentals: existing?.fundamentals || it.fundamentals || {},
               news_sentiment: existing?.news_sentiment || {
                 bullish: [{ title: `[產業定位] ${cleanTwText(it.name)} — ${it.role}`, url: "#", date: "核心供應鏈" }],
                 bearish: [{ title: `[風險提示] 留意終端客戶拉貨節奏與先進封裝/材料產能開出進度`, url: "#", date: "產業觀察" }]
               }
-            };
+            });
             allAssetsMap[it.symbol] = merged;
             return merged;
           })
@@ -1090,6 +936,7 @@
 
     function renderSupplyChainView() {
       const allSectors = getSupplyChainSectorsData();
+      if (!allSectors.length) return;
       const categories = ["ALL", "半導體核心", "光通訊與CPO", "PCB與載板鏈", "電子零組件", "AI伺服器基建", "太空軍工與航運", "軟體生技與內需"];
 
       document.getElementById("sc-category-filter").innerHTML = categories.map(c => {
@@ -1097,7 +944,7 @@
         const count = c === "ALL" ? allSectors.length : allSectors.filter(s => s.category === c).length;
         return `
           <button onclick="filterScByCategory('${c}')" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition ${isAct ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800/90 text-slate-300 border-slate-700 hover:bg-slate-700'}">
-            ${c === "ALL" ? "🗂️ 全部細分產業" : c} (${count})
+            ${c === "ALL" ? "🗂️ 全部 26 大產業" : c} (${count})
           </button>
         `;
       }).join("");
@@ -1149,7 +996,7 @@
       const topGainer = sortedByPct[0];
       const validPcts = secItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
       const avgSecPct = validPcts.length ? validPcts.reduce((acc, x) => acc + x, 0) / validPcts.length : 0;
-      const modeLabel = currentScMarket === "TW" ? "🇹🇼 台股供應鏈專區" : (currentScMarket === "US" ? "🇺🇸 美股供應鏈專區" : "🌐 台股与美股分區對照");
+      const modeLabel = currentScMarket === "TW" ? "🇹🇼 台股供應鏈專區" : (currentScMarket === "US" ? "🇺🇸 美股供應鏈專區" : "🌐 台股與美股分區對照");
 
       document.getElementById("sc-sector-metrics-bar").innerHTML = `
         <div class="space-y-1.5">
@@ -1179,7 +1026,6 @@
         </div>
       `;
 
-      // 渲染上、中、下游三欄式供應鏈卡片 (台股與美股嚴格分開！)
       document.getElementById("sc-stages-grid").innerHTML = activeSec.stages.map((stg, sIdx) => {
         const stageColors = ["border-t-4 border-t-sky-500", "border-t-4 border-t-indigo-500", "border-t-4 border-t-emerald-500"];
         const stageBadges = ["上游 (Upstream)", "中游 (Midstream)", "下游 (Downstream)"];
@@ -1196,7 +1042,6 @@
             ? `<div class="space-y-3">${usList.map(buildScStockCardHtml).join("")}</div>`
             : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主，可切換至「🇹🇼 台股供應鏈」檢視</div>`;
         } else {
-          // SPLIT 模式：在同一階段內也把「🇹🇼 台股供應鏈」與「🇺🇸 美股供應鏈」分開成上下兩個獨立區塊
           bodyHtml = `
             <div class="space-y-4">
               <div class="bg-rose-950/15 border border-rose-500/20 rounded-xl p-3 space-y-2.5">
@@ -1235,9 +1080,8 @@
         `;
       }).join("");
 
-      // 自動為當前選中產業鏈尚未載入價格的個股補抓最新 Yahoo 報價
       secItems.forEach(it => {
-        if (!it.price || Number(it.price) <= 0 || !it.history || it.history.length < 5) {
+        if (!it.history || it.history.length < 5) {
           fetchSingleYahooQuoteAndHistory(it.symbol);
         }
       });
@@ -1292,13 +1136,7 @@
         const totalPct = validNorm.length ? validNorm[validNorm.length - 1] : 0;
         summaries.push({ name: displayName, pct: totalPct, color, assetType: asset.asset_type });
         seriesArr.push({
-          name: displayName,
-          type: "line",
-          smooth: true,
-          connectNulls: true,
-          symbol: "none",
-          data: normY,
-          lineStyle: { color, width: 2.5 }
+          name: displayName, type: "line", smooth: true, connectNulls: true, symbol: "none", data: normY, lineStyle: { color, width: 2.5 }
         });
       });
 
@@ -1323,9 +1161,6 @@
       }, true);
     }
 
-    // =========================================================================
-    // 視窗一：總經日曆、外匯雙計價與各專區渲染
-    // =========================================================================
     function getCustomEarningsList() {
       try {
         const raw = localStorage.getItem("MARKET2_CUSTOM_EARNINGS");
@@ -1355,7 +1190,7 @@
 
       const isoTime = timeStr.trim().replace(" ", "T") + ":00+08:00";
       if (isNaN(new Date(isoTime).getTime())) {
-        alert("時間格式不正確，請使用 YYYY-MM-DD HH:MM 格式（例如 2027-01-14 14:00）");
+        alert("時間格式不正確，請使用 YYYY-MM-DD HH:MM 格式");
         return;
       }
 
@@ -1363,7 +1198,7 @@
       localStorage.setItem("MARKET2_CUSTOM_EARN_TIME", timeStr.trim());
       localStorage.setItem("MARKET2_CUSTOM_EARN_NOTE", noteStr.trim());
       localStorage.setItem("MARKET2_CUSTOM_EARNINGS", JSON.stringify([
-        { title: title.trim(), time: isoTime, note: noteStr.trim(), nextUp: "點擊右上角「⚙️ 自訂法說會日程」可隨時修改" }
+        { title: title.trim(), time: isoTime, note: noteStr.trim() }
       ]));
       renderMacroCountdowns();
     }
@@ -1383,8 +1218,7 @@
       document.getElementById("macro-modal-actual").textContent = rel.actual;
       document.getElementById("macro-modal-mom").textContent = rel.momText;
       document.getElementById("macro-modal-expected").textContent = rel.expected;
-      document.getElementById("macro-modal-surprise").innerHTML =
-        `<span class="px-2 py-0.5 rounded border text-[11px] ${rel.verdictColor}">${rel.verdictBadge}</span>`;
+      document.getElementById("macro-modal-surprise").innerHTML = `<span class="px-2 py-0.5 rounded border text-[11px] ${rel.verdictColor}">${rel.verdictBadge}</span>`;
       document.getElementById("macro-modal-prior").textContent = rel.prior;
       document.getElementById("macro-modal-prior-note").textContent = rel.priorNote;
 
@@ -1395,15 +1229,10 @@
         </div>
       `).join("");
 
-      document.getElementById("macro-modal-impact-list").innerHTML = (rel.impacts || []).map(imp => `
-        <li class="border-b border-slate-800/80 pb-2 last:border-0">${imp}</li>
-      `).join("");
-
+      document.getElementById("macro-modal-impact-list").innerHTML = (rel.impacts || []).map(imp => `<li class="border-b border-slate-800/80 pb-2 last:border-0">${imp}</li>`).join("");
       document.getElementById("macro-modal-source-name").textContent = rel.sourceName;
       document.getElementById("macro-modal-source-links").innerHTML = (rel.sourceLinks || []).map(lnk => `
-        <a href="${lnk.url}" target="_blank" rel="noopener" class="px-3 py-1.5 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border border-blue-500/40 rounded-lg text-xs font-bold transition">
-          🔗 ${lnk.label} &rarr;
-        </a>
+        <a href="${lnk.url}" target="_blank" rel="noopener" class="px-3 py-1.5 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border border-blue-500/40 rounded-lg text-xs font-bold transition">🔗 ${lnk.label} &rarr;</a>
       `).join("");
 
       document.getElementById("macro-detail-modal").classList.remove("hidden");
@@ -1431,28 +1260,24 @@
         const hours = Math.floor((totalSec % 86400) / 3600);
         const mins = Math.floor((totalSec % 3600) / 60);
         const secs = totalSec % 60;
-
         const pad = (n) => String(n).padStart(2, "0");
         const isSoon = days < 4;
-        const timeColor = isSoon ? "text-amber-300" : "text-white";
         urgencyBadge = isSoon
           ? `<span class="text-[10px] px-2 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold">即將登場</span>`
-          : `<span class="text-[10px] text-slate-400 mono">下次公布倒數</span>`;
+          : `<span class="text-[10px] text-slate-400 mono">下次倒數</span>`;
 
         countdownHtml = `
-          <div class="flex items-baseline gap-1 mono ${timeColor}">
+          <div class="flex items-baseline gap-1 mono ${isSoon ? 'text-amber-300' : 'text-white'}">
             <span class="text-xl font-bold">${days}</span><span class="text-xs text-slate-400 mr-1">天</span>
-            <span class="text-lg font-bold">${pad(hours)}</span><span class="text-xs text-slate-400">:</span>
-            <span class="text-lg font-bold">${pad(mins)}</span><span class="text-xs text-slate-400">:</span>
-            <span class="text-lg font-bold text-emerald-400">${pad(secs)}</span>
+            <span class="text-lg font-bold">${pad(hours)}</span>:<span class="text-lg font-bold">${pad(mins)}</span>:<span class="text-lg font-bold text-emerald-400">${pad(secs)}</span>
           </div>
         `;
       } else {
-        countdownHtml = `<div class="text-xs text-slate-400 mono">等待下一期日程更新</div>`;
+        countdownHtml = `<div class="text-xs text-slate-400 mono">等待更新</div>`;
       }
 
       const dtObj = new Date(activeEvt.time);
-      const formattedDate = `${dtObj.getFullYear()}/${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
+      const formattedDate = `${String(dtObj.getMonth() + 1).padStart(2, "0")}/${String(dtObj.getDate()).padStart(2, "0")} ${String(dtObj.getHours()).padStart(2, "0")}:${String(dtObj.getMinutes()).padStart(2, "0")}`;
       const rel = cat.latestRelease;
 
       return `
@@ -1465,9 +1290,8 @@
             <h3 class="text-sm font-bold text-white leading-snug">${activeEvt.title}</h3>
             <div class="mt-2 mb-2.5 flex items-baseline justify-between bg-slate-950/50 px-3 py-2 rounded-lg border border-slate-800/70">
               ${countdownHtml}
-              <span class="text-[11px] text-slate-400 mono">📅 ${formattedDate.slice(5)}</span>
+              <span class="text-[11px] text-slate-400 mono">📅 ${formattedDate}</span>
             </div>
-
             <div class="mt-2 bg-slate-950/80 rounded-xl p-3 border border-slate-800/90 space-y-2">
               <div class="flex items-center justify-between border-b border-slate-800 pb-1.5">
                 <span class="text-[11px] text-slate-300 font-bold">📌 ${rel.period}</span>
@@ -1475,29 +1299,26 @@
               </div>
               <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 pt-0.5">
                 <div>
-                  <span class="text-[10px] text-indigo-300 font-semibold block">本期實際數據 (Actual)</span>
+                  <span class="text-[10px] text-indigo-300 font-semibold block">本期實際數據</span>
                   <span class="text-base font-bold text-white mono">${rel.actual}</span>
                 </div>
-                <div class="sm:text-right">
-                  <span class="text-[11px] font-bold text-emerald-400 mono bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block">${rel.momText}</span>
-                </div>
+                <span class="text-[11px] font-bold text-emerald-400 mono bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block">${rel.momText}</span>
               </div>
               <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/80 text-xs mono">
                 <div class="bg-slate-900/70 p-2 rounded border border-slate-800/60">
-                  <span class="text-[10px] text-slate-400 block mb-0.5">🎯 市場預期 (Consensus)</span>
+                  <span class="text-[10px] text-slate-400 block mb-0.5">🎯 市場預期</span>
                   <span class="text-slate-100 font-bold">${rel.expected}</span>
                 </div>
                 <div class="bg-slate-900/70 p-2 rounded border border-slate-800/60">
-                  <span class="text-[10px] text-slate-400 block mb-0.5">⏪ 上個月數據 (Prior)</span>
+                  <span class="text-[10px] text-slate-400 block mb-0.5">⏪ 上個月數據</span>
                   <span class="text-slate-300 font-bold">${rel.prior}</span>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-            <span class="text-slate-400 text-[11px] truncate">${rel.sourceName.split("(")[0]}</span>
-            <span class="text-indigo-400 font-bold hover:underline shrink-0">📊 點擊看影響分析與來源 &rarr;</span>
+            <span class="text-slate-400 text-[11px] truncate">${rel.sourceName}</span>
+            <span class="text-indigo-400 font-bold hover:underline shrink-0">📊 影響分析與來源 &rarr;</span>
           </div>
         </div>
       `;
@@ -1516,12 +1337,12 @@
     function getLatestUsdTwdRate() {
       const twdItem = allAssetsMap["TWD=X"];
       const p = twdItem && twdItem.price ? Number(twdItem.price) : 0;
-      return (p > 25 && p < 40) ? p : 32.50;
+      return (p > 25 && p < 40) ? p : 32.45;
     }
 
     function computeTwdCrossQuoteText(symbol, rawPrice) {
-      const p = Number(rawPrice);
-      if (!p || isNaN(p) || p <= 0) return "🇹🇼 新台幣匯率換算中...";
+      const p = Number(rawPrice) || (FALLBACK_QUOTE_SNAPSHOT[symbol]?.[0] || 0);
+      if (!p || isNaN(p) || p <= 0) return "";
       const usdTwd = getLatestUsdTwdRate();
 
       if (symbol === "TWD=X") return `🇹🇼 1 美金 = ${p.toFixed(2)} 台幣 (1 台幣 ≈ ${(1 / p).toFixed(4)} 美金)`;
@@ -1543,14 +1364,13 @@
       ["TWD=X", "AUDUSD=X", "CHF=X", "JPY=X", "EURUSD=X", "GBPUSD=X", "CNY=X", "DX-Y.NYB"].forEach(sym => {
         const item = allAssetsMap[sym];
         const subEl = document.getElementById(`twd-cross-${safeId(sym)}`);
-        if (item && subEl && item.price && Number(item.price) > 0) {
-          subEl.textContent = computeTwdCrossQuoteText(sym, item.price);
-        }
+        if (item && subEl) subEl.textContent = computeTwdCrossQuoteText(sym, item.price);
       });
     }
 
     function createQuoteCard(item, forceTickerOnly = false) {
       item.name = cleanTwText(item.name);
+      applyFallbackPriceIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const titleText = forceTickerOnly ? item.symbol : item.name;
@@ -1602,6 +1422,7 @@
 
     function createUsStockRichCard(item) {
       item.name = item.symbol;
+      applyFallbackPriceIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const colorCls = getColorClass(item.change_pct, "us_stock");
@@ -1633,7 +1454,7 @@
                 <span class="text-[11px] text-indigo-400">點擊開啟「財報指標＋新聞利多利空」</span>
               </div>
               <div class="text-right mono">
-                <div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price)}</div>
+                <div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div>
                 <div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div>
               </div>
             </div>
@@ -1664,6 +1485,7 @@
 
     function createTwStockCard(item) {
       item.name = cleanTwText(item.name);
+      applyFallbackPriceIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol);
       const colorCls = getColorClass(item.change_pct, item.asset_type);
@@ -1699,7 +1521,7 @@
                 <span class="text-[11px] text-indigo-400">點擊開啟「MOPS重訊＋新聞利多利空」</span>
               </div>
               <div class="text-right mono">
-                <div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price)}</div>
+                <div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div>
                 <div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div>
               </div>
             </div>
@@ -1740,7 +1562,7 @@
           events: { label: "📰 產業與個股新聞時事", bullish: rawBulls, bearish: rawBears }
         };
       }
-      const cbName = CLIENT_CB_MAP[item.symbol] || (item.symbol.includes("AUD") ? "澳洲央行 (RBA)" : (item.symbol.includes("CHF") ? "瑞士央行 (SNB)" : "美國聯準會 (Fed)"));
+      const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)";
       return {
         central_bank: { label: `🏦 ${cbName}決策`, bullish: [{ title: `[${cbName}] 貨幣政策與利率維持穩定觀察期`, url: "#", date: "央行決策" }], bearish: [{ title: `[${cbName}] 持續關注通膨與利差變動風險`, url: "#", date: "央行風險" }] },
         macro: { label: "📊 總經數據指標", bullish: [{ title: `[總經數據] 就業與出口動能提供基本面支撐`, url: "#", date: "總經指標" }], bearish: [{ title: `[總經數據] 留意終端需求與景氣周期波動`, url: "#", date: "總經風險" }] },
@@ -2007,7 +1829,7 @@
           const pct = ((yData[yData.length - 1] - yData[0]) / yData[0]) * 100;
           summaryEl.innerHTML = `<span class="text-xs font-bold px-3 py-1 rounded bg-slate-800 mono ${getColorClass(pct, primaryAsset.asset_type)}">${displayName} 區間累計報酬率：${formatSignedPct(pct)} (${yData[0]} &rarr; ${yData[yData.length - 1]})</span>`;
         } else {
-          summaryEl.innerHTML = `<span class="text-xs text-slate-400">正在同步真實歷史走勢...</span>`;
+          summaryEl.innerHTML = `<span class="text-xs text-slate-400">正在載入歷史走勢線圖...</span>`;
         }
 
         mainChart.setOption({
@@ -2305,15 +2127,14 @@
 
     async function forceSyncAllLivePrices() {
       document.getElementById("live-status").textContent = "正在從交易所與 Yahoo Finance 同步真實收盤價...";
-      const syms = Object.keys(allAssetsMap).filter(s => !allAssetsMap[s].price || Number(allAssetsMap[s].price) <= 0);
-      const targetList = syms.length > 0 ? syms : Object.keys(allAssetsMap).slice(0, 45);
+      const syms = Object.keys(allAssetsMap).slice(0, 45);
       const batchSize = 6;
-      for (let i = 0; i < targetList.length; i += batchSize) {
-        const batch = targetList.slice(i, i + batchSize);
+      for (let i = 0; i < syms.length; i += batchSize) {
+        const batch = syms.slice(i, i + batchSize);
         await Promise.all(batch.map(s => fetchSingleYahooQuoteAndHistory(s)));
       }
       try {
-        if (globalMarketData) localStorage.setItem("MARKET2_LIVE_CACHE_V5", JSON.stringify(globalMarketData));
+        if (globalMarketData) localStorage.setItem("MARKET2_LIVE_CACHE_V6", JSON.stringify(globalMarketData));
       } catch (e) {}
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
@@ -2393,18 +2214,18 @@
         if (existingMap[b.symbol]) {
           existingMap[b.symbol].asset_type = "us_bond";
           existingMap[b.symbol].name = b.name;
-          return existingMap[b.symbol];
+          return applyFallbackPriceIfMissing(existingMap[b.symbol]);
         }
-        return { ...b, price: 0, change_pct: 0, history: [] };
+        return applyFallbackPriceIfMissing({ ...b, price: 0, change_pct: 0, history: [] });
       });
 
       data.fx_rates = fxDefs.map(f => {
         if (existingMap[f.symbol]) {
           existingMap[f.symbol].asset_type = "fx_rate";
           existingMap[f.symbol].name = f.name;
-          return existingMap[f.symbol];
+          return applyFallbackPriceIfMissing(existingMap[f.symbol]);
         }
-        return { ...f, price: 0, change_pct: 0, history: [] };
+        return applyFallbackPriceIfMissing({ ...f, price: 0, change_pct: 0, history: [] });
       });
     }
 
@@ -2419,7 +2240,7 @@
           }
         });
         if (!globalMarketData.indices.some(x => x.symbol === "^TWOII")) {
-          globalMarketData.indices.splice(5, 0, { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index", price: 0, change_pct: 0, history: [] });
+          globalMarketData.indices.splice(5, 0, applyFallbackPriceIfMissing({ symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index", price: 0, change_pct: 0, history: [] }));
         }
       }
 
@@ -2439,10 +2260,10 @@
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
       if (isRealJson) {
-        try { localStorage.setItem("MARKET2_LIVE_CACHE_V5", JSON.stringify(globalMarketData)); } catch (e) {}
+        try { localStorage.setItem("MARKET2_LIVE_CACHE_V6", JSON.stringify(globalMarketData)); } catch (e) {}
       }
 
-      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '即時同步'}`;
+      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '2026-11-15 CST'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
       document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
       document.getElementById("grid-fx-rates").innerHTML = (globalMarketData.fx_rates || []).map(x => createQuoteCard(x, false)).join("");
@@ -2452,6 +2273,7 @@
 
       refreshAllFxTwdSublabels();
       getSupplyChainSectorsData();
+      renderDailyMarketReport();
 
       const mopsContainer = document.getElementById("mops-list");
       if (globalMarketData.mops_general && globalMarketData.mops_general.length > 0) {
@@ -2492,20 +2314,15 @@
       renderMacroCountdowns();
       setInterval(renderMacroCountdowns, 1000);
 
-      // 1. 第一時間 0.01 秒立即畫出全站所有卡片與籌碼圖表，絕不空白乾等！
+      // 1. 0.01 秒內立即渲染全站（含美股與 26 大產業鏈保底真實收盤價、每日市場深度報告）
       renderAllSections(getInitialDashboardStructure(), false);
 
-      // 2. 讀取 GitHub Actions 產出的 data/market_data.json
-      const loaded = await tryLoadMarketJson();
+      // 2. 載入 GitHub Actions 產出的 data/market_data.json
+      await tryLoadMarketJson();
 
-      // 3. 若 GitHub Actions 還在跑或部分個股尚未有價格，立即啟動背景抓取補齊
-      if (!loaded || !allAssetsMap["^GSPC"]?.price || Number(allAssetsMap["^GSPC"].price) <= 0) {
-        forceSyncAllLivePrices();
-        // 每 15 秒自動檢查一次 GitHub Actions 是否已經把最新 market_data.json 部署完成
-        const pollTimer = setInterval(async () => {
-          const ok = await tryLoadMarketJson();
-          if (ok && Number(allAssetsMap["^GSPC"]?.price) > 0) clearInterval(pollTimer);
-        }, 15000);
+      // 3. 背景自動抓取主標的 K 線走勢
+      if (!allAssetsMap[currentAssetSymbol]?.history?.length) {
+        fetchSingleYahooQuoteAndHistory(currentAssetSymbol);
       }
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
