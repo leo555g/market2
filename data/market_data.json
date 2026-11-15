@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-15 18:17:26 CST",
+  "last_updated": "2026-11-15 18:26:42 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -18753,7 +18753,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 4.74,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -18851,7 +18851,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 14.07,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -20650,7 +20650,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 2.77,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -20797,7 +20797,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 6.52,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -21945,7 +21945,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 29.8,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -22092,7 +22092,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 36.89,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -22141,7 +22141,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 27.99,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -22190,7 +22190,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 27.71,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -23524,7 +23524,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 11.36,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -24273,7 +24273,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 35.47,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -24371,7 +24371,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 360.87,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -24420,7 +24420,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 18.38,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -25470,7 +25470,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 22.73,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -25666,7 +25666,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 13.48,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -26366,7 +26366,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 25.19,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -26562,7 +26562,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 23.48,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -26611,7 +26611,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 24.53,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -26660,7 +26660,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 40.73,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -27449,7 +27449,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 73.49,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -27547,7 +27547,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 283.22,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -28988,7 +28988,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 77.31,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -30486,7 +30486,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 82.02,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -30584,7 +30584,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 65.69,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -31325,7 +31325,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 31.53,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -31423,7 +31423,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 21.49,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -31472,7 +31472,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 23.02,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -32774,7 +32774,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 134.57,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -32872,7 +32872,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 68.38,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -33271,7 +33271,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 55.33,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -33418,7 +33418,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 69.72,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -36249,7 +36249,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 34.63,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -36298,7 +36298,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 43.47,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -36746,7 +36746,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 34.15,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -37145,7 +37145,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 46.37,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -38636,7 +38636,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 9.07,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -40607,7 +40607,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 30.78,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -40656,7 +40656,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 27.25,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -40705,7 +40705,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 19.28,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -40901,7 +40901,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 23.1,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -42187,7 +42187,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 27.89,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -42432,7 +42432,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 14.72,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -42530,7 +42530,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 33.5,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -42579,7 +42579,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 25.55,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -45672,7 +45672,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 25.62,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -46715,7 +46715,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 12.28,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -47114,7 +47114,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 31.34,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -47163,7 +47163,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 9.81,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -47212,7 +47212,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 23.01,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -48108,7 +48108,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 53.89,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -48206,7 +48206,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 19.69,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -48255,7 +48255,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 17.52,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -48304,7 +48304,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 95.78,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -48402,7 +48402,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 22.43,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -49900,7 +49900,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 13.42,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -50600,7 +50600,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 13.27,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -50649,7 +50649,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 30.9,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -55428,7 +55428,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 9.54,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -56429,7 +56429,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 18.2,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -57178,7 +57178,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 18.78,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -57227,7 +57227,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 22.18,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -60027,7 +60027,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 12.61,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -60125,7 +60125,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 14.38,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -63079,7 +63079,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 12.28,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -63177,7 +63177,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 12.17,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -65032,7 +65032,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 19.97,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -65081,7 +65081,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 13.19,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -71585,7 +71585,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 11.16,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -71634,7 +71634,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 3.3,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -71683,7 +71683,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 3.94,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -71732,7 +71732,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 3.46,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -74273,7 +74273,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 16.46,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -75414,7 +75414,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 12.4,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -79509,7 +79509,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 21.22,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -79558,7 +79558,7 @@
                 }
               ],
               "fundamentals": {
-                "pe": 22.7,
+                "pe": "N/A",
                 "forward_pe": "N/A",
                 "eps": "N/A",
                 "gross_margin": "N/A",
@@ -81916,7 +81916,7 @@
     }
   ],
   "daily_market_report": {
-    "report_date": "2026-11-15 18:17 CST",
+    "report_date": "2026-11-15 18:26 CST",
     "headline": "台股加權強彈收 43675.12 (+1.35%)、櫃買收 342.41 (+1.99%)，三大法人合計買超 +439.66 億，市場迎戰本週超級財報與美國零售銷售數據",
     "market_drivers": [
       "【一、美股四大指數與科技權值結構】S&P 500 指數收 7561.67 (-0.40%)、道瓊工業指數收 52347.55 (+0.10%)、納斯達克收 25136.27 (-0.91%)、費城半導體收 10146.32 (-3.43%)。儘管美股半導體因財報前獲利了結與長天期殖利率高檔而短線震盪，但雲端軟體與大型社群巨頭表現相對抗跌，顯示資金在科技板塊內部進行高低位階輪動。",
