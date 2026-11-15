@@ -25,7 +25,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-white tracking-wide">全球金融市場與台股籌碼即時監控儀表板</h1>
-        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經日曆・美台雙VIX恐慌指數・美債完整殖利率曲線(含2Y)・39大產業鏈(台美權值嚴格分流)・每日深度報告</p>
+        <p class="text-slate-400 text-sm mt-1">純繁體中文・7大總經日曆・美台雙VIX・美債殖利率曲線(含2Y)・BTC/ETH加密資產・39大產業鏈(支援1Y/自選區間與全球指數對照)</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
@@ -45,7 +45,7 @@
     <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-slate-800 p-2 rounded-xl">
       <div class="flex flex-wrap items-center gap-2">
         <button id="nav-tab-market" onclick="switchAppView('market')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-          <span>📊 視窗一：全球市場・VIX恐慌指數・台股籌碼・每日深度報告</span>
+          <span>📊 視窗一：全球市場・VIX恐慌指數・BTC/ETH・台股籌碼・每日報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
           <span>🔬 視窗二：39大細分產業鏈追蹤室 (台股前十大權值 / 美股兆元俱樂部 / 台美強勢榜)</span>
@@ -82,7 +82,7 @@
               <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
               <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、VIX、美債(含2Y)、外匯、期貨、美股、台股加入「目前比較清單」疊圖對決</p>
+            <p class="text-xs text-slate-400 mt-1">直接在下方點選標籤即可將任意指數、VIX、美債(含2Y)、外匯、期貨、BTC/ETH、美股、台股加入「目前比較清單」疊圖對決</p>
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
@@ -94,9 +94,10 @@
           <button onclick="switchRange('1W')" id="btn-1W" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
           <button onclick="switchRange('1M')" id="btn-1M" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-blue-600 text-white">1M</button>
           <button onclick="switchRange('YTD')" id="btn-YTD" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
+          <button onclick="switchRange('1Y')" id="btn-1Y" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y</button>
           <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">區間：</span>
-            <input type="date" id="custom-start" value="2025-03-05" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-start" value="2025-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
             <input type="date" id="custom-end" value="2026-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
@@ -133,7 +134,7 @@
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
-    <!-- 專區 2.5：VIX 恐慌指數專區 (美國 VIX 綠漲紅跌 + 臺指選擇權波動率指數 VIXTWN 紅漲綠跌) -->
+    <!-- 專區 2.5：VIX 恐慌指數專區 -->
     <section>
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
@@ -145,7 +146,7 @@
       <div id="grid-vix-indices" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </section>
 
-    <!-- 專區 3：美國公債殖利率專區 (含聯準會 FRED 官方 2 年期美債殖利率 US2Y) -->
+    <!-- 專區 3：美國公債殖利率專區 -->
     <section>
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-cyan-500 pl-3">
@@ -169,9 +170,9 @@
       <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
-    <!-- 專區 5：期貨與大宗商品專區 -->
+    <!-- 專區 5：期貨、大宗商品與加密貨幣專區 (已加入比特幣 BTC 與以太幣 ETH) -->
     <section class="space-y-5">
-      <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">期貨與大宗商品專區 <span class="text-xs font-normal text-slate-400 ml-2">(主欄位顯示最新交易日收盤價・下方顯示電子盤／夜盤報價)</span></h2>
+      <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">期貨、大宗商品與加密貨幣專區 <span class="text-xs font-normal text-slate-400 ml-2">(涵蓋美股指期、貴金屬、能源原油、大宗農產品與比特幣 BTC / 以太幣 ETH)</span></h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div class="card-bg rounded-xl p-4">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
@@ -200,6 +201,13 @@
             <span class="text-[11px] text-slate-400">日盤收盤 + 夜盤報價</span>
           </div>
           <div id="grid-futures-agri" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+        </div>
+        <div class="card-bg rounded-xl p-4 lg:col-span-2 border border-orange-500/30">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+            <h3 class="text-sm font-bold text-orange-400">₿ 加密貨幣核心資產 (比特幣 BTC / 以太幣 ETH・美金計價・綠漲紅跌)</h3>
+            <span class="text-[11px] text-orange-300 mono">24/7 全天候全球數位資產風向球</span>
+          </div>
+          <div id="grid-futures-crypto" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </div>
       </div>
     </section>
@@ -273,7 +281,7 @@
       </div>
 
       <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
-        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌五大核心原因深度剖析 (美股與VIX / 台股量價 / 法人籌碼 / 2Y-10Y美債外匯 / 領漲族群)</h3>
+        <h3 class="text-sm font-bold text-sky-300 mb-3 flex items-center gap-2">📊 一、最新盤勢漲跌五大核心原因深度剖析 (美股與VIX / 台股量價 / 法人籌碼 / 2Y-10Y美債外匯加密貨幣 / 領漲族群)</h3>
         <ul id="daily-report-drivers" class="space-y-3 text-xs text-slate-200 leading-relaxed"></ul>
       </div>
 
@@ -357,7 +365,7 @@
         </div>
       </div>
 
-      <!-- 跨產業供應鏈串接地圖 (根據當前選擇的台股/美股模式，動態切換顯示「🏆 台股市值前十大權值股」或「👑 美股一兆美元俱樂部」) -->
+      <!-- 跨產業供應鏈串接地圖 -->
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
@@ -423,18 +431,44 @@
 
     <div id="sc-stages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
 
+    <!-- 升級版：產業鏈上中下游成分股相對報酬率 (%) 走勢對照圖 (支援 1W/1M/YTD/1Y/自選區間 + 加入全球主要指數對照) -->
     <div class="card-bg rounded-xl p-5 shadow-lg">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3 mb-4">
+      <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-4">
         <div>
-          <h3 id="sc-chart-title" class="text-lg font-bold text-white">產業鏈上中下游成分股相對報酬率 (%) 走勢對照圖</h3>
-          <p class="text-xs text-slate-400">將當前檢視模式（台股或美股）之上、中、下游代表股進行同期間百分比報酬率疊圖比較</p>
+          <h3 id="sc-chart-title" class="text-lg font-bold text-white">產業鏈上中下游成分股 & 全球主要指數相對報酬率 (%) 走勢對照圖</h3>
+          <p class="text-xs text-slate-400">可切換 1W / 1M / YTD / 1Y(一年) 或自選日期區間，並可將全球主要指數加入圖表(以虛線顯示)檢驗個股超額報酬 Alpha</p>
         </div>
-        <div class="flex items-center gap-2">
-          <button onclick="switchScChartRange('1W')" id="sc-btn-1W" class="sc-range-btn px-3 py-1 text-xs font-bold rounded bg-slate-800 text-slate-300">1W</button>
-          <button onclick="switchScChartRange('1M')" id="sc-btn-1M" class="sc-range-btn px-3 py-1 text-xs font-bold rounded bg-indigo-600 text-white">1M</button>
-          <button onclick="switchScChartRange('YTD')" id="sc-btn-YTD" class="sc-range-btn px-3 py-1 text-xs font-bold rounded bg-slate-800 text-slate-300">YTD</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="switchScChartRange('1W')" id="sc-btn-1W" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
+          <button onclick="switchScChartRange('1M')" id="sc-btn-1M" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-indigo-600 text-white">1M</button>
+          <button onclick="switchScChartRange('YTD')" id="sc-btn-YTD" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">YTD</button>
+          <button onclick="switchScChartRange('1Y')" id="sc-btn-1Y" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y (一年)</button>
+          <div class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
+            <span class="text-xs text-slate-400">自選區間：</span>
+            <input type="date" id="sc-custom-start" value="2025-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <span class="text-xs text-slate-500">至</span>
+            <input type="date" id="sc-custom-end" value="2026-11-15" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <button onclick="applyScCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
+          </div>
         </div>
       </div>
+
+      <!-- 新增：全球主要指數快速加入比較控制列 -->
+      <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-3 mb-4 space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-amber-300">🌍 加入全球主要指數基準對照 (圖表以虛線標示)：</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <select id="sc-index-select" onchange="addSelectedScIndexBenchmark()" class="bg-slate-800 border border-slate-700 text-xs text-white rounded px-2.5 py-1 focus:outline-none">
+              <option value="">＋ 下拉選擇全球指數加入對照...</option>
+            </select>
+            <button onclick="resetScCompareToDefaults()" class="px-2.5 py-1 bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 border border-rose-500/30 text-xs font-bold rounded">重置比較清單</button>
+          </div>
+        </div>
+        <div id="sc-index-quick-picker" class="flex flex-wrap gap-1.5"></div>
+      </div>
+
       <div id="sc-return-badges" class="flex flex-wrap gap-2 mb-3"></div>
       <div id="sc-comparison-chart" class="w-full h-80"></div>
     </div>
@@ -540,7 +574,7 @@
 
     let mainChart = null, instChart = null, marginChart = null, scChart = null, finnhubSocket = null;
 
-    const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf"];
+    const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = {
       "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)",
       "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)",
@@ -569,6 +603,7 @@
       "ES=F": [7578.50, -0.38], "NQ=F": [25210.00, -0.88], "YM=F": [52410.00, 0.12],
       "GC=F": [3886.30, 0.08], "SI=F": [49.03, -1.90], "HG=F": [6.08, -1.67], "PA=F": [1036.50, 0.00],
       "BZ=F": [95.84, 0.02], "CL=F": [88.56, -0.20], "ZS=F": [1231.50, 1.03], "ZW=F": [593.25, 1.54], "ZC=F": [468.50, 0.85],
+      "BTC-USD": [91450.00, 1.85], "ETH-USD": [3185.50, 1.42],
       "NVDA": [162.85, -2.01], "TSM": [398.73, -1.67], "SPCX": [139.11, -0.59], "AMD": [534.06, -8.75],
       "GOOGL": [295.77, -0.98], "META": [641.69, 2.90], "TSLA": [390.22, -1.82], "AVGO": [347.01, -4.76],
       "AMZN": [266.66, -0.30], "AAPL": [356.27, 0.39], "MSFT": [523.88, 0.17], "MU": [778.31, -2.52],
@@ -846,7 +881,8 @@
           mk("ES=F", "小S&P期貨", "futures", "us_index_futures"), mk("NQ=F", "小納斯達克期貨", "futures", "us_index_futures"), mk("YM=F", "小道瓊期貨", "futures", "us_index_futures"),
           mk("GC=F", "黃金期貨", "futures", "metals_futures"), mk("SI=F", "白銀期貨", "futures", "metals_futures"), mk("HG=F", "銅期貨", "futures", "metals_futures"), mk("PA=F", "鈀金期貨", "futures", "metals_futures"),
           mk("BZ=F", "布蘭特原油期貨", "futures", "energy_futures"), mk("CL=F", "WTI 原油期貨", "futures", "energy_futures"),
-          mk("ZS=F", "黃豆期貨", "futures", "agri_futures"), mk("ZW=F", "小麥期貨", "futures", "agri_futures"), mk("ZC=F", "玉米期貨", "futures", "agri_futures")
+          mk("ZS=F", "黃豆期貨", "futures", "agri_futures"), mk("ZW=F", "小麥期貨", "futures", "agri_futures"), mk("ZC=F", "玉米期貨", "futures", "agri_futures"),
+          mk("BTC-USD", "比特幣 (BTC)", "futures", "crypto_assets"), mk("ETH-USD", "以太幣 (ETH)", "futures", "crypto_assets")
         ],
         tw_chips_visual: JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS)),
         mops_general: []
@@ -912,11 +948,16 @@
       return String(sym).endsWith(".TW") || String(sym).endsWith(".TWO");
     }
 
-    // 美國 CBOE VIX (^VIX) 與美股 (us_stock) 一律採用「綠漲紅跌」；臺指 VIX (^VIXTWN) 與台股則採用「紅漲綠跌」
+    function isGlobalIndexSymbol(sym) {
+      const item = allAssetsMap[sym];
+      return (item && item.asset_type === "index") || String(sym).startsWith("^");
+    }
+
+    // 美國 CBOE VIX (^VIX)、比特幣/以太幣 (BTC-USD/ETH-USD) 與美股 (us_stock) 一律採用「綠漲紅跌」
     function isUsGreenUpAsset(symbolOrType) {
-      if (symbolOrType === "^VIX" || symbolOrType === "us_stock") return true;
+      if (symbolOrType === "^VIX" || symbolOrType === "BTC-USD" || symbolOrType === "ETH-USD" || symbolOrType === "us_stock") return true;
       const item = allAssetsMap[symbolOrType];
-      if (item && (item.symbol === "^VIX" || item.asset_type === "us_stock")) return true;
+      if (item && (item.symbol === "^VIX" || item.symbol === "BTC-USD" || item.symbol === "ETH-USD" || item.asset_type === "us_stock")) return true;
       if (typeof symbolOrType === "string" && !isTwSymbol(symbolOrType) && !symbolOrType.startsWith("^") && !symbolOrType.includes("=") && symbolOrType !== "US2Y" && symbolOrType !== "tw_stock" && symbolOrType !== "index" && symbolOrType !== "us_bond" && symbolOrType !== "fx_rate" && symbolOrType !== "futures" && symbolOrType !== "vix_index") return true;
       return false;
     }
@@ -948,7 +989,6 @@
       return Number(val).toFixed(dec);
     }
 
-    // VIX 恐慌指數卡片：美國 ^VIX 採用綠漲紅跌、臺指 ^VIXTWN 採用紅漲綠跌
     function createVixRichCard(item) {
       item.name = cleanTwText(item.name);
       applyVerifiedNov13IfMissing(item);
@@ -1020,7 +1060,6 @@
       }
     }
 
-    // 切換台股 / 美股 / 同屏模式時，嚴格隔離「台股市值前十大權值股 (tw_top10)」與「美股一兆美元俱樂部 (trillion_club)」
     function switchScMarketFilter(mode) {
       currentScMarket = mode;
       ["TW", "US", "SPLIT"].forEach(m => {
@@ -1035,7 +1074,6 @@
         }
       });
 
-      // 動態切換上方快速導覽列的專屬權值按鈕
       const navTwTop10 = document.getElementById("quick-nav-tw-top10");
       const navUsTrillion = document.getElementById("quick-nav-us-trillion");
       if (navTwTop10 && navUsTrillion) {
@@ -1051,7 +1089,6 @@
         }
       }
 
-      // 若從美股切回台股時正停留在 trillion_club，自動切到 tw_top10；反之從台股切到美股時正停留在 tw_top10，自動切到 trillion_club
       if (mode === "TW" && currentScSectorId === "trillion_club") {
         currentScSectorId = "tw_top10";
       } else if (mode === "US" && currentScSectorId === "tw_top10") {
@@ -1094,7 +1131,6 @@
       }));
     }
 
-    // 依當前市場模式過濾產業鏈：台股模式隱藏 onlyMarket==="US"；美股模式隱藏 onlyMarket==="TW"
     function getMarketFilteredSectors(allSectors) {
       return allSectors.filter(sec => {
         if (currentScMarket === "TW" && (sec.onlyMarket === "US" || sec.id === "trillion_club")) return false;
@@ -1136,10 +1172,73 @@
 
     function switchScChartRange(r) {
       currentScRange = r;
-      document.querySelectorAll(".sc-range-btn").forEach(b => b.className = "sc-range-btn px-3 py-1 text-xs font-bold rounded bg-slate-800 text-slate-300");
+      document.querySelectorAll(".sc-range-btn").forEach(b => b.className = "sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700");
       const active = document.getElementById(`sc-btn-${r}`);
-      if (active) active.className = "sc-range-btn px-3 py-1 text-xs font-bold rounded bg-indigo-600 text-white";
+      if (active) active.className = "sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-indigo-600 text-white";
+      if (r === "1Y") {
+        scCompareSymbols.forEach(sym => {
+          if (!allAssetsMap[sym]?.history || allAssetsMap[sym].history.length < 70) {
+            fetchSingleYahooQuoteAndHistory(sym);
+          }
+        });
+      }
       renderSupplyChainChart();
+    }
+
+    function applyScCustomDateRange() {
+      const s = document.getElementById("sc-custom-start").value;
+      const e = document.getElementById("sc-custom-end").value;
+      if (!s || !e) return;
+      currentScRange = "CUSTOM";
+      document.querySelectorAll(".sc-range-btn").forEach(b => b.className = "sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700");
+      scCompareSymbols.forEach(sym => {
+        if (!allAssetsMap[sym]?.history || allAssetsMap[sym].history.length < 70) {
+          fetchSingleYahooQuoteAndHistory(sym);
+        }
+      });
+      renderSupplyChainChart();
+    }
+
+    function addSelectedScIndexBenchmark() {
+      const sel = document.getElementById("sc-index-select");
+      const sym = sel.value;
+      if (sym && !scCompareSymbols.includes(sym)) {
+        scCompareSymbols.push(sym);
+        if (!allAssetsMap[sym]?.history || allAssetsMap[sym].history.length < 50) {
+          fetchSingleYahooQuoteAndHistory(sym);
+        }
+      }
+      sel.value = "";
+      renderSupplyChainView();
+    }
+
+    function resetScCompareToDefaults() {
+      scCompareSymbols = [];
+      renderSupplyChainView();
+    }
+
+    function renderScIndexBenchmarkPicker() {
+      const picker = document.getElementById("sc-index-quick-picker");
+      const sel = document.getElementById("sc-index-select");
+      if (!picker || !globalMarketData) return;
+
+      const idxList = globalMarketData.indices || [];
+      if (sel) {
+        sel.innerHTML = `<option value="">＋ 下拉選擇全球指數加入對照...</option>` +
+          idxList.map(i => `<option value="${i.symbol}">${cleanTwText(i.name)} (${i.symbol})</option>`).join("");
+      }
+
+      picker.innerHTML = idxList.map(idxItem => {
+        const isSelected = scCompareSymbols.includes(idxItem.symbol);
+        const btnCls = isSelected
+          ? "bg-amber-500/30 text-amber-200 border-amber-400 font-bold"
+          : "bg-slate-800/80 text-slate-300 border-slate-700 hover:border-amber-400/60 hover:text-white";
+        return `
+          <button onclick="toggleScCompareSymbol('${idxItem.symbol}')" class="text-[11px] px-2.5 py-1 rounded-md border transition ${btnCls}">
+            ${isSelected ? "✓ 指數基準:" : "＋指數:"} ${cleanTwText(idxItem.name)}
+          </button>
+        `;
+      }).join("");
     }
 
     function toggleScCompareSymbol(sym) {
@@ -1148,7 +1247,9 @@
         if (scCompareSymbols.length > 1) scCompareSymbols.splice(idx, 1);
       } else {
         scCompareSymbols.push(sym);
-        if (!allAssetsMap[sym]?.history?.length) fetchSingleYahooQuoteAndHistory(sym);
+        if (!allAssetsMap[sym]?.history || allAssetsMap[sym].history.length < 50) {
+          fetchSingleYahooQuoteAndHistory(sym);
+        }
       }
       renderSupplyChainView();
     }
@@ -1361,6 +1462,7 @@
         }
       });
 
+      renderScIndexBenchmarkPicker();
       renderSupplyChainChart();
     }
 
@@ -1379,6 +1481,13 @@
         if (currentScRange === "1W") filtered = asset.history.slice(-6);
         else if (currentScRange === "1M") filtered = asset.history.slice(-22);
         else if (currentScRange === "YTD") filtered = asset.history.filter(d => d.date >= `${new Date().getFullYear()}-01-01`);
+        else if (currentScRange === "1Y") filtered = asset.history.slice(-252);
+        else if (currentScRange === "CUSTOM") {
+          const s = document.getElementById("sc-custom-start")?.value || "2025-01-01";
+          const e = document.getElementById("sc-custom-end")?.value || "2026-12-31";
+          filtered = asset.history.filter(d => d.date >= s && d.date <= e);
+        }
+        if (filtered.length < 2) filtered = asset.history.slice(-22);
 
         allSeriesMap[sym] = {};
         filtered.forEach(p => {
@@ -1394,7 +1503,10 @@
       scCompareSymbols.forEach((sym, idx) => {
         const asset = allAssetsMap[sym];
         if (!asset || !allSeriesMap[sym]) return;
-        const displayName = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name);
+        const isIdxBench = isGlobalIndexSymbol(sym);
+        const displayName = isIdxBench
+          ? `[指數] ${cleanTwText(asset.name)}`
+          : (asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name));
         const color = CHART_COLORS[idx % CHART_COLORS.length];
         let baseP = null, lastP = null;
 
@@ -1409,19 +1521,26 @@
 
         const validNorm = normY.filter(v => v !== null);
         const totalPct = validNorm.length ? validNorm[validNorm.length - 1] : 0;
-        summaries.push({ name: displayName, pct: totalPct, color, assetType: asset.asset_type });
+        summaries.push({ sym, name: displayName, pct: totalPct, color, assetType: asset.asset_type, isIdxBench });
         seriesArr.push({
-          name: displayName, type: "line", smooth: true, connectNulls: true, symbol: "none", data: normY, lineStyle: { color, width: 2.5 }
+          name: displayName,
+          type: "line",
+          smooth: true,
+          connectNulls: true,
+          symbol: "none",
+          data: normY,
+          lineStyle: { color, width: isIdxBench ? 3 : 2.5, type: isIdxBench ? "dashed" : "solid" }
         });
       });
 
       summaries.sort((a, b) => b.pct - a.pct);
       document.getElementById("sc-return-badges").innerHTML = summaries.map((r, i) => `
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs mono">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded ${r.isIdxBench ? 'bg-amber-950/40 border-amber-500/50' : 'bg-slate-900 border-slate-800'} border text-xs mono">
           <span class="text-slate-400">#${i + 1}</span>
           <span class="w-2 h-2 rounded-full" style="background-color: ${r.color}"></span>
           <span class="font-bold text-white">${r.name}:</span>
-          <strong class="${getColorClass(r.pct, r.assetType)}">${formatSignedPct(r.pct)}</strong>
+          <strong class="${getColorClass(r.pct, r.sym)}">${formatSignedPct(r.pct)}</strong>
+          ${scCompareSymbols.length > 1 ? `<button onclick="toggleScCompareSymbol('${r.sym}')" class="text-slate-500 hover:text-rose-400 ml-1" title="移除">✕</button>` : ''}
         </span>
       `).join("");
 
@@ -1951,7 +2070,7 @@
         { label: "VIX 恐慌指數", list: globalMarketData.vix_indices },
         { label: "美國公債殖利率 (含2Y)", list: globalMarketData.us_bonds },
         { label: "全球外匯匯率", list: globalMarketData.fx_rates },
-        { label: "期貨與大宗商品", list: globalMarketData.futures_commodities },
+        { label: "期貨、大宗商品與加密貨幣 (含BTC/ETH)", list: globalMarketData.futures_commodities },
         { label: "美股核心科技股", list: globalMarketData.us_stocks },
         { label: "台股核心權值股", list: globalMarketData.tw_stocks }
       ];
@@ -2041,6 +2160,7 @@
       else if (currentRangeMode === "1W") filtered = hist.slice(-6);
       else if (currentRangeMode === "1M") filtered = hist.slice(-22);
       else if (currentRangeMode === "YTD") filtered = hist.filter(d => d.date >= `${new Date().getFullYear()}-01-01`);
+      else if (currentRangeMode === "1Y") filtered = hist.slice(-252);
       else if (currentRangeMode === "CUSTOM") {
         const s = customStart || document.getElementById("custom-start").value;
         const e = customEnd || document.getElementById("custom-end").value;
@@ -2057,7 +2177,7 @@
       const primarySel = document.getElementById("primary-asset-select");
       if (primarySel) primarySel.value = symbol;
       renderMainChart();
-      if (!allAssetsMap[symbol].history || allAssetsMap[symbol].history.length < 5) {
+      if (!allAssetsMap[symbol].history || allAssetsMap[symbol].history.length < 50) {
         fetchSingleYahooQuoteAndHistory(symbol);
       }
     }
@@ -2412,10 +2532,11 @@
       if (currentAppView === "supplychain") renderSupplyChainView();
     }
 
+    // 瀏覽器端單一標的歷史 K 線抓取升級為 range=1y (一年期)
     async function fetchSingleYahooQuoteAndHistory(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN") return;
       try {
-        const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=3mo`;
+        const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=1y`;
         const data = await tryFetchViaMultiProxy(targetUrl);
         const res = data?.chart?.result?.[0];
         if (!res) return;
@@ -2468,7 +2589,7 @@
 
     function configureFinnhubKey() {
       const saved = localStorage.getItem("FINNHUB_API_KEY") || "";
-      const key = prompt("請輸入免費的 Finnhub API Key，開啟美股 WebSocket 秒級跳動：", saved);
+      const key = prompt("請輸入免費的 Finnhub API Key，開啟美股與加密貨幣 WebSocket 秒級跳動：", saved);
       if (key !== null) {
         localStorage.setItem("FINNHUB_API_KEY", key.trim());
         startFinnhubWebSocket(key.trim());
@@ -2481,16 +2602,17 @@
       finnhubSocket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
       finnhubSocket.addEventListener("open", () => {
         document.getElementById("live-status").textContent = "⚡ WebSocket 秒級連線中";
-        ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"].forEach(sym => finnhubSocket.send(JSON.stringify({ type: "subscribe", symbol: sym })));
+        ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "BINANCE:BTCUSDT", "BINANCE:ETHUSDT"].forEach(sym => finnhubSocket.send(JSON.stringify({ type: "subscribe", symbol: sym })));
       });
       finnhubSocket.addEventListener("message", (event) => {
         const msg = JSON.parse(event.data);
         if (msg.type === "trade" && Array.isArray(msg.data)) {
           const last = msg.data[msg.data.length - 1];
-          const item = allAssetsMap[last.s];
+          const mappedSym = last.s === "BINANCE:BTCUSDT" ? "BTC-USD" : (last.s === "BINANCE:ETHUSDT" ? "ETH-USD" : last.s);
+          const item = allAssetsMap[mappedSym];
           if (!item) return;
           const prev = Number(item.prev_close) || Number(item.price);
-          updateAssetDomPrice(last.s, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
+          updateAssetDomPrice(mappedSym, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
         }
       });
     }
@@ -2501,14 +2623,23 @@
       const metalSyms = ["GC=F", "SI=F", "HG=F", "PA=F"];
       const energySyms = ["BZ=F", "CL=F"];
       const agriSyms = ["ZS=F", "ZW=F", "ZC=F"];
+      const cryptoSyms = ["BTC-USD", "ETH-USD"];
 
       const bySym = {};
       list.forEach(f => { bySym[f.symbol] = f; });
+
+      // 確保即使舊版 market_data.json 尚未包含 BTC-USD / ETH-USD，前端也能立即顯示
+      if (!bySym["BTC-USD"]) bySym["BTC-USD"] = applyVerifiedNov13IfMissing({ symbol: "BTC-USD", name: "比特幣 (BTC)", asset_type: "futures", future_group: "crypto_assets", price: 0, change_pct: 0, history: [] });
+      if (!bySym["ETH-USD"]) bySym["ETH-USD"] = applyVerifiedNov13IfMissing({ symbol: "ETH-USD", name: "以太幣 (ETH)", asset_type: "futures", future_group: "crypto_assets", price: 0, change_pct: 0, history: [] });
 
       document.getElementById("grid-futures-us-index").innerHTML = usIdxSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
       document.getElementById("grid-futures-metals").innerHTML = metalSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
       document.getElementById("grid-futures-energy").innerHTML = energySyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
       document.getElementById("grid-futures-agri").innerHTML = agriSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
+      const cryptoEl = document.getElementById("grid-futures-crypto");
+      if (cryptoEl) {
+        cryptoEl.innerHTML = cryptoSyms.map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
+      }
     }
 
     function normalizeVixBondsAndFx(data) {
@@ -2590,6 +2721,15 @@
         }));
       }
 
+      if (Array.isArray(globalMarketData.futures_commodities)) {
+        if (!globalMarketData.futures_commodities.some(x => x.symbol === "BTC-USD")) {
+          globalMarketData.futures_commodities.push(applyVerifiedNov13IfMissing({ symbol: "BTC-USD", name: "比特幣 (BTC)", asset_type: "futures", future_group: "crypto_assets", price: 0, change_pct: 0, history: [] }));
+        }
+        if (!globalMarketData.futures_commodities.some(x => x.symbol === "ETH-USD")) {
+          globalMarketData.futures_commodities.push(applyVerifiedNov13IfMissing({ symbol: "ETH-USD", name: "以太幣 (ETH)", asset_type: "futures", future_group: "crypto_assets", price: 0, change_pct: 0, history: [] }));
+        }
+      }
+
       if (Array.isArray(globalMarketData.supply_chain_sectors)) {
         globalMarketData.supply_chain_sectors.forEach(sec => {
           (sec.stages || []).forEach(stg => {
@@ -2664,6 +2804,8 @@
 
       syncAllTwseAndTpexOfficialPricesInBrowser();
       fetchSingleYahooQuoteAndHistory(currentAssetSymbol);
+      fetchSingleYahooQuoteAndHistory("BTC-USD");
+      fetchSingleYahooQuoteAndHistory("ETH-USD");
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
       if (savedKey) startFinnhubWebSocket(savedKey);
