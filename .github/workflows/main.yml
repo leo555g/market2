@@ -1,28 +1,44 @@
-name: High-Frequency Market Data Update
+name: Update Market Data
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+  # 1. 手動一鍵觸發
   workflow_dispatch:
+
+  # 2. 當你更新 update_data.py、supply_chain_db.js 或本排程檔時，立刻自動執行抓最新報價！
   push:
     branches:
       - main
     paths:
       - 'update_data.py'
-      - 'requirements.txt'
+      - 'supply_chain_db.js'
+      - '.github/workflows/main.yml'
+
+  # 3. 每日多時段收盤後自動排程 (以下為 UTC 時間，對應台灣時間 UTC+8)
+  schedule:
+    - cron: '50 5 * * 1-5'   # 台灣時間 13:50 (台股收盤後第一波大盤與個股結算)
+    - cron: '45 6 * * 1-5'   # 台灣時間 14:45 (證交所收盤行情與櫃買中心結算)
+    - cron: '35 8 * * 1-5'   # 台灣時間 16:35 (三大法人買賣超與台指 VIX 完整結算)
+    - cron: '30 13 * * 1-5'  # 台灣時間 21:30 (美股開盤與 21:30 美國總經數據開出)
+    - cron: '15 21 * * 1-6'  # 台灣時間 05:15 (美股收盤與美債殖利率結算)
+    - cron: '30 22 * * 1-6'  # 台灣時間 06:30 (台股與美股全市場晨間總整理)
 
 permissions:
   contents: write
 
+concurrency:
+  group: market-data-update
+  cancel-in-progress: false
+
 jobs:
-  update-data:
+  build-and-update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -30,26 +46,22 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install yfinance pandas requests urllib3 pytz opencc-python-reimplemented
 
-      - name: Fetch Market Data and Generate JSON
-        env:
-          FINLAB_API_TOKEN: ${{ secrets.FINLAB_API_TOKEN }}
+      - name: Run update_data.py to generate latest market_data.json
         run: |
           python update_data.py
 
-      - name: Commit and Push updated data
+      - name: Commit and Push updated market_data.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git stash --include-untracked
-          git pull --rebase origin main || true
-          git stash pop || true
           git add data/market_data.json
           if git diff --staged --quiet; then
-            echo "No data changes to commit."
+            echo "No changes in market_data.json"
           else
-            git commit -m "chore: auto-update market data $(date +'%Y-%m-%d %H:%M')"
-            git push origin main || true
+            git commit -m "Auto-update market_data.json [skip ci]"
+            git pull --rebase origin main || true
+            git push origin main
           fi
