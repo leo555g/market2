@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-16 21:19:40 CST",
+  "last_updated": "2026-11-16 21:31:50 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -7249,10 +7249,10 @@
       "name": "英國富時 100",
       "asset_type": "index",
       "future_group": null,
-      "price": 10934.94,
+      "price": 10942.18,
       "prev_close": 10902.6,
-      "change": 32.34,
-      "change_pct": 0.3,
+      "change": 39.58,
+      "change_pct": 0.36,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -8266,7 +8266,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 10934.94
+          "close": 10942.18
         }
       ],
       "fundamentals": {
@@ -8301,10 +8301,10 @@
       "name": "德國 DAX 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 26717.02,
+      "price": 26738.31,
       "prev_close": 26749.95,
-      "change": -32.93,
-      "change_pct": -0.12,
+      "change": -11.64,
+      "change_pct": -0.04,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -9318,7 +9318,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 26717.02
+          "close": 26738.31
         }
       ],
       "fundamentals": {
@@ -9353,10 +9353,10 @@
       "name": "法國 CAC 40",
       "asset_type": "index",
       "future_group": null,
-      "price": 8384.15,
+      "price": 8388.96,
       "prev_close": 8368.91,
-      "change": 15.24,
-      "change_pct": 0.18,
+      "change": 20.05,
+      "change_pct": 0.24,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -10378,7 +10378,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 8384.15
+          "close": 8388.96
         }
       ],
       "fundamentals": {
@@ -10415,10 +10415,10 @@
       "name": "美國 CBOE VIX 恐慌指數",
       "asset_type": "vix_index",
       "future_group": null,
-      "price": 20.55,
+      "price": 20.6,
       "prev_close": 19.3,
-      "change": 1.25,
-      "change_pct": 6.48,
+      "change": 1.3,
+      "change_pct": 6.74,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -11432,7 +11432,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 20.55
+          "close": 20.6
         }
       ],
       "fundamentals": {
@@ -11467,10 +11467,10 @@
       "name": "台指選擇權波動率指數 (VIXTWN)",
       "asset_type": "vix_index",
       "future_group": null,
-      "price": 48.85,
+      "price": 48.8,
       "prev_close": 37.84,
-      "change": 11.01,
-      "change_pct": 29.1,
+      "change": 10.96,
+      "change_pct": 28.96,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -11480,7 +11480,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 48.85
+          "close": 48.8
         }
       ],
       "fundamentals": {
@@ -15718,10 +15718,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.93,
+      "price": 32.95,
       "prev_close": 32.94,
-      "change": -0.01,
-      "change_pct": -0.02,
+      "change": 0.02,
+      "change_pct": 0.05,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -16759,7 +16759,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 32.93
+          "close": 32.96
         }
       ],
       "fundamentals": {
@@ -16794,10 +16794,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6756,
+      "price": 0.6754,
       "prev_close": 0.6807,
-      "change": -0.0051,
-      "change_pct": -0.75,
+      "change": -0.0053,
+      "change_pct": -0.78,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -17835,7 +17835,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.6756
+          "close": 0.6754
         }
       ],
       "fundamentals": {
@@ -17870,10 +17870,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.8392,
+      "price": 0.8391,
       "prev_close": 0.8359,
-      "change": 0.0033,
-      "change_pct": 0.39,
+      "change": 0.0032,
+      "change_pct": 0.38,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -18911,7 +18911,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.8392
+          "close": 0.8391
         }
       ],
       "fundamentals": {
@@ -18946,10 +18946,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.58,
+      "price": 159.55,
       "prev_close": 159.88,
-      "change": -0.3,
-      "change_pct": -0.19,
+      "change": -0.33,
+      "change_pct": -0.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -19987,7 +19987,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 159.58
+          "close": 159.55
         }
       ],
       "fundamentals": {
@@ -20022,10 +20022,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.1018,
+      "price": 1.1017,
       "prev_close": 1.105,
-      "change": -0.0032,
-      "change_pct": -0.29,
+      "change": -0.0033,
+      "change_pct": -0.3,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -21063,7 +21063,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.1018
+          "close": 1.1017
         }
       ],
       "fundamentals": {
@@ -21098,10 +21098,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3201,
+      "price": 1.3203,
       "prev_close": 1.3231,
-      "change": -0.003,
-      "change_pct": -0.23,
+      "change": -0.0028,
+      "change_pct": -0.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -22139,7 +22139,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.3201
+          "close": 1.3203
         }
       ],
       "fundamentals": {
@@ -28495,10 +28495,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.93,
+      "price": 32.95,
       "prev_close": 32.94,
-      "change": -0.01,
-      "change_pct": -0.02,
+      "change": 0.02,
+      "change_pct": 0.05,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -29536,7 +29536,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 32.93
+          "close": 32.96
         }
       ],
       "fundamentals": {
@@ -29571,10 +29571,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6756,
+      "price": 0.6754,
       "prev_close": 0.6807,
-      "change": -0.0051,
-      "change_pct": -0.75,
+      "change": -0.0053,
+      "change_pct": -0.78,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -30612,7 +30612,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.6756
+          "close": 0.6754
         }
       ],
       "fundamentals": {
@@ -30647,10 +30647,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.8392,
+      "price": 0.8391,
       "prev_close": 0.8359,
-      "change": 0.0033,
-      "change_pct": 0.39,
+      "change": 0.0032,
+      "change_pct": 0.38,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -31688,7 +31688,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.8392
+          "close": 0.8391
         }
       ],
       "fundamentals": {
@@ -31723,10 +31723,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.58,
+      "price": 159.55,
       "prev_close": 159.88,
-      "change": -0.3,
-      "change_pct": -0.19,
+      "change": -0.33,
+      "change_pct": -0.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -32764,7 +32764,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 159.58
+          "close": 159.55
         }
       ],
       "fundamentals": {
@@ -32799,10 +32799,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.1018,
+      "price": 1.1017,
       "prev_close": 1.105,
-      "change": -0.0032,
-      "change_pct": -0.29,
+      "change": -0.0033,
+      "change_pct": -0.3,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -33840,7 +33840,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.1018
+          "close": 1.1017
         }
       ],
       "fundamentals": {
@@ -33875,10 +33875,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3201,
+      "price": 1.3203,
       "prev_close": 1.3231,
-      "change": -0.003,
-      "change_pct": -0.23,
+      "change": -0.0028,
+      "change_pct": -0.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -34916,7 +34916,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.3201
+          "close": 1.3203
         }
       ],
       "fundamentals": {
@@ -37078,9 +37078,9 @@
       "change": -3.34,
       "change_pct": -2.01,
       "ext_session": {
-        "price": 156.95,
-        "change": -5.9,
-        "change_pct": -3.63,
+        "price": 156.69,
+        "change": -6.16,
+        "change_pct": -3.78,
         "label": "盤前"
       },
       "intraday": [],
@@ -38123,9 +38123,9 @@
       "change": -6.76,
       "change_pct": -1.67,
       "ext_session": {
-        "price": 379.15,
-        "change": -19.58,
-        "change_pct": -4.91,
+        "price": 379.5,
+        "change": -19.23,
+        "change_pct": -4.82,
         "label": "盤前"
       },
       "intraday": [],
@@ -39168,9 +39168,9 @@
       "change": -0.83,
       "change_pct": -0.59,
       "ext_session": {
-        "price": 138.82,
-        "change": -0.29,
-        "change_pct": -0.21,
+        "price": 138.4,
+        "change": -0.71,
+        "change_pct": -0.51,
         "label": "盤前"
       },
       "intraday": [],
@@ -39645,9 +39645,9 @@
       "change": -51.24,
       "change_pct": -8.75,
       "ext_session": {
-        "price": 504.8,
-        "change": -29.26,
-        "change_pct": -5.48,
+        "price": 502.5,
+        "change": -31.56,
+        "change_pct": -5.91,
         "label": "盤前"
       },
       "intraday": [],
@@ -40690,9 +40690,9 @@
       "change": -2.93,
       "change_pct": -0.98,
       "ext_session": {
-        "price": 294.15,
-        "change": -1.62,
-        "change_pct": -0.55,
+        "price": 293.82,
+        "change": -1.95,
+        "change_pct": -0.66,
         "label": "盤前"
       },
       "intraday": [],
@@ -41735,9 +41735,9 @@
       "change": 18.08,
       "change_pct": 2.9,
       "ext_session": {
-        "price": 637.72,
-        "change": -3.97,
-        "change_pct": -0.62,
+        "price": 638.5,
+        "change": -3.19,
+        "change_pct": -0.5,
         "label": "盤前"
       },
       "intraday": [],
@@ -42780,9 +42780,9 @@
       "change": -7.23,
       "change_pct": -1.82,
       "ext_session": {
-        "price": 385.5,
-        "change": -4.72,
-        "change_pct": -1.21,
+        "price": 385.2,
+        "change": -5.02,
+        "change_pct": -1.29,
         "label": "盤前"
       },
       "intraday": [],
@@ -43825,9 +43825,9 @@
       "change": -17.35,
       "change_pct": -4.76,
       "ext_session": {
-        "price": 333.15,
-        "change": -13.86,
-        "change_pct": -3.99,
+        "price": 332.0,
+        "change": -15.01,
+        "change_pct": -4.33,
         "label": "盤前"
       },
       "intraday": [],
@@ -44870,9 +44870,9 @@
       "change": -0.78,
       "change_pct": -0.29,
       "ext_session": {
-        "price": 264.61,
-        "change": -2.05,
-        "change_pct": -0.77,
+        "price": 263.71,
+        "change": -2.95,
+        "change_pct": -1.11,
         "label": "盤前"
       },
       "intraday": [],
@@ -45915,9 +45915,9 @@
       "change": 1.39,
       "change_pct": 0.39,
       "ext_session": {
-        "price": 357.6,
-        "change": 1.33,
-        "change_pct": 0.37,
+        "price": 357.76,
+        "change": 1.49,
+        "change_pct": 0.42,
         "label": "盤前"
       },
       "intraday": [],
@@ -46960,9 +46960,9 @@
       "change": 0.88,
       "change_pct": 0.17,
       "ext_session": {
-        "price": 525.5,
-        "change": 1.62,
-        "change_pct": 0.31,
+        "price": 524.99,
+        "change": 1.11,
+        "change_pct": 0.21,
         "label": "盤前"
       },
       "intraday": [],
@@ -53049,10 +53049,10 @@
       "name": "小S&P期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 7541.5,
+      "price": 7533.25,
       "prev_close": 7583.0,
-      "change": -41.5,
-      "change_pct": -0.55,
+      "change": -49.75,
+      "change_pct": -0.66,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -54058,7 +54058,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 7541.5
+          "close": 7533.25
         }
       ],
       "fundamentals": {
@@ -54093,10 +54093,10 @@
       "name": "小納斯達克期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 27687.25,
+      "price": 27641.25,
       "prev_close": 28034.75,
-      "change": -347.5,
-      "change_pct": -1.24,
+      "change": -393.5,
+      "change_pct": -1.4,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -55102,7 +55102,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 27687.25
+          "close": 27641.25
         }
       ],
       "fundamentals": {
@@ -55137,10 +55137,10 @@
       "name": "小道瓊期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 52368.0,
+      "price": 52320.0,
       "prev_close": 52418.0,
-      "change": -50.0,
-      "change_pct": -0.1,
+      "change": -98.0,
+      "change_pct": -0.19,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -56146,7 +56146,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 52368.0
+          "close": 52320.0
         }
       ],
       "fundamentals": {
@@ -56181,10 +56181,10 @@
       "name": "黃金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 3873.8,
+      "price": 3869.4,
       "prev_close": 3886.3,
-      "change": -12.5,
-      "change_pct": -0.32,
+      "change": -16.9,
+      "change_pct": -0.43,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -57190,7 +57190,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 3873.8
+          "close": 3869.4
         }
       ],
       "fundamentals": {
@@ -57225,10 +57225,10 @@
       "name": "白銀期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 47.51,
+      "price": 47.35,
       "prev_close": 49.03,
-      "change": -1.52,
-      "change_pct": -3.11,
+      "change": -1.68,
+      "change_pct": -3.42,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -58234,7 +58234,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 47.51
+          "close": 47.35
         }
       ],
       "fundamentals": {
@@ -58272,7 +58272,7 @@
       "price": 6.05,
       "prev_close": 6.08,
       "change": -0.03,
-      "change_pct": -0.48,
+      "change_pct": -0.53,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -59313,10 +59313,10 @@
       "name": "鈀金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 995.0,
+      "price": 990.0,
       "prev_close": 1006.0,
-      "change": -11.0,
-      "change_pct": -1.09,
+      "change": -16.0,
+      "change_pct": -1.59,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -60322,7 +60322,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 995.0
+          "close": 990.0
         }
       ],
       "fundamentals": {
@@ -60357,10 +60357,10 @@
       "name": "布蘭特原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 94.68,
+      "price": 94.52,
       "prev_close": 95.84,
-      "change": -1.16,
-      "change_pct": -1.21,
+      "change": -1.32,
+      "change_pct": -1.38,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -61366,7 +61366,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 94.68
+          "close": 94.52
         }
       ],
       "fundamentals": {
@@ -61401,10 +61401,10 @@
       "name": "WTI 原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 87.85,
+      "price": 87.77,
       "prev_close": 88.56,
-      "change": -0.71,
-      "change_pct": -0.8,
+      "change": -0.79,
+      "change_pct": -0.89,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -62410,7 +62410,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 87.85
+          "close": 87.77
         }
       ],
       "fundamentals": {
@@ -62445,10 +62445,10 @@
       "name": "黃豆期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 1231.5,
+      "price": 1228.0,
       "prev_close": 1243.0,
-      "change": -11.5,
-      "change_pct": -0.93,
+      "change": -15.0,
+      "change_pct": -1.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -63454,7 +63454,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1231.5
+          "close": 1228.0
         }
       ],
       "fundamentals": {
@@ -63489,10 +63489,10 @@
       "name": "小麥期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 591.0,
+      "price": 590.25,
       "prev_close": 593.25,
-      "change": -2.25,
-      "change_pct": -0.38,
+      "change": -3.0,
+      "change_pct": -0.51,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -64498,7 +64498,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 591.0
+          "close": 590.25
         }
       ],
       "fundamentals": {
@@ -64533,10 +64533,10 @@
       "name": "玉米期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 446.0,
+      "price": 444.5,
       "prev_close": 445.5,
-      "change": 0.5,
-      "change_pct": 0.11,
+      "change": -1.0,
+      "change_pct": -0.22,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -65542,7 +65542,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 446.0
+          "close": 444.5
         }
       ],
       "fundamentals": {
@@ -65577,10 +65577,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 64117.32,
+      "price": 64213.52,
       "prev_close": 65305.06,
-      "change": -1187.74,
-      "change_pct": -1.82,
+      "change": -1091.54,
+      "change_pct": -1.67,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -67046,7 +67046,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 64117.32
+          "close": 64213.52
         }
       ],
       "fundamentals": {
@@ -67081,10 +67081,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1799.05,
+      "price": 1800.6,
       "prev_close": 1835.5,
-      "change": -36.45,
-      "change_pct": -1.99,
+      "change": -34.9,
+      "change_pct": -1.9,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -68550,7 +68550,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1799.05
+          "close": 1800.6
         }
       ],
       "fundamentals": {
@@ -79892,9 +79892,9 @@
               "change": -3.34,
               "change_pct": -2.01,
               "ext_session": {
-                "price": 156.95,
-                "change": -5.9,
-                "change_pct": -3.63,
+                "price": 156.69,
+                "change": -6.16,
+                "change_pct": -3.78,
                 "label": "盤前"
               },
               "intraday": [],
@@ -80938,9 +80938,9 @@
               "change": -6.76,
               "change_pct": -1.67,
               "ext_session": {
-                "price": 379.15,
-                "change": -19.58,
-                "change_pct": -4.91,
+                "price": 379.5,
+                "change": -19.23,
+                "change_pct": -4.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -81984,9 +81984,9 @@
               "change": -17.35,
               "change_pct": -4.76,
               "ext_session": {
-                "price": 333.15,
-                "change": -13.86,
-                "change_pct": -3.99,
+                "price": 332.0,
+                "change": -15.01,
+                "change_pct": -4.33,
                 "label": "盤前"
               },
               "intraday": [],
@@ -83030,9 +83030,9 @@
               "change": 1.39,
               "change_pct": 0.39,
               "ext_session": {
-                "price": 357.6,
-                "change": 1.33,
-                "change_pct": 0.37,
+                "price": 357.76,
+                "change": 1.49,
+                "change_pct": 0.42,
                 "label": "盤前"
               },
               "intraday": [],
@@ -84076,9 +84076,9 @@
               "change": 0.88,
               "change_pct": 0.17,
               "ext_session": {
-                "price": 525.5,
-                "change": 1.62,
-                "change_pct": 0.31,
+                "price": 524.99,
+                "change": 1.11,
+                "change_pct": 0.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -85122,9 +85122,9 @@
               "change": -2.93,
               "change_pct": -0.98,
               "ext_session": {
-                "price": 294.15,
-                "change": -1.62,
-                "change_pct": -0.55,
+                "price": 293.82,
+                "change": -1.95,
+                "change_pct": -0.66,
                 "label": "盤前"
               },
               "intraday": [],
@@ -86168,9 +86168,9 @@
               "change": -0.78,
               "change_pct": -0.29,
               "ext_session": {
-                "price": 264.61,
-                "change": -2.05,
-                "change_pct": -0.77,
+                "price": 263.71,
+                "change": -2.95,
+                "change_pct": -1.11,
                 "label": "盤前"
               },
               "intraday": [],
@@ -87214,9 +87214,9 @@
               "change": 18.08,
               "change_pct": 2.9,
               "ext_session": {
-                "price": 637.72,
-                "change": -3.97,
-                "change_pct": -0.62,
+                "price": 638.5,
+                "change": -3.19,
+                "change_pct": -0.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -88260,9 +88260,9 @@
               "change": -0.83,
               "change_pct": -0.59,
               "ext_session": {
-                "price": 138.82,
-                "change": -0.29,
-                "change_pct": -0.21,
+                "price": 138.4,
+                "change": -0.71,
+                "change_pct": -0.51,
                 "label": "盤前"
               },
               "intraday": [],
@@ -88738,9 +88738,9 @@
               "change": 16.22,
               "change_pct": 1.14,
               "ext_session": {
-                "price": 1449.79,
-                "change": 6.29,
-                "change_pct": 0.44,
+                "price": 1451.0,
+                "change": 7.5,
+                "change_pct": 0.52,
                 "label": "盤前"
               },
               "intraday": [],
@@ -89784,9 +89784,9 @@
               "change": 3.11,
               "change_pct": 0.53,
               "ext_session": {
-                "price": 596.04,
-                "change": 3.1,
-                "change_pct": 0.52,
+                "price": 595.8,
+                "change": 2.86,
+                "change_pct": 0.48,
                 "label": "盤前"
               },
               "intraday": [],
@@ -90830,9 +90830,9 @@
               "change": -7.23,
               "change_pct": -1.82,
               "ext_session": {
-                "price": 385.5,
-                "change": -4.72,
-                "change_pct": -1.21,
+                "price": 385.2,
+                "change": -5.02,
+                "change_pct": -1.29,
                 "label": "盤前"
               },
               "intraday": [],
@@ -91876,9 +91876,9 @@
               "change": 1.9,
               "change_pct": 1.51,
               "ext_session": {
-                "price": 129.14,
-                "change": 1.05,
-                "change_pct": 0.82,
+                "price": 129.28,
+                "change": 1.19,
+                "change_pct": 0.93,
                 "label": "盤前"
               },
               "intraday": [],
@@ -96998,9 +96998,9 @@
               "change": -9.25,
               "change_pct": -4.63,
               "ext_session": {
-                "price": 180.2,
-                "change": -10.33,
-                "change_pct": -5.42,
+                "price": 180.55,
+                "change": -9.98,
+                "change_pct": -5.24,
                 "label": "盤前"
               },
               "intraday": [],
@@ -99090,9 +99090,9 @@
               "change": -10.31,
               "change_pct": -3.09,
               "ext_session": {
-                "price": 317.0,
-                "change": -6.01,
-                "change_pct": -1.86,
+                "price": 317.5,
+                "change": -5.51,
+                "change_pct": -1.71,
                 "label": "盤前"
               },
               "intraday": [],
@@ -103163,9 +103163,9 @@
               "change": -7.69,
               "change_pct": -4.68,
               "ext_session": {
-                "price": 147.08,
-                "change": -9.68,
-                "change_pct": -6.18,
+                "price": 147.0,
+                "change": -9.76,
+                "change_pct": -6.23,
                 "label": "盤前"
               },
               "intraday": [],
@@ -107236,9 +107236,9 @@
               "change": -10.05,
               "change_pct": -5.6,
               "ext_session": {
-                "price": 161.0,
-                "change": -8.45,
-                "change_pct": -4.99,
+                "price": 160.12,
+                "change": -9.33,
+                "change_pct": -5.51,
                 "label": "盤前"
               },
               "intraday": [],
@@ -108282,9 +108282,9 @@
               "change": -7.86,
               "change_pct": -3.36,
               "ext_session": {
-                "price": 214.49,
-                "change": -11.43,
-                "change_pct": -5.06,
+                "price": 214.03,
+                "change": -11.89,
+                "change_pct": -5.26,
                 "label": "盤前"
               },
               "intraday": [],
@@ -109328,9 +109328,9 @@
               "change": -10.45,
               "change_pct": -2.74,
               "ext_session": {
-                "price": 353.49,
-                "change": -17.01,
-                "change_pct": -4.59,
+                "price": 352.5,
+                "change": -18.0,
+                "change_pct": -4.86,
                 "label": "盤前"
               },
               "intraday": [],
@@ -114410,9 +114410,9 @@
               "change": -20.13,
               "change_pct": -2.52,
               "ext_session": {
-                "price": 730.66,
-                "change": -47.65,
-                "change_pct": -6.12,
+                "price": 728.44,
+                "change": -49.87,
+                "change_pct": -6.41,
                 "label": "盤前"
               },
               "intraday": [],
@@ -115456,9 +115456,9 @@
               "change": -52.45,
               "change_pct": -5.59,
               "ext_session": {
-                "price": 826.85,
-                "change": -58.16,
-                "change_pct": -6.57,
+                "price": 822.15,
+                "change": -62.86,
+                "change_pct": -7.1,
                 "label": "盤前"
               },
               "intraday": [],
@@ -121587,9 +121587,9 @@
               "change": -15.56,
               "change_pct": -5.0,
               "ext_session": {
-                "price": 279.46,
-                "change": -16.19,
-                "change_pct": -5.48,
+                "price": 278.44,
+                "change": -17.21,
+                "change_pct": -5.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -122633,9 +122633,9 @@
               "change": -16.85,
               "change_pct": -3.09,
               "ext_session": {
-                "price": 499.89,
-                "change": -28.4,
-                "change_pct": -5.38,
+                "price": 496.5,
+                "change": -31.79,
+                "change_pct": -6.02,
                 "label": "盤前"
               },
               "intraday": [],
@@ -124683,10 +124683,10 @@
               "name": "4768 晶呈科技",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 271.5,
-              "prev_close": 301.0,
-              "change": -29.5,
-              "change_pct": -9.8,
+              "price": 0.0,
+              "prev_close": 0.0,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [],
@@ -125737,9 +125737,9 @@
               "change": -5.42,
               "change_pct": -4.54,
               "ext_session": {
-                "price": 108.53,
-                "change": -5.55,
-                "change_pct": -4.87,
+                "price": 108.3,
+                "change": -5.78,
+                "change_pct": -5.07,
                 "label": "盤前"
               },
               "intraday": [],
@@ -126783,9 +126783,9 @@
               "change": -5.8,
               "change_pct": -3.79,
               "ext_session": {
-                "price": 140.03,
-                "change": -7.38,
-                "change_pct": -5.01,
+                "price": 140.0,
+                "change": -7.41,
+                "change_pct": -5.03,
                 "label": "盤前"
               },
               "intraday": [],
@@ -133883,9 +133883,9 @@
               "change": -6.05,
               "change_pct": -2.89,
               "ext_session": {
-                "price": 192.49,
-                "change": -11.13,
-                "change_pct": -5.47,
+                "price": 192.0,
+                "change": -11.62,
+                "change_pct": -5.71,
                 "label": "盤前"
               },
               "intraday": [],
@@ -135938,9 +135938,9 @@
               "change": -1.54,
               "change_pct": -2.52,
               "ext_session": {
-                "price": 56.53,
-                "change": -3.13,
-                "change_pct": -5.25,
+                "price": 56.41,
+                "change": -3.25,
+                "change_pct": -5.45,
                 "label": "盤前"
               },
               "intraday": [],
@@ -136984,9 +136984,9 @@
               "change": -51.24,
               "change_pct": -8.75,
               "ext_session": {
-                "price": 504.8,
-                "change": -29.26,
-                "change_pct": -5.48,
+                "price": 502.5,
+                "change": -31.56,
+                "change_pct": -5.91,
                 "label": "盤前"
               },
               "intraday": [],
@@ -147225,9 +147225,9 @@
               "change": -1.68,
               "change_pct": -6.34,
               "ext_session": {
-                "price": 23.5,
-                "change": -1.33,
-                "change_pct": -5.36,
+                "price": 23.24,
+                "change": -1.59,
+                "change_pct": -6.4,
                 "label": "盤前"
               },
               "intraday": [],
@@ -150289,9 +150289,9 @@
               "change": -1.15,
               "change_pct": -2.7,
               "ext_session": {
-                "price": 40.0,
-                "change": -1.47,
-                "change_pct": -3.54,
+                "price": 39.86,
+                "change": -1.61,
+                "change_pct": -3.88,
                 "label": "盤前"
               },
               "intraday": [],
@@ -156375,10 +156375,10 @@
               "name": "6667 信紘科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 239.0,
-              "prev_close": 246.0,
-              "change": -7.0,
-              "change_pct": -2.85,
+              "price": 0.0,
+              "prev_close": 0.0,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [],
@@ -156420,9 +156420,9 @@
               "change": -1.96,
               "change_pct": -0.13,
               "ext_session": {
-                "price": 1437.22,
-                "change": -57.94,
-                "change_pct": -3.88,
+                "price": 1435.43,
+                "change": -59.73,
+                "change_pct": -3.99,
                 "label": "盤前"
               },
               "intraday": [],
@@ -157466,9 +157466,9 @@
               "change": -4.98,
               "change_pct": -3.17,
               "ext_session": {
-                "price": 146.55,
-                "change": -5.77,
-                "change_pct": -3.79,
+                "price": 145.25,
+                "change": -7.07,
+                "change_pct": -4.64,
                 "label": "盤前"
               },
               "intraday": [],
@@ -176711,9 +176711,9 @@
               "change": -26.64,
               "change_pct": -7.18,
               "ext_session": {
-                "price": 328.75,
-                "change": -15.78,
-                "change_pct": -4.58,
+                "price": 328.0,
+                "change": -16.53,
+                "change_pct": -4.8,
                 "label": "盤前"
               },
               "intraday": [],
@@ -177757,9 +177757,9 @@
               "change": -0.12,
               "change_pct": -0.46,
               "ext_session": {
-                "price": 25.43,
-                "change": -1.43,
-                "change_pct": -5.32,
+                "price": 25.42,
+                "change": -1.44,
+                "change_pct": -5.36,
                 "label": "盤前"
               },
               "intraday": [],
@@ -191022,9 +191022,9 @@
               "change": -14.2,
               "change_pct": -5.38,
               "ext_session": {
-                "price": 236.51,
-                "change": -13.04,
-                "change_pct": -5.23,
+                "price": 236.7,
+                "change": -12.85,
+                "change_pct": -5.15,
                 "label": "盤前"
               },
               "intraday": [],
@@ -197150,9 +197150,9 @@
               "change": -28.03,
               "change_pct": -4.49,
               "ext_session": {
-                "price": 555.94,
-                "change": -40.68,
-                "change_pct": -6.82,
+                "price": 554.08,
+                "change": -42.54,
+                "change_pct": -7.13,
                 "label": "盤前"
               },
               "intraday": [],
@@ -202232,9 +202232,9 @@
               "change": -13.93,
               "change_pct": -6.0,
               "ext_session": {
-                "price": 203.4,
-                "change": -14.75,
-                "change_pct": -6.76,
+                "price": 201.73,
+                "change": -16.42,
+                "change_pct": -7.53,
                 "label": "盤前"
               },
               "intraday": [],
@@ -204324,9 +204324,9 @@
               "change": -2.96,
               "change_pct": -5.6,
               "ext_session": {
-                "price": 46.4,
-                "change": -3.49,
-                "change_pct": -7.0,
+                "price": 46.44,
+                "change": -3.45,
+                "change_pct": -6.92,
                 "label": "盤前"
               },
               "intraday": [],
@@ -208397,9 +208397,9 @@
               "change": -9.34,
               "change_pct": -4.52,
               "ext_session": {
-                "price": 190.55,
-                "change": -6.74,
-                "change_pct": -3.42,
+                "price": 189.8,
+                "change": -7.49,
+                "change_pct": -3.8,
                 "label": "盤前"
               },
               "intraday": [],
@@ -209443,9 +209443,9 @@
               "change": -6.37,
               "change_pct": -6.24,
               "ext_session": {
-                "price": 93.98,
-                "change": -1.66,
-                "change_pct": -1.73,
+                "price": 93.85,
+                "change": -1.79,
+                "change_pct": -1.87,
                 "label": "盤前"
               },
               "intraday": [],
@@ -210489,9 +210489,9 @@
               "change": -13.45,
               "change_pct": -4.57,
               "ext_session": {
-                "price": 266.1,
-                "change": -14.44,
-                "change_pct": -5.15,
+                "price": 264.0,
+                "change": -16.54,
+                "change_pct": -5.9,
                 "label": "盤前"
               },
               "intraday": [],
@@ -221660,10 +221660,10 @@
               "name": "3630 新鉅科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 21.75,
-              "prev_close": 23.45,
-              "change": -1.7,
-              "change_pct": -7.25,
+              "price": 0.0,
+              "prev_close": 0.0,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [],
@@ -232915,9 +232915,9 @@
               "change": -0.21,
               "change_pct": -2.54,
               "ext_session": {
-                "price": 7.84,
-                "change": -0.23,
-                "change_pct": -2.85,
+                "price": 7.83,
+                "change": -0.24,
+                "change_pct": -2.98,
                 "label": "盤前"
               },
               "intraday": [],
@@ -235979,9 +235979,9 @@
               "change": -1.08,
               "change_pct": -0.63,
               "ext_session": {
-                "price": 172.65,
-                "change": 2.7,
-                "change_pct": 1.59,
+                "price": 172.62,
+                "change": 2.67,
+                "change_pct": 1.57,
                 "label": "盤前"
               },
               "intraday": [],
@@ -237025,9 +237025,9 @@
               "change": -0.19,
               "change_pct": -0.41,
               "ext_session": {
-                "price": 46.75,
-                "change": 0.39,
-                "change_pct": 0.84,
+                "price": 46.8,
+                "change": 0.44,
+                "change_pct": 0.95,
                 "label": "盤前"
               },
               "intraday": [],
@@ -271704,9 +271704,9 @@
               "change": -13.69,
               "change_pct": -5.39,
               "ext_session": {
-                "price": 227.26,
-                "change": -13.08,
-                "change_pct": -5.44,
+                "price": 225.43,
+                "change": -14.91,
+                "change_pct": -6.2,
                 "label": "盤前"
               },
               "intraday": [],
@@ -293044,9 +293044,9 @@
               "change": -1.39,
               "change_pct": -1.75,
               "ext_session": {
-                "price": 76.0,
-                "change": -2.23,
-                "change_pct": -2.85,
+                "price": 75.8,
+                "change": -2.43,
+                "change_pct": -3.11,
                 "label": "盤前"
               },
               "intraday": [],
@@ -307358,9 +307358,9 @@
               "change": -1.17,
               "change_pct": -4.21,
               "ext_session": {
-                "price": 25.4,
-                "change": -1.22,
-                "change_pct": -4.58,
+                "price": 25.25,
+                "change": -1.37,
+                "change_pct": -5.15,
                 "label": "盤前"
               },
               "intraday": [],
@@ -320552,9 +320552,9 @@
               "change": -8.88,
               "change_pct": -2.84,
               "ext_session": {
-                "price": 298.44,
-                "change": -5.16,
-                "change_pct": -1.7,
+                "price": 296.86,
+                "change": -6.74,
+                "change_pct": -2.22,
                 "label": "盤前"
               },
               "intraday": [],
@@ -322644,9 +322644,9 @@
               "change": -2.67,
               "change_pct": -3.62,
               "ext_session": {
-                "price": 68.8,
-                "change": -2.26,
-                "change_pct": -3.18,
+                "price": 69.1,
+                "change": -1.96,
+                "change_pct": -2.76,
                 "label": "盤前"
               },
               "intraday": [],
@@ -323690,9 +323690,9 @@
               "change": 0.27,
               "change_pct": 0.58,
               "ext_session": {
-                "price": 45.63,
-                "change": -1.1,
-                "change_pct": -2.35,
+                "price": 45.48,
+                "change": -1.25,
+                "change_pct": -2.67,
                 "label": "盤前"
               },
               "intraday": [],
@@ -325745,9 +325745,9 @@
               "change": -56.86,
               "change_pct": -3.93,
               "ext_session": {
-                "price": 1342.24,
-                "change": -48.3,
-                "change_pct": -3.47,
+                "price": 1334.19,
+                "change": -56.35,
+                "change_pct": -4.05,
                 "label": "盤前"
               },
               "intraday": [],
@@ -330827,9 +330827,9 @@
               "change": -9.02,
               "change_pct": -3.46,
               "ext_session": {
-                "price": 253.0,
-                "change": 1.27,
-                "change_pct": 0.5,
+                "price": 252.89,
+                "change": 1.16,
+                "change_pct": 0.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -339945,8 +339945,8 @@
               "change": -6.07,
               "change_pct": -1.69,
               "ext_session": {
-                "price": 340.0,
-                "change": -12.97,
+                "price": 340.01,
+                "change": -12.96,
                 "change_pct": -3.67,
                 "label": "盤前"
               },
@@ -340991,9 +340991,9 @@
               "change": -2.58,
               "change_pct": -1.39,
               "ext_session": {
-                "price": 183.07,
-                "change": -0.59,
-                "change_pct": -0.32,
+                "price": 183.4,
+                "change": -0.26,
+                "change_pct": -0.14,
                 "label": "盤前"
               },
               "intraday": [],
@@ -347119,9 +347119,9 @@
               "change": -7.57,
               "change_pct": -3.61,
               "ext_session": {
-                "price": 191.6,
-                "change": -10.47,
-                "change_pct": -5.18,
+                "price": 191.0,
+                "change": -11.07,
+                "change_pct": -5.48,
                 "label": "盤前"
               },
               "intraday": [],
@@ -349172,7 +349172,7 @@
               "price": 61.2,
               "prev_close": 64.0,
               "change": -2.8,
-              "change_pct": -4.38,
+              "change_pct": -4.37,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -350183,9 +350183,9 @@
               "change": -1.32,
               "change_pct": -1.39,
               "ext_session": {
-                "price": 92.0,
-                "change": -1.53,
-                "change_pct": -1.64,
+                "price": 91.8,
+                "change": -1.73,
+                "change_pct": -1.85,
                 "label": "盤前"
               },
               "intraday": [],
@@ -359338,9 +359338,9 @@
               "change": -1.21,
               "change_pct": -2.0,
               "ext_session": {
-                "price": 57.83,
-                "change": -1.41,
-                "change_pct": -2.38,
+                "price": 57.42,
+                "change": -1.82,
+                "change_pct": -3.07,
                 "label": "盤前"
               },
               "intraday": [],
@@ -365429,9 +365429,9 @@
               "change": -15.36,
               "change_pct": -1.88,
               "ext_session": {
-                "price": 773.0,
-                "change": -30.13,
-                "change_pct": -3.75,
+                "price": 771.94,
+                "change": -31.19,
+                "change_pct": -3.88,
                 "label": "盤前"
               },
               "intraday": [],
@@ -368570,9 +368570,9 @@
               "change": -2.2,
               "change_pct": -0.78,
               "ext_session": {
-                "price": 275.6,
-                "change": -4.6,
-                "change_pct": -1.64,
+                "price": 274.62,
+                "change": -5.58,
+                "change_pct": -1.99,
                 "label": "盤前"
               },
               "intraday": [],
@@ -369616,9 +369616,9 @@
               "change": -1.5,
               "change_pct": -1.12,
               "ext_session": {
-                "price": 129.99,
-                "change": -3.02,
-                "change_pct": -2.27,
+                "price": 129.11,
+                "change": -3.9,
+                "change_pct": -2.93,
                 "label": "盤前"
               },
               "intraday": [],
@@ -371708,9 +371708,9 @@
               "change": -4.15,
               "change_pct": -0.68,
               "ext_session": {
-                "price": 576.0,
-                "change": -26.01,
-                "change_pct": -4.32,
+                "price": 579.0,
+                "change": -23.01,
+                "change_pct": -3.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -389046,9 +389046,9 @@
               "change": -1.02,
               "change_pct": -1.27,
               "ext_session": {
-                "price": 77.62,
-                "change": -1.87,
-                "change_pct": -2.35,
+                "price": 77.44,
+                "change": -2.05,
+                "change_pct": -2.58,
                 "label": "盤前"
               },
               "intraday": [],
@@ -390092,9 +390092,9 @@
               "change": -0.42,
               "change_pct": -3.21,
               "ext_session": {
-                "price": 12.55,
-                "change": -0.1,
-                "change_pct": -0.79,
+                "price": 12.46,
+                "change": -0.19,
+                "change_pct": -1.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -404406,9 +404406,9 @@
               "change": 0.81,
               "change_pct": 0.48,
               "ext_session": {
-                "price": 168.96,
-                "change": -1.63,
-                "change_pct": -0.96,
+                "price": 168.63,
+                "change": -1.96,
+                "change_pct": -1.15,
                 "label": "盤前"
               },
               "intraday": [],
@@ -405452,9 +405452,9 @@
               "change": 3.54,
               "change_pct": 1.64,
               "ext_session": {
-                "price": 219.04,
-                "change": -0.85,
-                "change_pct": -0.39,
+                "price": 219.2,
+                "change": -0.69,
+                "change_pct": -0.31,
                 "label": "盤前"
               },
               "intraday": [],
@@ -408590,9 +408590,9 @@
               "change": 0.76,
               "change_pct": 1.49,
               "ext_session": {
-                "price": 51.22,
-                "change": -0.45,
-                "change_pct": -0.87,
+                "price": 51.23,
+                "change": -0.44,
+                "change_pct": -0.85,
                 "label": "盤前"
               },
               "intraday": [],
@@ -411728,9 +411728,9 @@
               "change": -0.09,
               "change_pct": -0.28,
               "ext_session": {
-                "price": 31.91,
-                "change": -0.01,
-                "change_pct": -0.03,
+                "price": 31.84,
+                "change": -0.09,
+                "change_pct": -0.27,
                 "label": "盤前"
               },
               "intraday": [],
@@ -413820,9 +413820,9 @@
               "change": -0.73,
               "change_pct": -0.24,
               "ext_session": {
-                "price": 307.1,
-                "change": -1.65,
-                "change_pct": -0.53,
+                "price": 307.0,
+                "change": -1.75,
+                "change_pct": -0.57,
                 "label": "盤前"
               },
               "intraday": [],
@@ -418902,9 +418902,9 @@
               "change": 1.8,
               "change_pct": 0.44,
               "ext_session": {
-                "price": 413.79,
-                "change": -0.86,
-                "change_pct": -0.21,
+                "price": 412.68,
+                "change": -1.97,
+                "change_pct": -0.48,
                 "label": "盤前"
               },
               "intraday": [],
@@ -419948,9 +419948,9 @@
               "change": 1.99,
               "change_pct": 0.76,
               "ext_session": {
-                "price": 265.25,
-                "change": 0.35,
-                "change_pct": 0.13,
+                "price": 263.4,
+                "change": -1.5,
+                "change_pct": -0.57,
                 "label": "盤前"
               },
               "intraday": [],
@@ -424058,9 +424058,9 @@
               "change": 0.55,
               "change_pct": 0.86,
               "ext_session": {
-                "price": 64.01,
-                "change": -0.42,
-                "change_pct": -0.65,
+                "price": 64.43,
+                "change": 0.0,
+                "change_pct": 0.0,
                 "label": "盤前"
               },
               "intraday": [],
@@ -440276,9 +440276,9 @@
               "change": -1.9,
               "change_pct": -5.51,
               "ext_session": {
-                "price": 31.35,
-                "change": -1.25,
-                "change_pct": -3.83,
+                "price": 31.24,
+                "change": -1.36,
+                "change_pct": -4.16,
                 "label": "盤前"
               },
               "intraday": [],
@@ -447450,9 +447450,9 @@
               "change": 0.95,
               "change_pct": 0.29,
               "ext_session": {
-                "price": 328.46,
-                "change": -3.35,
-                "change_pct": -1.01,
+                "price": 329.16,
+                "change": -2.65,
+                "change_pct": -0.8,
                 "label": "盤前"
               },
               "intraday": [],
@@ -451560,9 +451560,9 @@
               "change": -0.05,
               "change_pct": -0.03,
               "ext_session": {
-                "price": 169.98,
-                "change": -1.52,
-                "change_pct": -0.89,
+                "price": 169.71,
+                "change": -1.79,
+                "change_pct": -1.05,
                 "label": "盤前"
               },
               "intraday": [],
@@ -452606,9 +452606,9 @@
               "change": -2.54,
               "change_pct": -3.96,
               "ext_session": {
-                "price": 59.47,
-                "change": -2.06,
-                "change_pct": -3.35,
+                "price": 59.4,
+                "change": -2.13,
+                "change_pct": -3.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -453652,9 +453652,9 @@
               "change": -0.03,
               "change_pct": -0.23,
               "ext_session": {
-                "price": 12.52,
-                "change": -0.48,
-                "change_pct": -3.69,
+                "price": 12.56,
+                "change": -0.44,
+                "change_pct": -3.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -455707,9 +455707,9 @@
               "change": -3.59,
               "change_pct": -2.09,
               "ext_session": {
-                "price": 165.99,
-                "change": -2.0,
-                "change_pct": -1.19,
+                "price": 165.95,
+                "change": -2.04,
+                "change_pct": -1.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -481268,9 +481268,9 @@
               "change": 2.02,
               "change_pct": 1.83,
               "ext_session": {
-                "price": 111.5,
-                "change": -0.9,
-                "change_pct": -0.8,
+                "price": 111.2,
+                "change": -1.2,
+                "change_pct": -1.07,
                 "label": "盤前"
               },
               "intraday": [],
@@ -486387,9 +486387,9 @@
               "change": 2.46,
               "change_pct": 1.01,
               "ext_session": {
-                "price": 247.0,
-                "change": -0.13,
-                "change_pct": -0.05,
+                "price": 246.5,
+                "change": -0.63,
+                "change_pct": -0.25,
                 "label": "盤前"
               },
               "intraday": [],
@@ -490497,9 +490497,9 @@
               "change": -0.42,
               "change_pct": -0.13,
               "ext_session": {
-                "price": 318.0,
-                "change": -4.24,
-                "change_pct": -1.32,
+                "price": 317.0,
+                "change": -5.24,
+                "change_pct": -1.63,
                 "label": "盤前"
               },
               "intraday": [],
@@ -491543,9 +491543,9 @@
               "change": -3.26,
               "change_pct": -1.42,
               "ext_session": {
-                "price": 223.04,
-                "change": -3.57,
-                "change_pct": -1.58,
+                "price": 222.85,
+                "change": -3.76,
+                "change_pct": -1.66,
                 "label": "盤前"
               },
               "intraday": [],
@@ -492589,9 +492589,9 @@
               "change": -1.76,
               "change_pct": -1.38,
               "ext_session": {
-                "price": 121.15,
-                "change": -4.2,
-                "change_pct": -3.35,
+                "price": 121.31,
+                "change": -4.04,
+                "change_pct": -3.22,
                 "label": "盤前"
               },
               "intraday": [],
@@ -493635,9 +493635,9 @@
               "change": 1.59,
               "change_pct": 1.58,
               "ext_session": {
-                "price": 102.0,
-                "change": -0.25,
-                "change_pct": -0.24,
+                "price": 101.59,
+                "change": -0.66,
+                "change_pct": -0.65,
                 "label": "盤前"
               },
               "intraday": [],
@@ -501818,9 +501818,9 @@
               "change": 4.54,
               "change_pct": 1.9,
               "ext_session": {
-                "price": 243.58,
-                "change": 0.5,
-                "change_pct": 0.21,
+                "price": 244.4,
+                "change": 1.32,
+                "change_pct": 0.54,
                 "label": "盤前"
               },
               "intraday": [],
@@ -509964,9 +509964,9 @@
               "change": 0.98,
               "change_pct": 2.41,
               "ext_session": {
-                "price": 42.18,
-                "change": 0.55,
-                "change_pct": 1.32,
+                "price": 42.2,
+                "change": 0.57,
+                "change_pct": 1.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -513102,9 +513102,9 @@
               "change": 0.06,
               "change_pct": 0.21,
               "ext_session": {
-                "price": 29.12,
-                "change": 0.23,
-                "change_pct": 0.8,
+                "price": 29.14,
+                "change": 0.25,
+                "change_pct": 0.88,
                 "label": "盤前"
               },
               "intraday": [],
@@ -514148,8 +514148,8 @@
               "change": -1.39,
               "change_pct": -0.3,
               "ext_session": {
-                "price": 470.99,
-                "change": 5.32,
+                "price": 471.0,
+                "change": 5.33,
                 "change_pct": 1.14,
                 "label": "盤前"
               },
@@ -515194,9 +515194,9 @@
               "change": -4.02,
               "change_pct": -0.74,
               "ext_session": {
-                "price": 544.73,
-                "change": 6.13,
-                "change_pct": 1.14,
+                "price": 543.13,
+                "change": 4.53,
+                "change_pct": 0.84,
                 "label": "盤前"
               },
               "intraday": [],
@@ -516240,9 +516240,9 @@
               "change": 4.28,
               "change_pct": 0.45,
               "ext_session": {
-                "price": 968.5,
-                "change": 13.03,
-                "change_pct": 1.36,
+                "price": 971.02,
+                "change": 15.55,
+                "change_pct": 1.63,
                 "label": "盤前"
               },
               "intraday": [],
@@ -527601,9 +527601,9 @@
               "change": -2.75,
               "change_pct": -0.88,
               "ext_session": {
-                "price": 306.0,
-                "change": -3.64,
-                "change_pct": -1.18,
+                "price": 312.5,
+                "change": 2.86,
+                "change_pct": 0.92,
                 "label": "盤前"
               },
               "intraday": [],
@@ -528647,9 +528647,9 @@
               "change": 0.14,
               "change_pct": 0.32,
               "ext_session": {
-                "price": 44.41,
-                "change": 0.07,
-                "change_pct": 0.15,
+                "price": 44.68,
+                "change": 0.34,
+                "change_pct": 0.77,
                 "label": "盤前"
               },
               "intraday": [],
@@ -529688,10 +529688,10 @@
               "name": "6469 大樹",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 58.5,
-              "prev_close": 60.9,
-              "change": -2.4,
-              "change_pct": -3.94,
+              "price": 0.0,
+              "prev_close": 0.0,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [],
@@ -540906,9 +540906,9 @@
               "change": 2.33,
               "change_pct": 0.58,
               "ext_session": {
-                "price": 411.86,
-                "change": 4.4,
-                "change_pct": 1.08,
+                "price": 411.0,
+                "change": 3.54,
+                "change_pct": 0.87,
                 "label": "盤前"
               },
               "intraday": [],
@@ -555328,9 +555328,9 @@
               "change": 5.45,
               "change_pct": 1.3,
               "ext_session": {
-                "price": 428.89,
-                "change": 3.13,
-                "change_pct": 0.74,
+                "price": 428.75,
+                "change": 2.99,
+                "change_pct": 0.7,
                 "label": "盤前"
               },
               "intraday": [],
@@ -559512,9 +559512,9 @@
               "change": 2.47,
               "change_pct": 0.78,
               "ext_session": {
-                "price": 317.0,
-                "change": -0.97,
-                "change_pct": -0.31,
+                "price": 319.29,
+                "change": 1.32,
+                "change_pct": 0.42,
                 "label": "盤前"
               },
               "intraday": [],
@@ -574832,9 +574832,9 @@
               "change": -0.05,
               "change_pct": -0.04,
               "ext_session": {
-                "price": 122.91,
-                "change": -1.1,
-                "change_pct": -0.89,
+                "price": 123.0,
+                "change": -1.01,
+                "change_pct": -0.81,
                 "label": "盤前"
               },
               "intraday": [],
@@ -592207,9 +592207,9 @@
               "change": 1.65,
               "change_pct": 1.39,
               "ext_session": {
-                "price": 118.25,
-                "change": -1.94,
-                "change_pct": -1.61,
+                "price": 119.4,
+                "change": -0.79,
+                "change_pct": -0.66,
                 "label": "盤前"
               },
               "intraday": [],
@@ -597363,9 +597363,9 @@
               "change": -5.08,
               "change_pct": -0.84,
               "ext_session": {
-                "price": 586.6,
-                "change": -13.6,
-                "change_pct": -2.27,
+                "price": 585.5,
+                "change": -14.7,
+                "change_pct": -2.45,
                 "label": "盤前"
               },
               "intraday": [],
@@ -598409,9 +598409,9 @@
               "change": -5.25,
               "change_pct": -0.77,
               "ext_session": {
-                "price": 670.02,
-                "change": -3.52,
-                "change_pct": -0.52,
+                "price": 674.66,
+                "change": 1.12,
+                "change_pct": 0.17,
                 "label": "盤前"
               },
               "intraday": [],
@@ -615710,9 +615710,9 @@
               "change": 0.43,
               "change_pct": 0.12,
               "ext_session": {
-                "price": 349.1,
-                "change": 0.41,
-                "change_pct": 0.12,
+                "price": 347.95,
+                "change": -0.74,
+                "change_pct": -0.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -616756,9 +616756,9 @@
               "change": 0.27,
               "change_pct": 0.12,
               "ext_session": {
-                "price": 226.9,
-                "change": -0.83,
-                "change_pct": -0.36,
+                "price": 226.12,
+                "change": -1.61,
+                "change_pct": -0.71,
                 "label": "盤前"
               },
               "intraday": [],
@@ -630135,9 +630135,9 @@
               "change": 1.28,
               "change_pct": 0.4,
               "ext_session": {
-                "price": 318.11,
-                "change": -5.16,
-                "change_pct": -1.6,
+                "price": 320.73,
+                "change": -2.54,
+                "change_pct": -0.79,
                 "label": "盤前"
               },
               "intraday": [],
@@ -639253,8 +639253,8 @@
               "change": -1.66,
               "change_pct": -0.61,
               "ext_session": {
-                "price": 274.02,
-                "change": 2.05,
+                "price": 274.0,
+                "change": 2.03,
                 "change_pct": 0.75,
                 "label": "盤前"
               },
@@ -641345,9 +641345,9 @@
               "change": 0.11,
               "change_pct": 0.31,
               "ext_session": {
-                "price": 35.57,
-                "change": 0.29,
-                "change_pct": 0.82,
+                "price": 35.45,
+                "change": 0.16,
+                "change_pct": 0.47,
                 "label": "盤前"
               },
               "intraday": [],
@@ -643477,9 +643477,9 @@
               "change": 1.93,
               "change_pct": 2.72,
               "ext_session": {
-                "price": 72.9,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 73.14,
+                "change": 0.24,
+                "change_pct": 0.33,
                 "label": "盤前"
               },
               "intraday": [],
@@ -652595,9 +652595,9 @@
               "change": 1.77,
               "change_pct": 1.05,
               "ext_session": {
-                "price": 171.36,
-                "change": 1.56,
-                "change_pct": 0.92,
+                "price": 171.2,
+                "change": 1.4,
+                "change_pct": 0.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -653641,9 +653641,9 @@
               "change": 1.81,
               "change_pct": 1.86,
               "ext_session": {
-                "price": 99.82,
-                "change": 0.57,
-                "change_pct": 0.57,
+                "price": 99.88,
+                "change": 0.63,
+                "change_pct": 0.63,
                 "label": "盤前"
               },
               "intraday": [],
@@ -655733,9 +655733,9 @@
               "change": 2.3,
               "change_pct": 1.17,
               "ext_session": {
-                "price": 200.6,
-                "change": 1.64,
-                "change_pct": 0.82,
+                "price": 200.87,
+                "change": 1.91,
+                "change_pct": 0.96,
                 "label": "盤前"
               },
               "intraday": [],
@@ -656779,9 +656779,9 @@
               "change": 0.23,
               "change_pct": 0.61,
               "ext_session": {
-                "price": 38.3,
-                "change": 0.31,
-                "change_pct": 0.83,
+                "price": 38.19,
+                "change": 0.2,
+                "change_pct": 0.53,
                 "label": "盤前"
               },
               "intraday": [],
@@ -664888,9 +664888,9 @@
               "change": 14.0,
               "change_pct": 1.28,
               "ext_session": {
-                "price": 1109.0,
-                "change": 2.79,
-                "change_pct": 0.25,
+                "price": 1108.44,
+                "change": 2.23,
+                "change_pct": 0.2,
                 "label": "盤前"
               },
               "intraday": [],
@@ -665934,9 +665934,9 @@
               "change": -1.61,
               "change_pct": -1.18,
               "ext_session": {
-                "price": 135.27,
-                "change": 0.9,
-                "change_pct": 0.67,
+                "price": 134.37,
+                "change": 0.0,
+                "change_pct": 0.0,
                 "label": "盤前"
               },
               "intraday": [],
@@ -667594,13 +667594,13 @@
     }
   ],
   "daily_market_report": {
-    "report_date": "2026-11-16 21:19 CST",
-    "headline": "台股最新收盤報 41040.08 (-6.03%)、臺指 VIX 報 48.85，三大法人合計 -1140.55 億，迎戰美國零售銷售與輝達財報",
+    "report_date": "2026-11-16 21:31 CST",
+    "headline": "台股最新收盤報 41040.08 (-6.03%)、臺指 VIX 報 48.8，三大法人合計 -1140.55 億，迎戰美國零售銷售與輝達財報",
     "market_drivers": [
-      "【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 7561.67 (-0.40%)、道瓊工業指數報 52347.55 (+0.10%)、納斯達克報 25136.27 (-0.91%)、費城半導體報 10146.32 (-3.43%)；美國 CBOE VIX 恐慌指數報 20.55 (+6.48%)。",
-      "【二、台股大盤量價、臺指 VIX 與權值解析】台灣加權指數收在 41040.08 點 (-6.03%)，櫃買指數收 0.0 點 (0.00%)，期交所臺指選擇權波動率指數 (VIXTWN) 報 48.85 (+29.10%)。台積電收 2350.0 元 (+0.43%)、聯發科收 4120.0 元 (+7.01%)、台達電收 1240.0 元 (0.00%)。",
+      "【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 7561.67 (-0.40%)、道瓊工業指數報 52347.55 (+0.10%)、納斯達克報 25136.27 (-0.91%)、費城半導體報 10146.32 (-3.43%)；美國 CBOE VIX 恐慌指數報 20.6 (+6.74%)。",
+      "【二、台股大盤量價、臺指 VIX 與權值解析】台灣加權指數收在 41040.08 點 (-6.03%)，櫃買指數收 0.0 點 (0.00%)，期交所臺指選擇權波動率指數 (VIXTWN) 報 48.8 (+28.96%)。台積電收 2350.0 元 (+0.43%)、聯發科收 4120.0 元 (+7.01%)、台達電收 1240.0 元 (0.00%)。",
       "【三、三大法人籌碼與融資結構】最新交易日外資及陸資 -701.89 億元、投信 -179.63 億元、自營商 -259.03 億元，三大法人合計 -1140.55 億元。",
-      "【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 0.0%、10 年期報 5.15%、30 年期報 5.48%；美元兌新台幣報 32.93，比特幣 (BTC) 報 64117.32 美元、以太幣 (ETH) 報 1799.05 美元。"
+      "【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 0.0%、10 年期報 5.15%、30 年期報 5.48%；美元兌新台幣報 32.95，比特幣 (BTC) 報 64213.52 美元、以太幣 (ETH) 報 1800.6 美元。"
     ],
     "bullish_factors": [
       "🔥 企業基本面與前 10 月營收維持高成長：台積電 10 月營收創單月歷史新高，上櫃公司前 10 月累計營收年增 +34%。",
