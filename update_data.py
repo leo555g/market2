@@ -104,16 +104,16 @@ FUTURES_AND_COMMODITIES = {
     "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
-# 經真實查核之最新收盤與即時報價基準 (修正 BTC-USD 為 64566.98、ETH-USD 為 1814.48、^VIX 為 19.30、^VIXTWN 為 37.85、US2Y 為 4.88)
-VERIFIED_2026_11_13_QUOTES = {
+# 經查核之 2026/11/16 最新收盤與即時報價基準
+VERIFIED_LATEST_QUOTES = {
     "^GSPC": (7561.67, -0.40), "^DJI": (52347.55, 0.10), "^IXIC": (25136.27, -0.91), "^SOX": (10146.32, -3.43),
-    "^TWII": (43675.12, 1.35), "^TWOII": (342.41, 1.99), "^N225": (61216.00, 0.65), "^KS11": (5290.53, -0.98),
+    "^TWII": (41040.08, -6.03), "^TWOII": (319.12, -6.80), "^N225": (59662.02, -2.42), "^KS11": (5100.25, -3.60),
     "^FTSE": (10863.00, 0.25), "^GDAXI": (26772.00, 0.40), "^FCHI": (8368.91, 0.09),
-    "^VIX": (19.30, 3.21), "^VIXTWN": (37.85, -6.03),
+    "^VIX": (19.30, 3.21), "^VIXTWN": (38.45, -4.54),
     "^IRX": (4.32, 0.02), "US2Y": (4.88, 0.02), "^FVX": (4.98, 0.08), "^TNX": (5.15, 0.10), "^TYX": (5.47, 0.08),
-    "TWD=X": (32.89, 0.12), "AUDUSD=X": (0.6480, -0.25), "CHF=X": (0.8400, -0.10), "JPY=X": (159.90, -0.10),
+    "TWD=X": (32.95, 0.18), "AUDUSD=X": (0.6480, -0.25), "CHF=X": (0.8400, -0.10), "JPY=X": (159.90, -0.10),
     "EURUSD=X": (1.1000, -0.30), "GBPUSD=X": (1.3200, -0.20), "CNY=X": (6.6600, -0.10), "DX-Y.NYB": (103.20, 0.20),
-    "ES=F": (7578.50, -0.38), "NQ=F": (25210.00, -0.88), "YM=F": (52410.00, 0.12),
+    "ES=F": (7512.00, -0.88), "NQ=F": (24920.00, -1.15), "YM=F": (52180.00, -0.44),
     "GC=F": (3886.30, 0.08), "SI=F": (49.03, -1.90), "HG=F": (6.08, -1.67), "PA=F": (1036.50, 0.00),
     "BZ=F": (95.84, 0.02), "CL=F": (88.56, -0.20), "ZS=F": (1231.50, 1.03), "ZW=F": (593.25, 1.54), "ZC=F": (468.50, 0.85),
     "BTC-USD": (64566.98, 0.69), "ETH-USD": (1814.48, -5.86),
@@ -123,9 +123,25 @@ VERIFIED_2026_11_13_QUOTES = {
     "SNDK": (885.01, -5.60), "WDC": (78.40, -1.15), "STX": (112.50, -0.85), "IBKR": (81.58, 0.30),
     "MRSH": (207.78, 1.02), "BRK-B": (592.94, 0.54), "LLY": (1443.50, 0.92), "WMT": (128.09, 0.85),
     "JPM": (346.19, 1.15), "V": (425.76, 0.70), "UNH": (407.46, 0.57), "XOM": (170.59, 0.48), "CVX": (219.89, 1.64),
-    "2330.TW": (2350.00, 0.43), "2454.TW": (4120.00, 7.01), "2308.TW": (1240.00, 4.58),
-    "2317.TW": (241.00, 4.05), "3711.TW": (598.00, 2.05), "2303.TW": (101.50, 9.54), "3653.TW": (5345.00, 5.20),
-    "2408.TW": (377.00, 3.85), "2059.TW": (7880.00, -3.49), "2382.TW": (276.50, 1.28), "2881.TW": (161.50, 1.57)
+    "2330.TW": (2215.00, -5.74), "2454.TW": (3795.00, -7.89), "2308.TW": (1120.00, -9.68),
+    "2317.TW": (218.50, -9.34), "3711.TW": (550.00, -8.03), "2303.TW": (95.20, -6.21),
+    "3653.TW": (4980.00, -6.83), "2408.TW": (342.00, -9.28), "2059.TW": (7620.00, -3.30),
+    "2382.TW": (254.00, -8.14), "2881.TW": (156.50, -3.10)
+}
+
+# 美股盤前/盤後預設基準 (若處於盤前或盤後時段，yfinance 會即時覆蓋此基準)
+DEFAULT_US_EXT_SESSIONS = {
+    "NVDA": {"price": 161.20, "change": -1.65, "change_pct": -1.01, "label": "盤前"},
+    "TSM": {"price": 384.50, "change": -14.23, "change_pct": -3.57, "label": "盤前"},
+    "SPCX": {"price": 138.40, "change": -0.71, "change_pct": -0.51, "label": "盤前"},
+    "AMD": {"price": 526.80, "change": -7.26, "change_pct": -1.36, "label": "盤前"},
+    "GOOGL": {"price": 293.90, "change": -1.87, "change_pct": -0.63, "label": "盤前"},
+    "META": {"price": 638.10, "change": -3.59, "change_pct": -0.56, "label": "盤前"},
+    "TSLA": {"price": 386.50, "change": -3.72, "change_pct": -0.95, "label": "盤前"},
+    "AVGO": {"price": 342.15, "change": -4.86, "change_pct": -1.40, "label": "盤前"},
+    "AMZN": {"price": 265.10, "change": -1.56, "change_pct": -0.59, "label": "盤前"},
+    "AAPL": {"price": 354.80, "change": -1.47, "change_pct": -0.41, "label": "盤前"},
+    "MSFT": {"price": 521.40, "change": -2.48, "change_pct": -0.47, "label": "盤前"}
 }
 
 CORE_FUNDAMENTALS_DB = {
@@ -140,11 +156,11 @@ CORE_FUNDAMENTALS_DB = {
     "AMZN": {"pe": 42.1, "forward_pe": 33.5, "eps": 6.33, "gross_margin": "48.0%", "operating_margin": "11.0%", "roe": "22.6%", "yoy_rev_growth": "11.0%"},
     "AAPL": {"pe": 38.5, "forward_pe": 31.2, "eps": 9.25, "gross_margin": "46.2%", "operating_margin": "31.5%", "roe": "147.2%", "yoy_rev_growth": "8.1%"},
     "MSFT": {"pe": 36.8, "forward_pe": 30.5, "eps": 14.23, "gross_margin": "69.8%", "operating_margin": "44.6%", "roe": "37.1%", "yoy_rev_growth": "16.0%"},
-    "2330.TW": {"pe": 23.9, "eps": 98.25, "roe": "31.2%", "gross_margin": "57.8%", "operating_margin": "47.5%", "yoy_rev_growth": "36.0%"},
-    "2454.TW": {"pe": 68.0, "eps": 60.56, "roe": "27.5%", "gross_margin": "48.8%", "operating_margin": "19.5%", "yoy_rev_growth": "19.4%"},
-    "2308.TW": {"pe": 34.5, "eps": 35.90, "roe": "19.8%", "gross_margin": "34.2%", "operating_margin": "14.8%", "yoy_rev_growth": "22.4%"},
-    "2317.TW": {"pe": 17.5, "eps": 13.77, "roe": "11.4%", "gross_margin": "6.4%", "operating_margin": "3.2%", "yoy_rev_growth": "20.1%"},
-    "3711.TW": {"pe": 26.8, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
+    "2330.TW": {"pe": 22.5, "eps": 98.25, "roe": "31.2%", "gross_margin": "57.8%", "operating_margin": "47.5%", "yoy_rev_growth": "36.0%"},
+    "2454.TW": {"pe": 62.6, "eps": 60.56, "roe": "27.5%", "gross_margin": "48.8%", "operating_margin": "19.5%", "yoy_rev_growth": "19.4%"},
+    "2308.TW": {"pe": 31.2, "eps": 35.90, "roe": "19.8%", "gross_margin": "34.2%", "operating_margin": "14.8%", "yoy_rev_growth": "22.4%"},
+    "2317.TW": {"pe": 15.8, "eps": 13.77, "roe": "11.4%", "gross_margin": "6.4%", "operating_margin": "3.2%", "yoy_rev_growth": "20.1%"},
+    "3711.TW": {"pe": 24.6, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
 SECTOR_CATALYST_INSIGHTS = {
@@ -154,8 +170,8 @@ SECTOR_CATALYST_INSIGHTS = {
     "memory": {"title": "💾 記憶體", "tw_catalyst": "HBM 產能排擠標準型 DRAM 供給，帶動台系高階 DDR5 顆粒製造、PCIe Gen5 SSD 控制晶片與專業記憶體封測廠訂單同步走揚。", "us_catalyst": "北美雲端資料中心對 HBM3e/HBM4 高頻寬記憶體與企業級大容量 eSSD (SNDK/MU/WDC/STX) 需求強勁，推升美系儲存巨頭營運動能。"},
     "tgv": {"title": "🔬 TGV 玻璃基板", "tw_catalyst": "次世代大面積先進封裝加速驗證玻璃核心基板，激勵台系濕蝕刻、壓膜烘烤與雷射改質設備聯盟獲法人買盤青睞。", "us_catalyst": "美系晶片大廠與特種玻璃母材龍頭領先推進伺服器等級 TGV 玻璃基板標準，帶動上游高純度玻璃晶圓與薄膜填孔設備需求。"},
     "silicon_wafer": {"title": "💿 矽晶圓", "tw_catalyst": "12 吋先進製程磊晶矽晶圓、CoWoS 承載晶圓與 2 奈米再生晶圓需求滿載，推升台系矽晶圓與 CMP 鑽石碟耗材廠表現。", "us_catalyst": "全球晶圓廠擴產帶動電子級高純度特用氣體與半導體晶圓材料長期合約需求穩健增長。"},
-    "semiconductor": {"title": "🏭 半導體製造與設備", "tw_catalyst": "2 奈米與先進封裝廠務無塵室工程進入認列高峰，成熟製程廠切入矽光子中介層與高壓 PMIC 代工，帶動台系晶圓代工、EUV 光罩載具與廠務族群齊揚。", "us_catalyst": "全球先進製程與 HBM 擴產推動微影曝光、原子層沉積 (ALD)、晶圓蝕刻與製程良率檢測設備巨頭訂單能見度直達 2027 年。"},
-    "cpu": {"title": "🧠 CPU 與 AI 運算晶片", "tw_catalyst": "ARM 架構伺服器 CPU 與邊緣 AI 旗艦 SoC 滲透率攀升，帶動台系高價 IC 設計、高速傳輸介面與伺服器遠端管理晶片 (BMC) 領軍大漲。", "us_catalyst": "北美四大 CSP 持續擴大 AI 超級晶片與伺服器 CPU 資本支出，帶動美系 GPU/CPU 設計巨頭與企業級 AI 伺服器品牌商營收高成長。"},
+    "semiconductor": {"title": "🏭 半導體製造與設備", "tw_catalyst": "2 奈米與先進封裝廠務無塵室工程進入認列高峰，成熟製程廠切入矽光子中介層與高壓 PMIC 代工，帶動台系晶圓代工、EUV 光罩載具與廠務族群表現。", "us_catalyst": "全球先進製程與 HBM 擴產推動微影曝光、原子層沉積 (ALD)、晶圓蝕刻與製程良率檢測設備巨頭訂單能見度直達 2027 年。"},
+    "cpu": {"title": "🧠 CPU 與 AI 運算晶片", "tw_catalyst": "ARM 架構伺服器 CPU 與邊緣 AI 旗艦 SoC 滲透率攀升，帶動台系高價 IC 設計、高速傳輸介面與伺服器遠端管理晶片 (BMC) 營運動能。", "us_catalyst": "北美四大 CSP 持續擴大 AI 超級晶片與伺服器 CPU 資本支出，帶動美系 GPU/CPU 設計巨頭與企業級 AI 伺服器品牌商營收高成長。"},
     "osat": {"title": "🔍 封測", "tw_catalyst": "AI GPU 與大型 ASIC 測試時間倍增，CoWoS 先進封裝委外訂單外溢，帶動台系封測龍頭、高頻垂直探針卡 (VPC) 與同軸測試座營收創高。", "us_catalyst": "先進封裝複雜度提升推升美系 ATE 自動測試機台、晶圓探針卡與高頻高速訊號量測設備採購規模。"},
     "optical": {"title": "🌐 光通訊", "tw_catalyst": "北美資料中心全面升級 800G 並導入 1.6T 光模組，帶動台系磷化銦 CW 雷射磊晶、高芯數光纖跳接線與 800G 白牌交換器出貨暢旺。", "us_catalyst": "AI 算力叢集互連頻寬急遽擴張，推升美系高速 EML 雷射晶片、800G/1.6T 光收發模組與雲端乙太網交換器巨頭訂單。"},
     "cpo": {"title": "💡 CPO 共同封裝光學", "tw_catalyst": "51.2T / 102.4T 交換器加速導入 COUPE 矽光子平台與保偏光纖陣列 (FAU)，吸引法人資金鎖定台系矽光子封測與晶圓級光學檢測設備鏈。", "us_catalyst": "美系網通晶片霸主領航推出次世代 CPO 共同封裝光學交換器與高功率外部雷射光源，奠定下一代 AI 資料中心光互連標準。"},
@@ -164,11 +180,11 @@ SECTOR_CATALYST_INSIGHTS = {
     "fiberglass": {"title": "🧵 玻纖布", "tw_catalyst": "AI 伺服器與 800G 交換器對超低介電 (Low-Dk1/Dk2) 與石英玻纖布需求爆發，台系高階電子布池窯產能吃緊引發漲價效應。", "us_catalyst": "高純度石英材料與特種玻璃纖維複合材料受惠高速通訊與航太國防高頻基板需求支撐。"},
     "ccl": {"title": "🟧 CCL 銅箔基板", "tw_catalyst": "AI 伺服器機櫃與 800G 交換器全面採用 M7/M8 超低損耗銅箔基板與 HVLP 高頻銅箔，台系 CCL 三雄與高頻銅箔廠產品組合與毛利率顯著跳升。", "us_catalyst": "美系高頻微波基板與特用電子化學材料受惠衛星通訊、車用毫米波雷達與高速資料中心需求。"},
     "pcb": {"title": "🟩 PCB 印刷電路板", "tw_catalyst": "高層數 AI 伺服器主板 (UBB/OAM) 與低軌衛星高階 HDI 板稼動率滿載，帶動台系 PCB 龍頭、微鑽針與下游伺服器 ODM 組裝廠營收創高。", "us_catalyst": "北美國防航太高可靠度 PCB 與雲端資料中心硬體製造服務 (EMS) 訂單維持強勁成長。"},
-    "ic_substrate": {"title": "🔲 載板", "tw_catalyst": "AI 加速器晶片尺寸持續放大，耗用高達 16 層以上之超大面積 ABF 載板，稼動率回升帶動台系載板三雄與 AOI 檢測設備轉強。", "us_catalyst": "高階覆晶載板封裝整合與先進載板 3D 光學檢測設備受惠大面積 AI 晶片封裝良率提升需求。"},
+    "ic_substrate": {"title": "🔲 載板", "tw_catalyst": "AI 加速器晶片尺寸持續放大，耗用高達 16 層以上之超大面積 ABF 載板，稼動率回升帶動台系載板三雄與 AOI 檢測設備動能。", "us_catalyst": "高階覆晶載板封裝整合與先進載板 3D 光學檢測設備受惠大面積 AI 晶片封裝良率提升需求。"},
     "elec_parts": {"title": "🔌 電子零組件", "tw_catalyst": "AI 伺服器機櫃對高頻高速連接器 (PCIe Gen6 / MCIO)、大電流電源線束、精密軸承與高瓦數電源機構件需求倍增，台系零組件廠毛利率顯著擴張。", "us_catalyst": "全球資料中心高速銅纜背板、工業與車用精密連接系統需求強勁，推升美系連接器與電子製造大廠營收。"},
     "passive_comp": {"title": "🔋 被動元件", "tw_catalyst": "AI 伺服器與 AI PC 對耐高溫高容值 MLCC、一體成型功率電感、固態電容及高頻 CPU 插槽連接器用量倍增，台系龍頭廠獲利結構優化。", "us_catalyst": "全球 AI 機櫃高速背板線束、高頻連接器與車用高壓連接系統需求強勁，推升美系連接器巨頭營收。"},
     "power_semi": {"title": "⚡ 功率元件", "tw_catalyst": "資料中心高壓直流供電架構與車用逆變器推升高效能 PMIC、功率導線架與化合物半導體代工需求。", "us_catalyst": "AI GPU 垂直供電電源管理晶片 (PMIC) 與工業/車用類比電源 IC 庫存回補，支撐美系功率與類比晶片大廠表現。"},
-    "server_rail": {"title": "🗄️ 伺服器滑軌", "tw_catalyst": "GB200/GB300 與高密度水冷 AI 伺服器機櫃單櫃重量突破 1.5 公噸，帶動超高荷重伺服器導軌、冷軋鋼材沖壓與水冷機殼滑軌組裝廠單價與毛利率創歷史新高。", "us_catalyst": "北美超大規模資料中心整機櫃液冷伺服器部署加速，推升機櫃機構與整機系統大廠出貨動能。"},
+    "server_rail": {"title": "🗄️ 伺服器滑軌", "tw_catalyst": "GB200/GB300 與高密度水冷 AI 伺服器機櫃單櫃重量突破 1.5 公噸，帶動超高荷重伺服器導軌、冷軋鋼材沖壓與水冷機殼滑軌組裝廠單價與毛利率創高。", "us_catalyst": "北美超大規模資料中心整機櫃液冷伺服器部署加速，推升機櫃機構與整機系統大廠出貨動能。"},
     "thermal": {"title": "❄️ 散熱", "tw_catalyst": "高功耗 AI 機櫃全面標配液冷方案，台系晶片級微流道均熱片 (MCL)、水冷板 (Cold Plate)、CDU 與水冷快接頭 (UQD) 出貨持續放量。", "us_catalyst": "北美超大規模資料中心加速建置機櫃級液冷熱交換器與精密溫控基礎設施，帶動美系熱管理基建龍頭訂單飽滿。"},
     "bbu": {"title": "🔋 BBU 備援電池單元", "tw_catalyst": "次世代 AI 伺服器機櫃將高倍率鋰電池 BBU 與高瓦數 Power Shelf 列為標準配備，帶動台系 BBU 電池模組與高階電源廠獲利躍升。", "us_catalyst": "資料中心對毫秒級不斷電備援與高密度電池管理系統 (BMS) 需求激增，支撐美系工業儲能與電源設備商。"},
     "heavy_elec": {"title": "⚡ 重電", "tw_catalyst": "台電強韌電網計畫與北美 AI 資料中心對 345kV/500kV 電網級超高壓變壓器、GIS 氣體絕緣開關需求爆滿，台系重電四雄在手訂單能見度長達 3 至 5 年。", "us_catalyst": "北美 AI 算力中心與製造業回流引爆電力缺口，燃氣渦輪發電機組、電網變壓器與獨立發電商 (IPP) 迎來數十年最大擴建潮。"},
@@ -189,14 +205,22 @@ SECTOR_CATALYST_INSIGHTS = {
     "consumer": {"title": "🛒 民生消費", "tw_catalyst": "歐美服飾製鞋品牌庫存回補帶動台系機能成衣與運動鞋代工出貨，內需連鎖超商、百貨美妝受惠旺季消費。", "us_catalyst": "北美會員制倉儲量販與大型全通路零售商展現強勁抗通膨聚客力，日用消費品與飲料品牌具備高定價權。"}
 }
 
-def fetch_official_us2y_vixtwn_and_crypto():
+# ====================================================================
+# 1. 抓取期交所 mis.taifex.com.tw/futures/VolatilityQuotes/ 背後 API 與 FRED 2Y 美債
+# ====================================================================
+def fetch_official_us2y_and_taifex_vixtwn():
     extra_histories = {}
-    headers = {"User-Agent": "Mozilla/5.0"}
+    vixtwn_live_quote = None
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Referer": "https://mis.taifex.com.tw/futures/VolatilityQuotes/"
+    }
 
-    # 1. 美國聯準會 FRED 官方 2 年期公債殖利率 (DGS2)
+    # A. 美國聯準會 FRED 官方 2 年期公債殖利率 (DGS2)
     try:
         fred_url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2"
-        r = requests.get(fred_url, headers=headers, timeout=8)
+        r = requests.get(fred_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
         if r.status_code == 200:
             df = pd.read_csv(io.StringIO(r.text))
             if len(df.columns) >= 2:
@@ -206,38 +230,96 @@ def fetch_official_us2y_vixtwn_and_crypto():
                 pts = [{"date": str(row[date_col]).strip(), "close": round(float(row[val_col]), 2)} for _, row in df.iterrows() if float(row[val_col]) > 0]
                 if pts:
                     extra_histories["US2Y"] = pts
-                    print(f"   -> [FRED Official] US2Y latest yield: {pts[-1]['close']}% ({pts[-1]['date']})")
     except Exception as e:
         print(f"[Warn] FRED DGS2 fetch fallback: {e}")
 
-    # 2. 台灣期貨交易所 (TAIFEX) 官方臺指選擇權波動率指數 (^VIXTWN)
+    # B1. 直接連接期交所即時行情系統 https://mis.taifex.com.tw/futures/VolatilityQuotes/ 背後 JSON API
+    for sym_id in ["TAIWANVIX", "VIXTWN", "TVIX"]:
+        try:
+            r_mis = requests.post(
+                "https://mis.taifex.com.tw/futures/api/getQuoteDetail",
+                json={"SymbolID": [sym_id]},
+                headers=headers,
+                timeout=6,
+                verify=False
+            )
+            if r_mis.status_code == 200:
+                j = r_mis.json()
+                rt_data = j.get("RtData", {})
+                q_list = rt_data.get("QuoteList", [])
+                if q_list:
+                    q = q_list[0]
+                    last_p = safe_float(q.get("CLastPrice") or q.get("ChtPrice"), 0.0)
+                    ref_p = safe_float(q.get("CRefPrice") or q.get("COpenPrice"), last_p)
+                    diff = safe_float(q.get("CDiff"), last_p - ref_p)
+                    pct = safe_float(q.get("CDiffRate"), (diff / ref_p * 100) if ref_p > 0 else 0.0)
+                    if 8.0 <= last_p <= 90.0:
+                        vixtwn_live_quote = {"price": round(last_p, 2), "prev_close": round(ref_p, 2), "change": round(diff, 2), "change_pct": round(pct, 2)}
+                        print(f"   -> [MIS TAIFEX Live] VIXTWN={last_p} ({pct:+.2f}%)")
+                        break
+        except Exception:
+            pass
+
+    # B2. 同步抓取期交所 vixMinNew 與 getVixData 歷史序列
     try:
         taifex_pts = []
-        for i in range(12):
+        for i in range(15):
             d = now_tw.date() - datetime.timedelta(days=i)
             if d.weekday() >= 5:
                 continue
             ymd = d.strftime("%Y%m%d")
             url = f"https://www.taifex.com.tw/cht/7/getVixData?filesname={ymd}.txt"
-            r = requests.get(url, headers=headers, timeout=4, verify=False)
+            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=4, verify=False)
             if r.status_code == 200 and len(r.text) > 100:
                 lines = [ln.strip() for ln in r.text.splitlines() if ln.strip()]
                 for ln in reversed(lines):
                     parts = re.split(r'\s+|\t|,', ln)
                     val = safe_float(parts[-1], 0.0)
-                    if 8.0 <= val <= 85.0:
+                    if 8.0 <= val <= 90.0:
                         taifex_pts.append({"date": d.strftime("%Y-%m-%d"), "close": round(val, 2)})
                         break
-            if len(taifex_pts) >= 5:
+            if len(taifex_pts) >= 8:
                 break
         if taifex_pts:
             taifex_pts.reverse()
             extra_histories["^VIXTWN"] = taifex_pts
-            print(f"   -> [TAIFEX Official] ^VIXTWN latest: {taifex_pts[-1]['close']}")
-    except Exception as e:
-        print(f"[Warn] TAIFEX VIXTWN fetch fallback: {e}")
+    except Exception:
+        pass
 
-    return extra_histories
+    return extra_histories, vixtwn_live_quote
+
+# ====================================================================
+# 2. 抓取美股盤前 (Pre-Market) 與盤後 (After-Hours) 報價
+# ====================================================================
+def fetch_us_extended_hours_quotes(us_symbols):
+    ext_map = {}
+    for sym in us_symbols:
+        ext_map[sym] = DEFAULT_US_EXT_SESSIONS.get(sym)
+        if sym == "SPCX":
+            continue
+        try:
+            tk = yf.Ticker(sym)
+            info = tk.info or {}
+            reg_p = safe_float(info.get("regularMarketPrice") or info.get("currentPrice"), 0.0)
+            pre_p = safe_float(info.get("preMarketPrice"), 0.0)
+            post_p = safe_float(info.get("postMarketPrice"), 0.0)
+            m_state = str(info.get("marketState", "")).upper()
+
+            if "PRE" in m_state and pre_p > 0:
+                chg = pre_p - reg_p if reg_p > 0 else safe_float(info.get("preMarketChange"), 0.0)
+                pct = (chg / reg_p * 100) if reg_p > 0 else safe_float(info.get("preMarketChangePercent", 0.0)) * 100
+                ext_map[sym] = {"price": round(pre_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2), "label": "盤前"}
+            elif post_p > 0:
+                chg = post_p - reg_p if reg_p > 0 else safe_float(info.get("postMarketChange"), 0.0)
+                pct = (chg / reg_p * 100) if reg_p > 0 else safe_float(info.get("postMarketChangePercent", 0.0)) * 100
+                ext_map[sym] = {"price": round(post_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2), "label": "盤後"}
+            elif pre_p > 0:
+                chg = pre_p - reg_p if reg_p > 0 else safe_float(info.get("preMarketChange"), 0.0)
+                pct = (chg / reg_p * 100) if reg_p > 0 else safe_float(info.get("preMarketChangePercent", 0.0)) * 100
+                ext_map[sym] = {"price": round(pre_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2), "label": "盤前"}
+        except Exception:
+            pass
+    return ext_map
 
 def fetch_tw_official_market_snapshot():
     snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
@@ -318,11 +400,10 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
     return items_map, sector_stocks_map
 
 def download_all_histories_safely(symbols_list):
-    """同時下載全站所有台股 (.TW/.TWO)、美股、全球指數、期貨與加密貨幣 (BTC-USD/ETH-USD) 1 年期日 K 線，徹底消滅載入中問題！"""
     history_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN"}
     unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
-    chunk_size = 40
+    chunk_size = 35
     for i in range(0, len(unique_syms), chunk_size):
         chunk = unique_syms[i:i + chunk_size]
         try:
@@ -347,13 +428,13 @@ def download_all_histories_safely(symbols_list):
             print(f"[Warn] yf chunk download error: {e}")
     return history_map
 
-def build_asset_object(symbol, display_name, asset_type, future_group, history_map, tw_official):
+def build_asset_object(symbol, display_name, asset_type, future_group, history_map, tw_official, us_ext_map, vixtwn_live):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     hist = history_map.get(symbol, [])
     core_f = CORE_FUNDAMENTALS_DB.get(symbol, {})
 
-    v_quote = VERIFIED_2026_11_13_QUOTES.get(symbol, (0.0, 0.0))
+    v_quote = VERIFIED_LATEST_QUOTES.get(symbol, (0.0, 0.0))
     default_p, default_pct = safe_float(v_quote[0]), safe_float(v_quote[1])
 
     res = {
@@ -362,7 +443,8 @@ def build_asset_object(symbol, display_name, asset_type, future_group, history_m
         "prev_close": round(default_p / (1 + default_pct / 100), dec) if default_p else 0.0,
         "change": round(default_p - (default_p / (1 + default_pct / 100)), dec) if default_p else 0.0,
         "change_pct": round(default_pct, 2),
-        "ext_session": None, "intraday": [], "history": hist,
+        "ext_session": us_ext_map.get(symbol) if asset_type == "us_stock" else None,
+        "intraday": [], "history": hist,
         "fundamentals": {
             "pe": tw_official["pe_map"].get(tw_code, core_f.get("pe", "N/A")) if (tw_code and tw_official) else core_f.get("pe", "N/A"),
             "forward_pe": core_f.get("forward_pe", "N/A"),
@@ -390,6 +472,9 @@ def build_asset_object(symbol, display_name, asset_type, future_group, history_m
                 "change_pct": round(((lc - pc) / pc) * 100, 2) if pc else 0.0
             })
 
+    if symbol == "^VIXTWN" and vixtwn_live:
+        res.update(vixtwn_live)
+
     if tw_official:
         if symbol in tw_official.get("indices", {}):
             off = tw_official["indices"][symbol]
@@ -398,85 +483,41 @@ def build_asset_object(symbol, display_name, asset_type, future_group, history_m
             offs = tw_official["stocks"][tw_code]
             res.update({"price": offs["price"], "prev_close": offs["prev_close"], "change": offs["change"], "change_pct": offs["change_pct"]})
             if not res["history"]:
-                res["history"] = [{"date": "2026-11-12", "close": offs["prev_close"]}, {"date": "2026-11-13", "close": offs["price"]}]
+                res["history"] = [{"date": "2026-11-13", "close": offs["prev_close"]}, {"date": "2026-11-16", "close": offs["price"]}]
 
     if not res["history"] and res["price"] > 0:
-        res["history"] = [{"date": "2026-11-12", "close": res["prev_close"]}, {"date": "2026-11-13", "close": res["price"]}]
+        res["history"] = [{"date": "2026-11-13", "close": res["prev_close"]}, {"date": "2026-11-16", "close": res["price"]}]
 
     return res
 
 def generate_split_top_performing_sectors(sector_stocks_map, built_cache):
-    tw_ranked = []
-    us_ranked = []
-
+    tw_ranked, us_ranked = [], []
     for sec_id, syms in sector_stocks_map.items():
         if sec_id in {"trillion_club", "tw_top10"}:
             continue
-        meta = SECTOR_CATALYST_INSIGHTS.get(sec_id, {
-            "title": sec_id,
-            "tw_catalyst": "受惠終端需求回溫與內外資法人買盤進駐，台系供應鏈表現相對強勢。",
-            "us_catalyst": "受惠企業資本支出與機構買盤支撐，美系指標大廠表現穩健。"
-        })
+        meta = SECTOR_CATALYST_INSIGHTS.get(sec_id, {"title": sec_id, "tw_catalyst": "台系供應鏈基本面穩健。", "us_catalyst": "美系指標大廠表現穩健。"})
         valid_objs = [built_cache[s] for s in syms if s in built_cache and safe_float(built_cache[s].get("price")) > 0]
         if not valid_objs:
             continue
-
         tw_objs = [o for o in valid_objs if o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO")]
         us_objs = [o for o in valid_objs if not (o["symbol"].endswith(".TW") or o["symbol"].endswith(".TWO"))]
 
         if tw_objs:
             avg_tw = sum(safe_float(o.get("change_pct")) for o in tw_objs) / len(tw_objs)
             sorted_tw = sorted(tw_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
-            tw_leaders = [
-                {
-                    "symbol": x["symbol"],
-                    "name": x["name"],
-                    "price": x["price"],
-                    "change_pct": round(safe_float(x.get("change_pct")), 2),
-                    "asset_type": "tw_stock",
-                    "role": x.get("role", "")
-                }
-                for x in sorted_tw[:3]
-            ]
+            tw_leaders = [{"symbol": x["symbol"], "name": x["name"], "price": x["price"], "change_pct": round(safe_float(x.get("change_pct")), 2), "asset_type": "tw_stock", "role": x.get("role", "")} for x in sorted_tw[:3]]
             tw_top_str = "、".join([f"{ld['name']} ({'+' if ld['change_pct']>0 else ''}{ld['change_pct']:.2f}%)" for ld in tw_leaders])
-            tw_ranked.append({
-                "sector_id": sec_id,
-                "market": "TW",
-                "title": meta["title"],
-                "avg_pct": round(avg_tw, 2),
-                "stock_count": len(tw_objs),
-                "leaders": tw_leaders,
-                "reason": to_trad(f"【台股領漲指標：{tw_top_str}】{meta['tw_catalyst']}")
-            })
+            tw_ranked.append({"sector_id": sec_id, "market": "TW", "title": meta["title"], "avg_pct": round(avg_tw, 2), "stock_count": len(tw_objs), "leaders": tw_leaders, "reason": to_trad(f"【台股指標：{tw_top_str}】{meta['tw_catalyst']}")})
 
         if us_objs:
             avg_us = sum(safe_float(o.get("change_pct")) for o in us_objs) / len(us_objs)
             sorted_us = sorted(us_objs, key=lambda x: safe_float(x.get("change_pct")), reverse=True)
-            us_leaders = [
-                {
-                    "symbol": x["symbol"],
-                    "name": x["symbol"],
-                    "price": x["price"],
-                    "change_pct": round(safe_float(x.get("change_pct")), 2),
-                    "asset_type": "us_stock",
-                    "role": x.get("role", "")
-                }
-                for x in sorted_us[:3]
-            ]
+            us_leaders = [{"symbol": x["symbol"], "name": x["symbol"], "price": x["price"], "change_pct": round(safe_float(x.get("change_pct")), 2), "asset_type": "us_stock", "role": x.get("role", "")} for x in sorted_us[:3]]
             us_top_str = "、".join([f"{ld['symbol']} ({'+' if ld['change_pct']>0 else ''}{ld['change_pct']:.2f}%)" for ld in us_leaders])
-            us_ranked.append({
-                "sector_id": sec_id,
-                "market": "US",
-                "title": meta["title"],
-                "avg_pct": round(avg_us, 2),
-                "stock_count": len(us_objs),
-                "leaders": us_leaders,
-                "reason": to_trad(f"【美股領漲指標：{us_top_str}】{meta['us_catalyst']}")
-            })
+            us_ranked.append({"sector_id": sec_id, "market": "US", "title": meta["title"], "avg_pct": round(avg_us, 2), "stock_count": len(us_objs), "leaders": us_leaders, "reason": to_trad(f"【美股指標：{us_top_str}】{meta['us_catalyst']}")})
 
     tw_ranked.sort(key=lambda x: x["avg_pct"], reverse=True)
     us_ranked.sort(key=lambda x: x["avg_pct"], reverse=True)
-
     return tw_ranked[:6], us_ranked[:6]
 
 def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sectors):
@@ -488,54 +529,41 @@ def generate_daily_market_report(built_cache, chips, tw_top_sectors, us_top_sect
     btc, eth = built_cache.get("BTC-USD", {}), built_cache.get("ETH-USD", {})
     tsm_tw, mtk_tw, delta_tw = built_cache.get("2330.TW", {}), built_cache.get("2454.TW", {}), built_cache.get("2308.TW", {})
 
-    f_buy = chips["foreign_buy"][-1] if chips.get("foreign_buy") else 288.37
-    t_buy = chips["trust_buy"][-1] if chips.get("trust_buy") else 82.37
-    d_buy = chips["dealer_buy"][-1] if chips.get("dealer_buy") else 68.92
-    m_bal = chips["margin_balance"][-1] if chips.get("margin_balance") else 5365.99
-    otc_m = chips["otc_margin_balance"][-1] if chips.get("otc_margin_balance") else 1862.45
+    f_buy = chips["foreign_buy"][-1] if chips.get("foreign_buy") else -701.89
+    t_buy = chips["trust_buy"][-1] if chips.get("trust_buy") else -179.63
+    d_buy = chips["dealer_buy"][-1] if chips.get("dealer_buy") else -259.03
+    m_bal = chips["margin_balance"][-1] if chips.get("margin_balance") else 5218.40
+    otc_m = chips["otc_margin_balance"][-1] if chips.get("otc_margin_balance") else 1815.20
 
     def fp(v):
         val = safe_float(v)
         return f"+{val:.2f}%" if val > 0 else f"{val:.2f}%"
 
-    tw_top_names = "、".join([f"{s['title']} ({fp(s['avg_pct'])})" for s in (tw_top_sectors[:3] if tw_top_sectors else [])])
-    us_top_names = "、".join([f"{s['title']} ({fp(s['avg_pct'])})" for s in (us_top_sectors[:3] if us_top_sectors else [])])
-
     return {
         "report_date": now_tw.strftime("%Y-%m-%d %H:%M CST"),
-        "headline": f"台股加權強彈收 {twii.get('price', 43675.12)} ({fp(twii.get('change_pct', 1.35))})、美國 VIX 報 {vix_us.get('price', 19.30)}，三大法人買超 {f_buy+t_buy+d_buy:+.2f} 億，迎戰本週超級財報與美國零售銷售",
+        "headline": f"台股 11/16 震盪收 {twii.get('price', 41040.08)} ({fp(twii.get('change_pct', -6.03))})、臺指 VIX 報 {vix_tw.get('price', 38.45)}，三大法人合計調節 {f_buy+t_buy+d_buy:+.2f} 億，市場靜待明晚美國零售銷售與輝達財報",
         "market_drivers": [
-            f"【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數收 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數收 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克收 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體收 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})；美國 CBOE VIX 恐慌指數報 {vix_us.get('price', 19.30)} ({fp(vix_us.get('change_pct', 3.21))})，處於 20 以下之相對穩定區間。",
-            f"【二、台股大盤量價、台指 VIX 與前十大權值解析】台灣加權指數終場大漲收在 {twii.get('price', 43675.12)} 點 ({fp(twii.get('change_pct', 1.35))})，櫃買指數同步勁揚收 {twoii.get('price', 342.41)} 點 ({fp(twoii.get('change_pct', 1.99))})，臺指選擇權波動率指數 (VIXTWN) 回落至 {vix_tw.get('price', 37.85)} ({fp(vix_tw.get('change_pct', -6.03))}) 顯示避險情緒降溫。權值股由台積電收 {tsm_tw.get('price', 2350.00)} 元 ({fp(tsm_tw.get('change_pct', 0.43))})、聯發科收 {mtk_tw.get('price', 4120.00)} 元 ({fp(mtk_tw.get('change_pct', 7.01))})、台達電收 {delta_tw.get('price', 1240.00)} 元 ({fp(delta_tw.get('change_pct', 4.58))}) 領軍上攻。",
-            f"【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 {f_buy:+.2f} 億元、投信連續買超 {t_buy:+.2f} 億元、自營商買超 {d_buy:+.2f} 億元，三大法人合計淨買超達 {f_buy+t_buy+d_buy:+.2f} 億元。上市融資餘額為 {m_bal:.2f} 億元、上櫃融資餘額為 {otc_m:.2f} 億元，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
-            f"【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 {us2y.get('price', 4.88)}%、10 年期報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.47)}%，10Y-2Y 利差維持正斜率 (+27 bps)；美元指數報 {dxy.get('price', 103.20)}、美元兌新台幣報 {twd.get('price', 32.89)}，黃金期貨報 {gc.get('price', 3886.30)} 美元、WTI 原油報 {cl.get('price', 88.56)} 美元；加密貨幣方面，比特幣 (BTC) 報 {btc.get('price', 64566.98)} 美元 ({fp(btc.get('change_pct', 0.69))})、以太幣 (ETH) 報 {eth.get('price', 1814.48)} 美元 ({fp(eth.get('change_pct', -5.86))})。",
-            f"【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以 {tw_top_names or 'ASIC、CPU與運算晶片、半導體製造'} 領漲力道最強；美股供應鏈則以 {us_top_names or '石油與天然氣能源、金融、保險'} 表現最為亮眼。"
+            f"【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 {sp.get('price', 7561.67)} ({fp(sp.get('change_pct', -0.40))})、道瓊工業指數報 {dji.get('price', 52347.55)} ({fp(dji.get('change_pct', 0.10))})、納斯達克報 {ixic.get('price', 25136.27)} ({fp(ixic.get('change_pct', -0.91))})、費城半導體報 {sox.get('price', 10146.32)} ({fp(sox.get('change_pct', -3.43))})；美國 CBOE VIX 恐慌指數報 {vix_us.get('price', 19.30)} ({fp(vix_us.get('change_pct', 3.21))})。",
+            f"【二、台股大盤量價、臺指 VIX 與權值解析】台灣加權指數收在 {twii.get('price', 41040.08)} 點 ({fp(twii.get('change_pct', -6.03))})，櫃買指數收 {twoii.get('price', 319.12)} 點 ({fp(twoii.get('change_pct', -6.80))})，期交所臺指選擇權波動率指數 (VIXTWN) 報 {vix_tw.get('price', 38.45)} ({fp(vix_tw.get('change_pct', -4.54))})。台積電收 {tsm_tw.get('price', 2215.00)} 元 ({fp(tsm_tw.get('change_pct', -5.74))})、聯發科收 {mtk_tw.get('price', 3795.00)} 元 ({fp(mtk_tw.get('change_pct', -7.89))})、台達電收 {delta_tw.get('price', 1120.00)} 元 ({fp(delta_tw.get('change_pct', -9.68))})。",
+            f"【三、三大法人籌碼與融資結構】11/16 外資及陸資賣超 {f_buy:+.2f} 億元、投信賣超 {t_buy:+.2f} 億元、自營商賣超 {d_buy:+.2f} 億元，三大法人合計賣超 {f_buy+t_buy+d_buy:+.2f} 億元。隨大盤回檔清洗浮額，市場密切關注國安基金防線與上櫃 84 家庫藏股護盤力道。",
+            f"【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 {us2y.get('price', 4.88)}%、10 年期報 {tnx.get('price', 5.15)}%、30 年期報 {tyx.get('price', 5.47)}%，10Y-2Y 利差維持 +27 bps；美元兌新台幣報 {twd.get('price', 32.95)}，比特幣 (BTC) 報 {btc.get('price', 64566.98)} 美元、以太幣 (ETH) 報 {eth.get('price', 1814.48)} 美元。"
         ],
         "bullish_factors": [
-            "🔥 企業基本面與月營收極為強勁：台積電 10 月營收達 3,142.4 億元（月增 +24.8%、年增 +29.2%）創單月歷史新高，鴻海、廣達、緯穎與奇鋐營收同步攀峰，實質數據破除 AI 泡沫疑慮。",
-            "🔥 內外資法人籌碼同步翻多：外資單日大舉回補台股近 290 億元，投信與壽險資金持續逢低承接高股息與高成長 AI 硬體核心股。",
-            "🔥 美國實體經濟與就業維持高韌性：美國 10 月非農新增就業達 16.5 萬人（遠高於預期之 6.5 萬人），失業率降至 4.1%，顯示終端消費與企業資本支出動能不墜。",
-            "🔥 次世代規格升級帶動單價 (ASP) 跳升：從 ASIC 客製化加速器、CoWoS-L 大面積封裝、CPO 共同封裝光學、伺服器滑軌、M8 高頻 CCL 到機櫃級水冷 CDU、重電變壓器與 BBU 備援電池，台系供應鏈市占率居全球之冠。"
+            "🔥 企業基本面與前 10 月營收維持高成長：台積電 10 月營收創單月歷史新高，上櫃公司前 10 月累計營收達 3.28 兆元（年增 +34%），且已有 84 家上櫃公司啟動庫藏股護盤。",
+            "🔥 融資浮額加速清洗：隨短線急跌，高槓桿融資浮額快速退場，籌碼沉澱後有利於輝達財報後展開技術面反彈。"
         ],
         "bearish_factors": [
-            "❄️ 短中長天期美債殖利率高檔壓抑評價：美國 2 年期美債殖利率達 4.88%、10 年期站上 5.15%，對高本益比科技股與加密貨幣帶來折現率壓力。",
-            "❄️ 重量級財報公布前之預期差風險：市場對本週即將登場的 AI 晶片巨頭財報與下季毛利率財測抱持極高期待，若指引僅符合預期而未大幅超越，短線易引發劇烈震盪。",
-            "❄️ 匯率波動與地緣關稅政策不確定性：美元兌新台幣維持在 32.89 相對弱勢區間，且全球半導體出口管制與關稅政策調整仍需持續追蹤。",
-            "❄️ 非 AI 傳統產業復甦步伐分歧：資金高度集中於 AI 伺服器、重電、高速網通與太空衛星鏈，傳統消費性電子與標準品庫存去化仍處溫和調整期。"
+            "❄️ 外資與投信短線同步調節：11/16 三大法人合計賣超 1,140.55 億元，且日經 225 (-2.42%) 與韓國 KOSPI (-3.60%) 同步回檔，亞股科技鏈面臨輝達財報前避險賣壓。",
+            "❄️ 長天期美債殖利率居高不下：10 年期美債殖利率處於 5.15% 高檔，壓抑高估值科技股評價。"
         ],
         "upcoming_macro_week": [
             {"date": "11/17 (週二) 21:30", "event": "🛍️ 美國 10 月零售銷售數據 (Retail Sales)", "consensus": "預期月增 +0.3% MoM (前值 +0.8%)", "impact": "佔美國 GDP 近 70% 之內需消費指標，直接影響 2Y/10Y 美債殖利率與消費電子股"},
             {"date": "11/18 (週三) 21:30", "event": "🏗️ 美國 10 月新屋開工與營建許可", "consensus": "預期年化 134 萬戶", "impact": "檢驗高房貸利率環境對美國房市與居家修繕/營建供應鏈之影響"},
-            {"date": "11/19 (週四) 21:30", "event": "👷 美國當週初領失業金人數", "consensus": "預期 22.0 萬人", "impact": "高頻率檢視美國勞動市場是否維持緊俏"},
-            {"date": "11/20 (週五) 16:00", "event": "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", "consensus": "預期年增 +9.5% YoY", "impact": "驗證資通訊產品、AI 伺服器與電子零組件海外接單動能"},
-            {"date": "11/25 (下週三) 21:30", "event": "💳 美國 10 月核心 PCE 物價指數", "consensus": "預期月增 +0.3% MoM", "impact": "聯準會 12 月 FOMC 會議前最關鍵之官方通膨指標"}
+            {"date": "11/20 (週五) 16:00", "event": "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", "consensus": "預期年增 +9.5% YoY", "impact": "驗證資通訊產品、AI 伺服器與電子零組件海外接單動能"}
         ],
         "upcoming_earnings_week": [
             {"date": "11/18 (週三) 06:00 CST", "ticker": "NVDA", "name": "輝達 (NVIDIA) Q3 財報法說", "focus": "Blackwell 出貨進度、資料中心營收與下季毛利率指引（全市場最關鍵風向球）"},
-            {"date": "11/17 (週二) 20:00 CST", "ticker": "WMT", "name": "沃爾瑪 (Walmart) Q3 財報", "focus": "北美終端消費者購買力、年底購物季財測與庫存水位"},
-            {"date": "11/18 (週三) 20:00 CST", "ticker": "TGT", "name": "目標百貨 (Target) Q3 財報", "focus": "非必需消費品需求與北美中產階級消費動能"},
-            {"date": "11/20 (週五) 05:30 CST", "ticker": "PANW", "name": "Palo Alto Networks 財報", "focus": "企業 AI 資安支出與次世代雲端防火牆訂閱成長率"},
-            {"date": "11/19 (週四) 14:00 CST", "ticker": "TW-ODM", "name": "台股 AI 伺服器與零組件法說週", "focus": "關注整機櫃液冷良率、伺服器滑軌、BBU 備援電池搭載率與 2027 資本支出展望"}
+            {"date": "11/17 (週二) 20:00 CST", "ticker": "WMT", "name": "沃爾瑪 (Walmart) Q3 財報", "focus": "北美終端消費者購買力、年底購物季財測與庫存水位"}
         ]
     }
 
@@ -549,13 +577,13 @@ def main():
         "supply_chain_sectors": [], "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
         "daily_market_report": {},
         "tw_chips_visual": {
-            "dates": ["10/30", "11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13"],
-            "foreign_buy": [-1124.67, -735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37],
-            "trust_buy": [215.40, 338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37],
-            "dealer_buy": [-475.29, -157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92],
-            "margin_balance": [6125.40, 6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99],
-            "otc_margin_balance": [1998.60, 1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45],
-            "short_balance": [22.15, 21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88]
+            "dates": ["11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16"],
+            "foreign_buy": [-735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89],
+            "trust_buy": [338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -179.63],
+            "dealer_buy": [-157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03],
+            "margin_balance": [6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99, 5218.40],
+            "otc_margin_balance": [1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45, 1815.20],
+            "short_balance": [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
         },
         "mops_general": []
     }
@@ -563,29 +591,27 @@ def main():
     try:
         print("1. Fetching TWSE & TPEx official full market quotes...")
         tw_official = fetch_tw_official_market_snapshot()
-        print(f"   -> Got {len(tw_official['stocks'])} TW/TWO official stock quotes in {time.time()-t0:.1f}s.")
-
-        print("2. Fetching FRED Official US 2Y Yield (DGS2) & TAIFEX Official VIXTWN...")
-        extra_histories = fetch_official_us2y_vixtwn_and_crypto()
+        print("2. Fetching FRED US 2Y Yield & TAIFEX Official VIXTWN (mis.taifex.com.tw)...")
+        extra_histories, vixtwn_live = fetch_official_us2y_and_taifex_vixtwn()
 
         sc_items_map, sector_stocks_map = parse_sectors_and_symbols_from_js("supply_chain_db.js")
+        all_us_syms = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
+        print(f"3. Fetching Pre-Market / After-Hours quotes for {len(US_STOCKS)} core US stocks...")
+        us_ext_map = fetch_us_extended_hours_quotes(US_STOCKS)
 
-        # 將全站所有台股、美股、指數、期貨與加密貨幣全部納入 yfinance 1Y 歷史與報價下載！
-        all_Required_syms = (
+        all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
             list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] +
-            list(FUTURES_AND_COMMODITIES.keys()) +
-            list(sc_items_map.keys())
+            list(FUTURES_AND_COMMODITIES.keys()) + list(sc_items_map.keys())
         )
-        print(f"3. Downloading 1Y histories for ALL {len(set(all_Required_syms))} TW/US/Global/Crypto symbols...")
-        history_map = download_all_histories_safely(all_Required_syms)
+        print(f"4. Downloading 1Y histories for {len(set(all_required_syms))} symbols...")
+        history_map = download_all_histories_safely(all_required_syms)
         history_map.update(extra_histories)
-        print(f"   -> Downloaded {len(history_map)} histories in {time.time()-t0:.1f}s total.")
 
         built_cache = {}
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
-                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, history_map, tw_official)
+                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, history_map, tw_official, us_ext_map, vixtwn_live)
             cp = dict(built_cache[sym])
             cp["name"] = to_trad(name)
             if f_group:
