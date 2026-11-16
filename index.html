@@ -476,7 +476,6 @@
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
-    // 判斷當前時間是否處於「美股正規交易時段 (美東 09:30 ~ 16:00)」
     function isUsRegularMarketOpenNow() {
       try {
         const nyStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
@@ -484,7 +483,7 @@
         const day = nyDate.getDay();
         if (day === 0 || day === 6) return false;
         const mins = nyDate.getHours() * 60 + nyDate.getMinutes();
-        return mins >= 570 && mins < 960; // 09:30 (570) ~ 16:00 (960)
+        return mins >= 570 && mins < 960;
       } catch (e) {
         return false;
       }
@@ -518,24 +517,9 @@
       "SNDK": [885.01, -5.60], "WDC": [78.40, -1.15], "STX": [112.50, -0.85], "IBKR": [81.58, 0.30],
       "MRSH": [207.78, 1.02], "BRK-B": [592.94, 0.54], "LLY": [1443.50, 0.92], "WMT": [128.09, 0.85],
       "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
-      "COP": [118.40, 1.12], "EOG": [136.80, 0.95], "SLB": [48.90, 0.65], "BKR": [44.20, 0.88],
-      "KMI": [28.50, 0.72], "WMB": [58.40, 0.81], "OKE": [104.60, 0.90], "MPC": [168.50, 1.20], "PSX": [138.20, 1.05], "VLO": [142.80, 0.95],
-      "NUE": [158.40, 0.85], "STLD": [136.20, 0.92], "CLF": [14.80, 0.55], "RS": [308.50, 0.74], "SCCO": [116.80, 0.60],
-      "MLM": [612.40, 0.88], "VMC": [284.60, 0.79], "CRH": [98.50, 1.10], "EXP": [292.30, 0.65],
-      "VZ": [43.80, 0.52], "T": [23.40, 0.68], "MSI": [488.20, 0.95], "NOK": [4.65, 0.40], "ERIC": [8.20, 0.45],
-      "FLEX": [38.90, 1.15], "SANM": [76.40, 0.82], "LFUS": [254.60, 0.64],
       "2330.TW": [2215.00, -5.74], "2454.TW": [3795.00, -7.89], "2308.TW": [1120.00, -9.68], "2317.TW": [218.50, -9.34],
       "3711.TW": [550.00, -8.03], "2303.TW": [95.20, -6.21], "3653.TW": [4980.00, -6.83], "2408.TW": [342.00, -9.28],
-      "2059.TW": [7620.00, -3.30], "2382.TW": [254.00, -8.14], "2881.TW": [156.50, -3.10], "2882.TW": [66.20, -3.22],
-      "2412.TW": [130.50, -0.76], "2891.TW": [45.20, -3.52], "3661.TW": [3020.00, -7.93], "3443.TW": [1275.00, -7.94],
-      "5274.TWO": [4320.00, -7.10], "3008.TW": [2410.00, -5.86], "3017.TW": [652.00, -9.19], "6781.TW": [905.00, -8.12],
-      "1519.TW": [632.00, -7.74], "1513.TW": [156.00, -7.42], "2345.TW": [540.00, -7.22], "2383.TW": [592.00, -8.22],
-      "2368.TW": [226.00, -9.05], "2313.TW": [76.50, -7.38], "3037.TW": [154.50, -8.04], "8046.TW": [141.00, -7.54],
-      "2327.TW": [578.00, -6.47], "3533.TW": [1560.00, -7.69], "6584.TWO": [182.00, -8.31], "8210.TW": [272.00, -8.11],
-      "1101.TW": [32.90, -2.81], "1102.TW": [42.80, -3.17], "2504.TW": [50.20, -4.56], "2002.TW": [22.10, -3.28],
-      "2006.TW": [71.80, -3.62], "2027.TW": [37.40, -3.86], "2211.TW": [126.50, -4.17], "1303.TW": [51.80, -4.43],
-      "1301.TW": [50.50, -4.36], "1326.TW": [46.40, -4.53], "6505.TW": [60.10, -3.69], "2603.TW": [216.00, -5.47],
-      "2486.TW": [153.00, -10.00], "2360.TW": [1260.00, -10.00], "2471.TW": [78.20, 9.99], "1540.TW": [18.70, 10.00]
+      "2059.TW": [7620.00, -3.30], "2382.TW": [254.00, -8.14], "2881.TW": [156.50, -3.10], "2882.TW": [66.20, -3.22]
     };
 
     const DEFAULT_US_EXT_SESSIONS = {
@@ -976,7 +960,6 @@
       renderSupplyChainView();
     }
 
-    // 視窗二卡片：大數字顯示當日正規收盤價（美股開盤時大字跳動即時價）；美股卡片下方小字顯示盤前/盤後交易價
     function buildScStockCardHtml(item) {
       const domId = safeId(item.symbol), isSelected = scCompareSymbols.includes(item.symbol), isUs = item.asset_type === "us_stock", f = item.fundamentals || {};
       const revStr = f.monthly_rev ? `月營收 ${f.monthly_rev.revenue_yi} (YoY ${formatSignedPct(f.monthly_rev.yoy)})` : (f.pe && f.pe !== 'N/A' ? `本益比 PE: ${f.pe}` : '點擊檢視基本面與多空');
@@ -1072,7 +1055,6 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
-      // 切換產業鏈時，立即向證交所 MIS 與 Yahoo 同步該產業鏈所有台美股最新報價！
       const activeTwSyms = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol);
       if (activeTwSyms.length > 0) syncTwseMisBatchInBrowser(activeTwSyms);
       secItems.slice(0, 15).forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
@@ -1277,7 +1259,6 @@
         </div>`;
     }
 
-    // 視窗一美股核心科技股卡片：大數字顯示正規盤即時/收盤價，正下方小字顯示盤前/盤後交易價
     function createUsStockRichCard(item) {
       item.name = item.symbol;
       applyVerifiedNov13IfMissing(item);
@@ -1651,6 +1632,7 @@
 
     async function tryFetchViaMultiProxy(url, postBody = null) {
       const proxies = [
+        (u) => u,
         (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
         (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
@@ -1668,7 +1650,52 @@
       return null;
     }
 
-    // 瀏覽器端直接向證交所基本市況報導 (mis.twse.com.tw) 批次查詢指定台股最新收盤價
+    // 殺手級前端台股全市場同步引擎：1 個請求透過 TradingView Taiwan Scanner 拉取全台灣 1800+ 檔上市櫃最新收盤價與漲跌幅！
+    async function syncTradingViewTaiwanScannerInBrowser() {
+      const payload = {
+        filter: [{ left: "close", operation: "greater", right: 0 }],
+        options: { lang: "zh_TW" },
+        markets: ["taiwan"],
+        symbols: { query: { types: [] }, tickers: [] },
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm"],
+        sort: { sortBy: "name", sortOrder: "asc" },
+        range: [0, 3000]
+      };
+      try {
+        const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/taiwan/scan", payload);
+        const rows = j?.data || [];
+        if (rows.length > 100) {
+          rows.forEach(row => {
+            const d = row.d || [];
+            if (d.length >= 4) {
+              const code = String(d[0] || "").trim();
+              const p = Number(d[1] || 0);
+              const pct = Number(d[2] || 0);
+              const pe = Number(d[4] || 0);
+              if (code && p > 0) {
+                const symTw = `${code}.TW`;
+                const symTwo = `${code}.TWO`;
+                VERIFIED_NOV13_2026_QUOTES[symTw] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
+                VERIFIED_NOV13_2026_QUOTES[symTwo] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
+                if (allAssetsMap[symTw]) {
+                  if (pe > 0 && allAssetsMap[symTw].fundamentals) allAssetsMap[symTw].fundamentals.pe = Number(pe.toFixed(2));
+                  updateAssetDomPrice(symTw, p, pct);
+                }
+                if (allAssetsMap[symTwo]) {
+                  if (pe > 0 && allAssetsMap[symTwo].fundamentals) allAssetsMap[symTwo].fundamentals.pe = Number(pe.toFixed(2));
+                  updateAssetDomPrice(symTwo, p, pct);
+                }
+              }
+            }
+          });
+          if (currentAppView === "supplychain") renderSupplyChainView();
+          else renderTopPerformingSectors();
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
     async function syncTwseMisBatchInBrowser(twSymList) {
       if (!twSymList || !twSymList.length) return;
       const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
@@ -1698,42 +1725,9 @@
     }
 
     async function syncAllTwStocksInBrowser() {
+      await syncTradingViewTaiwanScannerInBrowser();
       const coreTw = ["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "2382.TW", "2881.TW", "2882.TW", "2412.TW", "2891.TW", "2303.TW", "3653.TW", "2059.TW"];
       await syncTwseMisBatchInBrowser(coreTw);
-
-      try {
-        const twseAll = await tryFetchViaMultiProxy("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL");
-        if (Array.isArray(twseAll)) {
-          twseAll.forEach(row => {
-            const code = String(row.Code || "").trim(), sym = `${code}.TW`;
-            const p = parseFloat(String(row.ClosingPrice || "").replace(/,/g, ""));
-            let chg = parseFloat(String(row.Change || "0").replace(/,/g, ""));
-            if (String(row.Change || "").includes("-")) chg = -Math.abs(chg);
-            const prev = p - chg, pct = prev > 0 ? (chg / prev) * 100 : 0;
-            if (p > 0) {
-              VERIFIED_NOV13_2026_QUOTES[sym] = [p, Number(pct.toFixed(2))];
-              if (allAssetsMap[sym]) updateAssetDomPrice(sym, p, pct);
-            }
-          });
-        }
-      } catch (e) {}
-
-      try {
-        const tpexAll = await tryFetchViaMultiProxy("https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes");
-        if (Array.isArray(tpexAll)) {
-          tpexAll.forEach(row => {
-            const code = String(row.SecuritiesCompanyCode || "").trim(), sym = `${code}.TWO`;
-            const p = parseFloat(String(row.Close || "").replace(/,/g, ""));
-            let chg = parseFloat(String(row.Change || "0").replace(/,/g, ""));
-            if (String(row.Change || "").includes("-")) chg = -Math.abs(chg);
-            const prev = p - chg, pct = prev > 0 ? (chg / prev) * 100 : 0;
-            if (p > 0) {
-              VERIFIED_NOV13_2026_QUOTES[sym] = [p, Number(pct.toFixed(2))];
-              if (allAssetsMap[sym]) updateAssetDomPrice(sym, p, pct);
-            }
-          });
-        }
-      } catch (e) {}
     }
 
     async function syncTaifexVixLiveInBrowser() {
@@ -1752,8 +1746,6 @@
       }
     }
 
-    // 瀏覽器端透過 Yahoo V8 同步單一標的：
-    // 美股若處於正規開盤 (REGULAR)，大字直接更新為 regularMarketPrice；若已收盤 (PRE/POST/CLOSED)，大字顯示正規收盤價，小字更新盤前/盤後價！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
@@ -1832,9 +1824,6 @@
       if (key !== null) { localStorage.setItem("FINNHUB_API_KEY", key.trim()); startFinnhubWebSocket(key.trim()); }
     }
 
-    // Finnhub WebSocket 即時推播：
-    // 若現在是美股正規盤開盤時間 (isUsRegularMarketOpenNow() === true)，最新成交價直接更新在大數字 (price)！
-    // 若現在是美股收盤後的盤後或盤前時段，大數字維持正規收盤價，最新成交價更新在下方小字 (ext_session)！
     function startFinnhubWebSocket(apiKey) {
       if (!apiKey) return;
       if (finnhubSocket) finnhubSocket.close();
@@ -1853,11 +1842,9 @@
           const prev = Number(item.prev_close) || Number(item.price);
           if (item.asset_type === "us_stock") {
             if (isUsRegularMarketOpenNow()) {
-              // 美股開盤中：直接跳動上方大數字！
               const pct = prev > 0 ? ((last.p - prev) / prev) * 100 : 0;
               updateAssetDomPrice(mappedSym, last.p, pct, item.ext_session);
             } else {
-              // 美股盤前/盤後：大數字固定為正規收盤價，下方小字跳動盤前/盤後價！
               const regP = Number(item.price) || prev;
               const chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
               const hr = new Date().getHours();
