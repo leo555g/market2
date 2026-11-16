@@ -82,13 +82,51 @@ CORE_FUNDAMENTALS_DB = {
 }
 
 # ====================================================================
-# 通道 1 & 3：TWSE + TPEx 官方 API + FinMind 全台灣上市櫃收盤行情備援
+# 1. 台股三重官方即時與收盤通道 (mis.twse.com.tw 即時看盤 API + STOCK_DAY_ALL + TPEx)
 # ====================================================================
-def fetch_tw_official_and_finmind():
+def fetch_tw_official_all_channels(tw_sym_list):
     snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
 
-    # A. 證交所 STOCK_DAY_ALL
+    # 通道 A：證交所基本市況報導 (mis.twse.com.tw) - 13:30 一收盤立即提供當日最終收盤價與昨收價
+    ex_ch_list = ["tse_t00.tw", "otc_o00.tw"]
+    for s in tw_sym_list:
+        if s.endswith(".TW"):
+            ex_ch_list.append(f"tse_{s.split('.')[0]}.tw")
+        elif s.endswith(".TWO"):
+            ex_ch_list.append(f"otc_{s.split('.')[0]}.tw")
+
+    chunk_size = 45
+    for i in range(0, len(ex_ch_list), chunk_size):
+        chunk = ex_ch_list[i:i + chunk_size]
+        ex_str = "|".join(chunk)
+        try:
+            url = f"https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch={ex_str}&json=1&delay=0"
+            r = requests.get(url, headers=headers, timeout=6, verify=False)
+            if r.status_code == 200:
+                msg_arr = r.json().get("msgArray") or []
+                for m in msg_arr:
+                    code = str(m.get("c", "")).strip()
+                    prev_p = safe_float(m.get("y"), 0.0)
+                    # 若當盤成交價 z 為 '-'，則取最近成交價或買賣價中間值
+                    cur_p = safe_float(m.get("z"), 0.0)
+                    if cur_p <= 0:
+                        b_str = str(m.get("b", "")).split("_")[0]
+                        a_str = str(m.get("a", "")).split("_")[0]
+                        cur_p = safe_float(b_str, 0.0) or safe_float(a_str, 0.0) or safe_float(m.get("o"), 0.0) or prev_p
+                    if cur_p > 0 and prev_p > 0:
+                        chg = round(cur_p - prev_p, 2)
+                        pct = round((chg / prev_p) * 100, 2)
+                        if code == "t00":
+                            snapshot["indices"]["^TWII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg, "change_pct": pct}
+                        elif code == "o00":
+                            snapshot["indices"]["^TWOII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg, "change_pct": pct}
+                        elif code:
+                            snapshot["stocks"][code] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg, "change_pct": pct}
+        except Exception:
+            pass
+
+    # 通道 B：證交所 STOCK_DAY_ALL 官方盤後總表
     try:
         r_all = requests.get("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL", headers=headers, timeout=8, verify=False)
         if r_all.status_code == 200:
@@ -104,7 +142,7 @@ def fetch_tw_official_and_finmind():
     except Exception:
         pass
 
-    # B. 櫃買中心 tpex_mainboard_quotes
+    # 通道 C：櫃買中心 tpex_mainboard_quotes 官方盤後總表
     try:
         r_otc = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes", headers=headers, timeout=8, verify=False)
         if r_otc.status_code == 200:
@@ -120,40 +158,30 @@ def fetch_tw_official_and_finmind():
     except Exception:
         pass
 
-    # C. 若 GitHub 美國 IP 被證交所擋下，立即啟動 FinMind 開源台股全市場 API 補齊！
-    if len(snapshot["stocks"]) < 100:
-        for i in range(5):
-            d_str = (now_tw.date() - datetime.timedelta(days=i)).strftime("%Y-%m-%d")
-            try:
-                fm_url = f"https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&start_date={d_str}"
-                rf = requests.get(fm_url, headers=headers, timeout=10)
-                if rf.status_code == 200:
-                    rows = rf.json().get("data") or []
-                    if len(rows) > 200:
-                        for row in rows:
-                            code = str(row.get("stock_id", "")).strip()
-                            p = safe_float(row.get("close"), 0.0)
-                            chg = safe_float(row.get("spread"), 0.0)
-                            prev_p = p - chg
-                            pct = (chg / prev_p) * 100 if prev_p > 0 else 0.0
-                            if code and p > 0 and code not in snapshot["stocks"]:
-                                snapshot["stocks"][code] = {"price": round(p, 2), "prev_close": round(prev_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
-                        print(f"   -> [FinMind Backup] Loaded {len(rows)} TW/TWO quotes for {d_str}")
-                        break
-            except Exception:
-                pass
+    # 本益比 PE 表
+    for pe_url, k_code, k_pe in [
+        ("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL", "Code", "PEratio"),
+        ("https://www.tpex.org.tw/openapi/v1/tpex_mainboard_peratio_analysis", "SecuritiesCompanyCode", "PriceEarningRatio")
+    ]:
+        try:
+            rp = requests.get(pe_url, headers=headers, timeout=6, verify=False)
+            if rp.status_code == 200:
+                for it in rp.json():
+                    c, pv = str(it.get(k_code, "")).strip(), safe_float(it.get(k_pe))
+                    if c and pv > 0: snapshot["pe_map"][c] = round(pv, 2)
+        except Exception:
+            pass
 
     return snapshot
 
 # ====================================================================
-# 通道 2：yfinance 批次下載全站台美股 1Y 日 K 線 + 美股盤前/盤後 15m K 線
+# 2. yfinance 批次下載全站台美股 1Y K 線 + 美股盤中(大字) vs 盤前盤後(小字)
 # ====================================================================
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
     yf_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX"}
     unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
 
-    # 1. 分批下載 1 年期日 K 線 (threads=False 避免 Yahoo Crumb 鎖定)
     chunk_size = 45
     for i in range(0, len(unique_syms), chunk_size):
         chunk = unique_syms[i:i + chunk_size]
@@ -182,7 +210,14 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception as e:
             print(f"[Warn] yf 1y chunk error: {e}")
 
-    # 2. 批次下載全站所有美股 (含視窗一與視窗二 110+ 檔) 的 prepost=True 15 分鐘 K 線，精準算出盤前/盤後交易價
+    # 針對全站所有美股抓取含盤前盤後之 15m K 線
+    # 判斷美東時間是否處於正規盤中 (09:30 ~ 16:00 ET)：
+    # 若在正規盤中，最新價直接作為主價格 price (大字)；若在收盤後或盤前，主價格維持正規收盤價，最新價放入 ext_session (小字)！
+    us_tz = pytz.timezone('America/New_York')
+    now_et = datetime.datetime.now(us_tz)
+    is_us_regular_open = (now_et.weekday() < 5) and ((now_et.hour == 9 and now_et.minute >= 30) or (10 <= now_et.hour < 16))
+    ext_label = "盤前" if (now_et.hour < 9 or (now_et.hour == 9 and now_et.minute < 30)) else "盤後"
+
     valid_us = [s for s in dict.fromkeys(us_eq_list) if s not in skip_set]
     for i in range(0, len(valid_us), 45):
         chunk = valid_us[i:i + 45]
@@ -190,19 +225,30 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
             df_ext = yf.download(chunk, period="5d", interval="15m", prepost=True, group_by="ticker", threads=True, progress=False)
             if df_ext is None or df_ext.empty:
                 continue
-            lbl = "盤前" if 15 <= now_tw.hour <= 22 else "盤後"
             for sym in chunk:
                 try:
                     sub = df_ext[sym] if len(chunk) > 1 else df_ext
                     if "Close" not in sub.columns: continue
                     closes = sub["Close"].dropna()
                     if closes.empty or sym not in yf_map: continue
-                    ext_p = round(safe_float(closes.iloc[-1]), 2)
-                    reg_p = yf_map[sym]["price"]
-                    if ext_p > 0 and reg_p > 0:
-                        e_chg = round(ext_p - reg_p, 2)
-                        e_pct = round((e_chg / reg_p) * 100, 2)
-                        yf_map[sym]["ext_session"] = {"price": ext_p, "change": e_chg, "change_pct": e_pct, "label": lbl}
+                    latest_tick_p = round(safe_float(closes.iloc[-1]), 2)
+                    if latest_tick_p <= 0: continue
+
+                    if is_us_regular_open:
+                        # 美股正規開盤期間：大字直接顯示最新即時價！
+                        prev_c = yf_map[sym]["prev_close"]
+                        chg = round(latest_tick_p - prev_c, 2)
+                        pct = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
+                        yf_map[sym]["price"] = latest_tick_p
+                        yf_map[sym]["change"] = chg
+                        yf_map[sym]["change_pct"] = pct
+                    else:
+                        # 美股盤前或盤後期間：大字維持正規收盤價，小字 (ext_session) 顯示盤前/盤後價！
+                        reg_p = yf_map[sym]["price"]
+                        if reg_p > 0:
+                            e_chg = round(latest_tick_p - reg_p, 2)
+                            e_pct = round((e_chg / reg_p) * 100, 2)
+                            yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": ext_label}
                 except Exception:
                     continue
         except Exception as e:
@@ -278,16 +324,23 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
     pct_val = safe_float(y_data.get("change_pct"), 0.0)
     ext_obj = y_data.get("ext_session")
 
-    # 台股優先採用 TWSE / TPEx / FinMind 官方最新收盤價
-    if tw_official and tw_code and tw_code in tw_official.get("stocks", {}):
-        offs = tw_official["stocks"][tw_code]
-        if offs["price"] > 0:
-            p_val, prev_val, chg_val, pct_val = offs["price"], offs["prev_close"], offs["change"], offs["change_pct"]
-            today_str = now_tw.strftime("%Y-%m-%d")
-            if not hist:
-                hist = [{"date": "2026-11-13", "close": prev_val}, {"date": today_str, "close": p_val}]
-            elif hist[-1]["date"] != today_str:
-                hist.append({"date": today_str, "close": p_val})
+    # 台股與加權/櫃買指數優先採用台灣官方最新當日收盤價
+    if tw_official:
+        if symbol in tw_official.get("indices", {}):
+            off_idx = tw_official["indices"][symbol]
+            if off_idx["price"] > 0:
+                p_val, prev_val, chg_val, pct_val = off_idx["price"], off_idx["prev_close"], off_idx["change"], off_idx["change_pct"]
+        elif tw_code and tw_code in tw_official.get("stocks", {}):
+            offs = tw_official["stocks"][tw_code]
+            if offs["price"] > 0:
+                p_val, prev_val, chg_val, pct_val = offs["price"], offs["prev_close"], offs["change"], offs["change_pct"]
+                today_str = now_tw.strftime("%Y-%m-%d")
+                if not hist:
+                    hist = [{"date": "2026-11-13", "close": prev_val}, {"date": today_str, "close": p_val}]
+                elif hist[-1]["date"] != today_str:
+                    hist.append({"date": today_str, "close": p_val})
+                else:
+                    hist[-1]["close"] = p_val
 
     if asset_type == "us_stock" and not ext_obj and p_val > 0:
         lbl = "盤前" if 15 <= now_tw.hour <= 22 else "盤後"
@@ -331,11 +384,13 @@ def main():
     }
 
     try:
-        print("1. Fetching TWSE / TPEx / FinMind full Taiwan market quotes...")
-        tw_official = fetch_tw_official_and_finmind()
-        print(f"   -> Got {len(tw_official['stocks'])} TW/TWO quotes.")
-
         sc_items_map, sector_stocks_map = parse_sectors_and_symbols_from_js("supply_chain_db.js")
+        all_tw_syms = list(set([m["ticker"] for m in TW_STOCKS.values()] + [s for s in sc_items_map.keys() if s.endswith(".TW") or s.endswith(".TWO")]))
+
+        print(f"1. Fetching TWSE MIS Live + STOCK_DAY_ALL + TPEx for {len(all_tw_syms)} Taiwan stocks...")
+        tw_official = fetch_tw_official_all_channels(all_tw_syms)
+        print(f"   -> Got {len(tw_official['stocks'])} TW/TWO official quotes.")
+
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
             list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] +
@@ -343,7 +398,7 @@ def main():
         )
         all_us_eq = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
 
-        print(f"2. Downloading 1Y histories & US Pre/Post market quotes via yfinance...")
+        print("2. Downloading 1Y histories & US Regular/Pre/Post quotes via yfinance...")
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
         yf_map.update(fetch_official_us2y_and_taifex_vixtwn())
 
