@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-16 11:04:53 CST",
+  "last_updated": "2026-11-16 12:23:33 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -4182,10 +4182,10 @@
       "name": "台灣加權指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 42188.46,
+      "price": 41632.2,
       "prev_close": 43675.12,
-      "change": -1486.66,
-      "change_pct": -3.4,
+      "change": -2042.92,
+      "change_pct": -4.68,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -5151,7 +5151,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 42188.46
+          "close": 41632.2
         }
       ],
       "fundamentals": {
@@ -5234,10 +5234,10 @@
       "name": "日經 225 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 60182.5,
+      "price": 59940.21,
       "prev_close": 61142.35,
-      "change": -959.85,
-      "change_pct": -1.57,
+      "change": -1202.14,
+      "change_pct": -1.97,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -6207,7 +6207,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 60182.5
+          "close": 59940.21
         }
       ],
       "fundamentals": {
@@ -6242,20 +6242,988 @@
       "name": "韓國 KOSPI 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 5290.53,
-      "prev_close": 5342.89,
-      "change": -52.36,
-      "change_pct": -0.98,
+      "price": 5142.23,
+      "prev_close": 5290.53,
+      "change": -148.3,
+      "change_pct": -2.8,
       "ext_session": null,
       "intraday": [],
       "history": [
         {
+          "date": "2025-11-17",
+          "close": 4089.25
+        },
+        {
+          "date": "2025-11-18",
+          "close": 3953.62
+        },
+        {
+          "date": "2025-11-19",
+          "close": 3929.51
+        },
+        {
+          "date": "2025-11-20",
+          "close": 4004.85
+        },
+        {
+          "date": "2025-11-21",
+          "close": 3853.26
+        },
+        {
+          "date": "2025-11-24",
+          "close": 3846.06
+        },
+        {
+          "date": "2025-11-25",
+          "close": 3857.78
+        },
+        {
+          "date": "2025-11-26",
+          "close": 3960.87
+        },
+        {
+          "date": "2025-11-27",
+          "close": 3986.91
+        },
+        {
+          "date": "2025-11-28",
+          "close": 3926.59
+        },
+        {
+          "date": "2025-12-01",
+          "close": 3920.37
+        },
+        {
+          "date": "2025-12-02",
+          "close": 3994.93
+        },
+        {
+          "date": "2025-12-03",
+          "close": 4036.3
+        },
+        {
+          "date": "2025-12-04",
+          "close": 4028.51
+        },
+        {
+          "date": "2025-12-05",
+          "close": 4100.05
+        },
+        {
+          "date": "2025-12-08",
+          "close": 4154.85
+        },
+        {
+          "date": "2025-12-09",
+          "close": 4143.55
+        },
+        {
+          "date": "2025-12-10",
+          "close": 4135.0
+        },
+        {
+          "date": "2025-12-11",
+          "close": 4110.62
+        },
+        {
+          "date": "2025-12-12",
+          "close": 4167.16
+        },
+        {
+          "date": "2025-12-15",
+          "close": 4090.59
+        },
+        {
+          "date": "2025-12-16",
+          "close": 3999.13
+        },
+        {
+          "date": "2025-12-17",
+          "close": 4056.41
+        },
+        {
+          "date": "2025-12-18",
+          "close": 3994.51
+        },
+        {
+          "date": "2025-12-19",
+          "close": 4020.55
+        },
+        {
+          "date": "2025-12-22",
+          "close": 4105.93
+        },
+        {
+          "date": "2025-12-23",
+          "close": 4117.32
+        },
+        {
+          "date": "2025-12-24",
+          "close": 4108.62
+        },
+        {
+          "date": "2025-12-26",
+          "close": 4129.68
+        },
+        {
+          "date": "2025-12-29",
+          "close": 4220.56
+        },
+        {
+          "date": "2025-12-30",
+          "close": 4214.17
+        },
+        {
+          "date": "2026-01-02",
+          "close": 4309.63
+        },
+        {
+          "date": "2026-01-05",
+          "close": 4457.52
+        },
+        {
+          "date": "2026-01-06",
+          "close": 4525.48
+        },
+        {
+          "date": "2026-01-07",
+          "close": 4551.06
+        },
+        {
+          "date": "2026-01-08",
+          "close": 4552.37
+        },
+        {
+          "date": "2026-01-09",
+          "close": 4586.32
+        },
+        {
+          "date": "2026-01-12",
+          "close": 4624.79
+        },
+        {
+          "date": "2026-01-13",
+          "close": 4692.64
+        },
+        {
+          "date": "2026-01-14",
+          "close": 4723.1
+        },
+        {
+          "date": "2026-01-15",
+          "close": 4797.55
+        },
+        {
+          "date": "2026-01-16",
+          "close": 4840.74
+        },
+        {
+          "date": "2026-01-19",
+          "close": 4904.66
+        },
+        {
+          "date": "2026-01-20",
+          "close": 4885.75
+        },
+        {
+          "date": "2026-01-21",
+          "close": 4909.93
+        },
+        {
+          "date": "2026-01-22",
+          "close": 4952.53
+        },
+        {
+          "date": "2026-01-23",
+          "close": 4990.07
+        },
+        {
+          "date": "2026-01-26",
+          "close": 4949.59
+        },
+        {
+          "date": "2026-01-27",
+          "close": 5084.85
+        },
+        {
+          "date": "2026-01-28",
+          "close": 5170.81
+        },
+        {
+          "date": "2026-01-29",
+          "close": 5221.25
+        },
+        {
+          "date": "2026-01-30",
+          "close": 5224.36
+        },
+        {
+          "date": "2026-02-02",
+          "close": 4949.67
+        },
+        {
+          "date": "2026-02-03",
+          "close": 5288.08
+        },
+        {
+          "date": "2026-02-04",
+          "close": 5371.1
+        },
+        {
+          "date": "2026-02-05",
+          "close": 5163.57
+        },
+        {
+          "date": "2026-02-06",
+          "close": 5089.14
+        },
+        {
+          "date": "2026-02-09",
+          "close": 5298.04
+        },
+        {
+          "date": "2026-02-10",
+          "close": 5301.69
+        },
+        {
+          "date": "2026-02-11",
+          "close": 5354.49
+        },
+        {
+          "date": "2026-02-12",
+          "close": 5522.27
+        },
+        {
+          "date": "2026-02-13",
+          "close": 5507.01
+        },
+        {
+          "date": "2026-02-19",
+          "close": 5677.25
+        },
+        {
+          "date": "2026-02-20",
+          "close": 5808.53
+        },
+        {
+          "date": "2026-02-23",
+          "close": 5846.09
+        },
+        {
+          "date": "2026-02-24",
+          "close": 5969.64
+        },
+        {
+          "date": "2026-02-25",
+          "close": 6083.86
+        },
+        {
+          "date": "2026-02-26",
+          "close": 6307.27
+        },
+        {
+          "date": "2026-02-27",
+          "close": 6244.13
+        },
+        {
+          "date": "2026-03-03",
+          "close": 5791.91
+        },
+        {
+          "date": "2026-03-04",
+          "close": 5093.54
+        },
+        {
+          "date": "2026-03-05",
+          "close": 5583.9
+        },
+        {
+          "date": "2026-03-06",
+          "close": 5584.87
+        },
+        {
+          "date": "2026-03-09",
+          "close": 5251.87
+        },
+        {
+          "date": "2026-03-10",
+          "close": 5532.59
+        },
+        {
+          "date": "2026-03-11",
+          "close": 5609.95
+        },
+        {
+          "date": "2026-03-12",
+          "close": 5583.25
+        },
+        {
+          "date": "2026-03-13",
+          "close": 5487.24
+        },
+        {
+          "date": "2026-03-16",
+          "close": 5549.85
+        },
+        {
+          "date": "2026-03-17",
+          "close": 5640.48
+        },
+        {
+          "date": "2026-03-18",
+          "close": 5925.03
+        },
+        {
+          "date": "2026-03-19",
+          "close": 5763.22
+        },
+        {
+          "date": "2026-03-20",
+          "close": 5781.2
+        },
+        {
+          "date": "2026-03-23",
+          "close": 5405.75
+        },
+        {
+          "date": "2026-03-24",
+          "close": 5553.92
+        },
+        {
+          "date": "2026-03-25",
+          "close": 5642.21
+        },
+        {
+          "date": "2026-03-26",
+          "close": 5460.46
+        },
+        {
+          "date": "2026-03-27",
+          "close": 5438.87
+        },
+        {
+          "date": "2026-03-30",
+          "close": 5277.3
+        },
+        {
+          "date": "2026-03-31",
+          "close": 5052.46
+        },
+        {
+          "date": "2026-04-01",
+          "close": 5478.7
+        },
+        {
+          "date": "2026-04-02",
+          "close": 5234.05
+        },
+        {
+          "date": "2026-04-03",
+          "close": 5377.3
+        },
+        {
+          "date": "2026-04-06",
+          "close": 5450.33
+        },
+        {
+          "date": "2026-04-07",
+          "close": 5494.78
+        },
+        {
+          "date": "2026-04-08",
+          "close": 5872.34
+        },
+        {
+          "date": "2026-04-09",
+          "close": 5778.01
+        },
+        {
+          "date": "2026-04-10",
+          "close": 5858.87
+        },
+        {
+          "date": "2026-04-13",
+          "close": 5808.62
+        },
+        {
+          "date": "2026-04-14",
+          "close": 5967.75
+        },
+        {
+          "date": "2026-04-15",
+          "close": 6091.39
+        },
+        {
+          "date": "2026-04-16",
+          "close": 6226.05
+        },
+        {
+          "date": "2026-04-17",
+          "close": 6191.92
+        },
+        {
+          "date": "2026-04-20",
+          "close": 6219.09
+        },
+        {
+          "date": "2026-04-21",
+          "close": 6388.47
+        },
+        {
+          "date": "2026-04-22",
+          "close": 6417.93
+        },
+        {
+          "date": "2026-04-23",
+          "close": 6475.81
+        },
+        {
+          "date": "2026-04-24",
+          "close": 6475.63
+        },
+        {
+          "date": "2026-04-27",
+          "close": 6615.03
+        },
+        {
+          "date": "2026-04-28",
+          "close": 6641.02
+        },
+        {
+          "date": "2026-04-29",
+          "close": 6690.9
+        },
+        {
+          "date": "2026-04-30",
+          "close": 6598.87
+        },
+        {
+          "date": "2026-05-04",
+          "close": 6936.99
+        },
+        {
+          "date": "2026-05-06",
+          "close": 7384.56
+        },
+        {
+          "date": "2026-05-07",
+          "close": 7490.05
+        },
+        {
+          "date": "2026-05-08",
+          "close": 7498.0
+        },
+        {
+          "date": "2026-05-11",
+          "close": 7822.24
+        },
+        {
+          "date": "2026-05-12",
+          "close": 7643.15
+        },
+        {
+          "date": "2026-05-13",
+          "close": 7844.01
+        },
+        {
+          "date": "2026-05-14",
+          "close": 7981.41
+        },
+        {
+          "date": "2026-05-15",
+          "close": 7493.18
+        },
+        {
+          "date": "2026-05-18",
+          "close": 7516.04
+        },
+        {
+          "date": "2026-05-19",
+          "close": 7271.66
+        },
+        {
+          "date": "2026-05-20",
+          "close": 7208.95
+        },
+        {
+          "date": "2026-05-21",
+          "close": 7815.59
+        },
+        {
+          "date": "2026-05-22",
+          "close": 7847.71
+        },
+        {
+          "date": "2026-05-26",
+          "close": 8047.51
+        },
+        {
+          "date": "2026-05-27",
+          "close": 8228.7
+        },
+        {
+          "date": "2026-05-28",
+          "close": 8185.29
+        },
+        {
+          "date": "2026-05-29",
+          "close": 8476.15
+        },
+        {
+          "date": "2026-06-01",
+          "close": 8788.38
+        },
+        {
+          "date": "2026-06-02",
+          "close": 8801.49
+        },
+        {
+          "date": "2026-06-04",
+          "close": 8639.41
+        },
+        {
+          "date": "2026-06-05",
+          "close": 8160.59
+        },
+        {
+          "date": "2026-06-08",
+          "close": 7484.41
+        },
+        {
+          "date": "2026-06-09",
+          "close": 8096.93
+        },
+        {
+          "date": "2026-06-10",
+          "close": 7730.82
+        },
+        {
+          "date": "2026-06-11",
+          "close": 7763.95
+        },
+        {
+          "date": "2026-06-12",
+          "close": 8123.62
+        },
+        {
+          "date": "2026-06-15",
+          "close": 8545.98
+        },
+        {
+          "date": "2026-06-16",
+          "close": 8726.6
+        },
+        {
+          "date": "2026-06-17",
+          "close": 8864.24
+        },
+        {
+          "date": "2026-06-18",
+          "close": 9063.84
+        },
+        {
+          "date": "2026-06-19",
+          "close": 9052.42
+        },
+        {
+          "date": "2026-06-22",
+          "close": 9114.55
+        },
+        {
+          "date": "2026-06-23",
+          "close": 8203.84
+        },
+        {
+          "date": "2026-06-24",
+          "close": 8471.02
+        },
+        {
+          "date": "2026-06-25",
+          "close": 8930.3
+        },
+        {
+          "date": "2026-06-26",
+          "close": 8411.21
+        },
+        {
+          "date": "2026-06-29",
+          "close": 8394.65
+        },
+        {
+          "date": "2026-06-30",
+          "close": 8476.48
+        },
+        {
+          "date": "2026-07-01",
+          "close": 8303.41
+        },
+        {
+          "date": "2026-07-02",
+          "close": 7648.09
+        },
+        {
+          "date": "2026-07-03",
+          "close": 8088.34
+        },
+        {
+          "date": "2026-07-06",
+          "close": 8051.33
+        },
+        {
+          "date": "2026-07-07",
+          "close": 7656.31
+        },
+        {
+          "date": "2026-07-08",
+          "close": 7246.79
+        },
+        {
+          "date": "2026-07-09",
+          "close": 7291.91
+        },
+        {
+          "date": "2026-07-10",
+          "close": 7475.94
+        },
+        {
+          "date": "2026-07-13",
+          "close": 6806.93
+        },
+        {
+          "date": "2026-07-14",
+          "close": 6856.83
+        },
+        {
+          "date": "2026-07-15",
+          "close": 7284.41
+        },
+        {
+          "date": "2026-07-16",
+          "close": 6820.6
+        },
+        {
+          "date": "2026-07-20",
+          "close": 6516.27
+        },
+        {
+          "date": "2026-07-21",
+          "close": 6747.95
+        },
+        {
+          "date": "2026-07-22",
+          "close": 6797.7
+        },
+        {
+          "date": "2026-07-23",
+          "close": 7096.89
+        },
+        {
+          "date": "2026-07-24",
+          "close": 6690.62
+        },
+        {
+          "date": "2026-07-27",
+          "close": 6755.75
+        },
+        {
+          "date": "2026-07-28",
+          "close": 6023.66
+        },
+        {
+          "date": "2026-07-29",
+          "close": 5663.24
+        },
+        {
+          "date": "2026-07-30",
+          "close": 5593.56
+        },
+        {
+          "date": "2026-07-31",
+          "close": 6595.45
+        },
+        {
+          "date": "2026-08-03",
+          "close": 6257.45
+        },
+        {
+          "date": "2026-08-04",
+          "close": 6358.95
+        },
+        {
+          "date": "2026-08-05",
+          "close": 6598.26
+        },
+        {
+          "date": "2026-08-06",
+          "close": 6296.38
+        },
+        {
+          "date": "2026-08-07",
+          "close": 6258.77
+        },
+        {
+          "date": "2026-08-10",
+          "close": 6299.66
+        },
+        {
+          "date": "2026-08-11",
+          "close": 6345.53
+        },
+        {
+          "date": "2026-08-12",
+          "close": 6579.04
+        },
+        {
+          "date": "2026-08-13",
+          "close": 6813.34
+        },
+        {
+          "date": "2026-08-14",
+          "close": 6977.94
+        },
+        {
+          "date": "2026-08-18",
+          "close": 6869.83
+        },
+        {
+          "date": "2026-08-19",
+          "close": 6471.17
+        },
+        {
+          "date": "2026-08-20",
+          "close": 6852.58
+        },
+        {
+          "date": "2026-08-21",
+          "close": 6912.95
+        },
+        {
+          "date": "2026-08-24",
+          "close": 6696.96
+        },
+        {
+          "date": "2026-08-25",
+          "close": 6742.74
+        },
+        {
+          "date": "2026-08-26",
+          "close": 6808.21
+        },
+        {
+          "date": "2026-08-27",
+          "close": 6912.37
+        },
+        {
+          "date": "2026-08-28",
+          "close": 6788.88
+        },
+        {
+          "date": "2026-08-31",
+          "close": 6820.02
+        },
+        {
+          "date": "2026-09-01",
+          "close": 6835.8
+        },
+        {
+          "date": "2026-09-02",
+          "close": 6562.72
+        },
+        {
+          "date": "2026-09-03",
+          "close": 6579.48
+        },
+        {
+          "date": "2026-09-04",
+          "close": 6687.21
+        },
+        {
+          "date": "2026-09-07",
+          "close": 6995.39
+        },
+        {
+          "date": "2026-09-08",
+          "close": 6954.52
+        },
+        {
+          "date": "2026-09-09",
+          "close": 7051.64
+        },
+        {
+          "date": "2026-09-10",
+          "close": 7033.92
+        },
+        {
+          "date": "2026-09-11",
+          "close": 6909.91
+        },
+        {
+          "date": "2026-09-14",
+          "close": 6684.37
+        },
+        {
+          "date": "2026-09-15",
+          "close": 6627.26
+        },
+        {
+          "date": "2026-09-16",
+          "close": 6717.97
+        },
+        {
+          "date": "2026-09-17",
+          "close": 6715.41
+        },
+        {
+          "date": "2026-09-18",
+          "close": 6894.23
+        },
+        {
+          "date": "2026-09-21",
+          "close": 7007.72
+        },
+        {
+          "date": "2026-09-22",
+          "close": 7017.91
+        },
+        {
+          "date": "2026-09-23",
+          "close": 7080.92
+        },
+        {
+          "date": "2026-09-28",
+          "close": 6889.74
+        },
+        {
+          "date": "2026-09-29",
+          "close": 6870.81
+        },
+        {
+          "date": "2026-09-30",
+          "close": 6838.04
+        },
+        {
+          "date": "2026-10-01",
+          "close": 6971.35
+        },
+        {
+          "date": "2026-10-02",
+          "close": 7003.74
+        },
+        {
+          "date": "2026-10-06",
+          "close": 6941.39
+        },
+        {
+          "date": "2026-10-07",
+          "close": 6803.9
+        },
+        {
+          "date": "2026-10-08",
+          "close": 6625.93
+        },
+        {
+          "date": "2026-10-12",
+          "close": 6384.24
+        },
+        {
+          "date": "2026-10-13",
+          "close": 6035.35
+        },
+        {
+          "date": "2026-10-14",
+          "close": 6008.81
+        },
+        {
+          "date": "2026-10-15",
+          "close": 5554.22
+        },
+        {
+          "date": "2026-10-16",
+          "close": 5668.05
+        },
+        {
+          "date": "2026-10-19",
+          "close": 5768.01
+        },
+        {
+          "date": "2026-10-20",
+          "close": 5552.74
+        },
+        {
+          "date": "2026-10-21",
+          "close": 5735.66
+        },
+        {
+          "date": "2026-10-22",
+          "close": 5533.77
+        },
+        {
+          "date": "2026-10-23",
+          "close": 5550.3
+        },
+        {
+          "date": "2026-10-26",
+          "close": 5469.47
+        },
+        {
+          "date": "2026-10-27",
+          "close": 5638.34
+        },
+        {
+          "date": "2026-10-28",
+          "close": 6012.44
+        },
+        {
+          "date": "2026-10-29",
+          "close": 5937.66
+        },
+        {
+          "date": "2026-10-30",
+          "close": 5730.74
+        },
+        {
+          "date": "2026-11-02",
+          "close": 5859.08
+        },
+        {
+          "date": "2026-11-03",
+          "close": 5648.79
+        },
+        {
+          "date": "2026-11-04",
+          "close": 5683.8
+        },
+        {
+          "date": "2026-11-05",
+          "close": 5383.8
+        },
+        {
+          "date": "2026-11-06",
+          "close": 5059.69
+        },
+        {
+          "date": "2026-11-09",
+          "close": 5018.85
+        },
+        {
+          "date": "2026-11-10",
+          "close": 5239.13
+        },
+        {
+          "date": "2026-11-11",
+          "close": 5375.36
+        },
+        {
           "date": "2026-11-12",
-          "close": 5342.89
+          "close": 5342.73
         },
         {
           "date": "2026-11-13",
           "close": 5290.53
+        },
+        {
+          "date": "2026-11-16",
+          "close": 5142.23
         }
       ],
       "fundamentals": {
@@ -14816,10 +15784,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.95,
+      "price": 32.98,
       "prev_close": 32.94,
-      "change": 0.01,
-      "change_pct": 0.03,
+      "change": 0.04,
+      "change_pct": 0.12,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -15857,7 +16825,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 32.95
+          "close": 32.98
         }
       ],
       "fundamentals": {
@@ -15892,10 +16860,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.677,
+      "price": 0.6767,
       "prev_close": 0.6807,
-      "change": -0.0037,
-      "change_pct": -0.54,
+      "change": -0.004,
+      "change_pct": -0.59,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -16933,7 +17901,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.677
+          "close": 0.6767
         }
       ],
       "fundamentals": {
@@ -16968,10 +17936,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.8393,
+      "price": 0.8396,
       "prev_close": 0.8359,
-      "change": 0.0034,
-      "change_pct": 0.41,
+      "change": 0.0037,
+      "change_pct": 0.44,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -18009,7 +18977,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.8393
+          "close": 0.8396
         }
       ],
       "fundamentals": {
@@ -18044,10 +19012,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.7,
+      "price": 159.64,
       "prev_close": 159.88,
-      "change": -0.18,
-      "change_pct": -0.11,
+      "change": -0.24,
+      "change_pct": -0.15,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -19085,7 +20053,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 159.7
+          "close": 159.64
         }
       ],
       "fundamentals": {
@@ -19120,10 +20088,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.1024,
+      "price": 1.1017,
       "prev_close": 1.105,
-      "change": -0.0026,
-      "change_pct": -0.24,
+      "change": -0.0033,
+      "change_pct": -0.3,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -20161,7 +21129,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.1024
+          "close": 1.1017
         }
       ],
       "fundamentals": {
@@ -20196,10 +21164,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.321,
+      "price": 1.3204,
       "prev_close": 1.3231,
-      "change": -0.0021,
-      "change_pct": -0.16,
+      "change": -0.0027,
+      "change_pct": -0.2,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -21237,7 +22205,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.321
+          "close": 1.3204
         }
       ],
       "fundamentals": {
@@ -21272,10 +22240,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6588,
+      "price": 6.67,
       "prev_close": 6.6704,
-      "change": -0.0116,
-      "change_pct": -0.17,
+      "change": -0.0004,
+      "change_pct": -0.01,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -22313,7 +23281,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 6.6588
+          "close": 6.67
         }
       ],
       "fundamentals": {
@@ -22348,10 +23316,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.43,
+      "price": 103.45,
       "prev_close": 103.41,
-      "change": 0.02,
-      "change_pct": 0.02,
+      "change": 0.04,
+      "change_pct": 0.04,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -23357,7 +24325,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 103.43
+          "close": 103.45
         }
       ],
       "fundamentals": {
@@ -27634,10 +28602,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.95,
+      "price": 32.98,
       "prev_close": 32.94,
-      "change": 0.01,
-      "change_pct": 0.03,
+      "change": 0.04,
+      "change_pct": 0.12,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -28675,7 +29643,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 32.95
+          "close": 32.98
         }
       ],
       "fundamentals": {
@@ -28710,10 +29678,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.677,
+      "price": 0.6767,
       "prev_close": 0.6807,
-      "change": -0.0037,
-      "change_pct": -0.54,
+      "change": -0.004,
+      "change_pct": -0.59,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -29751,7 +30719,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.677
+          "close": 0.6767
         }
       ],
       "fundamentals": {
@@ -29786,10 +30754,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.8393,
+      "price": 0.8396,
       "prev_close": 0.8359,
-      "change": 0.0034,
-      "change_pct": 0.41,
+      "change": 0.0037,
+      "change_pct": 0.44,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -30827,7 +31795,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 0.8393
+          "close": 0.8396
         }
       ],
       "fundamentals": {
@@ -30862,10 +31830,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.7,
+      "price": 159.64,
       "prev_close": 159.88,
-      "change": -0.18,
-      "change_pct": -0.11,
+      "change": -0.24,
+      "change_pct": -0.15,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -31903,7 +32871,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 159.7
+          "close": 159.64
         }
       ],
       "fundamentals": {
@@ -31938,10 +32906,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.1024,
+      "price": 1.1017,
       "prev_close": 1.105,
-      "change": -0.0026,
-      "change_pct": -0.24,
+      "change": -0.0033,
+      "change_pct": -0.3,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -32979,7 +33947,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.1024
+          "close": 1.1017
         }
       ],
       "fundamentals": {
@@ -33014,10 +33982,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.321,
+      "price": 1.3204,
       "prev_close": 1.3231,
-      "change": -0.0021,
-      "change_pct": -0.16,
+      "change": -0.0027,
+      "change_pct": -0.2,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -34055,7 +35023,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1.321
+          "close": 1.3204
         }
       ],
       "fundamentals": {
@@ -34090,10 +35058,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6588,
+      "price": 6.67,
       "prev_close": 6.6704,
-      "change": -0.0116,
-      "change_pct": -0.17,
+      "change": -0.0004,
+      "change_pct": -0.01,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -35131,7 +36099,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 6.6588
+          "close": 6.67
         }
       ],
       "fundamentals": {
@@ -35166,10 +36134,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.43,
+      "price": 103.45,
       "prev_close": 103.41,
-      "change": 0.02,
-      "change_pct": 0.02,
+      "change": 0.04,
+      "change_pct": 0.04,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -36175,7 +37143,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 103.43
+          "close": 103.45
         }
       ],
       "fundamentals": {
@@ -45137,7 +46105,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.24
+          "close": 271.25
         },
         {
           "date": "2025-12-19",
@@ -47371,7 +48339,7 @@
         },
         {
           "date": "2026-02-10",
-          "close": 1863.41
+          "close": 1863.42
         },
         {
           "date": "2026-02-11",
@@ -48099,7 +49067,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 2295.0
+          "close": 2255.0
         }
       ],
       "fundamentals": {
@@ -49108,7 +50076,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 3930.0
+          "close": 3885.0
         }
       ],
       "fundamentals": {
@@ -51126,7 +52094,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 226.5
+          "close": 222.5
         }
       ],
       "fundamentals": {
@@ -52135,7 +53103,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 562.0
+          "close": 556.0
         }
       ],
       "fundamentals": {
@@ -52173,10 +53141,10 @@
       "name": "小S&P期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 7577.25,
+      "price": 7561.25,
       "prev_close": 7583.0,
-      "change": -5.75,
-      "change_pct": -0.08,
+      "change": -21.75,
+      "change_pct": -0.29,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -53182,7 +54150,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 7577.25
+          "close": 7561.25
         }
       ],
       "fundamentals": {
@@ -53217,10 +54185,10 @@
       "name": "小納斯達克期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 27978.5,
+      "price": 27868.25,
       "prev_close": 28034.75,
-      "change": -56.25,
-      "change_pct": -0.2,
+      "change": -166.5,
+      "change_pct": -0.59,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -54226,7 +55194,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 27978.5
+          "close": 27868.25
         }
       ],
       "fundamentals": {
@@ -54261,10 +55229,10 @@
       "name": "小道瓊期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 52435.0,
+      "price": 52380.0,
       "prev_close": 52418.0,
-      "change": 17.0,
-      "change_pct": 0.03,
+      "change": -38.0,
+      "change_pct": -0.07,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -55270,7 +56238,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 52435.0
+          "close": 52380.0
         }
       ],
       "fundamentals": {
@@ -55305,10 +56273,10 @@
       "name": "黃金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 3878.9,
+      "price": 3874.0,
       "prev_close": 3886.3,
-      "change": -7.4,
-      "change_pct": -0.19,
+      "change": -12.3,
+      "change_pct": -0.32,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -56314,7 +57282,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 3878.9
+          "close": 3874.0
         }
       ],
       "fundamentals": {
@@ -56349,10 +57317,10 @@
       "name": "白銀期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 47.47,
+      "price": 47.45,
       "prev_close": 49.03,
-      "change": -1.56,
-      "change_pct": -3.18,
+      "change": -1.58,
+      "change_pct": -3.22,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -57358,7 +58326,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 47.47
+          "close": 47.45
         }
       ],
       "fundamentals": {
@@ -58437,10 +59405,10 @@
       "name": "鈀金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 986.0,
+      "price": 984.0,
       "prev_close": 1006.0,
-      "change": -20.0,
-      "change_pct": -1.99,
+      "change": -22.0,
+      "change_pct": -2.19,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -59446,7 +60414,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 986.0
+          "close": 984.0
         }
       ],
       "fundamentals": {
@@ -59481,10 +60449,10 @@
       "name": "布蘭特原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 94.8,
+      "price": 95.32,
       "prev_close": 95.84,
-      "change": -1.04,
-      "change_pct": -1.09,
+      "change": -0.52,
+      "change_pct": -0.54,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -60490,7 +61458,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 94.8
+          "close": 95.32
         }
       ],
       "fundamentals": {
@@ -60525,10 +61493,10 @@
       "name": "WTI 原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 87.84,
+      "price": 88.39,
       "prev_close": 88.56,
-      "change": -0.72,
-      "change_pct": -0.81,
+      "change": -0.17,
+      "change_pct": -0.19,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -61534,7 +62502,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 87.84
+          "close": 88.39
         }
       ],
       "fundamentals": {
@@ -61569,10 +62537,10 @@
       "name": "黃豆期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 1227.0,
+      "price": 1228.0,
       "prev_close": 1243.0,
-      "change": -16.0,
-      "change_pct": -1.29,
+      "change": -15.0,
+      "change_pct": -1.21,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -62578,7 +63546,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 1227.0
+          "close": 1228.0
         }
       ],
       "fundamentals": {
@@ -62613,10 +63581,10 @@
       "name": "小麥期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 588.0,
+      "price": 587.5,
       "prev_close": 593.25,
-      "change": -5.25,
-      "change_pct": -0.88,
+      "change": -5.75,
+      "change_pct": -0.97,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -63622,7 +64590,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 588.0
+          "close": 587.5
         }
       ],
       "fundamentals": {
@@ -63657,10 +64625,10 @@
       "name": "玉米期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 445.0,
+      "price": 444.75,
       "prev_close": 445.5,
-      "change": -0.5,
-      "change_pct": -0.11,
+      "change": -0.75,
+      "change_pct": -0.17,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -64666,7 +65634,7 @@
         },
         {
           "date": "2026-11-15",
-          "close": 445.0
+          "close": 444.75
         }
       ],
       "fundamentals": {
@@ -64701,10 +65669,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 65149.73,
+      "price": 65014.31,
       "prev_close": 64128.05,
-      "change": 1021.68,
-      "change_pct": 1.59,
+      "change": 886.26,
+      "change_pct": 1.38,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -66166,7 +67134,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 65149.73
+          "close": 65014.31
         }
       ],
       "fundamentals": {
@@ -66201,10 +67169,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1826.45,
+      "price": 1826.14,
       "prev_close": 1769.12,
-      "change": 57.33,
-      "change_pct": 3.24,
+      "change": 57.02,
+      "change_pct": 3.22,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -67666,7 +68634,7 @@
         },
         {
           "date": "2026-11-16",
-          "close": 1826.45
+          "close": 1826.14
         }
       ],
       "fundamentals": {
@@ -67994,7 +68962,7 @@
                 },
                 {
                   "date": "2026-02-10",
-                  "close": 1863.41
+                  "close": 1863.42
                 },
                 {
                   "date": "2026-02-11",
@@ -68722,7 +69690,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 2295.0
+                  "close": 2255.0
                 }
               ],
               "fundamentals": {
@@ -69731,7 +70699,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 3930.0
+                  "close": 3885.0
                 }
               ],
               "fundamentals": {
@@ -70740,7 +71708,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 562.0
+                  "close": 556.0
                 }
               ],
               "fundamentals": {
@@ -71749,7 +72717,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 226.5
+                  "close": 222.5
                 }
               ],
               "fundamentals": {
@@ -73767,7 +74735,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 269.5
+                  "close": 265.5
                 }
               ],
               "fundamentals": {
@@ -74776,7 +75744,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 159.0
+                  "close": 155.5
                 }
               ],
               "fundamentals": {
@@ -75785,7 +76753,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 114.0
+                  "close": 112.5
                 }
               ],
               "fundamentals": {
@@ -76794,7 +77762,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 167.0
+                  "close": 164.5
                 }
               ],
               "fundamentals": {
@@ -77803,7 +78771,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 79.0
+                  "close": 77.7
                 }
               ],
               "fundamentals": {
@@ -81115,7 +82083,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 271.24
+                  "close": 271.25
                 },
                 {
                   "date": "2025-12-19",
@@ -91905,7 +92873,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 2205.0
+                  "close": 2220.0
                 }
               ],
               "fundamentals": {
@@ -92914,7 +93882,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 391.5
+                  "close": 386.0
                 }
               ],
               "fundamentals": {
@@ -93923,7 +94891,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 242.0
+                  "close": 240.0
                 }
               ],
               "fundamentals": {
@@ -99076,7 +100044,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 3755.0
+                  "close": 3705.0
                 }
               ],
               "fundamentals": {
@@ -101094,7 +102062,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 194.5
+                  "close": 189.5
                 }
               ],
               "fundamentals": {
@@ -105166,7 +106134,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 402.5
+                  "close": 403.0
                 }
               ],
               "fundamentals": {
@@ -105691,7 +106659,7 @@
                 },
                 {
                   "date": "2026-05-11",
-                  "close": 260.7
+                  "close": 260.69
                 },
                 {
                   "date": "2026-05-12",
@@ -106708,7 +107676,7 @@
                 },
                 {
                   "date": "2026-04-30",
-                  "close": 257.4
+                  "close": 257.41
                 },
                 {
                   "date": "2026-05-01",
@@ -107477,7 +108445,7 @@
                 },
                 {
                   "date": "2026-01-21",
-                  "close": 324.08
+                  "close": 324.09
                 },
                 {
                   "date": "2026-01-22",
@@ -109310,7 +110278,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 350.0
+                  "close": 344.5
                 }
               ],
               "fundamentals": {
@@ -110319,7 +111287,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 116.0
+                  "close": 114.5
                 }
               ],
               "fundamentals": {
@@ -111328,7 +112296,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 74.0
+                  "close": 73.4
                 }
               ],
               "fundamentals": {
@@ -112337,7 +113305,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 222.0
+                  "close": 217.5
                 }
               ],
               "fundamentals": {
@@ -115436,7 +116404,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 231.0
+                  "close": 228.5
                 }
               ],
               "fundamentals": {
@@ -116445,7 +117413,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 286.0
+                  "close": 282.0
                 }
               ],
               "fundamentals": {
@@ -117454,7 +118422,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 249.0
+                  "close": 244.5
                 }
               ],
               "fundamentals": {
@@ -118512,7 +119480,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 90.4
+                  "close": 89.7
                 }
               ],
               "fundamentals": {
@@ -119521,7 +120489,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 78.7
+                  "close": 77.7
                 }
               ],
               "fundamentals": {
@@ -122620,7 +123588,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 78.8
+                  "close": 77.3
                 }
               ],
               "fundamentals": {
@@ -123678,7 +124646,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 293.0
+                  "close": 288.5
                 }
               ],
               "fundamentals": {
@@ -126777,7 +127745,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1605.0
+                  "close": 1595.0
                 }
               ],
               "fundamentals": {
@@ -127786,7 +128754,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 462.0
+                  "close": 458.0
                 }
               ],
               "fundamentals": {
@@ -128795,7 +129763,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 282.0
+                  "close": 279.0
                 }
               ],
               "fundamentals": {
@@ -129804,7 +130772,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 747.0
+                  "close": 737.0
                 }
               ],
               "fundamentals": {
@@ -130813,7 +131781,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 82.5
+                  "close": 81.6
                 }
               ],
               "fundamentals": {
@@ -137015,7 +137983,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 96.5
+                  "close": 94.0
                 }
               ],
               "fundamentals": {
@@ -138024,7 +138992,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 253.5
+                  "close": 251.0
                 }
               ],
               "fundamentals": {
@@ -139033,7 +140001,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 131.5
+                  "close": 129.5
                 }
               ],
               "fundamentals": {
@@ -144150,7 +145118,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 77.6
+                  "close": 76.7
                 }
               ],
               "fundamentals": {
@@ -145159,7 +146127,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 154.0
+                  "close": 152.0
                 }
               ],
               "fundamentals": {
@@ -147213,7 +148181,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 187.5
+                  "close": 184.5
                 }
               ],
               "fundamentals": {
@@ -148222,7 +149190,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 678.0
+                  "close": 661.0
                 }
               ],
               "fundamentals": {
@@ -150276,7 +151244,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 387.0
+                  "close": 380.5
                 }
               ],
               "fundamentals": {
@@ -151285,7 +152253,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 971.0
+                  "close": 968.0
                 }
               ],
               "fundamentals": {
@@ -152294,7 +153262,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 366.5
+                  "close": 363.5
                 }
               ],
               "fundamentals": {
@@ -153303,7 +154271,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 595.0
+                  "close": 591.0
                 }
               ],
               "fundamentals": {
@@ -154312,7 +155280,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 700.0
+                  "close": 696.0
                 }
               ],
               "fundamentals": {
@@ -154606,7 +155574,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 1446.29
+                  "close": 1446.3
                 },
                 {
                   "date": "2026-01-30",
@@ -157460,7 +158428,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 97.5
+                  "close": 96.3
                 }
               ],
               "fundamentals": {
@@ -158469,7 +159437,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 128.0
+                  "close": 126.5
                 }
               ],
               "fundamentals": {
@@ -159478,7 +160446,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 54.6
+                  "close": 53.9
                 }
               ],
               "fundamentals": {
@@ -160487,7 +161455,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 84.2
+                  "close": 83.7
                 }
               ],
               "fundamentals": {
@@ -161496,7 +162464,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 182.5
+                  "close": 180.5
                 }
               ],
               "fundamentals": {
@@ -162682,7 +163650,7 @@
                 },
                 {
                   "date": "2026-01-05",
-                  "close": 117.05
+                  "close": 117.06
                 },
                 {
                   "date": "2026-01-06",
@@ -163514,7 +164482,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 109.5
+                  "close": 109.0
                 }
               ],
               "fundamentals": {
@@ -165532,7 +166500,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1125.0
+                  "close": 1130.0
                 }
               ],
               "fundamentals": {
@@ -166541,7 +167509,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 733.0
+                  "close": 725.0
                 }
               ],
               "fundamentals": {
@@ -167550,7 +168518,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 462.0
+                  "close": 457.5
                 }
               ],
               "fundamentals": {
@@ -168559,7 +169527,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 246.0
+                  "close": 243.5
                 }
               ],
               "fundamentals": {
@@ -171622,7 +172590,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 862.0
+                  "close": 850.0
                 }
               ],
               "fundamentals": {
@@ -172631,7 +173599,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 136.5
+                  "close": 134.0
                 }
               ],
               "fundamentals": {
@@ -173640,7 +174608,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 29.65
+                  "close": 29.55
                 }
               ],
               "fundamentals": {
@@ -174649,7 +175617,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 90.3
+                  "close": 90.2
                 }
               ],
               "fundamentals": {
@@ -177748,7 +178716,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 4470.0
+                  "close": 4365.0
                 }
               ],
               "fundamentals": {
@@ -178757,7 +179725,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 3755.0
+                  "close": 3750.0
                 }
               ],
               "fundamentals": {
@@ -179766,7 +180734,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 3125.0
+                  "close": 3005.0
                 }
               ],
               "fundamentals": {
@@ -180775,7 +181743,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 116.0
+                  "close": 115.0
                 }
               ],
               "fundamentals": {
@@ -182829,7 +183797,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 158.5
+                  "close": 157.0
                 }
               ],
               "fundamentals": {
@@ -183838,7 +184806,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 166.5
+                  "close": 165.0
                 }
               ],
               "fundamentals": {
@@ -184847,7 +185815,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 175.0
+                  "close": 174.0
                 }
               ],
               "fundamentals": {
@@ -185856,7 +186824,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 149.0
+                  "close": 148.5
                 }
               ],
               "fundamentals": {
@@ -188955,7 +189923,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1265.0
+                  "close": 1285.0
                 }
               ],
               "fundamentals": {
@@ -194072,7 +195040,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 460.0
+                  "close": 455.5
                 }
               ],
               "fundamentals": {
@@ -195081,7 +196049,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 129.5
+                  "close": 128.5
                 }
               ],
               "fundamentals": {
@@ -197135,7 +198103,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 344.0
+                  "close": 341.5
                 }
               ],
               "fundamentals": {
@@ -198144,7 +199112,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 336.5
+                  "close": 333.5
                 }
               ],
               "fundamentals": {
@@ -200162,7 +201130,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 160.5
+                  "close": 158.0
                 }
               ],
               "fundamentals": {
@@ -205315,7 +206283,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 135.5
+                  "close": 134.5
                 }
               ],
               "fundamentals": {
@@ -206324,7 +207292,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 70.7
+                  "close": 70.3
                 }
               ],
               "fundamentals": {
@@ -210508,7 +211476,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 116.5
+                  "close": 115.5
                 }
               ],
               "fundamentals": {
@@ -211517,7 +212485,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 344.5
+                  "close": 340.0
                 }
               ],
               "fundamentals": {
@@ -213535,7 +214503,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 117.5
+                  "close": 115.5
                 }
               ],
               "fundamentals": {
@@ -214544,7 +215512,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 32.1
+                  "close": 31.6
                 }
               ],
               "fundamentals": {
@@ -215553,7 +216521,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 72.9
+                  "close": 72.0
                 }
               ],
               "fundamentals": {
@@ -215710,7 +216678,7 @@
                 },
                 {
                   "date": "2025-12-26",
-                  "close": 2313.05
+                  "close": 2313.04
                 },
                 {
                   "date": "2025-12-29",
@@ -216562,7 +217530,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 4840.0
+                  "close": 4780.0
                 }
               ],
               "fundamentals": {
@@ -217571,7 +218539,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 919.0
+                  "close": 917.0
                 }
               ],
               "fundamentals": {
@@ -218580,7 +219548,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 131.0
+                  "close": 130.0
                 }
               ],
               "fundamentals": {
@@ -219589,7 +220557,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 44.95
+                  "close": 44.3
                 }
               ],
               "fundamentals": {
@@ -220647,7 +221615,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 49.4
+                  "close": 48.8
                 }
               ],
               "fundamentals": {
@@ -222701,7 +223669,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 526.0
+                  "close": 516.0
                 }
               ],
               "fundamentals": {
@@ -223710,7 +224678,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 356.0
+                  "close": 353.0
                 }
               ],
               "fundamentals": {
@@ -224719,7 +225687,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 185.0
+                  "close": 184.0
                 }
               ],
               "fundamentals": {
@@ -225728,7 +226696,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 102.0
+                  "close": 100.5
                 }
               ],
               "fundamentals": {
@@ -226737,7 +227705,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 32.75
+                  "close": 32.15
                 }
               ],
               "fundamentals": {
@@ -227746,7 +228714,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 28.7
+                  "close": 28.25
                 }
               ],
               "fundamentals": {
@@ -228755,7 +229723,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 16.7
+                  "close": 16.6
                 }
               ],
               "fundamentals": {
@@ -229080,7 +230048,7 @@
                 },
                 {
                   "date": "2026-02-27",
-                  "close": 478.31
+                  "close": 478.32
                 },
                 {
                   "date": "2026-03-02",
@@ -232899,7 +233867,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 131.0
+                  "close": 129.5
                 }
               ],
               "fundamentals": {
@@ -233908,7 +234876,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 111.5
+                  "close": 111.0
                 }
               ],
               "fundamentals": {
@@ -238092,7 +239060,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 133.5
+                  "close": 132.0
                 }
               ],
               "fundamentals": {
@@ -239101,7 +240069,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 275.5
+                  "close": 274.0
                 }
               ],
               "fundamentals": {
@@ -240110,7 +241078,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 88.3
+                  "close": 87.0
                 }
               ],
               "fundamentals": {
@@ -241119,7 +242087,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 51.3
+                  "close": 51.4
                 }
               ],
               "fundamentals": {
@@ -243173,7 +244141,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 3810.0
+                  "close": 3795.0
                 }
               ],
               "fundamentals": {
@@ -246236,7 +247204,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 342.5
+                  "close": 339.0
                 }
               ],
               "fundamentals": {
@@ -247294,7 +248262,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 116.5
+                  "close": 116.0
                 }
               ],
               "fundamentals": {
@@ -253420,7 +254388,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 492.5
+                  "close": 489.5
                 }
               ],
               "fundamentals": {
@@ -255474,7 +256442,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 348.0
+                  "close": 346.5
                 }
               ],
               "fundamentals": {
@@ -256483,7 +257451,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 197.0
+                  "close": 195.5
                 }
               ],
               "fundamentals": {
@@ -257492,7 +258460,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 405.5
+                  "close": 400.5
                 }
               ],
               "fundamentals": {
@@ -258501,7 +259469,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 153.5
+                  "close": 152.5
                 }
               ],
               "fundamentals": {
@@ -259510,7 +260478,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 75.7
+                  "close": 75.1
                 }
               ],
               "fundamentals": {
@@ -260519,7 +261487,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 61.8
+                  "close": 60.9
                 }
               ],
               "fundamentals": {
@@ -261528,7 +262496,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 74.4
+                  "close": 73.0
                 }
               ],
               "fundamentals": {
@@ -262537,7 +263505,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 80.6
+                  "close": 79.3
                 }
               ],
               "fundamentals": {
@@ -263546,7 +264514,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 162.5
+                  "close": 161.5
                 }
               ],
               "fundamentals": {
@@ -264555,7 +265523,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 45.0
+                  "close": 44.3
                 }
               ],
               "fundamentals": {
@@ -265564,7 +266532,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 28.95
+                  "close": 28.75
                 }
               ],
               "fundamentals": {
@@ -266573,7 +267541,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 87.1
+                  "close": 87.2
                 }
               ],
               "fundamentals": {
@@ -267582,7 +268550,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 220.5
+                  "close": 218.0
                 }
               ],
               "fundamentals": {
@@ -270721,7 +271689,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 573.0
+                  "close": 561.0
                 }
               ],
               "fundamentals": {
@@ -274793,7 +275761,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 18.95
+                  "close": 18.7
                 }
               ],
               "fundamentals": {
@@ -276811,7 +277779,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 139.5
+                  "close": 139.0
                 }
               ],
               "fundamentals": {
@@ -277820,7 +278788,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1840.0
+                  "close": 1820.0
                 }
               ],
               "fundamentals": {
@@ -278829,7 +279797,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 101.0
+                  "close": 100.0
                 }
               ],
               "fundamentals": {
@@ -279838,7 +280806,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 57.0
+                  "close": 56.7
                 }
               ],
               "fundamentals": {
@@ -280847,7 +281815,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 85.8
+                  "close": 84.9
                 }
               ],
               "fundamentals": {
@@ -282901,7 +283869,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1775.0
+                  "close": 1750.0
                 }
               ],
               "fundamentals": {
@@ -284919,7 +285887,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 261.0
+                  "close": 260.0
                 }
               ],
               "fundamentals": {
@@ -285928,7 +286896,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 213.5
+                  "close": 214.0
                 }
               ],
               "fundamentals": {
@@ -286937,7 +287905,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 107.0
+                  "close": 106.0
                 }
               ],
               "fundamentals": {
@@ -287946,7 +288914,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 175.0
+                  "close": 173.0
                 }
               ],
               "fundamentals": {
@@ -288955,7 +289923,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 96.0
+                  "close": 95.1
                 }
               ],
               "fundamentals": {
@@ -289964,7 +290932,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 82.6
+                  "close": 81.9
                 }
               ],
               "fundamentals": {
@@ -293063,7 +294031,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 54.4
+                  "close": 53.9
                 }
               ],
               "fundamentals": {
@@ -294072,7 +295040,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 68.0
+                  "close": 67.7
                 }
               ],
               "fundamentals": {
@@ -298180,7 +299148,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 111.0
+                  "close": 109.0
                 }
               ],
               "fundamentals": {
@@ -299189,7 +300157,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 185.0
+                  "close": 186.0
                 }
               ],
               "fundamentals": {
@@ -300198,7 +301166,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 383.0
+                  "close": 381.0
                 }
               ],
               "fundamentals": {
@@ -301207,7 +302175,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 258.5
+                  "close": 257.5
                 }
               ],
               "fundamentals": {
@@ -302216,7 +303184,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 139.5
+                  "close": 140.5
                 }
               ],
               "fundamentals": {
@@ -303225,7 +304193,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 61.5
+                  "close": 60.5
                 }
               ],
               "fundamentals": {
@@ -304234,7 +305202,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 169.5
+                  "close": 168.0
                 }
               ],
               "fundamentals": {
@@ -306328,7 +307296,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 127.0
+                  "close": 125.5
                 }
               ],
               "fundamentals": {
@@ -307337,7 +308305,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 25.45
+                  "close": 25.25
                 }
               ],
               "fundamentals": {
@@ -308386,7 +309354,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 113.0
+                  "close": 111.0
                 }
               ],
               "fundamentals": {
@@ -309395,7 +310363,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 65.8
+                  "close": 66.0
                 }
               ],
               "fundamentals": {
@@ -310404,7 +311372,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 74.7
+                  "close": 73.2
                 }
               ],
               "fundamentals": {
@@ -311413,7 +312381,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 56.1
+                  "close": 55.6
                 }
               ],
               "fundamentals": {
@@ -312422,7 +313390,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 115.0
+                  "close": 114.0
                 }
               ],
               "fundamentals": {
@@ -314440,7 +315408,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 203.5
+                  "close": 204.0
                 }
               ],
               "fundamentals": {
@@ -315449,7 +316417,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 222.5
+                  "close": 221.0
                 }
               ],
               "fundamentals": {
@@ -316458,7 +317426,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 218.5
+                  "close": 218.0
                 }
               ],
               "fundamentals": {
@@ -317467,7 +318435,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 77.1
+                  "close": 76.3
                 }
               ],
               "fundamentals": {
@@ -322656,7 +323624,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 778.0
+                  "close": 790.0
                 }
               ],
               "fundamentals": {
@@ -323105,7 +324073,7 @@
                 },
                 {
                   "date": "2026-04-14",
-                  "close": 1359.34
+                  "close": 1359.33
                 },
                 {
                   "date": "2026-04-15",
@@ -324710,7 +325678,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 18.3
+                  "close": 18.15
                 }
               ],
               "fundamentals": {
@@ -325719,7 +326687,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 46.3
+                  "close": 45.75
                 }
               ],
               "fundamentals": {
@@ -326728,7 +327696,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 43.6
+                  "close": 43.0
                 }
               ],
               "fundamentals": {
@@ -327737,7 +328705,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 31.85
+                  "close": 31.6
                 }
               ],
               "fundamentals": {
@@ -329791,7 +330759,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 7230.0
+                  "close": 7175.0
                 }
               ],
               "fundamentals": {
@@ -330800,7 +331768,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 294.5
+                  "close": 296.0
                 }
               ],
               "fundamentals": {
@@ -331809,7 +332777,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 560.0
+                  "close": 555.0
                 }
               ],
               "fundamentals": {
@@ -332818,7 +333786,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 62.0
+                  "close": 61.2
                 }
               ],
               "fundamentals": {
@@ -333827,7 +334795,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 71.3
+                  "close": 71.2
                 }
               ],
               "fundamentals": {
@@ -335845,7 +336813,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1545.0
+                  "close": 1540.0
                 }
               ],
               "fundamentals": {
@@ -336854,7 +337822,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 130.0
+                  "close": 129.0
                 }
               ],
               "fundamentals": {
@@ -339953,7 +340921,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 2785.0
+                  "close": 2740.0
                 }
               ],
               "fundamentals": {
@@ -340962,7 +341930,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1035.0
+                  "close": 1030.0
                 }
               ],
               "fundamentals": {
@@ -341971,7 +342939,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 155.0
+                  "close": 153.0
                 }
               ],
               "fundamentals": {
@@ -342980,7 +343948,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 50.0
+                  "close": 49.6
                 }
               ],
               "fundamentals": {
@@ -346079,7 +347047,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 67.2
+                  "close": 66.2
                 }
               ],
               "fundamentals": {
@@ -347088,7 +348056,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 62.2
+                  "close": 61.6
                 }
               ],
               "fundamentals": {
@@ -349142,7 +350110,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 715.0
+                  "close": 709.0
                 }
               ],
               "fundamentals": {
@@ -350151,7 +351119,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 231.5
+                  "close": 229.5
                 }
               ],
               "fundamentals": {
@@ -351160,7 +352128,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 301.0
+                  "close": 298.0
                 }
               ],
               "fundamentals": {
@@ -352169,7 +353137,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 167.0
+                  "close": 163.0
                 }
               ],
               "fundamentals": {
@@ -353178,7 +354146,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 18.95
+                  "close": 18.85
                 }
               ],
               "fundamentals": {
@@ -355232,7 +356200,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 30.25
+                  "close": 30.0
                 }
               ],
               "fundamentals": {
@@ -356241,7 +357209,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 34.35
+                  "close": 34.05
                 }
               ],
               "fundamentals": {
@@ -358295,7 +359263,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 501.0
+                  "close": 494.5
                 }
               ],
               "fundamentals": {
@@ -359304,7 +360272,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 169.0
+                  "close": 167.5
                 }
               ],
               "fundamentals": {
@@ -360313,7 +361281,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 145.5
+                  "close": 144.0
                 }
               ],
               "fundamentals": {
@@ -361322,7 +362290,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 62.6
+                  "close": 61.6
                 }
               ],
               "fundamentals": {
@@ -362331,7 +363299,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 83.6
+                  "close": 82.4
                 }
               ],
               "fundamentals": {
@@ -365470,7 +366438,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 48.65
+                  "close": 48.4
                 }
               ],
               "fundamentals": {
@@ -368966,7 +369934,7 @@
                 },
                 {
                   "date": "2026-03-12",
-                  "close": 566.61
+                  "close": 566.62
                 },
                 {
                   "date": "2026-03-13",
@@ -370659,7 +371627,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 26.95
+                  "close": 26.8
                 }
               ],
               "fundamentals": {
@@ -371668,7 +372636,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 35.65
+                  "close": 35.55
                 }
               ],
               "fundamentals": {
@@ -373686,7 +374654,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 10.45
+                  "close": 10.4
                 }
               ],
               "fundamentals": {
@@ -373895,7 +374863,7 @@
                 },
                 {
                   "date": "2026-01-15",
-                  "close": 638.21
+                  "close": 638.2
                 },
                 {
                   "date": "2026-01-16",
@@ -375232,7 +376200,7 @@
                 },
                 {
                   "date": "2026-05-01",
-                  "close": 295.64
+                  "close": 295.63
                 },
                 {
                   "date": "2026-05-04",
@@ -377794,7 +378762,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 14.0
+                  "close": 13.9
                 }
               ],
               "fundamentals": {
@@ -380893,7 +381861,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 31.6
+                  "close": 31.25
                 }
               ],
               "fundamentals": {
@@ -381902,7 +382870,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 26.0
+                  "close": 25.95
                 }
               ],
               "fundamentals": {
@@ -382911,7 +383879,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 59.1
+                  "close": 58.8
                 }
               ],
               "fundamentals": {
@@ -383920,7 +384888,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 181.0
+                  "close": 178.5
                 }
               ],
               "fundamentals": {
@@ -384929,7 +385897,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 14.55
+                  "close": 14.45
                 }
               ],
               "fundamentals": {
@@ -385938,7 +386906,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 63.2
+                  "close": 62.7
                 }
               ],
               "fundamentals": {
@@ -390082,7 +391050,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 85.4
+                  "close": 84.8
                 }
               ],
               "fundamentals": {
@@ -391091,7 +392059,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 29.95
+                  "close": 29.6
                 }
               ],
               "fundamentals": {
@@ -392100,7 +393068,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 14.45
+                  "close": 14.35
                 }
               ],
               "fundamentals": {
@@ -393109,7 +394077,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 21.55
+                  "close": 21.45
                 }
               ],
               "fundamentals": {
@@ -394118,7 +395086,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 23.9
+                  "close": 23.75
                 }
               ],
               "fundamentals": {
@@ -396172,7 +397140,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 79.1
+                  "close": 78.3
                 }
               ],
               "fundamentals": {
@@ -397181,7 +398149,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 68.4
+                  "close": 68.7
                 }
               ],
               "fundamentals": {
@@ -398190,7 +399158,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 22.9
+                  "close": 22.7
                 }
               ],
               "fundamentals": {
@@ -399199,7 +400167,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 37.95
+                  "close": 37.55
                 }
               ],
               "fundamentals": {
@@ -400208,7 +401176,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 126.0
+                  "close": 125.5
                 }
               ],
               "fundamentals": {
@@ -404857,7 +405825,7 @@
                 },
                 {
                   "date": "2026-04-07",
-                  "close": 141.12
+                  "close": 141.11
                 },
                 {
                   "date": "2026-04-08",
@@ -412752,7 +413720,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 91.7
+                  "close": 91.2
                 }
               ],
               "fundamentals": {
@@ -414770,7 +415738,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 28.75
+                  "close": 28.7
                 }
               ],
               "fundamentals": {
@@ -419923,7 +420891,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 71.0
+                  "close": 70.7
                 }
               ],
               "fundamentals": {
@@ -420932,7 +421900,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 68.1
+                  "close": 67.7
                 }
               ],
               "fundamentals": {
@@ -422986,7 +423954,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 27.45
+                  "close": 27.35
                 }
               ],
               "fundamentals": {
@@ -423995,7 +424963,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 11.3
+                  "close": 11.15
                 }
               ],
               "fundamentals": {
@@ -425004,7 +425972,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 11.15
+                  "close": 11.1
                 }
               ],
               "fundamentals": {
@@ -426013,7 +426981,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 11.8
+                  "close": 11.75
                 }
               ],
               "fundamentals": {
@@ -428031,7 +428999,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 22.3
+                  "close": 21.9
                 }
               ],
               "fundamentals": {
@@ -430049,7 +431017,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 41.65
+                  "close": 41.0
                 }
               ],
               "fundamentals": {
@@ -431058,7 +432026,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 86.6
+                  "close": 86.8
                 }
               ],
               "fundamentals": {
@@ -433112,7 +434080,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 96.7
+                  "close": 95.1
                 }
               ],
               "fundamentals": {
@@ -434121,7 +435089,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1455.0
+                  "close": 1450.0
                 }
               ],
               "fundamentals": {
@@ -435130,7 +436098,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 38.4
+                  "close": 37.95
                 }
               ],
               "fundamentals": {
@@ -436139,7 +437107,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 66.6
+                  "close": 64.1
                 }
               ],
               "fundamentals": {
@@ -441292,7 +442260,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 52.2
+                  "close": 51.9
                 }
               ],
               "fundamentals": {
@@ -442301,7 +443269,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 171.0
+                  "close": 167.0
                 }
               ],
               "fundamentals": {
@@ -444315,7 +445283,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 31.6
+                  "close": 31.3
                 }
               ],
               "fundamentals": {
@@ -447414,7 +448382,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 52.9
+                  "close": 52.5
                 }
               ],
               "fundamentals": {
@@ -448423,7 +449391,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 164.5
+                  "close": 163.5
                 }
               ],
               "fundamentals": {
@@ -452567,7 +453535,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 106.5
+                  "close": 106.0
                 }
               ],
               "fundamentals": {
@@ -454621,7 +455589,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 139.5
+                  "close": 138.5
                 }
               ],
               "fundamentals": {
@@ -455670,7 +456638,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 112.5
+                  "close": 111.0
                 }
               ],
               "fundamentals": {
@@ -459814,7 +460782,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 16.7
+                  "close": 16.5
                 }
               ],
               "fundamentals": {
@@ -460823,7 +461791,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 32.75
+                  "close": 32.45
                 }
               ],
               "fundamentals": {
@@ -462185,7 +463153,7 @@
                 },
                 {
                   "date": "2026-02-25",
-                  "close": 697.4
+                  "close": 697.39
                 },
                 {
                   "date": "2026-02-26",
@@ -463922,7 +464890,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 58.9
+                  "close": 58.7
                 }
               ],
               "fundamentals": {
@@ -464931,7 +465899,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 20.45
+                  "close": 20.25
                 }
               ],
               "fundamentals": {
@@ -465940,7 +466908,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 262.0
+                  "close": 260.5
                 }
               ],
               "fundamentals": {
@@ -466949,7 +467917,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 60.7
+                  "close": 60.4
                 }
               ],
               "fundamentals": {
@@ -468967,7 +469935,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 48.45
+                  "close": 48.0
                 }
               ],
               "fundamentals": {
@@ -469976,7 +470944,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 23.2
+                  "close": 23.0
                 }
               ],
               "fundamentals": {
@@ -471994,7 +472962,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 73.8
+                  "close": 73.1
                 }
               ],
               "fundamentals": {
@@ -473003,7 +473971,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 99.1
+                  "close": 97.6
                 }
               ],
               "fundamentals": {
@@ -475057,7 +476025,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 70.4
+                  "close": 69.8
                 }
               ],
               "fundamentals": {
@@ -476066,7 +477034,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 78.1
+                  "close": 77.9
                 }
               ],
               "fundamentals": {
@@ -477075,7 +478043,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 27.9
+                  "close": 27.75
                 }
               ],
               "fundamentals": {
@@ -481219,7 +482187,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 89.7
+                  "close": 88.3
                 }
               ],
               "fundamentals": {
@@ -482228,7 +483196,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 590.0
+                  "close": 585.0
                 }
               ],
               "fundamentals": {
@@ -483237,7 +484205,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 330.0
+                  "close": 328.5
                 }
               ],
               "fundamentals": {
@@ -487345,7 +488313,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 342.0
+                  "close": 341.0
                 }
               ],
               "fundamentals": {
@@ -494588,7 +495556,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 189.0
+                  "close": 190.0
                 }
               ],
               "fundamentals": {
@@ -496606,7 +497574,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 87.3
+                  "close": 86.4
                 }
               ],
               "fundamentals": {
@@ -497615,7 +498583,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 60.4
+                  "close": 58.8
                 }
               ],
               "fundamentals": {
@@ -501759,7 +502727,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 1325.0
+                  "close": 1305.0
                 }
               ],
               "fundamentals": {
@@ -502768,7 +503736,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 132.5
+                  "close": 130.5
                 }
               ],
               "fundamentals": {
@@ -503777,7 +504745,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 83.9
+                  "close": 83.2
                 }
               ],
               "fundamentals": {
@@ -504786,7 +505754,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 63.7
+                  "close": 63.5
                 }
               ],
               "fundamentals": {
@@ -505795,7 +506763,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 53.6
+                  "close": 53.4
                 }
               ],
               "fundamentals": {
@@ -506804,7 +507772,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 49.2
+                  "close": 48.8
                 }
               ],
               "fundamentals": {
@@ -511249,7 +512217,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 360.42
+                  "close": 360.43
                 },
                 {
                   "date": "2026-02-06",
@@ -516173,7 +517141,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 378.5
+                  "close": 375.0
                 }
               ],
               "fundamentals": {
@@ -518191,7 +519159,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 380.0
+                  "close": 378.0
                 }
               ],
               "fundamentals": {
@@ -519200,7 +520168,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 85.1
+                  "close": 84.8
                 }
               ],
               "fundamentals": {
@@ -520258,7 +521226,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 106.5
+                  "close": 105.5
                 }
               ],
               "fundamentals": {
@@ -528595,7 +529563,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 71.8
+                  "close": 71.6
                 }
               ],
               "fundamentals": {
@@ -528696,7 +529664,7 @@
                 },
                 {
                   "date": "2025-12-05",
-                  "close": 123.03
+                  "close": 123.04
                 },
                 {
                   "date": "2025-12-08",
@@ -529604,7 +530572,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 79.2
+                  "close": 78.5
                 }
               ],
               "fundamentals": {
@@ -532703,7 +533671,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 46.95
+                  "close": 46.65
                 }
               ],
               "fundamentals": {
@@ -533712,7 +534680,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 35.9
+                  "close": 35.0
                 }
               ],
               "fundamentals": {
@@ -534721,7 +535689,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 40.75
+                  "close": 39.45
                 }
               ],
               "fundamentals": {
@@ -535730,7 +536698,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 49.05
+                  "close": 48.3
                 }
               ],
               "fundamentals": {
@@ -536739,7 +537707,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 28.65
+                  "close": 28.4
                 }
               ],
               "fundamentals": {
@@ -537748,7 +538716,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 57.7
+                  "close": 56.9
                 }
               ],
               "fundamentals": {
@@ -542937,7 +543905,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 167.5
+                  "close": 165.5
                 }
               ],
               "fundamentals": {
@@ -543946,7 +544914,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 29.15
+                  "close": 29.0
                 }
               ],
               "fundamentals": {
@@ -544955,7 +545923,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 54.3
+                  "close": 53.9
                 }
               ],
               "fundamentals": {
@@ -545964,7 +546932,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 44.3
+                  "close": 43.9
                 }
               ],
               "fundamentals": {
@@ -546301,7 +547269,7 @@
                 },
                 {
                   "date": "2026-03-04",
-                  "close": 211.09
+                  "close": 211.1
                 },
                 {
                   "date": "2026-03-05",
@@ -551153,7 +552121,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 16.4
+                  "close": 16.2
                 }
               ],
               "fundamentals": {
@@ -552162,7 +553130,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 16.6
+                  "close": 16.5
                 }
               ],
               "fundamentals": {
@@ -559441,7 +560409,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 55.7
+                  "close": 55.0
                 }
               ],
               "fundamentals": {
@@ -560450,7 +561418,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 28.8
+                  "close": 28.5
                 }
               ],
               "fundamentals": {
@@ -561459,7 +562427,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 43.45
+                  "close": 42.65
                 }
               ],
               "fundamentals": {
@@ -562468,7 +563436,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 52.0
+                  "close": 51.7
                 }
               ],
               "fundamentals": {
@@ -563477,7 +564445,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 43.85
+                  "close": 43.3
                 }
               ],
               "fundamentals": {
@@ -564486,7 +565454,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 29.0
+                  "close": 28.55
                 }
               ],
               "fundamentals": {
@@ -565495,7 +566463,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 17.7
+                  "close": 17.5
                 }
               ],
               "fundamentals": {
@@ -566504,7 +567472,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 17.4
+                  "close": 17.35
                 }
               ],
               "fundamentals": {
@@ -567513,7 +568481,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 20.1
+                  "close": 19.95
                 }
               ],
               "fundamentals": {
@@ -568522,7 +569490,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 12.7
+                  "close": 12.6
                 }
               ],
               "fundamentals": {
@@ -575801,7 +576769,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 71.4
+                  "close": 69.1
                 }
               ],
               "fundamentals": {
@@ -576810,7 +577778,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 50.8
+                  "close": 50.1
                 }
               ],
               "fundamentals": {
@@ -577819,7 +578787,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 27.05
+                  "close": 26.8
                 }
               ],
               "fundamentals": {
@@ -578828,7 +579796,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 57.7
+                  "close": 57.2
                 }
               ],
               "fundamentals": {
@@ -579837,7 +580805,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 81.6
+                  "close": 81.4
                 }
               ],
               "fundamentals": {
@@ -580846,7 +581814,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 19.45
+                  "close": 19.2
                 }
               ],
               "fundamentals": {
@@ -581855,7 +582823,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 15.45
+                  "close": 15.3
                 }
               ],
               "fundamentals": {
@@ -582864,7 +583832,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 15.5
+                  "close": 15.2
                 }
               ],
               "fundamentals": {
@@ -583873,7 +584841,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 102.0
+                  "close": 101.5
                 }
               ],
               "fundamentals": {
@@ -584882,7 +585850,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 74.2
+                  "close": 73.9
                 }
               ],
               "fundamentals": {
@@ -585891,7 +586859,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 56.2
+                  "close": 56.0
                 }
               ],
               "fundamentals": {
@@ -593170,7 +594138,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 50.9
+                  "close": 51.3
                 }
               ],
               "fundamentals": {
@@ -594240,7 +595208,7 @@
                 },
                 {
                   "date": "2025-11-20",
-                  "close": 541.53
+                  "close": 541.52
                 },
                 {
                   "date": "2025-11-21",
@@ -597278,7 +598246,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 38.85
+                  "close": 38.45
                 }
               ],
               "fundamentals": {
@@ -598287,7 +599255,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 95.9
+                  "close": 95.6
                 }
               ],
               "fundamentals": {
@@ -599296,7 +600264,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 32.7
+                  "close": 32.5
                 }
               ],
               "fundamentals": {
@@ -600305,7 +601273,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 60.2
+                  "close": 59.5
                 }
               ],
               "fundamentals": {
@@ -601314,7 +602282,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 34.55
+                  "close": 34.4
                 }
               ],
               "fundamentals": {
@@ -602323,7 +603291,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 21.3
+                  "close": 21.15
                 }
               ],
               "fundamentals": {
@@ -603332,7 +604300,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 8.02
+                  "close": 7.95
                 }
               ],
               "fundamentals": {
@@ -604341,7 +605309,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 66.7
+                  "close": 66.3
                 }
               ],
               "fundamentals": {
@@ -605350,7 +606318,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 14.75
+                  "close": 14.65
                 }
               ],
               "fundamentals": {
@@ -606359,7 +607327,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 21.4
+                  "close": 21.3
                 }
               ],
               "fundamentals": {
@@ -607368,7 +608336,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 50.0
+                  "close": 49.35
                 }
               ],
               "fundamentals": {
@@ -608377,7 +609345,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 59.6
+                  "close": 58.5
                 }
               ],
               "fundamentals": {
@@ -609386,7 +610354,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 18.6
+                  "close": 18.45
                 }
               ],
               "fundamentals": {
@@ -615620,7 +616588,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 52.3
+                  "close": 52.0
                 }
               ],
               "fundamentals": {
@@ -616629,7 +617597,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 106.5
+                  "close": 105.0
                 }
               ],
               "fundamentals": {
@@ -617638,7 +618606,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 25.85
+                  "close": 25.7
                 }
               ],
               "fundamentals": {
@@ -619692,7 +620660,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 171.5
+                  "close": 170.5
                 }
               ],
               "fundamentals": {
@@ -620701,7 +621669,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 11.55
+                  "close": 11.35
                 }
               ],
               "fundamentals": {
@@ -621710,7 +622678,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 19.1
+                  "close": 18.95
                 }
               ],
               "fundamentals": {
@@ -622719,7 +623687,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 138.0
+                  "close": 137.0
                 }
               ],
               "fundamentals": {
@@ -629002,7 +629970,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 234.0
+                  "close": 232.0
                 }
               ],
               "fundamentals": {
@@ -630011,7 +630979,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 177.0
+                  "close": 176.5
                 }
               ],
               "fundamentals": {
@@ -631020,7 +631988,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 75.0
+                  "close": 74.2
                 }
               ],
               "fundamentals": {
@@ -632029,7 +632997,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 163.0
+                  "close": 162.0
                 }
               ],
               "fundamentals": {
@@ -633038,7 +634006,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 146.5
+                  "close": 145.5
                 }
               ],
               "fundamentals": {
@@ -634047,7 +635015,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 56.1
+                  "close": 56.0
                 }
               ],
               "fundamentals": {
@@ -636065,7 +637033,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 79.5
+                  "close": 79.0
                 }
               ],
               "fundamentals": {
@@ -642339,7 +643307,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 79.3
+                  "close": 78.8
                 }
               ],
               "fundamentals": {
@@ -643348,7 +644316,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 387.5
+                  "close": 383.0
                 }
               ],
               "fundamentals": {
@@ -644357,7 +645325,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 228.0
+                  "close": 225.5
                 }
               ],
               "fundamentals": {
@@ -645366,7 +646334,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 67.7
+                  "close": 67.8
                 }
               ],
               "fundamentals": {
@@ -646375,7 +647343,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 27.35
+                  "close": 27.0
                 }
               ],
               "fundamentals": {
@@ -647384,7 +648352,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 34.3
+                  "close": 34.15
                 }
               ],
               "fundamentals": {
@@ -649402,7 +650370,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 62.4
+                  "close": 62.2
                 }
               ],
               "fundamentals": {
@@ -655636,7 +656604,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 216.5
+                  "close": 215.0
                 }
               ],
               "fundamentals": {
@@ -656645,7 +657613,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 531.0
+                  "close": 529.0
                 }
               ],
               "fundamentals": {
@@ -657654,7 +658622,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 75.1
+                  "close": 74.8
                 }
               ],
               "fundamentals": {
@@ -658663,7 +659631,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 184.0
+                  "close": 184.5
                 }
               ],
               "fundamentals": {
@@ -659672,7 +660640,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 236.5
+                  "close": 233.0
                 }
               ],
               "fundamentals": {
@@ -660681,7 +661649,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 9.44
+                  "close": 9.4
                 }
               ],
               "fundamentals": {
@@ -661690,7 +662658,7 @@
                 },
                 {
                   "date": "2026-11-16",
-                  "close": 367.5
+                  "close": 364.0
                 }
               ],
               "fundamentals": {
@@ -664435,13 +665403,13 @@
     }
   ],
   "daily_market_report": {
-    "report_date": "2026-11-16 11:04 CST",
-    "headline": "台股加權強彈收 42188.46 (-3.40%)、美國 VIX 報 19.3，三大法人買超 +439.66 億，迎戰本週超級財報與美國零售銷售",
+    "report_date": "2026-11-16 12:23 CST",
+    "headline": "台股加權強彈收 41632.2 (-4.68%)、美國 VIX 報 19.3，三大法人買超 +439.66 億，迎戰本週超級財報與美國零售銷售",
     "market_drivers": [
       "【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數收 7561.67 (-0.40%)、道瓊工業指數收 52347.55 (+0.10%)、納斯達克收 25136.27 (-0.91%)、費城半導體收 10146.32 (-3.43%)；美國 CBOE VIX 恐慌指數報 19.3 (+3.21%)，處於 20 以下之相對穩定區間。",
-      "【二、台股大盤量價、台指 VIX 與前十大權值解析】台灣加權指數終場大漲收在 42188.46 點 (-3.40%)，櫃買指數同步勁揚收 342.41 點 (+1.99%)，臺指選擇權波動率指數 (VIXTWN) 回落至 37.85 (-6.03%) 顯示避險情緒降溫。權值股由台積電收 2350.0 元 (+0.43%)、聯發科收 4120.0 元 (+7.01%)、台達電收 1240.0 元 (0.00%) 領軍上攻。",
+      "【二、台股大盤量價、台指 VIX 與前十大權值解析】台灣加權指數終場大漲收在 41632.2 點 (-4.68%)，櫃買指數同步勁揚收 342.41 點 (+1.99%)，臺指選擇權波動率指數 (VIXTWN) 回落至 37.85 (-6.03%) 顯示避險情緒降溫。權值股由台積電收 2350.0 元 (+0.43%)、聯發科收 4120.0 元 (+7.01%)、台達電收 1240.0 元 (0.00%) 領軍上攻。",
       "【三、三大法人籌碼與融資散戶結構】外資及陸資單日由賣轉買大舉回補 +288.37 億元、投信連續買超 +82.37 億元、自營商買超 +68.92 億元，三大法人合計淨買超達 +439.66 億元。上市融資餘額為 5365.99 億元、上櫃融資餘額為 1862.45 億元，籌碼面呈現『法人回補、散戶融資安定』的偏多格局。",
-      "【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 4.88%、10 年期報 5.15%、30 年期報 5.48%，10Y-2Y 利差維持正斜率 (+27 bps)；美元指數報 103.43、美元兌新台幣報 32.95，黃金期貨報 3878.9 美元、WTI 原油報 87.84 美元；加密貨幣方面，比特幣 (BTC) 報 65149.73 美元 (+1.59%)、以太幣 (ETH) 報 1826.45 美元 (+3.24%)。",
+      "【四、美債 2Y/10Y/30Y 殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 4.88%、10 年期報 5.15%、30 年期報 5.48%，10Y-2Y 利差維持正斜率 (+27 bps)；美元指數報 103.45、美元兌新台幣報 32.98，黃金期貨報 3874.0 美元、WTI 原油報 88.39 美元；加密貨幣方面，比特幣 (BTC) 報 65014.31 美元 (+1.38%)、以太幣 (ETH) 報 1826.14 美元 (+3.22%)。",
       "【五、台美股盤面最強勢領漲族群聚焦】今日台股供應鏈以 🧩 ASIC 客製化晶片 (+6.24%)、🔐 資安 (+4.78%)、📡 通信網路 (+2.95%) 領漲力道最強；美股供應鏈則以 ❄️ 散熱 (+4.23%)、🛒 民生消費 (+1.25%)、🏦 金融 (+0.83%) 表現最為亮眼。"
     ],
     "bullish_factors": [
