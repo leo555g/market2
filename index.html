@@ -29,7 +29,7 @@
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
           <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場最新收盤與美股盤前盤後報價已就緒</span>
+          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場最新收盤與即時報價已就緒</span>
         </div>
         <button onclick="forceSyncAllLivePrices()" class="text-xs bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">🔄 強制刷新全站報價</button>
         <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">⚡ 設定美股 WebSocket 金鑰</button>
@@ -202,8 +202,8 @@
     <!-- 專區 6：美股核心科技股 -->
     <section class="space-y-4">
       <h2 class="text-lg font-bold text-white border-l-4 border-emerald-500 pl-3">
-        美股核心科技股・收盤價與盤前/盤後即時報價・最新財報指標與新聞利多利空
-        <span class="text-xs font-normal text-emerald-400 ml-2">(純代號顯示・美股綠漲紅跌・收盤價正下方自動顯示並更新盤前/盤後交易價格)</span>
+        美股核心科技股・正規盤大字即時/收盤價 & 下方小字盤前/盤後報價
+        <span class="text-xs font-normal text-emerald-400 ml-2">(開盤期間大字直接跳動即時價；收盤後大字顯示當日收盤價，下方小字顯示盤前/盤後價)</span>
       </h2>
       <div id="grid-us-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
@@ -211,8 +211,8 @@
     <!-- 專區 7：台股核心權值股與 MOPS 重大訊息 -->
     <section class="space-y-6">
       <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
-        台股核心權值股・最新財報與月營收・公開資訊觀測站與新聞利多利空
-        <span class="text-xs font-normal text-rose-400 ml-2">(台股紅漲綠跌・點擊卡片開啟完整重訊與利多利空情報室)</span>
+        台股核心權值股・當日最新收盤價・最新財報與月營收・公開資訊觀測站
+        <span class="text-xs font-normal text-rose-400 ml-2">(台股紅漲綠跌・13:30 收盤即同步當日最新收盤價)</span>
       </h2>
       <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       <div class="card-bg rounded-xl p-5">
@@ -292,7 +292,7 @@
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
             <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室 (台股前十大權值 / 美股兆元俱樂部嚴格分流)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">台股專區顯示「🏆 台股市值前十大權值股」、美股專區顯示「👑 美股一兆美元俱樂部」，所有美股卡片於收盤價下方皆顯示盤前/盤後交易價</p>
+          <p class="text-xs text-slate-400 mt-1">大數字顯示當日正規收盤價（美股盤中直接跳動即時價），美股卡片下方小字顯示盤前/盤後交易價</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">&larr; 返回視窗一：全球市場總覽</button>
       </div>
@@ -300,7 +300,7 @@
       <div class="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold text-white">🌍 選擇要檢視的市場供應鏈：</span>
-          <span class="text-[11px] text-slate-400">(台股僅顯示台股前十大權值・美股僅顯示美股一兆美元俱樂部且全數附帶盤前盤後報價)</span>
+          <span class="text-[11px] text-slate-400">(台股僅顯示台股前十大權值・美股僅顯示美股一兆美元俱樂部)</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button id="sc-mkt-TW" onclick="switchScMarketFilter('TW')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股供應鏈專區 (純台股)</button>
@@ -475,6 +475,20 @@
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+
+    // 判斷當前時間是否處於「美股正規交易時段 (美東 09:30 ~ 16:00)」
+    function isUsRegularMarketOpenNow() {
+      try {
+        const nyStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+        const nyDate = new Date(nyStr);
+        const day = nyDate.getDay();
+        if (day === 0 || day === 6) return false;
+        const mins = nyDate.getHours() * 60 + nyDate.getMinutes();
+        return mins >= 570 && mins < 960; // 09:30 (570) ~ 16:00 (960)
+      } catch (e) {
+        return false;
+      }
+    }
 
     const OFFICIAL_VERIFIED_TW_CHIPS = {
       dates: ["11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16"],
@@ -962,15 +976,16 @@
       renderSupplyChainView();
     }
 
+    // 視窗二卡片：大數字顯示當日正規收盤價（美股開盤時大字跳動即時價）；美股卡片下方小字顯示盤前/盤後交易價
     function buildScStockCardHtml(item) {
       const domId = safeId(item.symbol), isSelected = scCompareSymbols.includes(item.symbol), isUs = item.asset_type === "us_stock", f = item.fundamentals || {};
       const revStr = f.monthly_rev ? `月營收 ${f.monthly_rev.revenue_yi} (YoY ${formatSignedPct(f.monthly_rev.yoy)})` : (f.pe && f.pe !== 'N/A' ? `本益比 PE: ${f.pe}` : '點擊檢視基本面與多空');
       const marketTag = isUs ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">🇺🇸 US</span>` : `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">🇹🇼 TW</span>`;
       const extObj = isUs ? ensureUsExtSession(item.symbol, item.price, item.ext_session) : null;
       const scExtHtml = isUs
-        ? `<div class="sc-ext-${domId} mt-2 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] mono bg-slate-950/60 px-2 py-1 rounded border border-slate-800/70">
-             <span class="text-slate-300 font-bold">⚡ ${extObj.label || '盤前/盤後'}交易價：</span>
-             <span class="${getColorClass(extObj.change_pct, 'us_stock')} font-bold">${formatDisplayPrice(extObj.price, item.symbol)} (${formatSignedPct(extObj.change_pct)})</span>
+        ? `<div class="sc-ext-${domId} mt-1.5 pt-1 border-t border-slate-800/60 flex items-center justify-between text-[11px] mono">
+             <span class="text-slate-400">${extObj.label || '盤前/盤後'}:</span>
+             <span class="${getColorClass(extObj.change_pct, 'us_stock')} font-semibold">${formatDisplayPrice(extObj.price, item.symbol)} (${formatSignedPct(extObj.change_pct)})</span>
            </div>`
         : "";
 
@@ -981,7 +996,7 @@
             <div class="text-right mono shrink-0"><div id="sc-price-${domId}" class="sc-price-${domId} text-base font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="sc-pct-${domId}" class="sc-pct-${domId} text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</div></div>
           </div>
           ${scExtHtml}
-          <div class="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
             <span class="text-slate-400 mono truncate">${revStr}</span>
             <button onclick="event.stopPropagation(); toggleScCompareSymbol('${item.symbol}')" class="px-2 py-0.5 rounded font-bold transition shrink-0 ${isSelected ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">${isSelected ? '✓ 已在圖表比較' : '＋加入疊圖'}</button>
           </div>
@@ -1057,7 +1072,11 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
-      secItems.slice(0, 12).forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
+      // 切換產業鏈時，立即向證交所 MIS 與 Yahoo 同步該產業鏈所有台美股最新報價！
+      const activeTwSyms = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol);
+      if (activeTwSyms.length > 0) syncTwseMisBatchInBrowser(activeTwSyms);
+      secItems.slice(0, 15).forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
+
       renderScIndexBenchmarkPicker();
       renderSupplyChainChart();
     }
@@ -1258,6 +1277,7 @@
         </div>`;
     }
 
+    // 視窗一美股核心科技股卡片：大數字顯示正規盤即時/收盤價，正下方小字顯示盤前/盤後交易價
     function createUsStockRichCard(item) {
       item.name = item.symbol;
       applyVerifiedNov13IfMissing(item);
@@ -1265,14 +1285,18 @@
       const domId = safeId(item.symbol), colorCls = getColorClass(item.change_pct, "us_stock"), f = item.fundamentals || {};
       const extObj = ensureUsExtSession(item.symbol, item.price, item.ext_session);
       const extColor = getColorClass(extObj.change_pct, "us_stock");
-      const extHtml = `<div id="ext-${domId}" class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs mono bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-slate-800"><span class="text-slate-300 text-[11px] font-bold">⚡ ${extObj.label || '盤前/盤後'}交易價格：</span><span class="${extColor} font-bold">${formatDisplayPrice(extObj.price)} (${formatSignedPct(extObj.change_pct)})</span></div>`;
+      const extHtml = `
+        <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
+          <span class="text-slate-400 text-[11px]">${extObj.label || '盤前/盤後'}報價：</span>
+          <span class="${extColor} font-semibold">${formatDisplayPrice(extObj.price)} (${formatSignedPct(extObj.change_pct)})</span>
+        </div>`;
       const topBull = cleanTwText(item.news_sentiment?.bullish?.[0]?.title || "點擊查看最新財報與華爾街利多消息"), topBear = cleanTwText(item.news_sentiment?.bearish?.[0]?.title || "點擊查看最新估值與市場風險提示");
       return `
         <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 flex flex-col justify-between cursor-pointer">
           <div>
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-              <div><div class="flex items-center gap-2"><h3 class="font-bold text-lg text-white mono tracking-tight">${item.symbol}</h3><span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">US 權值股</span></div><span class="text-[11px] text-indigo-400">正規收盤價 & 盤前/盤後報價</span></div>
-              <div class="text-right mono"><div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div></div>
+              <div><div class="flex items-center gap-2"><h3 class="font-bold text-lg text-white mono tracking-tight">${item.symbol}</h3><span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">US 權值股</span></div><span class="text-[11px] text-indigo-400">大字：正規盤即時/收盤・小字：盤前/盤後</span></div>
+              <div class="text-right mono"><div id="price-${domId}" class="text-2xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div></div>
             </div>
             ${extHtml}
             <div class="mt-3">
@@ -1311,7 +1335,7 @@
           <div>
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
               <div><h3 class="font-bold text-base text-white">${item.name}</h3><span class="text-[11px] text-indigo-400">點擊開啟「MOPS重訊＋新聞利多利空」</span></div>
-              <div class="text-right mono"><div id="price-${domId}" class="text-xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div></div>
+              <div class="text-right mono"><div id="price-${domId}" class="text-2xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div></div>
             </div>
             <div class="mt-3">
               <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
@@ -1372,7 +1396,7 @@
       const extBadge = document.getElementById("modal-stock-ext");
       if (item.ext_session && Number(item.ext_session.price) > 0) {
         extBadge.classList.remove("hidden");
-        extBadge.textContent = `⚡ ${item.ext_session.label || '盤前/盤後'}: ${formatDisplayPrice(item.ext_session.price)} (${formatSignedPct(item.ext_session.change_pct)})`;
+        extBadge.textContent = `${item.ext_session.label || '盤前/盤後'}: ${formatDisplayPrice(item.ext_session.price)} (${formatSignedPct(item.ext_session.change_pct)})`;
         extBadge.className = `text-xs font-bold mono px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 ${getColorClass(item.ext_session.change_pct, item.symbol)}`;
       } else {
         extBadge.classList.add("hidden");
@@ -1613,23 +1637,20 @@
         const extEl = document.getElementById(`ext-${domId}`);
         if (extEl) {
           extEl.classList.remove("hidden");
-          extEl.className = item.asset_type === "us_stock"
-            ? "mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs mono bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-slate-800"
-            : "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono";
+          extEl.className = "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono";
           extEl.innerHTML = item.asset_type === "us_stock"
-            ? `<span class="text-slate-300 text-[11px] font-bold">⚡ ${extSessionObj.label || '盤前/盤後'}交易價格：</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-bold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`
+            ? `<span class="text-slate-400 text-[11px]">${extSessionObj.label || '盤前/盤後'}報價：</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`
             : `<span class="${getColorClass(extSessionObj.change_pct, item.symbol)} font-semibold">${Number(extSessionObj.price).toFixed(2)} ${formatSignedPct(extSessionObj.change_pct)} ${extSessionObj.label}</span>`;
         }
         document.querySelectorAll(`.sc-ext-${domId}`).forEach(el => {
           el.classList.remove("hidden");
-          el.innerHTML = `<span class="text-slate-300 font-bold">⚡ ${extSessionObj.label || '盤前/盤後'}交易價：</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-bold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
+          el.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '盤前/盤後'}:</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
         });
       }
     }
 
     async function tryFetchViaMultiProxy(url, postBody = null) {
       const proxies = [
-        (u) => u,
         (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
         (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
@@ -1637,7 +1658,7 @@
       for (const buildUrl of proxies) {
         try {
           const controller = new AbortController();
-          const timer = setTimeout(() => controller.abort(), 4500);
+          const timer = setTimeout(() => controller.abort(), 5000);
           const opts = postBody ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(postBody), signal: controller.signal } : { signal: controller.signal };
           const r = await fetch(buildUrl(url), opts);
           clearTimeout(timer);
@@ -1647,35 +1668,39 @@
       return null;
     }
 
-    // 瀏覽器端四重台股同步引擎 (1. FinMind 原生 CORS 直連 -> 2. 證交所 STOCK_DAY_ALL -> 3. 櫃買中心)
-    async function syncAllTwStocksInBrowser() {
-      // 通道 A：FinMind 原生支援 CORS，直接用 fetch 免 Proxy 拉取最新交易日全台灣上市櫃收盤價
-      for (const dStr of ["2026-11-16", "2026-11-13"]) {
+    // 瀏覽器端直接向證交所基本市況報導 (mis.twse.com.tw) 批次查詢指定台股最新收盤價
+    async function syncTwseMisBatchInBrowser(twSymList) {
+      if (!twSymList || !twSymList.length) return;
+      const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
+      for (let i = 0; i < exList.length; i += 35) {
+        const chunk = exList.slice(i, i + 35).join("|");
         try {
-          const r = await fetch(`https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&start_date=${dStr}`);
-          if (r.ok) {
-            const j = await r.json();
-            const rows = j?.data || [];
-            if (rows.length > 200) {
-              rows.forEach(row => {
-                const code = String(row.stock_id || "").trim();
-                const p = Number(row.close || 0), spread = Number(row.spread || 0);
-                if (p > 0) {
-                  const prev = p - spread, pct = prev > 0 ? (spread / prev) * 100 : 0;
-                  const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
-                  VERIFIED_NOV13_2026_QUOTES[symTw] = [p, Number(pct.toFixed(2))];
-                  VERIFIED_NOV13_2026_QUOTES[symTwo] = [p, Number(pct.toFixed(2))];
-                  if (allAssetsMap[symTw]) updateAssetDomPrice(symTw, p, pct);
-                  if (allAssetsMap[symTwo]) updateAssetDomPrice(symTwo, p, pct);
-                }
-              });
-              break;
+          const j = await tryFetchViaMultiProxy(`https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${chunk}&json=1&delay=0`);
+          const arr = j?.msgArray || [];
+          arr.forEach(m => {
+            const code = String(m.c || "").trim();
+            const isOtc = String(m.ex || "") === "otc";
+            const sym = `${code}.${isOtc ? 'TWO' : 'TW'}`;
+            const prevP = parseFloat(m.y || "0");
+            let curP = parseFloat(m.z || "0");
+            if (!curP || isNaN(curP) || curP <= 0) {
+              const b0 = parseFloat(String(m.b || "").split("_")[0]);
+              const a0 = parseFloat(String(m.a || "").split("_")[0]);
+              curP = b0 || a0 || prevP;
             }
-          }
+            if (curP > 0 && prevP > 0) {
+              const pct = ((curP - prevP) / prevP) * 100;
+              updateAssetDomPrice(sym, curP, pct);
+            }
+          });
         } catch (e) {}
       }
+    }
 
-      // 通道 B：證交所與櫃買中心官方 OpenAPI
+    async function syncAllTwStocksInBrowser() {
+      const coreTw = ["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "2382.TW", "2881.TW", "2882.TW", "2412.TW", "2891.TW", "2303.TW", "3653.TW", "2059.TW"];
+      await syncTwseMisBatchInBrowser(coreTw);
+
       try {
         const twseAll = await tryFetchViaMultiProxy("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL");
         if (Array.isArray(twseAll)) {
@@ -1727,6 +1752,8 @@
       }
     }
 
+    // 瀏覽器端透過 Yahoo V8 同步單一標的：
+    // 美股若處於正規開盤 (REGULAR)，大字直接更新為 regularMarketPrice；若已收盤 (PRE/POST/CLOSED)，大字顯示正規收盤價，小字更新盤前/盤後價！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
@@ -1744,26 +1771,26 @@
             validPairs.push({ date: new Date(ts[i] * 1000).toISOString().slice(0, 10), close: Number(Number(rawCloses[i]).toFixed(dec)) });
           }
         }
+
+        let mainPrice = validPairs.length ? validPairs[validPairs.length - 1].close : Number(meta.regularMarketPrice || item.price);
+        let prevClose = validPairs.length >= 2 ? validPairs[validPairs.length - 2].close : Number(meta.chartPreviousClose || meta.previousClose || mainPrice);
+        if (Number(meta.regularMarketPrice) > 0) mainPrice = Number(meta.regularMarketPrice);
+        const mainPct = prevClose > 0 ? ((mainPrice - prevClose) / prevClose) * 100 : 0;
+
         let extSession = item.ext_session;
         if (item.asset_type === "us_stock") {
-          const regP = Number(meta.regularMarketPrice || (validPairs.length ? validPairs[validPairs.length - 1].close : item.price));
           const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
           if (preP > 0) {
-            const chg = preP - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
+            const chg = preP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
             extSession = { price: Number(preP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤前" };
           } else if (postP > 0) {
-            const chg = postP - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
+            const chg = postP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
             extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
           }
         }
-        if (validPairs.length >= 2) {
-          item.history = validPairs;
-          const latestClose = validPairs[validPairs.length - 1].close, prevClose = validPairs[validPairs.length - 2].close;
-          const pct = prevClose > 0 ? ((latestClose - prevClose) / prevClose) * 100 : 0;
-          updateAssetDomPrice(sym, latestClose, pct, extSession);
-        } else if (extSession) {
-          updateAssetDomPrice(sym, item.price, item.change_pct, extSession);
-        }
+
+        if (validPairs.length >= 2) item.history = validPairs;
+        updateAssetDomPrice(sym, mainPrice, mainPct, extSession);
       } catch (e) {}
     }
 
@@ -1782,7 +1809,7 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站最新台美股與盤前盤後報價...";
+      document.getElementById("live-status").textContent = "正在同步全站最新台美股收盤價與盤前盤後報價...";
       await Promise.all([
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
@@ -1805,6 +1832,9 @@
       if (key !== null) { localStorage.setItem("FINNHUB_API_KEY", key.trim()); startFinnhubWebSocket(key.trim()); }
     }
 
+    // Finnhub WebSocket 即時推播：
+    // 若現在是美股正規盤開盤時間 (isUsRegularMarketOpenNow() === true)，最新成交價直接更新在大數字 (price)！
+    // 若現在是美股收盤後的盤後或盤前時段，大數字維持正規收盤價，最新成交價更新在下方小字 (ext_session)！
     function startFinnhubWebSocket(apiKey) {
       if (!apiKey) return;
       if (finnhubSocket) finnhubSocket.close();
@@ -1822,9 +1852,18 @@
           if (!item) return;
           const prev = Number(item.prev_close) || Number(item.price);
           if (item.asset_type === "us_stock") {
-            const regP = Number(item.price) || prev;
-            const chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
-            updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: "即時/盤前盤後" });
+            if (isUsRegularMarketOpenNow()) {
+              // 美股開盤中：直接跳動上方大數字！
+              const pct = prev > 0 ? ((last.p - prev) / prev) * 100 : 0;
+              updateAssetDomPrice(mappedSym, last.p, pct, item.ext_session);
+            } else {
+              // 美股盤前/盤後：大數字固定為正規收盤價，下方小字跳動盤前/盤後價！
+              const regP = Number(item.price) || prev;
+              const chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
+              const hr = new Date().getHours();
+              const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
+              updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: lbl });
+            }
           } else {
             updateAssetDomPrice(mappedSym, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
           }
