@@ -1,10 +1,13 @@
 name: Update Market Data
 
 on:
-  # 1. 手動一鍵觸發
+  schedule:
+    - cron: '10 0 * * *'    # 台灣時間 08:10 (美股收盤與盤後結算)
+    - cron: '50 5 * * 1-5'  # 台灣時間 13:50 (台股收盤第一波更新)
+    - cron: '45 6 * * 1-5'  # 台灣時間 14:45 (台股盤後三大法人更新)
+    - cron: '35 8 * * 1-5'  # 台灣時間 16:35 (台股融資與完整盤後更新)
+    - cron: '30 14 * * 1-5' # 台灣時間 22:30 (美股開盤即時更新)
   workflow_dispatch:
-
-  # 2. 當你更新 update_data.py、supply_chain_db.js 或本排程檔時，立刻自動執行抓最新報價！
   push:
     branches:
       - main
@@ -13,21 +16,12 @@ on:
       - 'supply_chain_db.js'
       - '.github/workflows/main.yml'
 
-  # 3. 每日多時段收盤後自動排程 (以下為 UTC 時間，對應台灣時間 UTC+8)
-  schedule:
-    - cron: '50 5 * * 1-5'   # 台灣時間 13:50 (台股收盤後第一波大盤與個股結算)
-    - cron: '45 6 * * 1-5'   # 台灣時間 14:45 (證交所收盤行情與櫃買中心結算)
-    - cron: '35 8 * * 1-5'   # 台灣時間 16:35 (三大法人買賣超與台指 VIX 完整結算)
-    - cron: '30 13 * * 1-5'  # 台灣時間 21:30 (美股開盤與 21:30 美國總經數據開出)
-    - cron: '15 21 * * 1-6'  # 台灣時間 05:15 (美股收盤與美債殖利率結算)
-    - cron: '30 22 * * 1-6'  # 台灣時間 06:30 (台股與美股全市場晨間總整理)
-
 permissions:
   contents: write
 
 concurrency:
-  group: market-data-update
-  cancel-in-progress: false
+  group: market-data-sync
+  cancel-in-progress: true
 
 jobs:
   build-and-update:
@@ -38,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -47,21 +41,22 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas requests urllib3 pytz opencc-python-reimplemented
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install yfinance pandas requests pytz urllib3 opencc-python-reimplemented lxml
 
-      - name: Run update_data.py to generate latest market_data.json
+      - name: Run update_data.py
         run: |
           python update_data.py
 
-      - name: Commit and Push updated market_data.json
+      - name: Commit and Push updated market_data.json safely
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          cp data/market_data.json /tmp/market_data.json.bak
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p data
+          mv /tmp/market_data.json.bak data/market_data.json
           git add data/market_data.json
-          if git diff --staged --quiet; then
-            echo "No changes in market_data.json"
-          else
-            git commit -m "Auto-update market_data.json [skip ci]"
-            git pull --rebase origin main || true
-            git push origin main
-          fi
+          git diff --staged --quiet || git commit -m "Auto-update market_data.json [skip ci]"
+          git push origin main
