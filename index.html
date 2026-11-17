@@ -272,10 +272,10 @@
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-4">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <span class="px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded animate-pulse">🔥 每日強勢族群雷達</span>
+            <span class="px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded animate-pulse">🔥 每日強勢族群雷達 (即時動態重算)</span>
             <h2 id="sc-top-radar-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股今日最強勢細分產業鏈排行 & 領漲原因深度解析</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">獨立追蹤台股與美股當日平均漲幅、前三大領漲指標股與基本面催化原因（點擊任一強勢族群卡片可直接跳轉檢視完整上中下游清單）</p>
+          <p class="text-xs text-slate-400 mt-1">根據全站 39 大細分產業鏈成分股之「當日最新即時收盤價與漲跌幅」即時動態排序前六強與前三大領漲指標股（點擊卡片可直接跳轉該產業鏈）</p>
         </div>
         <div class="flex items-center gap-2 shrink-0 bg-slate-900 p-1 rounded-lg border border-slate-800">
           <button id="top-market-btn-tw" onclick="switchTopMarketTab('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股強勢榜</button>
@@ -499,7 +499,6 @@
       short_balance: [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
     };
 
-    // 已移除寫死的舊台股價格，僅保留國際指數/美債/外匯/美股初始基準，台股一律由 market_data.json、FinMind 免 Proxy 直連與 Yahoo 5m 即時線動態寫入！
     const VERIFIED_NOV13_2026_QUOTES = {
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
       "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
@@ -618,12 +617,65 @@
       renderTopPerformingSectors();
     }
 
+    // 核心升級：前端即時動態計算「今日最強勢細分產業鏈排行」，徹底擺脫 supply_chain_db.js 內上禮拜寫死的 DEFAULT_TW_TOP_SECTORS！
+    function computeDynamicTopPerformingSectors(market) {
+      const allSectors = getSupplyChainSectorsData();
+      const ranked = [];
+
+      allSectors.forEach(sec => {
+        // 排除綜合市值榜，專注排行 37 大細分產業鏈
+        if (sec.id === "tw_top10" || sec.id === "trillion_club") return;
+        const rawItems = sec.stages.flatMap(stg => stg.items);
+        const mktItems = market === "TW"
+          ? rawItems.filter(it => isTwSymbol(it.symbol))
+          : rawItems.filter(it => !isTwSymbol(it.symbol));
+
+        const uniqueItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
+        const validItems = uniqueItems.filter(it => Number(it.price) > 0 && it.change_pct !== undefined && !isNaN(Number(it.change_pct)));
+        if (validItems.length === 0) return;
+
+        const sumPct = validItems.reduce((acc, it) => acc + Number(it.change_pct), 0);
+        const avgPct = Number((sumPct / validItems.length).toFixed(2));
+
+        // 依當日最新漲跌幅由高至低排序，取出前 3 大領漲指標股
+        const sortedLeaders = [...validItems].sort((a, b) => Number(b.change_pct) - Number(a.change_pct));
+        const top3 = sortedLeaders.slice(0, 3).map(ld => ({
+          symbol: ld.symbol,
+          name: market === "US" ? ld.symbol : cleanTwText(ld.name),
+          price: ld.price,
+          change_pct: Number(Number(ld.change_pct).toFixed(2)),
+          asset_type: ld.asset_type,
+          role: ld.role || ""
+        }));
+
+        const leaderSummaryStr = top3.map(ld => `${ld.name} (${formatSignedPct(ld.change_pct)})`).join("、");
+        const topRolesStr = top3.map(ld => ld.role).filter(Boolean).slice(0, 2).join("與");
+        const dynamicReason = `【當日領漲指標：${leaderSummaryStr}】${sec.subtitle || sec.title}。資金聚焦於${topRolesStr || '核心供應鏈'}等關鍵環節，帶動族群整體表現位居${market === 'TW' ? '台股' : '美股'}前茅。`;
+
+        ranked.push({
+          sector_id: sec.id,
+          market: market,
+          title: sec.title,
+          avg_pct: avgPct,
+          stock_count: validItems.length,
+          leaders: top3,
+          reason: dynamicReason
+        });
+      });
+
+      ranked.sort((a, b) => b.avg_pct - a.avg_pct);
+      return ranked.slice(0, 6);
+    }
+
     function renderTopPerformingSectors() {
       const container = document.getElementById("sc-top-performing-grid");
       if (!container) return;
-      const list = currentTopMarket === "TW"
-        ? ((globalMarketData && Array.isArray(globalMarketData.tw_top_sectors) && globalMarketData.tw_top_sectors.length > 0) ? globalMarketData.tw_top_sectors : (window.DEFAULT_TW_TOP_SECTORS || []))
-        : ((globalMarketData && Array.isArray(globalMarketData.us_top_sectors) && globalMarketData.us_top_sectors.length > 0) ? globalMarketData.us_top_sectors : (window.DEFAULT_US_TOP_SECTORS || []));
+
+      // 直接使用即時動態算出的當日強勢族群排行！
+      const dynamicList = computeDynamicTopPerformingSectors(currentTopMarket);
+      const list = dynamicList.length > 0
+        ? dynamicList
+        : (currentTopMarket === "TW" ? (window.DEFAULT_TW_TOP_SECTORS || []) : (window.DEFAULT_US_TOP_SECTORS || []));
 
       container.innerHTML = list.slice(0, 6).map((sec, idx) => {
         const rankColors = ["bg-rose-500/25 text-rose-300 border-rose-500/50", "bg-amber-500/25 text-amber-300 border-amber-500/50", "bg-emerald-500/25 text-emerald-300 border-emerald-500/50"];
@@ -641,12 +693,12 @@
             <div>
               <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5 mb-2.5">
                 <div class="flex items-center gap-2"><span class="text-xs font-bold px-2 py-0.5 rounded border mono ${rBadgeCls}">TOP ${idx + 1}</span><h3 class="text-base font-bold text-white">${sec.title}</h3></div>
-                <div class="text-right mono"><span class="text-[10px] text-slate-400 block">族群平均漲跌</span><strong class="text-sm font-bold ${getColorClass(avgPct, currentTopMarket === 'US' ? 'us_stock' : 'tw_stock')}">${formatSignedPct(avgPct)}</strong></div>
+                <div class="text-right mono"><span class="text-[10px] text-slate-400 block">當日族群平均漲跌</span><strong class="text-sm font-bold ${getColorClass(avgPct, currentTopMarket === 'US' ? 'us_stock' : 'tw_stock')}">${formatSignedPct(avgPct)}</strong></div>
               </div>
-              <div class="mb-2.5"><span class="text-[10px] text-slate-400 font-bold block mb-1">🚀 指標股 (點擊個股可看詳情)：</span><div class="flex flex-wrap gap-1.5">${leadersHtml}</div></div>
+              <div class="mb-2.5"><span class="text-[10px] text-slate-400 font-bold block mb-1">🚀 當日領漲指標股 (點擊個股可看詳情)：</span><div class="flex flex-wrap gap-1.5">${leadersHtml}</div></div>
               <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]"><span class="text-slate-400">39大細分產業鏈追蹤</span><span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span></div>
+            <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]"><span class="text-slate-400">共 ${sec.stock_count || 6} 檔成分股即時統計</span><span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span></div>
           </div>`;
       }).join("");
     }
@@ -722,7 +774,7 @@
         mView.classList.add("hidden"); sView.classList.remove("hidden");
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
-        renderTopPerformingSectors(); renderSupplyChainView();
+        renderSupplyChainView();
         setTimeout(() => { if (scChart) scChart.resize(); }, 80);
       } else {
         sView.classList.add("hidden"); mView.classList.remove("hidden");
@@ -981,8 +1033,8 @@
     }
 
     function renderSupplyChainView() {
-      renderTopPerformingSectors();
       const marketSectors = getMarketFilteredSectors(getSupplyChainSectorsData());
+      renderTopPerformingSectors();
       if (!marketSectors.length) return;
       const categories = ["ALL", "指標權值專區", "半導體核心", "光通訊與光學", "PCB與載板鏈", "電子零組件", "AI與重電基建", "傳產營建與能源", "太空軍工與航運", "軟體生技與金融"];
 
@@ -1049,7 +1101,6 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
-      // 切換產業鏈時，立即用免 Proxy FinMind 與 Yahoo 5m 分鐘線抓取該產業鏈當日最新收盤價！
       const activeTwCodes = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol.split(".")[0]);
       if (activeTwCodes.length > 0) syncFinMindDirectCorsBatch(activeTwCodes);
       secItems.forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
@@ -1622,6 +1673,8 @@
           el.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '盤前/盤後'}:</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
         });
       }
+      // 當視窗二處於開啟狀態時，一旦股價更新就即時重算強勢族群雷達！
+      if (currentAppView === "supplychain") renderTopPerformingSectors();
     }
 
     async function tryFetchViaMultiProxy(url, postBody = null) {
@@ -1643,7 +1696,6 @@
       return null;
     }
 
-    // 瀏覽器免 Proxy 原生直連 FinMind API (伺服器原生支援 Access-Control-Allow-Origin: *)，直接抓取指定台股最新交易日收盤價與漲跌
     async function syncFinMindDirectCorsBatch(twCodeList) {
       if (!twCodeList || !twCodeList.length) return;
       const startDt = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
@@ -1694,7 +1746,6 @@
       }
     }
 
-    // 改抓 Yahoo Finance interval=15m&range=5d：不受日K線跨日結算延遲影響，永遠取得當下最新一筆收盤價/成交價！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
@@ -1705,7 +1756,6 @@
         const item = allAssetsMap[sym];
         if (!item) return;
         const meta = res.meta || {};
-        const dec = item.asset_type === "fx_rate" ? (sym === "JPY=X" || sym === "TWD=X" ? 2 : 4) : 2;
         const rawCloses = res.indicators?.quote?.[0]?.close || [];
         const validCloses = rawCloses.filter(c => c !== null && c !== undefined && Number(c) > 0).map(Number);
 
@@ -1752,7 +1802,7 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與盤前盤後報價...";
+      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與強勢族群排行...";
       await Promise.all([
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
@@ -1763,9 +1813,10 @@
       for (let i = 0; i < coreSyms.length; i += 6) {
         await Promise.all(coreSyms.slice(i, i + 6).map(s => fetchSingleYahooQuoteAndPrePost(s)));
       }
+      renderTopPerformingSectors();
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全站當日最新收盤與盤前盤後報價已同步完成";
+      document.getElementById("live-status").textContent = "全站當日最新收盤、盤前盤後與強勢榜已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
