@@ -29,7 +29,7 @@
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
           <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場最新收盤與即時報價已就緒</span>
+          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場當日最新收盤與即時報價同步中</span>
         </div>
         <button onclick="forceSyncAllLivePrices()" class="text-xs bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">🔄 強制刷新全站報價</button>
         <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">⚡ 設定美股 WebSocket 金鑰</button>
@@ -212,7 +212,7 @@
     <section class="space-y-6">
       <h2 class="text-lg font-bold text-white border-l-4 border-rose-500 pl-3">
         台股核心權值股・當日最新收盤價・最新財報與月營收・公開資訊觀測站
-        <span class="text-xs font-normal text-rose-400 ml-2">(台股紅漲綠跌・13:30 收盤即同步當日最新收盤價)</span>
+        <span class="text-xs font-normal text-rose-400 ml-2">(台股紅漲綠跌・自動同步當日最新收盤價)</span>
       </h2>
       <div id="grid-tw-stocks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       <div class="card-bg rounded-xl p-5">
@@ -476,7 +476,6 @@
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
-    // 判斷當前時間是否處於「美股正規交易時段 (美東 09:30 ~ 16:00)」
     function isUsRegularMarketOpenNow() {
       try {
         const nyStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
@@ -500,9 +499,10 @@
       short_balance: [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
     };
 
+    // 已移除寫死的舊台股價格，僅保留國際指數/美債/外匯/美股初始基準，台股一律由 market_data.json、FinMind 免 Proxy 直連與 Yahoo 5m 即時線動態寫入！
     const VERIFIED_NOV13_2026_QUOTES = {
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
-      "^TWII": [41040.08, -6.03], "^TWOII": [319.12, -6.80], "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
+      "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
       "^FTSE": [10863.00, 0.25], "^GDAXI": [26772.00, 0.40], "^FCHI": [8368.91, 0.09],
       "^VIX": [19.30, 3.21], "^VIXTWN": [38.45, -4.54],
       "^IRX": [4.32, 0.02], "US2Y": [4.88, 0.02], "^FVX": [4.98, 0.08], "^TNX": [5.15, 0.10], "^TYX": [5.47, 0.08],
@@ -517,25 +517,7 @@
       "AMZN": [266.66, -0.30], "AAPL": [356.27, 0.39], "MSFT": [523.88, 0.17], "MU": [778.31, -2.52],
       "SNDK": [885.01, -5.60], "WDC": [78.40, -1.15], "STX": [112.50, -0.85], "IBKR": [81.58, 0.30],
       "MRSH": [207.78, 1.02], "BRK-B": [592.94, 0.54], "LLY": [1443.50, 0.92], "WMT": [128.09, 0.85],
-      "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
-      "COP": [118.40, 1.12], "EOG": [136.80, 0.95], "SLB": [48.90, 0.65], "BKR": [44.20, 0.88],
-      "KMI": [28.50, 0.72], "WMB": [58.40, 0.81], "OKE": [104.60, 0.90], "MPC": [168.50, 1.20], "PSX": [138.20, 1.05], "VLO": [142.80, 0.95],
-      "NUE": [158.40, 0.85], "STLD": [136.20, 0.92], "CLF": [14.80, 0.55], "RS": [308.50, 0.74], "SCCO": [116.80, 0.60],
-      "MLM": [612.40, 0.88], "VMC": [284.60, 0.79], "CRH": [98.50, 1.10], "EXP": [292.30, 0.65],
-      "VZ": [43.80, 0.52], "T": [23.40, 0.68], "MSI": [488.20, 0.95], "NOK": [4.65, 0.40], "ERIC": [8.20, 0.45],
-      "FLEX": [38.90, 1.15], "SANM": [76.40, 0.82], "LFUS": [254.60, 0.64],
-      "2330.TW": [2215.00, -5.74], "2454.TW": [3795.00, -7.89], "2308.TW": [1120.00, -9.68], "2317.TW": [218.50, -9.34],
-      "3711.TW": [550.00, -8.03], "2303.TW": [95.20, -6.21], "3653.TW": [4980.00, -6.83], "2408.TW": [342.00, -9.28],
-      "2059.TW": [7620.00, -3.30], "2382.TW": [254.00, -8.14], "2881.TW": [156.50, -3.10], "2882.TW": [66.20, -3.22],
-      "2412.TW": [130.50, -0.76], "2891.TW": [45.20, -3.52], "3661.TW": [3020.00, -7.93], "3443.TW": [1275.00, -7.94],
-      "5274.TWO": [4320.00, -7.10], "3008.TW": [2410.00, -5.86], "3017.TW": [652.00, -9.19], "6781.TW": [905.00, -8.12],
-      "1519.TW": [632.00, -7.74], "1513.TW": [156.00, -7.42], "2345.TW": [540.00, -7.22], "2383.TW": [592.00, -8.22],
-      "2368.TW": [226.00, -9.05], "2313.TW": [76.50, -7.38], "3037.TW": [154.50, -8.04], "8046.TW": [141.00, -7.54],
-      "2327.TW": [578.00, -6.47], "3533.TW": [1560.00, -7.69], "6584.TWO": [182.00, -8.31], "8210.TW": [272.00, -8.11],
-      "1101.TW": [32.90, -2.81], "1102.TW": [42.80, -3.17], "2504.TW": [50.20, -4.56], "2002.TW": [22.10, -3.28],
-      "2006.TW": [71.80, -3.62], "2027.TW": [37.40, -3.86], "2211.TW": [126.50, -4.17], "1303.TW": [51.80, -4.43],
-      "1301.TW": [50.50, -4.36], "1326.TW": [46.40, -4.53], "6505.TW": [60.10, -3.69], "2603.TW": [216.00, -5.47],
-      "2486.TW": [153.00, -10.00], "2360.TW": [1260.00, -10.00], "2471.TW": [78.20, 9.99], "1540.TW": [18.70, 10.00]
+      "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64]
     };
 
     const DEFAULT_US_EXT_SESSIONS = {
@@ -569,25 +551,20 @@
 
     function getDeterministicFallbackQuote(symbol) {
       if (VERIFIED_NOV13_2026_QUOTES[symbol]) return VERIFIED_NOV13_2026_QUOTES[symbol];
-      let h = 0;
-      const s = String(symbol);
-      for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
-      const absH = Math.abs(h), isTw = isTwSymbol(s);
-      const baseP = isTw ? Number((45 + (absH % 380) + ((absH % 10) * 0.5)).toFixed(2)) : Number((38 + (absH % 260) + ((absH % 100) * 0.01)).toFixed(2));
-      const basePct = Number((((absH % 560) - 310) / 100).toFixed(2));
-      VERIFIED_NOV13_2026_QUOTES[symbol] = [baseP, basePct];
-      return VERIFIED_NOV13_2026_QUOTES[symbol];
+      const existing = allAssetsMap[symbol];
+      if (existing && Number(existing.price) > 0) return [Number(existing.price), Number(existing.change_pct || 0)];
+      return [0, 0];
     }
 
     function ensureSyntheticHistoryIfEmpty(item) {
       if (item.history && item.history.length >= 10) return item;
-      const pEnd = Number(item.price) || getDeterministicFallbackQuote(item.symbol)[0];
-      const pctLast = Number(item.change_pct) || getDeterministicFallbackQuote(item.symbol)[1];
+      const pEnd = Number(item.price) || getDeterministicFallbackQuote(item.symbol)[0] || 100;
+      const pctLast = Number(item.change_pct) || getDeterministicFallbackQuote(item.symbol)[1] || 0;
       let h = 0;
       for (let i = 0; i < item.symbol.length; i++) h = ((h << 5) - h + item.symbol.charCodeAt(i)) | 0;
       const pts = [];
       let cur = pEnd;
-      const baseDate = new Date("2026-11-17T00:00:00Z");
+      const baseDate = new Date();
       for (let d = 0; d < 252; d++) {
         const dt = new Date(baseDate.getTime() - d * 86400000);
         if (dt.getUTCDay() === 0 || dt.getUTCDay() === 6) continue;
@@ -677,7 +654,7 @@
     function applyVerifiedNov13IfMissing(item) {
       if (!item) return item;
       const vq = getDeterministicFallbackQuote(item.symbol);
-      if (vq) {
+      if (vq && vq[0] > 0) {
         const dec = (item.symbol.includes("=X") && item.symbol !== "JPY=X" && item.symbol !== "TWD=X") ? 4 : 2;
         if (!item.price || Number(item.price) <= 0) {
           item.price = Number(vq[0]).toFixed(dec);
@@ -701,7 +678,7 @@
       });
 
       return {
-        last_updated: "2026-11-17 (最新收盤與盤前盤後連線行情)",
+        last_updated: "正在同步當日最新收盤與即時報價...",
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
@@ -797,7 +774,8 @@
         return Number(val).toFixed(dec);
       }
       const vq = getDeterministicFallbackQuote(symbol);
-      return Number(vq[0]).toFixed(dec);
+      if (vq && vq[0] > 0) return Number(vq[0]).toFixed(dec);
+      return "同步中...";
     }
 
     function createVixRichCard(item) {
@@ -1071,9 +1049,10 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
-      const activeTwSyms = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol);
-      if (activeTwSyms.length > 0) syncTwseMisBatchInBrowser(activeTwSyms);
-      secItems.slice(0, 15).forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
+      // 切換產業鏈時，立即用免 Proxy FinMind 與 Yahoo 5m 分鐘線抓取該產業鏈當日最新收盤價！
+      const activeTwCodes = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol.split(".")[0]);
+      if (activeTwCodes.length > 0) syncFinMindDirectCorsBatch(activeTwCodes);
+      secItems.forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
 
       renderScIndexBenchmarkPicker();
       renderSupplyChainChart();
@@ -1558,8 +1537,7 @@
     function ensureCompleteTwChipsData(incomingChips) {
       const base = JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS));
       if (!incomingChips || !Array.isArray(incomingChips.dates) || incomingChips.dates.length === 0) return base;
-      const hasNov16 = incomingChips.dates.includes("11/16");
-      return hasNov16 ? incomingChips : base;
+      return incomingChips;
     }
 
     function renderTwseSummaryBar(chips) {
@@ -1648,14 +1626,14 @@
 
     async function tryFetchViaMultiProxy(url, postBody = null) {
       const proxies = [
-        (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-        (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
+        (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+        (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`
       ];
       for (const buildUrl of proxies) {
         try {
           const controller = new AbortController();
-          const timer = setTimeout(() => controller.abort(), 5000);
+          const timer = setTimeout(() => controller.abort(), 5500);
           const opts = postBody ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(postBody), signal: controller.signal } : { signal: controller.signal };
           const r = await fetch(buildUrl(url), opts);
           clearTimeout(timer);
@@ -1665,82 +1643,39 @@
       return null;
     }
 
-    async function syncTradingViewTaiwanScannerInBrowser() {
-      const payload = {
-        filter: [{ left: "close", operation: "greater", right: 0 }],
-        options: { lang: "zh_TW" },
-        markets: ["taiwan"],
-        symbols: { query: { types: [] }, tickers: [] },
-        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm"],
-        sort: { sortBy: "name", sortOrder: "asc" },
-        range: [0, 3500]
-      };
-      try {
-        const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/taiwan/scan", payload);
-        const rows = j?.data || [];
-        if (rows.length > 100) {
-          rows.forEach(row => {
-            const d = row.d || [];
-            if (d.length >= 4) {
-              const code = String(d[0] || "").trim();
-              const p = Number(d[1] || 0);
-              const pct = Number(d[2] || 0);
-              const pe = Number(d[4] || 0);
-              if (code && p > 0) {
+    // 瀏覽器免 Proxy 原生直連 FinMind API (伺服器原生支援 Access-Control-Allow-Origin: *)，直接抓取指定台股最新交易日收盤價與漲跌
+    async function syncFinMindDirectCorsBatch(twCodeList) {
+      if (!twCodeList || !twCodeList.length) return;
+      const startDt = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+      await Promise.all(twCodeList.map(async (code) => {
+        try {
+          const url = `https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${code}&start_date=${startDt}`;
+          const r = await fetch(url);
+          if (r.ok) {
+            const j = await r.json();
+            const arr = j?.data || [];
+            if (arr.length > 0) {
+              const last = arr[arr.length - 1];
+              const p = Number(last.close || 0);
+              const spread = Number(last.spread || 0);
+              const prev = p - spread;
+              const pct = prev > 0 ? (spread / prev) * 100 : 0;
+              if (p > 0) {
                 const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
-                VERIFIED_NOV13_2026_QUOTES[symTw] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
-                VERIFIED_NOV13_2026_QUOTES[symTwo] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
-                if (allAssetsMap[symTw]) {
-                  if (pe > 0 && allAssetsMap[symTw].fundamentals) allAssetsMap[symTw].fundamentals.pe = Number(pe.toFixed(2));
-                  updateAssetDomPrice(symTw, p, pct);
-                }
-                if (allAssetsMap[symTwo]) {
-                  if (pe > 0 && allAssetsMap[symTwo].fundamentals) allAssetsMap[symTwo].fundamentals.pe = Number(pe.toFixed(2));
-                  updateAssetDomPrice(symTwo, p, pct);
-                }
+                VERIFIED_NOV13_2026_QUOTES[symTw] = [p, Number(pct.toFixed(2))];
+                VERIFIED_NOV13_2026_QUOTES[symTwo] = [p, Number(pct.toFixed(2))];
+                if (allAssetsMap[symTw]) updateAssetDomPrice(symTw, p, pct);
+                if (allAssetsMap[symTwo]) updateAssetDomPrice(symTwo, p, pct);
               }
             }
-          });
-          if (currentAppView === "supplychain") renderSupplyChainView();
-          else renderTopPerformingSectors();
-          return true;
-        }
-      } catch (e) {}
-      return false;
-    }
-
-    async function syncTwseMisBatchInBrowser(twSymList) {
-      if (!twSymList || !twSymList.length) return;
-      const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
-      for (let i = 0; i < exList.length; i += 35) {
-        const chunk = exList.slice(i, i + 35).join("|");
-        try {
-          const j = await tryFetchViaMultiProxy(`https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${chunk}&json=1&delay=0`);
-          const arr = j?.msgArray || [];
-          arr.forEach(m => {
-            const code = String(m.c || "").trim();
-            const isOtc = String(m.ex || "") === "otc";
-            const sym = `${code}.${isOtc ? 'TWO' : 'TW'}`;
-            const prevP = parseFloat(m.y || "0");
-            let curP = parseFloat(m.z || "0");
-            if (!curP || isNaN(curP) || curP <= 0) {
-              const b0 = parseFloat(String(m.b || "").split("_")[0]);
-              const a0 = parseFloat(String(m.a || "").split("_")[0]);
-              curP = b0 || a0 || prevP;
-            }
-            if (curP > 0 && prevP > 0) {
-              const pct = ((curP - prevP) / prevP) * 100;
-              updateAssetDomPrice(sym, curP, pct);
-            }
-          });
+          }
         } catch (e) {}
-      }
+      }));
     }
 
     async function syncAllTwStocksInBrowser() {
-      await syncTradingViewTaiwanScannerInBrowser();
-      const coreTw = ["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "2382.TW", "2881.TW", "2882.TW", "2412.TW", "2891.TW", "2303.TW", "3653.TW", "2059.TW"];
-      await syncTwseMisBatchInBrowser(coreTw);
+      const coreCodes = ["2330", "2454", "2308", "2317", "3711", "2382", "2881", "2882", "2412", "2891", "2303", "3653", "2408", "2059", "3661", "3443", "5274", "3008", "3017"];
+      await syncFinMindDirectCorsBatch(coreCodes);
     }
 
     async function syncTaifexVixLiveInBrowser() {
@@ -1759,10 +1694,11 @@
       }
     }
 
+    // 改抓 Yahoo Finance interval=15m&range=5d：不受日K線跨日結算延遲影響，永遠取得當下最新一筆收盤價/成交價！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
-        const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=3mo&includePrePost=true`;
+        const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=15m&range=5d&includePrePost=true`;
         const data = await tryFetchViaMultiProxy(targetUrl);
         const res = data?.chart?.result?.[0];
         if (!res) return;
@@ -1770,16 +1706,11 @@
         if (!item) return;
         const meta = res.meta || {};
         const dec = item.asset_type === "fx_rate" ? (sym === "JPY=X" || sym === "TWD=X" ? 2 : 4) : 2;
-        const ts = res.timestamp || [], rawCloses = res.indicators?.quote?.[0]?.close || [], validPairs = [];
-        for (let i = 0; i < ts.length; i++) {
-          if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
-            validPairs.push({ date: new Date(ts[i] * 1000).toISOString().slice(0, 10), close: Number(Number(rawCloses[i]).toFixed(dec)) });
-          }
-        }
+        const rawCloses = res.indicators?.quote?.[0]?.close || [];
+        const validCloses = rawCloses.filter(c => c !== null && c !== undefined && Number(c) > 0).map(Number);
 
-        let mainPrice = validPairs.length ? validPairs[validPairs.length - 1].close : Number(meta.regularMarketPrice || item.price);
-        let prevClose = validPairs.length >= 2 ? validPairs[validPairs.length - 2].close : Number(meta.chartPreviousClose || meta.previousClose || mainPrice);
-        if (Number(meta.regularMarketPrice) > 0) mainPrice = Number(meta.regularMarketPrice);
+        let mainPrice = Number(meta.regularMarketPrice || (validCloses.length ? validCloses[validCloses.length - 1] : item.price));
+        let prevClose = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || mainPrice);
         const mainPct = prevClose > 0 ? ((mainPrice - prevClose) / prevClose) * 100 : 0;
 
         let extSession = item.ext_session;
@@ -1791,11 +1722,18 @@
           } else if (postP > 0) {
             const chg = postP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
             extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
+          } else if (!isUsRegularMarketOpenNow() && validCloses.length > 0) {
+            const lastTick = validCloses[validCloses.length - 1];
+            if (Math.abs(lastTick - mainPrice) >= 0.01) {
+              const chg = lastTick - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
+              const hr = new Date().getHours();
+              const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
+              extSession = { price: Number(lastTick.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: lbl };
+            }
           }
         }
 
-        if (validPairs.length >= 2) item.history = validPairs;
-        updateAssetDomPrice(sym, mainPrice, mainPct, extSession);
+        if (mainPrice > 0) updateAssetDomPrice(sym, mainPrice, mainPct, extSession);
       } catch (e) {}
     }
 
@@ -1814,7 +1752,7 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站最新台美股收盤價與盤前盤後報價...";
+      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與盤前盤後報價...";
       await Promise.all([
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
@@ -1827,7 +1765,7 @@
       }
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全站收盤與盤前盤後報價已同步完成";
+      document.getElementById("live-status").textContent = "全站當日最新收盤與盤前盤後報價已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
@@ -1935,7 +1873,7 @@
       normalizeVixBondsAndFx(globalMarketData);
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
-      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '2026-11-17 CST'}`;
+      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '最新收盤與即時連線'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
       document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
       document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
