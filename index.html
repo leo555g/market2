@@ -469,7 +469,7 @@
   <script>
     try { ["MARKET2_REAL_CACHE_V3", "MARKET2_REAL_CACHE_V4", "MARKET2_LIVE_CACHE_V5", "MARKET2_LIVE_CACHE_V6"].forEach(k => localStorage.removeItem(k)); } catch (e) {}
 
-    let globalMarketData = null, allAssetsMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
+    let globalMarketData = null, allAssetsMap = {}, twCodeMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
     let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW";
     let mainChart = null, instChart = null, marginChart = null, scChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
@@ -550,6 +550,10 @@
 
     function getDeterministicFallbackQuote(symbol) {
       if (VERIFIED_NOV13_2026_QUOTES[symbol]) return VERIFIED_NOV13_2026_QUOTES[symbol];
+      if (isTwSymbol(symbol)) {
+        const code = String(symbol).split(".")[0];
+        if (twCodeMap[code]) return twCodeMap[code];
+      }
       const existing = allAssetsMap[symbol];
       if (existing && Number(existing.price) > 0) return [Number(existing.price), Number(existing.change_pct || 0)];
       return [0, 0];
@@ -906,7 +910,7 @@
             const isUs = !isTwSymbol(it.symbol);
             const fallbackQ = getDeterministicFallbackQuote(it.symbol);
             const usePrice = (existing && Number(existing.price) > 0) ? existing.price : fallbackQ[0];
-            const usePct = (existing && existing.change_pct !== undefined) ? existing.change_pct : fallbackQ[1];
+            const usePct = (existing && existing.change_pct !== undefined && Number(existing.price) > 0) ? existing.change_pct : fallbackQ[1];
             const merged = applyVerifiedNov13IfMissing({
               symbol: it.symbol,
               name: cleanTwText(it.name),
@@ -1097,7 +1101,10 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
+      const activeTwSyms = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol);
+      if (activeTwSyms.length > 0) syncTwseMisTodayOnly(activeTwSyms);
       secItems.forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
+
       renderScIndexBenchmarkPicker();
       renderSupplyChainChart();
     }
@@ -1638,6 +1645,9 @@
         item.price = Number(newMainPrice).toFixed(dec);
         item.change_pct = Number(newMainPct).toFixed(2);
         VERIFIED_NOV13_2026_QUOTES[symbol] = [Number(item.price), Number(item.change_pct)];
+        if (isTwSymbol(symbol)) {
+          twCodeMap[String(symbol).split(".")[0]] = [Number(item.price), Number(item.change_pct)];
+        }
         if (oldComp && Number(oldComp) !== Number(item.price)) triggerCardFlash(symbol, Number(item.price) > Number(oldComp));
         const pEl = document.getElementById(`price-${domId}`), pctEl = document.getElementById(`pct-${domId}`);
         if (pEl) pEl.textContent = item.price;
@@ -1669,11 +1679,31 @@
       if (currentAppView === "supplychain") renderTopPerformingSectors();
     }
 
+    // 根據 4 碼純數字代號同時更新 .TW 與 .TWO，徹底無視上市/上櫃後綴差異！
+    function updateTwStockByCode(code, price, pct, pe = 0) {
+      if (!code || !(price > 0)) return;
+      const pNum = Number(Number(price).toFixed(2));
+      const pctNum = Number(Number(pct).toFixed(2));
+      twCodeMap[code] = [pNum, pctNum];
+      const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
+      VERIFIED_NOV13_2026_QUOTES[symTw] = [pNum, pctNum];
+      VERIFIED_NOV13_2026_QUOTES[symTwo] = [pNum, pctNum];
+      if (allAssetsMap[symTw]) {
+        if (pe > 0 && allAssetsMap[symTw].fundamentals) allAssetsMap[symTw].fundamentals.pe = Number(pe.toFixed(2));
+        updateAssetDomPrice(symTw, pNum, pctNum);
+      }
+      if (allAssetsMap[symTwo]) {
+        if (pe > 0 && allAssetsMap[symTwo].fundamentals) allAssetsMap[symTwo].fundamentals.pe = Number(pe.toFixed(2));
+        updateAssetDomPrice(symTwo, pNum, pctNum);
+      }
+    }
+
     async function tryFetchViaMultiProxy(url, postBody = null) {
       const proxies = [
+        (u) => u,
+        (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-        (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
-        (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`
+        (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
       ];
       for (const buildUrl of proxies) {
         try {
@@ -1688,7 +1718,44 @@
       return null;
     }
 
-    // 瀏覽器端直接透過證交所 MIS 即時 API 補抓當日最新價格 (檢查日期 d 是否為最新交易日，絕不拿舊日價格覆蓋今日價格！)
+    // 修正代號解析版：從 row.s ("TWSE:2330" / "TPEX:5274") 擷取純代號，1 秒同步全台灣 1800+ 檔上市櫃最新收盤價！
+    async function syncTradingViewTaiwanScannerInBrowser() {
+      const payload = {
+        filter: [{ left: "close", operation: "greater", right: 0 }],
+        options: { lang: "zh_TW" },
+        markets: ["taiwan"],
+        symbols: { query: { types: [] }, tickers: [] },
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm"],
+        sort: { sortBy: "name", sortOrder: "asc" },
+        range: [0, 4000]
+      };
+      try {
+        const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/taiwan/scan", payload);
+        const rows = j?.data || [];
+        if (rows.length > 100) {
+          rows.forEach(row => {
+            const d = row.d || [];
+            const sRaw = String(row.s || "");
+            const code = sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim();
+            if (d.length >= 4 && code) {
+              const p = Number(d[1] || 0);
+              const pct = Number(d[2] || 0);
+              const pe = Number(d[4] || 0);
+              if (p > 0) {
+                if (code === "TAIEX" || code === "IX0001") updateAssetDomPrice("^TWII", p, pct);
+                else if (code === "TPEX" || code === "IX0043") updateAssetDomPrice("^TWOII", p, pct);
+                else updateTwStockByCode(code, p, pct, pe);
+              }
+            }
+          });
+          if (currentAppView === "supplychain") renderSupplyChainView();
+          else renderTopPerformingSectors();
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
     async function syncTwseMisTodayOnly(twSymList) {
       if (!twSymList || !twSymList.length) return;
       const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
@@ -1699,8 +1766,6 @@
           const arr = j?.msgArray || [];
           arr.forEach(m => {
             const code = String(m.c || "").trim();
-            const isOtc = String(m.ex || "") === "otc";
-            const sym = `${code}.${isOtc ? 'TWO' : 'TW'}`;
             const prevP = parseFloat(m.y || "0");
             let curP = parseFloat(m.z || "0");
             if (!curP || isNaN(curP) || curP <= 0) {
@@ -1710,7 +1775,7 @@
             }
             if (curP > 0 && prevP > 0) {
               const pct = ((curP - prevP) / prevP) * 100;
-              updateAssetDomPrice(sym, curP, pct);
+              updateTwStockByCode(code, curP, pct);
             }
           });
         } catch (e) {}
@@ -1733,8 +1798,6 @@
       }
     }
 
-    // 瀏覽器端透過 Yahoo Finance 15m 分鐘線抓取最新成交價：
-    // 若為台股，嚴格檢查最後一根分K的日期是否不舊於已載入的 history 最後一天，絕不用昨天價格覆蓋今天價格！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
@@ -1758,12 +1821,10 @@
         }
         if (!validPairs.length) return;
 
-        // 防止舊快取倒退：如果目前 item.history 最後一天的日期比抓回來的分K日期更新，則直接忽略！
         const existingLastDate = (item.history && item.history.length > 0) ? item.history[item.history.length - 1].date : "";
         const incomingLastDate = validPairs[validPairs.length - 1].date;
         if (existingLastDate && incomingLastDate < existingLastDate) return;
 
-        // 從 5d 分K中找出前一個交易日的收盤價作為精準昨收
         const byDateLastClose = {};
         validPairs.forEach(p => { byDateLastClose[p.date] = p.close; });
         const distinctDates = Object.keys(byDateLastClose).sort();
@@ -1817,6 +1878,7 @@
       document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與強勢族群排行...";
       await Promise.all([
         tryLoadMarketJson(true),
+        syncTradingViewTaiwanScannerInBrowser(),
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
         syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"])
@@ -1914,6 +1976,7 @@
       allIncomingLists.forEach(it => {
         if (it && it.symbol && Number(it.price) > 0) {
           VERIFIED_NOV13_2026_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
+          if (isTwSymbol(it.symbol)) twCodeMap[String(it.symbol).split(".")[0]] = [Number(it.price), Number(it.change_pct || 0)];
           if (it.ext_session && Number(it.ext_session.price) > 0) DEFAULT_US_EXT_SESSIONS[it.symbol] = it.ext_session;
           allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
         }
@@ -1925,6 +1988,7 @@
             (stg.items || []).forEach(it => {
               if (it && it.symbol && Number(it.price) > 0) {
                 VERIFIED_NOV13_2026_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
+                if (isTwSymbol(it.symbol)) twCodeMap[String(it.symbol).split(".")[0]] = [Number(it.price), Number(it.change_pct || 0)];
                 if (it.ext_session && Number(it.ext_session.price) > 0) DEFAULT_US_EXT_SESSIONS[it.symbol] = it.ext_session;
                 allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
               }
@@ -1987,12 +2051,14 @@
       renderAllSections(getInitialDashboardStructure());
       await tryLoadMarketJson(true);
 
+      syncTradingViewTaiwanScannerInBrowser();
       syncDirectBinanceCryptoPrices();
       syncTaifexVixLiveInBrowser();
       ["^TWII", "^TWOII", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
 
       setInterval(syncDirectBinanceCryptoPrices, 15000);
       setInterval(syncTaifexVixLiveInBrowser, 30000);
+      setInterval(syncTradingViewTaiwanScannerInBrowser, 45000);
       setInterval(() => tryLoadMarketJson(false), 45000);
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
