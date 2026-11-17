@@ -1,4 +1,4 @@
-import os, re, sys, io, json, math, time, datetime, concurrent.futures
+import os, re, sys, io, json, math, time, datetime
 import pytz, requests, urllib3
 import pandas as pd
 import yfinance as yf
@@ -81,6 +81,9 @@ CORE_FUNDAMENTALS_DB = {
     "3711.TW": {"pe": 24.6, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
+# ====================================================================
+# 1. TradingView 台灣全市場掃描器 (後端 Python 直接 POST 不受 CORS 限制，1 秒抓齊全台 1800+ 檔當日最新價)
+# ====================================================================
 def fetch_tradingview_taiwan_full_market():
     tv_stocks, tv_pe = {}, {}
     url = "https://scanner.tradingview.com/taiwan/scan"
@@ -117,6 +120,9 @@ def fetch_tradingview_taiwan_full_market():
         print(f"[Warn] TradingView Scanner error: {e}")
     return tv_stocks, tv_pe
 
+# ====================================================================
+# 2. 台灣官方證交所 (TWSE) + 櫃買中心 (TPEx) + 三大法人最新交易日自動抓取
+# ====================================================================
 def fetch_tw_official_all_channels(tw_sym_list):
     snapshot = {"indices": {}, "stocks": {}, "pe_map": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -157,6 +163,9 @@ def fetch_tw_official_all_channels(tw_sym_list):
 
     return snapshot
 
+# ====================================================================
+# 3. yfinance 下載 1Y 歷史線 + 透過 15m 分鐘線確保台股/美股抓到「今天最新一筆收盤價」！
+# ====================================================================
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
     yf_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX"}
@@ -190,21 +199,29 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception as e:
             print(f"[Warn] yf 1y chunk error: {e}")
 
-    # 針對任何還沒抓到價格的台股 (可能因為 .TW 其實是上櫃 .TWO)，自動嘗試切換後綴補抓！
-    missing_tw = [s for s in unique_syms if (s.endswith(".TW") or s.endswith(".TWO")) and s not in yf_map and s.split(".")[0] not in tw_official["stocks"]]
-    if missing_tw:
-        alt_map = { (s[:-3] + ".TWO" if s.endswith(".TW") else s[:-4] + ".TW"): s for s in missing_tw }
+    # 針對加權指數 (^TWII)、櫃買指數 (^TWOII) 以及任何未在 TradingView 清單內的台股，用 5d 15m 分K抓出今天 13:30 的最新收盤價！
+    tw_check_list = ["^TWII", "^TWOII"] + [s for s in unique_syms if (s.endswith(".TW") or s.endswith(".TWO")) and s.split(".")[0] not in tw_official["stocks"]]
+    for i in range(0, len(tw_check_list), 35):
+        chunk = tw_check_list[i:i + 35]
         try:
-            df_alt = yf.download(list(alt_map.keys()), period="3mo", interval="1d", group_by="ticker", threads=True, progress=False)
-            if df_alt is not None and not df_alt.empty:
-                for alt_s, orig_s in alt_map.items():
+            df_tw_int = yf.download(chunk, period="5d", interval="15m", group_by="ticker", threads=True, progress=False)
+            if df_tw_int is not None and not df_tw_int.empty:
+                for sym in chunk:
                     try:
-                        sub = df_alt[alt_s] if len(alt_map) > 1 else df_alt
+                        sub = df_tw_int[sym] if len(chunk) > 1 else df_tw_int
                         closes = sub["Close"].dropna()
-                        if len(closes) >= 2:
-                            pts = [{"date": idx.strftime("%Y-%m-%d"), "close": round(safe_float(v), 2)} for idx, v in closes.items() if safe_float(v) > 0]
-                            lc, pc = pts[-1]["close"], pts[-2]["close"]
-                            yf_map[orig_s] = {"price": lc, "prev_close": pc, "change": round(lc - pc, 2), "change_pct": round(((lc - pc) / pc) * 100, 2), "history": pts, "ext_session": None}
+                        if closes.empty: continue
+                        latest_p = round(safe_float(closes.iloc[-1]), 2)
+                        # 依日期分組找出前一個交易日最後一筆收盤價作為昨收
+                        daily_last = closes.groupby(closes.index.date).last()
+                        prev_p = round(safe_float(daily_last.iloc[-2]), 2) if len(daily_last) >= 2 else (yf_map.get(sym, {}).get("prev_close") or latest_p)
+                        if latest_p > 0 and prev_p > 0:
+                            chg = round(latest_p - prev_p, 2)
+                            pct = round((chg / prev_p) * 100, 2)
+                            if sym in ["^TWII", "^TWOII"]:
+                                tw_official["indices"][sym] = {"price": latest_p, "prev_close": prev_p, "change": chg, "change_pct": pct}
+                            else:
+                                tw_official["stocks"][sym.split(".")[0]] = {"price": latest_p, "prev_close": prev_p, "change": chg, "change_pct": pct}
                     except Exception:
                         pass
         except Exception:
@@ -281,7 +298,7 @@ def fetch_official_us2y_and_taifex_vixtwn():
                     diff = safe_float(q.get("CDiff"), last_p - ref_p)
                     pct = safe_float(q.get("CDiffRate"), (diff / ref_p * 100) if ref_p > 0 else 0.0)
                     if 8.0 <= last_p <= 95.0:
-                        extra["^VIXTWN"] = {"price": round(last_p, 2), "prev_close": round(ref_p, 2), "change": round(diff, 2), "change_pct": round(pct, 2), "history": [{"date": "2026-11-13", "close": round(ref_p, 2)}, {"date": "2026-11-16", "close": round(last_p, 2)}], "ext_session": None}
+                        extra["^VIXTWN"] = {"price": round(last_p, 2), "prev_close": round(ref_p, 2), "change": round(diff, 2), "change_pct": round(pct, 2), "history": [{"date": "2026-11-16", "close": round(ref_p, 2)}, {"date": now_tw.strftime("%Y-%m-%d"), "close": round(last_p, 2)}], "ext_session": None}
                         break
         except Exception:
             pass
@@ -330,7 +347,7 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
                 p_val, prev_val, chg_val, pct_val = offs["price"], offs["prev_close"], offs["change"], offs["change_pct"]
                 today_str = now_tw.strftime("%Y-%m-%d")
                 if not hist:
-                    hist = [{"date": "2026-11-13", "close": prev_val}, {"date": today_str, "close": p_val}]
+                    hist = [{"date": "2026-11-16", "close": prev_val}, {"date": today_str, "close": p_val}]
                 elif hist[-1]["date"] != today_str:
                     hist.append({"date": today_str, "close": p_val})
                 else:
@@ -392,7 +409,7 @@ def main():
         )
         all_us_eq = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
 
-        print("2. Downloading 1Y histories & US Regular/Pre/Post quotes via yfinance...")
+        print("2. Downloading 1Y histories & Intraday latest quotes via yfinance...")
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq, tw_official)
         yf_map.update(fetch_official_us2y_and_taifex_vixtwn())
 
