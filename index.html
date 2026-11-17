@@ -89,9 +89,9 @@
           <button onclick="switchRange('1Y')" id="btn-1Y" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y</button>
           <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">區間：</span>
-            <input type="date" id="custom-start" value="2025-11-16" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-start" value="2025-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="custom-end" value="2026-11-16" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-end" value="2026-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -364,9 +364,9 @@
           <button onclick="switchScChartRange('1Y')" id="sc-btn-1Y" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y (一年)</button>
           <div class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">自選區間：</span>
-            <input type="date" id="sc-custom-start" value="2025-11-16" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-start" value="2025-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="sc-custom-end" value="2026-11-16" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-end" value="2026-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyScCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -476,6 +476,7 @@
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
+    // 判斷當前時間是否處於「美股正規交易時段 (美東 09:30 ~ 16:00)」
     function isUsRegularMarketOpenNow() {
       try {
         const nyStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
@@ -517,9 +518,24 @@
       "SNDK": [885.01, -5.60], "WDC": [78.40, -1.15], "STX": [112.50, -0.85], "IBKR": [81.58, 0.30],
       "MRSH": [207.78, 1.02], "BRK-B": [592.94, 0.54], "LLY": [1443.50, 0.92], "WMT": [128.09, 0.85],
       "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
+      "COP": [118.40, 1.12], "EOG": [136.80, 0.95], "SLB": [48.90, 0.65], "BKR": [44.20, 0.88],
+      "KMI": [28.50, 0.72], "WMB": [58.40, 0.81], "OKE": [104.60, 0.90], "MPC": [168.50, 1.20], "PSX": [138.20, 1.05], "VLO": [142.80, 0.95],
+      "NUE": [158.40, 0.85], "STLD": [136.20, 0.92], "CLF": [14.80, 0.55], "RS": [308.50, 0.74], "SCCO": [116.80, 0.60],
+      "MLM": [612.40, 0.88], "VMC": [284.60, 0.79], "CRH": [98.50, 1.10], "EXP": [292.30, 0.65],
+      "VZ": [43.80, 0.52], "T": [23.40, 0.68], "MSI": [488.20, 0.95], "NOK": [4.65, 0.40], "ERIC": [8.20, 0.45],
+      "FLEX": [38.90, 1.15], "SANM": [76.40, 0.82], "LFUS": [254.60, 0.64],
       "2330.TW": [2215.00, -5.74], "2454.TW": [3795.00, -7.89], "2308.TW": [1120.00, -9.68], "2317.TW": [218.50, -9.34],
       "3711.TW": [550.00, -8.03], "2303.TW": [95.20, -6.21], "3653.TW": [4980.00, -6.83], "2408.TW": [342.00, -9.28],
-      "2059.TW": [7620.00, -3.30], "2382.TW": [254.00, -8.14], "2881.TW": [156.50, -3.10], "2882.TW": [66.20, -3.22]
+      "2059.TW": [7620.00, -3.30], "2382.TW": [254.00, -8.14], "2881.TW": [156.50, -3.10], "2882.TW": [66.20, -3.22],
+      "2412.TW": [130.50, -0.76], "2891.TW": [45.20, -3.52], "3661.TW": [3020.00, -7.93], "3443.TW": [1275.00, -7.94],
+      "5274.TWO": [4320.00, -7.10], "3008.TW": [2410.00, -5.86], "3017.TW": [652.00, -9.19], "6781.TW": [905.00, -8.12],
+      "1519.TW": [632.00, -7.74], "1513.TW": [156.00, -7.42], "2345.TW": [540.00, -7.22], "2383.TW": [592.00, -8.22],
+      "2368.TW": [226.00, -9.05], "2313.TW": [76.50, -7.38], "3037.TW": [154.50, -8.04], "8046.TW": [141.00, -7.54],
+      "2327.TW": [578.00, -6.47], "3533.TW": [1560.00, -7.69], "6584.TWO": [182.00, -8.31], "8210.TW": [272.00, -8.11],
+      "1101.TW": [32.90, -2.81], "1102.TW": [42.80, -3.17], "2504.TW": [50.20, -4.56], "2002.TW": [22.10, -3.28],
+      "2006.TW": [71.80, -3.62], "2027.TW": [37.40, -3.86], "2211.TW": [126.50, -4.17], "1303.TW": [51.80, -4.43],
+      "1301.TW": [50.50, -4.36], "1326.TW": [46.40, -4.53], "6505.TW": [60.10, -3.69], "2603.TW": [216.00, -5.47],
+      "2486.TW": [153.00, -10.00], "2360.TW": [1260.00, -10.00], "2471.TW": [78.20, 9.99], "1540.TW": [18.70, 10.00]
     };
 
     const DEFAULT_US_EXT_SESSIONS = {
@@ -571,7 +587,7 @@
       for (let i = 0; i < item.symbol.length; i++) h = ((h << 5) - h + item.symbol.charCodeAt(i)) | 0;
       const pts = [];
       let cur = pEnd;
-      const baseDate = new Date("2026-11-16T00:00:00Z");
+      const baseDate = new Date("2026-11-17T00:00:00Z");
       for (let d = 0; d < 252; d++) {
         const dt = new Date(baseDate.getTime() - d * 86400000);
         if (dt.getUTCDay() === 0 || dt.getUTCDay() === 6) continue;
@@ -592,7 +608,7 @@
       { id: "cpi", categoryName: "🔥 美國 CPI 通膨數據", badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30", accentBorder: "border-l-4 border-l-rose-500", schedule: [{ title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" }], latestRelease: { period: "2026年10月 CPI 報告 (11/10 發布)", actual: "整體月增 +0.4% MoM", momText: "核心 CPI 月增：+0.3% MoM", expected: "整體 +0.3% / 核心 +0.2%", prior: "整體 +0.6% / 核心 +0.3%", priorNote: "9月整體月增 +0.6%", verdictBadge: "高於預期 (+0.1%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月整體 CPI 月增率", val: "+0.4% MoM" }, { label: "10月核心 CPI 月增率", val: "+0.3% MoM" }], impacts: ["【通膨黏著度】10 月整體 CPI 月增 +0.4%，核心 CPI 連三個月 +0.3% MoM，強化聯準會鷹派立場。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS CPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }] } },
       { id: "ppi", categoryName: "🏭 美國 PPI 生產者物價", badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30", accentBorder: "border-l-4 border-l-amber-500", schedule: [{ title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" }], latestRelease: { period: "2026年10月 PPI 報告 (11/13 發布)", actual: "年增 +6.5% YoY", momText: "月增率：+0.3% MoM (核心 +0.3%)", expected: "月增 +0.4% MoM", prior: "年增 +6.3% / 月增 +1.4%", priorNote: "9月 PPI 月增 +1.4%", verdictBadge: "月增降溫・年增創高", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月最終需求 PPI", val: "+0.3% MoM / +6.5% YoY" }, { label: "核心 PPI", val: "+0.5% MoM / +4.9% YoY" }], impacts: ["【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月的 +1.4% 回落至 +0.3%，讓美股與台股獲得短線喘息空間。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS PPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }] } },
       { id: "pce", categoryName: "💳 美國 PCE 物價指數", badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30", accentBorder: "border-l-4 border-l-cyan-500", schedule: [{ title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" }], latestRelease: { period: "2026年9月 PCE 報告 (10/29 發布)", actual: "整體 +3.6% / 核心 +3.1%", momText: "月增率：整體 +0.5% / 核心 +0.3% MoM", expected: "整體 +3.5% (月增 +0.4%)", prior: "整體 +3.4% (月增 +0.3%)", priorNote: "8月核心月增 +0.3%", verdictBadge: "核心持平・整體偏熱", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月整體 PCE", val: "+3.6% YoY / +0.5% MoM" }, { label: "9月核心 PCE", val: "+3.1% YoY / +0.3% MoM" }], impacts: ["【聯準會首選通膨指標】9 月核心 PCE 年增 +3.1%，市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告。"], sourceName: "美國經濟分析局 (BEA)", sourceLinks: [{ label: "BEA PCE 報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }] } },
-      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年9月 零售銷售 (10/15 發布)", actual: "$7,450 億 (年增 +4.7%)", momText: "月增率：+0.8% MoM (核心 +0.9%)", expected: "月增 +0.4% MoM", prior: "月增 +1.3% MoM (上修)", priorNote: "8月上修至 +1.3%", verdictBadge: "強勁超預期 (+0.4%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月零售總銷售額", val: "$7,450.21 億美元 (+0.8% MoM)" }, { label: "核心零售銷售", val: "+0.9% MoM / +5.4% YoY" }], impacts: ["【美國內需韌性】9 月零售銷售月增高達 +0.8%，明（11/17）晚間將公布最新 10 月零售銷售數據。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
+      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年9月 零售銷售 (10/15 發布)", actual: "$7,450 億 (年增 +4.7%)", momText: "月增率：+0.8% MoM (核心 +0.9%)", expected: "月增 +0.4% MoM", prior: "月增 +1.3% MoM (上修)", priorNote: "8月上修至 +1.3%", verdictBadge: "強勁超預期 (+0.4%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月零售總銷售額", val: "$7,450.21 億美元 (+0.8% MoM)" }, { label: "核心零售銷售", val: "+0.9% MoM / +5.4% YoY" }], impacts: ["【美國內需韌性】9 月零售銷售月增高達 +0.8%，今（11/17）晚間 21:30 將公布最新 10 月零售銷售數據。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
       { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }], latestRelease: { period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 法說焦點", val: "GB200 出貨進度與下季毛利率指引" }], impacts: ["【AI 半導體風向球】台灣時間 11/18 清晨 06:00 輝達將舉行財報法說會，為全市場最關鍵催化劑。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
@@ -685,7 +701,7 @@
       });
 
       return {
-        last_updated: "2026-11-16 (最新收盤與盤前盤後連線行情)",
+        last_updated: "2026-11-17 (最新收盤與盤前盤後連線行情)",
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
@@ -1632,7 +1648,6 @@
 
     async function tryFetchViaMultiProxy(url, postBody = null) {
       const proxies = [
-        (u) => u,
         (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
         (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
@@ -1650,7 +1665,6 @@
       return null;
     }
 
-    // 殺手級前端台股全市場同步引擎：1 個請求透過 TradingView Taiwan Scanner 拉取全台灣 1800+ 檔上市櫃最新收盤價與漲跌幅！
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -1659,7 +1673,7 @@
         symbols: { query: { types: [] }, tickers: [] },
         columns: ["name", "close", "change", "change_abs", "price_earnings_ttm"],
         sort: { sortBy: "name", sortOrder: "asc" },
-        range: [0, 3000]
+        range: [0, 3500]
       };
       try {
         const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/taiwan/scan", payload);
@@ -1673,8 +1687,7 @@
               const pct = Number(d[2] || 0);
               const pe = Number(d[4] || 0);
               if (code && p > 0) {
-                const symTw = `${code}.TW`;
-                const symTwo = `${code}.TWO`;
+                const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
                 VERIFIED_NOV13_2026_QUOTES[symTw] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
                 VERIFIED_NOV13_2026_QUOTES[symTwo] = [Number(p.toFixed(2)), Number(pct.toFixed(2))];
                 if (allAssetsMap[symTw]) {
@@ -1922,7 +1935,7 @@
       normalizeVixBondsAndFx(globalMarketData);
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
-      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '2026-11-16 CST'}`;
+      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '2026-11-17 CST'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
       document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
       document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
@@ -1976,7 +1989,7 @@
       syncDirectBinanceCryptoPrices();
       syncTaifexVixLiveInBrowser();
       syncAllTwStocksInBrowser();
-      ["NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
+      ["^TWII", "^TWOII", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
 
       setInterval(syncDirectBinanceCryptoPrices, 15000);
       setInterval(syncTaifexVixLiveInBrowser, 30000);
