@@ -499,8 +499,10 @@
       short_balance: [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
     };
 
+    // 補回 "^TWII" 與 "^TWOII" 初始基準值，確保載入第一秒絕不卡在「同步中...」，隨後立即由證交所 otc_o00.tw 與 Yahoo ^TWO 即時覆蓋！
     const VERIFIED_NOV13_2026_QUOTES = {
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
+      "^TWII": [41040.08, -0.45], "^TWOII": [319.12, -0.38],
       "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
       "^FTSE": [10863.00, 0.25], "^GDAXI": [26772.00, 0.40], "^FCHI": [8368.91, 0.09],
       "^VIX": [19.30, 3.21], "^VIXTWN": [38.45, -4.54],
@@ -592,7 +594,6 @@
       { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }], latestRelease: { period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 法說焦點", val: "GB200 出貨進度與下季毛利率指引" }], impacts: ["【AI 半導體風向球】台灣時間 11/18 清晨 06:00 輝達將舉行財報法說會，為全市場最關鍵催化劑。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
-    // 核心升級：前端即時動態生成「每日盤後與盤前深度分析報告」，隨全站最新收盤與即時報價自動重算！
     function buildDynamicDailyMarketReport() {
       const g = (sym, defP, defPct) => {
         const it = allAssetsMap[sym];
@@ -632,7 +633,7 @@
 
       return {
         report_date: `${nowStr} CST (即時動態更新)`,
-        headline: `台股加權收報 ${twii.price} (${twii.pct})、台積電報 ${tsmTw.price} 元 (${tsmTw.pct})，強勢族群聚焦 ${twTopSectors[0]?.title || 'AI 供應鏈'}，市場迎戰美國零售銷售數據與輝達財報`,
+        headline: `台股加權收報 ${twii.price} (${twii.pct})、櫃買收報 ${twoii.price} (${twoii.pct})、台積電報 ${tsmTw.price} 元 (${tsmTw.pct})，強勢族群聚焦 ${twTopSectors[0]?.title || 'AI 供應鏈'}`,
         market_drivers: [
           `【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 ${sp.price} (${sp.pct})、道瓊工業指數報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})；美國 CBOE VIX 恐慌指數報 ${vixUs.price} (${vixUs.pct})，輝達 (NVDA) 報 ${nvda.price} (${nvda.pct})、台積電 ADR (TSM) 報 ${tsmUs.price} (${tsmUs.pct})。`,
           `【二、台股大盤量價、臺指 VIX 與核心權值股表現】台灣加權指數最新收報 ${twii.price} 點 (${twii.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，期交所臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電收報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科收報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電收報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海收報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
@@ -1790,6 +1791,27 @@
       return null;
     }
 
+    // 專責抓取台灣加權指數 (tse_t00.tw -> ^TWII) 與台灣櫃買指數 (otc_o00.tw -> ^TWOII) 最新官方報價！
+    async function syncTaiwanIndicesLiveInBrowser() {
+      try {
+        const j = await tryFetchViaMultiProxy("https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0");
+        const arr = j?.msgArray || [];
+        arr.forEach(m => {
+          const code = String(m.c || "").trim();
+          const prevP = parseFloat(m.y || "0");
+          let curP = parseFloat(m.z || "0");
+          if (!curP || isNaN(curP) || curP <= 0) {
+            curP = parseFloat(m.o || "0") || prevP;
+          }
+          if (curP > 0 && prevP > 0) {
+            const pct = ((curP - prevP) / prevP) * 100;
+            if (code === "t00") updateAssetDomPrice("^TWII", curP, pct);
+            else if (code === "o00") updateAssetDomPrice("^TWOII", curP, pct);
+          }
+        });
+      } catch (e) {}
+    }
+
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -1830,7 +1852,7 @@
 
     async function syncTwseMisTodayOnly(twSymList) {
       if (!twSymList || !twSymList.length) return;
-      const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
+      const exList = ["tse_t00.tw", "otc_o00.tw", ...twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`)];
       for (let i = 0; i < exList.length; i += 35) {
         const chunk = exList.slice(i, i + 35).join("|");
         try {
@@ -1847,7 +1869,9 @@
             }
             if (curP > 0 && prevP > 0) {
               const pct = ((curP - prevP) / prevP) * 100;
-              updateTwStockByCode(code, curP, pct);
+              if (code === "t00") updateAssetDomPrice("^TWII", curP, pct);
+              else if (code === "o00") updateAssetDomPrice("^TWOII", curP, pct);
+              else updateTwStockByCode(code, curP, pct);
             }
           });
         } catch (e) {}
@@ -1870,66 +1894,73 @@
       }
     }
 
+    // 針對 ^TWOII 自動嘗試 Yahoo Finance 支援的 ^TWO 與 ^TWOII 代號，並將結果寫回 ^TWOII！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
-      try {
-        const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=15m&range=5d&includePrePost=true`;
-        const data = await tryFetchViaMultiProxy(targetUrl);
-        const res = data?.chart?.result?.[0];
-        if (!res) return;
-        const item = allAssetsMap[sym];
-        if (!item) return;
-        const meta = res.meta || {};
-        const ts = res.timestamp || [];
-        const rawCloses = res.indicators?.quote?.[0]?.close || [];
-        const validPairs = [];
-        for (let i = 0; i < ts.length; i++) {
-          if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
-            validPairs.push({
-              date: new Date(ts[i] * 1000).toISOString().slice(0, 10),
-              close: Number(rawCloses[i])
-            });
-          }
-        }
-        if (!validPairs.length) return;
-
-        const existingLastDate = (item.history && item.history.length > 0) ? item.history[item.history.length - 1].date : "";
-        const incomingLastDate = validPairs[validPairs.length - 1].date;
-        if (existingLastDate && incomingLastDate < existingLastDate) return;
-
-        const byDateLastClose = {};
-        validPairs.forEach(p => { byDateLastClose[p.date] = p.close; });
-        const distinctDates = Object.keys(byDateLastClose).sort();
-
-        let mainPrice = Number(meta.regularMarketPrice || validPairs[validPairs.length - 1].close);
-        let prevClose = distinctDates.length >= 2
-          ? byDateLastClose[distinctDates[distinctDates.length - 2]]
-          : Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || mainPrice);
-
-        const mainPct = prevClose > 0 ? ((mainPrice - prevClose) / prevClose) * 100 : 0;
-
-        let extSession = item.ext_session;
-        if (item.asset_type === "us_stock") {
-          const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
-          if (preP > 0) {
-            const chg = preP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
-            extSession = { price: Number(preP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤前" };
-          } else if (postP > 0) {
-            const chg = postP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
-            extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
-          } else if (!isUsRegularMarketOpenNow()) {
-            const lastTick = validPairs[validPairs.length - 1].close;
-            if (Math.abs(lastTick - mainPrice) >= 0.01) {
-              const chg = lastTick - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
-              const hr = new Date().getHours();
-              const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
-              extSession = { price: Number(lastTick.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: lbl };
+      const queryCandidates = sym === "^TWOII" ? ["^TWO", "^TWOII"] : [sym];
+      for (const qSym of queryCandidates) {
+        try {
+          const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(qSym)}?interval=15m&range=5d&includePrePost=true`;
+          const data = await tryFetchViaMultiProxy(targetUrl);
+          const res = data?.chart?.result?.[0];
+          if (!res) continue;
+          const item = allAssetsMap[sym];
+          if (!item) return;
+          const meta = res.meta || {};
+          const ts = res.timestamp || [];
+          const rawCloses = res.indicators?.quote?.[0]?.close || [];
+          const validPairs = [];
+          for (let i = 0; i < ts.length; i++) {
+            if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
+              validPairs.push({
+                date: new Date(ts[i] * 1000).toISOString().slice(0, 10),
+                close: Number(rawCloses[i])
+              });
             }
           }
-        }
+          if (!validPairs.length) continue;
 
-        if (mainPrice > 0) updateAssetDomPrice(sym, mainPrice, mainPct, extSession);
-      } catch (e) {}
+          const existingLastDate = (item.history && item.history.length > 0) ? item.history[item.history.length - 1].date : "";
+          const incomingLastDate = validPairs[validPairs.length - 1].date;
+          if (existingLastDate && incomingLastDate < existingLastDate) return;
+
+          const byDateLastClose = {};
+          validPairs.forEach(p => { byDateLastClose[p.date] = p.close; });
+          const distinctDates = Object.keys(byDateLastClose).sort();
+
+          let mainPrice = Number(meta.regularMarketPrice || validPairs[validPairs.length - 1].close);
+          let prevClose = distinctDates.length >= 2
+            ? byDateLastClose[distinctDates[distinctDates.length - 2]]
+            : Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || mainPrice);
+
+          const mainPct = prevClose > 0 ? ((mainPrice - prevClose) / prevClose) * 100 : 0;
+
+          let extSession = item.ext_session;
+          if (item.asset_type === "us_stock") {
+            const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
+            if (preP > 0) {
+              const chg = preP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
+              extSession = { price: Number(preP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤前" };
+            } else if (postP > 0) {
+              const chg = postP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
+              extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
+            } else if (!isUsRegularMarketOpenNow()) {
+              const lastTick = validPairs[validPairs.length - 1].close;
+              if (Math.abs(lastTick - mainPrice) >= 0.01) {
+                const chg = lastTick - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
+                const hr = new Date().getHours();
+                const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
+                extSession = { price: Number(lastTick.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: lbl };
+              }
+            }
+          }
+
+          if (mainPrice > 0) {
+            updateAssetDomPrice(sym, mainPrice, mainPct, extSession);
+            return;
+          }
+        } catch (e) {}
+      }
     }
 
     async function syncDirectBinanceCryptoPrices() {
@@ -1947,9 +1978,10 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價、強勢榜與每日報告...";
+      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價、櫃買指數、強勢榜與每日報告...";
       await Promise.all([
         tryLoadMarketJson(true),
+        syncTaiwanIndicesLiveInBrowser(),
         syncTradingViewTaiwanScannerInBrowser(),
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
@@ -1963,7 +1995,7 @@
       renderTopPerformingSectors();
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全站當日最新收盤、強勢榜與每日報告已同步完成";
+      document.getElementById("live-status").textContent = "全站當日最新收盤、櫃買指數、強勢榜與每日報告已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
@@ -2124,12 +2156,14 @@
       renderAllSections(getInitialDashboardStructure());
       await tryLoadMarketJson(true);
 
+      syncTaiwanIndicesLiveInBrowser();
       syncTradingViewTaiwanScannerInBrowser();
       syncDirectBinanceCryptoPrices();
       syncTaifexVixLiveInBrowser();
       ["^TWII", "^TWOII", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
 
       setInterval(syncDirectBinanceCryptoPrices, 15000);
+      setInterval(syncTaiwanIndicesLiveInBrowser, 30000);
       setInterval(syncTaifexVixLiveInBrowser, 30000);
       setInterval(syncTradingViewTaiwanScannerInBrowser, 45000);
       setInterval(() => tryLoadMarketJson(false), 45000);
