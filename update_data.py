@@ -1,16 +1,3 @@
-需要，而且非常必要。
-
-如果不改，後端在執行 update_data.py 產出 market_data.json 時，櫃買指數依然會踩到以下兩個問題：
-
-1. Yahoo Finance 的代號坑：Yahoo Finance 官方資料庫裡台灣櫃買指數的代號是 ^TWO，傳 ^TWOII 給 yf.download 會直接回傳空值或報錯。
-2. 官方資料庫的分流：證交所 MIS 系統（mis.twse.com.tw）將大盤與櫃買拆成兩套前綴：加權指數是 tse_t00.tw，櫃買中心（TPEx）指數則是 otc_o00.tw。
-
-只要在 update_data.py 裡將櫃買指數同時納入 otc_o00.tw 與 ^TWO 雙通道查價，並在輸出時對齊回前端使用的 key ^TWOII，後端產出的 JSON 檔就能確保永久具備當日最新收盤點位與 1 年歷史 K 線。
-
-update_data.py 完整修正版代碼
-
-請到 GitHub 打開 update_data.py ➔ 點選右上角 ✏️（Edit）➔ 按 Command + A 全選刪除 ➔ 貼上下方完整程式碼 ➔ 按 Commit changes...：
-
 import os, re, sys, io, json, math, time, datetime
 import pytz, requests, urllib3
 import pandas as pd
@@ -502,6 +489,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-貼上並 Commit update_data.py 後，GitHub Actions 便會自動抓取當日櫃買指數與全台股收盤價。稍待 Actions 執行完畢，回到儀表板按 Command + Shift + R 強制重新整理即可完成同步。
