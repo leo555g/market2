@@ -29,7 +29,7 @@
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
           <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場當日最新收盤與即時報價同步中</span>
+          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場當日最新收盤與即時報價已就緒</span>
         </div>
         <button onclick="forceSyncAllLivePrices()" class="text-xs bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">🔄 強制刷新全站報價</button>
         <button onclick="configureFinnhubKey()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg font-medium transition">⚡ 設定美股 WebSocket 金鑰</button>
@@ -617,13 +617,11 @@
       renderTopPerformingSectors();
     }
 
-    // 核心升級：前端即時動態計算「今日最強勢細分產業鏈排行」，徹底擺脫 supply_chain_db.js 內上禮拜寫死的 DEFAULT_TW_TOP_SECTORS！
     function computeDynamicTopPerformingSectors(market) {
       const allSectors = getSupplyChainSectorsData();
       const ranked = [];
 
       allSectors.forEach(sec => {
-        // 排除綜合市值榜，專注排行 37 大細分產業鏈
         if (sec.id === "tw_top10" || sec.id === "trillion_club") return;
         const rawItems = sec.stages.flatMap(stg => stg.items);
         const mktItems = market === "TW"
@@ -637,7 +635,6 @@
         const sumPct = validItems.reduce((acc, it) => acc + Number(it.change_pct), 0);
         const avgPct = Number((sumPct / validItems.length).toFixed(2));
 
-        // 依當日最新漲跌幅由高至低排序，取出前 3 大領漲指標股
         const sortedLeaders = [...validItems].sort((a, b) => Number(b.change_pct) - Number(a.change_pct));
         const top3 = sortedLeaders.slice(0, 3).map(ld => ({
           symbol: ld.symbol,
@@ -671,7 +668,6 @@
       const container = document.getElementById("sc-top-performing-grid");
       if (!container) return;
 
-      // 直接使用即時動態算出的當日強勢族群排行！
       const dynamicList = computeDynamicTopPerformingSectors(currentTopMarket);
       const list = dynamicList.length > 0
         ? dynamicList
@@ -1101,10 +1097,7 @@
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
 
-      const activeTwCodes = secItems.filter(it => isTwSymbol(it.symbol)).map(it => it.symbol.split(".")[0]);
-      if (activeTwCodes.length > 0) syncFinMindDirectCorsBatch(activeTwCodes);
       secItems.forEach(it => fetchSingleYahooQuoteAndPrePost(it.symbol));
-
       renderScIndexBenchmarkPicker();
       renderSupplyChainChart();
     }
@@ -1673,7 +1666,6 @@
           el.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '盤前/盤後'}:</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
         });
       }
-      // 當視窗二處於開啟狀態時，一旦股價更新就即時重算強勢族群雷達！
       if (currentAppView === "supplychain") renderTopPerformingSectors();
     }
 
@@ -1696,38 +1688,33 @@
       return null;
     }
 
-    async function syncFinMindDirectCorsBatch(twCodeList) {
-      if (!twCodeList || !twCodeList.length) return;
-      const startDt = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-      await Promise.all(twCodeList.map(async (code) => {
+    // 瀏覽器端直接透過證交所 MIS 即時 API 補抓當日最新價格 (檢查日期 d 是否為最新交易日，絕不拿舊日價格覆蓋今日價格！)
+    async function syncTwseMisTodayOnly(twSymList) {
+      if (!twSymList || !twSymList.length) return;
+      const exList = twSymList.map(s => s.endsWith(".TW") ? `tse_${s.split(".")[0]}.tw` : `otc_${s.split(".")[0]}.tw`);
+      for (let i = 0; i < exList.length; i += 35) {
+        const chunk = exList.slice(i, i + 35).join("|");
         try {
-          const url = `https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockPrice&data_id=${code}&start_date=${startDt}`;
-          const r = await fetch(url);
-          if (r.ok) {
-            const j = await r.json();
-            const arr = j?.data || [];
-            if (arr.length > 0) {
-              const last = arr[arr.length - 1];
-              const p = Number(last.close || 0);
-              const spread = Number(last.spread || 0);
-              const prev = p - spread;
-              const pct = prev > 0 ? (spread / prev) * 100 : 0;
-              if (p > 0) {
-                const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
-                VERIFIED_NOV13_2026_QUOTES[symTw] = [p, Number(pct.toFixed(2))];
-                VERIFIED_NOV13_2026_QUOTES[symTwo] = [p, Number(pct.toFixed(2))];
-                if (allAssetsMap[symTw]) updateAssetDomPrice(symTw, p, pct);
-                if (allAssetsMap[symTwo]) updateAssetDomPrice(symTwo, p, pct);
-              }
+          const j = await tryFetchViaMultiProxy(`https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${chunk}&json=1&delay=0`);
+          const arr = j?.msgArray || [];
+          arr.forEach(m => {
+            const code = String(m.c || "").trim();
+            const isOtc = String(m.ex || "") === "otc";
+            const sym = `${code}.${isOtc ? 'TWO' : 'TW'}`;
+            const prevP = parseFloat(m.y || "0");
+            let curP = parseFloat(m.z || "0");
+            if (!curP || isNaN(curP) || curP <= 0) {
+              const b0 = parseFloat(String(m.b || "").split("_")[0]);
+              const a0 = parseFloat(String(m.a || "").split("_")[0]);
+              curP = b0 || a0 || prevP;
             }
-          }
+            if (curP > 0 && prevP > 0) {
+              const pct = ((curP - prevP) / prevP) * 100;
+              updateAssetDomPrice(sym, curP, pct);
+            }
+          });
         } catch (e) {}
-      }));
-    }
-
-    async function syncAllTwStocksInBrowser() {
-      const coreCodes = ["2330", "2454", "2308", "2317", "3711", "2382", "2881", "2882", "2412", "2891", "2303", "3653", "2408", "2059", "3661", "3443", "5274", "3008", "3017"];
-      await syncFinMindDirectCorsBatch(coreCodes);
+      }
     }
 
     async function syncTaifexVixLiveInBrowser() {
@@ -1746,6 +1733,8 @@
       }
     }
 
+    // 瀏覽器端透過 Yahoo Finance 15m 分鐘線抓取最新成交價：
+    // 若為台股，嚴格檢查最後一根分K的日期是否不舊於已載入的 history 最後一天，絕不用昨天價格覆蓋今天價格！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX") return;
       try {
@@ -1756,11 +1745,34 @@
         const item = allAssetsMap[sym];
         if (!item) return;
         const meta = res.meta || {};
+        const ts = res.timestamp || [];
         const rawCloses = res.indicators?.quote?.[0]?.close || [];
-        const validCloses = rawCloses.filter(c => c !== null && c !== undefined && Number(c) > 0).map(Number);
+        const validPairs = [];
+        for (let i = 0; i < ts.length; i++) {
+          if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
+            validPairs.push({
+              date: new Date(ts[i] * 1000).toISOString().slice(0, 10),
+              close: Number(rawCloses[i])
+            });
+          }
+        }
+        if (!validPairs.length) return;
 
-        let mainPrice = Number(meta.regularMarketPrice || (validCloses.length ? validCloses[validCloses.length - 1] : item.price));
-        let prevClose = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || mainPrice);
+        // 防止舊快取倒退：如果目前 item.history 最後一天的日期比抓回來的分K日期更新，則直接忽略！
+        const existingLastDate = (item.history && item.history.length > 0) ? item.history[item.history.length - 1].date : "";
+        const incomingLastDate = validPairs[validPairs.length - 1].date;
+        if (existingLastDate && incomingLastDate < existingLastDate) return;
+
+        // 從 5d 分K中找出前一個交易日的收盤價作為精準昨收
+        const byDateLastClose = {};
+        validPairs.forEach(p => { byDateLastClose[p.date] = p.close; });
+        const distinctDates = Object.keys(byDateLastClose).sort();
+
+        let mainPrice = Number(meta.regularMarketPrice || validPairs[validPairs.length - 1].close);
+        let prevClose = distinctDates.length >= 2
+          ? byDateLastClose[distinctDates[distinctDates.length - 2]]
+          : Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || mainPrice);
+
         const mainPct = prevClose > 0 ? ((mainPrice - prevClose) / prevClose) * 100 : 0;
 
         let extSession = item.ext_session;
@@ -1772,8 +1784,8 @@
           } else if (postP > 0) {
             const chg = postP - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
             extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
-          } else if (!isUsRegularMarketOpenNow() && validCloses.length > 0) {
-            const lastTick = validCloses[validCloses.length - 1];
+          } else if (!isUsRegularMarketOpenNow()) {
+            const lastTick = validPairs[validPairs.length - 1].close;
             if (Math.abs(lastTick - mainPrice) >= 0.01) {
               const chg = lastTick - mainPrice, pct = mainPrice > 0 ? (chg / mainPrice) * 100 : 0;
               const hr = new Date().getHours();
@@ -1804,10 +1816,10 @@
     async function forceSyncAllLivePrices() {
       document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與強勢族群排行...";
       await Promise.all([
+        tryLoadMarketJson(true),
         syncDirectBinanceCryptoPrices(),
         syncTaifexVixLiveInBrowser(),
-        syncAllTwStocksInBrowser(),
-        tryLoadMarketJson(true)
+        syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"])
       ]);
       const coreSyms = ["^TWII", "^TWOII", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"];
       for (let i = 0; i < coreSyms.length; i += 6) {
@@ -1977,12 +1989,10 @@
 
       syncDirectBinanceCryptoPrices();
       syncTaifexVixLiveInBrowser();
-      syncAllTwStocksInBrowser();
       ["^TWII", "^TWOII", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
 
       setInterval(syncDirectBinanceCryptoPrices, 15000);
       setInterval(syncTaifexVixLiveInBrowser, 30000);
-      setInterval(syncAllTwStocksInBrowser, 45000);
       setInterval(() => tryLoadMarketJson(false), 45000);
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
