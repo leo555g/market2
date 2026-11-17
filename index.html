@@ -242,12 +242,12 @@
       </div>
     </section>
 
-    <!-- 專區 9：每日市場深度報告 -->
+    <!-- 專區 9：每日市場深度報告 (即時動態重算) -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">📑 每日盤後與盤前深度報告</span>
+            <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">📑 每日盤後與盤前深度報告 (隨報價即時動態生成)</span>
             <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告 (五大維度完整拆解)</h2>
           </div>
           <p id="daily-report-headline" class="text-sm text-indigo-300 font-semibold mt-2"></p>
@@ -592,8 +592,79 @@
       { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }], latestRelease: { period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 法說焦點", val: "GB200 出貨進度與下季毛利率指引" }], impacts: ["【AI 半導體風向球】台灣時間 11/18 清晨 06:00 輝達將舉行財報法說會，為全市場最關鍵催化劑。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
+    // 核心升級：前端即時動態生成「每日盤後與盤前深度分析報告」，隨全站最新收盤與即時報價自動重算！
+    function buildDynamicDailyMarketReport() {
+      const g = (sym, defP, defPct) => {
+        const it = allAssetsMap[sym];
+        const p = (it && Number(it.price) > 0) ? Number(it.price) : (getDeterministicFallbackQuote(sym)[0] || defP);
+        const pct = (it && it.change_pct !== undefined && Number(it.price) > 0) ? Number(it.change_pct) : (getDeterministicFallbackQuote(sym)[1] ?? defPct);
+        return { price: formatDisplayPrice(p, sym), pct: formatSignedPct(pct), rawPct: pct };
+      };
+
+      const sp = g("^GSPC", 7561.67, -0.40), dji = g("^DJI", 52347.55, 0.10), ixic = g("^IXIC", 25136.27, -0.91), sox = g("^SOX", 10146.32, -3.43);
+      const twii = g("^TWII", 41040.08, -0.50), twoii = g("^TWOII", 319.12, -0.40);
+      const vixUs = g("^VIX", 19.30, 3.21), vixTw = g("^VIXTWN", 38.45, -4.54);
+      const us2y = g("US2Y", 4.88, 0.02), tnx = g("^TNX", 5.15, 0.10), tyx = g("^TYX", 5.47, 0.08);
+      const twd = g("TWD=X", 32.95, 0.18), dxy = g("DX-Y.NYB", 103.20, 0.20);
+      const gc = g("GC=F", 3886.30, 0.08), cl = g("CL=F", 88.56, -0.20);
+      const btc = g("BTC-USD", 64566.98, 0.69), eth = g("ETH-USD", 1814.48, -5.86);
+      const tsmTw = g("2330.TW", 2215.00, 0.00), mtkTw = g("2454.TW", 3795.00, 0.00), deltaTw = g("2308.TW", 1120.00, 0.00), honhaiTw = g("2317.TW", 218.50, 0.00);
+      const nvda = g("NVDA", 162.85, -2.01), tsmUs = g("TSM", 398.73, -1.67);
+
+      const chips = (globalMarketData && globalMarketData.tw_chips_visual && Array.isArray(globalMarketData.tw_chips_visual.dates))
+        ? globalMarketData.tw_chips_visual
+        : OFFICIAL_VERIFIED_TW_CHIPS;
+      const cIdx = chips.dates.length - 1;
+      const chipDate = chips.dates[cIdx] || "最新交易日";
+      const fBuy = Number(chips.foreign_buy?.[cIdx] ?? -701.89);
+      const tBuy = Number(chips.trust_buy?.[cIdx] ?? -179.63);
+      const dBuy = Number(chips.dealer_buy?.[cIdx] ?? -259.03);
+      const totInst = Number((fBuy + tBuy + dBuy).toFixed(2));
+      const mBal = Number(chips.margin_balance?.[cIdx] ?? 5218.40);
+      const otcMBal = Number(chips.otc_margin_balance?.[cIdx] ?? 1815.20);
+
+      const twTopSectors = computeDynamicTopPerformingSectors("TW");
+      const usTopSectors = computeDynamicTopPerformingSectors("US");
+      const twTop3Str = twTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "AI 伺服器與先進封裝鏈";
+      const usTop3Str = usTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "雲端 AI 與半導體設備鏈";
+
+      const nowStr = new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
+
+      return {
+        report_date: `${nowStr} CST (即時動態更新)`,
+        headline: `台股加權收報 ${twii.price} (${twii.pct})、台積電報 ${tsmTw.price} 元 (${tsmTw.pct})，強勢族群聚焦 ${twTopSectors[0]?.title || 'AI 供應鏈'}，市場迎戰美國零售銷售數據與輝達財報`,
+        market_drivers: [
+          `【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 ${sp.price} (${sp.pct})、道瓊工業指數報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})；美國 CBOE VIX 恐慌指數報 ${vixUs.price} (${vixUs.pct})，輝達 (NVDA) 報 ${nvda.price} (${nvda.pct})、台積電 ADR (TSM) 報 ${tsmUs.price} (${tsmUs.pct})。`,
+          `【二、台股大盤量價、臺指 VIX 與核心權值股表現】台灣加權指數最新收報 ${twii.price} 點 (${twii.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，期交所臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電收報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科收報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電收報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海收報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
+          `【三、當日台美股最強勢產業鏈輪動】台股今日表現最強勢前三大族群依序為：${twTop3Str}；美股強勢族群則聚焦於：${usTop3Str}，顯示資金在重要財報與總經數據開出前後，持續向具備實質訂單與業績支撐的細分供應鏈集中。`,
+          `【四、三大法人籌碼與融資結構 (${chipDate})】外資及陸資買賣超 ${fBuy >= 0 ? '+' : ''}${fBuy.toFixed(2)} 億元、投信 ${tBuy >= 0 ? '+' : ''}${tBuy.toFixed(2)} 億元、自營商 ${dBuy >= 0 ? '+' : ''}${dBuy.toFixed(2)} 億元，三大法人合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億元；上市融資餘額為 ${mBal.toFixed(2)} 億元、上櫃融資餘額為 ${otcMBal.toFixed(2)} 億元。`,
+          `【五、美債殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 ${us2y.price}%、10 年期報 ${tnx.price}%、30 年期報 ${tyx.price}%；美元指數 (DXY) 報 ${dxy.price}、美元兌新台幣報 ${twd.price}；黃金期貨報 ${gc.price} 美元 (${gc.pct})、WTI 原油報 ${cl.price} 美元 (${cl.pct})；比特幣 (BTC) 即時報 ${btc.price} 美元 (${btc.pct})、以太幣 (ETH) 報 ${eth.price} 美元 (${eth.pct})。`
+        ],
+        bullish_factors: [
+          `🔥 強勢族群領軍抗跌與輪動 (${twTop3Str})：今日台股資金明確點火強勢次產業，指標領漲股買盤積極，帶動中小型績優股人氣回溫。`,
+          `🔥 AI 伺服器與先進封裝基本面強勁：台積電單月營收連創歷史新高，CoWoS 與次世代 AI 機櫃（GB200/液冷散熱/BBU/CPO 光通訊）進入拉貨旺季。`,
+          `🔥 籌碼沉澱與高殖利率護體：經過短線震盪洗盤後，高槓桿融資浮額有效清洗，具備高現金殖利率與低本益比之大型權值股下檔支撐轉強。`
+        ],
+        bearish_factors: [
+          `❄️ 長天期美債殖利率維持高檔：美國 10 年期公債殖利率處於 ${tnx.price}%、2 年期處於 ${us2y.price}%，市場密切緊盯今晚美國零售銷售數據對聯準會 12 月利率決策之影響。`,
+          `❄️ 外資匯率與期現貨避險操作：美元兌新台幣處於 ${twd.price} 水位，在國際重大財報與總經數據明朗前，外資於期現貨操作仍偏審慎。`
+        ],
+        upcoming_macro_week: [
+          { date: "11/17 (週二) 21:30", event: "🛍️ 美國 10 月零售銷售數據 (Retail Sales)", consensus: "預期月增 +0.3% MoM (前值 +0.8%)", impact: "佔美國 GDP 近 70% 之內需消費指標，直接牽動 2Y/10Y 美債殖利率與美股科技股估值" },
+          { date: "11/18 (週三) 21:30", event: "🏗️ 美國 10 月新屋開工與營建許可", consensus: "預期年化 134 萬戶", impact: "檢驗高房貸利率環境對美國房市與居家修繕/營建供應鏈之影響" },
+          { date: "11/19 (週四) 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "預期 22.0 萬人", impact: "高頻檢視美國勞動市場韌性與聯準會政策空間" },
+          { date: "11/20 (週五) 16:00", event: "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", consensus: "預期年增 +9.5% YoY", impact: "驗證台灣 AI 伺服器、資通訊產品與電子零組件海外接單動能" }
+        ],
+        upcoming_earnings_week: [
+          { date: "11/18 (週三) 06:00 CST", ticker: "NVDA", name: "輝達 (NVIDIA) Q3 財報法說會", focus: "Blackwell 伺服器出貨進度、資料中心營收與下季毛利率指引（全市場最關鍵風向球）" },
+          { date: "11/17 (週二) 20:00 CST", ticker: "WMT", name: "沃爾瑪 (Walmart) Q3 財報", focus: "北美終端消費者購買力、年底購物季財測與庫存水位" },
+          { date: "11/20 (週五) 05:00 CST", ticker: "PANW", name: "Palo Alto Networks 財報", focus: "企業雲端資安支出與 AI 零信任防護平台訂單增長" }
+        ]
+      };
+    }
+
     function renderDailyMarketReport() {
-      const rep = (globalMarketData && globalMarketData.daily_market_report && globalMarketData.daily_market_report.headline) ? globalMarketData.daily_market_report : window.DAILY_MARKET_REPORT_DATA;
+      const rep = buildDynamicDailyMarketReport();
       if (!rep) return;
       document.getElementById("daily-report-date").textContent = `報告日期：${rep.report_date}`;
       document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
@@ -780,6 +851,7 @@
         sView.classList.add("hidden"); mView.classList.remove("hidden");
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30";
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
+        renderDailyMarketReport();
         setTimeout(() => { if (mainChart) mainChart.resize(); if (instChart) instChart.resize(); if (marginChart) marginChart.resize(); }, 80);
       }
     }
@@ -1677,9 +1749,9 @@
         });
       }
       if (currentAppView === "supplychain") renderTopPerformingSectors();
+      else renderDailyMarketReport();
     }
 
-    // 根據 4 碼純數字代號同時更新 .TW 與 .TWO，徹底無視上市/上櫃後綴差異！
     function updateTwStockByCode(code, price, pct, pe = 0) {
       if (!code || !(price > 0)) return;
       const pNum = Number(Number(price).toFixed(2));
@@ -1718,7 +1790,6 @@
       return null;
     }
 
-    // 修正代號解析版：從 row.s ("TWSE:2330" / "TPEX:5274") 擷取純代號，1 秒同步全台灣 1800+ 檔上市櫃最新收盤價！
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -1748,6 +1819,7 @@
               }
             }
           });
+          renderDailyMarketReport();
           if (currentAppView === "supplychain") renderSupplyChainView();
           else renderTopPerformingSectors();
           return true;
@@ -1875,7 +1947,7 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價與強勢族群排行...";
+      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股收盤價、強勢榜與每日報告...";
       await Promise.all([
         tryLoadMarketJson(true),
         syncTradingViewTaiwanScannerInBrowser(),
@@ -1887,10 +1959,11 @@
       for (let i = 0; i < coreSyms.length; i += 6) {
         await Promise.all(coreSyms.slice(i, i + 6).map(s => fetchSingleYahooQuoteAndPrePost(s)));
       }
+      renderDailyMarketReport();
       renderTopPerformingSectors();
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全站當日最新收盤、盤前盤後與強勢榜已同步完成";
+      document.getElementById("live-status").textContent = "全站當日最新收盤、強勢榜與每日報告已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
@@ -2012,8 +2085,8 @@
       updateUsBondSpreadIndicator();
       refreshAllFxTwdSublabels();
       getSupplyChainSectorsData();
-      renderDailyMarketReport();
       renderTopPerformingSectors();
+      renderDailyMarketReport();
 
       const mopsContainer = document.getElementById("mops-list");
       mopsContainer.innerHTML = (globalMarketData.mops_general && globalMarketData.mops_general.length > 0)
