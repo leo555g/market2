@@ -1,3 +1,16 @@
+需要，而且非常必要。
+
+如果不改，後端在執行 update_data.py 產出 market_data.json 時，櫃買指數依然會踩到以下兩個問題：
+
+1. Yahoo Finance 的代號坑：Yahoo Finance 官方資料庫裡台灣櫃買指數的代號是 ^TWO，傳 ^TWOII 給 yf.download 會直接回傳空值或報錯。
+2. 官方資料庫的分流：證交所 MIS 系統（mis.twse.com.tw）將大盤與櫃買拆成兩套前綴：加權指數是 tse_t00.tw，櫃買中心（TPEx）指數則是 otc_o00.tw。
+
+只要在 update_data.py 裡將櫃買指數同時納入 otc_o00.tw 與 ^TWO 雙通道查價，並在輸出時對齊回前端使用的 key ^TWOII，後端產出的 JSON 檔就能確保永久具備當日最新收盤點位與 1 年歷史 K 線。
+
+update_data.py 完整修正版代碼
+
+請到 GitHub 打開 update_data.py ➔ 點選右上角 ✏️（Edit）➔ 按 Command + A 全選刪除 ➔ 貼上下方完整程式碼 ➔ 按 Commit changes...：
+
 import os, re, sys, io, json, math, time, datetime
 import pytz, requests, urllib3
 import pandas as pd
@@ -81,9 +94,6 @@ CORE_FUNDAMENTALS_DB = {
     "3711.TW": {"pe": 24.6, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
 
-# ====================================================================
-# 1. TradingView 台灣全市場掃描器 (修正股票代號提取：一律從 row["s"] 取 ":" 後面的代號！)
-# ====================================================================
 def fetch_tradingview_taiwan_full_market():
     tv_stocks, tv_pe, tv_indices = {}, {}, {}
     url = "https://scanner.tradingview.com/taiwan/scan"
@@ -103,7 +113,6 @@ def fetch_tradingview_taiwan_full_market():
             for row in (r.json().get("data") or []):
                 d = row.get("d") or []
                 t_raw = str(row.get("s", ""))
-                # 關鍵修正：優先從 row["s"] (如 "TWSE:2330" 或 "TPEX:5274") 擷取純代號！
                 code = t_raw.split(":")[-1].strip() if ":" in t_raw else (str(d[0]).strip() if d else "")
                 if len(d) >= 4 and code:
                     p = safe_float(d[1], 0.0)
@@ -120,7 +129,7 @@ def fetch_tradingview_taiwan_full_market():
                         else:
                             tv_stocks[code] = q_obj
                             if pe > 0: tv_pe[code] = round(pe, 2)
-            print(f"   -> [TradingView Scanner] Fetched {len(tv_stocks)} Taiwan stocks! (e.g. 2330={tv_stocks.get('2330', {}).get('price')})")
+            print(f"   -> [TradingView Scanner] Fetched {len(tv_stocks)} Taiwan stocks!")
     except Exception as e:
         print(f"[Warn] TradingView Scanner error: {e}")
     return tv_stocks, tv_pe, tv_indices
@@ -134,7 +143,41 @@ def fetch_tw_official_all_channels(tw_sym_list):
     snapshot["pe_map"].update(tv_pe)
     snapshot["indices"].update(tv_indices)
 
-    # 證交所 RWD MI_INDEX 當日收盤行情 API (比 OpenAPI 快 3 小時更新當日收盤價)
+    # 1. 證交所與櫃買 MIS 即時收盤報價 (包含加權 tse_t00.tw 與 櫃買 otc_o00.tw)
+    ex_ch_list = ["tse_t00.tw", "otc_o00.tw"]
+    for s in tw_sym_list:
+        code = s.split(".")[0]
+        if code not in snapshot["stocks"]:
+            ex_ch_list.append(f"tse_{code}.tw" if s.endswith(".TW") else f"otc_{code}.tw")
+
+    for i in range(0, len(ex_ch_list), 40):
+        chunk = ex_ch_list[i:i + 40]
+        try:
+            url = f"https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch={'|'.join(chunk)}&json=1&delay=0"
+            r = requests.get(url, headers=headers, timeout=6, verify=False)
+            if r.status_code == 200:
+                for m in (r.json().get("msgArray") or []):
+                    code = str(m.get("c", "")).strip()
+                    prev_p = safe_float(m.get("y"), 0.0)
+                    cur_p = safe_float(m.get("z"), 0.0)
+                    if cur_p <= 0:
+                        b0 = safe_float(str(m.get("b", "")).split("_")[0], 0.0)
+                        a0 = safe_float(str(m.get("a", "")).split("_")[0], 0.0)
+                        cur_p = b0 or a0 or safe_float(m.get("o"), 0.0) or prev_p
+                    if cur_p > 0 and prev_p > 0:
+                        chg = round(cur_p - prev_p, 2)
+                        pct = round((chg / prev_p) * 100, 2)
+                        q_obj = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg, "change_pct": pct}
+                        if code == "t00":
+                            snapshot["indices"]["^TWII"] = q_obj
+                        elif code == "o00":
+                            snapshot["indices"]["^TWOII"] = q_obj
+                        elif code:
+                            snapshot["stocks"][code] = q_obj
+        except Exception:
+            pass
+
+    # 2. 證交所 RWD MI_INDEX 官方收盤行情表
     try:
         r_mi = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?type=ALLBUT0999&response=json", headers=headers, timeout=8, verify=False)
         if r_mi.status_code == 200:
@@ -161,32 +204,40 @@ def fetch_tw_official_all_channels(tw_sym_list):
 
     return snapshot
 
-# ====================================================================
-# 2. yfinance 下載 1Y 歷史線 + 對「全站所有台股與美股」一律跑 5d/15m 分鐘線取得今天最新收盤價！
-# ====================================================================
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
     yf_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX"}
-    unique_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
+    
+    # 關鍵修正：將 ^TWOII 轉譯為 Yahoo Finance 支援的 ^TWO 進行下載
+    yf_download_syms = []
+    sym_alias_map = {}
+    for s in dict.fromkeys(symbols_list):
+        if s in skip_set: continue
+        if s == "^TWOII":
+            yf_download_syms.append("^TWO")
+            sym_alias_map["^TWO"] = "^TWOII"
+        else:
+            yf_download_syms.append(s)
 
     chunk_size = 35
-    for i in range(0, len(unique_syms), chunk_size):
-        chunk = unique_syms[i:i + chunk_size]
+    for i in range(0, len(yf_download_syms), chunk_size):
+        chunk = yf_download_syms[i:i + chunk_size]
         try:
             df = yf.download(chunk, period="1y", interval="1d", group_by="ticker", threads=True, progress=False)
             if df is None or df.empty:
                 continue
-            for sym in chunk:
+            for y_sym in chunk:
                 try:
-                    sub = df[sym] if len(chunk) > 1 else df
+                    sub = df[y_sym] if len(chunk) > 1 else df
                     if "Close" not in sub.columns: continue
                     closes = sub["Close"].dropna()
                     if closes.empty: continue
-                    dec = 4 if (sym.endswith("=X") and sym not in ["JPY=X", "TWD=X"]) else 2
+                    dec = 4 if (y_sym.endswith("=X") and y_sym not in ["JPY=X", "TWD=X"]) else 2
                     pts = [{"date": idx.strftime("%Y-%m-%d"), "close": round(safe_float(v), dec)} for idx, v in closes.items() if safe_float(v) > 0]
                     if len(pts) >= 2:
                         lc, pc = pts[-1]["close"], pts[-2]["close"]
-                        yf_map[sym] = {
+                        target_key = sym_alias_map.get(y_sym, y_sym)
+                        yf_map[target_key] = {
                             "price": lc, "prev_close": pc,
                             "change": round(lc - pc, dec),
                             "change_pct": round(((lc - pc) / pc) * 100, 2) if pc > 0 else 0.0,
@@ -197,30 +248,32 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception as e:
             print(f"[Warn] yf 1y chunk error: {e}")
 
-    # 關鍵強化：對「全站所有台股與台灣指數」一律下載 5d / 15m 分鐘線，確保就算日K線慢半天，也 100% 拿到今天 13:30 的最終收盤價！
-    all_tw_check = ["^TWII", "^TWOII"] + [s for s in unique_syms if (s.endswith(".TW") or s.endswith(".TWO"))]
+    # 對全台股與加權/櫃買指數跑 5d/15m 分鐘線，強制鎖定當天 13:30 最新成交價
+    all_tw_check = ["^TWII", "^TWO"] + [s for s in yf_download_syms if (s.endswith(".TW") or s.endswith(".TWO"))]
     for i in range(0, len(all_tw_check), 35):
         chunk = all_tw_check[i:i + 35]
         try:
             df_tw_int = yf.download(chunk, period="5d", interval="15m", group_by="ticker", threads=True, progress=False)
             if df_tw_int is not None and not df_tw_int.empty:
-                for sym in chunk:
+                for y_sym in chunk:
                     try:
-                        sub = df_tw_int[sym] if len(chunk) > 1 else df_tw_int
+                        sub = df_tw_int[y_sym] if len(chunk) > 1 else df_tw_int
                         if "Close" not in sub.columns: continue
                         closes = sub["Close"].dropna()
                         if closes.empty: continue
                         latest_p = round(safe_float(closes.iloc[-1]), 2)
                         daily_last = closes.groupby(closes.index.date).last()
-                        prev_p = round(safe_float(daily_last.iloc[-2]), 2) if len(daily_last) >= 2 else (yf_map.get(sym, {}).get("prev_close") or latest_p)
+                        prev_p = round(safe_float(daily_last.iloc[-2]), 2) if len(daily_last) >= 2 else latest_p
                         if latest_p > 0 and prev_p > 0:
                             chg = round(latest_p - prev_p, 2)
                             pct = round((chg / prev_p) * 100, 2)
                             q_obj = {"price": latest_p, "prev_close": prev_p, "change": chg, "change_pct": pct}
-                            if sym in ["^TWII", "^TWOII"]:
-                                tw_official["indices"][sym] = q_obj
+                            if y_sym == "^TWII":
+                                tw_official["indices"]["^TWII"] = q_obj
+                            elif y_sym == "^TWO":
+                                tw_official["indices"]["^TWOII"] = q_obj
                             else:
-                                code = sym.split(".")[0]
+                                code = y_sym.split(".")[0]
                                 if code not in tw_official["stocks"]:
                                     tw_official["stocks"][code] = q_obj
                     except Exception:
@@ -228,6 +281,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception:
             pass
 
+    # 美股盤中大數字 vs 盤前/盤後小字分流
     us_tz = pytz.timezone('America/New_York')
     now_et = datetime.datetime.now(us_tz)
     is_us_regular_open = (now_et.weekday() < 5) and ((now_et.hour == 9 and now_et.minute >= 30) or (10 <= now_et.hour < 16))
@@ -399,7 +453,7 @@ def main():
         sc_items_map, sector_stocks_map = parse_sectors_and_symbols_from_js("supply_chain_db.js")
         all_tw_syms = list(set([m["ticker"] for m in TW_STOCKS.values()] + [s for s in sc_items_map.keys() if s.endswith(".TW") or s.endswith(".TWO")]))
 
-        print(f"1. Fetching TradingView Taiwan Scanner + TWSE MI_INDEX for {len(all_tw_syms)} Taiwan stocks...")
+        print(f"1. Fetching TradingView Taiwan Scanner + TWSE/TPEx for {len(all_tw_syms)} Taiwan stocks...")
         tw_official = fetch_tw_official_all_channels(all_tw_syms)
         print(f"   -> Got {len(tw_official['stocks'])} TW/TWO official quotes.")
 
@@ -448,3 +502,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+貼上並 Commit update_data.py 後，GitHub Actions 便會自動抓取當日櫃買指數與全台股收盤價。稍待 Actions 執行完畢，回到儀表板按 Command + Shift + R 強制重新整理即可完成同步。
