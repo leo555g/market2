@@ -55,6 +55,7 @@ TW_STOCKS = {
     "3711": {"ticker": "3711.TW", "name": "3711 日月光投控"}
 }
 FUTURES_AND_COMMODITIES = {
+    "TXF": {"name": "台指期近月 (日/夜盤)", "group": "us_index_futures"},
     "ES=F": {"name": "小S&P期貨", "group": "us_index_futures"}, "NQ=F": {"name": "小納斯達克期貨", "group": "us_index_futures"}, "YM=F": {"name": "小道瓊期貨", "group": "us_index_futures"},
     "GC=F": {"name": "黃金期貨", "group": "metals_futures"}, "SI=F": {"name": "白銀期貨", "group": "metals_futures"}, "HG=F": {"name": "銅期貨", "group": "metals_futures"}, "PA=F": {"name": "鈀金期貨", "group": "metals_futures"},
     "BZ=F": {"name": "布蘭特原油期貨", "group": "energy_futures"}, "CL=F": {"name": "WTI 原油期貨", "group": "energy_futures"},
@@ -80,6 +81,114 @@ CORE_FUNDAMENTALS_DB = {
     "2317.TW": {"pe": 15.8, "eps": 13.77, "roe": "11.4%", "gross_margin": "6.4%", "operating_margin": "3.2%", "yoy_rev_growth": "20.1%"},
     "3711.TW": {"pe": 24.6, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "18.3%"}
 }
+
+# ====================================================================
+# 動態抓取最新交易日「台股三大法人買賣超 ＋ 上市融資餘額 ＋ 櫃買融資餘額」
+# ====================================================================
+def fetch_latest_tw_chips_visual():
+    chips = {
+        "dates": ["11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16"],
+        "foreign_buy": [-735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89],
+        "trust_buy": [338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -179.63],
+        "dealer_buy": [-157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03],
+        "margin_balance": [6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99, 5218.40],
+        "otc_margin_balance": [1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45, 1815.20],
+        "short_balance": [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
+    }
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    # 先讀取本地舊的 market_data.json 若已有更新的日期則保留
+    if os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_c = (json.load(f) or {}).get("tw_chips_visual") or {}
+                if isinstance(old_c.get("dates"), list) and len(old_c["dates"]) >= 10:
+                    chips = old_c
+        except Exception:
+            pass
+
+    latest_date_mmdd = None
+    f_yi, t_yi, d_yi = None, None, None
+    twse_margin_yi, tpex_margin_yi = None, None
+
+    # 1. 抓取證交所三大法人買賣金額統計表 (BFI82U)
+    try:
+        r_inst = requests.get("https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json", headers=headers, timeout=8, verify=False)
+        if r_inst.status_code == 200:
+            j = r_inst.json()
+            d_str = str(j.get("date", "")).strip()
+            if len(d_str) == 8:
+                latest_date_mmdd = f"{d_str[4:6]}/{d_str[6:8]}"
+            rows = j.get("data") or []
+            d_sum = 0.0
+            for row in rows:
+                name = str(row[0]).strip()
+                diff_val = safe_float(row[3], 0.0) / 1e8  # 轉換為億元
+                if "外資及陸資" in name and "外資自營商" not in name:
+                    f_yi = round(diff_val, 2)
+                elif "投信" in name:
+                    t_yi = round(diff_val, 2)
+                elif "自營商" in name:
+                    d_sum += diff_val
+            if f_yi is not None and t_yi is not None:
+                d_yi = round(d_sum, 2)
+    except Exception as e:
+        print(f"[Warn] TWSE BFI82U error: {e}")
+
+    # 2. 抓取證交所上市融資餘額 (MI_MARGN)
+    try:
+        r_m = requests.get("https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?selectType=MS&response=json", headers=headers, timeout=8, verify=False)
+        if r_m.status_code == 200:
+            tables = r_m.json().get("tables") or []
+            for tb in tables:
+                for row in (tb.get("data") or []):
+                    if "融資金額" in str(row[0]):
+                        # 仟元轉億元 (/ 1e5)
+                        val_qian = safe_float(row[-1], 0.0)
+                        if val_qian > 1e6:
+                            twse_margin_yi = round(val_qian / 1e5, 2)
+    except Exception:
+        pass
+
+    # 3. 抓取櫃買中心上櫃融資餘額
+    try:
+        r_otc_m = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
+        if r_otc_m.status_code == 200:
+            tables = r_otc_m.json().get("tables") or []
+            for tb in tables:
+                summary = tb.get("summary") or []
+                for s_row in summary:
+                    for cell in s_row:
+                        v = safe_float(cell, 0.0)
+                        if 1000.0 <= v <= 4000.0:
+                            tpex_margin_yi = round(v, 2)
+    except Exception:
+        pass
+
+    # 若成功抓到最新交易日三大法人數據，則寫入或更新最後一天
+    if latest_date_mmdd and f_yi is not None and t_yi is not None and d_yi is not None:
+        m_final = twse_margin_yi if twse_margin_yi else chips["margin_balance"][-1]
+        otc_final = tpex_margin_yi if tpex_margin_yi else chips["otc_margin_balance"][-1]
+        if latest_date_mmdd in chips["dates"]:
+            idx = chips["dates"].index(latest_date_mmdd)
+            chips["foreign_buy"][idx] = f_yi
+            chips["trust_buy"][idx] = t_yi
+            chips["dealer_buy"][idx] = d_yi
+            if twse_margin_yi: chips["margin_balance"][idx] = m_final
+            if tpex_margin_yi: chips["otc_margin_balance"][idx] = otc_final
+        else:
+            chips["dates"].append(latest_date_mmdd)
+            chips["foreign_buy"].append(f_yi)
+            chips["trust_buy"].append(t_yi)
+            chips["dealer_buy"].append(d_yi)
+            chips["margin_balance"].append(m_final)
+            chips["otc_margin_balance"].append(otc_final)
+            chips["short_balance"].append(chips["short_balance"][-1])
+            for k in ["dates", "foreign_buy", "trust_buy", "dealer_buy", "margin_balance", "otc_margin_balance", "short_balance"]:
+                if len(chips[k]) > 11:
+                    chips[k] = chips[k][-11:]
+
+    return chips
 
 def fetch_tradingview_taiwan_full_market():
     tv_stocks, tv_pe, tv_indices = {}, {}, {}
@@ -130,7 +239,6 @@ def fetch_tw_official_all_channels(tw_sym_list):
     snapshot["pe_map"].update(tv_pe)
     snapshot["indices"].update(tv_indices)
 
-    # 1. 證交所與櫃買 MIS 即時收盤報價 (包含加權 tse_t00.tw 與 櫃買 otc_o00.tw)
     ex_ch_list = ["tse_t00.tw", "otc_o00.tw"]
     for s in tw_sym_list:
         code = s.split(".")[0]
@@ -164,7 +272,6 @@ def fetch_tw_official_all_channels(tw_sym_list):
         except Exception:
             pass
 
-    # 2. 證交所 RWD MI_INDEX 官方收盤行情表
     try:
         r_mi = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?type=ALLBUT0999&response=json", headers=headers, timeout=8, verify=False)
         if r_mi.status_code == 200:
@@ -193,9 +300,8 @@ def fetch_tw_official_all_channels(tw_sym_list):
 
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
     yf_map = {}
-    skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX"}
-    
-    # 關鍵修正：將 ^TWOII 轉譯為 Yahoo Finance 支援的 ^TWO 進行下載
+    skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX", "TXF"}
+
     yf_download_syms = []
     sym_alias_map = {}
     for s in dict.fromkeys(symbols_list):
@@ -235,7 +341,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception as e:
             print(f"[Warn] yf 1y chunk error: {e}")
 
-    # 對全台股與加權/櫃買指數跑 5d/15m 分鐘線，強制鎖定當天 13:30 最新成交價
     all_tw_check = ["^TWII", "^TWO"] + [s for s in yf_download_syms if (s.endswith(".TW") or s.endswith(".TWO"))]
     for i in range(0, len(all_tw_check), 35):
         chunk = all_tw_check[i:i + 35]
@@ -268,7 +373,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception:
             pass
 
-    # 美股盤中大數字 vs 盤前/盤後小字分流
     us_tz = pytz.timezone('America/New_York')
     now_et = datetime.datetime.now(us_tz)
     is_us_regular_open = (now_et.weekday() < 5) and ((now_et.hour == 9 and now_et.minute >= 30) or (10 <= now_et.hour < 16))
@@ -310,7 +414,10 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
 
     return yf_map
 
-def fetch_official_us2y_and_taifex_vixtwn():
+# ====================================================================
+# 抓取 FRED US2Y + 期交所 VIXTWN + 期交所「台指期近月 (TXF 日/夜盤)」
+# ====================================================================
+def fetch_official_us2y_and_taifex_vixtwn_and_txf(twii_fallback=None):
     extra = {}
     try:
         r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
@@ -327,7 +434,7 @@ def fetch_official_us2y_and_taifex_vixtwn():
     except Exception:
         pass
 
-    headers_mis = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json;charset=UTF-8", "Referer": "https://mis.taifex.com.tw/futures/VolatilityQuotes/"}
+    headers_mis = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json;charset=UTF-8", "Referer": "https://mis.taifex.com.tw/futures/"}
     for sym_id in ["TAIWANVIX", "VIXTWN"]:
         try:
             r_mis = requests.post("https://mis.taifex.com.tw/futures/api/getQuoteDetail", json={"SymbolID": [sym_id]}, headers=headers_mis, timeout=6, verify=False)
@@ -344,6 +451,34 @@ def fetch_official_us2y_and_taifex_vixtwn():
                         break
         except Exception:
             pass
+
+    # 抓取期交所「台指期近月 (TXF)」日盤/夜盤即時報價
+    txf_candidates = ["TXF-M", "TXF-S", "TXFL6-M", "TXFL6-S", "TXFA7-M", "TXFA7-S"]
+    try:
+        r_txf = requests.post("https://mis.taifex.com.tw/futures/api/getQuoteDetail", json={"SymbolID": txf_candidates}, headers=headers_mis, timeout=6, verify=False)
+        if r_txf.status_code == 200:
+            q_list = ((r_txf.json().get("RtData") or {}).get("QuoteList")) or []
+            for q in q_list:
+                last_p = safe_float(q.get("CLastPrice") or q.get("ChtPrice"), 0.0)
+                ref_p = safe_float(q.get("CRefPrice") or q.get("COpenPrice"), last_p)
+                diff = safe_float(q.get("CDiff"), last_p - ref_p)
+                pct = safe_float(q.get("CDiffRate"), (diff / ref_p * 100) if ref_p > 0 else 0.0)
+                if last_p > 15000:
+                    extra["TXF"] = {
+                        "price": round(last_p, 2),
+                        "prev_close": round(ref_p, 2),
+                        "change": round(diff, 2),
+                        "change_pct": round(pct, 2),
+                        "history": [{"date": "2026-11-16", "close": round(ref_p, 2)}, {"date": now_tw.strftime("%Y-%m-%d"), "close": round(last_p, 2)}],
+                        "ext_session": None
+                    }
+                    break
+    except Exception:
+        pass
+
+    if "TXF" not in extra and twii_fallback and twii_fallback.get("price", 0) > 0:
+        extra["TXF"] = dict(twii_fallback)
+
     return extra
 
 def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
@@ -424,15 +559,7 @@ def main():
         "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
         "supply_chain_sectors": [], "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
         "daily_market_report": {},
-        "tw_chips_visual": {
-            "dates": ["11/02", "11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16"],
-            "foreign_buy": [-735.21, -1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89],
-            "trust_buy": [338.16, 184.60, 272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -179.63],
-            "dealer_buy": [-157.55, -503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03],
-            "margin_balance": [6082.15, 6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99, 5218.40],
-            "otc_margin_balance": [1985.20, 1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45, 1815.20],
-            "short_balance": [21.80, 21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85]
-        },
+        "tw_chips_visual": fetch_latest_tw_chips_visual(),
         "mops_general": []
     }
 
@@ -453,7 +580,8 @@ def main():
 
         print("2. Downloading 1Y histories & 15m Intraday latest quotes via yfinance...")
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq, tw_official)
-        yf_map.update(fetch_official_us2y_and_taifex_vixtwn())
+        twii_q = tw_official["indices"].get("^TWII") or yf_map.get("^TWII")
+        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf(twii_q))
 
         built_cache = {}
         def get_asset(sym, name, a_type, f_group=None):
