@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-18 13:38:07 CST",
+  "last_updated": "2026-11-18 13:41:40 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -5226,10 +5226,10 @@
       "name": "台灣加權指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 40047.7,
+      "price": 40116.57,
       "prev_close": 40146.34,
-      "change": -98.64,
-      "change_pct": -0.25,
+      "change": -29.77,
+      "change_pct": -0.07,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -6199,7 +6199,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 40035.19
+          "close": 40107.97
         }
       ],
       "fundamentals": {
@@ -6273,10 +6273,10 @@
       "name": "日經 225 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 59174.73,
+      "price": 59153.41,
       "prev_close": 58860.43,
-      "change": 314.3,
-      "change_pct": 0.53,
+      "change": 292.98,
+      "change_pct": 0.5,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -7250,7 +7250,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 59174.73
+          "close": 59153.41
         }
       ],
       "fundamentals": {
@@ -7285,10 +7285,10 @@
       "name": "韓國 KOSPI 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 5049.37,
+      "price": 5052.13,
       "prev_close": 4968.48,
-      "change": 80.89,
-      "change_pct": 1.63,
+      "change": 83.65,
+      "change_pct": 1.68,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -8270,7 +8270,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 5049.37
+          "close": 5052.13
         }
       ],
       "fundamentals": {
@@ -12539,10 +12539,10 @@
       "name": "台指選擇權波動率指數 (VIXTWN)",
       "asset_type": "vix_index",
       "future_group": null,
-      "price": 45.87,
+      "price": 45.77,
       "prev_close": 49.55,
-      "change": -3.68,
-      "change_pct": -7.43,
+      "change": -3.78,
+      "change_pct": -7.63,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -12552,7 +12552,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 45.87
+          "close": 45.77
         }
       ],
       "fundamentals": {
@@ -17902,10 +17902,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6723,
+      "price": 0.6726,
       "prev_close": 0.6737,
-      "change": -0.0014,
-      "change_pct": -0.21,
+      "change": -0.0011,
+      "change_pct": -0.16,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -18947,7 +18947,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 0.6723
+          "close": 0.6726
         }
       ],
       "fundamentals": {
@@ -21142,10 +21142,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.0988,
+      "price": 1.0989,
       "prev_close": 1.0998,
-      "change": -0.001,
-      "change_pct": -0.09,
+      "change": -0.0009,
+      "change_pct": -0.08,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -22187,7 +22187,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 1.0988
+          "close": 1.0989
         }
       ],
       "fundamentals": {
@@ -22222,10 +22222,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3193,
+      "price": 1.3195,
       "prev_close": 1.3185,
-      "change": 0.0008,
-      "change_pct": 0.06,
+      "change": 0.001,
+      "change_pct": 0.08,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -23267,7 +23267,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 1.3193
+          "close": 1.3195
         }
       ],
       "fundamentals": {
@@ -23302,10 +23302,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6661,
+      "price": 6.6652,
       "prev_close": 6.6642,
-      "change": 0.0019,
-      "change_pct": 0.03,
+      "change": 0.001,
+      "change_pct": 0.02,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -24347,7 +24347,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 6.6661
+          "close": 6.6652
         }
       ],
       "fundamentals": {
@@ -24382,10 +24382,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.64,
+      "price": 103.68,
       "prev_close": 103.49,
-      "change": 0.15,
-      "change_pct": 0.14,
+      "change": 0.19,
+      "change_pct": 0.18,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -25395,7 +25395,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 103.64
+          "close": 103.68
         }
       ],
       "fundamentals": {
@@ -30743,10 +30743,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6723,
+      "price": 0.6726,
       "prev_close": 0.6737,
-      "change": -0.0014,
-      "change_pct": -0.21,
+      "change": -0.0011,
+      "change_pct": -0.16,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -31788,7 +31788,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 0.6723
+          "close": 0.6726
         }
       ],
       "fundamentals": {
@@ -33983,10 +33983,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.0988,
+      "price": 1.0989,
       "prev_close": 1.0998,
-      "change": -0.001,
-      "change_pct": -0.09,
+      "change": -0.0009,
+      "change_pct": -0.08,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -35028,7 +35028,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 1.0988
+          "close": 1.0989
         }
       ],
       "fundamentals": {
@@ -35063,10 +35063,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3193,
+      "price": 1.3195,
       "prev_close": 1.3185,
-      "change": 0.0008,
-      "change_pct": 0.06,
+      "change": 0.001,
+      "change_pct": 0.08,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -36108,7 +36108,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 1.3193
+          "close": 1.3195
         }
       ],
       "fundamentals": {
@@ -36143,10 +36143,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6661,
+      "price": 6.6652,
       "prev_close": 6.6642,
-      "change": 0.0019,
-      "change_pct": 0.03,
+      "change": 0.001,
+      "change_pct": 0.02,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -37188,7 +37188,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 6.6661
+          "close": 6.6652
         }
       ],
       "fundamentals": {
@@ -37223,10 +37223,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.64,
+      "price": 103.68,
       "prev_close": 103.49,
-      "change": 0.15,
-      "change_pct": 0.14,
+      "change": 0.19,
+      "change_pct": 0.18,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -38236,7 +38236,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 103.64
+          "close": 103.68
         }
       ],
       "fundamentals": {
@@ -51843,10 +51843,10 @@
       "name": "2317 鴻海",
       "asset_type": "tw_stock",
       "future_group": null,
-      "price": 220.5,
+      "price": 221.0,
       "prev_close": 219.0,
-      "change": 1.5,
-      "change_pct": 0.68,
+      "change": 2.0,
+      "change_pct": 0.91,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -52820,11 +52820,11 @@
         },
         {
           "date": "2026-11-18",
-          "close": 220.5
+          "close": 221.0
         }
       ],
       "fundamentals": {
-        "pe": 13.43,
+        "pe": 13.46,
         "forward_pe": 12.6,
         "eps": 16.42,
         "gross_margin": "6.0%",
@@ -53919,10 +53919,10 @@
       "name": "小S&P期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 7376.75,
+      "price": 7380.25,
       "prev_close": 7359.0,
-      "change": 17.75,
-      "change_pct": 0.24,
+      "change": 21.25,
+      "change_pct": 0.29,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -54932,7 +54932,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 7376.75
+          "close": 7380.25
         }
       ],
       "fundamentals": {
@@ -54967,10 +54967,10 @@
       "name": "小納斯達克期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 27223.25,
+      "price": 27252.5,
       "prev_close": 27075.5,
-      "change": 147.75,
-      "change_pct": 0.55,
+      "change": 177.0,
+      "change_pct": 0.65,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -55980,7 +55980,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 27223.25
+          "close": 27252.5
         }
       ],
       "fundamentals": {
@@ -56015,10 +56015,10 @@
       "name": "小道瓊期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 50865.0,
+      "price": 50881.0,
       "prev_close": 50815.0,
-      "change": 50.0,
-      "change_pct": 0.1,
+      "change": 66.0,
+      "change_pct": 0.13,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -57028,7 +57028,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 50865.0
+          "close": 50881.0
         }
       ],
       "fundamentals": {
@@ -57063,10 +57063,10 @@
       "name": "黃金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 3791.9,
+      "price": 3797.2,
       "prev_close": 3864.2,
-      "change": -72.3,
-      "change_pct": -1.87,
+      "change": -67.0,
+      "change_pct": -1.73,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -58076,7 +58076,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 3791.9
+          "close": 3797.2
         }
       ],
       "fundamentals": {
@@ -58111,10 +58111,10 @@
       "name": "白銀期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 46.02,
+      "price": 46.31,
       "prev_close": 47.29,
-      "change": -1.27,
-      "change_pct": -2.69,
+      "change": -0.98,
+      "change_pct": -2.07,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -59124,7 +59124,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 46.02
+          "close": 46.31
         }
       ],
       "fundamentals": {
@@ -59159,10 +59159,10 @@
       "name": "銅期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 5.89,
+      "price": 5.9,
       "prev_close": 5.98,
-      "change": -0.09,
-      "change_pct": -1.51,
+      "change": -0.08,
+      "change_pct": -1.34,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -60172,7 +60172,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 5.89
+          "close": 5.9
         }
       ],
       "fundamentals": {
@@ -60207,10 +60207,10 @@
       "name": "鈀金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 954.5,
+      "price": 956.5,
       "prev_close": 974.6,
-      "change": -20.1,
-      "change_pct": -2.06,
+      "change": -18.1,
+      "change_pct": -1.86,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -61220,7 +61220,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 954.5
+          "close": 956.5
         }
       ],
       "fundamentals": {
@@ -61255,10 +61255,10 @@
       "name": "布蘭特原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 92.8,
+      "price": 92.78,
       "prev_close": 93.14,
-      "change": -0.34,
-      "change_pct": -0.37,
+      "change": -0.36,
+      "change_pct": -0.39,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -62268,7 +62268,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 92.8
+          "close": 92.78
         }
       ],
       "fundamentals": {
@@ -62303,10 +62303,10 @@
       "name": "WTI 原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 85.06,
+      "price": 84.99,
       "prev_close": 86.01,
-      "change": -0.95,
-      "change_pct": -1.1,
+      "change": -1.02,
+      "change_pct": -1.19,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -63316,7 +63316,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 85.06
+          "close": 84.99
         }
       ],
       "fundamentals": {
@@ -64399,10 +64399,10 @@
       "name": "小麥期貨",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 605.5,
+      "price": 605.75,
       "prev_close": 595.25,
-      "change": 10.25,
-      "change_pct": 1.72,
+      "change": 10.5,
+      "change_pct": 1.76,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -65412,7 +65412,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 605.5
+          "close": 605.75
         }
       ],
       "fundamentals": {
@@ -66495,9 +66495,9 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 64663.46,
+      "price": 64659.99,
       "prev_close": 64855.84,
-      "change": -192.38,
+      "change": -195.85,
       "change_pct": -0.3,
       "ext_session": null,
       "intraday": [],
@@ -67960,7 +67960,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 64663.46
+          "close": 64659.99
         }
       ],
       "fundamentals": {
@@ -67995,10 +67995,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1812.8,
+      "price": 1813.3,
       "prev_close": 1819.28,
-      "change": -6.48,
-      "change_pct": -0.36,
+      "change": -5.98,
+      "change_pct": -0.33,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -69460,7 +69460,7 @@
         },
         {
           "date": "2026-11-18",
-          "close": 1812.8
+          "close": 1813.3
         }
       ],
       "fundamentals": {
@@ -72582,10 +72582,10 @@
               "name": "2317 鴻海",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 220.5,
+              "price": 221.0,
               "prev_close": 219.0,
-              "change": 1.5,
-              "change_pct": 0.68,
+              "change": 2.0,
+              "change_pct": 0.91,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -73559,11 +73559,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 220.5
+                  "close": 221.0
                 }
               ],
               "fundamentals": {
-                "pe": 13.43,
+                "pe": 13.46,
                 "forward_pe": 12.6,
                 "eps": 16.42,
                 "gross_margin": "6.0%",
@@ -74608,10 +74608,10 @@
               "name": "2382 廣達",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 264.5,
+              "price": 264.0,
               "prev_close": 262.5,
-              "change": 2.0,
-              "change_pct": 0.76,
+              "change": 1.5,
+              "change_pct": 0.57,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -75585,11 +75585,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 264.5
+                  "close": 264.0
                 }
               ],
               "fundamentals": {
-                "pe": 10.75,
+                "pe": 10.73,
                 "forward_pe": "N/A",
                 "eps": 24.6,
                 "gross_margin": "5.0%",
@@ -88371,7 +88371,7 @@
                 },
                 {
                   "date": "2026-02-03",
-                  "close": 997.42
+                  "close": 997.43
                 },
                 {
                   "date": "2026-02-04",
@@ -94419,10 +94419,10 @@
               "name": "6533 晶心科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 233.0,
+              "price": 234.0,
               "prev_close": 232.0,
-              "change": 1.0,
-              "change_pct": 0.43,
+              "change": 2.0,
+              "change_pct": 0.86,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -95396,7 +95396,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 233.0
+                  "close": 234.0
                 }
               ],
               "fundamentals": {
@@ -95432,10 +95432,10 @@
               "name": "6531 愛普*",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 594.0,
+              "price": 593.0,
               "prev_close": 601.0,
-              "change": -7.0,
-              "change_pct": -1.16,
+              "change": -8.0,
+              "change_pct": -1.33,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -96409,7 +96409,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 594.0
+                  "close": 593.0
                 }
               ],
               "fundamentals": {
@@ -100608,10 +100608,10 @@
               "name": "3443 創意",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 6640.0,
+              "price": 6685.0,
               "prev_close": 6975.0,
-              "change": -335.0,
-              "change_pct": -4.8,
+              "change": -290.0,
+              "change_pct": -4.16,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -101585,11 +101585,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 6640.0
+                  "close": 6685.0
                 }
               ],
               "fundamentals": {
-                "pe": 134.45,
+                "pe": 135.36,
                 "forward_pe": "N/A",
                 "eps": 49.39,
                 "gross_margin": "20.5%",
@@ -101621,10 +101621,10 @@
               "name": "3035 智原",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 186.0,
+              "price": 185.5,
               "prev_close": 181.5,
-              "change": 4.5,
-              "change_pct": 2.48,
+              "change": 4.0,
+              "change_pct": 2.2,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -102598,11 +102598,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 186.0
+                  "close": 185.5
                 }
               ],
               "fundamentals": {
-                "pe": 61.47,
+                "pe": 61.3,
                 "forward_pe": "N/A",
                 "eps": 3.03,
                 "gross_margin": "36.6%",
@@ -109873,10 +109873,10 @@
               "name": "2408 南亞科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 324.0,
+              "price": 323.5,
               "prev_close": 329.0,
-              "change": -5.0,
-              "change_pct": -1.52,
+              "change": -5.5,
+              "change_pct": -1.67,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -110850,11 +110850,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 324.0
+                  "close": 323.5
                 }
               ],
               "fundamentals": {
-                "pe": 6.39,
+                "pe": 6.38,
                 "forward_pe": "N/A",
                 "eps": 50.67,
                 "gross_margin": "76.8%",
@@ -116025,10 +116025,10 @@
               "name": "6239 力成",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 219.0,
+              "price": 219.5,
               "prev_close": 214.5,
-              "change": 4.5,
-              "change_pct": 2.1,
+              "change": 5.0,
+              "change_pct": 2.33,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -117002,11 +117002,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 219.0
+                  "close": 219.5
                 }
               ],
               "fundamentals": {
-                "pe": 18.97,
+                "pe": 19.02,
                 "forward_pe": "N/A",
                 "eps": 11.54,
                 "gross_margin": "19.9%",
@@ -118051,10 +118051,10 @@
               "name": "4967 十銓",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 240.5,
+              "price": 238.5,
               "prev_close": 245.0,
-              "change": -4.5,
-              "change_pct": -1.84,
+              "change": -6.5,
+              "change_pct": -2.65,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -119028,11 +119028,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 240.5
+                  "close": 238.5
                 }
               ],
               "fundamentals": {
-                "pe": 2.65,
+                "pe": 2.63,
                 "forward_pe": "N/A",
                 "eps": 90.62,
                 "gross_margin": "39.6%",
@@ -120126,10 +120126,10 @@
               "name": "8150 南茂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 74.4,
+              "price": 73.9,
               "prev_close": 73.0,
-              "change": 1.4,
-              "change_pct": 1.92,
+              "change": 0.9,
+              "change_pct": 1.23,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -121103,11 +121103,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 74.4
+                  "close": 73.9
                 }
               ],
               "fundamentals": {
-                "pe": 16.25,
+                "pe": 16.14,
                 "forward_pe": "N/A",
                 "eps": 4.58,
                 "gross_margin": "17.2%",
@@ -121345,7 +121345,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 278.11
+                  "close": 278.12
                 },
                 {
                   "date": "2026-01-30",
@@ -123239,10 +123239,10 @@
               "name": "1802 台玻",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 65.3,
+              "price": 65.2,
               "prev_close": 69.0,
-              "change": -3.7,
-              "change_pct": -5.36,
+              "change": -3.8,
+              "change_pct": -5.51,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -124216,11 +124216,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 65.3
+                  "close": 65.2
                 }
               ],
               "fundamentals": {
-                "pe": 38.49,
+                "pe": 38.43,
                 "forward_pe": "N/A",
                 "eps": 1.7,
                 "gross_margin": "22.0%",
@@ -124301,10 +124301,10 @@
               "name": "4770 上品",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 275.5,
+              "price": 276.0,
               "prev_close": 272.0,
-              "change": 3.5,
-              "change_pct": 1.29,
+              "change": 4.0,
+              "change_pct": 1.47,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -125278,11 +125278,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 275.5
+                  "close": 276.0
                 }
               ],
               "fundamentals": {
-                "pe": 23.63,
+                "pe": 23.67,
                 "forward_pe": "N/A",
                 "eps": 11.66,
                 "gross_margin": "32.8%",
@@ -128427,10 +128427,10 @@
               "name": "3583 辛耘",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 437.5,
+              "price": 439.5,
               "prev_close": 423.0,
-              "change": 14.5,
-              "change_pct": 3.43,
+              "change": 16.5,
+              "change_pct": 3.9,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -129404,11 +129404,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 437.5
+                  "close": 439.5
                 }
               ],
               "fundamentals": {
-                "pe": 24.01,
+                "pe": 24.12,
                 "forward_pe": "N/A",
                 "eps": 18.22,
                 "gross_margin": "36.8%",
@@ -129440,10 +129440,10 @@
               "name": "2467 志聖",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 267.0,
+              "price": 265.0,
               "prev_close": 259.5,
-              "change": 7.5,
-              "change_pct": 2.89,
+              "change": 5.5,
+              "change_pct": 2.12,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -130417,11 +130417,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 267.0
+                  "close": 265.0
                 }
               ],
               "fundamentals": {
-                "pe": 21.89,
+                "pe": 21.72,
                 "forward_pe": "N/A",
                 "eps": 12.2,
                 "gross_margin": "46.4%",
@@ -134542,10 +134542,10 @@
               "name": "3037 欣興",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 659.0,
+              "price": 660.0,
               "prev_close": 637.0,
-              "change": 22.0,
-              "change_pct": 3.45,
+              "change": 23.0,
+              "change_pct": 3.61,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -135519,11 +135519,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 659.0
+                  "close": 660.0
                 }
               ],
               "fundamentals": {
-                "pe": 32.52,
+                "pe": 32.57,
                 "forward_pe": "N/A",
                 "eps": 20.26,
                 "gross_margin": "22.6%",
@@ -138708,10 +138708,10 @@
               "name": "3413 京鼎",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 243.0,
+              "price": 242.0,
               "prev_close": 242.0,
-              "change": 1.0,
-              "change_pct": 0.41,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -139685,11 +139685,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 243.0
+                  "close": 242.0
                 }
               ],
               "fundamentals": {
-                "pe": 11.92,
+                "pe": 11.87,
                 "forward_pe": "N/A",
                 "eps": 20.39,
                 "gross_margin": "23.4%",
@@ -142046,7 +142046,7 @@
                 },
                 {
                   "date": "2026-02-19",
-                  "close": 275.45
+                  "close": 275.44
                 },
                 {
                   "date": "2026-02-20",
@@ -143847,10 +143847,10 @@
               "name": "3532 台勝科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 229.0,
+              "price": 228.5,
               "prev_close": 239.0,
-              "change": -10.0,
-              "change_pct": -4.18,
+              "change": -10.5,
+              "change_pct": -4.39,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -144824,11 +144824,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 229.0
+                  "close": 228.5
                 }
               ],
               "fundamentals": {
-                "pe": 203.5,
+                "pe": 203.06,
                 "forward_pe": "N/A",
                 "eps": 1.13,
                 "gross_margin": "7.4%",
@@ -148949,10 +148949,10 @@
               "name": "1560 中砂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 630.0,
+              "price": 629.0,
               "prev_close": 615.0,
-              "change": 15.0,
-              "change_pct": 2.44,
+              "change": 14.0,
+              "change_pct": 2.28,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -149926,11 +149926,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 630.0
+                  "close": 629.0
                 }
               ],
               "fundamentals": {
-                "pe": 47.18,
+                "pe": 47.1,
                 "forward_pe": "N/A",
                 "eps": 13.35,
                 "gross_margin": "37.0%",
@@ -152025,10 +152025,10 @@
               "name": "2404 漢唐",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 936.0,
+              "price": 931.0,
               "prev_close": 928.0,
-              "change": 8.0,
-              "change_pct": 0.86,
+              "change": 3.0,
+              "change_pct": 0.32,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -153002,11 +153002,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 936.0
+                  "close": 931.0
                 }
               ],
               "fundamentals": {
-                "pe": 12.66,
+                "pe": 12.59,
                 "forward_pe": "N/A",
                 "eps": 73.93,
                 "gross_margin": "22.9%",
@@ -153038,10 +153038,10 @@
               "name": "6196 帆宣",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 346.0,
+              "price": 347.0,
               "prev_close": 346.5,
-              "change": -0.5,
-              "change_pct": -0.14,
+              "change": 0.5,
+              "change_pct": 0.14,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -154015,11 +154015,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 346.0
+                  "close": 347.0
                 }
               ],
               "fundamentals": {
-                "pe": 15.82,
+                "pe": 15.86,
                 "forward_pe": "N/A",
                 "eps": 21.88,
                 "gross_margin": "12.3%",
@@ -154051,10 +154051,10 @@
               "name": "6139 亞翔",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 585.0,
+              "price": 584.0,
               "prev_close": 563.0,
-              "change": 22.0,
-              "change_pct": 3.91,
+              "change": 21.0,
+              "change_pct": 3.73,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -155028,11 +155028,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 585.0
+                  "close": 584.0
                 }
               ],
               "fundamentals": {
-                "pe": 10.76,
+                "pe": 10.74,
                 "forward_pe": "N/A",
                 "eps": 54.36,
                 "gross_margin": "19.7%",
@@ -156332,7 +156332,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 1446.29
+                  "close": 1446.3
                 },
                 {
                   "date": "2026-01-30",
@@ -158226,10 +158226,10 @@
               "name": "2303 聯電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 92.5,
+              "price": 92.8,
               "prev_close": 92.4,
-              "change": 0.1,
-              "change_pct": 0.11,
+              "change": 0.4,
+              "change_pct": 0.43,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -159203,11 +159203,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 92.5
+                  "close": 92.8
                 }
               ],
               "fundamentals": {
-                "pe": 13.91,
+                "pe": 13.95,
                 "forward_pe": "N/A",
                 "eps": 6.65,
                 "gross_margin": "29.9%",
@@ -166330,10 +166330,10 @@
               "name": "5269 祥碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1165.0,
+              "price": 1160.0,
               "prev_close": 1135.0,
-              "change": 30.0,
-              "change_pct": 2.64,
+              "change": 25.0,
+              "change_pct": 2.2,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -167307,11 +167307,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1165.0
+                  "close": 1160.0
                 }
               ],
               "fundamentals": {
-                "pe": 11.84,
+                "pe": 11.79,
                 "forward_pe": "N/A",
                 "eps": 98.4,
                 "gross_margin": "45.5%",
@@ -167343,10 +167343,10 @@
               "name": "2379 瑞昱",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 734.0,
+              "price": 732.0,
               "prev_close": 717.0,
-              "change": 17.0,
-              "change_pct": 2.37,
+              "change": 15.0,
+              "change_pct": 2.09,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -168320,11 +168320,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 734.0
+                  "close": 732.0
                 }
               ],
               "fundamentals": {
-                "pe": 25.81,
+                "pe": 25.74,
                 "forward_pe": "N/A",
                 "eps": 28.44,
                 "gross_margin": "46.4%",
@@ -168356,10 +168356,10 @@
               "name": "3034 聯詠",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 456.5,
+              "price": 457.5,
               "prev_close": 456.0,
-              "change": 0.5,
-              "change_pct": 0.11,
+              "change": 1.5,
+              "change_pct": 0.33,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -169333,11 +169333,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 456.5
+                  "close": 457.5
                 }
               ],
               "fundamentals": {
-                "pe": 14.0,
+                "pe": 14.03,
                 "forward_pe": "N/A",
                 "eps": 32.61,
                 "gross_margin": "39.0%",
@@ -169369,10 +169369,10 @@
               "name": "8016 矽創",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 249.5,
+              "price": 248.5,
               "prev_close": 239.0,
-              "change": 10.5,
-              "change_pct": 4.39,
+              "change": 9.5,
+              "change_pct": 3.97,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -170346,11 +170346,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 249.5
+                  "close": 248.5
                 }
               ],
               "fundamentals": {
-                "pe": 10.75,
+                "pe": 10.71,
                 "forward_pe": "N/A",
                 "eps": 23.2,
                 "gross_margin": "30.9%",
@@ -172445,10 +172445,10 @@
               "name": "2357 華碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 842.0,
+              "price": 843.0,
               "prev_close": 826.0,
-              "change": 16.0,
-              "change_pct": 1.94,
+              "change": 17.0,
+              "change_pct": 2.06,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -173422,11 +173422,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 842.0
+                  "close": 843.0
                 }
               ],
               "fundamentals": {
-                "pe": 10.17,
+                "pe": 10.18,
                 "forward_pe": "N/A",
                 "eps": 82.77,
                 "gross_margin": "15.9%",
@@ -174471,10 +174471,10 @@
               "name": "2353 宏碁",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 28.9,
+              "price": 28.95,
               "prev_close": 29.15,
-              "change": -0.25,
-              "change_pct": -0.86,
+              "change": -0.2,
+              "change_pct": -0.69,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -175448,11 +175448,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 28.9
+                  "close": 28.95
                 }
               ],
               "fundamentals": {
-                "pe": 14.36,
+                "pe": 14.38,
                 "forward_pe": "N/A",
                 "eps": 2.01,
                 "gross_margin": "11.0%",
@@ -175484,10 +175484,10 @@
               "name": "2385 群光",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 89.0,
+              "price": 89.2,
               "prev_close": 87.7,
-              "change": 1.3,
-              "change_pct": 1.48,
+              "change": 1.5,
+              "change_pct": 1.71,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -176461,11 +176461,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 89.0
+                  "close": 89.2
                 }
               ],
               "fundamentals": {
-                "pe": 11.1,
+                "pe": 11.12,
                 "forward_pe": "N/A",
                 "eps": 8.02,
                 "gross_margin": "14.3%",
@@ -179610,10 +179610,10 @@
               "name": "6515 穎崴",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 3590.0,
+              "price": 3570.0,
               "prev_close": 3445.0,
-              "change": 145.0,
-              "change_pct": 4.21,
+              "change": 125.0,
+              "change_pct": 3.63,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -180587,11 +180587,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 3590.0
+                  "close": 3570.0
                 }
               ],
               "fundamentals": {
-                "pe": 45.2,
+                "pe": 44.95,
                 "forward_pe": "N/A",
                 "eps": 79.42,
                 "gross_margin": "40.2%",
@@ -189851,10 +189851,10 @@
               "name": "2360 致茂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1130.0,
+              "price": 1125.0,
               "prev_close": 1135.0,
-              "change": -5.0,
-              "change_pct": -0.44,
+              "change": -10.0,
+              "change_pct": -0.88,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -190828,11 +190828,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1130.0
+                  "close": 1125.0
                 }
               ],
               "fundamentals": {
-                "pe": 27.94,
+                "pe": 27.81,
                 "forward_pe": "N/A",
                 "eps": 40.45,
                 "gross_margin": "58.7%",
@@ -199079,10 +199079,10 @@
               "name": "3450 聯鈞",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 317.5,
+              "price": 317.0,
               "prev_close": 307.5,
-              "change": 10.0,
-              "change_pct": 3.25,
+              "change": 9.5,
+              "change_pct": 3.09,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -200056,11 +200056,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 317.5
+                  "close": 317.0
                 }
               ],
               "fundamentals": {
-                "pe": 43.11,
+                "pe": 43.04,
                 "forward_pe": "N/A",
                 "eps": 7.36,
                 "gross_margin": "29.3%",
@@ -205268,10 +205268,10 @@
               "name": "2345 智邦",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1435.0,
+              "price": 1450.0,
               "prev_close": 1330.0,
-              "change": 105.0,
-              "change_pct": 7.89,
+              "change": 120.0,
+              "change_pct": 9.02,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -206245,11 +206245,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1435.0
+                  "close": 1450.0
                 }
               ],
               "fundamentals": {
-                "pe": 19.76,
+                "pe": 19.97,
                 "forward_pe": "N/A",
                 "eps": 72.61,
                 "gross_margin": "18.3%",
@@ -213523,10 +213523,10 @@
               "name": "6451 訊芯-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 229.5,
+              "price": 230.5,
               "prev_close": 231.0,
-              "change": -1.5,
-              "change_pct": -0.65,
+              "change": -0.5,
+              "change_pct": -0.22,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -214500,11 +214500,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 229.5
+                  "close": 230.5
                 }
               ],
               "fundamentals": {
-                "pe": 1895.13,
+                "pe": 1903.39,
                 "forward_pe": "N/A",
                 "eps": 0.12,
                 "gross_margin": "14.6%",
@@ -215549,10 +215549,10 @@
               "name": "4976 佳凌",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 29.5,
+              "price": 29.55,
               "prev_close": 29.8,
-              "change": -0.3,
-              "change_pct": -1.01,
+              "change": -0.25,
+              "change_pct": -0.84,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -216526,7 +216526,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 29.5
+                  "close": 29.55
                 }
               ],
               "fundamentals": {
@@ -216562,10 +216562,10 @@
               "name": "6209 今國光",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 67.0,
+              "price": 66.9,
               "prev_close": 67.9,
-              "change": -0.9,
-              "change_pct": -1.33,
+              "change": -1.0,
+              "change_pct": -1.47,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -217539,7 +217539,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 67.0
+                  "close": 66.9
                 }
               ],
               "fundamentals": {
@@ -217692,7 +217692,7 @@
                 },
                 {
                   "date": "2025-12-26",
-                  "close": 2313.04
+                  "close": 2313.05
                 },
                 {
                   "date": "2025-12-29",
@@ -218588,10 +218588,10 @@
               "name": "3406 玉晶光",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 802.0,
+              "price": 801.0,
               "prev_close": 820.0,
-              "change": -18.0,
-              "change_pct": -2.2,
+              "change": -19.0,
+              "change_pct": -2.32,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -219565,11 +219565,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 802.0
+                  "close": 801.0
                 }
               ],
               "fundamentals": {
-                "pe": 23.58,
+                "pe": 23.55,
                 "forward_pe": "N/A",
                 "eps": 34.02,
                 "gross_margin": "31.8%",
@@ -219601,10 +219601,10 @@
               "name": "3019 亞光",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 125.5,
+              "price": 126.0,
               "prev_close": 125.0,
-              "change": 0.5,
-              "change_pct": 0.4,
+              "change": 1.0,
+              "change_pct": 0.8,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -220578,11 +220578,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 125.5
+                  "close": 126.0
                 }
               ],
               "fundamentals": {
-                "pe": 18.06,
+                "pe": 18.13,
                 "forward_pe": "N/A",
                 "eps": 6.95,
                 "gross_margin": "18.2%",
@@ -220614,10 +220614,10 @@
               "name": "6668 中揚光",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 41.3,
+              "price": 41.0,
               "prev_close": 41.7,
-              "change": -0.4,
-              "change_pct": -0.96,
+              "change": -0.7,
+              "change_pct": -1.68,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -221591,7 +221591,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 41.3
+                  "close": 41.0
                 }
               ],
               "fundamentals": {
@@ -224752,10 +224752,10 @@
               "name": "2455 全新",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 324.5,
+              "price": 326.0,
               "prev_close": 324.0,
-              "change": 0.5,
-              "change_pct": 0.15,
+              "change": 2.0,
+              "change_pct": 0.62,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -225729,11 +225729,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 324.5
+                  "close": 326.0
                 }
               ],
               "fundamentals": {
-                "pe": 65.12,
+                "pe": 65.42,
                 "forward_pe": "N/A",
                 "eps": 4.98,
                 "gross_margin": "37.2%",
@@ -227791,10 +227791,10 @@
               "name": "4906 正文",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 31.8,
+              "price": 31.9,
               "prev_close": 31.25,
-              "change": 0.55,
-              "change_pct": 1.76,
+              "change": 0.65,
+              "change_pct": 2.08,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -228768,11 +228768,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 31.8
+                  "close": 31.9
                 }
               ],
               "fundamentals": {
-                "pe": 1177.78,
+                "pe": 1181.48,
                 "forward_pe": "N/A",
                 "eps": 0.03,
                 "gross_margin": "10.5%",
@@ -228804,10 +228804,10 @@
               "name": "3380 明泰",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 28.35,
+              "price": 28.25,
               "prev_close": 27.7,
-              "change": 0.65,
-              "change_pct": 2.35,
+              "change": 0.55,
+              "change_pct": 1.99,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -229781,11 +229781,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 28.35
+                  "close": 28.25
                 }
               ],
               "fundamentals": {
-                "pe": 226.62,
+                "pe": 225.82,
                 "forward_pe": "N/A",
                 "eps": 0.13,
                 "gross_margin": "17.1%",
@@ -229817,10 +229817,10 @@
               "name": "2332 友訊",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 16.65,
+              "price": 16.6,
               "prev_close": 16.15,
-              "change": 0.5,
-              "change_pct": 3.1,
+              "change": 0.45,
+              "change_pct": 2.79,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -230794,7 +230794,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 16.65
+                  "close": 16.6
                 }
               ],
               "fundamentals": {
@@ -233980,10 +233980,10 @@
               "name": "3045 台灣大",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 127.5,
+              "price": 128.0,
               "prev_close": 127.5,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 0.5,
+              "change_pct": 0.39,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -234957,11 +234957,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 127.5
+                  "close": 128.0
                 }
               ],
               "fundamentals": {
-                "pe": 23.42,
+                "pe": 23.51,
                 "forward_pe": "N/A",
                 "eps": 5.44,
                 "gross_margin": "19.8%",
@@ -240209,10 +240209,10 @@
               "name": "1303 南亞",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 251.5,
+              "price": 251.0,
               "prev_close": 261.5,
-              "change": -10.0,
-              "change_pct": -3.82,
+              "change": -10.5,
+              "change_pct": -4.02,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -241186,11 +241186,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 251.5
+                  "close": 251.0
                 }
               ],
               "fundamentals": {
-                "pe": 23.53,
+                "pe": 23.48,
                 "forward_pe": "N/A",
                 "eps": 10.69,
                 "gross_margin": "16.6%",
@@ -244298,10 +244298,10 @@
               "name": "2383 台光電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 3460.0,
+              "price": 3450.0,
               "prev_close": 3540.0,
-              "change": -80.0,
-              "change_pct": -2.26,
+              "change": -90.0,
+              "change_pct": -2.54,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -245275,11 +245275,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 3460.0
+                  "close": 3450.0
                 }
               ],
               "fundamentals": {
-                "pe": 37.08,
+                "pe": 36.98,
                 "forward_pe": "N/A",
                 "eps": 93.31,
                 "gross_margin": "33.3%",
@@ -251549,10 +251549,10 @@
               "name": "6213 聯茂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 437.5,
+              "price": 436.5,
               "prev_close": 432.0,
-              "change": 5.5,
-              "change_pct": 1.27,
+              "change": 4.5,
+              "change_pct": 1.04,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -252526,11 +252526,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 437.5
+                  "close": 436.5
                 }
               ],
               "fundamentals": {
-                "pe": 31.32,
+                "pe": 31.25,
                 "forward_pe": "N/A",
                 "eps": 13.97,
                 "gross_margin": "22.0%",
@@ -252562,10 +252562,10 @@
               "name": "8039 台虹",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 169.5,
+              "price": 169.0,
               "prev_close": 175.0,
-              "change": -5.5,
-              "change_pct": -3.14,
+              "change": -6.0,
+              "change_pct": -3.43,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -253539,11 +253539,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 169.5
+                  "close": 169.0
                 }
               ],
               "fundamentals": {
-                "pe": 55.31,
+                "pe": 55.15,
                 "forward_pe": "N/A",
                 "eps": 3.06,
                 "gross_margin": "20.8%",
@@ -253575,10 +253575,10 @@
               "name": "2368 金像電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 878.0,
+              "price": 880.0,
               "prev_close": 835.0,
-              "change": 43.0,
-              "change_pct": 5.15,
+              "change": 45.0,
+              "change_pct": 5.39,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -254552,11 +254552,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 878.0
+                  "close": 880.0
                 }
               ],
               "fundamentals": {
-                "pe": 26.04,
+                "pe": 26.09,
                 "forward_pe": "N/A",
                 "eps": 33.72,
                 "gross_margin": "35.7%",
@@ -256651,10 +256651,10 @@
               "name": "8021 尖點",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 305.5,
+              "price": 306.5,
               "prev_close": 313.5,
-              "change": -8.0,
-              "change_pct": -2.55,
+              "change": -7.0,
+              "change_pct": -2.23,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -257628,11 +257628,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 305.5
+                  "close": 306.5
                 }
               ],
               "fundamentals": {
-                "pe": 43.37,
+                "pe": 43.51,
                 "forward_pe": "N/A",
                 "eps": 7.04,
                 "gross_margin": "38.9%",
@@ -257664,10 +257664,10 @@
               "name": "2313 華通",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 189.5,
+              "price": 188.0,
               "prev_close": 184.5,
-              "change": 5.0,
-              "change_pct": 2.71,
+              "change": 3.5,
+              "change_pct": 1.9,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -258641,11 +258641,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 189.5
+                  "close": 188.0
                 }
               ],
               "fundamentals": {
-                "pe": 30.69,
+                "pe": 30.44,
                 "forward_pe": "N/A",
                 "eps": 6.18,
                 "gross_margin": "19.0%",
@@ -258677,10 +258677,10 @@
               "name": "4958 臻鼎-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 383.0,
+              "price": 384.0,
               "prev_close": 370.5,
-              "change": 12.5,
-              "change_pct": 3.37,
+              "change": 13.5,
+              "change_pct": 3.64,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -259654,11 +259654,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 383.0
+                  "close": 384.0
                 }
               ],
               "fundamentals": {
-                "pe": 36.68,
+                "pe": 36.77,
                 "forward_pe": "N/A",
                 "eps": 10.44,
                 "gross_margin": "24.1%",
@@ -262729,10 +262729,10 @@
               "name": "5469 瀚宇博",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 71.7,
+              "price": 71.8,
               "prev_close": 68.5,
-              "change": 3.2,
-              "change_pct": 4.67,
+              "change": 3.3,
+              "change_pct": 4.82,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -263706,11 +263706,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 71.7
+                  "close": 71.8
                 }
               ],
               "fundamentals": {
-                "pe": 13.85,
+                "pe": 13.87,
                 "forward_pe": "N/A",
                 "eps": 5.18,
                 "gross_margin": "15.5%",
@@ -263742,10 +263742,10 @@
               "name": "6191 精成科",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 74.2,
+              "price": 74.4,
               "prev_close": 72.7,
-              "change": 1.5,
-              "change_pct": 2.06,
+              "change": 1.7,
+              "change_pct": 2.34,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -264719,11 +264719,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 74.2
+                  "close": 74.4
                 }
               ],
               "fundamentals": {
-                "pe": 13.06,
+                "pe": 13.09,
                 "forward_pe": "N/A",
                 "eps": 5.68,
                 "gross_margin": "15.3%",
@@ -264755,10 +264755,10 @@
               "name": "3231 緯創",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 162.0,
+              "price": 162.5,
               "prev_close": 157.0,
-              "change": 5.0,
-              "change_pct": 3.18,
+              "change": 5.5,
+              "change_pct": 3.5,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -265732,11 +265732,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 162.0
+                  "close": 162.5
                 }
               ],
               "fundamentals": {
-                "pe": 11.1,
+                "pe": 11.13,
                 "forward_pe": "N/A",
                 "eps": 14.59,
                 "gross_margin": "5.6%",
@@ -265768,10 +265768,10 @@
               "name": "2356 英業達",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 42.4,
+              "price": 42.45,
               "prev_close": 42.75,
-              "change": -0.35,
-              "change_pct": -0.82,
+              "change": -0.3,
+              "change_pct": -0.7,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -266745,11 +266745,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 42.4
+                  "close": 42.45
                 }
               ],
               "fundamentals": {
-                "pe": 13.94,
+                "pe": 13.96,
                 "forward_pe": "N/A",
                 "eps": 3.04,
                 "gross_margin": "4.4%",
@@ -266781,10 +266781,10 @@
               "name": "2324 仁寶",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 28.35,
+              "price": 28.45,
               "prev_close": 28.4,
-              "change": -0.05,
-              "change_pct": -0.18,
+              "change": 0.05,
+              "change_pct": 0.18,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -267758,11 +267758,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 28.35
+                  "close": 28.45
                 }
               ],
               "fundamentals": {
-                "pe": 13.52,
+                "pe": 13.57,
                 "forward_pe": "N/A",
                 "eps": 2.1,
                 "gross_margin": "4.8%",
@@ -267794,10 +267794,10 @@
               "name": "4938 和碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 86.4,
+              "price": 86.1,
               "prev_close": 83.8,
-              "change": 2.6,
-              "change_pct": 3.1,
+              "change": 2.3,
+              "change_pct": 2.74,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -268771,11 +268771,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 86.4
+                  "close": 86.1
                 }
               ],
               "fundamentals": {
-                "pe": 15.24,
+                "pe": 15.18,
                 "forward_pe": "N/A",
                 "eps": 5.67,
                 "gross_margin": "4.1%",
@@ -274023,10 +274023,10 @@
               "name": "8046 南電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 775.0,
+              "price": 771.0,
               "prev_close": 792.0,
-              "change": -17.0,
-              "change_pct": -2.15,
+              "change": -21.0,
+              "change_pct": -2.65,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -275000,11 +275000,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 775.0
+                  "close": 771.0
                 }
               ],
               "fundamentals": {
-                "pe": 62.06,
+                "pe": 61.74,
                 "forward_pe": "N/A",
                 "eps": 12.49,
                 "gross_margin": "21.6%",
@@ -275036,10 +275036,10 @@
               "name": "3189 景碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 577.0,
+              "price": 578.0,
               "prev_close": 542.0,
-              "change": 35.0,
-              "change_pct": 6.46,
+              "change": 36.0,
+              "change_pct": 6.64,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -276013,11 +276013,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 577.0
+                  "close": 578.0
                 }
               ],
               "fundamentals": {
-                "pe": 59.6,
+                "pe": 59.7,
                 "forward_pe": "N/A",
                 "eps": 9.68,
                 "gross_margin": "26.3%",
@@ -277062,10 +277062,10 @@
               "name": "3653 健策",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 4600.0,
+              "price": 4560.0,
               "prev_close": 4335.0,
-              "change": 265.0,
-              "change_pct": 6.11,
+              "change": 225.0,
+              "change_pct": 5.19,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -278039,11 +278039,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 4600.0
+                  "close": 4560.0
                 }
               ],
               "fundamentals": {
-                "pe": 84.05,
+                "pe": 83.32,
                 "forward_pe": "N/A",
                 "eps": 54.73,
                 "gross_margin": "45.3%",
@@ -278075,10 +278075,10 @@
               "name": "2351 順德",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 129.5,
+              "price": 130.0,
               "prev_close": 127.5,
-              "change": 2.0,
-              "change_pct": 1.57,
+              "change": 2.5,
+              "change_pct": 1.96,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -279052,11 +279052,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 129.5
+                  "close": 130.0
                 }
               ],
               "fundamentals": {
-                "pe": 24.38,
+                "pe": 24.47,
                 "forward_pe": "N/A",
                 "eps": 5.31,
                 "gross_margin": "18.8%",
@@ -279088,10 +279088,10 @@
               "name": "6805 富世達",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1755.0,
+              "price": 1770.0,
               "prev_close": 1660.0,
-              "change": 95.0,
-              "change_pct": 5.72,
+              "change": 110.0,
+              "change_pct": 6.63,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -280065,11 +280065,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1755.0
+                  "close": 1770.0
                 }
               ],
               "fundamentals": {
-                "pe": 32.01,
+                "pe": 32.28,
                 "forward_pe": "N/A",
                 "eps": 54.83,
                 "gross_margin": "33.2%",
@@ -280101,10 +280101,10 @@
               "name": "3376 新日興",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 95.4,
+              "price": 95.7,
               "prev_close": 93.2,
-              "change": 2.2,
-              "change_pct": 2.36,
+              "change": 2.5,
+              "change_pct": 2.68,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -281078,11 +281078,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 95.4
+                  "close": 95.7
                 }
               ],
               "fundamentals": {
-                "pe": 124.3,
+                "pe": 124.69,
                 "forward_pe": "N/A",
                 "eps": 0.77,
                 "gross_margin": "10.2%",
@@ -284190,10 +284190,10 @@
               "name": "3533 嘉澤",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1705.0,
+              "price": 1710.0,
               "prev_close": 1680.0,
-              "change": 25.0,
-              "change_pct": 1.49,
+              "change": 30.0,
+              "change_pct": 1.79,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -285167,11 +285167,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1705.0
+                  "close": 1710.0
                 }
               ],
               "fundamentals": {
-                "pe": 21.71,
+                "pe": 21.77,
                 "forward_pe": "N/A",
                 "eps": 78.54,
                 "gross_margin": "44.8%",
@@ -286216,10 +286216,10 @@
               "name": "3023 信邦",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 272.0,
+              "price": 272.5,
               "prev_close": 268.0,
-              "change": 4.0,
-              "change_pct": 1.49,
+              "change": 4.5,
+              "change_pct": 1.68,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -287193,11 +287193,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 272.0
+                  "close": 272.5
                 }
               ],
               "fundamentals": {
-                "pe": 19.27,
+                "pe": 19.31,
                 "forward_pe": "N/A",
                 "eps": 14.11,
                 "gross_margin": "23.3%",
@@ -291281,10 +291281,10 @@
               "name": "8103 瀚荃",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 77.8,
+              "price": 77.6,
               "prev_close": 76.2,
-              "change": 1.6,
-              "change_pct": 2.1,
+              "change": 1.4,
+              "change_pct": 1.84,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -292258,7 +292258,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 77.8
+                  "close": 77.6
                 }
               ],
               "fundamentals": {
@@ -295407,10 +295407,10 @@
               "name": "2439 美律",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 67.0,
+              "price": 67.6,
               "prev_close": 66.1,
-              "change": 0.9,
-              "change_pct": 1.36,
+              "change": 1.5,
+              "change_pct": 2.27,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -296384,11 +296384,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 67.0
+                  "close": 67.6
                 }
               ],
               "fundamentals": {
-                "pe": 19.61,
+                "pe": 19.79,
                 "forward_pe": "N/A",
                 "eps": 3.42,
                 "gross_margin": "10.8%",
@@ -305611,10 +305611,10 @@
               "name": "2428 興勤",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 160.5,
+              "price": 161.0,
               "prev_close": 161.5,
-              "change": -1.0,
-              "change_pct": -0.62,
+              "change": -0.5,
+              "change_pct": -0.31,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -306588,11 +306588,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 160.5
+                  "close": 161.0
                 }
               ],
               "fundamentals": {
-                "pe": 11.13,
+                "pe": 11.17,
                 "forward_pe": "N/A",
                 "eps": 14.42,
                 "gross_margin": "35.6%",
@@ -308727,10 +308727,10 @@
               "name": "2312 金寶",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 24.35,
+              "price": 24.4,
               "prev_close": 24.05,
-              "change": 0.3,
-              "change_pct": 1.25,
+              "change": 0.35,
+              "change_pct": 1.46,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -309704,11 +309704,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 24.35
+                  "close": 24.4
                 }
               ],
               "fundamentals": {
-                "pe": 20.46,
+                "pe": 20.5,
                 "forward_pe": "N/A",
                 "eps": 1.19,
                 "gross_margin": "5.8%",
@@ -309780,10 +309780,10 @@
               "name": "3016 嘉晶",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 104.0,
+              "price": 104.5,
               "prev_close": 105.5,
-              "change": -1.5,
-              "change_pct": -1.42,
+              "change": -1.0,
+              "change_pct": -0.95,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -310757,11 +310757,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 104.0
+                  "close": 104.5
                 }
               ],
               "fundamentals": {
-                "pe": 53.12,
+                "pe": 53.38,
                 "forward_pe": "N/A",
                 "eps": 1.96,
                 "gross_margin": "20.3%",
@@ -311806,10 +311806,10 @@
               "name": "5285 界霖",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 68.5,
+              "price": 68.1,
               "prev_close": 68.9,
-              "change": -0.4,
-              "change_pct": -0.58,
+              "change": -0.8,
+              "change_pct": -1.16,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -312783,11 +312783,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 68.5
+                  "close": 68.1
                 }
               ],
               "fundamentals": {
-                "pe": 17.06,
+                "pe": 16.96,
                 "forward_pe": "N/A",
                 "eps": 4.02,
                 "gross_margin": "17.3%",
@@ -313832,10 +313832,10 @@
               "name": "2481 強茂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 104.5,
+              "price": 104.0,
               "prev_close": 105.5,
-              "change": -1.0,
-              "change_pct": -0.95,
+              "change": -1.5,
+              "change_pct": -1.42,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -314809,11 +314809,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 104.5
+                  "close": 104.0
                 }
               ],
               "fundamentals": {
-                "pe": 22.43,
+                "pe": 22.32,
                 "forward_pe": "N/A",
                 "eps": 4.66,
                 "gross_margin": "32.2%",
@@ -314845,10 +314845,10 @@
               "name": "6415 矽力*-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 334.5,
+              "price": 336.0,
               "prev_close": 355.0,
-              "change": -20.5,
-              "change_pct": -5.77,
+              "change": -19.0,
+              "change_pct": -5.35,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -315822,11 +315822,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 334.5
+                  "close": 336.0
                 }
               ],
               "fundamentals": {
-                "pe": 32.71,
+                "pe": 32.86,
                 "forward_pe": "N/A",
                 "eps": 10.23,
                 "gross_margin": "45.3%",
@@ -316871,10 +316871,10 @@
               "name": "8081 致新",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 219.5,
+              "price": 222.0,
               "prev_close": 218.0,
-              "change": 1.5,
-              "change_pct": 0.69,
+              "change": 4.0,
+              "change_pct": 1.83,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -317848,11 +317848,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 219.5
+                  "close": 222.0
                 }
               ],
               "fundamentals": {
-                "pe": 11.26,
+                "pe": 11.39,
                 "forward_pe": "N/A",
                 "eps": 19.49,
                 "gross_margin": "39.3%",
@@ -324110,10 +324110,10 @@
               "name": "6409 旭隼",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 790.0,
+              "price": 791.0,
               "prev_close": 790.0,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 1.0,
+              "change_pct": 0.13,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -325087,11 +325087,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 790.0
+                  "close": 791.0
                 }
               ],
               "fundamentals": {
-                "pe": 30.0,
+                "pe": 30.04,
                 "forward_pe": "N/A",
                 "eps": 26.33,
                 "gross_margin": "25.9%",
@@ -326173,10 +326173,10 @@
               "name": "2002 中鋼",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 18.05,
+              "price": 18.0,
               "prev_close": 17.95,
-              "change": 0.1,
-              "change_pct": 0.56,
+              "change": 0.05,
+              "change_pct": 0.28,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -327150,11 +327150,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 18.05
+                  "close": 18.0
                 }
               ],
               "fundamentals": {
-                "pe": 557.1,
+                "pe": 555.56,
                 "forward_pe": "N/A",
                 "eps": 0.03,
                 "gross_margin": "5.1%",
@@ -327186,10 +327186,10 @@
               "name": "2027 大成鋼",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 46.5,
+              "price": 46.4,
               "prev_close": 45.35,
-              "change": 1.15,
-              "change_pct": 2.54,
+              "change": 1.05,
+              "change_pct": 2.32,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -328163,11 +328163,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 46.5
+                  "close": 46.4
                 }
               ],
               "fundamentals": {
-                "pe": 8.51,
+                "pe": 8.49,
                 "forward_pe": "N/A",
                 "eps": 5.47,
                 "gross_margin": "26.0%",
@@ -329212,10 +329212,10 @@
               "name": "1605 華新",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 30.7,
+              "price": 30.65,
               "prev_close": 30.95,
-              "change": -0.25,
-              "change_pct": -0.81,
+              "change": -0.3,
+              "change_pct": -0.97,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -330189,11 +330189,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 30.7
+                  "close": 30.65
                 }
               ],
               "fundamentals": {
-                "pe": 6.32,
+                "pe": 6.31,
                 "forward_pe": "N/A",
                 "eps": 4.86,
                 "gross_margin": "5.7%",
@@ -331275,10 +331275,10 @@
               "name": "2059 川湖",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 6580.0,
+              "price": 6520.0,
               "prev_close": 6565.0,
-              "change": 15.0,
-              "change_pct": 0.23,
+              "change": -45.0,
+              "change_pct": -0.69,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -332252,11 +332252,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 6580.0
+                  "close": 6520.0
                 }
               ],
               "fundamentals": {
-                "pe": 24.73,
+                "pe": 24.5,
                 "forward_pe": "N/A",
                 "eps": 266.09,
                 "gross_margin": "84.8%",
@@ -334314,10 +334314,10 @@
               "name": "6117 迎廣",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 57.4,
+              "price": 57.3,
               "prev_close": 57.2,
-              "change": 0.2,
-              "change_pct": 0.35,
+              "change": 0.1,
+              "change_pct": 0.17,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -335291,7 +335291,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 57.4
+                  "close": 57.3
                 }
               ],
               "fundamentals": {
@@ -335327,10 +335327,10 @@
               "name": "3013 晟銘電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 67.2,
+              "price": 67.1,
               "prev_close": 66.5,
-              "change": 0.7,
-              "change_pct": 1.05,
+              "change": 0.6,
+              "change_pct": 0.9,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -336304,11 +336304,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 67.2
+                  "close": 67.1
                 }
               ],
               "fundamentals": {
-                "pe": 11.88,
+                "pe": 11.86,
                 "forward_pe": "N/A",
                 "eps": 5.66,
                 "gross_margin": "21.1%",
@@ -337353,10 +337353,10 @@
               "name": "6669 緯穎",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1470.0,
+              "price": 1475.0,
               "prev_close": 1450.0,
-              "change": 20.0,
-              "change_pct": 1.38,
+              "change": 25.0,
+              "change_pct": 1.72,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -338330,11 +338330,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1470.0
+                  "close": 1475.0
                 }
               ],
               "fundamentals": {
-                "pe": 13.09,
+                "pe": 13.14,
                 "forward_pe": "N/A",
                 "eps": 112.26,
                 "gross_margin": "8.2%",
@@ -343505,10 +343505,10 @@
               "name": "2486 一詮",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 141.5,
+              "price": 142.0,
               "prev_close": 143.0,
-              "change": -1.5,
-              "change_pct": -1.05,
+              "change": -1.0,
+              "change_pct": -0.7,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -344482,11 +344482,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 141.5
+                  "close": 142.0
                 }
               ],
               "fundamentals": {
-                "pe": 86.96,
+                "pe": 87.27,
                 "forward_pe": "N/A",
                 "eps": 1.63,
                 "gross_margin": "19.7%",
@@ -344518,10 +344518,10 @@
               "name": "3338 泰碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 49.0,
+              "price": 49.05,
               "prev_close": 48.7,
-              "change": 0.3,
-              "change_pct": 0.62,
+              "change": 0.35,
+              "change_pct": 0.72,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -345495,11 +345495,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 49.0
+                  "close": 49.05
                 }
               ],
               "fundamentals": {
-                "pe": 35.88,
+                "pe": 35.92,
                 "forward_pe": "N/A",
                 "eps": 1.37,
                 "gross_margin": "17.8%",
@@ -350707,10 +350707,10 @@
               "name": "6781 AES-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 710.0,
+              "price": 711.0,
               "prev_close": 678.0,
-              "change": 32.0,
-              "change_pct": 4.72,
+              "change": 33.0,
+              "change_pct": 4.87,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -351684,11 +351684,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 710.0
+                  "close": 711.0
                 }
               ],
               "fundamentals": {
-                "pe": 15.65,
+                "pe": 15.67,
                 "forward_pe": "N/A",
                 "eps": 45.38,
                 "gross_margin": "34.1%",
@@ -354759,10 +354759,10 @@
               "name": "6558 興能高",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 18.5,
+              "price": 18.55,
               "prev_close": 18.1,
-              "change": 0.4,
-              "change_pct": 2.21,
+              "change": 0.45,
+              "change_pct": 2.49,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -355736,7 +355736,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 18.5
+                  "close": 18.55
                 }
               ],
               "fundamentals": {
@@ -356822,10 +356822,10 @@
               "name": "1609 大亞",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 29.05,
+              "price": 29.0,
               "prev_close": 29.0,
-              "change": 0.05,
-              "change_pct": 0.17,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -357799,11 +357799,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 29.05
+                  "close": 29.0
                 }
               ],
               "fundamentals": {
-                "pe": 11.46,
+                "pe": 11.44,
                 "forward_pe": "N/A",
                 "eps": 2.54,
                 "gross_margin": "16.8%",
@@ -357835,10 +357835,10 @@
               "name": "1618 合機",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 33.5,
+              "price": 33.55,
               "prev_close": 33.25,
-              "change": 0.25,
-              "change_pct": 0.75,
+              "change": 0.3,
+              "change_pct": 0.9,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -358812,11 +358812,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 33.5
+                  "close": 33.55
                 }
               ],
               "fundamentals": {
-                "pe": 6.77,
+                "pe": 6.78,
                 "forward_pe": "N/A",
                 "eps": 4.95,
                 "gross_margin": "26.0%",
@@ -359898,10 +359898,10 @@
               "name": "1519 華城",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 477.5,
+              "price": 478.0,
               "prev_close": 467.5,
-              "change": 10.0,
-              "change_pct": 2.14,
+              "change": 10.5,
+              "change_pct": 2.25,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -360875,11 +360875,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 477.5
+                  "close": 478.0
                 }
               ],
               "fundamentals": {
-                "pe": 31.25,
+                "pe": 31.28,
                 "forward_pe": "N/A",
                 "eps": 15.28,
                 "gross_margin": "42.8%",
@@ -360911,10 +360911,10 @@
               "name": "1503 士電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 164.5,
+              "price": 165.0,
               "prev_close": 163.0,
-              "change": 1.5,
-              "change_pct": 0.92,
+              "change": 2.0,
+              "change_pct": 1.23,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -361888,11 +361888,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 164.5
+                  "close": 165.0
                 }
               ],
               "fundamentals": {
-                "pe": 21.83,
+                "pe": 21.9,
                 "forward_pe": "N/A",
                 "eps": 7.54,
                 "gross_margin": "20.8%",
@@ -361924,10 +361924,10 @@
               "name": "1513 中興電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 142.5,
+              "price": 143.5,
               "prev_close": 141.5,
-              "change": 1.0,
-              "change_pct": 0.71,
+              "change": 2.0,
+              "change_pct": 1.41,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -362901,11 +362901,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 142.5
+                  "close": 143.5
                 }
               ],
               "fundamentals": {
-                "pe": 15.49,
+                "pe": 15.6,
                 "forward_pe": "N/A",
                 "eps": 9.2,
                 "gross_margin": "26.7%",
@@ -362937,10 +362937,10 @@
               "name": "1504 東元",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 59.3,
+              "price": 59.5,
               "prev_close": 60.1,
-              "change": -0.8,
-              "change_pct": -1.33,
+              "change": -0.6,
+              "change_pct": -1.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -363914,11 +363914,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 59.3
+                  "close": 59.5
                 }
               ],
               "fundamentals": {
-                "pe": 20.96,
+                "pe": 21.03,
                 "forward_pe": "N/A",
                 "eps": 2.83,
                 "gross_margin": "23.7%",
@@ -363950,10 +363950,10 @@
               "name": "1514 亞力",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 79.0,
+              "price": 78.7,
               "prev_close": 78.1,
-              "change": 0.9,
-              "change_pct": 1.15,
+              "change": 0.6,
+              "change_pct": 0.77,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -364927,11 +364927,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 79.0
+                  "close": 78.7
                 }
               ],
               "fundamentals": {
-                "pe": 22.87,
+                "pe": 22.78,
                 "forward_pe": "N/A",
                 "eps": 3.45,
                 "gross_margin": "19.8%",
@@ -365001,7 +365001,7 @@
                 },
                 {
                   "date": "2025-11-26",
-                  "close": 588.29
+                  "close": 588.28
                 },
                 {
                   "date": "2025-11-28",
@@ -367103,10 +367103,10 @@
               "name": "8926 台汽電",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 45.75,
+              "price": 45.85,
               "prev_close": 46.25,
-              "change": -0.5,
-              "change_pct": -1.08,
+              "change": -0.4,
+              "change_pct": -0.86,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -368080,11 +368080,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 45.75
+                  "close": 45.85
                 }
               ],
               "fundamentals": {
-                "pe": 10.58,
+                "pe": 10.6,
                 "forward_pe": "N/A",
                 "eps": 4.33,
                 "gross_margin": "8.6%",
@@ -373329,10 +373329,10 @@
               "name": "1102 亞泥",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 34.55,
+              "price": 34.6,
               "prev_close": 34.25,
-              "change": 0.3,
-              "change_pct": 0.88,
+              "change": 0.35,
+              "change_pct": 1.02,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -374306,11 +374306,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 34.55
+                  "close": 34.6
                 }
               ],
               "fundamentals": {
-                "pe": 10.15,
+                "pe": 10.17,
                 "forward_pe": "N/A",
                 "eps": 3.4,
                 "gross_margin": "12.3%",
@@ -375355,10 +375355,10 @@
               "name": "1108 幸福",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 10.25,
+              "price": 10.3,
               "prev_close": 10.25,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 0.05,
+              "change_pct": 0.49,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -376332,11 +376332,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 10.25
+                  "close": 10.3
                 }
               ],
               "fundamentals": {
-                "pe": 30.36,
+                "pe": 30.51,
                 "forward_pe": "N/A",
                 "eps": 0.34,
                 "gross_margin": "14.2%",
@@ -377880,7 +377880,7 @@
                 },
                 {
                   "date": "2026-05-01",
-                  "close": 295.63
+                  "close": 295.64
                 },
                 {
                   "date": "2026-05-04",
@@ -379481,10 +379481,10 @@
               "name": "1110 東泥",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 14.55,
+              "price": 14.5,
               "prev_close": 14.35,
-              "change": 0.2,
-              "change_pct": 1.39,
+              "change": 0.15,
+              "change_pct": 1.05,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -380458,11 +380458,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 14.55
+                  "close": 14.5
                 }
               ],
               "fundamentals": {
-                "pe": 25.77,
+                "pe": 25.68,
                 "forward_pe": "N/A",
                 "eps": 0.56,
                 "gross_margin": "15.1%",
@@ -383607,10 +383607,10 @@
               "name": "1104 環泥",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 25.55,
+              "price": 25.5,
               "prev_close": 25.55,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": -0.05,
+              "change_pct": -0.2,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -384584,11 +384584,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 25.55
+                  "close": 25.5
                 }
               ],
               "fundamentals": {
-                "pe": 10.13,
+                "pe": 10.11,
                 "forward_pe": "N/A",
                 "eps": 2.52,
                 "gross_margin": "26.7%",
@@ -385633,10 +385633,10 @@
               "name": "2597 潤弘",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 175.0,
+              "price": 175.5,
               "prev_close": 174.0,
-              "change": 1.0,
-              "change_pct": 0.57,
+              "change": 1.5,
+              "change_pct": 0.86,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -386610,11 +386610,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 175.0
+                  "close": 175.5
                 }
               ],
               "fundamentals": {
-                "pe": 14.82,
+                "pe": 14.86,
                 "forward_pe": "N/A",
                 "eps": 11.81,
                 "gross_margin": "17.7%",
@@ -391822,10 +391822,10 @@
               "name": "2006 東和鋼鐵",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 83.0,
+              "price": 82.7,
               "prev_close": 82.6,
-              "change": 0.4,
-              "change_pct": 0.48,
+              "change": 0.1,
+              "change_pct": 0.12,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -392799,11 +392799,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 83.0
+                  "close": 82.7
                 }
               ],
               "fundamentals": {
-                "pe": 9.93,
+                "pe": 9.9,
                 "forward_pe": "N/A",
                 "eps": 8.36,
                 "gross_margin": "16.6%",
@@ -393848,10 +393848,10 @@
               "name": "2023 燁輝",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 14.05,
+              "price": 14.0,
               "prev_close": 14.1,
-              "change": -0.05,
-              "change_pct": -0.35,
+              "change": -0.1,
+              "change_pct": -0.71,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -394825,7 +394825,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 14.05
+                  "close": 14.0
                 }
               ],
               "fundamentals": {
@@ -394861,10 +394861,10 @@
               "name": "2029 盛餘",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 21.25,
+              "price": 21.2,
               "prev_close": 21.4,
-              "change": -0.15,
-              "change_pct": -0.7,
+              "change": -0.2,
+              "change_pct": -0.93,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -395838,11 +395838,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 21.25
+                  "close": 21.2
                 }
               ],
               "fundamentals": {
-                "pe": 10.8,
+                "pe": 10.77,
                 "forward_pe": "N/A",
                 "eps": 1.97,
                 "gross_margin": "13.9%",
@@ -395874,10 +395874,10 @@
               "name": "2034 允強",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 22.55,
+              "price": 22.5,
               "prev_close": 23.05,
-              "change": -0.5,
-              "change_pct": -2.17,
+              "change": -0.55,
+              "change_pct": -2.39,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -396851,11 +396851,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 22.55
+                  "close": 22.5
                 }
               ],
               "fundamentals": {
-                "pe": 63.15,
+                "pe": 63.01,
                 "forward_pe": "N/A",
                 "eps": 0.36,
                 "gross_margin": "9.9%",
@@ -398950,10 +398950,10 @@
               "name": "9958 世紀鋼",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 64.6,
+              "price": 64.3,
               "prev_close": 64.9,
-              "change": -0.3,
-              "change_pct": -0.46,
+              "change": -0.6,
+              "change_pct": -0.92,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -399927,11 +399927,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 64.6
+                  "close": 64.3
                 }
               ],
               "fundamentals": {
-                "pe": 9.93,
+                "pe": 9.89,
                 "forward_pe": "N/A",
                 "eps": 6.5,
                 "gross_margin": "24.6%",
@@ -414592,10 +414592,10 @@
               "name": "6505 台塑化",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 89.6,
+              "price": 89.9,
               "prev_close": 89.6,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 0.3,
+              "change_pct": 0.33,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -415569,11 +415569,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 89.6
+                  "close": 89.9
                 }
               ],
               "fundamentals": {
-                "pe": 11.76,
+                "pe": 11.8,
                 "forward_pe": "N/A",
                 "eps": 7.62,
                 "gross_margin": "12.9%",
@@ -415605,10 +415605,10 @@
               "name": "2616 山隆",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 11.95,
+              "price": 11.9,
               "prev_close": 12.2,
-              "change": -0.25,
-              "change_pct": -2.05,
+              "change": -0.3,
+              "change_pct": -2.46,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -416582,7 +416582,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 11.95
+                  "close": 11.9
                 }
               ],
               "fundamentals": {
@@ -421794,10 +421794,10 @@
               "name": "1326 台化",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 68.0,
+              "price": 67.9,
               "prev_close": 70.5,
-              "change": -2.5,
-              "change_pct": -3.55,
+              "change": -2.6,
+              "change_pct": -3.69,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -422771,11 +422771,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 68.0
+                  "close": 67.9
                 }
               ],
               "fundamentals": {
-                "pe": 22.79,
+                "pe": 22.76,
                 "forward_pe": "N/A",
                 "eps": 2.98,
                 "gross_margin": "5.3%",
@@ -422807,10 +422807,10 @@
               "name": "1301 台塑",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 64.4,
+              "price": 64.3,
               "prev_close": 67.5,
-              "change": -3.1,
-              "change_pct": -4.59,
+              "change": -3.2,
+              "change_pct": -4.74,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -423784,11 +423784,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 64.4
+                  "close": 64.3
                 }
               ],
               "fundamentals": {
-                "pe": 24.42,
+                "pe": 24.38,
                 "forward_pe": "N/A",
                 "eps": 2.64,
                 "gross_margin": "3.6%",
@@ -425883,10 +425883,10 @@
               "name": "1304 台聚",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 11.05,
+              "price": 11.0,
               "prev_close": 11.15,
-              "change": -0.1,
-              "change_pct": -0.9,
+              "change": -0.15,
+              "change_pct": -1.35,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -426860,7 +426860,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 11.05
+                  "close": 11.0
                 }
               ],
               "fundamentals": {
@@ -428922,10 +428922,10 @@
               "name": "1309 台達化",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 11.1,
+              "price": 11.15,
               "prev_close": 11.2,
-              "change": -0.1,
-              "change_pct": -0.89,
+              "change": -0.05,
+              "change_pct": -0.45,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -429899,7 +429899,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 11.1
+                  "close": 11.15
                 }
               ],
               "fundamentals": {
@@ -429935,10 +429935,10 @@
               "name": "2103 台橡",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 21.85,
+              "price": 21.8,
               "prev_close": 22.2,
-              "change": -0.35,
-              "change_pct": -1.58,
+              "change": -0.4,
+              "change_pct": -1.8,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -430912,11 +430912,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 21.85
+                  "close": 21.8
                 }
               ],
               "fundamentals": {
-                "pe": 7.69,
+                "pe": 7.68,
                 "forward_pe": "N/A",
                 "eps": 2.84,
                 "gross_margin": "13.5%",
@@ -430948,10 +430948,10 @@
               "name": "1717 長興",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 55.9,
+              "price": 56.1,
               "prev_close": 55.1,
-              "change": 0.8,
-              "change_pct": 1.45,
+              "change": 1.0,
+              "change_pct": 1.81,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -431925,11 +431925,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 55.9
+                  "close": 56.1
                 }
               ],
               "fundamentals": {
-                "pe": 30.14,
+                "pe": 30.25,
                 "forward_pe": "N/A",
                 "eps": 1.85,
                 "gross_margin": "21.2%",
@@ -431961,10 +431961,10 @@
               "name": "4763 材料-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 39.45,
+              "price": 39.4,
               "prev_close": 39.9,
-              "change": -0.45,
-              "change_pct": -1.13,
+              "change": -0.5,
+              "change_pct": -1.25,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -432938,11 +432938,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 39.45
+                  "close": 39.4
                 }
               ],
               "fundamentals": {
-                "pe": 13.14,
+                "pe": 13.13,
                 "forward_pe": "N/A",
                 "eps": 3.0,
                 "gross_margin": "50.1%",
@@ -432974,10 +432974,10 @@
               "name": "3708 上緯投控",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 86.0,
+              "price": 85.5,
               "prev_close": 84.0,
-              "change": 2.0,
-              "change_pct": 2.38,
+              "change": 1.5,
+              "change_pct": 1.79,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -433951,11 +433951,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 86.0
+                  "close": 85.5
                 }
               ],
               "fundamentals": {
-                "pe": 2.39,
+                "pe": 2.38,
                 "forward_pe": "N/A",
                 "eps": 35.94,
                 "gross_margin": "14.2%",
@@ -450417,10 +450417,10 @@
               "name": "2645 長榮航太",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 162.0,
+              "price": 162.5,
               "prev_close": 161.0,
-              "change": 1.0,
-              "change_pct": 0.62,
+              "change": 1.5,
+              "change_pct": 0.93,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -451394,11 +451394,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 162.0
+                  "close": 162.5
                 }
               ],
               "fundamentals": {
-                "pe": 19.23,
+                "pe": 19.29,
                 "forward_pe": "N/A",
                 "eps": 8.42,
                 "gross_margin": "21.7%",
@@ -454580,10 +454580,10 @@
               "name": "3005 神基",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 101.0,
+              "price": 100.5,
               "prev_close": 100.5,
-              "change": 0.5,
-              "change_pct": 0.5,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -455557,11 +455557,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 101.0
+                  "close": 100.5
                 }
               ],
               "fundamentals": {
-                "pe": 12.18,
+                "pe": 12.12,
                 "forward_pe": "N/A",
                 "eps": 8.29,
                 "gross_margin": "30.7%",
@@ -456643,10 +456643,10 @@
               "name": "8033 雷虎",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 130.5,
+              "price": 131.0,
               "prev_close": 132.0,
-              "change": -1.5,
-              "change_pct": -1.14,
+              "change": -1.0,
+              "change_pct": -0.76,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -457620,11 +457620,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 130.5
+                  "close": 131.0
                 }
               ],
               "fundamentals": {
-                "pe": 398.72,
+                "pe": 400.24,
                 "forward_pe": "N/A",
                 "eps": 0.33,
                 "gross_margin": "41.1%",
@@ -457696,10 +457696,10 @@
               "name": "6753 龍德造船",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 111.0,
+              "price": 111.5,
               "prev_close": 109.0,
-              "change": 2.0,
-              "change_pct": 1.83,
+              "change": 2.5,
+              "change_pct": 2.29,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -458673,11 +458673,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 111.0
+                  "close": 111.5
                 }
               ],
               "fundamentals": {
-                "pe": 10.94,
+                "pe": 10.99,
                 "forward_pe": "N/A",
                 "eps": 10.14,
                 "gross_margin": "29.5%",
@@ -461859,10 +461859,10 @@
               "name": "2208 台船",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 16.25,
+              "price": 16.2,
               "prev_close": 16.25,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": -0.05,
+              "change_pct": -0.31,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -462836,11 +462836,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 16.25
+                  "close": 16.2
                 }
               ],
               "fundamentals": {
-                "pe": 41.34,
+                "pe": 41.21,
                 "forward_pe": "N/A",
                 "eps": 0.39,
                 "gross_margin": "-0.9%",
@@ -462872,10 +462872,10 @@
               "name": "2630 亞航",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 31.25,
+              "price": 31.45,
               "prev_close": 31.15,
-              "change": 0.1,
-              "change_pct": 0.32,
+              "change": 0.3,
+              "change_pct": 0.96,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -463849,11 +463849,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 31.25
+                  "close": 31.45
                 }
               ],
               "fundamentals": {
-                "pe": 130.75,
+                "pe": 131.59,
                 "forward_pe": "N/A",
                 "eps": 0.24,
                 "gross_margin": "8.0%",
@@ -465985,10 +465985,10 @@
               "name": "2607 榮運",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 57.4,
+              "price": 57.5,
               "prev_close": 57.5,
-              "change": -0.1,
-              "change_pct": -0.17,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -466962,11 +466962,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 57.4
+                  "close": 57.5
                 }
               ],
               "fundamentals": {
-                "pe": 11.07,
+                "pe": 11.09,
                 "forward_pe": "N/A",
                 "eps": 5.19,
                 "gross_margin": "19.8%",
@@ -468011,10 +468011,10 @@
               "name": "2603 長榮",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 257.0,
+              "price": 258.0,
               "prev_close": 256.5,
-              "change": 0.5,
-              "change_pct": 0.19,
+              "change": 1.5,
+              "change_pct": 0.58,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -468988,11 +468988,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 257.0
+                  "close": 258.0
                 }
               ],
               "fundamentals": {
-                "pe": 7.01,
+                "pe": 7.04,
                 "forward_pe": "N/A",
                 "eps": 36.67,
                 "gross_margin": "25.7%",
@@ -469024,10 +469024,10 @@
               "name": "2609 陽明",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 60.2,
+              "price": 60.1,
               "prev_close": 59.9,
-              "change": 0.3,
-              "change_pct": 0.5,
+              "change": 0.2,
+              "change_pct": 0.33,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -470001,11 +470001,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 60.2
+                  "close": 60.1
                 }
               ],
               "fundamentals": {
-                "pe": 7.51,
+                "pe": 7.5,
                 "forward_pe": "N/A",
                 "eps": 8.02,
                 "gross_margin": "19.5%",
@@ -471050,10 +471050,10 @@
               "name": "2618 長榮航",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 46.55,
+              "price": 46.45,
               "prev_close": 48.1,
-              "change": -1.55,
-              "change_pct": -3.22,
+              "change": -1.65,
+              "change_pct": -3.43,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -472027,11 +472027,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 46.55
+                  "close": 46.45
                 }
               ],
               "fundamentals": {
-                "pe": 9.54,
+                "pe": 9.52,
                 "forward_pe": "N/A",
                 "eps": 4.88,
                 "gross_margin": "20.4%",
@@ -472063,10 +472063,10 @@
               "name": "2610 華航",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 22.8,
+              "price": 22.75,
               "prev_close": 23.1,
-              "change": -0.3,
-              "change_pct": -1.3,
+              "change": -0.35,
+              "change_pct": -1.52,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -473040,7 +473040,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 22.8
+                  "close": 22.75
                 }
               ],
               "fundamentals": {
@@ -474089,10 +474089,10 @@
               "name": "2606 裕民",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 70.2,
+              "price": 70.1,
               "prev_close": 71.0,
-              "change": -0.8,
-              "change_pct": -1.13,
+              "change": -0.9,
+              "change_pct": -1.27,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -475066,11 +475066,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 70.2
+                  "close": 70.1
                 }
               ],
               "fundamentals": {
-                "pe": 9.56,
+                "pe": 9.54,
                 "forward_pe": "N/A",
                 "eps": 7.35,
                 "gross_margin": "34.9%",
@@ -475102,10 +475102,10 @@
               "name": "2637 慧洋-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 94.8,
+              "price": 95.2,
               "prev_close": 94.2,
-              "change": 0.6,
-              "change_pct": 0.64,
+              "change": 1.0,
+              "change_pct": 1.06,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -476079,11 +476079,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 94.8
+                  "close": 95.2
                 }
               ],
               "fundamentals": {
-                "pe": 8.15,
+                "pe": 8.19,
                 "forward_pe": "N/A",
                 "eps": 11.63,
                 "gross_margin": "38.2%",
@@ -479191,10 +479191,10 @@
               "name": "2608 嘉裡大榮",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 27.45,
+              "price": 27.4,
               "prev_close": 27.45,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": -0.05,
+              "change_pct": -0.18,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -480168,7 +480168,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 27.45
+                  "close": 27.4
                 }
               ],
               "fundamentals": {
@@ -482530,7 +482530,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 289.86
+                  "close": 289.87
                 },
                 {
                   "date": "2026-02-06",
@@ -484367,10 +484367,10 @@
               "name": "2395 研華",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 593.0,
+              "price": 598.0,
               "prev_close": 564.0,
-              "change": 29.0,
-              "change_pct": 5.14,
+              "change": 34.0,
+              "change_pct": 6.03,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -485344,11 +485344,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 593.0
+                  "close": 598.0
                 }
               ],
               "fundamentals": {
-                "pe": 30.19,
+                "pe": 30.45,
                 "forward_pe": "N/A",
                 "eps": 19.64,
                 "gross_margin": "37.0%",
@@ -485380,10 +485380,10 @@
               "name": "6414 樺漢",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 326.5,
+              "price": 327.0,
               "prev_close": 319.5,
-              "change": 7.0,
-              "change_pct": 2.19,
+              "change": 7.5,
+              "change_pct": 2.35,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -486357,11 +486357,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 326.5
+                  "close": 327.0
                 }
               ],
               "fundamentals": {
-                "pe": 12.97,
+                "pe": 12.99,
                 "forward_pe": "N/A",
                 "eps": 25.17,
                 "gross_margin": "18.8%",
@@ -496782,10 +496782,10 @@
               "name": "6214 精誠",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 178.0,
+              "price": 177.5,
               "prev_close": 180.5,
-              "change": -2.5,
-              "change_pct": -1.39,
+              "change": -3.0,
+              "change_pct": -1.66,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -497759,11 +497759,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 178.0
+                  "close": 177.5
                 }
               ],
               "fundamentals": {
-                "pe": 18.06,
+                "pe": 18.01,
                 "forward_pe": "N/A",
                 "eps": 9.85,
                 "gross_margin": "17.9%",
@@ -497795,10 +497795,10 @@
               "name": "2453 凌群",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 56.9,
+              "price": 56.8,
               "prev_close": 59.1,
-              "change": -2.2,
-              "change_pct": -3.72,
+              "change": -2.3,
+              "change_pct": -3.89,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -498772,7 +498772,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 56.9
+                  "close": 56.8
                 }
               ],
               "fundamentals": {
@@ -498808,10 +498808,10 @@
               "name": "6689 伊雲谷",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 70.1,
+              "price": 69.8,
               "prev_close": 74.4,
-              "change": -4.3,
-              "change_pct": -5.78,
+              "change": -4.6,
+              "change_pct": -6.18,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -499785,11 +499785,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 70.1
+                  "close": 69.8
                 }
               ],
               "fundamentals": {
-                "pe": 36.33,
+                "pe": 36.17,
                 "forward_pe": "N/A",
                 "eps": 1.93,
                 "gross_margin": "9.1%",
@@ -499821,10 +499821,10 @@
               "name": "6112 邁達特",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 47.75,
+              "price": 47.8,
               "prev_close": 53.0,
-              "change": -5.25,
-              "change_pct": -9.91,
+              "change": -5.2,
+              "change_pct": -9.81,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -500798,11 +500798,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 47.75
+                  "close": 47.8
                 }
               ],
               "fundamentals": {
-                "pe": 20.04,
+                "pe": 20.06,
                 "forward_pe": "N/A",
                 "eps": 2.38,
                 "gross_margin": "13.2%",
@@ -503024,7 +503024,7 @@
                 },
                 {
                   "date": "2025-12-16",
-                  "close": 660.04
+                  "close": 660.05
                 },
                 {
                   "date": "2025-12-17",
@@ -503984,10 +503984,10 @@
               "name": "6446 藥華藥",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 1260.0,
+              "price": 1255.0,
               "prev_close": 1280.0,
-              "change": -20.0,
-              "change_pct": -1.56,
+              "change": -25.0,
+              "change_pct": -1.95,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -504961,11 +504961,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 1260.0
+                  "close": 1255.0
                 }
               ],
               "fundamentals": {
-                "pe": 57.29,
+                "pe": 57.07,
                 "forward_pe": "N/A",
                 "eps": 21.99,
                 "gross_margin": "91.3%",
@@ -518462,10 +518462,10 @@
               "name": "6472 保瑞",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 344.5,
+              "price": 343.5,
               "prev_close": 354.5,
-              "change": -10.0,
-              "change_pct": -2.82,
+              "change": -11.0,
+              "change_pct": -3.1,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -519439,11 +519439,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 344.5
+                  "close": 343.5
                 }
               ],
               "fundamentals": {
-                "pe": 29.41,
+                "pe": 29.32,
                 "forward_pe": "N/A",
                 "eps": 11.71,
                 "gross_margin": "37.3%",
@@ -519475,10 +519475,10 @@
               "name": "6589 台康生技",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 51.4,
+              "price": 51.3,
               "prev_close": 53.0,
-              "change": -1.6,
-              "change_pct": -3.02,
+              "change": -1.7,
+              "change_pct": -3.21,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -520452,7 +520452,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 51.4
+                  "close": 51.3
                 }
               ],
               "fundamentals": {
@@ -520488,10 +520488,10 @@
               "name": "6491 晶碩",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 371.5,
+              "price": 365.5,
               "prev_close": 374.0,
-              "change": -2.5,
-              "change_pct": -0.67,
+              "change": -8.5,
+              "change_pct": -2.27,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -521465,11 +521465,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 371.5
+                  "close": 365.5
                 }
               ],
               "fundamentals": {
-                "pe": 14.67,
+                "pe": 14.43,
                 "forward_pe": "N/A",
                 "eps": 25.33,
                 "gross_margin": "50.5%",
@@ -528831,9 +528831,9 @@
               "change": -0.66,
               "change_pct": -1.51,
               "ext_session": {
-                "price": 43.07,
-                "change": 0.04,
-                "change_pct": 0.09,
+                "price": 43.05,
+                "change": 0.02,
+                "change_pct": 0.05,
                 "label": "盤前"
               },
               "intraday": [],
@@ -530938,10 +530938,10 @@
               "name": "4104 佳醫",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 71.0,
+              "price": 71.2,
               "prev_close": 71.5,
-              "change": -0.5,
-              "change_pct": -0.7,
+              "change": -0.3,
+              "change_pct": -0.42,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -531915,7 +531915,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 71.0
+                  "close": 71.2
                 }
               ],
               "fundamentals": {
@@ -531951,10 +531951,10 @@
               "name": "1707 葡萄王",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 77.3,
+              "price": 77.1,
               "prev_close": 76.7,
-              "change": 0.6,
-              "change_pct": 0.78,
+              "change": 0.4,
+              "change_pct": 0.52,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -532928,11 +532928,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 77.3
+                  "close": 77.1
                 }
               ],
               "fundamentals": {
-                "pe": 10.84,
+                "pe": 10.81,
                 "forward_pe": "N/A",
                 "eps": 7.13,
                 "gross_margin": "70.4%",
@@ -535064,10 +535064,10 @@
               "name": "2851 中再保",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 45.2,
+              "price": 45.15,
               "prev_close": 46.2,
-              "change": -1.0,
-              "change_pct": -2.16,
+              "change": -1.05,
+              "change_pct": -2.27,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -536041,7 +536041,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 45.2
+                  "close": 45.15
                 }
               ],
               "fundamentals": {
@@ -536077,10 +536077,10 @@
               "name": "2883 凱基金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 33.55,
+              "price": 33.5,
               "prev_close": 34.15,
-              "change": -0.6,
-              "change_pct": -1.76,
+              "change": -0.65,
+              "change_pct": -1.9,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -537054,7 +537054,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 33.55
+                  "close": 33.5
                 }
               ],
               "fundamentals": {
@@ -539116,10 +539116,10 @@
               "name": "9945 潤泰新",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 27.05,
+              "price": 27.1,
               "prev_close": 27.3,
-              "change": -0.25,
-              "change_pct": -0.92,
+              "change": -0.2,
+              "change_pct": -0.73,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -540093,11 +540093,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 27.05
+                  "close": 27.1
                 }
               ],
               "fundamentals": {
-                "pe": 4.26,
+                "pe": 4.27,
                 "forward_pe": "N/A",
                 "eps": 6.35,
                 "gross_margin": "25.2%",
@@ -540129,10 +540129,10 @@
               "name": "2915 潤泰全",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 53.7,
+              "price": 53.6,
               "prev_close": 54.4,
-              "change": -0.7,
-              "change_pct": -1.29,
+              "change": -0.8,
+              "change_pct": -1.47,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -541106,11 +541106,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 53.7
+                  "close": 53.6
                 }
               ],
               "fundamentals": {
-                "pe": 3.65,
+                "pe": 3.64,
                 "forward_pe": "N/A",
                 "eps": 14.71,
                 "gross_margin": "48.8%",
@@ -545342,10 +545342,10 @@
               "name": "2850 新產",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 166.0,
+              "price": 167.0,
               "prev_close": 163.0,
-              "change": 3.0,
-              "change_pct": 1.84,
+              "change": 4.0,
+              "change_pct": 2.45,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -546319,11 +546319,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 166.0
+                  "close": 167.0
                 }
               ],
               "fundamentals": {
-                "pe": 10.8,
+                "pe": 10.87,
                 "forward_pe": "N/A",
                 "eps": 15.37,
                 "gross_margin": "N/A",
@@ -546355,10 +546355,10 @@
               "name": "2852 第一保",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 28.85,
+              "price": 28.8,
               "prev_close": 28.85,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": -0.05,
+              "change_pct": -0.17,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -547332,11 +547332,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 28.85
+                  "close": 28.8
                 }
               ],
               "fundamentals": {
-                "pe": 7.0,
+                "pe": 6.98,
                 "forward_pe": "N/A",
                 "eps": 4.12,
                 "gross_margin": "N/A",
@@ -549692,7 +549692,7 @@
                 },
                 {
                   "date": "2026-03-04",
-                  "close": 211.1
+                  "close": 211.09
                 },
                 {
                   "date": "2026-03-05",
@@ -561920,10 +561920,10 @@
               "name": "2886 兆豐金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 52.7,
+              "price": 52.6,
               "prev_close": 54.7,
-              "change": -2.0,
-              "change_pct": -3.66,
+              "change": -2.1,
+              "change_pct": -3.84,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -562897,7 +562897,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 52.7
+                  "close": 52.6
                 }
               ],
               "fundamentals": {
@@ -563946,10 +563946,10 @@
               "name": "2892 第一金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 40.9,
+              "price": 41.05,
               "prev_close": 42.1,
-              "change": -1.2,
-              "change_pct": -2.85,
+              "change": -1.05,
+              "change_pct": -2.49,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -564923,11 +564923,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 40.9
+                  "close": 41.05
                 }
               ],
               "fundamentals": {
-                "pe": 19.1,
+                "pe": 19.17,
                 "forward_pe": "N/A",
                 "eps": 2.14,
                 "gross_margin": "N/A",
@@ -564959,10 +564959,10 @@
               "name": "2880 華南金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 48.35,
+              "price": 48.4,
               "prev_close": 50.8,
-              "change": -2.45,
-              "change_pct": -4.82,
+              "change": -2.4,
+              "change_pct": -4.72,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -565936,11 +565936,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 48.35
+                  "close": 48.4
                 }
               ],
               "fundamentals": {
-                "pe": 21.23,
+                "pe": 21.25,
                 "forward_pe": "N/A",
                 "eps": 2.28,
                 "gross_margin": "N/A",
@@ -565972,10 +565972,10 @@
               "name": "2890 永豐金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 40.2,
+              "price": 40.5,
               "prev_close": 41.75,
-              "change": -1.55,
-              "change_pct": -3.71,
+              "change": -1.25,
+              "change_pct": -2.99,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -566949,11 +566949,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 40.2
+                  "close": 40.5
                 }
               ],
               "fundamentals": {
-                "pe": 15.41,
+                "pe": 15.53,
                 "forward_pe": "N/A",
                 "eps": 2.61,
                 "gross_margin": "N/A",
@@ -566985,10 +566985,10 @@
               "name": "2801 彰銀",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 27.4,
+              "price": 27.55,
               "prev_close": 28.15,
-              "change": -0.75,
-              "change_pct": -2.66,
+              "change": -0.6,
+              "change_pct": -2.13,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -567962,11 +567962,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 27.4
+                  "close": 27.55
                 }
               ],
               "fundamentals": {
-                "pe": 15.9,
+                "pe": 15.99,
                 "forward_pe": "N/A",
                 "eps": 1.72,
                 "gross_margin": "N/A",
@@ -567998,10 +567998,10 @@
               "name": "2834 台企銀",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 17.0,
+              "price": 17.05,
               "prev_close": 17.2,
-              "change": -0.2,
-              "change_pct": -1.16,
+              "change": -0.15,
+              "change_pct": -0.87,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -568975,11 +568975,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 17.0
+                  "close": 17.05
                 }
               ],
               "fundamentals": {
-                "pe": 13.01,
+                "pe": 13.05,
                 "forward_pe": "N/A",
                 "eps": 1.31,
                 "gross_margin": "N/A",
@@ -570024,10 +570024,10 @@
               "name": "2838 聯邦銀",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 19.5,
+              "price": 19.45,
               "prev_close": 19.65,
-              "change": -0.15,
-              "change_pct": -0.76,
+              "change": -0.2,
+              "change_pct": -1.02,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -571001,11 +571001,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 19.5
+                  "close": 19.45
                 }
               ],
               "fundamentals": {
-                "pe": 14.61,
+                "pe": 14.57,
                 "forward_pe": "N/A",
                 "eps": 1.33,
                 "gross_margin": "N/A",
@@ -571037,10 +571037,10 @@
               "name": "2845 遠東銀",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 12.35,
+              "price": 12.4,
               "prev_close": 12.4,
-              "change": -0.05,
-              "change_pct": -0.4,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -572014,11 +572014,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 12.35
+                  "close": 12.4
                 }
               ],
               "fundamentals": {
-                "pe": 12.22,
+                "pe": 12.27,
                 "forward_pe": "N/A",
                 "eps": 1.01,
                 "gross_margin": "N/A",
@@ -578350,10 +578350,10 @@
               "name": "2885 元大金",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 64.9,
+              "price": 65.0,
               "prev_close": 68.0,
-              "change": -3.1,
-              "change_pct": -4.56,
+              "change": -3.0,
+              "change_pct": -4.41,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -579327,11 +579327,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 64.9
+                  "close": 65.0
                 }
               ],
               "fundamentals": {
-                "pe": 16.06,
+                "pe": 16.09,
                 "forward_pe": "N/A",
                 "eps": 4.04,
                 "gross_margin": "N/A",
@@ -579363,10 +579363,10 @@
               "name": "2855 統一證",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 47.9,
+              "price": 47.8,
               "prev_close": 47.8,
-              "change": 0.1,
-              "change_pct": 0.21,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -580340,11 +580340,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 47.9
+                  "close": 47.8
                 }
               ],
               "fundamentals": {
-                "pe": 5.08,
+                "pe": 5.07,
                 "forward_pe": "N/A",
                 "eps": 9.43,
                 "gross_margin": "95.7%",
@@ -580376,10 +580376,10 @@
               "name": "6005 群益證",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 26.0,
+              "price": 25.95,
               "prev_close": 26.1,
-              "change": -0.1,
-              "change_pct": -0.38,
+              "change": -0.15,
+              "change_pct": -0.57,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -581353,11 +581353,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 26.0
+                  "close": 25.95
                 }
               ],
               "fundamentals": {
-                "pe": 5.86,
+                "pe": 5.85,
                 "forward_pe": "N/A",
                 "eps": 4.44,
                 "gross_margin": "90.3%",
@@ -587467,10 +587467,10 @@
               "name": "9941 裕融",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 71.4,
+              "price": 71.6,
               "prev_close": 72.1,
-              "change": -0.7,
-              "change_pct": -0.97,
+              "change": -0.5,
+              "change_pct": -0.69,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -588444,11 +588444,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 71.4
+                  "close": 71.6
                 }
               ],
               "fundamentals": {
-                "pe": 9.56,
+                "pe": 9.59,
                 "forward_pe": "N/A",
                 "eps": 7.47,
                 "gross_margin": "50.9%",
@@ -588480,10 +588480,10 @@
               "name": "6592 和潤企業",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 55.0,
+              "price": 55.1,
               "prev_close": 55.0,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 0.1,
+              "change_pct": 0.18,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -589457,11 +589457,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 55.0
+                  "close": 55.1
                 }
               ],
               "fundamentals": {
-                "pe": 10.76,
+                "pe": 10.77,
                 "forward_pe": "N/A",
                 "eps": 5.11,
                 "gross_margin": "58.3%",
@@ -595793,10 +595793,10 @@
               "name": "9933 中鼎",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 56.8,
+              "price": 57.1,
               "prev_close": 56.6,
-              "change": 0.2,
-              "change_pct": 0.35,
+              "change": 0.5,
+              "change_pct": 0.88,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -596770,11 +596770,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 56.8
+                  "close": 57.1
                 }
               ],
               "fundamentals": {
-                "pe": 9.28,
+                "pe": 9.33,
                 "forward_pe": "N/A",
                 "eps": 6.12,
                 "gross_margin": "13.2%",
@@ -596806,10 +596806,10 @@
               "name": "2515 中工",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 10.05,
+              "price": 10.0,
               "prev_close": 10.05,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": -0.05,
+              "change_pct": -0.5,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -597783,7 +597783,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 10.05
+                  "close": 10.0
                 }
               ],
               "fundamentals": {
@@ -597841,7 +597841,7 @@
                 },
                 {
                   "date": "2025-11-20",
-                  "close": 541.53
+                  "close": 541.52
                 },
                 {
                   "date": "2025-11-21",
@@ -600932,10 +600932,10 @@
               "name": "2548 華固",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 93.5,
+              "price": 93.3,
               "prev_close": 94.7,
-              "change": -1.2,
-              "change_pct": -1.27,
+              "change": -1.4,
+              "change_pct": -1.48,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -601909,11 +601909,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 93.5
+                  "close": 93.3
                 }
               ],
               "fundamentals": {
-                "pe": 8.16,
+                "pe": 8.14,
                 "forward_pe": "N/A",
                 "eps": 11.46,
                 "gross_margin": "27.5%",
@@ -601945,10 +601945,10 @@
               "name": "2539 櫻花建",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 31.0,
+              "price": 30.9,
               "prev_close": 31.4,
-              "change": -0.4,
-              "change_pct": -1.27,
+              "change": -0.5,
+              "change_pct": -1.59,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -602922,11 +602922,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 31.0
+                  "close": 30.9
                 }
               ],
               "fundamentals": {
-                "pe": 11.74,
+                "pe": 11.7,
                 "forward_pe": "N/A",
                 "eps": 2.64,
                 "gross_margin": "44.0%",
@@ -602958,10 +602958,10 @@
               "name": "5522 遠雄",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 61.9,
+              "price": 61.8,
               "prev_close": 60.9,
-              "change": 1.0,
-              "change_pct": 1.64,
+              "change": 0.9,
+              "change_pct": 1.48,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -603935,11 +603935,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 61.9
+                  "close": 61.8
                 }
               ],
               "fundamentals": {
-                "pe": 5.95,
+                "pe": 5.94,
                 "forward_pe": "N/A",
                 "eps": 10.41,
                 "gross_margin": "33.1%",
@@ -605997,10 +605997,10 @@
               "name": "2511 太子",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 7.88,
+              "price": 7.9,
               "prev_close": 7.9,
-              "change": -0.02,
-              "change_pct": -0.25,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -606974,11 +606974,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 7.88
+                  "close": 7.9
                 }
               ],
               "fundamentals": {
-                "pe": 21.85,
+                "pe": 21.9,
                 "forward_pe": "N/A",
                 "eps": 0.36,
                 "gross_margin": "18.5%",
@@ -607010,10 +607010,10 @@
               "name": "5534 長虹",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 65.4,
+              "price": 65.3,
               "prev_close": 64.8,
-              "change": 0.6,
-              "change_pct": 0.93,
+              "change": 0.5,
+              "change_pct": 0.77,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -607987,11 +607987,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 65.4
+                  "close": 65.3
                 }
               ],
               "fundamentals": {
-                "pe": 10.89,
+                "pe": 10.87,
                 "forward_pe": "N/A",
                 "eps": 6.01,
                 "gross_margin": "33.4%",
@@ -608023,10 +608023,10 @@
               "name": "2534 宏盛",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 14.55,
+              "price": 14.6,
               "prev_close": 14.5,
-              "change": 0.05,
-              "change_pct": 0.34,
+              "change": 0.1,
+              "change_pct": 0.69,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -609000,11 +609000,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 14.55
+                  "close": 14.6
                 }
               ],
               "fundamentals": {
-                "pe": 173.84,
+                "pe": 174.43,
                 "forward_pe": "N/A",
                 "eps": 0.08,
                 "gross_margin": "68.2%",
@@ -609036,10 +609036,10 @@
               "name": "5519 隆大",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 20.4,
+              "price": 20.3,
               "prev_close": 20.55,
-              "change": -0.15,
-              "change_pct": -0.73,
+              "change": -0.25,
+              "change_pct": -1.22,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -610013,7 +610013,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 20.4
+                  "close": 20.3
                 }
               ],
               "fundamentals": {
@@ -611062,10 +611062,10 @@
               "name": "2348 海悅",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 56.6,
+              "price": 56.9,
               "prev_close": 56.6,
-              "change": 0.0,
-              "change_pct": 0.0,
+              "change": 0.3,
+              "change_pct": 0.53,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -612039,7 +612039,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 56.6
+                  "close": 56.9
                 }
               ],
               "fundamentals": {
@@ -612075,10 +612075,10 @@
               "name": "9940 信義",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 18.15,
+              "price": 18.2,
               "prev_close": 18.25,
-              "change": -0.1,
-              "change_pct": -0.55,
+              "change": -0.05,
+              "change_pct": -0.27,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -613052,11 +613052,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 18.15
+                  "close": 18.2
                 }
               ],
               "fundamentals": {
-                "pe": 16.16,
+                "pe": 16.2,
                 "forward_pe": "N/A",
                 "eps": 1.12,
                 "gross_margin": "21.7%",
@@ -615422,7 +615422,7 @@
                 },
                 {
                   "date": "2026-02-09",
-                  "close": 844.86
+                  "close": 844.85
                 },
                 {
                   "date": "2026-02-10",
@@ -618338,10 +618338,10 @@
               "name": "1210 大成",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 50.9,
+              "price": 51.0,
               "prev_close": 51.4,
-              "change": -0.5,
-              "change_pct": -0.97,
+              "change": -0.4,
+              "change_pct": -0.78,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -619315,11 +619315,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 50.9
+                  "close": 51.0
                 }
               ],
               "fundamentals": {
-                "pe": 12.08,
+                "pe": 12.11,
                 "forward_pe": "N/A",
                 "eps": 4.21,
                 "gross_margin": "13.4%",
@@ -619351,10 +619351,10 @@
               "name": "1215 卜蜂",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 104.5,
+              "price": 104.0,
               "prev_close": 105.5,
-              "change": -1.0,
-              "change_pct": -0.95,
+              "change": -1.5,
+              "change_pct": -1.42,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -620328,11 +620328,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 104.5
+                  "close": 104.0
                 }
               ],
               "fundamentals": {
-                "pe": 13.2,
+                "pe": 13.13,
                 "forward_pe": "N/A",
                 "eps": 7.92,
                 "gross_margin": "18.5%",
@@ -620364,10 +620364,10 @@
               "name": "1227 佳格",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 24.95,
+              "price": 25.0,
               "prev_close": 25.25,
-              "change": -0.3,
-              "change_pct": -1.19,
+              "change": -0.25,
+              "change_pct": -0.99,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -621341,11 +621341,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 24.95
+                  "close": 25.0
                 }
               ],
               "fundamentals": {
-                "pe": 18.46,
+                "pe": 18.5,
                 "forward_pe": "N/A",
                 "eps": 1.35,
                 "gross_margin": "21.8%",
@@ -622427,10 +622427,10 @@
               "name": "2707 晶華",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 170.0,
+              "price": 170.5,
               "prev_close": 169.0,
-              "change": 1.0,
-              "change_pct": 0.59,
+              "change": 1.5,
+              "change_pct": 0.89,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -623404,11 +623404,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 170.0
+                  "close": 170.5
                 }
               ],
               "fundamentals": {
-                "pe": 11.71,
+                "pe": 11.74,
                 "forward_pe": "N/A",
                 "eps": 14.52,
                 "gross_margin": "33.8%",
@@ -626479,10 +626479,10 @@
               "name": "2739 寒舍",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 31.5,
+              "price": 31.3,
               "prev_close": 31.95,
-              "change": -0.45,
-              "change_pct": -1.41,
+              "change": -0.65,
+              "change_pct": -2.03,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -626492,11 +626492,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 31.5
+                  "close": 31.3
                 }
               ],
               "fundamentals": {
-                "pe": 8.02,
+                "pe": 7.97,
                 "forward_pe": "N/A",
                 "eps": 3.93,
                 "gross_margin": "40.0%",
@@ -628906,7 +628906,7 @@
                 },
                 {
                   "date": "2026-02-25",
-                  "close": 345.39
+                  "close": 345.38
                 },
                 {
                   "date": "2026-02-26",
@@ -631778,10 +631778,10 @@
               "name": "2727 王品",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 226.5,
+              "price": 226.0,
               "prev_close": 226.0,
-              "change": 0.5,
-              "change_pct": 0.22,
+              "change": 0.0,
+              "change_pct": 0.0,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -632755,11 +632755,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 226.5
+                  "close": 226.0
                 }
               ],
               "fundamentals": {
-                "pe": 12.73,
+                "pe": 12.7,
                 "forward_pe": "N/A",
                 "eps": 17.8,
                 "gross_margin": "41.1%",
@@ -632791,10 +632791,10 @@
               "name": "2753 八方雲集",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 175.5,
+              "price": 176.0,
               "prev_close": 174.0,
-              "change": 1.5,
-              "change_pct": 0.86,
+              "change": 2.0,
+              "change_pct": 1.15,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -633768,7 +633768,7 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 175.5
+                  "close": 176.0
                 }
               ],
               "fundamentals": {
@@ -633804,10 +633804,10 @@
               "name": "2723 美食-KY",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 71.0,
+              "price": 71.3,
               "prev_close": 71.2,
-              "change": -0.2,
-              "change_pct": -0.28,
+              "change": 0.1,
+              "change_pct": 0.14,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -634781,11 +634781,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 71.0
+                  "close": 71.3
                 }
               ],
               "fundamentals": {
-                "pe": 11.69,
+                "pe": 11.74,
                 "forward_pe": "N/A",
                 "eps": 6.07,
                 "gross_margin": "51.8%",
@@ -644127,9 +644127,9 @@
               "change": -1.15,
               "change_pct": -1.63,
               "ext_session": {
-                "price": 69.53,
-                "change": 0.06,
-                "change_pct": 0.09,
+                "price": 69.5,
+                "change": 0.03,
+                "change_pct": 0.04,
                 "label": "盤前"
               },
               "intraday": [],
@@ -645172,10 +645172,10 @@
               "name": "1216 統一",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 78.7,
+              "price": 78.9,
               "prev_close": 79.2,
-              "change": -0.5,
-              "change_pct": -0.63,
+              "change": -0.3,
+              "change_pct": -0.38,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -646149,11 +646149,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 78.7
+                  "close": 78.9
                 }
               ],
               "fundamentals": {
-                "pe": 18.72,
+                "pe": 18.77,
                 "forward_pe": "N/A",
                 "eps": 4.2,
                 "gross_margin": "28.2%",
@@ -646185,10 +646185,10 @@
               "name": "1476 儒鴻",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 387.0,
+              "price": 387.5,
               "prev_close": 385.0,
-              "change": 2.0,
-              "change_pct": 0.52,
+              "change": 2.5,
+              "change_pct": 0.65,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -647162,11 +647162,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 387.0
+                  "close": 387.5
                 }
               ],
               "fundamentals": {
-                "pe": 15.83,
+                "pe": 15.85,
                 "forward_pe": "N/A",
                 "eps": 24.45,
                 "gross_margin": "30.2%",
@@ -648211,10 +648211,10 @@
               "name": "9910 豐泰",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 64.9,
+              "price": 65.0,
               "prev_close": 65.3,
-              "change": -0.4,
-              "change_pct": -0.61,
+              "change": -0.3,
+              "change_pct": -0.46,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -649188,11 +649188,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 64.9
+                  "close": 65.0
                 }
               ],
               "fundamentals": {
-                "pe": 15.56,
+                "pe": 15.59,
                 "forward_pe": "N/A",
                 "eps": 4.17,
                 "gross_margin": "18.4%",
@@ -650237,10 +650237,10 @@
               "name": "9938 百和",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 32.45,
+              "price": 32.5,
               "prev_close": 33.5,
-              "change": -1.05,
-              "change_pct": -3.13,
+              "change": -1.0,
+              "change_pct": -2.99,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -651214,11 +651214,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 32.45
+                  "close": 32.5
                 }
               ],
               "fundamentals": {
-                "pe": 11.98,
+                "pe": 12.0,
                 "forward_pe": "N/A",
                 "eps": 2.71,
                 "gross_margin": "28.9%",
@@ -651250,10 +651250,10 @@
               "name": "9921 巨大",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 82.9,
+              "price": 83.2,
               "prev_close": 83.1,
-              "change": -0.2,
-              "change_pct": -0.24,
+              "change": 0.1,
+              "change_pct": 0.12,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -652227,11 +652227,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 82.9
+                  "close": 83.2
                 }
               ],
               "fundamentals": {
-                "pe": 55.57,
+                "pe": 55.78,
                 "forward_pe": "N/A",
                 "eps": 1.49,
                 "gross_margin": "19.7%",
@@ -652263,10 +652263,10 @@
               "name": "9914 美利達",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 59.8,
+              "price": 59.7,
               "prev_close": 60.4,
-              "change": -0.6,
-              "change_pct": -0.99,
+              "change": -0.7,
+              "change_pct": -1.16,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -653240,11 +653240,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 59.8
+                  "close": 59.7
                 }
               ],
               "fundamentals": {
-                "pe": 30.86,
+                "pe": 30.81,
                 "forward_pe": "N/A",
                 "eps": 1.94,
                 "gross_margin": "14.7%",
@@ -658526,10 +658526,10 @@
               "name": "2912 統一超",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 213.5,
+              "price": 214.5,
               "prev_close": 213.0,
-              "change": 0.5,
-              "change_pct": 0.23,
+              "change": 1.5,
+              "change_pct": 0.7,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -659503,11 +659503,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 213.5
+                  "close": 214.5
                 }
               ],
               "fundamentals": {
-                "pe": 19.15,
+                "pe": 19.24,
                 "forward_pe": "N/A",
                 "eps": 11.15,
                 "gross_margin": "34.2%",
@@ -659539,10 +659539,10 @@
               "name": "2207 和泰車",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 538.0,
+              "price": 535.0,
               "prev_close": 531.0,
-              "change": 7.0,
-              "change_pct": 1.32,
+              "change": 4.0,
+              "change_pct": 0.75,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -660516,11 +660516,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 538.0
+                  "close": 535.0
                 }
               ],
               "fundamentals": {
-                "pe": 13.16,
+                "pe": 13.08,
                 "forward_pe": "N/A",
                 "eps": 40.89,
                 "gross_margin": "18.7%",
@@ -662578,10 +662578,10 @@
               "name": "8454 富邦媒",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 226.0,
+              "price": 225.5,
               "prev_close": 223.5,
-              "change": 2.5,
-              "change_pct": 1.12,
+              "change": 2.0,
+              "change_pct": 0.89,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -663555,11 +663555,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 226.0
+                  "close": 225.5
                 }
               ],
               "fundamentals": {
-                "pe": 21.54,
+                "pe": 21.49,
                 "forward_pe": "N/A",
                 "eps": 10.49,
                 "gross_margin": "9.0%",
@@ -663591,10 +663591,10 @@
               "name": "9934 成霖",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 9.23,
+              "price": 9.25,
               "prev_close": 9.27,
-              "change": -0.04,
-              "change_pct": -0.43,
+              "change": -0.02,
+              "change_pct": -0.22,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -664568,11 +664568,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 9.23
+                  "close": 9.25
                 }
               ],
               "fundamentals": {
-                "pe": 13.18,
+                "pe": 13.2,
                 "forward_pe": "N/A",
                 "eps": 0.7,
                 "gross_margin": "31.5%",
@@ -664604,10 +664604,10 @@
               "name": "8464 億豐",
               "asset_type": "tw_stock",
               "future_group": null,
-              "price": 366.5,
+              "price": 369.0,
               "prev_close": 372.5,
-              "change": -6.0,
-              "change_pct": -1.61,
+              "change": -3.5,
+              "change_pct": -0.94,
               "ext_session": null,
               "intraday": [],
               "history": [
@@ -665581,11 +665581,11 @@
                 },
                 {
                   "date": "2026-11-18",
-                  "close": 366.5
+                  "close": 369.0
                 }
               ],
               "fundamentals": {
-                "pe": 15.65,
+                "pe": 15.76,
                 "forward_pe": "N/A",
                 "eps": 23.42,
                 "gross_margin": "58.1%",
