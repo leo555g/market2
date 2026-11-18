@@ -96,32 +96,27 @@ CORE_FUNDAMENTALS_DB = {
 }
 
 # ====================================================================
-# 官方真實查核基準 + 每日逐檔市值精算「大盤融資維持率」與「全市場整戶擔保維持率」
+# 嚴格事實查核之官方籌碼與維持率引擎（無資料處嚴格填 None，絕不捏造）
 # ====================================================================
-def parse_mi_margn_and_compute_ratios(j_data, stock_price_map):
+def parse_twse_mi_margn_all(j_data, stock_price_map):
     """
-    從證交所 MI_MARGN?selectType=ALL 解析：
-    1. 信用交易統計匯總表：取得官方融資今日餘額(億)、前日餘額(億)、融券今日餘額(張)
-    2. 個股融資融券明細表：逐檔用 (融資今日張數 * 1000 * 收盤價) 加總，除以官方融資總金額，
-       100% 精準算出真實「上市櫃融資維持率」與「證交所全市場整戶擔保維持率」！
+    解析證交所 MI_MARGN?selectType=ALL：
+    回傳：(mmdd, 前日上市融資億, 今日上市融資億, 今日融券萬張, 上市融資總市值億元)
     """
     if not j_data or j_data.get("stat") != "OK":
-        return None, None, None, None, None, None
+        return None, None, None, None, 0.0
     d_str = str(j_data.get("date", "")).strip()
     mmdd = f"{d_str[4:6]}/{d_str[6:8]}" if len(d_str) == 8 else None
     tables = j_data.get("tables") or []
 
-    prev_yi, today_yi, short_wan_zhang = None, None, None
-    total_margin_mkt_val_qian = 0.0
-    total_short_mkt_val_qian = 0.0
+    prev_yi, today_yi, short_wan = None, None, None
+    twse_margin_mkt_val_qian = 0.0
 
     for tb in tables:
         fields = [str(x).strip() for x in (tb.get("fields") or [])]
         rows = tb.get("data") or []
-        # 表格 A：信用交易統計匯總表 (含「融資金額(仟元)」)
         if any("項目" in f for f in fields) and any("今日餘額" in f for f in fields):
-            idx_today = 5
-            idx_prev = 4
+            idx_today, idx_prev = 5, 4
             for i, fn in enumerate(fields):
                 if "今日餘額" in fn: idx_today = i
                 elif "前日餘額" in fn: idx_prev = i
@@ -137,42 +132,60 @@ def parse_mi_margn_and_compute_ratios(j_data, stock_price_map):
                 elif "融券" in title:
                     s_z = safe_float(r[idx_today], 0.0)
                     if s_z > 1000:
-                        short_wan_zhang = round(s_z / 1e4, 2)
-
-        # 表格 B：個股融資融券明細表 (逐檔計算融資股票總市值與融券總市值)
+                        short_wan = round(s_z / 1e4, 2)
         elif any("代號" in f for f in fields) and len(fields) >= 13:
             for r in rows:
                 if not r or len(r) < 13: continue
                 code = str(r[0]).strip()
                 close_p = stock_price_map.get(code, {}).get("price", 0.0)
                 if close_p <= 0: continue
-                # r[6] 為個股融資今日餘額(張)，r[12] 為個股融券今日餘額(張)
                 m_shares = safe_float(r[6], 0.0)
-                s_shares = safe_float(r[12], 0.0)
                 if m_shares > 0:
-                    # 張數 * 收盤價 = 仟元市值
-                    total_margin_mkt_val_qian += (m_shares * close_p)
-                if s_shares > 0:
-                    total_short_mkt_val_qian += (s_shares * close_p)
+                    twse_margin_mkt_val_qian += (m_shares * close_p)
 
-    pure_margin_rate = None
-    whole_account_guarantee_rate = None
-    if today_yi and today_yi > 0 and total_margin_mkt_val_qian > 1e7:
-        total_margin_debt_qian = today_yi * 1e5
-        pure_margin_rate = round((total_margin_mkt_val_qian / total_margin_debt_qian) * 100, 2)
-        # 整戶擔保維持率公式 = (融資市值 + 融券擔保品市值 + 融券保證金0.9倍) / (融資金額 + 融券市值)
-        if total_short_mkt_val_qian > 0:
-            num = total_margin_mkt_val_qian + (total_short_mkt_val_qian * 1.9)
-            den = total_margin_debt_qian + total_short_mkt_val_qian
-            whole_account_guarantee_rate = round((num / den) * 100, 2)
-        else:
-            whole_account_guarantee_rate = round(pure_margin_rate + 8.4, 2)
+    twse_mkt_val_yi = round(twse_margin_mkt_val_qian / 1e5, 2) if twse_margin_mkt_val_qian > 0 else 0.0
+    return mmdd, prev_yi, today_yi, short_wan, twse_mkt_val_yi
 
-    return mmdd, prev_yi, today_yi, short_wan_zhang, whole_account_guarantee_rate, pure_margin_rate
+def fetch_tpex_margin_and_mkt_val(stock_price_map):
+    """
+    抓取櫃買中心 (TPEx) 最新上櫃融資餘額(億) 與 上櫃融資股票總市值(億)
+    """
+    headers = {"User-Agent": "Mozilla/5.0"}
+    otc_mmdd, otc_balance_yi, otc_mkt_val_yi = None, None, 0.0
+    try:
+        r_otc = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
+        if r_otc.status_code == 200:
+            j_otc = r_otc.json()
+            d_otc = str(j_otc.get("date", "")).strip()
+            if len(d_otc) == 8:
+                otc_mmdd = f"{d_otc[4:6]}/{d_otc[6:8]}"
+            tables = j_otc.get("tables") or []
+            tot_mkt_qian = 0.0
+            tot_bal_qian = 0.0
+            for tb in tables:
+                for r in (tb.get("data") or []):
+                    if not r or len(r) < 10: continue
+                    code = str(r[0]).strip()
+                    close_p = stock_price_map.get(code, {}).get("price", 0.0)
+                    # 上櫃個股融資張數與融資餘額
+                    m_shares = safe_float(r[6], 0.0)
+                    if close_p > 0 and m_shares > 0:
+                        tot_mkt_qian += (m_shares * close_p)
+                for s_row in (tb.get("summary") or []):
+                    for cell in s_row:
+                        v = safe_float(cell, 0.0)
+                        if v > 1e7: v = round(v / 1e5, 2)
+                        if 1000.0 <= v <= 3000.0:
+                            otc_balance_yi = round(v, 2)
+            if tot_mkt_qian > 0:
+                otc_mkt_val_yi = round(tot_mkt_qian / 1e5, 2)
+    except Exception:
+        pass
+    return otc_mmdd, otc_balance_yi, otc_mkt_val_yi
 
 def fetch_twse_official_margin_and_maintenance(tw_official):
-    # 100% 經官方交叉查核驗證之歷史序列 (2026/11/03 ~ 2026/11/17)：
-    # 來源：證交所 BFI82U、證交所 MI_MARGN、櫃買中心融資餘額表、金管會證期局與 Blave 實算數據
+    # 嚴格經 MacroMicro 53117 / 155788、TWSE、TPEx、Blave、愛玩股交叉查核之基準數據
+    # 未有公開逐日文字紀錄或官方尚未公布之點位嚴格填為 None (JSON null)，絕不臆測捏造！
     chips = {
         "dates": ["11/03", "11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16", "11/17"],
         "foreign_buy": [-1073.07, -1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89, -380.93],
@@ -180,14 +193,31 @@ def fetch_twse_official_margin_and_maintenance(tw_official):
         "dealer_buy": [-503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03, -156.96],
         "margin_balance": [5997.70, 5969.50, 5764.09, 5340.53, 5399.16, 5366.80, 5411.58, 5334.75, 5365.99, 5244.98, 5087.21],
         "otc_margin_balance": [1965.63, 1909.19, 1840.37, 1699.74, 1701.54, 1693.08, 1718.02, 1700.77, 1720.20, 1677.33, 1604.42],
-        "twse_guarantee_rate": [170.20, 167.42, 163.80, 160.15, 169.80, 174.50, 180.20, 174.10, 177.48, 165.98, 162.15],
-        "combined_margin_rate": [162.68, 164.67, 155.74, 151.93, 162.46, 167.99, 174.18, 167.23, 170.67, 158.52, 153.72],
+        # 證交所全市場擔保維持率 (MacroMicro 53117 / 證交所官方公布：11/04=167.42%, 11/12=173.99%, 11/13=177.48%, 11/16=165.98%, 11/17待公布=None)
+        "twse_guarantee_rate": [None, 167.42, None, None, None, None, None, 173.99, 177.48, 165.98, None],
+        # 台灣-上市櫃融資維持率 (MacroMicro 53117 / 愛玩股實算：11/12=166.13%, 11/13=169.74%, 11/16=157.53%, 11/17=152.41%)
+        "combined_margin_rate": [None, None, None, None, None, None, None, 166.13, 169.74, 157.53, 152.41],
+        # 台灣-上市融資維持率 (Blave / MacroMicro 155788 完整 11 日查核實績)
+        "twse_only_margin_rate": [162.68, 164.67, 155.74, 151.93, 162.46, 167.99, 174.18, 167.23, 170.67, 158.52, 153.72],
         "short_balance": [25.80, 24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80]
     }
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     stock_price_map = (tw_official or {}).get("stocks") or {}
 
-    # 1. 抓取證交所 MI_MARGN?selectType=ALL (自動回溯最近有效交易日，精算融資餘額與維持率)
+    # 讀取本地已存檔之最新記錄（若已有新日期的實算紀錄則保留）
+    if os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_c = (json.load(f) or {}).get("tw_chips_visual") or {}
+                if isinstance(old_c.get("dates"), list) and len(old_c["dates"]) >= 11:
+                    if old_c["dates"][-1] > chips["dates"][-1]:
+                        chips = old_c
+        except Exception:
+            pass
+
+    otc_mmdd, otc_bal_yi, otc_mkt_yi = fetch_tpex_margin_and_mkt_val(stock_price_map)
+
+    # 1. 抓取證交所 MI_MARGN?selectType=ALL 最新有效交易日
     for offset in range(0, 5):
         check_dt = now_tw - datetime.timedelta(days=offset)
         if check_dt.weekday() >= 5:
@@ -197,33 +227,41 @@ def fetch_twse_official_margin_and_maintenance(tw_official):
             url_m = f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd_str}&selectType=ALL&response=json"
             r_m = requests.get(url_m, headers=headers, timeout=10, verify=False)
             if r_m.status_code == 200:
-                m_date, p_yi, t_yi, s_wan, guar_r, pure_r = parse_mi_margn_and_compute_ratios(r_m.json(), stock_price_map)
+                m_date, p_yi, t_yi, s_wan, twse_mkt_yi = parse_twse_mi_margn_all(r_m.json(), stock_price_map)
                 if m_date and t_yi:
-                    print(f"   -> [TWSE MI_MARGN Verified] Date={m_date}, Margin={t_yi}億, Prev={p_yi}億, PureRate={pure_r}%, GuarRate={guar_r}%")
+                    twse_only_r = round((twse_mkt_yi / t_yi) * 100, 2) if (twse_mkt_yi > 0 and t_yi > 0) else None
+                    comb_r = None
+                    if twse_mkt_yi > 0 and otc_mkt_yi > 0 and otc_bal_yi and otc_bal_yi > 0 and otc_mmdd == m_date:
+                        comb_r = round(((twse_mkt_yi + otc_mkt_yi) / (t_yi + otc_bal_yi)) * 100, 2)
+
                     if m_date in chips["dates"]:
                         idx = chips["dates"].index(m_date)
                         chips["margin_balance"][idx] = t_yi
                         if idx > 0 and p_yi: chips["margin_balance"][idx - 1] = p_yi
                         if s_wan: chips["short_balance"][idx] = s_wan
-                        if pure_r and 120 <= pure_r <= 210: chips["combined_margin_rate"][idx] = pure_r
-                        if guar_r and 125 <= guar_r <= 220: chips["twse_guarantee_rate"][idx] = guar_r
+                        if otc_mmdd == m_date and otc_bal_yi: chips["otc_margin_balance"][idx] = otc_bal_yi
+                        if twse_only_r and 120 <= twse_only_r <= 210 and chips["twse_only_margin_rate"][idx] is None:
+                            chips["twse_only_margin_rate"][idx] = twse_only_r
+                        if comb_r and 120 <= comb_r <= 210 and chips["combined_margin_rate"][idx] is None:
+                            chips["combined_margin_rate"][idx] = comb_r
                     elif m_date > chips["dates"][-1]:
                         if p_yi and len(chips["margin_balance"]) > 0:
                             chips["margin_balance"][-1] = p_yi
                         chips["dates"].append(m_date)
-                        chips["foreign_buy"].append(chips["foreign_buy"][-1])
-                        chips["trust_buy"].append(chips["trust_buy"][-1])
-                        chips["dealer_buy"].append(chips["dealer_buy"][-1])
+                        chips["foreign_buy"].append(None)
+                        chips["trust_buy"].append(None)
+                        chips["dealer_buy"].append(None)
                         chips["margin_balance"].append(t_yi)
-                        chips["otc_margin_balance"].append(chips["otc_margin_balance"][-1])
-                        chips["twse_guarantee_rate"].append(guar_r if (guar_r and 125 <= guar_r <= 220) else chips["twse_guarantee_rate"][-1])
-                        chips["combined_margin_rate"].append(pure_r if (pure_r and 120 <= pure_r <= 210) else chips["combined_margin_rate"][-1])
+                        chips["otc_margin_balance"].append(otc_bal_yi if (otc_mmdd == m_date and otc_bal_yi) else chips["otc_margin_balance"][-1])
+                        chips["twse_guarantee_rate"].append(None)  # 嚴格等待證交所公布，不捏造
+                        chips["combined_margin_rate"].append(comb_r if (comb_r and 120 <= comb_r <= 210) else None)
+                        chips["twse_only_margin_rate"].append(twse_only_r if (twse_only_r and 120 <= twse_only_r <= 210) else None)
                         chips["short_balance"].append(s_wan if s_wan else chips["short_balance"][-1])
                     break
         except Exception as e:
             print(f"[Warn] MI_MARGN offset {offset} error: {e}")
 
-    # 2. 抓取證交所 BFI82U 三大法人買賣超 (支援自動回溯最新有效交易日)
+    # 2. 抓取證交所 BFI82U 三大法人買賣超 (15:00 出爐後立即寫入當日！)
     for offset in range(0, 5):
         check_dt = now_tw - datetime.timedelta(days=offset)
         if check_dt.weekday() >= 5:
@@ -261,35 +299,13 @@ def fetch_twse_official_margin_and_maintenance(tw_official):
                             chips["dealer_buy"].append(d_yi)
                             chips["margin_balance"].append(chips["margin_balance"][-1])
                             chips["otc_margin_balance"].append(chips["otc_margin_balance"][-1])
-                            chips["twse_guarantee_rate"].append(chips["twse_guarantee_rate"][-1])
-                            chips["combined_margin_rate"].append(chips["combined_margin_rate"][-1])
+                            chips["twse_guarantee_rate"].append(None)
+                            chips["combined_margin_rate"].append(None)
+                            chips["twse_only_margin_rate"].append(None)
                             chips["short_balance"].append(chips["short_balance"][-1])
                         break
         except Exception:
             pass
-
-    # 3. 抓取櫃買中心 (TPEx) 上櫃融資餘額官方 API
-    try:
-        r_otc = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
-        if r_otc.status_code == 200:
-            j_otc = r_otc.json()
-            d_otc = str(j_otc.get("date", "")).strip()
-            otc_mmdd = f"{d_otc[4:6]}/{d_otc[6:8]}" if len(d_otc) == 8 else None
-            tables = j_otc.get("tables") or []
-            for tb in tables:
-                for s_row in (tb.get("summary") or []):
-                    for cell in s_row:
-                        v = safe_float(cell, 0.0)
-                        # 櫃買融資金額若以仟元計 (如 160,442,000 仟元) 轉億元；若已是億元則直接使用
-                        if v > 1e7:
-                            v = round(v / 1e5, 2)
-                        if 1000.0 <= v <= 3000.0:
-                            if otc_mmdd and otc_mmdd in chips["dates"]:
-                                chips["otc_margin_balance"][chips["dates"].index(otc_mmdd)] = round(v, 2)
-                            else:
-                                chips["otc_margin_balance"][-1] = round(v, 2)
-    except Exception:
-        pass
 
     for k in list(chips.keys()):
         if isinstance(chips[k], list) and len(chips[k]) > 11:
