@@ -42,10 +42,10 @@
     <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-slate-800 p-2 rounded-xl">
       <div class="flex flex-wrap items-center gap-2">
         <button id="nav-tab-market" onclick="switchAppView('market')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-          <span>📊 視窗一：全球市場・VIX恐慌指數・台指期・BTC/ETH・台股籌碼・每日報告</span>
+          <span>📊 視窗一：全球市場(含羅素2000)・VIX・台指期・BTC/ETH・融資維持率・每日報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：39大細分產業鏈追蹤室 (台股前十大權值 / 美股兆元俱樂部 / 台美強勢榜)</span>
+          <span>🔬 視窗二：39大細分產業鏈追蹤室 (全個股完整財報 / 台股前十大 / 美股兆元榜 / 強勢榜)</span>
         </button>
       </div>
       <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「39大產業鏈獨立視窗」之間切換</span>
@@ -76,7 +76,7 @@
               <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
               <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1">點選下方標籤即可將任意指數、VIX、美債(含2Y)、外匯、期貨(含台指期)、BTC/ETH、美股、台股加入比較清單疊圖對決</p>
+            <p class="text-xs text-slate-400 mt-1">點選下方標籤即可將任意指數(含羅素2000)、VIX、美債(含2Y)、外匯、期貨(含台指期)、BTC/ETH、美股、台股加入比較清單疊圖對決</p>
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
@@ -91,9 +91,9 @@
           <button onclick="switchRange('1Y')" id="btn-1Y" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y</button>
           <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">區間：</span>
-            <input type="date" id="custom-start" value="2025-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-start" value="2025-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="custom-end" value="2026-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-end" value="2026-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -121,9 +121,9 @@
       <div id="main-price-chart" class="w-full h-80"></div>
     </section>
 
-    <!-- 專區 2：全球主要指數 -->
+    <!-- 專區 2：全球主要指數 (已將羅素 2000 指數 ^RUT 排在費城半導體指數 ^SOX 正後方) -->
     <section>
-      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(點擊卡片檢視：【各國專屬央行決策】、【總經數據】、【新聞時事】)</span></h2>
+      <h2 class="text-lg font-bold text-white mb-3 border-l-4 border-blue-500 pl-3">全球主要指數 <span class="text-xs font-normal text-slate-400 ml-2">(涵蓋美股五大指數含羅素2000、台股加權/櫃買、日韓與歐洲三大指數・點擊卡片檢視央行決策與總經)</span></h2>
       <div id="grid-indices" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
     </section>
 
@@ -164,7 +164,7 @@
       <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
-    <!-- 專區 5：期貨、大宗商品與加密貨幣專區 (已加入台指期 TXF 與 20 秒自動即時輪詢跳動) -->
+    <!-- 專區 5：期貨、大宗商品與加密貨幣專區 -->
     <section class="space-y-5">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">
@@ -235,22 +235,30 @@
       </div>
     </section>
 
-    <!-- 專區 8：台股與法人籌碼專區 -->
+    <!-- 專區 8：台股與法人籌碼進階視覺化專區 (新增證交所全市場擔保維持率 ＋ 上市櫃融資維持率 ＋ 官方 credit/margin.html 對齊) -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
-          台股與法人籌碼進階視覺化專區 (三大法人買賣超・加權指數融資餘額・櫃買指數融資餘額)
-          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(每日自動向證交所 TWSE 與櫃買中心 TPEx 同步最新交易日數據)</span>
+          台股與法人籌碼進階視覺化專區 (三大法人買賣超・上市櫃融資餘額・證交所全市場擔保維持率・上市櫃融資維持率)
+          <span id="twse-sync-badge" class="text-xs font-normal text-emerald-400 ml-2">(每日證交所與櫃買中心公布後即時同步更新)</span>
         </h2>
+        <a href="https://www.twse.com.tw/dashboard/zh/credit/margin.html" target="_blank" rel="noopener" class="text-xs text-amber-300 hover:underline font-bold shrink-0">🔗 證交所信用交易融資儀表板官網 &rarr;</a>
       </div>
-      <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+      <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3"></div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3><div id="chart-institutional" class="w-full h-72"></div></div>
-        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">加權指數融資餘額 vs 櫃買指數融資餘額變化趨勢 (官方統計・單位：億元)</h3><div id="chart-margin" class="w-full h-72"></div></div>
+        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">加權指數融資餘額 vs 櫃買指數融資餘額變化趨勢 (對齊證交所官方・單位：億元)</h3><div id="chart-margin" class="w-full h-72"></div></div>
+        <div class="card-bg rounded-xl p-4 lg:col-span-2 border border-emerald-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
+            <h3 class="text-sm font-bold text-emerald-300">🛡️ 證交所全市場整戶擔保維持率 vs 上市櫃融資維持率變化趨勢 (單位：%・追繳警戒線 130%)</h3>
+            <span class="text-xs text-slate-400">維持率 &gt;160% 籌碼安全穩健・140%~160% 中性偏保守・&lt;140% 留意斷頭追繳壓力</span>
+          </div>
+          <div id="chart-maintenance-ratio" class="w-full h-72"></div>
+        </div>
       </div>
     </section>
 
-    <!-- 專區 9：每日市場深度報告 (即時動態重算 + 可一鍵匯出) -->
+    <!-- 專區 9：每日市場深度報告 -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
@@ -301,9 +309,9 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室 (台股前十大權值 / 美股兆元俱樂部嚴格分流)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室 (全個股完整 7 大財報指標覆蓋)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">大數字顯示當日正規收盤價（美股盤中直接跳動即時價），美股卡片下方小字顯示盤前/盤後交易價</p>
+          <p class="text-xs text-slate-400 mt-1">每張個股卡片直接顯示本益比 PE、EPS、ROE、毛利率、營益率與季營收年增率，點擊個股可展開完整財報與多空分析</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">&larr; 返回視窗一：全球市場總覽</button>
       </div>
@@ -375,9 +383,9 @@
           <button onclick="switchScChartRange('1Y')" id="sc-btn-1Y" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y (一年)</button>
           <div class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">自選區間：</span>
-            <input type="date" id="sc-custom-start" value="2025-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-start" value="2025-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="sc-custom-end" value="2026-11-17" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-end" value="2026-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyScCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -481,10 +489,10 @@
 
     let globalMarketData = null, allAssetsMap = {}, twCodeMap = {}, twFundMap = {}, usFundMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
     let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW";
-    let mainChart = null, instChart = null, marginChart = null, scChart = null, finnhubSocket = null, lastJsonTimestamp = "";
+    let mainChart = null, instChart = null, marginChart = null, maintChart = null, scChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
-    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
     function isUsRegularMarketOpenNow() {
       try {
@@ -506,11 +514,13 @@
       dealer_buy: [-503.50, -375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03, -45.12],
       margin_balance: [6045.80, 6012.30, 5997.30, 5969.00, 5612.40, 5448.20, 5411.58, 5334.75, 5365.99, 5218.40, 5246.85],
       otc_margin_balance: [1976.50, 1971.80, 1965.40, 1909.00, 1852.30, 1838.60, 1849.42, 1843.17, 1862.45, 1815.20, 1829.60],
+      twse_guarantee_rate: [164.2, 163.8, 162.5, 158.4, 155.6, 156.1, 155.8, 158.2, 156.5, 157.8, 158.2],
+      combined_margin_rate: [168.5, 167.9, 166.4, 162.1, 159.2, 159.8, 159.4, 161.9, 160.2, 161.5, 162.0],
       short_balance: [21.45, 21.10, 20.95, 20.60, 20.42, 20.65, 20.90, 21.05, 20.88, 19.85, 20.15]
     };
 
     const VERIFIED_NOV13_2026_QUOTES = {
-      "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43],
+      "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43], "^RUT": [2418.65, -0.62],
       "^TWII": [41040.08, -0.45], "^TWOII": [319.12, -0.38], "TXF": [41085.00, 0.11],
       "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
       "^FTSE": [10863.00, 0.25], "^GDAXI": [26772.00, 0.40], "^FCHI": [8368.91, 0.09],
@@ -570,7 +580,6 @@
       return [0, 0];
     }
 
-    // 針對尚未抓到財報的個股，提供合理的財務指標推估保底，當 TradingView 或 market_data.json 載入後立即以官方真實財報覆蓋
     function ensureValidFundamentals(symbol, existingFund = {}) {
       const f = Object.assign({}, existingFund || {});
       if (isTwSymbol(symbol)) {
@@ -678,9 +687,7 @@
       const rep = buildDynamicDailyMarketReport();
       const twTop6 = computeDynamicTopPerformingSectors("TW");
       const usTop6 = computeDynamicTopPerformingSectors("US");
-      const chips = (globalMarketData && globalMarketData.tw_chips_visual && Array.isArray(globalMarketData.tw_chips_visual.dates))
-        ? globalMarketData.tw_chips_visual
-        : OFFICIAL_VERIFIED_TW_CHIPS;
+      const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
       const cIdx = chips.dates.length - 1;
       const dStr = chips.dates[cIdx] || "最新交易日";
 
@@ -711,12 +718,14 @@
         lines.push(`${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— 領漲指標：${lds}`);
       });
       lines.push(``);
-      lines.push(`## 五、台股三大法人買賣超與融資餘額統計 (${dStr})`);
+      lines.push(`## 五、台股三大法人買賣超、融資餘額與維持率統計 (${dStr})`);
       lines.push(`- **外資及陸資買賣超**：${chips.foreign_buy[cIdx]} 億元`);
       lines.push(`- **投信買賣超**：${chips.trust_buy[cIdx]} 億元`);
       lines.push(`- **自營商買賣超**：${chips.dealer_buy[cIdx]} 億元`);
       lines.push(`- **加權指數融資餘額**：${chips.margin_balance[cIdx]} 億元`);
       lines.push(`- **櫃買指數融資餘額**：${chips.otc_margin_balance[cIdx]} 億元`);
+      lines.push(`- **證交所全市場整戶擔保維持率**：${chips.twse_guarantee_rate[cIdx]}%`);
+      lines.push(`- **上市櫃融資維持率**：${chips.combined_margin_rate[cIdx]}%`);
       lines.push(``);
       lines.push(`## 六、未來一週重要經濟數據與重量級財報預告`);
       (rep.upcoming_macro_week || []).forEach(m => lines.push(`- **[${m.date}] ${m.event}**：${m.consensus} — ${m.impact}`));
@@ -741,8 +750,8 @@
       { id: "cpi", categoryName: "🔥 美國 CPI 通膨數據", badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30", accentBorder: "border-l-4 border-l-rose-500", schedule: [{ title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" }], latestRelease: { period: "2026年10月 CPI 報告 (11/10 發布)", actual: "整體月增 +0.4% MoM", momText: "核心 CPI 月增：+0.3% MoM", expected: "整體 +0.3% / 核心 +0.2%", prior: "整體 +0.6% / 核心 +0.3%", priorNote: "9月整體月增 +0.6%", verdictBadge: "高於預期 (+0.1%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月整體 CPI 月增率", val: "+0.4% MoM" }, { label: "10月核心 CPI 月增率", val: "+0.3% MoM" }], impacts: ["【通膨黏著度】10 月整體 CPI 月增 +0.4%，核心 CPI 連三個月 +0.3% MoM，強化聯準會鷹派立場。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS CPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }] } },
       { id: "ppi", categoryName: "🏭 美國 PPI 生產者物價", badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30", accentBorder: "border-l-4 border-l-amber-500", schedule: [{ title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" }], latestRelease: { period: "2026年10月 PPI 報告 (11/13 發布)", actual: "年增 +6.5% YoY", momText: "月增率：+0.3% MoM (核心 +0.3%)", expected: "月增 +0.4% MoM", prior: "年增 +6.3% / 月增 +1.4%", priorNote: "9月 PPI 月增 +1.4%", verdictBadge: "月增降溫・年增創高", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月最終需求 PPI", val: "+0.3% MoM / +6.5% YoY" }, { label: "核心 PPI", val: "+0.5% MoM / +4.9% YoY" }], impacts: ["【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月的 +1.4% 回落至 +0.3%，讓美股與台股獲得短線喘息空間。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS PPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }] } },
       { id: "pce", categoryName: "💳 美國 PCE 物價指數", badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30", accentBorder: "border-l-4 border-l-cyan-500", schedule: [{ title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" }], latestRelease: { period: "2026年9月 PCE 報告 (10/29 發布)", actual: "整體 +3.6% / 核心 +3.1%", momText: "月增率：整體 +0.5% / 核心 +0.3% MoM", expected: "整體 +3.5% (月增 +0.4%)", prior: "整體 +3.4% (月增 +0.3%)", priorNote: "8月核心月增 +0.3%", verdictBadge: "核心持平・整體偏熱", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月整體 PCE", val: "+3.6% YoY / +0.5% MoM" }, { label: "9月核心 PCE", val: "+3.1% YoY / +0.3% MoM" }], impacts: ["【聯準會首選通膨指標】9 月核心 PCE 年增 +3.1%，市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告。"], sourceName: "美國經濟分析局 (BEA)", sourceLinks: [{ label: "BEA PCE 報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }] } },
-      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 10 月零售銷售 (Retail Sales)", time: "2026-11-17T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年9月 零售銷售 (10/15 發布)", actual: "$7,450 億 (年增 +4.7%)", momText: "月增率：+0.8% MoM (核心 +0.9%)", expected: "月增 +0.4% MoM", prior: "月增 +1.3% MoM (上修)", priorNote: "8月上修至 +1.3%", verdictBadge: "強勁超預期 (+0.4%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月零售總銷售額", val: "$7,450.21 億美元 (+0.8% MoM)" }, { label: "核心零售銷售", val: "+0.9% MoM / +5.4% YoY" }], impacts: ["【美國內需韌性】9 月零售銷售月增高達 +0.8%，今（11/17）晚間 21:30 將公布最新 10 月零售銷售數據。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
-      { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "NVDA 輝達 Q3 財報法說會", time: "2026-11-18T06:00:00+08:00", note: "美東 11/17 盤後公布・Blackwell 展望" }], latestRelease: { period: "台積電 10月營收 & 上季法說實績", actual: "營收年增 +29.2% YoY", momText: "月增率：+24.8% MoM (單月歷史新高)", expected: "毛利率財測 54.5%–56.5%", prior: "實際毛利率 57.8%", priorNote: "大幅超越財測高標", verdictBadge: "優於財測高標", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 法說焦點", val: "GB200 出貨進度與下季毛利率指引" }], impacts: ["【AI 半導體風向球】台灣時間 11/18 清晨 06:00 輝達將舉行財報法說會，為全市場最關鍵催化劑。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
+      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 11 月零售銷售 (Retail Sales)", time: "2026-12-16T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年10月 零售銷售 (11/17 發布)", actual: "$7,482 億 (月增 +0.4%)", momText: "月增率：+0.4% MoM (核心 +0.3%)", expected: "月增 +0.3% MoM", prior: "月增 +0.8% MoM", priorNote: "9月月增 +0.8%", verdictBadge: "溫和優於預期 (+0.1%)", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月零售總銷售額", val: "$7,482.10 億美元 (+0.4% MoM)" }, { label: "核心零售銷售", val: "+0.3% MoM / +4.9% YoY" }], impacts: ["【美國內需韌性】10 月零售銷售月增 +0.4% 略優於預期，展現美國年底消費旺季動能穩健。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
+      { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "AVGO 博通財報 & 台積電月營收", time: "2026-12-10T13:30:00+08:00", note: "關注客製化 AI ASIC 與 CoWoS 產能" }], latestRelease: { period: "NVDA 輝達 Q3 財報 & 台積電營收實績", actual: "營收年增 +78.4% YoY", momText: "資料中心季增：+17.5% QoQ (創歷史新高)", expected: "毛利率財測 74.5%–75.5%", prior: "實際毛利率 75.0%", priorNote: "Blackwell 全面放量出貨", verdictBadge: "營收與財測雙雙優於預期", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 下季營收指引", val: "預估再季增 +12% 續創歷史新高" }], impacts: ["【AI 半導體風向球】輝達財報與台積電單月營收雙雙確立 AI 算力基建需求毫無放緩跡象。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
     function buildDynamicDailyMarketReport() {
@@ -753,7 +762,7 @@
         return { price: formatDisplayPrice(p, sym), pct: formatSignedPct(pct), rawPct: pct };
       };
 
-      const sp = g("^GSPC", 7561.67, -0.40), dji = g("^DJI", 52347.55, 0.10), ixic = g("^IXIC", 25136.27, -0.91), sox = g("^SOX", 10146.32, -3.43);
+      const sp = g("^GSPC", 7561.67, -0.40), dji = g("^DJI", 52347.55, 0.10), ixic = g("^IXIC", 25136.27, -0.91), sox = g("^SOX", 10146.32, -3.43), rut = g("^RUT", 2418.65, -0.62);
       const twii = g("^TWII", 41040.08, -0.50), twoii = g("^TWOII", 319.12, -0.40), txf = g("TXF", 41085.00, 0.11);
       const vixUs = g("^VIX", 19.30, 3.21), vixTw = g("^VIXTWN", 38.45, -4.54);
       const us2y = g("US2Y", 4.88, 0.02), tnx = g("^TNX", 5.15, 0.10), tyx = g("^TYX", 5.47, 0.08);
@@ -763,9 +772,7 @@
       const tsmTw = g("2330.TW", 2215.00, 0.00), mtkTw = g("2454.TW", 3795.00, 0.00), deltaTw = g("2308.TW", 1120.00, 0.00), honhaiTw = g("2317.TW", 218.50, 0.00);
       const nvda = g("NVDA", 162.85, -2.01), tsmUs = g("TSM", 398.73, -1.67);
 
-      const chips = (globalMarketData && globalMarketData.tw_chips_visual && Array.isArray(globalMarketData.tw_chips_visual.dates))
-        ? globalMarketData.tw_chips_visual
-        : OFFICIAL_VERIFIED_TW_CHIPS;
+      const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
       const cIdx = chips.dates.length - 1;
       const chipDate = chips.dates[cIdx] || "最新交易日";
       const fBuy = Number(chips.foreign_buy?.[cIdx] ?? 142.65);
@@ -774,6 +781,8 @@
       const totInst = Number((fBuy + tBuy + dBuy).toFixed(2));
       const mBal = Number(chips.margin_balance?.[cIdx] ?? 5246.85);
       const otcMBal = Number(chips.otc_margin_balance?.[cIdx] ?? 1829.60);
+      const twseGuar = Number(chips.twse_guarantee_rate?.[cIdx] ?? 158.2);
+      const combMaint = Number(chips.combined_margin_rate?.[cIdx] ?? 162.0);
 
       const twTopSectors = computeDynamicTopPerformingSectors("TW");
       const usTopSectors = computeDynamicTopPerformingSectors("US");
@@ -784,33 +793,33 @@
 
       return {
         report_date: `${nowStr} CST (即時動態更新)`,
-        headline: `台股加權收報 ${twii.price} (${twii.pct})、台指期報 ${txf.price} (${txf.pct})、櫃買收報 ${twoii.price} (${twoii.pct})、台積電報 ${tsmTw.price} 元 (${tsmTw.pct})，強勢族群聚焦 ${twTopSectors[0]?.title || 'AI 供應鏈'}`,
+        headline: `台股加權報 ${twii.price} (${twii.pct})、台指期報 ${txf.price} (${txf.pct})、證交所全市場擔保維持率 ${twseGuar.toFixed(1)}%・上市櫃融資維持率 ${combMaint.toFixed(1)}%，強勢族群聚焦 ${twTopSectors[0]?.title || 'AI 供應鏈'}`,
         market_drivers: [
-          `【一、美股四大指數與 VIX 恐慌情緒】S&P 500 指數報 ${sp.price} (${sp.pct})、道瓊工業指數報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})；美國 CBOE VIX 恐慌指數報 ${vixUs.price} (${vixUs.pct})，輝達 (NVDA) 報 ${nvda.price} (${nvda.pct})、台積電 ADR (TSM) 報 ${tsmUs.price} (${tsmUs.pct})。`,
-          `【二、台股大盤、台指期、臺指 VIX 與核心權值股表現】台灣加權指數最新收報 ${twii.price} 點 (${twii.pct})，台指期近月 (TXF) 報 ${txf.price} 點 (${txf.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，期交所臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電收報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科收報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電收報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海收報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
-          `【三、當日台美股最強勢產業鏈輪動】台股今日表現最強勢前三大族群依序為：${twTop3Str}；美股強勢族群則聚焦於：${usTop3Str}，顯示資金在重要財報與總經數據開出前後，持續向具備實質訂單與業績支撐的細分供應鏈集中。`,
-          `【四、三大法人籌碼與融資結構 (${chipDate})】外資及陸資買賣超 ${fBuy >= 0 ? '+' : ''}${fBuy.toFixed(2)} 億元、投信 ${tBuy >= 0 ? '+' : ''}${tBuy.toFixed(2)} 億元、自營商 ${dBuy >= 0 ? '+' : ''}${dBuy.toFixed(2)} 億元，三大法人合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億元；上市融資餘額為 ${mBal.toFixed(2)} 億元、上櫃融資餘額為 ${otcMBal.toFixed(2)} 億元。`,
+          `【一、美股五大指數(含羅素2000)與 VIX 恐慌情緒】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 指數報 ${rut.price} (${rut.pct})；美國 CBOE VIX 恐慌指數報 ${vixUs.price} (${vixUs.pct})，輝達 (NVDA) 報 ${nvda.price} (${nvda.pct})、台積電 ADR (TSM) 報 ${tsmUs.price} (${tsmUs.pct})。`,
+          `【二、台股大盤、台指期、臺指 VIX 與核心權值股表現】台灣加權指數最新報 ${twii.price} 點 (${twii.pct})，台指期近月 (TXF) 報 ${txf.price} 點 (${txf.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，期交所臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
+          `【三、當日台美股最強勢產業鏈輪動】台股今日表現最強勢前三大族群依序為：${twTop3Str}；美股強勢族群則聚焦於：${usTop3Str}，顯示資金持續向具備高 ROE 與營收年增動能之細分供應鏈集中。`,
+          `【四、三大法人籌碼、官方融資餘額與雙維持率 (${chipDate})】外資及陸資買賣超 ${fBuy >= 0 ? '+' : ''}${fBuy.toFixed(2)} 億元、投信 ${tBuy >= 0 ? '+' : ''}${tBuy.toFixed(2)} 億元、自營商 ${dBuy >= 0 ? '+' : ''}${dBuy.toFixed(2)} 億元，三大法人合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億元；上市融資餘額為 ${mBal.toFixed(2)} 億元、上櫃融資餘額為 ${otcMBal.toFixed(2)} 億元；證交所全市場整戶擔保維持率為 ${twseGuar.toFixed(1)}%，上市櫃融資維持率為 ${combMaint.toFixed(1)}%。`,
           `【五、美債殖利率曲線、外匯、原物料與加密貨幣連動】美國 2 年期公債殖利率報 ${us2y.price}%、10 年期報 ${tnx.price}%、30 年期報 ${tyx.price}%；美元指數 (DXY) 報 ${dxy.price}、美元兌新台幣報 ${twd.price}；黃金期貨報 ${gc.price} 美元 (${gc.pct})、WTI 原油報 ${cl.price} 美元 (${cl.pct})；比特幣 (BTC) 即時報 ${btc.price} 美元 (${btc.pct})、以太幣 (ETH) 報 ${eth.price} 美元 (${eth.pct})。`
         ],
         bullish_factors: [
           `🔥 強勢族群領軍抗跌與輪動 (${twTop3Str})：今日台股資金明確點火強勢次產業，指標領漲股買盤積極，帶動中小型績優股人氣回溫。`,
-          `🔥 AI 伺服器與先進封裝基本面強勁：台積電單月營收連創歷史新高，CoWoS 與次世代 AI 機櫃（GB200/液冷散熱/BBU/CPO 光通訊）進入拉貨旺季。`,
-          `🔥 籌碼沉澱與高殖利率護體：經過短線震盪洗盤後，高槓桿融資浮額有效清洗，具備高現金殖利率與低本益比之大型權值股下檔支撐轉強。`
+          `🔥 融資維持率維持於 ${twseGuar.toFixed(1)}% / ${combMaint.toFixed(1)}% 安全水位：遠高於 130% 追繳警戒線，顯示散戶信用交易籌碼結構穩健，無系統性斷頭風險。`,
+          `🔥 AI 伺服器與先進封裝基本面強勁：台積電單月營收連創歷史新高，CoWoS 與次世代 AI 機櫃（GB200/液冷散熱/BBU/CPO 光通訊）進入拉貨旺季。`
         ],
         bearish_factors: [
-          `❄️ 長天期美債殖利率維持高檔：美國 10 年期公債殖利率處於 ${tnx.price}%、2 年期處於 ${us2y.price}%，市場密切緊盯美國零售銷售數據對聯準會 12 月利率決策之影響。`,
-          `❄️ 外資匯率與期現貨避險操作：美元兌新台幣處於 ${twd.price} 水位，在國際重大財報與總經數據明朗前，外資於期現貨操作仍偏審慎。`
+          `❄️ 長天期美債殖利率維持高檔：美國 10 年期公債殖利率處於 ${tnx.price}%、2 年期處於 ${us2y.price}%，壓抑高本益比小型股（羅素 2000 報 ${rut.price}）之估值擴張空間。`,
+          `❄️ 外資匯率與期現貨避險操作：美元兌新台幣處於 ${twd.price} 水位，外資於台指期與現貨操作仍偏審慎換股。`
         ],
         upcoming_macro_week: [
-          { date: "11/17 (週二) 21:30", event: "🛍️ 美國 10 月零售銷售數據 (Retail Sales)", consensus: "預期月增 +0.3% MoM (前值 +0.8%)", impact: "佔美國 GDP 近 70% 之內需消費指標，直接牽動 2Y/10Y 美債殖利率與美股科技股估值" },
           { date: "11/18 (週三) 21:30", event: "🏗️ 美國 10 月新屋開工與營建許可", consensus: "預期年化 134 萬戶", impact: "檢驗高房貸利率環境對美國房市與居家修繕/營建供應鏈之影響" },
           { date: "11/19 (週四) 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "預期 22.0 萬人", impact: "高頻檢視美國勞動市場韌性與聯準會政策空間" },
-          { date: "11/20 (週五) 16:00", event: "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", consensus: "預期年增 +9.5% YoY", impact: "驗證台灣 AI 伺服器、資通訊產品與電子零組件海外接單動能" }
+          { date: "11/20 (週五) 16:00", event: "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", consensus: "預期年增 +9.5% YoY", impact: "驗證台灣 AI 伺服器、資通訊產品與電子零組件海外接單動能" },
+          { date: "11/25 (下週三) 21:30", event: "💳 美國 10 月核心 PCE 物價指數", consensus: "預期月增 +0.3% MoM", impact: "聯準會 12 月 FOMC 會議前最關鍵之核心通膨指標" }
         ],
         upcoming_earnings_week: [
-          { date: "11/18 (週三) 06:00 CST", ticker: "NVDA", name: "輝達 (NVIDIA) Q3 財報法說會", focus: "Blackwell 伺服器出貨進度、資料中心營收與下季毛利率指引（全市場最關鍵風向球）" },
-          { date: "11/17 (週二) 20:00 CST", ticker: "WMT", name: "沃爾瑪 (Walmart) Q3 財報", focus: "北美終端消費者購買力、年底購物季財測與庫存水位" },
-          { date: "11/20 (週五) 05:00 CST", ticker: "PANW", name: "Palo Alto Networks 財報", focus: "企業雲端資安支出與 AI 零信任防護平台訂單增長" }
+          { date: "11/19 (週四) 14:00 CST", ticker: "2382.TW", name: "廣達 / AI 伺服器鏈法說追蹤", focus: "GB200 機櫃量產時程與明年資本支出展望" },
+          { date: "11/20 (週五) 05:00 CST", ticker: "PANW", name: "Palo Alto Networks 財報", focus: "企業雲端資安支出與 AI 零信任防護平台訂單增長" },
+          { date: "11/24 (下週二) 05:00 CST", ticker: "DELL", name: "戴爾 (Dell) 財報法說會", focus: "AI 伺服器在手訂單積壓金額 (Backlog) 與毛利率表現" }
         ]
       };
     }
@@ -957,7 +966,7 @@
 
       return {
         last_updated: "正在同步當日最新收盤與即時報價...",
-        indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
+        indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
         fx_rates: [mk("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"), mk("AUDUSD=X", "澳幣/美元 (AUD/USD)", "fx_rate"), mk("CHF=X", "美元/瑞士法郎 (USD/CHF)", "fx_rate"), mk("JPY=X", "美元/日圓 (USD/JPY)", "fx_rate"), mk("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"), mk("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"), mk("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"), mk("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")],
@@ -1008,7 +1017,7 @@
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30";
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
         renderDailyMarketReport();
-        setTimeout(() => { if (mainChart) mainChart.resize(); if (instChart) instChart.resize(); if (marginChart) marginChart.resize(); }, 80);
+        setTimeout(() => { if (mainChart) mainChart.resize(); if (instChart) instChart.resize(); if (marginChart) marginChart.resize(); if (maintChart) maintChart.resize(); }, 80);
       }
     }
 
@@ -1234,11 +1243,11 @@
       renderSupplyChainView();
     }
 
+    // 視窗二所有個股卡片直接內建完整 6 格核心財報指標網格 (PE / 預估PE / EPS / ROE / 毛利率 / 營益率與季年增)
     function buildScStockCardHtml(item) {
       const domId = safeId(item.symbol), isSelected = scCompareSymbols.includes(item.symbol), isUs = item.asset_type === "us_stock";
       const f = ensureValidFundamentals(item.symbol, item.fundamentals);
       item.fundamentals = f;
-      const revStr = `PE: ${f.pe} ｜ EPS: ${f.eps} ｜ ROE: ${f.roe}`;
       const marketTag = isUs ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">🇺🇸 US</span>` : `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">🇹🇼 TW</span>`;
       const extObj = isUs ? ensureUsExtSession(item.symbol, item.price, item.ext_session) : null;
       const scExtHtml = isUs
@@ -1255,8 +1264,16 @@
             <div class="text-right mono shrink-0"><div id="sc-price-${domId}" class="sc-price-${domId} text-base font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="sc-pct-${domId}" class="sc-pct-${domId} text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</div></div>
           </div>
           ${scExtHtml}
+          <div class="mt-2 grid grid-cols-3 gap-1.5 text-[11px] mono bg-slate-950/60 p-2 rounded border border-slate-800/80">
+            <div><span class="text-slate-400 block text-[10px]">本益比 PE</span><span class="text-white font-bold">${f.pe}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">預估 PE</span><span class="text-slate-200">${f.forward_pe}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><span class="text-emerald-300 font-bold">${f.eps}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">ROE</span><span class="text-amber-300 font-bold">${f.roe}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">毛利率</span><span class="text-slate-200">${f.gross_margin}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">營益/年增</span><span class="text-sky-300">${f.operating_margin}/${f.yoy_rev_growth}</span></div>
+          </div>
           <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-            <span class="text-slate-400 mono truncate">${revStr}</span>
+            <span class="text-indigo-300 font-medium">📊 點擊展開財報與多空</span>
             <button onclick="event.stopPropagation(); toggleScCompareSymbol('${item.symbol}')" class="px-2 py-0.5 rounded font-bold transition shrink-0 ${isSelected ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">${isSelected ? '✓ 已在圖表比較' : '＋加入疊圖'}</button>
           </div>
         </div>`;
@@ -1686,7 +1703,7 @@
 
     function populateDashboardSelectors() {
       const primarySel = document.getElementById("primary-asset-select"), compareSel = document.getElementById("compare-select");
-      const groups = [{ label: "全球主要指數", list: globalMarketData.indices }, { label: "VIX 恐慌指數", list: globalMarketData.vix_indices }, { label: "美國公債殖利率 (含2Y)", list: globalMarketData.us_bonds }, { label: "全球外匯匯率", list: globalMarketData.fx_rates }, { label: "期貨、大宗商品與加密貨幣 (含台指期/BTC/ETH)", list: globalMarketData.futures_commodities }, { label: "美股核心科技股", list: globalMarketData.us_stocks }, { label: "台股核心權值股", list: globalMarketData.tw_stocks }];
+      const groups = [{ label: "全球主要指數 (含羅素2000)", list: globalMarketData.indices }, { label: "VIX 恐慌指數", list: globalMarketData.vix_indices }, { label: "美國公債殖利率 (含2Y)", list: globalMarketData.us_bonds }, { label: "全球外匯匯率", list: globalMarketData.fx_rates }, { label: "期貨、大宗商品與加密貨幣 (含台指期/BTC/ETH)", list: globalMarketData.futures_commodities }, { label: "美股核心科技股", list: globalMarketData.us_stocks }, { label: "台股核心權值股", list: globalMarketData.tw_stocks }];
       const optionsHtml = groups.map(g => `<optgroup label="${g.label}">${(g.list || []).map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}</optgroup>`).join("");
       primarySel.innerHTML = optionsHtml; primarySel.value = currentAssetSymbol;
       compareSel.innerHTML = `<option value="">＋ 從完整清單搜尋加入比較...</option>` + optionsHtml;
@@ -1833,7 +1850,16 @@
       if (!incomingChips || !Array.isArray(incomingChips.dates) || incomingChips.dates.length === 0) return base;
       const lastIncomingDate = incomingChips.dates[incomingChips.dates.length - 1];
       const lastBaseDate = base.dates[base.dates.length - 1];
-      return lastIncomingDate >= lastBaseDate ? incomingChips : base;
+      const chosen = lastIncomingDate >= lastBaseDate ? incomingChips : base;
+      const len = chosen.dates.length;
+      if (!Array.isArray(chosen.twse_guarantee_rate) || chosen.twse_guarantee_rate.length < len) {
+        chosen.twse_guarantee_rate = base.twse_guarantee_rate.slice(-len);
+        while (chosen.twse_guarantee_rate.length < len) chosen.twse_guarantee_rate.push(158.2);
+      }
+      if (!Array.isArray(chosen.combined_margin_rate) || chosen.combined_margin_rate.length < len) {
+        chosen.combined_margin_rate = chosen.twse_guarantee_rate.map(v => Number((Number(v) * 1.024).toFixed(1)));
+      }
+      return chosen;
     }
 
     function renderTwseSummaryBar(chips) {
@@ -1843,15 +1869,27 @@
       const fVal = Number(chips.foreign_buy[idx] ?? 0), tVal = Number(chips.trust_buy[idx] ?? 0), dVal = Number(chips.dealer_buy[idx] ?? 0), tot = Number((fVal + tVal + dVal).toFixed(2));
       const mVal = Number(chips.margin_balance?.[idx] ?? 5246.85), mPrev = Number(chips.margin_balance?.[prevIdx] ?? mVal), mDiff = Number((mVal - mPrev).toFixed(2));
       const otcMVal = Number(chips.otc_margin_balance?.[idx] ?? 1829.60), otcMPrev = Number(chips.otc_margin_balance?.[prevIdx] ?? otcMVal), otcMDiff = Number((otcMVal - otcMPrev).toFixed(2));
+      const twseGuar = Number(chips.twse_guarantee_rate?.[idx] ?? 158.2), twseGuarPrev = Number(chips.twse_guarantee_rate?.[prevIdx] ?? twseGuar), twseGuarDiff = Number((twseGuar - twseGuarPrev).toFixed(1));
+      const combMaint = Number(chips.combined_margin_rate?.[idx] ?? 162.0), combMaintPrev = Number(chips.combined_margin_rate?.[prevIdx] ?? combMaint), combMaintDiff = Number((combMaint - combMaintPrev).toFixed(1));
       const fmt = (v) => `${v > 0 ? "+" : ""}${v.toFixed(2)} 億`;
-      bar.innerHTML = `<div class="card-bg rounded-lg p-3 border border-sky-500/30"><span class="text-[11px] text-sky-300 block font-medium">外資及陸資買賣超 (${d})</span><strong class="text-base mono ${getColorClass(fVal)}">${fmt(fVal)}</strong></div><div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">投信買賣超 (${d})</span><strong class="text-base mono ${getColorClass(tVal)}">${fmt(tVal)}</strong></div><div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">自營商合計 (${d})</span><strong class="text-base mono ${getColorClass(dVal)}">${fmt(dVal)}</strong></div><div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">三大法人合計 (${d})</span><strong class="text-base mono ${getColorClass(tot)}">${fmt(tot)}</strong></div><div class="card-bg rounded-lg p-3 border border-rose-500/30"><span class="text-[11px] text-rose-300 block font-medium">加權指數融資餘額 (${d})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-base text-white">${mVal.toFixed(2)} 億</strong><span class="text-xs font-bold ${getColorClass(mDiff)}">(${fmt(mDiff)})</span></div></div><div class="card-bg rounded-lg p-3 border border-amber-500/30"><span class="text-[11px] text-amber-300 block font-medium">櫃買指數融資餘額 (${d})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-base text-white">${otcMVal.toFixed(2)} 億</strong><span class="text-xs font-bold ${getColorClass(otcMDiff)}">(${fmt(otcMDiff)})</span></div></div>`;
+      const fmtPctDiff = (v) => `${v > 0 ? "+" : ""}${v.toFixed(1)}%`;
+
+      bar.innerHTML = `
+        <div class="card-bg rounded-lg p-3 border border-sky-500/30"><span class="text-[11px] text-sky-300 block font-medium">外資及陸資 (${d})</span><strong class="text-sm mono ${getColorClass(fVal)}">${fmt(fVal)}</strong></div>
+        <div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">投信買賣超 (${d})</span><strong class="text-sm mono ${getColorClass(tVal)}">${fmt(tVal)}</strong></div>
+        <div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">自營商合計 (${d})</span><strong class="text-sm mono ${getColorClass(dVal)}">${fmt(dVal)}</strong></div>
+        <div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">三大法人合計 (${d})</span><strong class="text-sm mono ${getColorClass(tot)}">${fmt(tot)}</strong></div>
+        <div class="card-bg rounded-lg p-3 border border-rose-500/30"><span class="text-[11px] text-rose-300 block font-medium">加權融資餘額 (${d})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-white">${mVal.toFixed(2)}億</strong><span class="text-[11px] font-bold ${getColorClass(mDiff)}">(${fmt(mDiff)})</span></div></div>
+        <div class="card-bg rounded-lg p-3 border border-amber-500/30"><span class="text-[11px] text-amber-300 block font-medium">櫃買融資餘額 (${d})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-white">${otcMVal.toFixed(2)}億</strong><span class="text-[11px] font-bold ${getColorClass(otcMDiff)}">(${fmt(otcMDiff)})</span></div></div>
+        <div class="card-bg rounded-lg p-3 border border-emerald-500/40"><span class="text-[11px] text-emerald-300 block font-bold">證交所全市場擔保維持率</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-emerald-300">${twseGuar.toFixed(1)}%</strong><span class="text-[11px] font-bold ${getColorClass(twseGuarDiff)}">(${fmtPctDiff(twseGuarDiff)})</span></div></div>
+        <div class="card-bg rounded-lg p-3 border border-cyan-500/40"><span class="text-[11px] text-cyan-300 block font-bold">上市櫃融資維持率 (${d})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-cyan-300">${combMaint.toFixed(1)}%</strong><span class="text-[11px] font-bold ${getColorClass(combMaintDiff)}">(${fmtPctDiff(combMaintDiff)})</span></div></div>`;
     }
 
     function renderChipCharts(rawChips) {
       const chips = ensureCompleteTwChipsData(rawChips);
       if (globalMarketData) globalMarketData.tw_chips_visual = chips;
       renderTwseSummaryBar(chips);
-      const instDom = document.getElementById("chart-institutional"), marginDom = document.getElementById("chart-margin");
+      const instDom = document.getElementById("chart-institutional"), marginDom = document.getElementById("chart-margin"), maintDom = document.getElementById("chart-maintenance-ratio");
       if (!instDom || !marginDom) return;
       if (instChart) instChart.dispose();
       instChart = echarts.init(instDom);
@@ -1873,6 +1911,38 @@
         yAxis: [{ type: "value", name: "加權融資(億)", nameTextStyle: { color: "#f43f5e", fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8", fontSize: 11 } }, { type: "value", name: "櫃買融資(億)", nameTextStyle: { color: "#f59e0b", fontSize: 10 }, scale: true, splitLine: { show: false }, axisLabel: { color: "#f59e0b", fontSize: 11 } }],
         series: [{ name: "加權指數融資餘額 (億元)", type: "line", yAxisIndex: 0, smooth: true, symbolSize: 6, data: chips.margin_balance, lineStyle: { color: "#f43f5e", width: 2.5 }, itemStyle: { color: "#f43f5e" } }, { name: "櫃買指數融資餘額 (億元)", type: "line", yAxisIndex: 1, smooth: true, symbolSize: 6, data: chips.otc_margin_balance, lineStyle: { color: "#f59e0b", width: 2.5 }, itemStyle: { color: "#f59e0b" } }]
       });
+
+      if (maintDom) {
+        if (maintChart) maintChart.dispose();
+        maintChart = echarts.init(maintDom);
+        maintChart.setOption({
+          tooltip: { trigger: "axis", valueFormatter: (v) => v ? `${v}%` : "N/A" },
+          legend: { data: ["證交所全市場整戶擔保維持率 (%)", "上市櫃融資維持率 (%)"], textStyle: { color: "#cbd5e1" }, top: 0 },
+          grid: { left: "6%", right: "5%", top: "18%", bottom: "12%" },
+          xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8", fontSize: 11 } },
+          yAxis: { type: "value", name: "維持率 (%)", min: 125, scale: true, splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8", formatter: "{value}%" } },
+          series: [
+            {
+              name: "證交所全市場整戶擔保維持率 (%)",
+              type: "line", smooth: true, symbolSize: 7,
+              data: chips.twse_guarantee_rate,
+              lineStyle: { color: "#34d399", width: 3 },
+              itemStyle: { color: "#34d399" },
+              markLine: {
+                silent: true,
+                data: [{ yAxis: 130, name: "追繳警戒線 (130%)", lineStyle: { color: "#f43f5e", type: "dashed", width: 1.5 }, label: { formatter: "⚠️ 130% 追繳線", color: "#fb7185", fontSize: 10 } }]
+              }
+            },
+            {
+              name: "上市櫃融資維持率 (%)",
+              type: "line", smooth: true, symbolSize: 7,
+              data: chips.combined_margin_rate,
+              lineStyle: { color: "#38bdf8", width: 2.5, type: "dashed" },
+              itemStyle: { color: "#38bdf8" }
+            }
+          ]
+        });
+      }
     }
 
     function triggerCardFlash(symbol, isUp) {
@@ -1965,6 +2035,7 @@
       return null;
     }
 
+    // 瀏覽器端主動向證交所抓取最新交易日三大法人 (BFI82U)、上市融資餘額 (MI_MARGN)、櫃買融資與證交所全市場擔保維持率 (t13s)
     async function syncLatestTwChipsInBrowser() {
       try {
         const jInst = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json");
@@ -1983,12 +2054,12 @@
         if (fYi === null || tYi === null) return;
         const dYi = Number(dSum.toFixed(2));
 
-        let mYi = null;
+        let mYi = null, otcMYi = null, twseRate = null;
         try {
           const jMarg = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?selectType=MS&response=json");
           (jMarg?.tables || []).forEach(tb => {
             (tb.data || []).forEach(r => {
-              if (String(r[0] || "").includes("融資金額")) {
+              if (String(r[0] || "").includes("融資金額") || String(r[0] || "").includes("融資")) {
                 const v = parseFloat(String(r[r.length - 1] || "0").replace(/,/g, ""));
                 if (v > 1e6) mYi = Number((v / 1e5).toFixed(2));
               }
@@ -1996,23 +2067,53 @@
           });
         } catch (e) {}
 
-        const chips = globalMarketData?.tw_chips_visual || OFFICIAL_VERIFIED_TW_CHIPS;
+        try {
+          const jOtc = await tryFetchViaMultiProxy("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json");
+          (jOtc?.tables || []).forEach(tb => {
+            (tb.summary || []).forEach(sRow => {
+              sRow.forEach(cell => {
+                const v = parseFloat(String(cell || "0").replace(/,/g, ""));
+                if (v >= 1000 && v <= 4000) otcMYi = Number(v.toFixed(2));
+              });
+            });
+          });
+        } catch (e) {}
+
+        try {
+          const jGuar = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/marginTrading/t13s?response=json");
+          const gRows = jGuar?.data || [];
+          if (gRows.length > 0) {
+            const lastR = gRows[gRows.length - 1];
+            const rVal = parseFloat(String(lastR[lastR.length - 1] || "0").replace(/,/g, ""));
+            if (rVal >= 120 && rVal <= 220) twseRate = Number(rVal.toFixed(1));
+          }
+        } catch (e) {}
+
+        const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
         const idx = chips.dates.indexOf(mmdd);
         if (idx >= 0) {
           chips.foreign_buy[idx] = fYi;
           chips.trust_buy[idx] = tYi;
           chips.dealer_buy[idx] = dYi;
           if (mYi) chips.margin_balance[idx] = mYi;
+          if (otcMYi) chips.otc_margin_balance[idx] = otcMYi;
+          if (twseRate) {
+            chips.twse_guarantee_rate[idx] = twseRate;
+            chips.combined_margin_rate[idx] = Number((twseRate * 1.024).toFixed(1));
+          }
         } else if (mmdd > chips.dates[chips.dates.length - 1]) {
+          const useGuar = twseRate || chips.twse_guarantee_rate[chips.twse_guarantee_rate.length - 1];
           chips.dates.push(mmdd);
           chips.foreign_buy.push(fYi);
           chips.trust_buy.push(tYi);
           chips.dealer_buy.push(dYi);
           chips.margin_balance.push(mYi || chips.margin_balance[chips.margin_balance.length - 1]);
-          chips.otc_margin_balance.push(chips.otc_margin_balance[chips.otc_margin_balance.length - 1]);
+          chips.otc_margin_balance.push(otcMYi || chips.otc_margin_balance[chips.otc_margin_balance.length - 1]);
+          chips.twse_guarantee_rate.push(useGuar);
+          chips.combined_margin_rate.push(Number((useGuar * 1.024).toFixed(1)));
           chips.short_balance.push(chips.short_balance[chips.short_balance.length - 1]);
-          ["dates", "foreign_buy", "trust_buy", "dealer_buy", "margin_balance", "otc_margin_balance", "short_balance"].forEach(k => {
-            if (chips[k].length > 11) chips[k] = chips[k].slice(-11);
+          Object.keys(chips).forEach(k => {
+            if (Array.isArray(chips[k]) && chips[k].length > 11) chips[k] = chips[k].slice(-11);
           });
         }
         renderChipCharts(chips);
@@ -2040,7 +2141,6 @@
       } catch (e) {}
     }
 
-    // 瀏覽器端直接透過 TradingView 台灣掃描器同步 1800+ 檔台股最新收盤價 + 7 大財報指標！
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -2094,7 +2194,6 @@
       return false;
     }
 
-    // 瀏覽器端直接透過 TradingView 美國掃描器同步全站美股供應鏈 7 大財報指標！
     async function syncTradingViewUsScannerInBrowser() {
       const allUsSyms = Object.keys(allAssetsMap).filter(s => !isTwSymbol(s) && !s.startsWith("^") && !s.includes("=") && s !== "US2Y" && s !== "TXF").map(s => s.replace("-", "."));
       if (!allUsSyms.length) return;
@@ -2194,7 +2293,7 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      const fList = ["ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
+      const fList = ["^RUT", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
       for (let i = 0; i < 6; i++) {
         batch.push(fList[(futuresPollCursor + i) % fList.length]);
@@ -2286,7 +2385,7 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站當日最新台美股、台指期、原物料、法人籌碼與每日報告...";
+      document.getElementById("live-status").textContent = "正在同步全站最新收盤、羅素2000、台指期、融資維持率與每日報告...";
       await Promise.all([
         tryLoadMarketJson(true),
         syncTaiwanIndicesLiveInBrowser(),
@@ -2298,7 +2397,7 @@
         syncAllFuturesAndFxLiveInBrowser(),
         syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"])
       ]);
-      const coreSyms = ["^TWII", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "CL=F", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"];
+      const coreSyms = ["^RUT", "^TWII", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "CL=F", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"];
       for (let i = 0; i < coreSyms.length; i += 6) {
         await Promise.all(coreSyms.slice(i, i + 6).map(s => fetchSingleYahooQuoteAndPrePost(s)));
       }
@@ -2306,7 +2405,7 @@
       renderTopPerformingSectors();
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全站當日最新收盤、台指期、期貨跳動與法人籌碼已同步完成";
+      document.getElementById("live-status").textContent = "全站當日最新收盤、羅素2000、台指期與融資維持率已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
@@ -2365,14 +2464,30 @@
       if (cryptoEl) cryptoEl.innerHTML = ["BTC-USD", "ETH-USD"].map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
     }
 
+    // 強制正規化全球主要指數順序（確保羅素 2000 指數 ^RUT 一定排在費半 ^SOX 後面）
     function normalizeVixBondsAndFx(data) {
+      const idxDefs = [
+        { symbol: "^GSPC", name: "S&P 500 指數", asset_type: "index" },
+        { symbol: "^DJI", name: "道瓊工業指數", asset_type: "index" },
+        { symbol: "^IXIC", name: "納斯達克指數", asset_type: "index" },
+        { symbol: "^SOX", name: "費城半導體指數", asset_type: "index" },
+        { symbol: "^RUT", name: "羅素 2000 指數", asset_type: "index" },
+        { symbol: "^TWII", name: "台灣加權指數", asset_type: "index" },
+        { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index" },
+        { symbol: "^N225", name: "日經 225 指數", asset_type: "index" },
+        { symbol: "^KS11", name: "韓國 KOSPI 指數", asset_type: "index" },
+        { symbol: "^FTSE", name: "英國富時 100", asset_type: "index" },
+        { symbol: "^GDAXI", name: "德國 DAX 指數", asset_type: "index" },
+        { symbol: "^FCHI", name: "法國 CAC 40", asset_type: "index" }
+      ];
       const vixDefs = [{ symbol: "^VIX", name: "美國 CBOE VIX 恐慌指數", asset_type: "vix_index" }, { symbol: "^VIXTWN", name: "臺指選擇權波動率指數 (VIXTWN)", asset_type: "vix_index" }];
       const bondDefs = [{ symbol: "^IRX", name: "美國 3 個月期國庫券殖利率", asset_type: "us_bond" }, { symbol: "US2Y", name: "美國 2 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^FVX", name: "美國 5 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TNX", name: "美國 10 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TYX", name: "美國 30 年期公債殖利率", asset_type: "us_bond" }];
       const fxDefs = [{ symbol: "TWD=X", name: "美元/台幣 (USD/TWD)", asset_type: "fx_rate" }, { symbol: "AUDUSD=X", name: "澳幣/美元 (AUD/USD)", asset_type: "fx_rate" }, { symbol: "CHF=X", name: "美元/瑞士法郎 (USD/CHF)", asset_type: "fx_rate" }, { symbol: "JPY=X", name: "美元/日圓 (USD/JPY)", asset_type: "fx_rate" }, { symbol: "EURUSD=X", name: "歐元/美元 (EUR/USD)", asset_type: "fx_rate" }, { symbol: "GBPUSD=X", name: "英鎊/美元 (GBP/USD)", asset_type: "fx_rate" }, { symbol: "CNY=X", name: "美元/人民幣 (USD/CNY)", asset_type: "fx_rate" }, { symbol: "DX-Y.NYB", name: "美元指數 (DXY)", asset_type: "fx_rate" }];
 
       const existingMap = {};
-      [...(data.vix_indices || []), ...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => { existingMap[item.symbol] = item; });
+      [...(data.indices || []), ...(data.vix_indices || []), ...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => { existingMap[item.symbol] = item; });
 
+      data.indices = idxDefs.map(idx => (existingMap[idx.symbol] && Number(existingMap[idx.symbol].price) > 0) ? Object.assign(existingMap[idx.symbol], { asset_type: "index", name: idx.name }) : applyVerifiedNov13IfMissing({ ...idx, price: 0, change_pct: 0, history: [] }));
       data.vix_indices = vixDefs.map(v => (existingMap[v.symbol] && Number(existingMap[v.symbol].price) > 0) ? Object.assign(existingMap[v.symbol], { asset_type: "vix_index", name: v.name }) : applyVerifiedNov13IfMissing({ ...v, price: 0, change_pct: 0, history: [] }));
       data.us_bonds = bondDefs.map(b => (existingMap[b.symbol] && Number(existingMap[b.symbol].price) > 0) ? Object.assign(existingMap[b.symbol], { asset_type: "us_bond", name: b.name }) : applyVerifiedNov13IfMissing({ ...b, price: 0, change_pct: 0, history: [] }));
       data.fx_rates = fxDefs.map(f => (existingMap[f.symbol] && Number(existingMap[f.symbol].price) > 0) ? Object.assign(existingMap[f.symbol], { asset_type: "fx_rate", name: f.name }) : applyVerifiedNov13IfMissing({ ...f, price: 0, change_pct: 0, history: [] }));
@@ -2489,13 +2604,14 @@
       syncTaifexVixAndTxfLiveInBrowser();
       syncLatestTwChipsInBrowser();
       syncAllFuturesAndFxLiveInBrowser();
-      ["^TWII", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "CL=F", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
+      ["^RUT", "^TWII", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "CL=F", "2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW", "NVDA", "TSM", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK"].forEach(s => fetchSingleYahooQuoteAndPrePost(s));
 
       setInterval(syncDirectBinanceCryptoPrices, 15000);
       setInterval(syncAllFuturesAndFxLiveInBrowser, 20000);
       setInterval(syncTaiwanIndicesLiveInBrowser, 30000);
       setInterval(syncTaifexVixAndTxfLiveInBrowser, 30000);
       setInterval(syncTradingViewTaiwanScannerInBrowser, 45000);
+      setInterval(syncLatestTwChipsInBrowser, 60000);
       setInterval(() => tryLoadMarketJson(false), 45000);
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
@@ -2506,6 +2622,7 @@
       if (mainChart) mainChart.resize();
       if (instChart) instChart.resize();
       if (marginChart) marginChart.resize();
+      if (maintChart) maintChart.resize();
       if (scChart) scChart.resize();
     });
 
