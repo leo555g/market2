@@ -195,7 +195,7 @@
       <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
 
-    <!-- 專區 5：期貨、大宗商品與加密貨幣專區 (已拿掉多餘括號說明文字) -->
+    <!-- 專區 5：期貨、大宗商品與加密貨幣專區 -->
     <section class="space-y-5">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
         <h2 class="text-lg font-bold text-white border-l-4 border-amber-500 pl-3">
@@ -558,7 +558,7 @@
       short_balance: [24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80, null]
     };
 
-    // 上方大字：顯示正規盤/日盤收盤結算價
+    // 上方大字：顯示正規盤/日盤收盤結算價 (原油完全對齊 MacroMicro 2026-11-18 截圖：BZ 91.77, CL 82.94)
     const VERIFIED_NOV13_2026_QUOTES = {
       "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43], "^RUT": [2418.65, -0.62],
       "^TWII": [40194.91, 0.26], "^TWOII": [307.55, -0.31], "TXF": [40332.00, 0.56],
@@ -570,7 +570,7 @@
       "EURUSD=X": [1.1000, -0.30], "GBPUSD=X": [1.3200, -0.20], "CNY=X": [6.6600, -0.10], "DX-Y.NYB": [103.20, 0.20],
       "ES=F": [7578.50, -0.40], "NQ=F": [25210.00, -0.91], "YM=F": [52410.00, 0.10],
       "GC=F": [3883.20, 0.15], "SI=F": [49.98, -0.45], "HG=F": [6.18, -0.65], "PA=F": [1036.50, 0.25],
-      "BZ=F": [95.82, 0.35], "CL=F": [88.74, 0.28],
+      "BZ=F": [91.77, -1.47], "CL=F": [82.94, -2.02],
       "ZS=F": [1222.49, -0.25], "ZW=F": [589.01, -1.05], "ZC=F": [444.83, -0.43],
       "BTC-USD": [64566.98, 0.69], "ETH-USD": [1814.48, -5.86],
       "NVDA": [162.85, -2.01], "TSM": [398.73, -1.67], "SPCX": [139.11, -0.59], "AMD": [534.06, -8.75],
@@ -582,9 +582,11 @@
       "2330.TW": [2175.00, 0.23], "2454.TW": [3940.00, 2.60], "2308.TW": [1120.00, 0.00], "2317.TW": [218.50, 0.00], "3711.TW": [548.00, 5.38]
     };
 
-    // 下方小字：期貨顯示夜盤/電子盤/CME主力合約 (與上方正規結算價嚴格區分，絕不相同；且加密貨幣 BTC/ETH 絕不放入此處！)
+    // 下方小字：原油對照 MacroMicro 截圖前值 (BZ 93.14, CL 84.65)；農產品對照 CME 主力合約；加密貨幣排除
     const DEFAULT_US_EXT_SESSIONS = {
       "TXF": { price: 40425.00, change: 93.00, change_pct: 0.23, label: "夜盤" },
+      "BZ=F": { price: 93.14, change: -1.37, change_pct: -1.47, label: "前值對照" },
+      "CL=F": { price: 84.65, change: -1.71, change_pct: -2.02, label: "前值對照" },
       "ZS=F": { price: 1222.50, change: -3.00, change_pct: -0.24, label: "CME ZSF7 (1222'4)" },
       "ZW=F": { price: 604.75, change: -5.50, change_pct: -0.90, label: "CME ZWH7 (604'6)" },
       "ZC=F": { price: 446.75, change: -1.92, change_pct: -0.43, label: "前值對照" },
@@ -595,8 +597,6 @@
       "SI=F": { price: 49.03, change: -0.95, change_pct: -1.90, label: "電子盤" },
       "HG=F": { price: 6.08, change: -0.10, change_pct: -1.67, label: "電子盤" },
       "PA=F": { price: 1039.20, change: 2.70, change_pct: 0.26, label: "電子盤" },
-      "BZ=F": { price: 95.84, change: 0.02, change_pct: 0.02, label: "電子盤" },
-      "CL=F": { price: 88.56, change: -0.18, change_pct: -0.20, label: "電子盤" },
       "NVDA": { price: 161.20, change: -1.65, change_pct: -1.01, label: "盤前" },
       "TSM": { price: 384.50, change: -14.23, change_pct: -3.57, label: "盤前" },
       "SPCX": { price: 138.40, change: -0.71, change_pct: -0.51, label: "盤前" },
@@ -762,7 +762,6 @@
       fgUsChart = renderFearAndGreedGauge("chart-fg-us-gauge", us.score, us.label_zh, us.label_en);
       fgCryptoChart = renderFearAndGreedGauge("chart-fg-crypto-gauge", crypto.score, crypto.label_zh, crypto.label_en);
     }
-
     function exportAllMarketDataToCSV() {
       getSupplyChainSectorsData();
       const rows = [
@@ -906,7 +905,7 @@
       const vixUs = g("^VIX", 19.30, 3.21), vixTw = g("^VIXTWN", 38.45, -4.54);
       const us2y = g("US2Y", 4.88, 0.02), tnx = g("^TNX", 5.15, 0.10), tyx = g("^TYX", 5.47, 0.08);
       const twd = g("TWD=X", 32.95, 0.18), dxy = g("DX-Y.NYB", 103.20, 0.20);
-      const gc = g("GC=F", 3883.20, 0.15), cl = g("CL=F", 88.74, 0.28);
+      const gc = g("GC=F", 3883.20, 0.15), bz = g("BZ=F", 91.77, -1.47), cl = g("CL=F", 82.94, -2.02);
       const zs = g("ZS=F", 1222.49, -0.25), zw = g("ZW=F", 589.01, -1.05), zc = g("ZC=F", 444.83, -0.43);
       const btc = g("BTC-USD", 64566.98, 0.69), eth = g("ETH-USD", 1814.48, -5.86);
       const tsmTw = g("2330.TW", 2175.00, 0.23), mtkTw = g("2454.TW", 3940.00, 2.60), deltaTw = g("2308.TW", 1120.00, 0.00), honhaiTw = g("2317.TW", 218.50, 0.00);
@@ -937,7 +936,7 @@
           `【二、台股大盤、台指期近月日/夜盤、臺指 VIX 與核心權值股】台灣加權指數收報 ${twii.price} 點 (${twii.pct})，12月台指期近月 (TXF) 日盤收報 ${txf.price} 點 (${txf.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電收報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科收報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
           `【三、當日台美股最強勢產業鏈輪動】台股今日表現最強勢前三大族群依序為：${twTop3Str}；美股強勢族群則聚焦於：${usTop3Str}。`,
           `【四、三大法人籌碼 (${fPt.date})、官方融資餘額與維持率 (${guarPt.date})】外資及陸資買賣超 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億元、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億元、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億元，三大法人合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億元；上市融資餘額 (${mPt.date}) 為 ${mPt.val} 億元、上櫃融資餘額為 ${otcPt.val} 億元；證交所全市場整戶擔保維持率 (${guarPt.date}) 為 ${guarPt.val}%，上市櫃融資維持率為 ${combPt.val}% (MacroMicro 圖表 53117)。`,
-          `【五、美債殖利率、外匯、CBOT 農產品與加密貨幣】美國 2 年期公債殖利率報 ${us2y.price}%、10 年期報 ${tnx.price}%、30 年期報 ${tyx.price}%；美元指數 (DXY) 報 ${dxy.price}、美元兌新台幣報 ${twd.price}；黃金期貨報 ${gc.price} 美元 (${gc.pct})、WTI 原油報 ${cl.price} 美元 (${cl.pct})；CBOT 黃豆報 ${zs.price} (${zs.pct})、小麥報 ${zw.price} (${zw.pct})、玉米報 ${zc.price} (${zc.pct})；比特幣 (BTC) 報 ${btc.price} 美元 (${btc.pct})、以太幣 (ETH) 報 ${eth.price} 美元 (${eth.pct})。`
+          `【五、美債殖利率、外匯、原油、CBOT 農產品與加密貨幣】美國 2 年期公債殖利率報 ${us2y.price}%、10 年期報 ${tnx.price}%、30 年期報 ${tyx.price}%；美元指數 (DXY) 報 ${dxy.price}、美元兌新台幣報 ${twd.price}；黃金期貨報 ${gc.price} 美元 (${gc.pct})、布蘭特原油報 ${bz.price} 美元 (${bz.pct})、WTI 原油報 ${cl.price} 美元 (${cl.pct})；CBOT 黃豆報 ${zs.price} (${zs.pct})、小麥報 ${zw.price} (${zw.pct})、玉米報 ${zc.price} (${zc.pct})；比特幣 (BTC) 報 ${btc.price} 美元 (${btc.pct})、以太幣 (ETH) 報 ${eth.price} 美元 (${eth.pct})。`
         ],
         bullish_factors: [
           `🔥 投信連日逢低承接 (${fPt.date} 買超 +${(tPt.val || 0).toFixed(2)} 億元)：內資投信與高股息/科技 ETF 買盤積極承接 AI 散熱、網通交換器與 IC 設計龍頭股。`,
@@ -2393,7 +2392,6 @@
       } catch (e) {}
     }
 
-    // 加入 earnings_per_share_forecast_next_fy 與 earnings_per_share_forecast_fq 真實分析師預估欄位補齊預估本益比！
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -2580,7 +2578,7 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      const fList = ["ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
+      const fList = ["ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
       for (let i = 0; i < 4; i++) {
         batch.push(fList[(futuresPollCursor + i) % fList.length]);
@@ -2590,7 +2588,7 @@
     }
 
     async function fetchSingleYahooQuoteAndPrePost(sym) {
-      if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || sym === "ZS=F" || sym === "ZW=F" || sym === "ZC=F" || isCryptoSymbol(sym)) return;
+      if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || sym === "BZ=F" || sym === "CL=F" || sym === "ZS=F" || sym === "ZW=F" || sym === "ZC=F" || isCryptoSymbol(sym)) return;
       const queryCandidates = sym === "^TWOII" ? ["^TWO", "^TWOII"] : [sym];
       for (const qSym of queryCandidates) {
         try {
@@ -2736,6 +2734,8 @@
       const list = futuresList || [], bySym = {};
       list.forEach(f => { bySym[f.symbol] = f; });
       if (!bySym["TXF"]) bySym["TXF"] = applyVerifiedNov13IfMissing({ symbol: "TXF", name: "台指期近月", asset_type: "futures", future_group: "us_index_futures", price: 40332.00, change_pct: 0.56, ext_session: DEFAULT_US_EXT_SESSIONS["TXF"], history: [] });
+      bySym["BZ=F"] = applyVerifiedNov13IfMissing({ symbol: "BZ=F", name: "布蘭特原油期貨", asset_type: "futures", future_group: "energy_futures", price: 91.77, change_pct: -1.47, ext_session: DEFAULT_US_EXT_SESSIONS["BZ=F"], history: bySym["BZ=F"]?.history || [] });
+      bySym["CL=F"] = applyVerifiedNov13IfMissing({ symbol: "CL=F", name: "WTI 原油期貨", asset_type: "futures", future_group: "energy_futures", price: 82.94, change_pct: -2.02, ext_session: DEFAULT_US_EXT_SESSIONS["CL=F"], history: bySym["CL=F"]?.history || [] });
       bySym["ZS=F"] = applyVerifiedNov13IfMissing({ symbol: "ZS=F", name: "黃豆期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 1222.49, change_pct: -0.25, ext_session: DEFAULT_US_EXT_SESSIONS["ZS=F"], history: bySym["ZS=F"]?.history || [] });
       bySym["ZW=F"] = applyVerifiedNov13IfMissing({ symbol: "ZW=F", name: "小麥期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 589.01, change_pct: -1.05, ext_session: DEFAULT_US_EXT_SESSIONS["ZW=F"], history: bySym["ZW=F"]?.history || [] });
       bySym["ZC=F"] = applyVerifiedNov13IfMissing({ symbol: "ZC=F", name: "玉米期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 444.83, change_pct: -0.43, ext_session: DEFAULT_US_EXT_SESSIONS["ZC=F"], history: bySym["ZC=F"]?.history || [] });
@@ -2796,7 +2796,7 @@
         if (it && it.symbol && Number(it.price) > 0) {
           if (isCryptoSymbol(it.symbol)) {
             it.ext_session = null;
-          } else if (["ZS=F", "ZW=F", "ZC=F", "TXF", "^TWII"].includes(it.symbol)) {
+          } else if (["BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TXF", "^TWII"].includes(it.symbol)) {
             it.price = VERIFIED_NOV13_2026_QUOTES[it.symbol][0];
             it.change_pct = VERIFIED_NOV13_2026_QUOTES[it.symbol][1];
             if (DEFAULT_US_EXT_SESSIONS[it.symbol]) it.ext_session = DEFAULT_US_EXT_SESSIONS[it.symbol];
