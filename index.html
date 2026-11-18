@@ -611,7 +611,6 @@
     };
 
     function ensureUsExtSession(symbol, regularPrice, existingExt = null) {
-      // 加密貨幣 (BTC-USD / ETH-USD) 為 24 小時全天候交易，嚴格禁止產生電子盤/盤前盤後小字！
       if (isCryptoSymbol(symbol)) return null;
       if (existingExt && Number(existingExt.price) > 0 && Number(existingExt.price) !== Number(regularPrice)) return existingExt;
       if (DEFAULT_US_EXT_SESSIONS[symbol]) return DEFAULT_US_EXT_SESSIONS[symbol];
@@ -640,9 +639,9 @@
       } else if (usFundMap[symbol]) {
         Object.assign(f, usFundMap[symbol]);
       }
-      const isValid = (v) => v !== undefined && v !== null && v !== "" && v !== "N/A" && v !== "0.0%" && v !== 0;
+      const isValid = (v) => v !== undefined && v !== null && v !== "" && v !== "N/A" && v !== "無預估" && v !== "0.0%" && v !== 0;
       if (!isValid(f.pe)) f.pe = "N/A";
-      if (!isValid(f.forward_pe)) f.forward_pe = "N/A";
+      if (!isValid(f.forward_pe)) f.forward_pe = "無預估";
       if (!isValid(f.eps)) f.eps = "N/A";
       if (!isValid(f.roe)) f.roe = "N/A";
       if (!isValid(f.gross_margin)) f.gross_margin = "N/A";
@@ -1088,7 +1087,6 @@
       if (item.asset_type === "us_stock" || item.asset_type === "tw_stock") {
         item.fundamentals = ensureValidFundamentals(item.symbol, item.fundamentals);
       }
-      // 嚴格排除加密貨幣 (BTC-USD / ETH-USD)，僅對美股與非加密期貨設定盤後/電子盤
       if (isCryptoSymbol(item.symbol)) {
         item.ext_session = null;
       } else if (item.asset_type === "us_stock" || item.asset_type === "futures") {
@@ -1102,7 +1100,7 @@
         symbol: sym, name, asset_type: type, future_group: fg, price: 0, prev_close: 0, change: 0, change_pct: 0,
         ext_session: (!isCryptoSymbol(sym) && (type === "us_stock" || type === "futures")) ? ensureUsExtSession(sym, 0) : null,
         intraday: [], history: [],
-        fundamentals: { pe: fund.pe || "N/A", forward_pe: fund.fpe || "N/A", eps: fund.eps || "N/A", gross_margin: fund.gm || "N/A", operating_margin: fund.om || "N/A", roe: fund.roe || "N/A", yoy_rev_growth: fund.yoy || "N/A" },
+        fundamentals: { pe: fund.pe || "N/A", forward_pe: fund.fpe || "無預估", eps: fund.eps || "N/A", gross_margin: fund.gm || "N/A", operating_margin: fund.om || "N/A", roe: fund.roe || "N/A", yoy_rev_growth: fund.yoy || "N/A" },
         news_sentiment: null
       });
 
@@ -1415,7 +1413,7 @@
           ${scExtHtml}
           <div class="mt-2 grid grid-cols-3 gap-1.5 text-[11px] mono bg-slate-950/60 p-2 rounded border border-slate-800/80">
             <div><span class="text-slate-400 block text-[10px]">本益比 PE</span><span class="text-white font-bold">${f.pe}</span></div>
-            <div><span class="text-slate-400 block text-[10px]">預估 PE</span><span class="text-slate-200">${f.forward_pe}</span></div>
+            <div><span class="text-slate-400 block text-[10px]">預估 Fwd PE</span><span class="text-slate-200">${f.forward_pe}</span></div>
             <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><span class="text-emerald-300 font-bold">${f.eps}</span></div>
             <div><span class="text-slate-400 block text-[10px]">ROE</span><span class="text-amber-300 font-bold">${f.roe}</span></div>
             <div><span class="text-slate-400 block text-[10px]">毛利率</span><span class="text-slate-200">${f.gross_margin}</span></div>
@@ -1681,7 +1679,6 @@
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol), titleText = forceTickerOnly ? item.symbol : item.name, colorCls = getColorClass(item.change_pct, item.symbol);
       let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
-      // 嚴格確保加密貨幣 (BTC-USD / ETH-USD) 絕對不顯示下方電子盤小字！
       if (!isCryptoSymbol(item.symbol) && item.ext_session && item.ext_session.price !== null && Number(item.ext_session.price) > 0) {
         const extColor = getColorClass(item.ext_session.change_pct, item.symbol);
         extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] mono"><span class="text-slate-400">${item.ext_session.label || '盤後'}:</span><span class="${extColor} font-semibold">${formatDisplayPrice(item.ext_session.price, item.symbol)} (${formatSignedPct(item.ext_session.change_pct)})</span></div>`;
@@ -1730,7 +1727,7 @@
               <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
               <div class="grid grid-cols-3 gap-2 text-xs mono bg-slate-900/40 p-2.5 rounded border border-slate-800/60">
                 <div><span class="text-slate-400 block text-[10px]">本益比 PE</span><span id="pe-${domId}">${f.pe ?? 'N/A'}</span></div>
-                <div><span class="text-slate-400 block text-[10px]">預估 Fwd PE</span><span id="fpe-${domId}">${f.forward_pe ?? 'N/A'}</span></div>
+                <div><span class="text-slate-400 block text-[10px]">預估 Fwd PE</span><span id="fpe-${domId}">${f.forward_pe ?? '無預估'}</span></div>
                 <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><span id="eps-${domId}">${f.eps ?? 'N/A'}</span></div>
                 <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
                 <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
@@ -1771,11 +1768,11 @@
               <div class="text-xs font-bold text-slate-300 mb-1.5">最新財報核心數據與獲利能力指標</div>
               <div class="grid grid-cols-3 gap-2 text-xs mono bg-slate-900/40 p-2.5 rounded border border-slate-800/60">
                 <div><span class="text-slate-400 block text-[10px]">本益比 PE</span><span id="pe-${domId}">${f.pe ?? 'N/A'}</span></div>
+                <div><span class="text-slate-400 block text-[10px]">預估 Fwd PE</span><span id="fpe-${domId}">${f.forward_pe ?? '無預估'}</span></div>
                 <div><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><span id="eps-${domId}">${f.eps ?? 'N/A'}</span></div>
                 <div><span class="text-slate-400 block text-[10px]">ROE</span>${f.roe ?? 'N/A'}</div>
                 <div><span class="text-slate-400 block text-[10px]">毛利率</span>${f.gross_margin ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">營益率</span>${f.operating_margin ?? 'N/A'}</div>
-                <div><span class="text-slate-400 block text-[10px]">季營收年增</span>${f.yoy_rev_growth ?? 'N/A'}</div>
+                <div><span class="text-slate-400 block text-[10px]">營益率 / 季年增</span>${f.operating_margin ?? 'N/A'} / ${f.yoy_rev_growth ?? 'N/A'}</div>
               </div>
               ${revHtml}
             </div>
@@ -1827,7 +1824,7 @@
       });
 
       fundBears.push({
-        title: `[估值與財務指標檢視] ${name} 當前本益比 (PE) 為 ${f.pe} 倍、預估本益比 (Forward PE) 為 ${f.forward_pe} 倍，須追蹤後續季度毛利率 (${f.gross_margin}) 與營益率 (${f.operating_margin}) 變化`,
+        title: `[估值與財務指標檢視] ${name} 當前本益比 (PE) 為 ${f.pe} 倍、預估本益比 (Forward PE) 為 ${f.forward_pe}，須追蹤後續季度毛利率 (${f.gross_margin}) 與營益率 (${f.operating_margin}) 變化`,
         url: finUrl,
         date: finSrc
       });
@@ -1941,7 +1938,7 @@
       const revBox = (isTwSymbol(symbol) && f.monthly_rev) ? `<div class="bg-slate-950/60 p-2.5 rounded border border-amber-500/30 col-span-2"><span class="text-amber-300 block text-[10px] font-bold">MOPS 最新一期月營收 (${f.monthly_rev.month})</span><strong class="text-white text-sm">${f.monthly_rev.revenue_yi} (月增 ${formatSignedPct(f.monthly_rev.mom)} / 年增 ${formatSignedPct(f.monthly_rev.yoy)})</strong></div>` : "";
       document.getElementById("modal-fundamentals-grid").innerHTML = isStock
         ? `<div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">本益比 (PE)</span><strong class="text-white text-sm">${f.pe ?? 'N/A'}</strong></div>
-           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span><strong class="text-white text-sm">${f.forward_pe ?? 'N/A'}</strong></div>
+           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span><strong class="text-white text-sm">${f.forward_pe ?? '無預估'}</strong></div>
            <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><strong class="text-emerald-300 text-sm">${f.eps ?? 'N/A'}</strong></div>
            <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">股東權益報酬率 (ROE)</span><strong class="text-amber-300 text-sm">${f.roe ?? 'N/A'}</strong></div>
            <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">毛利率 (Gross Margin)</span><strong class="text-white text-sm">${f.gross_margin ?? 'N/A'}</strong></div>
@@ -2257,7 +2254,6 @@
         if (item.asset_type === "fx_rate") refreshAllFxTwdSublabels();
         if (item.asset_type === "us_bond") updateUsBondSpreadIndicator();
       }
-      // 嚴格確保加密貨幣 (BTC-USD / ETH-USD) 絕對不會顯示下方電子盤小字！
       if (isCryptoSymbol(symbol)) {
         item.ext_session = null;
         const extEl = document.getElementById(`ext-${domId}`);
@@ -2288,7 +2284,7 @@
       const pNum = Number(Number(price).toFixed(2));
       const pctNum = Number(Number(pct).toFixed(2));
       twCodeMap[code] = [pNum, pctNum];
-      if (fundObj) twFundMap[code] = fundObj;
+      if (fundObj) twFundMap[code] = Object.assign(twFundMap[code] || {}, fundObj);
       const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
       VERIFIED_NOV13_2026_QUOTES[symTw] = [pNum, pctNum];
       VERIFIED_NOV13_2026_QUOTES[symTwo] = [pNum, pctNum];
@@ -2296,6 +2292,13 @@
         if (allAssetsMap[sym]) {
           if (fundObj) {
             allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fundObj));
+            const domId = safeId(sym);
+            const peEl = document.getElementById(`pe-${domId}`);
+            const fpeEl = document.getElementById(`fpe-${domId}`);
+            const epsEl = document.getElementById(`eps-${domId}`);
+            if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
+            if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
+            if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
           }
           updateAssetDomPrice(sym, pNum, pctNum);
         }
@@ -2390,6 +2393,7 @@
       } catch (e) {}
     }
 
+    // 加入 earnings_per_share_forecast_next_fy 與 earnings_per_share_forecast_fq 真實分析師預估欄位補齊預估本益比！
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
@@ -2400,7 +2404,8 @@
           "name", "close", "change", "change_abs",
           "price_earnings_ttm", "price_earnings_forward_fy",
           "earnings_per_share_diluted_ttm", "return_on_equity",
-          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm"
+          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
+          "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
         ],
         sort: { sortBy: "name", sortOrder: "asc" },
         range: [0, 4000]
@@ -2420,7 +2425,16 @@
               const pct = Number(d[2] || 0);
               const fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
-              if (fmtN(d[5]) !== null) fObj.forward_pe = fmtN(d[5]);
+              const fwdPeDirect = fmtN(d[5]);
+              const fwdEpsFy = fmtN(d[11]);
+              const fwdEpsFq = fmtN(d[12]);
+              if (fwdPeDirect !== null && fwdPeDirect > 0) {
+                fObj.forward_pe = fwdPeDirect;
+              } else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) {
+                fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
+              } else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) {
+                fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
+              }
               if (fmtN(d[6]) !== null) fObj.eps = fmtN(d[6]);
               if (fmtP(d[7]) !== null) fObj.roe = fmtP(d[7]);
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
@@ -2453,7 +2467,8 @@
           "name", "close", "change", "change_abs",
           "price_earnings_ttm", "price_earnings_forward_fy",
           "earnings_per_share_diluted_ttm", "return_on_equity",
-          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm"
+          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
+          "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
         ],
         range: [0, 1000]
       };
@@ -2472,15 +2487,31 @@
               const pct = Number(d[2] || 0);
               const fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
-              if (fmtN(d[5]) !== null) fObj.forward_pe = fmtN(d[5]);
+              const fwdPeDirect = fmtN(d[5]);
+              const fwdEpsFy = fmtN(d[11]);
+              const fwdEpsFq = fmtN(d[12]);
+              if (fwdPeDirect !== null && fwdPeDirect > 0) {
+                fObj.forward_pe = fwdPeDirect;
+              } else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) {
+                fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
+              } else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) {
+                fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
+              }
               if (fmtN(d[6]) !== null) fObj.eps = fmtN(d[6]);
               if (fmtP(d[7]) !== null) fObj.roe = fmtP(d[7]);
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
               if (fmtP(d[9]) !== null) fObj.operating_margin = fmtP(d[9]);
               if (fmtP(d[10]) !== null) fObj.yoy_rev_growth = fmtP(d[10]);
-              usFundMap[sym] = fObj;
+              usFundMap[sym] = Object.assign(usFundMap[sym] || {}, fObj);
               if (allAssetsMap[sym]) {
                 allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fObj));
+                const domId = safeId(sym);
+                const peEl = document.getElementById(`pe-${domId}`);
+                const fpeEl = document.getElementById(`fpe-${domId}`);
+                const epsEl = document.getElementById(`eps-${domId}`);
+                if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
+                if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
+                if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
                 if (p > 0 && isUsRegularMarketOpenNow()) updateAssetDomPrice(sym, p, pct);
               }
             }
@@ -2558,7 +2589,6 @@
       await Promise.all(batch.map(s => fetchSingleYahooQuoteAndPrePost(s)));
     }
 
-    // 嚴格區分期貨「正規盤收盤結算價 (大字)」與「電子盤即時跳動價 (小字)」，絕不讓兩者顯示同一個數字！
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || sym === "ZS=F" || sym === "ZW=F" || sym === "ZC=F" || isCryptoSymbol(sym)) return;
       const queryCandidates = sym === "^TWOII" ? ["^TWO", "^TWOII"] : [sym];
@@ -2771,7 +2801,6 @@
             it.change_pct = VERIFIED_NOV13_2026_QUOTES[it.symbol][1];
             if (DEFAULT_US_EXT_SESSIONS[it.symbol]) it.ext_session = DEFAULT_US_EXT_SESSIONS[it.symbol];
           } else if (it.asset_type === "futures" && it.ext_session && Number(it.ext_session.price) === Number(it.price)) {
-            // 若後端 JSON 把大字與小字存成同一個數字，前端自動將大字還原為 prev_close 正規結算價，小字保留為電子盤價
             if (Number(it.prev_close) > 0 && Number(it.prev_close) !== Number(it.price)) {
               const liveP = Number(it.price);
               const settleP = Number(it.prev_close);
@@ -2790,9 +2819,9 @@
           if (isTwSymbol(it.symbol)) {
             const c = String(it.symbol).split(".")[0];
             twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
-            if (it.fundamentals) twFundMap[c] = it.fundamentals;
+            if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
           } else if (it.fundamentals) {
-            usFundMap[it.symbol] = it.fundamentals;
+            usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
           }
           it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
           allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
@@ -2808,9 +2837,9 @@
                 if (isTwSymbol(it.symbol)) {
                   const c = String(it.symbol).split(".")[0];
                   twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
-                  if (it.fundamentals) twFundMap[c] = it.fundamentals;
+                  if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
                 } else if (it.fundamentals) {
-                  usFundMap[it.symbol] = it.fundamentals;
+                  usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
                 }
                 it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
                 allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
