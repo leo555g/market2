@@ -229,22 +229,60 @@ def fetch_fear_and_greed_indices():
         "us_cnn": {"score": None, "label_zh": "同步中", "label_en": "LOADING", "prev_close": None, "updated": now_tw.strftime("%Y-%m-%d"), "source": "CNN Fear & Greed Index"},
         "crypto_alt": {"score": None, "label_zh": "同步中", "label_en": "LOADING", "prev_close": None, "updated": now_tw.strftime("%Y-%m-%d"), "source": "Alternative.me Crypto F&G"}
     }
-    try:
-        r_cnn = requests.get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata", headers={"User-Agent": "Mozilla/5.0", "Referer": "https://www.cnn.com/markets/fear-and-greed"}, timeout=8)
-        if r_cnn.status_code == 200:
-            fg_obj = (r_cnn.json() or {}).get("fear_and_greed") or {}
-            sc = safe_float(fg_obj.get("score"), None)
-            prev_sc = safe_float(fg_obj.get("previous_close"), None)
-            if sc is not None and 0 <= sc <= 100:
-                l_zh, l_en = classify_fg_label(sc)
-                fg_data["us_cnn"] = {
-                    "score": round(sc), "label_zh": l_zh, "label_en": l_en,
-                    "prev_close": round(prev_sc) if prev_sc is not None else round(sc),
-                    "updated": str(fg_obj.get("timestamp", ""))[:10] or now_tw.strftime("%Y-%m-%d"),
-                    "source": "CNN Business 官方 API"
-                }
-    except Exception:
-        pass
+    cnn_headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Origin": "https://www.cnn.com",
+        "Referer": "https://www.cnn.com/markets/fear-and-greed"
+    }
+    cnn_urls = [
+        "https://production.dataviz.cnn.io/index/fearandgreed/graphdata",
+        "https://production.dataviz.cnn.io/index/fearandgreed/graphdata/2026-01-01"
+    ]
+    for u in cnn_urls:
+        try:
+            r_cnn = requests.get(u, headers=cnn_headers, timeout=10)
+            if r_cnn.status_code == 200:
+                j_cnn = r_cnn.json() or {}
+                fg_obj = j_cnn.get("fear_and_greed") or {}
+                sc = safe_float(fg_obj.get("score"), None)
+                prev_sc = safe_float(fg_obj.get("previous_close"), None)
+                if sc is None:
+                    hist_arr = ((j_cnn.get("fear_and_greed_historical") or {}).get("data")) or []
+                    if hist_arr:
+                        sc = safe_float(hist_arr[-1].get("y"), None)
+                        if prev_sc is None and len(hist_arr) > 1:
+                            prev_sc = safe_float(hist_arr[-2].get("y"), sc)
+                if sc is not None and 0 <= sc <= 100:
+                    l_zh, l_en = classify_fg_label(sc)
+                    fg_data["us_cnn"] = {
+                        "score": round(sc), "label_zh": l_zh, "label_en": l_en,
+                        "prev_close": round(prev_sc) if prev_sc is not None else round(sc),
+                        "updated": str(fg_obj.get("timestamp", ""))[:10] or now_tw.strftime("%Y-%m-%d"),
+                        "source": "CNN Business 官方 API"
+                    }
+                    break
+        except Exception:
+            pass
+
+    # 若本次 CNN 連線失敗，保留先前 data/market_data.json 中已成功抓取的有效數值
+    if fg_data["us_cnn"]["score"] is None and os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_us = ((json.load(f) or {}).get("fear_greed") or {}).get("us_cnn") or {}
+                old_sc = safe_float(old_us.get("score"), None)
+                if old_sc is not None and 0 <= old_sc <= 100:
+                    l_zh, l_en = classify_fg_label(old_sc)
+                    fg_data["us_cnn"] = {
+                        "score": round(old_sc), "label_zh": l_zh, "label_en": l_en,
+                        "prev_close": old_us.get("prev_close"),
+                        "updated": old_us.get("updated") or now_tw.strftime("%Y-%m-%d"),
+                        "source": old_us.get("source") or "CNN Business (快取)"
+                    }
+        except Exception:
+            pass
+
     try:
         r_alt = requests.get("https://api.alternative.me/fng/?limit=2", headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
         if r_alt.status_code == 200:
@@ -262,6 +300,7 @@ def fetch_fear_and_greed_indices():
     except Exception:
         pass
     return fg_data
+
 
 # 5. 全自動台股三大法人 + 上市櫃融資餘額(10日完整) + 官方公式實算每日上市融資維持率 (零寫死日期)
 def fetch_twse_close_prices_for_date(ymd, headers):
