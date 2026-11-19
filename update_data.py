@@ -74,36 +74,14 @@ FUTURES_AND_COMMODITIES = {
     "ES=F": {"name": "小S&P期貨", "group": "us_index_futures"}, "NQ=F": {"name": "小納斯達克期貨", "group": "us_index_futures"}, "YM=F": {"name": "小道瓊期貨", "group": "us_index_futures"},
     "GC=F": {"name": "黃金期貨", "group": "metals_futures"}, "SI=F": {"name": "白銀期貨", "group": "metals_futures"}, "HG=F": {"name": "銅期貨", "group": "metals_futures"}, "PA=F": {"name": "鈀金期貨", "group": "metals_futures"},
     "BZ=F": {"name": "布蘭特原油期貨", "group": "energy_futures"}, "CL=F": {"name": "WTI 原油期貨", "group": "energy_futures"},
-    "ZS=F": {"name": "黃豆期貨 (USc/bu)", "group": "agri_futures"}, "ZW=F": {"name": "小麥期貨 (USc/bu)", "group": "agri_futures"}, "ZC=F": {"name": "玉米期貨 (USc/bu)", "group": "agri_futures"},
+    "ZS=F": {"name": "黃豆期貨 (CBOT)", "group": "agri_futures"}, "ZW=F": {"name": "小麥期貨 (CBOT)", "group": "agri_futures"}, "ZC=F": {"name": "玉米期貨 (CBOT)", "group": "agri_futures"},
     "BTC-USD": {"name": "比特幣 (BTC)", "group": "crypto_assets"}, "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
-CORE_FUNDAMENTALS_DB = {
-    "NVDA": {"pe": 42.8, "forward_pe": 31.5, "eps": 3.80, "gross_margin": "75.0%", "operating_margin": "62.1%", "roe": "115.2%", "yoy_rev_growth": "+78.4%"},
-    "TSM": {"pe": 24.1, "forward_pe": 19.8, "eps": 16.54, "gross_margin": "57.8%", "operating_margin": "47.5%", "roe": "31.2%", "yoy_rev_growth": "+39.0%"},
-    "SPCX": {"pe": "N/A", "forward_pe": 68.5, "eps": -0.25, "gross_margin": "54.2%", "operating_margin": "28.4%", "roe": "24.6%", "yoy_rev_growth": "+64.8%"},
-    "AMD": {"pe": 48.5, "forward_pe": 32.4, "eps": 11.01, "gross_margin": "51.2%", "operating_margin": "24.8%", "roe": "18.5%", "yoy_rev_growth": "+35.2%"},
-    "GOOGL": {"pe": 26.4, "forward_pe": 22.8, "eps": 11.20, "gross_margin": "58.1%", "operating_margin": "32.3%", "roe": "30.8%", "yoy_rev_growth": "+15.1%"},
-    "META": {"pe": 28.2, "forward_pe": 24.1, "eps": 22.75, "gross_margin": "81.5%", "operating_margin": "41.2%", "roe": "36.1%", "yoy_rev_growth": "+18.9%"},
-    "TSLA": {"pe": 88.5, "forward_pe": 68.2, "eps": 4.41, "gross_margin": "18.2%", "operating_margin": "9.3%", "roe": "20.4%", "yoy_rev_growth": "+12.8%"},
-    "AVGO": {"pe": 39.2, "forward_pe": 28.5, "eps": 8.85, "gross_margin": "66.5%", "operating_margin": "58.2%", "roe": "41.5%", "yoy_rev_growth": "+47.0%"},
-    "AMZN": {"pe": 42.1, "forward_pe": 33.5, "eps": 6.33, "gross_margin": "48.0%", "operating_margin": "11.0%", "roe": "22.6%", "yoy_rev_growth": "+11.0%"},
-    "AAPL": {"pe": 38.5, "forward_pe": 31.2, "eps": 9.25, "gross_margin": "46.2%", "operating_margin": "31.5%", "roe": "147.2%", "yoy_rev_growth": "+8.1%"},
-    "MSFT": {"pe": 36.8, "forward_pe": 30.5, "eps": 14.23, "gross_margin": "69.8%", "operating_margin": "44.6%", "roe": "37.1%", "yoy_rev_growth": "+16.0%"},
-    "2330.TW": {"pe": 22.5, "forward_pe": 18.8, "eps": 98.25, "roe": "31.2%", "gross_margin": "57.8%", "operating_margin": "47.5%", "yoy_rev_growth": "+36.0%"},
-    "2454.TW": {"pe": 62.6, "forward_pe": 24.5, "eps": 60.56, "roe": "27.5%", "gross_margin": "48.8%", "operating_margin": "19.5%", "yoy_rev_growth": "+19.4%"},
-    "2308.TW": {"pe": 31.2, "forward_pe": 25.4, "eps": 35.90, "roe": "19.8%", "gross_margin": "34.2%", "operating_margin": "14.8%", "yoy_rev_growth": "+22.4%"},
-    "2317.TW": {"pe": 15.8, "forward_pe": 12.6, "eps": 13.77, "roe": "11.4%", "gross_margin": "6.4%", "operating_margin": "3.2%", "yoy_rev_growth": "+20.1%"},
-    "3711.TW": {"pe": 24.6, "forward_pe": 19.2, "eps": 22.31, "roe": "15.9%", "gross_margin": "18.5%", "operating_margin": "9.2%", "yoy_rev_growth": "+18.3%"}
-}
-
-# ====================================================================
-# 1. 抓取 TWSE 與 TPEx 官方最新一期月營收 OpenAPI (t187ap05_L & mopsfin_t187ap05_O)
-# ====================================================================
+# 1. 官方月營收 OpenAPI (上市 + 上櫃)
 def fetch_official_tw_monthly_revenues():
     rev_map = {}
     headers = {"User-Agent": "Mozilla/5.0"}
-    # 上市月營收 t187ap05_L + 上櫃月營收 mopsfin_t187ap05_O
     endpoints = [
         "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
         "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap05_O"
@@ -120,7 +98,6 @@ def fetch_official_tw_monthly_revenues():
                     yoy = safe_float(row.get("營業收入-去年同月增減(%)") or row.get("YearOnYearChange"), None)
                     cum_yoy = safe_float(row.get("累計營業收入-前期比較增減(%)") or row.get("CumulativeYearOnYearChange"), None)
                     if code and cur_rev > 0:
-                        # 營業收入單位為仟元，除以 100,000 轉為億元
                         rev_yi = round(cur_rev / 1e5, 2)
                         m_str = f"{ym[:3]}年{ym[3:]}月" if len(ym) == 5 else ym
                         rev_map[code] = {
@@ -130,17 +107,13 @@ def fetch_official_tw_monthly_revenues():
                             "yoy": round(yoy, 2) if yoy is not None else 0.0,
                             "cum_yoy": round(cum_yoy, 2) if cum_yoy is not None else 0.0
                         }
-        except Exception as e:
-            print(f"[Warn] Monthly revenue API error ({url}): {e}")
-    print(f"   -> [MOPS OpenAPI] Fetched {len(rev_map)} Taiwan stocks official monthly revenues!")
+        except Exception:
+            pass
     return rev_map
 
-# ====================================================================
-# 2. 抓取 MOPS 當日重大訊息 (t187ap04_L & mopsfin_t187ap04_O)
-# ====================================================================
+# 2. MOPS 重大訊息
 def fetch_official_mops_material_news():
-    mops_by_code = {}
-    mops_general = []
+    mops_by_code, mops_general = {}, []
     headers = {"User-Agent": "Mozilla/5.0"}
     for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap04_L", "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap04_O"]:
         try:
@@ -153,11 +126,7 @@ def fetch_official_mops_material_news():
                     dt = str(row.get("發言日期") or "")
                     tm = str(row.get("發言時間") or "")
                     if code and subj:
-                        item_obj = {
-                            "code": code, "name": name, "subject": subj,
-                            "date": dt, "time": tm,
-                            "url": "https://mops.twse.com.tw/mops/#/web/t05st01"
-                        }
+                        item_obj = {"code": code, "name": name, "subject": subj, "date": dt, "time": tm, "url": "https://mops.twse.com.tw/mops/#/web/t05st01"}
                         mops_by_code.setdefault(code, []).append(item_obj)
                         if len(mops_general) < 25:
                             mops_general.append(item_obj)
@@ -165,9 +134,7 @@ def fetch_official_mops_material_news():
             pass
     return mops_by_code, mops_general
 
-# ====================================================================
-# 3. 抓取真實個股新聞 (Google News RSS) — 附帶真實新聞標題、媒體來源與原文 URL
-# ====================================================================
+# 3. Google News RSS
 def fetch_google_news_rss_for_stock(query_str, max_items=3):
     news_list = []
     try:
@@ -186,9 +153,7 @@ def fetch_google_news_rss_for_stock(query_str, max_items=3):
         pass
     return news_list
 
-# ====================================================================
-# 4. 恐懼與貪婪指數 (CNN & Alternative.me)
-# ====================================================================
+# 4. 恐懼與貪婪指數
 def classify_fg_label(score):
     s = float(score)
     if s <= 25: return "極度恐懼", "EXTREME FEAR"
@@ -199,14 +164,10 @@ def classify_fg_label(score):
 
 def fetch_fear_and_greed_indices():
     fg_data = {
-        "us_cnn": {"score": 31, "label_zh": "恐懼", "label_en": "FEAR", "prev_close": 33, "updated": "CNN Business 官方讀值", "source": "CNN Fear & Greed Index"},
-        "crypto_alt": {"score": 25, "label_zh": "極度恐懼", "label_en": "EXTREME FEAR", "prev_close": 28, "updated": "Alternative.me 官方讀值", "source": "Alternative.me Crypto F&G"}
+        "us_cnn": {"score": 31, "label_zh": "恐懼", "label_en": "FEAR", "prev_close": 33, "updated": now_tw.strftime("%Y-%m-%d"), "source": "CNN Fear & Greed Index"},
+        "crypto_alt": {"score": 25, "label_zh": "極度恐懼", "label_en": "EXTREME FEAR", "prev_close": 28, "updated": now_tw.strftime("%Y-%m-%d"), "source": "Alternative.me Crypto F&G"}
     }
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-        "Accept": "application/json, text/plain, */*",
-        "Referer": "https://www.cnn.com/markets/fear-and-greed"
-    }
+    headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/json", "Referer": "https://www.cnn.com/markets/fear-and-greed"}
     try:
         r_cnn = requests.get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata", headers=headers, timeout=8)
         if r_cnn.status_code == 200:
@@ -233,9 +194,7 @@ def fetch_fear_and_greed_indices():
         pass
     return fg_data
 
-# ====================================================================
-# 5. MacroMicro 53117 維持率 + 證交所 BFI82U (已更新 11/18 三大法人) & MI_MARGN
-# ====================================================================
+# 5. 全自動滾動更新台股籌碼與維持率 (讀取舊檔 -> 追加新日期 -> 保留近 12 日)
 def scrape_macromicro_53117_latest():
     mm_res = {"guar_cur": None, "guar_prev": None, "comb_cur": None, "comb_prev": None}
     headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
@@ -247,25 +206,22 @@ def scrape_macromicro_53117_latest():
                 m_g = re.search(r'全(?:市|市場)(?:擔|担)保(?:維|维)持率.*?(\d{3}\.\d{2})\s*%.*?(\d{3}\.\d{2})\s*%', txt, re.S)
                 m_c = re.search(r'上市(?:櫃|柜)融資(?:維|维)持率.*?(\d{3}\.\d{2})\s*%.*?(\d{3}\.\d{2})\s*%', txt, re.S)
                 if m_g:
-                    mm_res["guar_cur"] = float(m_g.group(1))
-                    mm_res["guar_prev"] = float(m_g.group(2))
+                    mm_res["guar_cur"], mm_res["guar_prev"] = float(m_g.group(1)), float(m_g.group(2))
                 if m_c:
-                    mm_res["comb_cur"] = float(m_c.group(1))
-                    mm_res["comb_prev"] = float(m_c.group(2))
+                    mm_res["comb_cur"], mm_res["comb_prev"] = float(m_c.group(1)), float(m_c.group(2))
                 if mm_res["guar_cur"] and mm_res["comb_cur"]:
                     break
         except Exception:
             pass
     return mm_res
 
-def parse_twse_mi_margn_all(j_data, stock_price_map):
+def parse_twse_mi_margn_summary(j_data):
     if not j_data or j_data.get("stat") != "OK":
         return None, None, None, None
     d_str = str(j_data.get("date", "")).strip()
     mmdd = f"{d_str[4:6]}/{d_str[6:8]}" if len(d_str) == 8 else None
-    tables = j_data.get("tables") or []
     prev_yi, today_yi, short_wan = None, None, None
-    for tb in tables:
+    for tb in (j_data.get("tables") or []):
         fields = [str(x).strip() for x in (tb.get("fields") or [])]
         rows = tb.get("data") or []
         if any("項目" in f for f in fields) and any("今日餘額" in f for f in fields):
@@ -288,9 +244,17 @@ def parse_twse_mi_margn_all(j_data, stock_price_map):
                         short_wan = round(s_z / 1e4, 2)
     return mmdd, prev_yi, today_yi, short_wan
 
-def fetch_twse_official_margin_and_maintenance(tw_official):
-    # 嚴格經證交所 BFI82U (含今日 11/18 15:30 公布之最新三大法人：外資 -765.64億、投信 +175.58億、自營商 -42.02億)
-    # 與 MacroMicro 53117 (11/17 證交所擔保維持率 161.25%、前值 165.98%；上市櫃融資維持率 152.28%、前值 157.53%) 核實對齊
+def ensure_date_slot(chips, mmdd):
+    if mmdd in chips["dates"]:
+        return chips["dates"].index(mmdd)
+    if not chips["dates"] or mmdd > chips["dates"][-1]:
+        chips["dates"].append(mmdd)
+        for k in ["foreign_buy", "trust_buy", "dealer_buy", "margin_balance", "otc_margin_balance", "twse_guarantee_rate", "combined_margin_rate", "twse_only_margin_rate", "short_balance"]:
+            chips.setdefault(k, []).append(None)
+        return len(chips["dates"]) - 1
+    return -1
+
+def fetch_twse_official_margin_and_maintenance():
     chips = {
         "dates": ["11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16", "11/17", "11/18"],
         "foreign_buy": [-1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89, -380.93, -765.64],
@@ -303,21 +267,59 @@ def fetch_twse_official_margin_and_maintenance(tw_official):
         "twse_only_margin_rate": [164.67, 155.74, 151.93, 162.46, 167.99, 174.18, 167.23, 170.67, 158.52, 153.72, None],
         "short_balance": [24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80, None]
     }
-    headers = {"User-Agent": "Mozilla/5.0"}
-    stock_price_map = (tw_official or {}).get("stocks") or {}
+    # 優先讀取本地已存檔之最新歷史紀錄，讓日期可以無縫滾動往後追加
+    if os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_c = (json.load(f) or {}).get("tw_chips_visual") or {}
+                if isinstance(old_c.get("dates"), list) and len(old_c["dates"]) >= 5 and old_c["dates"][-1] >= chips["dates"][-1]:
+                    chips = old_c
+        except Exception:
+            pass
 
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    # A. 抓取證交所 BFI82U 三大法人買賣超 (15:00 後更新)
     for offset in range(0, 5):
         check_dt = now_tw - datetime.timedelta(days=offset)
         if check_dt.weekday() >= 5: continue
         ymd_str = check_dt.strftime("%Y%m%d")
         try:
-            url_m = f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd_str}&selectType=MS&response=json"
-            r_m = requests.get(url_m, headers=headers, timeout=8, verify=False)
+            r_inst = requests.get(f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate={ymd_str}&type=day&response=json", headers=headers, timeout=8, verify=False)
+            if r_inst.status_code == 200:
+                j = r_inst.json()
+                if j.get("stat") == "OK" and j.get("data"):
+                    d_str = str(j.get("date", ymd_str)).strip()
+                    mmdd = f"{d_str[4:6]}/{d_str[6:8]}" if len(d_str) == 8 else None
+                    f_yi, t_yi, d_sum = None, None, 0.0
+                    for row in j["data"]:
+                        name = str(row[0]).strip()
+                        diff_val = safe_float(row[3], 0.0) / 1e8
+                        if "外資及陸資" in name and "外資自營商" not in name: f_yi = round(diff_val, 2)
+                        elif "投信" in name: t_yi = round(diff_val, 2)
+                        elif "自營商" in name: d_sum += diff_val
+                    if mmdd and f_yi is not None and t_yi is not None:
+                        idx = ensure_date_slot(chips, mmdd)
+                        if idx >= 0:
+                            chips["foreign_buy"][idx] = f_yi
+                            chips["trust_buy"][idx] = t_yi
+                            chips["dealer_buy"][idx] = round(d_sum, 2)
+                        break
+        except Exception:
+            pass
+
+    # B. 抓取證交所 MI_MARGN 上市融資餘額 (20:00 後更新)
+    for offset in range(0, 5):
+        check_dt = now_tw - datetime.timedelta(days=offset)
+        if check_dt.weekday() >= 5: continue
+        ymd_str = check_dt.strftime("%Y%m%d")
+        try:
+            r_m = requests.get(f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd_str}&selectType=MS&response=json", headers=headers, timeout=8, verify=False)
             if r_m.status_code == 200:
-                m_date, p_yi, t_yi, s_wan = parse_twse_mi_margn_all(r_m.json(), stock_price_map)
+                m_date, p_yi, t_yi, s_wan = parse_twse_mi_margn_summary(r_m.json())
                 if m_date and t_yi:
-                    if m_date in chips["dates"]:
-                        idx = chips["dates"].index(m_date)
+                    idx = ensure_date_slot(chips, m_date)
+                    if idx >= 0:
                         chips["margin_balance"][idx] = t_yi
                         if idx > 0 and p_yi: chips["margin_balance"][idx - 1] = p_yi
                         if s_wan: chips["short_balance"][idx] = s_wan
@@ -325,19 +327,69 @@ def fetch_twse_official_margin_and_maintenance(tw_official):
         except Exception:
             pass
 
+    # C. 抓取櫃買中心 TPEx 上櫃融資餘額
+    try:
+        r_otc = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
+        if r_otc.status_code == 200:
+            j_otc = r_otc.json()
+            d_otc = str(j_otc.get("date", "")).strip()
+            otc_mmdd = f"{d_otc[4:6]}/{d_otc[6:8]}" if len(d_otc) == 8 else None
+            otc_bal = None
+            for tb in (j_otc.get("tables") or []):
+                for s_row in (tb.get("summary") or []):
+                    for cell in s_row:
+                        v = safe_float(cell, 0.0)
+                        if v > 1e7: v = round(v / 1e5, 2)
+                        if 1000.0 <= v <= 3500.0:
+                            otc_bal = round(v, 2)
+            if otc_mmdd and otc_bal:
+                idx = ensure_date_slot(chips, otc_mmdd)
+                if idx >= 0:
+                    chips["otc_margin_balance"][idx] = otc_bal
+    except Exception:
+        pass
+
+    # D. 抓取 MacroMicro 53117 最新擔保維持率與上市櫃融資維持率
+    mm_latest = scrape_macromicro_53117_latest()
+    if mm_latest["guar_cur"] and mm_latest["comb_cur"] and len(chips["dates"]) >= 2:
+        # 擔保維持率為 T+1 公布，對齊最近一個已結算融資的交易日
+        target_idx = len(chips["dates"]) - 1
+        if chips["margin_balance"][target_idx] is None and target_idx > 0:
+            target_idx -= 1
+        chips["twse_guarantee_rate"][target_idx] = mm_latest["guar_cur"]
+        chips["combined_margin_rate"][target_idx] = mm_latest["comb_cur"]
+        if target_idx > 0:
+            if mm_latest["guar_prev"]: chips["twse_guarantee_rate"][target_idx - 1] = mm_latest["guar_prev"]
+            if mm_latest["comb_prev"]: chips["combined_margin_rate"][target_idx - 1] = mm_latest["comb_prev"]
+
+    # 保持最近 12 個交易日滾動窗口
+    for k in list(chips.keys()):
+        if isinstance(chips[k], list) and len(chips[k]) > 12:
+            chips[k] = chips[k][-12:]
+
     return chips
 
 TV_FUND_COLUMNS = [
     "name", "close", "change", "change_abs",
     "price_earnings_ttm", "price_earnings_forward_fy",
     "earnings_per_share_diluted_ttm", "return_on_equity",
-    "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm"
+    "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
+    "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
 ]
 
 def parse_tv_fundamentals(d):
+    p = safe_float(d[1], 0.0) if len(d) > 1 else 0.0
+    fwd_pe = fmt_num_str(d[5]) if len(d) > 5 else "N/A"
+    if fwd_pe == "N/A" and p > 0:
+        eps_fy = safe_float(d[11], 0.0) if len(d) > 11 else 0.0
+        eps_fq = safe_float(d[12], 0.0) if len(d) > 12 else 0.0
+        if eps_fy > 0:
+            fwd_pe = round(p / eps_fy, 2)
+        elif eps_fq > 0:
+            fwd_pe = round(p / (eps_fq * 4), 2)
     return {
         "pe": fmt_num_str(d[4]) if len(d) > 4 else "N/A",
-        "forward_pe": fmt_num_str(d[5]) if len(d) > 5 else "N/A",
+        "forward_pe": fwd_pe if fwd_pe != "N/A" else "無預估",
         "eps": fmt_num_str(d[6]) if len(d) > 6 else "N/A",
         "roe": fmt_pct_str(d[7]) if len(d) > 7 else "N/A",
         "gross_margin": fmt_pct_str(d[8]) if len(d) > 8 else "N/A",
@@ -346,98 +398,77 @@ def parse_tv_fundamentals(d):
     }
 
 def fetch_tradingview_taiwan_full_market():
-    tv_stocks, tv_fund_map, tv_indices = {}, {}, {}
-    url = "https://scanner.tradingview.com/taiwan/scan"
+    tv_stocks, tv_fund_map = {}, {}
     payload = {
         "filter": [{"left": "close", "operation": "greater", "right": 0}],
-        "options": {"lang": "zh_TW"},
-        "markets": ["taiwan"],
+        "options": {"lang": "zh_TW"}, "markets": ["taiwan"],
         "symbols": {"query": {"types": []}, "tickers": []},
-        "columns": TV_FUND_COLUMNS,
-        "sort": {"sortBy": "name", "sortOrder": "asc"},
-        "range": [0, 4000]
+        "columns": TV_FUND_COLUMNS, "sort": {"sortBy": "name", "sortOrder": "asc"}, "range": [0, 4000]
     }
-    headers = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}
     try:
-        r = requests.post(url, json=payload, headers=headers, timeout=12)
+        r = requests.post("https://scanner.tradingview.com/taiwan/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=12)
         if r.status_code == 200:
             for row in (r.json().get("data") or []):
                 d = row.get("d") or []
                 t_raw = str(row.get("s", ""))
                 code = t_raw.split(":")[-1].strip() if ":" in t_raw else (str(d[0]).strip() if d else "")
                 if len(d) >= 4 and code:
-                    p = safe_float(d[1], 0.0)
-                    pct = safe_float(d[2], 0.0)
-                    chg = safe_float(d[3], 0.0)
-                    prev_p = p - chg
+                    p, pct, chg = safe_float(d[1], 0.0), safe_float(d[2], 0.0), safe_float(d[3], 0.0)
                     if p > 0:
-                        q_obj = {"price": round(p, 2), "prev_close": round(prev_p, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
-                        tv_stocks[code] = q_obj
+                        tv_stocks[code] = {"price": round(p, 2), "prev_close": round(p - chg, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
                         tv_fund_map[code] = parse_tv_fundamentals(d)
-    except Exception as e:
-        print(f"[Warn] TradingView TW Scanner error: {e}")
-    return tv_stocks, tv_fund_map, tv_indices
+    except Exception:
+        pass
+    return tv_stocks, tv_fund_map
 
 def fetch_tradingview_us_fundamentals(us_sym_list):
     us_fund_map = {}
-    url = "https://scanner.tradingview.com/america/scan"
     clean_us = [s.replace("-", ".") for s in set(us_sym_list) if s and not s.startswith("^") and "=" not in s]
     payload = {
         "filter": [{"left": "name", "operation": "in_range", "right": clean_us}],
-        "options": {"lang": "zh_TW"},
-        "markets": ["america"],
+        "options": {"lang": "zh_TW"}, "markets": ["america"],
         "symbols": {"query": {"types": []}, "tickers": []},
-        "columns": TV_FUND_COLUMNS,
-        "range": [0, 1000]
+        "columns": TV_FUND_COLUMNS, "range": [0, 1000]
     }
-    headers = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}
     try:
-        r = requests.post(url, json=payload, headers=headers, timeout=12)
+        r = requests.post("https://scanner.tradingview.com/america/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=12)
         if r.status_code == 200:
             for row in (r.json().get("data") or []):
                 d = row.get("d") or []
                 t_raw = str(row.get("s", ""))
-                sym = t_raw.split(":")[-1].strip().replace(".", "-") if ":" in t_raw else (str(d[0]).strip().replace(".", "-") if d else "")
+                sym = (t_raw.split(":")[-1].strip() if ":" in t_raw else str(d[0]).strip()).replace(".", "-")
                 if len(d) >= 5 and sym:
                     us_fund_map[sym] = parse_tv_fundamentals(d)
     except Exception:
         pass
     return us_fund_map
 
-def fetch_tw_official_all_channels(tw_sym_list):
+def fetch_tw_official_all_channels():
     snapshot = {"indices": {}, "stocks": {}, "fund_map": {}}
-    headers = {"User-Agent": "Mozilla/5.0"}
-
-    tv_stocks, tv_fund_map, tv_indices = fetch_tradingview_taiwan_full_market()
+    tv_stocks, tv_fund_map = fetch_tradingview_taiwan_full_market()
     snapshot["stocks"].update(tv_stocks)
     snapshot["fund_map"].update(tv_fund_map)
-    snapshot["indices"].update(tv_indices)
-
     try:
-        r_idx = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json", headers=headers, timeout=8, verify=False)
+        r_idx = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json", headers={"User-Agent": "Mozilla/5.0"}, timeout=8, verify=False)
         if r_idx.status_code == 200:
             for tb in (r_idx.json().get("tables") or []):
                 for row in (tb.get("data") or []):
                     if row and ("發行量加權股價指數" in str(row[0]) or "加權股價指數" in str(row[0])):
                         cur_p = safe_float(row[1], 0.0)
                         chg_p = safe_float(row[3], 0.0)
-                        if "-" in str(row[2]) or "green" in str(row[2]).lower():
-                            chg_p = -abs(chg_p)
+                        if "-" in str(row[2]) or "green" in str(row[2]).lower(): chg_p = -abs(chg_p)
                         prev_p = cur_p - chg_p
                         pct_p = round((chg_p / prev_p) * 100, 2) if prev_p > 0 else 0.0
                         if cur_p > 15000:
                             snapshot["indices"]["^TWII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": round(chg_p, 2), "change_pct": pct_p}
     except Exception:
         pass
-
     return snapshot
 
-def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
+def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
     yf_map = {}
     skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "SPCX", "TXF"}
-
-    yf_download_syms = []
-    sym_alias_map = {}
+    yf_download_syms, sym_alias_map = [], {}
     for s in dict.fromkeys(symbols_list):
         if s in skip_set: continue
         if s == "^TWOII":
@@ -446,13 +477,11 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         else:
             yf_download_syms.append(s)
 
-    chunk_size = 35
-    for i in range(0, len(yf_download_syms), chunk_size):
-        chunk = yf_download_syms[i:i + chunk_size]
+    for i in range(0, len(yf_download_syms), 35):
+        chunk = yf_download_syms[i:i + 35]
         try:
             df = yf.download(chunk, period="1y", interval="1d", group_by="ticker", threads=True, progress=False)
-            if df is None or df.empty:
-                continue
+            if df is None or df.empty: continue
             for y_sym in chunk:
                 try:
                     sub = df[y_sym] if len(chunk) > 1 else df
@@ -475,14 +504,12 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
         except Exception:
             pass
 
-    # 對期貨、大宗商品與美股抓取 5d/5m 含電子盤/盤前盤後報價
     fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set]
     for i in range(0, len(fut_and_us), 35):
         chunk = fut_and_us[i:i + 35]
         try:
             df_ext = yf.download(chunk, period="5d", interval="5m", prepost=True, group_by="ticker", threads=True, progress=False)
-            if df_ext is None or df_ext.empty:
-                continue
+            if df_ext is None or df_ext.empty: continue
             for sym in chunk:
                 try:
                     sub = df_ext[sym] if len(chunk) > 1 else df_ext
@@ -493,14 +520,18 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
                     if latest_tick_p <= 0: continue
                     reg_p = yf_map[sym]["price"]
                     prev_c = yf_map[sym]["prev_close"]
-                    if sym in FUTURES_AND_COMMODITIES:
-                        # 期貨：大字顯示最新價，小字顯示電子盤與前日結算價差
+                    if sym in ["BTC-USD", "ETH-USD"]:
+                        # 加密貨幣 24 小時交易，直接更新大字且絕不設定 ext_session
                         chg = round(latest_tick_p - prev_c, 2)
-                        pct = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
                         yf_map[sym]["price"] = latest_tick_p
                         yf_map[sym]["change"] = chg
-                        yf_map[sym]["change_pct"] = pct
-                        yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": chg, "change_pct": pct, "label": "電子盤"}
+                        yf_map[sym]["change_pct"] = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
+                        yf_map[sym]["ext_session"] = None
+                    elif sym in FUTURES_AND_COMMODITIES:
+                        # 國際期貨：大字保留日 K 線正規結算價 (reg_p)，小字寫入最新電子盤價
+                        e_chg = round(latest_tick_p - reg_p, 2)
+                        e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
+                        yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": "電子盤"}
                     else:
                         e_chg = round(latest_tick_p - reg_p, 2)
                         e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
@@ -513,10 +544,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list, tw_official):
 
     return yf_map
 
-# ====================================================================
-# 6. 期交所「台指期近月 (TXF)」獨立抓取日盤收盤 (大字) 與 夜盤即時價 (小字)
-#    絕不拿加權指數充數！
-# ====================================================================
 def fetch_official_us2y_and_taifex_vixtwn_and_txf():
     extra = {}
     try:
@@ -547,12 +574,11 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
                     diff = safe_float(q.get("CDiff"), last_p - ref_p)
                     pct = safe_float(q.get("CDiffRate"), (diff / ref_p * 100) if ref_p > 0 else 0.0)
                     if 8.0 <= last_p <= 95.0:
-                        extra["^VIXTWN"] = {"price": round(last_p, 2), "prev_close": round(ref_p, 2), "change": round(diff, 2), "change_pct": round(pct, 2), "history": [{"date": "2026-11-17", "close": round(ref_p, 2)}, {"date": now_tw.strftime("%Y-%m-%d"), "close": round(last_p, 2)}], "ext_session": None}
+                        extra["^VIXTWN"] = {"price": round(last_p, 2), "prev_close": round(ref_p, 2), "change": round(diff, 2), "change_pct": round(pct, 2), "history": [{"date": now_tw.strftime("%Y-%m-%d"), "close": round(last_p, 2)}], "ext_session": None}
                         break
         except Exception:
             pass
 
-    # 分別抓取台指期近月「日盤 (-S)」(作為大字正規盤收盤/即時價) 與「夜盤/全盤 (-M)」(作為小字盤後/夜盤價)
     day_txf, night_txf = None, None
     try:
         r_day = requests.post("https://mis.taifex.com.tw/futures/api/getQuoteDetail", json={"SymbolID": ["TXF-S", "TXFL6-S", "TXFA7-S"]}, headers=headers_mis, timeout=6, verify=False)
@@ -567,7 +593,6 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
                     break
     except Exception:
         pass
-
     try:
         r_night = requests.post("https://mis.taifex.com.tw/futures/api/getQuoteDetail", json={"SymbolID": ["TXF-M", "TXFL6-M", "TXFA7-M"]}, headers=headers_mis, timeout=6, verify=False)
         if r_night.status_code == 200:
@@ -582,20 +607,13 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
     except Exception:
         pass
 
-    # 若日盤或夜盤成功抓到，寫入 extra["TXF"]；否則使用今日 11/18 永豐期貨與工商時報核實之 12月台指期日盤 40,332 (+0.56%) 與夜盤 40,425 (+0.23%)
-    if not day_txf:
-        day_txf = {"price": 40332.00, "prev_close": 40107.00, "change": 225.00, "change_pct": 0.56}
-    if not night_txf:
-        night_txf = {"price": 40425.00, "change": 93.00, "change_pct": 0.23, "label": "夜盤"}
-
-    extra["TXF"] = {
-        "price": day_txf["price"],
-        "prev_close": day_txf["prev_close"],
-        "change": day_txf["change"],
-        "change_pct": day_txf["change_pct"],
-        "history": [{"date": "2026-11-17", "close": day_txf["prev_close"]}, {"date": now_tw.strftime("%Y-%m-%d"), "close": day_txf["price"]}],
-        "ext_session": night_txf
-    }
+    if day_txf:
+        extra["TXF"] = {
+            "price": day_txf["price"], "prev_close": day_txf["prev_close"],
+            "change": day_txf["change"], "change_pct": day_txf["change_pct"],
+            "history": [{"date": now_tw.strftime("%Y-%m-%d"), "close": day_txf["price"]}],
+            "ext_session": night_txf
+        }
     return extra
 
 def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
@@ -617,107 +635,43 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
         pass
     return items_map, sector_stocks_map
 
-def build_stock_specific_sentiment_and_news(symbol, display_name, asset_type, f_obj, mops_by_code, fetch_rss=False):
-    """
-    針對每一檔個股生成專屬的「MOPS重訊・月營收・財報指標」與「真實新聞時事」，絕不寫重複的罐頭廢話！
-    """
+def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by_code, fetch_rss=False):
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     fund_bulls, fund_bears = [], []
     m_rev = f_obj.get("monthly_rev")
 
-    # 1. 台股：先檢查當日是否有 MOPS 重大訊息，並附上最新一期 MOPS 月營收與財報實績
     if tw_code:
         if tw_code in mops_by_code:
             for mp in mops_by_code[tw_code][:3]:
-                fund_bulls.append({"title": f"[MOPS重訊公告] {mp['subject']}", "url": mp["url"], "date": f"MOPS公開資訊觀測站・{mp['date']} {mp['time']}"})
+                fund_bulls.append({"title": f"[MOPS重訊] {mp['subject']}", "url": mp["url"], "date": f"MOPS・{mp['date']} {mp['time']}"})
         if m_rev:
-            yoy_v = safe_float(m_rev.get("yoy"), 0.0)
-            mom_v = safe_float(m_rev.get("mom"), 0.0)
-            rev_entry = {
-                "title": f"[MOPS最新月營收 ({m_rev['month']})] 單月營收 {m_rev['revenue_yi']} (月增率 {mom_v:+.2f}% / 年增率 {yoy_v:+.2f}% / 累計年增 {m_rev.get('cum_yoy', 0):+.2f}%)",
-                "url": "https://mops.twse.com.tw/mops/#/web/t05st10_ifrs",
-                "date": f"資料來源：證交所/櫃買中心 OpenAPI ({m_rev['month']}官方申報)"
-            }
-            if yoy_v >= 0:
-                fund_bulls.append(rev_entry)
-            else:
-                fund_bears.append(rev_entry)
-
-    # 2. 台美股財報實績拆解（依各股實際 EPS / ROE / 毛利率 / 營益率 / 季營收年增率動態生成）
-    pe_v = f_obj.get("pe", "N/A")
-    fpe_v = f_obj.get("forward_pe", "N/A")
-    eps_v = f_obj.get("eps", "N/A")
-    roe_v = f_obj.get("roe", "N/A")
-    gm_v = f_obj.get("gross_margin", "N/A")
-    om_v = f_obj.get("operating_margin", "N/A")
-    yoy_g = f_obj.get("yoy_rev_growth", "N/A")
-
-    yoy_num = safe_float(yoy_g, 0.0)
-    roe_num = safe_float(roe_v, 0.0)
-    pe_num = safe_float(pe_v, 0.0)
+            yoy_v, mom_v = safe_float(m_rev.get("yoy"), 0.0), safe_float(m_rev.get("mom"), 0.0)
+            rev_entry = {"title": f"[MOPS月營收 ({m_rev['month']})] 單月營收 {m_rev['revenue_yi']} (MoM {mom_v:+.2f}% / YoY {yoy_v:+.2f}%)", "url": "https://mops.twse.com.tw/mops/#/web/t05st10_ifrs", "date": "證交所/櫃買中心 OpenAPI"}
+            (fund_bulls if yoy_v >= 0 else fund_bears).append(rev_entry)
 
     fin_url = "https://mops.twse.com.tw/mops/#/web/t163sb04" if tw_code else f"https://finance.yahoo.com/quote/{symbol}/financials/"
-    fin_src = "MOPS 財務報表專區 / TradingView 官方財報" if tw_code else f"SEC Filings / Yahoo Finance ({symbol} 最新財報)"
+    fin_src = "MOPS 財務報表 / TradingView" if tw_code else f"SEC Filings / Yahoo Finance ({symbol})"
+    fund_bulls.append({"title": f"[最新財報實績] EPS {f_obj.get('eps')}、ROE {f_obj.get('roe')}、毛利率 {f_obj.get('gross_margin')}、營益率 {f_obj.get('operating_margin')}、季營收年增 {f_obj.get('yoy_rev_growth')}", "url": fin_url, "date": fin_src})
+    fund_bears.append({"title": f"[估值水位檢視] 本益比 PE {f_obj.get('pe')} 倍、預估本益比 {f_obj.get('forward_pe')}", "url": fin_url, "date": fin_src})
 
-    if yoy_num > 0 or roe_num >= 15:
-        fund_bulls.append({
-            "title": f"[最新財報獲利實績] EPS (TTM) 達 {eps_v}、ROE {roe_v}、毛利率 {gm_v}、營業利益率 {om_v}、季度營收年增率 {yoy_g}",
-            "url": fin_url, "date": fin_src
-        })
-    else:
-        fund_bears.append({
-            "title": f"[最新財報數據檢視] EPS (TTM) 為 {eps_v}、ROE {roe_v}、毛利率 {gm_v}、營益率 {om_v}、季營收年增 {yoy_g}",
-            "url": fin_url, "date": fin_src
-        })
-
-    if pe_num > 35:
-        fund_bears.append({
-            "title": f"[估值水位提示] 當前本益比 (PE) 為 {pe_v} 倍 (預估 Forward PE 為 {fpe_v} 倍)，處於相對高估值區間，需留意財報成長率是否持續匹配",
-            "url": fin_url, "date": fin_src
-        })
-    elif 0 < pe_num <= 25:
-        fund_bulls.append({
-            "title": f"[估值具備支撐] 當前本益比 (PE) 為 {pe_v} 倍 (預估 Forward PE 為 {fpe_v} 倍)，估值處於合理偏低區間",
-            "url": fin_url, "date": fin_src
-        })
-
-    if not fund_bulls:
-        fund_bulls.append({"title": f"[最新財報指標] {display_name} 最新毛利率 {gm_v}、營益率 {om_v}、EPS {eps_v}", "url": fin_url, "date": fin_src})
-    if not fund_bears:
-        fund_bears.append({"title": f"[財務與估值追蹤] {display_name} 當前本益比 PE {pe_v} 倍、預估 PE {fpe_v} 倍，持續追蹤下季毛利率變化", "url": fin_url, "date": fin_src})
-
-    # 3. 產業與個股真實新聞時事
     ev_bulls, ev_bears = [], []
     if fetch_rss:
-        q_kw = display_name if tw_code else f"{symbol} stock"
-        rss_items = fetch_google_news_rss_for_stock(q_kw, max_items=4)
-        for n_item in rss_items:
-            t_txt = n_item["title"]
-            if any(k in t_txt for k in ["跌", "砍", "賣超", "下滑", "虧損", "降評", "利空", "悲觀", "重挫", "fall", "drop", "cut"]):
+        for n_item in fetch_google_news_rss_for_stock(display_name if tw_code else f"{symbol} stock", max_items=4):
+            if any(k in n_item["title"] for k in ["跌", "砍", "賣超", "下滑", "虧損", "降評", "利空", "重挫", "fall", "drop", "cut"]):
                 ev_bears.append(n_item)
             else:
                 ev_bulls.append(n_item)
 
     news_search_url = f"https://news.google.com/search?q={quote(display_name)}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
-    if not ev_bulls:
-        ev_bulls.append({"title": f"🔗 點此直接檢視「{display_name} ({symbol})」Google 新聞最新正向報導與外資研究報告", "url": news_search_url, "date": "Google News 即時新聞檢索"})
-    if not ev_bears:
-        ev_bears.append({"title": f"🔗 點此直接檢視「{display_name} ({symbol})」最新市場風險提示與法人籌碼異動報導", "url": news_search_url, "date": "Google News 即時新聞檢索"})
+    if not ev_bulls: ev_bulls.append({"title": f"🔗 檢視「{display_name} ({symbol})」Google 新聞最新報導", "url": news_search_url, "date": "Google News"})
+    if not ev_bears: ev_bears.append({"title": f"🔗 檢視「{display_name} ({symbol})」最新風險與法人籌碼報導", "url": news_search_url, "date": "Google News"})
 
     return {
-        "bullish": [fund_bulls[0]] + ([ev_bulls[0]] if ev_bulls else []),
-        "bearish": [fund_bears[0]] + ([ev_bears[0]] if ev_bears else []),
+        "bullish": [fund_bulls[0], ev_bulls[0]],
+        "bearish": [fund_bears[0], ev_bears[0]],
         "categories": {
-            "fundamentals_mops": {
-                "label": "📑 MOPS重訊・最新月營收・財報指標" if tw_code else "📑 SEC最新財報・季營收・獲利指標",
-                "bullish": fund_bulls,
-                "bearish": fund_bears
-            },
-            "events": {
-                "label": "📰 產業與個股新聞時事 (附來源連結)",
-                "bullish": ev_bulls,
-                "bearish": ev_bears
-            }
+            "fundamentals_mops": {"label": "📑 MOPS重訊・最新月營收・財報指標" if tw_code else "📑 SEC最新財報・季營收・獲利指標", "bullish": fund_bulls, "bearish": fund_bears},
+            "events": {"label": "📰 產業與個股新聞時事 (附來源連結)", "bullish": ev_bulls, "bearish": ev_bears}
         }
     }
 
@@ -726,14 +680,13 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
     hist = y_data.get("history") or []
-    core_f = CORE_FUNDAMENTALS_DB.get(symbol, {})
     tv_f = (tw_official.get("fund_map", {}).get(tw_code) if tw_code else us_fund_map.get(symbol)) or {}
 
     p_val = safe_float(y_data.get("price"), 0.0)
     prev_val = safe_float(y_data.get("prev_close"), p_val)
     chg_val = safe_float(y_data.get("change"), 0.0)
     pct_val = safe_float(y_data.get("change_pct"), 0.0)
-    ext_obj = y_data.get("ext_session")
+    ext_obj = None if symbol in ["BTC-USD", "ETH-USD"] else y_data.get("ext_session")
 
     if tw_official:
         if symbol in tw_official.get("indices", {}):
@@ -745,48 +698,25 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
             if offs["price"] > 0:
                 p_val, prev_val, chg_val, pct_val = offs["price"], offs["prev_close"], offs["change"], offs["change_pct"]
                 today_str = now_tw.strftime("%Y-%m-%d")
-                if not hist:
-                    hist = [{"date": "2026-11-17", "close": prev_val}, {"date": today_str, "close": p_val}]
-                elif hist[-1]["date"] != today_str:
-                    hist.append({"date": today_str, "close": p_val})
-                else:
-                    hist[-1]["close"] = p_val
-
-    if (asset_type == "us_stock" or asset_type == "futures") and not ext_obj and p_val > 0:
-        lbl = "電子盤" if asset_type == "futures" else ("盤前" if 15 <= now_tw.hour <= 22 else "盤後")
-        ext_obj = {"price": round(p_val, 2), "change": round(chg_val, 2), "change_pct": round(pct_val, 2), "label": lbl}
-
-    def pick_f(key):
-        v_tv = tv_f.get(key, "N/A")
-        if v_tv not in [None, "", "N/A", 0, "0.0%"]:
-            return v_tv
-        return core_f.get(key, "N/A")
+                if not hist: hist = [{"date": today_str, "close": p_val}]
+                elif hist[-1]["date"] != today_str: hist.append({"date": today_str, "close": p_val})
+                else: hist[-1]["close"] = p_val
 
     f_dict = {
-        "pe": pick_f("pe"),
-        "forward_pe": pick_f("forward_pe"),
-        "eps": pick_f("eps"),
-        "gross_margin": pick_f("gross_margin"),
-        "operating_margin": pick_f("operating_margin"),
-        "roe": pick_f("roe"),
-        "yoy_rev_growth": pick_f("yoy_rev_growth"),
+        "pe": tv_f.get("pe", "N/A"), "forward_pe": tv_f.get("forward_pe", "無預估"),
+        "eps": tv_f.get("eps", "N/A"), "gross_margin": tv_f.get("gross_margin", "N/A"),
+        "operating_margin": tv_f.get("operating_margin", "N/A"), "roe": tv_f.get("roe", "N/A"),
+        "yoy_rev_growth": tv_f.get("yoy_rev_growth", "N/A"),
         "monthly_rev": rev_map.get(tw_code) if tw_code else None
     }
 
-    if asset_type in ["us_stock", "tw_stock"]:
-        ns_obj = build_stock_specific_sentiment_and_news(symbol, to_trad(display_name), asset_type, f_dict, mops_by_code, fetch_rss=fetch_rss)
-    else:
-        ns_obj = {
-            "bullish": [{"title": f"[市場報價] {to_trad(display_name)} 最新報價 {round(p_val, dec)} ({pct_val:+.2f}%)", "url": f"https://finance.yahoo.com/quote/{quote(symbol)}/", "date": "Yahoo Finance 官方行情"}],
-            "bearish": [{"title": f"[波動風險] 留意國際總經數據與央行利率決策對 {to_trad(display_name)} 之影響", "url": f"https://finance.yahoo.com/quote/{quote(symbol)}/", "date": "風險提示"}]
-        }
+    ns_obj = build_stock_specific_sentiment_and_news(symbol, to_trad(display_name), f_dict, mops_by_code, fetch_rss=fetch_rss) if asset_type in ["us_stock", "tw_stock"] else None
 
     return {
         "symbol": symbol, "name": to_trad(display_name), "asset_type": asset_type, "future_group": future_group,
         "price": round(p_val, dec), "prev_close": round(prev_val, dec), "change": round(chg_val, dec), "change_pct": round(pct_val, 2),
         "ext_session": ext_obj, "intraday": [], "history": hist,
-        "fundamentals": f_dict,
-        "news_sentiment": ns_obj
+        "fundamentals": f_dict, "news_sentiment": ns_obj
     }
 
 def main():
@@ -797,28 +727,20 @@ def main():
         "indices": [], "vix_indices": [], "fear_greed": fetch_fear_and_greed_indices(),
         "us_bonds": [], "fx_rates": [], "fx_bonds": [],
         "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
-        "supply_chain_sectors": [], "tw_top_sectors": [], "us_top_sectors": [], "top_performing_sectors": [],
-        "daily_market_report": {},
-        "tw_chips_visual": {},
-        "mops_general": []
+        "supply_chain_sectors": [], "tw_chips_visual": {}, "mops_general": []
     }
 
     try:
-        sc_items_map, sector_stocks_map = parse_sectors_and_symbols_from_js("supply_chain_db.js")
-        all_tw_syms = list(set([m["ticker"] for m in TW_STOCKS.values()] + [s for s in sc_items_map.keys() if s.endswith(".TW") or s.endswith(".TWO")]))
+        sc_items_map, _ = parse_sectors_and_symbols_from_js("supply_chain_db.js")
         all_us_eq = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
 
-        print("1. Fetching Official TWSE/TPEx Monthly Revenues (t187ap05_L & mopsfin_t187ap05_O) & Material News...")
         rev_map = fetch_official_tw_monthly_revenues()
         mops_by_code, mops_general = fetch_official_mops_material_news()
         payload["mops_general"] = mops_general
 
-        print("2. Fetching TradingView TW + US Scanners (Quotes + 7 Core Fundamentals)...")
-        tw_official = fetch_tw_official_all_channels(all_tw_syms)
+        tw_official = fetch_tw_official_all_channels()
         us_fund_map = fetch_tradingview_us_fundamentals(all_us_eq)
-
-        print("3. Computing Official TWSE/TPEx Margin Balance & MacroMicro 53117 Ratios...")
-        payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance(tw_official)
+        payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
 
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
@@ -826,8 +748,7 @@ def main():
             list(FUTURES_AND_COMMODITIES.keys()) + list(sc_items_map.keys())
         )
 
-        print("4. Downloading 1Y histories & 5m Pre/Post/Electronic quotes via yfinance...")
-        yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq, tw_official)
+        yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
         yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf())
 
         core_rss_set = set(US_STOCKS + [m["ticker"] for m in TW_STOCKS.values()])
