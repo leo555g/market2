@@ -2286,16 +2286,40 @@
           const settlePrice = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || 0);
           if (livePrice <= 0) continue;
 
-          if (item.asset_type === "futures" && !isCryptoSymbol(sym)) {
-            if (!isUsRegularMarketOpenNow() && settlePrice > 0) {
-              const elecChg = livePrice - settlePrice, elecPct = (elecChg / settlePrice) * 100;
-              updateAssetDomPrice(sym, settlePrice, Number(item.change_pct || 0), { price: Number(livePrice.toFixed(2)), change: Number(elecChg.toFixed(2)), change_pct: Number(elecPct.toFixed(2)), label: "電子盤" });
-            } else {
-              const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
-              updateAssetDomPrice(sym, livePrice, mainPct, settlePrice > 0 ? { price: Number(settlePrice.toFixed(2)), change: 0, change_pct: 0, label: "昨結價" } : null);
-            }
+                  if (["ZS=F", "ZW=F", "ZC=F"].includes(sym)) {
+            const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
+            let cmeExt = item.ext_session && String(item.ext_session.label || "").includes("芝商所") ? item.ext_session : null;
+            try {
+              const sch = {
+                "ZS=F": ["ZS", [[1,"F"],[3,"H"],[5,"K"],[7,"N"],[8,"Q"],[9,"U"],[11,"X"]]],
+                "ZW=F": ["ZW", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]],
+                "ZC=F": ["ZC", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]]
+              }[sym];
+              const nowD = new Date(), effM = (nowD.getMonth() + 1) + (nowD.getDate() >= 15 ? 1 : 0);
+              const found = sch[1].find(([dm]) => dm > effM);
+              const yr = found ? nowD.getFullYear() : nowD.getFullYear() + 1;
+              const code = found ? found[1] : sch[1][0][1];
+              const cmeTicker = `${sch[0]}${code}${String(yr).slice(-2)}.CBT`;
+              const cmeLabel = `芝商所 ${sch[0]}${code}${String(yr).slice(-1)}`;
+              const cmeData = await tryFetchViaMultiProxy(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(cmeTicker)}?interval=1d&range=5d`);
+              const cRes = cmeData?.chart?.result?.[0];
+              const cCloses = (cRes?.indicators?.quote?.[0]?.close || []).filter(v => v !== null && v > 0);
+              if (cCloses.length >= 2) {
+                const cLast = Number(cCloses[cCloses.length - 1]), cPrev = Number(cCloses[cCloses.length - 2]);
+                const cChg = cLast - cPrev, cPct = cPrev > 0 ? (cChg / cPrev) * 100 : 0;
+                cmeExt = { price: Number(cLast.toFixed(2)), change: Number(cChg.toFixed(2)), change_pct: Number(cPct.toFixed(2)), label: cmeLabel };
+              }
+            } catch (e) {}
+            updateAssetDomPrice(sym, livePrice, mainPct, cmeExt);
             return;
           }
+
+          if (item.asset_type === "futures" && !isCryptoSymbol(sym)) {
+            const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
+            updateAssetDomPrice(sym, livePrice, mainPct, settlePrice > 0 ? { price: Number(settlePrice.toFixed(2)), change: 0, change_pct: 0, label: "前日結算" } : null);
+            return;
+          }
+
 
           const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
           let extSession = item.ext_session;
