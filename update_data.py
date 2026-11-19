@@ -244,7 +244,7 @@ def fetch_fear_and_greed_indices():
         pass
     return fg_data
 
-# 5. 全自動台股三大法人 + 上市櫃融資餘額 + 官方公式實算每日上市融資維持率 (零寫死日期)
+# 5. 全自動台股三大法人 + 上市櫃融資餘額 + 官方公式實算上市融資維持率 (零寫死日期)
 def fetch_twse_close_prices_for_date(ymd, headers):
     px = {}
     try:
@@ -485,8 +485,8 @@ def fetch_tradingview_taiwan_full_market():
         pass
     return tv_stocks, tv_fund_map
 
-def fetch_tradingview_us_data(us_sym_list):
-    us_fund_map, us_quote_map = {}, {}
+def fetch_tradingview_us_quotes_and_fundamentals(us_sym_list):
+    us_quote_map, us_fund_map = {}, {}
     clean_us = [s.replace("-", ".") for s in set(us_sym_list) if s and not s.startswith("^") and "=" not in s]
     payload = {
         "filter": [{"left": "name", "operation": "in_range", "right": clean_us}],
@@ -502,58 +502,43 @@ def fetch_tradingview_us_data(us_sym_list):
                 t_raw = str(row.get("s", ""))
                 sym = (t_raw.split(":")[-1].strip() if ":" in t_raw else str(d[0]).strip()).replace(".", "-")
                 if len(d) >= 5 and sym:
-                    us_fund_map[sym] = parse_tv_fundamentals(d)
                     p, pct, chg = safe_float(d[1], 0.0), safe_float(d[2], 0.0), safe_float(d[3], 0.0)
                     if p > 0:
                         us_quote_map[sym] = {"price": round(p, 2), "prev_close": round(p - chg, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
+                    us_fund_map[sym] = parse_tv_fundamentals(d)
     except Exception:
         pass
-    return us_fund_map, us_quote_map
+    return us_quote_map, us_fund_map
 
-# 6. TradingView 交易所期貨報價 (同源於 CME/CBOT/NYMEX/ICE，避免 Yahoo Finance 換月跳空錯誤)
+# 6. TradingView CME/CBOT/NYMEX/ICE 交易所原始期貨報價 (修正 Yahoo 換月跳空與補齊芝商所主力小字)
 def fetch_tradingview_futures_quotes():
-    tv_main_map, tv_agri_cme_ext = {}, {}
+    tv_main, tv_agri_cme = {}, {}
     symbol_map = {
-        "CBOT:ZS1!": "ZS=F",
-        "CBOT:ZW1!": "ZW=F",
-        "CBOT:ZC1!": "ZC=F",
-        "NYMEX:CL1!": "CL=F",
-        "ICEEUR:BRN1!": "BZ=F",
-        "CME_MINI:ES1!": "ES=F",
-        "CME_MINI:NQ1!": "NQ=F",
-        "CBOT_MINI:YM1!": "YM=F",
-        "COMEX:GC1!": "GC=F",
-        "COMEX:SI1!": "SI=F",
-        "COMEX:HG1!": "HG=F",
-        "NYMEX:PA1!": "PA=F"
+        "CBOT:ZS1!": "ZS=F", "CBOT:ZW1!": "ZW=F", "CBOT:ZC1!": "ZC=F",
+        "NYMEX:CL1!": "CL=F", "ICEEUR:BRN1!": "BZ=F",
+        "CME_MINI:ES1!": "ES=F", "CME_MINI:NQ1!": "NQ=F", "CBOT_MINI:YM1!": "YM=F",
+        "COMEX:GC1!": "GC=F", "COMEX:SI1!": "SI=F", "COMEX:HG1!": "HG=F", "NYMEX:PA1!": "PA=F"
     }
-
-    # 動態推算芝商所 (CBOT) 農產品主力合約代號 (TradingView 4碼年份格式，如 CBOT:ZSF2027)
     agri_schedules = {
         "ZS=F": ("ZS", [(1, "F"), (3, "H"), (5, "K"), (7, "N"), (8, "Q"), (9, "U"), (11, "X")]),
         "ZW=F": ("ZW", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")]),
         "ZC=F": ("ZC", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")])
     }
-    cme_ticker_to_base = {}
     eff_m = now_tw.month + (1 if now_tw.day >= 15 else 0)
+    cme_contract_map = {}
     for base_sym, (root, months) in agri_schedules.items():
         picked = next(((now_tw.year, code) for dm, code in months if dm > eff_m), (now_tw.year + 1, months[0][1]))
-        tv_cme_sym = f"CBOT:{root}{picked[1]}{picked[0]}"
-        cme_label = f"芝商所 {root}{picked[1]}{str(picked[0])[-1:]}"
-        cme_ticker_to_base[tv_cme_sym] = (base_sym, cme_label)
+        tv_code = f"CBOT:{root}{picked[1]}{picked[0]}"
+        label = f"芝商所 {root}{picked[1]}{str(picked[0])[-1:]}"
+        cme_contract_map[tv_code] = (base_sym, label)
 
-    all_tickers = list(symbol_map.keys()) + list(cme_ticker_to_base.keys())
+    all_tickers = list(symbol_map.keys()) + list(cme_contract_map.keys())
     payload = {
         "symbols": {"tickers": all_tickers, "query": {"types": []}},
         "columns": ["close", "change", "change_abs"]
     }
     try:
-        r = requests.post(
-            "https://scanner.tradingview.com/futures/scan",
-            json=payload,
-            headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"},
-            timeout=10
-        )
+        r = requests.post("https://scanner.tradingview.com/futures/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=12)
         if r.status_code == 200:
             for row in (r.json().get("data") or []):
                 tv_sym = str(row.get("s", "")).strip()
@@ -566,23 +551,21 @@ def fetch_tradingview_futures_quotes():
                 if tv_sym in symbol_map:
                     target = symbol_map[tv_sym]
                     prev_p = round(p - chg, 2)
-                    tv_main_map[target] = {
-                        "price": round(p, 2),
-                        "prev_close": prev_p,
-                        "change": round(chg, 2),
-                        "change_pct": round(pct, 2)
+                    tv_main[target] = {
+                        "price": round(p, 2), "prev_close": prev_p,
+                        "change": round(chg, 2), "change_pct": round(pct, 2),
+                        "ext_session": None if target in {"ZS=F", "ZW=F", "ZC=F"} else {"price": prev_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
                     }
-                elif tv_sym in cme_ticker_to_base:
-                    base_sym, cme_label = cme_ticker_to_base[tv_sym]
-                    tv_agri_cme_ext[base_sym] = {
-                        "price": round(p, 2),
-                        "change": round(chg, 2),
-                        "change_pct": round(pct, 2),
-                        "label": cme_label
-                    }
+                elif tv_sym in cme_contract_map:
+                    base_sym, label = cme_contract_map[tv_sym]
+                    tv_agri_cme[base_sym] = {"price": round(p, 2), "change": round(chg, 2), "change_pct": round(pct, 2), "label": label}
     except Exception as e:
         print(f"[Warn] TV futures scan error: {e}")
-    return tv_main_map, tv_agri_cme_ext
+
+    for base_sym, cme_ext in tv_agri_cme.items():
+        if base_sym in tv_main:
+            tv_main[base_sym]["ext_session"] = cme_ext
+    return tv_main, tv_agri_cme
 
 # 7. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取
 def fetch_tw_official_all_channels():
@@ -597,8 +580,7 @@ def fetch_tw_official_all_channels():
         if r_mis.status_code == 200:
             for m in (r_mis.json().get("msgArray") or []):
                 code = str(m.get("c", "")).strip()
-                cur_p = safe_float(m.get("z"), 0.0)
-                prev_p = safe_float(m.get("y"), 0.0)
+                cur_p, prev_p = safe_float(m.get("z"), 0.0), safe_float(m.get("y"), 0.0)
                 if cur_p > 0 and prev_p > 0:
                     chg_p = round(cur_p - prev_p, 2)
                     pct_p = round((chg_p / prev_p) * 100, 2)
@@ -659,13 +641,8 @@ def fetch_tw_official_all_channels():
 
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
     yf_map = {}
-    # 放行 SPCX 與 US2Y (對應 2YY=F)
     skip_set = DELISTED_BLACKLIST | {"^VIXTWN", "TXF"}
-    yf_download_syms = []
-    for s in dict.fromkeys(symbols_list):
-        if s in skip_set:
-            continue
-        yf_download_syms.append("2YY=F" if s == "US2Y" else s)
+    yf_download_syms = [("2YY=F" if s == "US2Y" else s) for s in dict.fromkeys(symbols_list) if s not in skip_set]
 
     for i in range(0, len(yf_download_syms), 35):
         chunk = yf_download_syms[i:i + 35]
@@ -694,7 +671,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in (skip_set | {"US2Y"})]
+    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set]
     for i in range(0, len(fut_and_us), 35):
         chunk = fut_and_us[i:i + 35]
         try:
@@ -712,32 +689,23 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                     if latest_tick_p <= 0:
                         continue
                     reg_p, prev_c = yf_map[sym]["price"], yf_map[sym]["prev_close"]
-                    today_us = (now_tw - datetime.timedelta(hours=13)).strftime("%Y-%m-%d")
-                    last_hist_date = yf_map[sym]["history"][-1]["date"] if yf_map[sym]["history"] else ""
-                    settle_p = prev_c if (last_hist_date == today_us and prev_c > 0) else reg_p
-
                     if sym in ["BTC-USD", "ETH-USD"]:
                         chg = round(latest_tick_p - prev_c, 2)
                         yf_map[sym]["price"] = latest_tick_p
                         yf_map[sym]["change"] = chg
                         yf_map[sym]["change_pct"] = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
                         yf_map[sym]["ext_session"] = None
-                    elif sym in {"ZS=F", "ZW=F", "ZC=F"}:
-                        chg = round(latest_tick_p - settle_p, 2)
-                        pct = round((chg / settle_p) * 100, 2) if settle_p > 0 else 0.0
-                        yf_map[sym]["price"] = latest_tick_p
-                        yf_map[sym]["prev_close"] = settle_p
-                        yf_map[sym]["change"] = chg
-                        yf_map[sym]["change_pct"] = pct
-                        yf_map[sym]["ext_session"] = None
                     elif sym in FUTURES_AND_COMMODITIES:
+                        today_us = (now_tw - datetime.timedelta(hours=13)).strftime("%Y-%m-%d")
+                        last_hist_date = yf_map[sym]["history"][-1]["date"] if yf_map[sym]["history"] else ""
+                        settle_p = prev_c if (last_hist_date == today_us and prev_c > 0) else reg_p
                         chg = round(latest_tick_p - settle_p, 2)
                         pct = round((chg / settle_p) * 100, 2) if settle_p > 0 else 0.0
                         yf_map[sym]["price"] = latest_tick_p
                         yf_map[sym]["prev_close"] = settle_p
                         yf_map[sym]["change"] = chg
                         yf_map[sym]["change_pct"] = pct
-                        yf_map[sym]["ext_session"] = {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
+                        yf_map[sym]["ext_session"] = None if sym in {"ZS=F", "ZW=F", "ZC=F"} else {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
                     else:
                         e_chg = round(latest_tick_p - reg_p, 2)
                         e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
@@ -887,7 +855,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_fund_map, us_quote_map, rev_map, mops_by_code, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_quote_map, us_fund_map, rev_map, mops_by_code, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -900,12 +868,9 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
     pct_val = safe_float(y_data.get("change_pct"), 0.0)
     ext_obj = None if symbol in ["BTC-USD", "ETH-USD"] else y_data.get("ext_session")
 
-    # 美股若 yfinance 未回傳價格 (如 SPCX)，自動以 TradingView 報價補齊
     if asset_type == "us_stock" and p_val <= 0 and symbol in us_quote_map:
         uq = us_quote_map[symbol]
         p_val, prev_val, chg_val, pct_val = uq["price"], uq["prev_close"], uq["change"], uq["change_pct"]
-        if not hist:
-            hist = [{"date": now_tw.strftime("%Y-%m-%d"), "close": p_val}]
 
     if tw_official:
         if symbol in tw_official.get("indices", {}):
@@ -968,7 +933,7 @@ def main():
         payload["mops_general"] = mops_general
 
         tw_official = fetch_tw_official_all_channels()
-        us_fund_map, us_quote_map = fetch_tradingview_us_data(all_us_eq)
+        us_quote_map, us_fund_map = fetch_tradingview_us_quotes_and_fundamentals(all_us_eq)
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
 
         all_required_syms = (
@@ -978,30 +943,23 @@ def main():
         )
 
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
-        extra_map = fetch_official_us2y_and_taifex_vixtwn_and_txf()
-        for k, v in extra_map.items():
-            # US2Y 優先保留 2YY=F 即時值，若無才以 FRED DGS2 補上
-            if k == "US2Y" and k in yf_map and safe_float(yf_map[k].get("price"), 0.0) > 0:
-                continue
-            yf_map[k] = v
+        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf())
 
-        # 以 TradingView 交易所期貨報價覆蓋國際期貨與農產品（含芝商所主力合約小字）
-        tv_fut_main, tv_agri_cme_ext = fetch_tradingview_futures_quotes()
+        tv_fut_main, tv_agri_cme = fetch_tradingview_futures_quotes()
         for f_sym, f_q in tv_fut_main.items():
             if f_sym in yf_map:
                 yf_map[f_sym].update(f_q)
             else:
-                yf_map[f_sym] = {**f_q, "history": [{"date": now_tw.strftime("%Y-%m-%d"), "close": f_q["price"]}], "ext_session": None}
-            if f_sym in {"ZS=F", "ZW=F", "ZC=F"}:
-                yf_map[f_sym]["ext_session"] = tv_agri_cme_ext.get(f_sym)
-            elif f_sym not in {"BTC-USD", "ETH-USD", "TXF"}:
-                yf_map[f_sym]["ext_session"] = {"price": f_q["prev_close"], "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
+                yf_map[f_sym] = {**f_q, "history": [{"date": now_tw.strftime("%Y-%m-%d"), "close": f_q["price"]}]}
+        for a_sym, a_ext in tv_agri_cme.items():
+            if a_sym in yf_map:
+                yf_map[a_sym]["ext_session"] = a_ext
 
         core_rss_set = set(US_STOCKS + [m["ticker"] for m in TW_STOCKS.values()])
         built_cache = {}
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
-                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, yf_map, tw_official, us_fund_map, us_quote_map, rev_map, mops_by_code, fetch_rss=(sym in core_rss_set))
+                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, yf_map, tw_official, us_quote_map, us_fund_map, rev_map, mops_by_code, fetch_rss=(sym in core_rss_set))
             cp = dict(built_cache[sym])
             cp["name"] = to_trad(name)
             if f_group:
