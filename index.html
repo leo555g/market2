@@ -268,21 +268,21 @@
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <h2 class="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">
-          台股與法人籌碼進階視覺化專區 (三大法人買賣超・上市櫃融資餘額・證交所全市場擔保維持率・上市櫃融資維持率)
+          台股與法人籌碼進階視覺化專區 (三大法人買賣超・上市櫃融資餘額・大盤上市融資維持率・融券餘額)
         </h2>
         <div class="flex items-center gap-3 text-xs shrink-0">
-          <a href="https://www.macromicro.me/charts/53117/taiwan-taiex-maintenance-margin" target="_blank" rel="noopener" class="text-cyan-300 hover:underline font-bold">🔗 MacroMicro 維持率 53117 &rarr;</a>
+          <a href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" target="_blank" rel="noopener" class="text-sky-300 hover:underline font-bold">🔗 證交所三大法人官網 &rarr;</a>
           <a href="https://www.twse.com.tw/zh/trading/margin/mi-margn.html" target="_blank" rel="noopener" class="text-amber-300 hover:underline font-bold">🔗 證交所融資餘額官網 &rarr;</a>
         </div>
       </div>
       <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3"></div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 12 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3><div id="chart-institutional" class="w-full h-72"></div></div>
+        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3><div id="chart-institutional" class="w-full h-72"></div></div>
         <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">加權指數融資餘額 vs 櫃買指數融資餘額變化趨勢 (單位：億元)</h3><div id="chart-margin" class="w-full h-72"></div></div>
         <div class="card-bg rounded-xl p-4 lg:col-span-2 border border-emerald-500/30">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
-            <h3 class="text-sm font-bold text-emerald-300">🛡️ 證交所全市場擔保維持率 vs 上市櫃融資維持率變化趨勢 (追繳警戒線 130%)</h3>
-            <span class="text-xs text-slate-400">隨每日官方公布自動滾動推進，無公開紀錄處保持留白不捏造</span>
+            <h3 class="text-sm font-bold text-emerald-300">🛡️ 大盤上市融資維持率變化趨勢 (證交所官方每日實算・追繳警戒線 130%)</h3>
+            <span class="text-xs text-slate-400">每日收盤後依證交所 MI_MARGN 與 MI_INDEX 自動滾動計算，絕無寫死日期</span>
           </div>
           <div id="chart-maintenance-ratio" class="w-full h-72"></div>
         </div>
@@ -541,18 +541,10 @@
       }
     }
 
-    // 離線備援佔位符：僅在完全無法讀取 data/market_data.json 與即時 API 時顯示，絕不覆蓋任何新資料
+    // 零寫死日期：完全依賴後端 JSON 與瀏覽器即時 API 動態填入
     const OFFLINE_FALLBACK_TW_CHIPS = {
-      dates: ["11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16", "11/17", "11/18"],
-      foreign_buy: [-1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89, -380.93, -765.64],
-      trust_buy: [272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -183.02, -9.34, 175.58],
-      dealer_buy: [-375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03, -156.96, -42.02],
-      margin_balance: [5969.50, 5764.09, 5340.53, 5399.16, 5366.80, 5411.58, 5334.75, 5365.99, 5244.98, 5087.21, null],
-      otc_margin_balance: [1909.19, 1840.37, 1699.74, 1701.54, 1693.08, 1718.02, 1700.77, 1720.20, 1677.33, 1604.42, null],
-      twse_guarantee_rate: [167.42, 159.77, 158.05, 168.44, null, null, 173.99, 177.48, 165.98, 161.25, null],
-      combined_margin_rate: [null, 154.00, null, null, 163.00, null, 166.13, 169.74, 157.53, 152.28, null],
-      twse_only_margin_rate: [164.67, 155.74, 151.93, 162.46, 167.99, 174.18, 167.23, 170.67, 158.52, 153.72, null],
-      short_balance: [24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80, null]
+      ymds: [], dates: [], foreign_buy: [], trust_buy: [], dealer_buy: [],
+      margin_balance: [], otc_margin_balance: [], twse_only_margin_rate: [], short_balance: []
     };
 
     const OFFLINE_FALLBACK_QUOTES = {};
@@ -608,7 +600,9 @@
       let chartInst = echarts.getInstanceByDom(dom);
       if (!chartInst) chartInst = echarts.init(dom);
 
-      const val = Math.max(0, Math.min(100, Math.round(Number(score) || 25)));
+      const val = (score !== null && score !== undefined && !isNaN(Number(score)))
+        ? Math.max(0, Math.min(100, Math.round(Number(score))))
+        : 50;
       const option = {
         backgroundColor: "transparent",
         series: [
@@ -658,7 +652,9 @@
             title: { show: false },
             detail: {
               valueAnimation: true, offsetCenter: [0, "-6%"], fontSize: 34, fontWeight: "900",
-              fontFamily: "'JetBrains Mono', monospace", formatter: "{value}", color: "#0f172a"
+              fontFamily: "'JetBrains Mono', monospace",
+              formatter: (score !== null && score !== undefined && !isNaN(Number(score))) ? "{value}" : "--",
+              color: "#0f172a"
             },
             data: [{ value: val }]
           }
@@ -670,22 +666,22 @@
 
     function updateFearAndGreedDisplay(fgData) {
       if (!fgData) return;
-      const us = fgData.us_cnn || { score: 31, label_zh: "恐懼", label_en: "FEAR", source: "CNN" };
-      const crypto = fgData.crypto_alt || { score: 25, label_zh: "極度恐懼", label_en: "EXTREME FEAR", source: "Alternative.me" };
+      const us = fgData.us_cnn || { score: null, label_zh: "同步中", label_en: "LOADING" };
+      const crypto = fgData.crypto_alt || { score: null, label_zh: "同步中", label_en: "LOADING" };
 
       const bUs = document.getElementById("fg-us-badge");
       if (bUs) {
         bUs.textContent = `${us.label_zh} (${us.label_en})`;
-        bUs.className = us.score <= 45
+        bUs.className = (us.score !== null && us.score <= 45)
           ? "px-2.5 py-1 text-xs font-bold rounded bg-rose-500/20 text-rose-300 border border-rose-500/40"
-          : (us.score >= 55 ? "px-2.5 py-1 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" : "px-2.5 py-1 text-xs font-bold rounded bg-slate-700 text-slate-300 border border-slate-600");
+          : ((us.score !== null && us.score >= 55) ? "px-2.5 py-1 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" : "px-2.5 py-1 text-xs font-bold rounded bg-slate-700 text-slate-300 border border-slate-600");
       }
       const bCrypto = document.getElementById("fg-crypto-badge");
       if (bCrypto) {
         bCrypto.textContent = `${crypto.label_zh} (${crypto.label_en})`;
-        bCrypto.className = crypto.score <= 45
+        bCrypto.className = (crypto.score !== null && crypto.score <= 45)
           ? "px-2.5 py-1 text-xs font-bold rounded bg-rose-500/20 text-rose-300 border border-rose-500/40"
-          : (crypto.score >= 55 ? "px-2.5 py-1 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" : "px-2.5 py-1 text-xs font-bold rounded bg-slate-700 text-slate-300 border border-slate-600");
+          : ((crypto.score !== null && crypto.score >= 55) ? "px-2.5 py-1 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" : "px-2.5 py-1 text-xs font-bold rounded bg-slate-700 text-slate-300 border border-slate-600");
       }
 
       fgUsChart = renderFearAndGreedGauge("chart-fg-us-gauge", us.score, us.label_zh, us.label_en);
@@ -756,8 +752,8 @@
       const dPt = getLastVerifiedPoint(chips.dealer_buy, chips.dates);
       const mPt = getLastVerifiedPoint(chips.margin_balance, chips.dates);
       const otcPt = getLastVerifiedPoint(chips.otc_margin_balance, chips.dates);
-      const guarPt = getLastVerifiedPoint(chips.twse_guarantee_rate, chips.dates);
-      const combPt = getLastVerifiedPoint(chips.combined_margin_rate, chips.dates);
+      const ratePt = getLastVerifiedPoint(chips.twse_only_margin_rate, chips.dates);
+      const shortPt = getLastVerifiedPoint(chips.short_balance, chips.dates);
 
       const lines = [
         `# 全球金融市場與台股每日深度分析報告`,
@@ -780,8 +776,8 @@
         `- **自營商買賣超 (${dPt.date})**：${dPt.val ?? '待公布'} 億元`,
         `- **加權指數融資餘額 (${mPt.date})**：${mPt.val ?? '待公布'} 億元`,
         `- **櫃買指數融資餘額 (${otcPt.date})**：${otcPt.val ?? '待公布'} 億元`,
-        `- **證交所全市場整戶擔保維持率 (${guarPt.date})**：${guarPt.val ?? '待公布'}%`,
-        `- **上市櫃融資維持率 (${combPt.date})**：${combPt.val ?? '待公布'}%`
+        `- **大盤上市融資維持率 (${ratePt.date})**：${ratePt.val ?? '待公布'}%`,
+        `- **上市融券餘額 (${shortPt.date})**：${shortPt.val ?? '待公布'} 萬張`
       ];
 
       const blob = new Blob([lines.join("\r\n")], { type: "text/markdown;charset=utf-8;" });
@@ -831,8 +827,8 @@
       const totInst = Number(((fPt.val || 0) + (tPt.val || 0) + (dPt.val || 0)).toFixed(2));
       const mPt = getLastVerifiedPoint(chips.margin_balance, chips.dates);
       const otcPt = getLastVerifiedPoint(chips.otc_margin_balance, chips.dates);
-      const guarPt = getLastVerifiedPoint(chips.twse_guarantee_rate, chips.dates);
-      const combPt = getLastVerifiedPoint(chips.combined_margin_rate, chips.dates);
+      const ratePt = getLastVerifiedPoint(chips.twse_only_margin_rate, chips.dates);
+      const shortPt = getLastVerifiedPoint(chips.short_balance, chips.dates);
 
       const twTopSectors = computeDynamicTopPerformingSectors("TW");
       const usTopSectors = computeDynamicTopPerformingSectors("US");
@@ -842,25 +838,25 @@
 
       return {
         report_date: `${nowStr} CST`,
-        headline: `台股加權報 ${twii.price} (${twii.pct})、台指期報 ${txf.price} (${txf.pct})、證交所擔保維持率 ${guarPt.val ?? '--'}%・上市櫃融資維持率 ${combPt.val ?? '--'}%`,
+        headline: `台股加權報 ${twii.price} (${twii.pct})、櫃買報 ${twoii.price} (${twoii.pct})、台指期報 ${txf.price} (${txf.pct})、上市融資維持率 ${ratePt.val ?? '--'}%`,
         market_drivers: [
           `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
-          `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，台指期報 ${txf.price} (${txf.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
+          `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，台指期報 ${txf.price} (${txf.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
           `【三、台美股強勢產業鏈輪動】台股前三大強勢族群：${twTop3Str}；美股前三大強勢族群：${usTop3Str}。`,
-          `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${guarPt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；擔保維持率 ${guarPt.val ?? '--'}%、上市櫃融資維持率 ${combPt.val ?? '--'}%。`,
+          `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${ratePt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；大盤上市融資維持率 ${ratePt.val ?? '--'}%、融券餘額 ${shortPt.val ?? '--'} 萬張。`,
           `【五、美債、外匯、原油、農產品與加密貨幣】美債 2Y ${us2y.price}% / 10Y ${tnx.price}% / 30Y ${tyx.price}%；DXY ${dxy.price}、USD/TWD ${twd.price}；黃金 ${gc.price} (${gc.pct})、布蘭特原油 ${bz.price} (${bz.pct})、WTI 原油 ${cl.price} (${cl.pct})；黃豆 ${zs.price}、小麥 ${zw.price}、玉米 ${zc.price}；BTC ${btc.price} (${btc.pct})、ETH ${eth.price} (${eth.pct})。`
         ],
         bullish_factors: [
           `🔥 強勢族群輪動 (${twTop3Str})：資金持續聚焦具備基本面與營收動能之核心供應鏈。`,
-          `🔥 融資維持率監控 (${guarPt.val ?? '--'}% / ${combPt.val ?? '--'}%)：高於 130% 追繳警戒線，籌碼結構維持可控。`
+          `🔥 融資維持率監控 (${ratePt.val ?? '--'}%)：與 130% 追繳警戒線對照，即時掌握市場籌碼壓力。`
         ],
         bearish_factors: [
           `❄️ 法人動向與匯率波動：持續追蹤外資現貨買賣超 (${fPt.date}: ${(fPt.val || 0).toFixed(2)} 億) 與美元兌新台幣 (${twd.price}) 變化。`,
           `❄️ 美債殖利率水位：10 年期公債殖利率處於 ${tnx.price}%，影響高估值成長股本益比空間。`
         ],
         upcoming_macro_week: [
-          { date: "本週四 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "高頻追蹤美國勞動市場", impact: "牽動美債殖利率與聯準會政策預期" },
-          { date: "11/25 21:30", event: "💳 美國 10 月核心 PCE 物價指數", consensus: "聯準會首選核心通膨指標", impact: "12 月 FOMC 會議前最關鍵通膨數據" }
+          { date: "每週四 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "高頻追蹤美國勞動市場", impact: "牽動美債殖利率與聯準會政策預期" },
+          { date: "月底 21:30", event: "💳 美國核心 PCE 物價指數", consensus: "聯準會首選核心通膨指標", impact: "FOMC 會議前最關鍵通膨數據" }
         ],
         upcoming_earnings_week: [
           { date: "近期追蹤", ticker: "DELL", name: "戴爾 (Dell) 財報法說會", focus: "AI 伺服器在手訂單積壓金額 (Backlog) 與毛利率" }
@@ -992,7 +988,7 @@
         last_updated: "正在同步最新市場數據...",
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
-        fear_greed: { us_cnn: { score: 31, label_zh: "恐懼", label_en: "FEAR" }, crypto_alt: { score: 25, label_zh: "極度恐懼", label_en: "EXTREME FEAR" } },
+        fear_greed: { us_cnn: { score: null, label_zh: "同步中", label_en: "LOADING" }, crypto_alt: { score: null, label_zh: "同步中", label_en: "LOADING" } },
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
         fx_rates: [mk("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"), mk("AUDUSD=X", "澳幣/美元 (AUD/USD)", "fx_rate"), mk("CHF=X", "美元/瑞士法郎 (USD/CHF)", "fx_rate"), mk("JPY=X", "美元/日圓 (USD/JPY)", "fx_rate"), mk("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"), mk("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"), mk("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"), mk("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")],
         us_stocks: ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"].map(s => mk(s, s, "us_stock")),
@@ -1898,7 +1894,6 @@
       return { val: null, prev: null, date: dates[dates.length - 1] || "待公布" };
     }
 
-    // 解除日期卡死鎖：只要傳入的動態資料有效就直接採用，不再強行退回舊常數
     function ensureCompleteTwChipsData(incomingChips) {
       if (incomingChips && Array.isArray(incomingChips.dates) && incomingChips.dates.length > 0) {
         return incomingChips;
@@ -1918,10 +1913,9 @@
       const mDiff = (mPt.val !== null && mPt.prev !== null) ? Number((mPt.val - mPt.prev).toFixed(2)) : 0;
       const otcPt = getLastVerifiedPoint(chips.otc_margin_balance, dates);
       const otcDiff = (otcPt.val !== null && otcPt.prev !== null) ? Number((otcPt.val - otcPt.prev).toFixed(2)) : 0;
-      const guarPt = getLastVerifiedPoint(chips.twse_guarantee_rate, dates);
-      const guarDiff = (guarPt.val !== null && guarPt.prev !== null) ? Number((guarPt.val - guarPt.prev).toFixed(2)) : 0;
-      const combPt = getLastVerifiedPoint(chips.combined_margin_rate, dates);
-      const combDiff = (combPt.val !== null && combPt.prev !== null) ? Number((combPt.val - combPt.prev).toFixed(2)) : 0;
+      const ratePt = getLastVerifiedPoint(chips.twse_only_margin_rate, dates);
+      const rateDiff = (ratePt.val !== null && ratePt.prev !== null) ? Number((ratePt.val - ratePt.prev).toFixed(2)) : 0;
+      const shortPt = getLastVerifiedPoint(chips.short_balance, dates);
 
       const fmt = (v) => v !== null ? `${v > 0 ? "+" : ""}${v.toFixed(2)} 億` : "待公布";
       const fmtPctDiff = (v) => `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
@@ -1933,8 +1927,8 @@
         <div class="card-bg rounded-lg p-3"><span class="text-[11px] text-slate-400 block">三大法人合計 (${fPt.date})</span><strong class="text-sm mono ${getColorClass(totVal)}">${fmt(totVal)}</strong></div>
         <div class="card-bg rounded-lg p-3 border border-rose-500/30"><span class="text-[11px] text-rose-300 block font-medium">上市融資餘額 (${mPt.date})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-white">${mPt.val !== null ? mPt.val.toFixed(2) + '億' : '待公布'}</strong><span class="text-[11px] font-bold ${getColorClass(mDiff)}">(${fmt(mDiff)})</span></div></div>
         <div class="card-bg rounded-lg p-3 border border-amber-500/30"><span class="text-[11px] text-amber-300 block font-medium">櫃買融資餘額 (${otcPt.date})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-white">${otcPt.val !== null ? otcPt.val.toFixed(2) + '億' : '待公布'}</strong><span class="text-[11px] font-bold ${getColorClass(otcDiff)}">(${fmt(otcDiff)})</span></div></div>
-        <div class="card-bg rounded-lg p-3 border border-emerald-500/40"><span class="text-[11px] text-emerald-300 block font-bold">證交所全市場擔保維持率 (${guarPt.date})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-emerald-300">${guarPt.val !== null ? guarPt.val.toFixed(2) + '%' : '待公布'}</strong><span class="text-[11px] font-bold ${getColorClass(guarDiff)}">(${fmtPctDiff(guarDiff)})</span></div></div>
-        <div class="card-bg rounded-lg p-3 border border-cyan-500/40"><span class="text-[11px] text-cyan-300 block font-bold">上市櫃融資維持率 (${combPt.date})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-cyan-300">${combPt.val !== null ? combPt.val.toFixed(2) + '%' : '待公布'}</strong><span class="text-[11px] font-bold ${getColorClass(combDiff)}">(${fmtPctDiff(combDiff)})</span></div></div>`;
+        <div class="card-bg rounded-lg p-3 border border-emerald-500/40"><span class="text-[11px] text-emerald-300 block font-bold">大盤上市融資維持率 (${ratePt.date})</span><div class="flex items-baseline justify-between mt-0.5 mono"><strong class="text-sm text-emerald-300">${ratePt.val !== null ? ratePt.val.toFixed(2) + '%' : '待公布'}</strong><span class="text-[11px] font-bold ${getColorClass(rateDiff)}">(${fmtPctDiff(rateDiff)})</span></div></div>
+        <div class="card-bg rounded-lg p-3 border border-cyan-500/40"><span class="text-[11px] text-cyan-300 block font-bold">上市融券餘額 (${shortPt.date})</span><strong class="text-sm text-cyan-300 mono">${shortPt.val !== null ? shortPt.val.toFixed(2) + ' 萬張' : '待公布'}</strong></div>`;
     }
 
     function renderChipCharts(rawChips) {
@@ -1968,15 +1962,23 @@
         if (maintChart) maintChart.dispose();
         maintChart = echarts.init(maintDom);
         maintChart.setOption({
-          tooltip: { trigger: "axis", valueFormatter: (v) => (v !== null && v !== undefined) ? `${v}%` : "無公開紀錄 / 待公布" },
-          legend: { data: ["證交所全市場擔保維持率 (MacroMicro 53117)", "上市櫃融資維持率 (MacroMicro 53117)", "單一上市融資維持率"], textStyle: { color: "#cbd5e1" }, top: 0 },
+          tooltip: { trigger: "axis", valueFormatter: (v) => (v !== null && v !== undefined) ? `${v}%` : "待公布" },
+          legend: { data: ["大盤上市融資維持率 (證交所公式實算)"], textStyle: { color: "#cbd5e1" }, top: 0 },
           grid: { left: "6%", right: "5%", top: "18%", bottom: "12%" },
           xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8", fontSize: 11 } },
           yAxis: { type: "value", name: "維持率 (%)", min: 125, scale: true, splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8", formatter: "{value}%" } },
           series: [
-            { name: "證交所全市場擔保維持率 (MacroMicro 53117)", type: "line", smooth: false, connectNulls: true, symbolSize: 8, data: chips.twse_guarantee_rate, lineStyle: { color: "#34d399", width: 3 }, itemStyle: { color: "#34d399" }, markLine: { silent: true, data: [{ yAxis: 130, name: "追繳警戒線 (130%)", lineStyle: { color: "#f43f5e", type: "dashed", width: 1.5 }, label: { formatter: "⚠️ 130% 追繳線", color: "#fb7185", fontSize: 10 } }] } },
-            { name: "上市櫃融資維持率 (MacroMicro 53117)", type: "line", smooth: false, connectNulls: true, symbolSize: 8, data: chips.combined_margin_rate, lineStyle: { color: "#38bdf8", width: 2.5 }, itemStyle: { color: "#38bdf8" } },
-            { name: "單一上市融資維持率", type: "line", smooth: true, connectNulls: true, symbolSize: 6, data: chips.twse_only_margin_rate || [], lineStyle: { color: "#a78bfa", width: 2, type: "dashed" }, itemStyle: { color: "#a78bfa" } }
+            {
+              name: "大盤上市融資維持率 (證交所公式實算)",
+              type: "line", smooth: false, connectNulls: true, symbolSize: 8,
+              data: chips.twse_only_margin_rate || [],
+              lineStyle: { color: "#34d399", width: 3 },
+              itemStyle: { color: "#34d399" },
+              markLine: {
+                silent: true,
+                data: [{ yAxis: 130, name: "追繳警戒線 (130%)", lineStyle: { color: "#f43f5e", type: "dashed", width: 1.5 }, label: { formatter: "⚠️ 130% 追繳線", color: "#fb7185", fontSize: 10 } }]
+              }
+            }
           ]
         });
       }
@@ -2076,62 +2078,35 @@
       return null;
     }
 
-    // 動態滾動交易日引擎：只要證交所公布新交易日數據，自動推進追加，絕不卡死
     async function syncLatestTwChipsInBrowser() {
       try {
-        const jInst = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json");
-        if (!jInst || !Array.isArray(jInst.data)) return;
+        const jInst = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/fund/BFI82U?type=day&response=json");
+        if (!jInst || jInst.stat !== "OK" || !Array.isArray(jInst.data)) return;
         const dStr = String(jInst.date || "").trim();
         if (dStr.length !== 8) return;
         const mmdd = `${dStr.slice(4, 6)}/${dStr.slice(6, 8)}`;
-        let fYi = null, tYi = null, dSum = 0;
+        let fSum = 0, tSum = 0, dSum = 0;
         jInst.data.forEach(row => {
           const name = String(row[0] || "").trim();
           const val = parseFloat(String(row[3] || "0").replace(/,/g, "")) / 1e8;
-          if (name.includes("外資及陸資") && !name.includes("外資自營商")) fYi = Number(val.toFixed(2));
-          else if (name.includes("投信")) tYi = Number(val.toFixed(2));
+          if (name.includes("外資")) fSum += val;
+          else if (name.includes("投信")) tSum += val;
           else if (name.includes("自營商")) dSum += val;
         });
-        if (fYi === null || tYi === null) return;
-        const dYi = Number(dSum.toFixed(2));
-
-        let mYi = null, mDateMmdd = null;
-        try {
-          const jMarg = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?selectType=MS&response=json");
-          const mdStr = String(jMarg?.date || "").trim();
-          if (mdStr.length === 8) mDateMmdd = `${mdStr.slice(4, 6)}/${mdStr.slice(6, 8)}`;
-          (jMarg?.tables || []).forEach(tb => {
-            (tb.data || []).forEach(r => {
-              if (String(r[0] || "").includes("融資金額")) {
-                const v = parseFloat(String(r[5] || r[r.length - 2] || "0").replace(/,/g, ""));
-                if (v > 1e6) mYi = Number((v / 1e5).toFixed(2));
-              }
-            });
-          });
-        } catch (e) {}
+        const fYi = Number(fSum.toFixed(2)), tYi = Number(tSum.toFixed(2)), dYi = Number(dSum.toFixed(2));
 
         const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
-        const lastKnownDate = chips.dates[chips.dates.length - 1];
-        if (mmdd > lastKnownDate) {
-          chips.dates.push(mmdd);
-          chips.foreign_buy.push(fYi);
-          chips.trust_buy.push(tYi);
-          chips.dealer_buy.push(dYi);
-          chips.margin_balance.push(mDateMmdd === mmdd ? mYi : null);
-          chips.otc_margin_balance.push(null);
-          chips.twse_guarantee_rate.push(null);
-          chips.combined_margin_rate.push(null);
-          chips.twse_only_margin_rate.push(null);
-          chips.short_balance.push(null);
-          if (chips.dates.length > 12) {
+        chips.ymds = chips.ymds || [];
+        const idx = chips.ymds.length ? chips.ymds.indexOf(dStr) : chips.dates.indexOf(mmdd);
+        if (idx >= 0) {
+          chips.foreign_buy[idx] = fYi; chips.trust_buy[idx] = tYi; chips.dealer_buy[idx] = dYi;
+        } else if (!chips.ymds.length || dStr > chips.ymds[chips.ymds.length - 1]) {
+          chips.ymds.push(dStr); chips.dates.push(mmdd);
+          chips.foreign_buy.push(fYi); chips.trust_buy.push(tYi); chips.dealer_buy.push(dYi);
+          chips.margin_balance.push(null); chips.otc_margin_balance.push(null);
+          chips.twse_only_margin_rate.push(null); chips.short_balance.push(null);
+          if (chips.dates.length > 10) {
             Object.keys(chips).forEach(k => { if (Array.isArray(chips[k])) chips[k].shift(); });
-          }
-        } else {
-          const idx = chips.dates.indexOf(mmdd);
-          if (idx >= 0) { chips.foreign_buy[idx] = fYi; chips.trust_buy[idx] = tYi; chips.dealer_buy[idx] = dYi; }
-          if (mDateMmdd && mYi) {
-            const mIdx = chips.dates.indexOf(mDateMmdd);
-            if (mIdx >= 0) chips.margin_balance[mIdx] = mYi;
           }
         }
         renderChipCharts(chips);
@@ -2140,20 +2115,16 @@
     }
 
     async function syncTaiwanIndicesLiveInBrowser() {
+      await syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"]);
       try {
-        const j = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json");
-        (j?.tables || []).forEach(tb => {
-          (tb.data || []).forEach(r => {
-            if (r && (String(r[0]).includes("發行量加權股價指數") || String(r[0]).includes("加權股價指數"))) {
-              const curP = parseFloat(String(r[1]).replace(/,/g, ""));
-              let chgP = parseFloat(String(r[3]).replace(/,/g, ""));
-              if (String(r[2]).includes("-") || String(r[2]).toLowerCase().includes("green")) chgP = -Math.abs(chgP);
-              const prevP = curP - chgP;
-              const pctP = prevP > 0 ? (chgP / prevP) * 100 : 0;
-              if (curP > 15000) updateAssetDomPrice("^TWII", curP, pctP);
-            }
-          });
-        });
+        const j = await tryFetchViaMultiProxy("https://www.tpex.org.tw/openapi/v1/tpex_index");
+        if (Array.isArray(j) && j.length > 0) {
+          const last = j[j.length - 1];
+          const curP = parseFloat(String(last.Close || last.Index || last["收盤指數"] || "0").replace(/,/g, ""));
+          const chgP = parseFloat(String(last.Change || last["漲跌"] || "0").replace(/,/g, ""));
+          const prevP = curP - chgP;
+          if (curP > 50 && prevP > 0) updateAssetDomPrice("^TWOII", curP, (chgP / prevP) * 100);
+        }
       } catch (e) {}
     }
 
@@ -2295,10 +2266,9 @@
       await Promise.all(batch.map(s => fetchSingleYahooQuoteAndPrePost(s)));
     }
 
-    // 放行原油 (BZ=F, CL=F) 與農產品 (ZS=F, ZW=F, ZC=F) 即時更新，絕不鎖死
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || isCryptoSymbol(sym)) return;
-      const queryCandidates = sym === "^TWOII" ? ["^TWO", "^TWOII"] : [sym];
+      const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : [sym];
       for (const qSym of queryCandidates) {
         try {
           const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(qSym)}?interval=1m&range=1d&includePrePost=true`;
@@ -2357,8 +2327,7 @@
       await Promise.all([
         tryLoadMarketJson(true), syncTaiwanIndicesLiveInBrowser(), syncTradingViewTaiwanScannerInBrowser(),
         syncTradingViewUsScannerInBrowser(), syncDirectBinanceCryptoPrices(), syncTaifexVixAndTxfLiveInBrowser(),
-        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser(),
-        syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"])
+        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser()
       ]);
       renderDailyMarketReport();
       renderTopPerformingSectors();
@@ -2401,7 +2370,6 @@
       });
     }
 
-    // 徹底解除寫死價格：直接渲染 JSON 與即時同步進來的期貨資料
     function renderGroupedFutures(futuresList) {
       const list = futuresList || [], bySym = {};
       list.forEach(f => { bySym[f.symbol] = f; });
@@ -2430,7 +2398,6 @@
       data.fx_rates = fxDefs.map(f => (existingMap[f.symbol] && Number(existingMap[f.symbol].price) > 0) ? Object.assign(existingMap[f.symbol], { asset_type: "fx_rate", name: f.name }) : applyFallbackIfMissing({ ...f, price: 0, change_pct: 0, history: [] }));
     }
 
-    // 徹底移除強制覆寫鎖：完全信任後端最新 JSON 與即時 API 資料
     function renderAllSections(dataPayload) {
       globalMarketData = sanitizeDataTree(dataPayload);
 
@@ -2526,7 +2493,6 @@
     }
 
     async function initDashboard() {
-      // 動態初始化日期選擇器為「一年前至今日」
       const todayYmd = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
       const oneYrAgo = new Date(Date.now() - 365 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
       ["custom-end", "sc-custom-end"].forEach(id => { const el = document.getElementById(id); if (el) el.value = todayYmd; });
