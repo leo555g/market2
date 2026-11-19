@@ -2259,7 +2259,7 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      const fList = ["^GSPC", "^DJI", "^IXIC", "^SOX", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
+      const fList = ["^GSPC", "^DJI", "^IXIC", "^SOX", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
       for (let i = 0; i < 4; i++) batch.push(fList[(futuresPollCursor + i) % fList.length]);
       futuresPollCursor = (futuresPollCursor + 4) % fList.length;
@@ -2267,8 +2267,8 @@
     }
 
     async function fetchSingleYahooQuoteAndPrePost(sym) {
-      if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || isCryptoSymbol(sym)) return;
-      const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : [sym];
+          if (sym === "^VIXTWN" || sym === "TXF" || isCryptoSymbol(sym) || ["BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F"].includes(sym)) return;
+      const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : [sym === "US2Y" ? ["2YY=F"] : [sym]);
       for (const qSym of queryCandidates) {
         try {
           const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(qSym)}?interval=1m&range=1d&includePrePost=true`;
