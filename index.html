@@ -29,7 +29,7 @@
       <div class="flex flex-wrap items-center gap-2.5">
         <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
           <span id="live-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="live-status" class="text-xs font-bold text-emerald-400">全市場當日最新收盤與即時報價已就緒</span>
+          <span id="live-status" class="text-xs font-bold text-emerald-400">全自動即時連線就緒</span>
         </div>
         <button onclick="forceSyncAllLivePrices()" class="text-xs bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">🔄 強制刷新全站報價</button>
         <button onclick="exportAllMarketDataToCSV()" class="text-xs bg-sky-600/20 hover:bg-sky-600/40 text-sky-300 border border-sky-500/40 px-3 py-1.5 rounded-lg font-bold transition">📥 匯出 CSV 報表</button>
@@ -48,7 +48,7 @@
           <span>🔬 視窗二：39大細分產業鏈追蹤室 (全個股完整財報 / 台股前十大 / 美股兆元榜 / 強勢榜)</span>
         </button>
       </div>
-      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時在「總覽主視窗」與「39大產業鏈獨立視窗」之間切換</span>
+      <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時切換視窗</span>
     </div>
   </header>
 
@@ -59,7 +59,6 @@
         <div class="flex flex-wrap items-center gap-2.5">
           <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">⏳ 總經日曆與最新實績</span>
           <h2 class="text-lg font-bold text-white">全球重要總經日曆 (FOMC / 非農 / CPI / PPI / PCE / 零售銷售) & 重量級法說會倒數</h2>
-          <span class="text-xs text-indigo-300">(點擊任一卡片可展開官方分項數據、市場影響分析與官方來源)</span>
         </div>
         <button onclick="customizeEarningsEvent()" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 rounded-lg font-medium transition shrink-0">⚙️ 自訂法說會日程</button>
       </div>
@@ -76,7 +75,7 @@
               <h2 id="chart-asset-title" class="text-xl font-bold text-white">走勢與報酬率比較儀表板</h2>
               <span id="chart-mode-badge" class="text-xs font-bold px-2.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">單一標的模式</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1">點選下方標籤即可將任意指數(含羅素2000)、VIX、美債(含2Y)、外匯、期貨(含台指期)、BTC/ETH、美股、台股加入比較清單疊圖對決</p>
+            <p class="text-xs text-slate-400 mt-1">點選下方標籤即可將任意指數、VIX、美債、外匯、期貨、BTC/ETH、美股、台股加入比較清單疊圖對決</p>
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5">
             <span class="text-xs text-slate-400 shrink-0">主標的：</span>
@@ -91,9 +90,9 @@
           <button onclick="switchRange('1Y')" id="btn-1Y" class="range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y</button>
           <div class="flex items-center gap-1.5 ml-1 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">區間：</span>
-            <input type="date" id="custom-start" value="2025-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-start" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="custom-end" value="2026-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="custom-end" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -139,7 +138,6 @@
         </div>
       </div>
 
-      <!-- 恐懼與貪婪指數半圓形指針儀表板 -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="card-bg rounded-xl p-5 border border-slate-700/80 shadow-lg">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-2">
@@ -147,7 +145,7 @@
               <h3 class="text-base font-bold text-white">恐懼與貪婪指數 (美股市場情緒指標)</h3>
               <span id="fg-us-meta" class="text-[11px] text-slate-400 mono">資料來源：CNN Business Fear &amp; Greed Index</span>
             </div>
-            <span id="fg-us-badge" class="px-2.5 py-1 text-xs font-bold rounded bg-rose-500/20 text-rose-300 border border-rose-500/40">恐懼 (FEAR)</span>
+            <span id="fg-us-badge" class="px-2.5 py-1 text-xs font-bold rounded bg-rose-500/20 text-rose-300 border border-rose-500/40">載入中</span>
           </div>
           <div id="chart-fg-us-gauge" class="w-full h-64"></div>
           <div class="text-center -mt-3">
@@ -161,7 +159,7 @@
               <h3 class="text-base font-bold text-white">恐懼與貪婪指數 (加密貨幣與風險資產情緒指標)</h3>
               <span id="fg-crypto-meta" class="text-[11px] text-slate-400 mono">資料來源：Alternative.me Official API</span>
             </div>
-            <span id="fg-crypto-badge" class="px-2.5 py-1 text-xs font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-500/50">極度恐懼 (EXTREME FEAR)</span>
+            <span id="fg-crypto-badge" class="px-2.5 py-1 text-xs font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-500/50">載入中</span>
           </div>
           <div id="chart-fg-crypto-gauge" class="w-full h-64"></div>
           <div class="text-center -mt-3">
@@ -179,7 +177,7 @@
         <h2 class="text-lg font-bold text-white border-l-4 border-cyan-500 pl-3">
           美國公債殖利率專區 (3個月 / 2年 / 5年 / 10年 / 30年完整殖利率曲線)
         </h2>
-        <span id="us-bond-spread-indicator" class="text-xs text-cyan-300 font-bold mono bg-slate-900 px-3 py-1 rounded border border-cyan-500/30">10Y - 2Y 利差：+27 bps (正斜率)</span>
+        <span id="us-bond-spread-indicator" class="text-xs text-cyan-300 font-bold mono bg-slate-900 px-3 py-1 rounded border border-cyan-500/30">10Y - 2Y 利差計算中...</span>
       </div>
       <div id="grid-us-bonds" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
     </section>
@@ -190,7 +188,7 @@
         <h2 class="text-lg font-bold text-white border-l-4 border-teal-500 pl-3">
           全球外匯專區 (美金計價 ＋ 新台幣 TWD 雙重計價)
         </h2>
-        <span id="fx-twd-base-indicator" class="text-xs text-amber-300 mono">基準匯率：1 美金 = 32.95 新台幣</span>
+        <span id="fx-twd-base-indicator" class="text-xs text-amber-300 mono">基準匯率同步中...</span>
       </div>
       <div id="grid-fx-rates" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
     </section>
@@ -279,12 +277,12 @@
       </div>
       <div id="twse-latest-summary-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3"></div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 10 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3><div id="chart-institutional" class="w-full h-72"></div></div>
+        <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">三大法人近 12 個交易日買賣超金額變化 (外資 / 投信 / 自營商・單位：億元)</h3><div id="chart-institutional" class="w-full h-72"></div></div>
         <div class="card-bg rounded-xl p-4"><h3 class="text-sm font-bold text-slate-200 mb-2">加權指數融資餘額 vs 櫃買指數融資餘額變化趨勢 (單位：億元)</h3><div id="chart-margin" class="w-full h-72"></div></div>
         <div class="card-bg rounded-xl p-4 lg:col-span-2 border border-emerald-500/30">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
             <h3 class="text-sm font-bold text-emerald-300">🛡️ 證交所全市場擔保維持率 vs 上市櫃融資維持率變化趨勢 (追繳警戒線 130%)</h3>
-            <span class="text-xs text-slate-400">僅繪製經官方與 MacroMicro 53117 明確核實之數據點位，無公開紀錄處保持留白不捏造</span>
+            <span class="text-xs text-slate-400">隨每日官方公布自動滾動推進，無公開紀錄處保持留白不捏造</span>
           </div>
           <div id="chart-maintenance-ratio" class="w-full h-72"></div>
         </div>
@@ -327,7 +325,7 @@
             <span class="px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded animate-pulse">🔥 每日強勢族群雷達 (即時動態重算)</span>
             <h2 id="sc-top-radar-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股今日最強勢細分產業鏈排行 & 領漲原因深度解析</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">根據全站 39 大細分產業鏈成分股之「當日最新即時收盤價與漲跌幅」即時動態排序前六強與前三大領漲指標股（點擊卡片可直接跳轉該產業鏈）</p>
+          <p class="text-xs text-slate-400 mt-1">根據全站 39 大細分產業鏈成分股之即時價格動態排序前六強（點擊卡片可直接跳轉該產業鏈）</p>
         </div>
         <div class="flex items-center gap-2 shrink-0 bg-slate-900 p-1 rounded-lg border border-slate-800">
           <button id="top-market-btn-tw" onclick="switchTopMarketTab('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股強勢榜</button>
@@ -342,7 +340,7 @@
         <div>
           <div class="flex items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
-            <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室 (全個股完整 7 大財報指標覆蓋)</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white">39 大細分產業鏈上、中、下游垂直整合追蹤室</h2>
           </div>
           <p class="text-xs text-slate-400 mt-1">點擊個股可展開該公司最新一期官方月營收 (MOPS OpenAPI)、財報獲利指標與即時新聞時事來源</p>
         </div>
@@ -352,7 +350,6 @@
       <div class="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold text-white">🌍 選擇要檢視的市場供應鏈：</span>
-          <span class="text-[11px] text-slate-400">(台股僅顯示台股前十大權值・美股僅顯示美股一兆美元俱樂部)</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button id="sc-mkt-TW" onclick="switchScMarketFilter('TW')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股供應鏈專區 (純台股)</button>
@@ -362,7 +359,7 @@
       </div>
 
       <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-3.5 mb-4">
-        <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽（點擊任一節點直接切換對應產業鏈）：</div>
+        <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
           <button id="quick-nav-tw-top10" onclick="selectScSector('tw_top10')" class="px-2.5 py-1 rounded bg-rose-500/25 hover:bg-rose-600 text-rose-200 font-bold border border-rose-500/40 transition">🏆 台股市值前十大權值股</button>
           <button id="quick-nav-us-trillion" onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-emerald-500/25 hover:bg-emerald-600 text-emerald-200 font-bold border border-emerald-500/40 transition hidden">👑 美股一兆美元俱樂部</button>
@@ -407,7 +404,7 @@
       <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-4">
         <div>
           <h3 id="sc-chart-title" class="text-lg font-bold text-white">產業鏈上中下游成分股 & 全球主要指數相對報酬率 (%) 走勢對照圖</h3>
-          <p class="text-xs text-slate-400">可切換 1W / 1M / YTD / 1Y(一年) 或自選日期區間，並可將全球主要指數加入圖表(以虛線顯示)檢驗個股超額報酬 Alpha</p>
+          <p class="text-xs text-slate-400">可切換 1W / 1M / YTD / 1Y 或自選日期區間，並可將全球主要指數加入圖表檢驗超額報酬 Alpha</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="switchScChartRange('1W')" id="sc-btn-1W" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1W</button>
@@ -416,9 +413,9 @@
           <button onclick="switchScChartRange('1Y')" id="sc-btn-1Y" class="sc-range-btn px-3 py-1.5 text-xs font-bold rounded bg-slate-800 text-slate-300 hover:bg-slate-700">1Y (一年)</button>
           <div class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 rounded px-2.5 py-1">
             <span class="text-xs text-slate-400">自選區間：</span>
-            <input type="date" id="sc-custom-start" value="2025-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-start" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <span class="text-xs text-slate-500">至</span>
-            <input type="date" id="sc-custom-end" value="2026-11-18" class="bg-transparent text-xs text-white mono focus:outline-none" />
+            <input type="date" id="sc-custom-end" class="bg-transparent text-xs text-white mono focus:outline-none" />
             <button onclick="applyScCustomDateRange()" class="ml-1 px-2.5 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded">套用</button>
           </div>
         </div>
@@ -544,8 +541,8 @@
       }
     }
 
-    // 嚴格依據使用者提供之 MacroMicro 53117 截圖與證交所 BFI82U / MI_MARGN 官方數據
-    const OFFICIAL_VERIFIED_TW_CHIPS = {
+    // 離線備援佔位符：僅在完全無法讀取 data/market_data.json 與即時 API 時顯示，絕不覆蓋任何新資料
+    const OFFLINE_FALLBACK_TW_CHIPS = {
       dates: ["11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16", "11/17", "11/18"],
       foreign_buy: [-1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89, -380.93, -765.64],
       trust_buy: [272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -183.02, -9.34, 175.58],
@@ -558,70 +555,16 @@
       short_balance: [24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80, null]
     };
 
-    // 上方大字：顯示正規盤/日盤收盤結算價 (原油完全對齊 MacroMicro 2026-11-18 截圖：BZ 91.77, CL 82.94)
-    const VERIFIED_NOV13_2026_QUOTES = {
-      "^GSPC": [7561.67, -0.40], "^DJI": [52347.55, 0.10], "^IXIC": [25136.27, -0.91], "^SOX": [10146.32, -3.43], "^RUT": [2418.65, -0.62],
-      "^TWII": [40194.91, 0.26], "^TWOII": [307.55, -0.31], "TXF": [40332.00, 0.56],
-      "^N225": [59662.02, -2.42], "^KS11": [5100.25, -3.60],
-      "^FTSE": [10863.00, 0.25], "^GDAXI": [26772.00, 0.40], "^FCHI": [8368.91, 0.09],
-      "^VIX": [19.30, 3.21], "^VIXTWN": [38.45, -4.54],
-      "^IRX": [4.32, 0.02], "US2Y": [4.88, 0.02], "^FVX": [4.98, 0.08], "^TNX": [5.15, 0.10], "^TYX": [5.47, 0.08],
-      "TWD=X": [32.95, 0.18], "AUDUSD=X": [0.6480, -0.25], "CHF=X": [0.8400, -0.10], "JPY=X": [159.90, -0.10],
-      "EURUSD=X": [1.1000, -0.30], "GBPUSD=X": [1.3200, -0.20], "CNY=X": [6.6600, -0.10], "DX-Y.NYB": [103.20, 0.20],
-      "ES=F": [7578.50, -0.40], "NQ=F": [25210.00, -0.91], "YM=F": [52410.00, 0.10],
-      "GC=F": [3883.20, 0.15], "SI=F": [49.98, -0.45], "HG=F": [6.18, -0.65], "PA=F": [1036.50, 0.25],
-      "BZ=F": [91.77, -1.47], "CL=F": [82.94, -2.02],
-      "ZS=F": [1222.49, -0.25], "ZW=F": [589.01, -1.05], "ZC=F": [444.83, -0.43],
-      "BTC-USD": [64566.98, 0.69], "ETH-USD": [1814.48, -5.86],
-      "NVDA": [162.85, -2.01], "TSM": [398.73, -1.67], "SPCX": [139.11, -0.59], "AMD": [534.06, -8.75],
-      "GOOGL": [295.77, -0.98], "META": [641.69, 2.90], "TSLA": [390.22, -1.82], "AVGO": [347.01, -4.76],
-      "AMZN": [266.66, -0.30], "AAPL": [356.27, 0.39], "MSFT": [523.88, 0.17], "MU": [778.31, -2.52],
-      "SNDK": [885.01, -5.60], "WDC": [78.40, -1.15], "STX": [112.50, -0.85], "IBKR": [81.58, 0.30],
-      "MRSH": [207.78, 1.02], "BRK-B": [592.94, 0.54], "LLY": [1443.50, 0.92], "WMT": [128.09, 0.85],
-      "JPM": [346.19, 1.15], "V": [425.76, 0.70], "UNH": [407.46, 0.57], "XOM": [170.59, 0.48], "CVX": [219.89, 1.64],
-      "2330.TW": [2175.00, 0.23], "2454.TW": [3940.00, 2.60], "2308.TW": [1120.00, 0.00], "2317.TW": [218.50, 0.00], "3711.TW": [548.00, 5.38]
-    };
-
-    // 下方小字：原油對照 MacroMicro 截圖前值 (BZ 93.14, CL 84.65)；農產品對照 CME 主力合約；加密貨幣排除
-    const DEFAULT_US_EXT_SESSIONS = {
-      "TXF": { price: 40425.00, change: 93.00, change_pct: 0.23, label: "夜盤" },
-      "BZ=F": { price: 93.14, change: -1.37, change_pct: -1.47, label: "前值對照" },
-      "CL=F": { price: 84.65, change: -1.71, change_pct: -2.02, label: "前值對照" },
-      "ZS=F": { price: 1222.50, change: -3.00, change_pct: -0.24, label: "CME ZSF7 (1222'4)" },
-      "ZW=F": { price: 604.75, change: -5.50, change_pct: -0.90, label: "CME ZWH7 (604'6)" },
-      "ZC=F": { price: 446.75, change: -1.92, change_pct: -0.43, label: "前值對照" },
-      "ES=F": { price: 7512.00, change: -66.50, change_pct: -0.88, label: "電子盤" },
-      "NQ=F": { price: 24920.00, change: -290.00, change_pct: -1.15, label: "電子盤" },
-      "YM=F": { price: 52180.00, change: -230.00, change_pct: -0.44, label: "電子盤" },
-      "GC=F": { price: 3886.30, change: 3.10, change_pct: 0.08, label: "電子盤" },
-      "SI=F": { price: 49.03, change: -0.95, change_pct: -1.90, label: "電子盤" },
-      "HG=F": { price: 6.08, change: -0.10, change_pct: -1.67, label: "電子盤" },
-      "PA=F": { price: 1039.20, change: 2.70, change_pct: 0.26, label: "電子盤" },
-      "NVDA": { price: 161.20, change: -1.65, change_pct: -1.01, label: "盤前" },
-      "TSM": { price: 384.50, change: -14.23, change_pct: -3.57, label: "盤前" },
-      "SPCX": { price: 138.40, change: -0.71, change_pct: -0.51, label: "盤前" },
-      "AMD": { price: 526.80, change: -7.26, change_pct: -1.36, label: "盤前" },
-      "GOOGL": { price: 293.90, change: -1.87, change_pct: -0.63, label: "盤前" },
-      "META": { price: 638.10, change: -3.59, change_pct: -0.56, label: "盤前" },
-      "TSLA": { price: 386.50, change: -3.72, change_pct: -0.95, label: "盤前" },
-      "AVGO": { price: 342.15, change: -4.86, change_pct: -1.40, label: "盤前" },
-      "AMZN": { price: 265.10, change: -1.56, change_pct: -0.59, label: "盤前" },
-      "AAPL": { price: 354.80, change: -1.47, change_pct: -0.41, label: "盤前" },
-      "MSFT": { price: 521.40, change: -2.48, change_pct: -0.47, label: "盤前" }
-    };
+    const OFFLINE_FALLBACK_QUOTES = {};
 
     function ensureUsExtSession(symbol, regularPrice, existingExt = null) {
       if (isCryptoSymbol(symbol)) return null;
       if (existingExt && Number(existingExt.price) > 0 && Number(existingExt.price) !== Number(regularPrice)) return existingExt;
-      if (DEFAULT_US_EXT_SESSIONS[symbol]) return DEFAULT_US_EXT_SESSIONS[symbol];
-      const regP = Number(regularPrice) || getDeterministicFallbackQuote(symbol)[0];
-      const hr = new Date().getHours();
-      const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
-      return { price: regP, change: 0.0, change_pct: 0.0, label: lbl };
+      return null;
     }
 
     function getDeterministicFallbackQuote(symbol) {
-      if (VERIFIED_NOV13_2026_QUOTES[symbol]) return VERIFIED_NOV13_2026_QUOTES[symbol];
+      if (OFFLINE_FALLBACK_QUOTES[symbol]) return OFFLINE_FALLBACK_QUOTES[symbol];
       if (isTwSymbol(symbol)) {
         const code = String(symbol).split(".")[0];
         if (twCodeMap[code]) return twCodeMap[code];
@@ -651,25 +594,11 @@
     }
 
     function ensureSyntheticHistoryIfEmpty(item) {
-      if (item.history && item.history.length >= 10) return item;
-      const pEnd = Number(item.price) || getDeterministicFallbackQuote(item.symbol)[0] || 100;
-      const pctLast = Number(item.change_pct) || getDeterministicFallbackQuote(item.symbol)[1] || 0;
-      let h = 0;
-      for (let i = 0; i < item.symbol.length; i++) h = ((h << 5) - h + item.symbol.charCodeAt(i)) | 0;
-      const pts = [];
-      let cur = pEnd;
-      const baseDate = new Date();
-      for (let d = 0; d < 252; d++) {
-        const dt = new Date(baseDate.getTime() - d * 86400000);
-        if (dt.getUTCDay() === 0 || dt.getUTCDay() === 6) continue;
-        const ymd = dt.toISOString().slice(0, 10);
-        pts.push({ date: ymd, close: Number(cur.toFixed(2)) });
-        const stepPct = d === 0 ? (pctLast / 100) : ((((Math.sin(d * 0.35 + h) + Math.cos(d * 0.17 - h)) * 0.0085)));
-        cur = cur / (1 + stepPct);
-        if (cur <= 1) cur = 5;
-      }
-      pts.reverse();
-      item.history = pts;
+      if (item.history && item.history.length >= 2) return item;
+      const pEnd = Number(item.price) || getDeterministicFallbackQuote(item.symbol)[0] || 0;
+      if (pEnd <= 0) return item;
+      const today = new Date().toISOString().slice(0, 10);
+      item.history = [{ date: today, close: Number(pEnd.toFixed(2)) }];
       return item;
     }
 
@@ -762,10 +691,11 @@
       fgUsChart = renderFearAndGreedGauge("chart-fg-us-gauge", us.score, us.label_zh, us.label_en);
       fgCryptoChart = renderFearAndGreedGauge("chart-fg-crypto-gauge", crypto.score, crypto.label_zh, crypto.label_en);
     }
+
     function exportAllMarketDataToCSV() {
       getSupplyChainSectorsData();
       const rows = [
-        ["資產分類", "代碼 (Symbol)", "名稱 (Name)", "最新收盤/即時價", "單日漲跌幅 (%)", "盤前/盤後/夜盤/主力合約價", "盤後漲跌 (%)", "本益比 (PE)", "預估 PE", "EPS (TTM)", "ROE", "毛利率", "營業利益率", "季營收年增", "產業鏈定位 / 備註"]
+        ["資產分類", "代碼 (Symbol)", "名稱 (Name)", "最新收盤/即時價", "單日漲跌幅 (%)", "盤前/盤後/夜盤/電子盤", "盤後漲跌 (%)", "本益比 (PE)", "預估 PE", "EPS (TTM)", "ROE", "毛利率", "營業利益率", "季營收年增", "產業鏈定位 / 備註"]
       ];
       const addedSyms = new Set();
       const pushAssetRow = (categoryLabel, item, extraNote = "") => {
@@ -829,53 +759,36 @@
       const guarPt = getLastVerifiedPoint(chips.twse_guarantee_rate, chips.dates);
       const combPt = getLastVerifiedPoint(chips.combined_margin_rate, chips.dates);
 
-      const lines = [];
-      lines.push(`# 全球金融市場與台股每日深度分析報告`);
-      lines.push(`> **產出時間**：${rep.report_date}`);
-      lines.push(`> **核心結論**：${rep.headline}`);
-      lines.push(``);
-      lines.push(`## 一、最新盤勢漲跌五大核心原因深度剖析`);
-      (rep.market_drivers || []).forEach(d => lines.push(`- ${d}`));
-      lines.push(``);
-      lines.push(`## 二、當前市場關鍵利多支撐因素`);
-      (rep.bullish_factors || []).forEach(b => lines.push(`- ${b}`));
-      lines.push(``);
-      lines.push(`## 三、當前市場潛在利空與風險提示`);
-      (rep.bearish_factors || []).forEach(b => lines.push(`- ${b}`));
-      lines.push(``);
-      lines.push(`## 四、台股與美股今日最強勢細分產業鏈 TOP 6`);
-      lines.push(`### 🇹🇼 台股強勢族群前六強`);
-      twTop6.forEach((s, i) => {
-        const lds = (s.leaders || []).map(l => `${l.name} ${formatDisplayPrice(l.price, l.symbol)} (${formatSignedPct(l.change_pct)})`).join("、");
-        lines.push(`${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— 領漲指標：${lds}`);
-      });
-      lines.push(``);
-      lines.push(`### 🇺🇸 美股強勢族群前六強`);
-      usTop6.forEach((s, i) => {
-        const lds = (s.leaders || []).map(l => `${l.name} ${formatDisplayPrice(l.price, l.symbol)} (${formatSignedPct(l.change_pct)})`).join("、");
-        lines.push(`${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— 領漲指標：${lds}`);
-      });
-      lines.push(``);
-      lines.push(`## 五、台股三大法人買賣超、融資餘額與維持率統計`);
-      lines.push(`- **外資及陸資買賣超 (${fPt.date})**：${fPt.val} 億元`);
-      lines.push(`- **投信買賣超 (${tPt.date})**：${tPt.val} 億元`);
-      lines.push(`- **自營商買賣超 (${dPt.date})**：${dPt.val} 億元`);
-      lines.push(`- **加權指數融資餘額 (${mPt.date})**：${mPt.val} 億元`);
-      lines.push(`- **櫃買指數融資餘額 (${otcPt.date})**：${otcPt.val} 億元`);
-      lines.push(`- **證交所全市場整戶擔保維持率 (${guarPt.date})**：${guarPt.val}%`);
-      lines.push(`- **上市櫃融資維持率 (${combPt.date})**：${combPt.val}%`);
-      lines.push(``);
-      lines.push(`## 六、未來一週重要經濟數據與重量級財報預告`);
-      (rep.upcoming_macro_week || []).forEach(m => lines.push(`- **[${m.date}] ${m.event}**：${m.consensus} — ${m.impact}`));
-      (rep.upcoming_earnings_week || []).forEach(e => lines.push(`- **[${e.date}] ${e.ticker} ${e.name}**：${e.focus}`));
+      const lines = [
+        `# 全球金融市場與台股每日深度分析報告`,
+        `> **產出時間**：${rep.report_date}`,
+        `> **核心結論**：${rep.headline}`, ``,
+        `## 一、最新盤勢漲跌五大核心原因深度剖析`,
+        ...(rep.market_drivers || []).map(d => `- ${d}`), ``,
+        `## 二、當前市場關鍵利多支撐因素`,
+        ...(rep.bullish_factors || []).map(b => `- ${b}`), ``,
+        `## 三、當前市場潛在利空與風險提示`,
+        ...(rep.bearish_factors || []).map(b => `- ${b}`), ``,
+        `## 四、台股與美股今日最強勢細分產業鏈 TOP 6`,
+        `### 🇹🇼 台股強勢族群前六強`,
+        ...twTop6.map((s, i) => `${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— ${(s.leaders || []).map(l => `${l.name} ${formatDisplayPrice(l.price, l.symbol)} (${formatSignedPct(l.change_pct)})`).join("、")}`), ``,
+        `### 🇺🇸 美股強勢族群前六強`,
+        ...usTop6.map((s, i) => `${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— ${(s.leaders || []).map(l => `${l.name} ${formatDisplayPrice(l.price, l.symbol)} (${formatSignedPct(l.change_pct)})`).join("、")}`), ``,
+        `## 五、台股三大法人買賣超、融資餘額與維持率統計`,
+        `- **外資及陸資買賣超 (${fPt.date})**：${fPt.val ?? '待公布'} 億元`,
+        `- **投信買賣超 (${tPt.date})**：${tPt.val ?? '待公布'} 億元`,
+        `- **自營商買賣超 (${dPt.date})**：${dPt.val ?? '待公布'} 億元`,
+        `- **加權指數融資餘額 (${mPt.date})**：${mPt.val ?? '待公布'} 億元`,
+        `- **櫃買指數融資餘額 (${otcPt.date})**：${otcPt.val ?? '待公布'} 億元`,
+        `- **證交所全市場整戶擔保維持率 (${guarPt.date})**：${guarPt.val ?? '待公布'}%`,
+        `- **上市櫃融資維持率 (${combPt.date})**：${combPt.val ?? '待公布'}%`
+      ];
 
-      const mdText = lines.join("\r\n");
-      const blob = new Blob([mdText], { type: "text/markdown;charset=utf-8;" });
+      const blob = new Blob([lines.join("\r\n")], { type: "text/markdown;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      const dtFile = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
       a.href = url;
-      a.download = `Daily_Market_Report_${dtFile}.md`;
+      a.download = `Daily_Market_Report_${new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" })}.md`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -883,33 +796,33 @@
     }
 
     const MACRO_CALENDAR_CATEGORIES = [
-      { id: "fomc", categoryName: "🏦 FOMC 利率決策", badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30", accentBorder: "border-l-4 border-l-blue-500", schedule: [{ title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與主席記者會" }], latestRelease: { period: "2026年10月 FOMC 會議 (10/28 發布)", actual: "3.75% – 4.00%", momText: "本月變動：0 bps (按兵不動)", expected: "3.75% – 4.00%", prior: "3.75% – 4.00% (9月升1碼)", priorNote: "2026年9月會議升息 +25 bps", verdictBadge: "符合預期・鷹派暫停", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "聯邦資金利率目標區間", val: "3.75% – 4.00%" }, { label: "12月會議市場隱含升息機率", val: "約 80% – 88% 機率升息 25 bps" }], impacts: ["【貨幣政策路徑】聯準會在 9 月升息 1 碼後，於 10 月會議選擇暫停觀察，但聲明將經濟描述上調為強勁，保留後續升息空間。"], sourceName: "美國聯準會 (Federal Reserve Board)", sourceLinks: [{ label: "Fed FOMC 官方聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" }] } },
-      { id: "nfp", categoryName: "👷 美國非農就業 (NFP)", badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", accentBorder: "border-l-4 border-l-emerald-500", schedule: [{ title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }], latestRelease: { period: "2026年10月 非農就業報告 (11/06 發布)", actual: "+16.5 萬人 (失業率 4.1%)", momText: "總就業月增率：+0.10% MoM", expected: "+6.5 萬人 (失業率 4.2%)", prior: "+6.0 萬人 (上修)", priorNote: "9月初值 +2.9萬上修至 +6.0萬", verdictBadge: "遠超預期 (+10萬人)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月非農新增就業人數", val: "+165,000 人" }, { label: "10月官方失業率 (U-3)", val: "4.1%" }], impacts: ["【數據亮點】10 月非農新增就業達 16.5 萬人，遠超市場預期的 6.5 萬人，破除經濟衰退疑慮。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS 就業報告 PDF", url: "https://www.bls.gov/news.release/pdf/empsit.pdf" }] } },
-      { id: "cpi", categoryName: "🔥 美國 CPI 通膨數據", badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30", accentBorder: "border-l-4 border-l-rose-500", schedule: [{ title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" }], latestRelease: { period: "2026年10月 CPI 報告 (11/10 發布)", actual: "整體月增 +0.4% MoM", momText: "核心 CPI 月增：+0.3% MoM", expected: "整體 +0.3% / 核心 +0.2%", prior: "整體 +0.6% / 核心 +0.3%", priorNote: "9月整體月增 +0.6%", verdictBadge: "高於預期 (+0.1%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月整體 CPI 月增率", val: "+0.4% MoM" }, { label: "10月核心 CPI 月增率", val: "+0.3% MoM" }], impacts: ["【通膨黏著度】10 月整體 CPI 月增 +0.4%，核心 CPI 連三個月 +0.3% MoM，強化聯準會鷹派立場。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS CPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }] } },
-      { id: "ppi", categoryName: "🏭 美國 PPI 生產者物價", badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30", accentBorder: "border-l-4 border-l-amber-500", schedule: [{ title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" }], latestRelease: { period: "2026年10月 PPI 報告 (11/13 發布)", actual: "年增 +6.5% YoY", momText: "月增率：+0.3% MoM (核心 +0.3%)", expected: "月增 +0.4% MoM", prior: "年增 +6.3% / 月增 +1.4%", priorNote: "9月 PPI 月增 +1.4%", verdictBadge: "月增降溫・年增創高", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月最終需求 PPI", val: "+0.3% MoM / +6.5% YoY" }, { label: "核心 PPI", val: "+0.5% MoM / +4.9% YoY" }], impacts: ["【月增降溫帶來喘息】10 月最終需求 PPI 月增率由 9 月的 +1.4% 回落至 +0.3%，讓美股與台股獲得短線喘息空間。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS PPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }] } },
-      { id: "pce", categoryName: "💳 美國 PCE 物價指數", badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30", accentBorder: "border-l-4 border-l-cyan-500", schedule: [{ title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" }], latestRelease: { period: "2026年9月 PCE 報告 (10/29 發布)", actual: "整體 +3.6% / 核心 +3.1%", momText: "月增率：整體 +0.5% / 核心 +0.3% MoM", expected: "整體 +3.5% (月增 +0.4%)", prior: "整體 +3.4% (月增 +0.3%)", priorNote: "8月核心月增 +0.3%", verdictBadge: "核心持平・整體偏熱", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月整體 PCE", val: "+3.6% YoY / +0.5% MoM" }, { label: "9月核心 PCE", val: "+3.1% YoY / +0.3% MoM" }], impacts: ["【聯準會首選通膨指標】9 月核心 PCE 年增 +3.1%，市場高度關注 11 月 25 日即將公布的 10 月 PCE 報告。"], sourceName: "美國經濟分析局 (BEA)", sourceLinks: [{ label: "BEA PCE 報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }] } },
-      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 11 月零售銷售 (Retail Sales)", time: "2026-12-16T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年10月 零售銷售 (11/17 發布)", actual: "$7,482 億 (月增 +0.4%)", momText: "月增率：+0.4% MoM (核心 +0.3%)", expected: "月增 +0.3% MoM", prior: "月增 +0.8% MoM", priorNote: "9月月增 +0.8%", verdictBadge: "溫和優於預期 (+0.1%)", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月零售總銷售額", val: "$7,482.10 億美元 (+0.4% MoM)" }, { label: "核心零售銷售", val: "+0.3% MoM / +4.9% YoY" }], impacts: ["【美國內需韌性】10 月零售銷售月增 +0.4% 略優於預期，展現美國年底消費旺季動能穩健。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
-      { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-purple-500", schedule: [{ title: "AVGO 博通財報 & 台積電月營收", time: "2026-12-10T13:30:00+08:00", note: "關注客製化 AI ASIC 與 CoWoS 產能" }], latestRelease: { period: "NVDA 輝達 Q3 財報 & 台積電營收實績", actual: "營收年增 +78.4% YoY", momText: "資料中心季增：+17.5% QoQ (創歷史新高)", expected: "毛利率財測 74.5%–75.5%", prior: "實際毛利率 75.0%", priorNote: "Blackwell 全面放量出貨", verdictBadge: "營收與財測雙雙優於預期", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 下季營收指引", val: "預估再季增 +12% 續創歷史新高" }], impacts: ["【AI 半導體風向球】輝達財報與台積電單月營收雙雙確立 AI 算力基建需求毫無放緩跡象。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
+      { id: "fomc", categoryName: "🏦 FOMC 利率決策", badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30", accentBorder: "border-l-4 border-l-blue-500", schedule: [{ title: "12月 FOMC 利率決策 & 點陣圖", time: "2026-12-10T03:00:00+08:00", note: "含經濟預測摘要 (SEP) 與主席記者會" }], latestRelease: { period: "2026年10月 FOMC 會議 (10/28 發布)", actual: "3.75% – 4.00%", momText: "本月變動：0 bps (按兵不動)", expected: "3.75% – 4.00%", prior: "3.75% – 4.00% (9月升1碼)", priorNote: "2026年9月會議升息 +25 bps", verdictBadge: "符合預期・鷹派暫停", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "聯邦資金利率目標區間", val: "3.75% – 4.00%" }, { label: "12月會議市場隱含升息機率", val: "約 80% – 88% 機率升息 25 bps" }], impacts: ["聯準會在 9 月升息 1 碼後，於 10 月會議選擇暫停觀察，保留後續彈性。"], sourceName: "美國聯準會 (Federal Reserve Board)", sourceLinks: [{ label: "Fed FOMC 官方聲明", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" }] } },
+      { id: "nfp", categoryName: "👷 美國非農就業 (NFP)", badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", accentBorder: "border-l-4 border-l-emerald-500", schedule: [{ title: "美國 11 月非農就業報告", time: "2026-12-04T21:30:00+08:00", note: "BLS 官方公布就業人數與失業率" }], latestRelease: { period: "2026年10月 非農就業報告 (11/06 發布)", actual: "+16.5 萬人 (失業率 4.1%)", momText: "總就業月增率：+0.10% MoM", expected: "+6.5 萬人 (失業率 4.2%)", prior: "+6.0 萬人 (上修)", priorNote: "9月初值 +2.9萬上修至 +6.0萬", verdictBadge: "遠超預期 (+10萬人)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月非農新增就業人數", val: "+165,000 人" }, { label: "10月官方失業率 (U-3)", val: "4.1%" }], impacts: ["10 月非農新增就業達 16.5 萬人，遠超市場預期，破除經濟衰退疑慮。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS 就業報告 PDF", url: "https://www.bls.gov/news.release/pdf/empsit.pdf" }] } },
+      { id: "cpi", categoryName: "🔥 美國 CPI 通膨數據", badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30", accentBorder: "border-l-4 border-l-rose-500", schedule: [{ title: "美國 11 月 CPI 消費者物價指數", time: "2026-12-10T21:30:00+08:00", note: "FOMC 會後隔日關鍵通膨驗證" }], latestRelease: { period: "2026年10月 CPI 報告 (11/10 發布)", actual: "整體月增 +0.4% MoM", momText: "核心 CPI 月增：+0.3% MoM", expected: "整體 +0.3% / 核心 +0.2%", prior: "整體 +0.6% / 核心 +0.3%", priorNote: "9月整體月增 +0.6%", verdictBadge: "高於預期 (+0.1%)", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "10月整體 CPI 月增率", val: "+0.4% MoM" }, { label: "10月核心 CPI 月增率", val: "+0.3% MoM" }], impacts: ["10 月整體 CPI 月增 +0.4%，核心 CPI 連三個月 +0.3% MoM。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS CPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/cpi.pdf" }] } },
+      { id: "ppi", categoryName: "🏭 美國 PPI 生產者物價", badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30", accentBorder: "border-l-4 border-l-amber-500", schedule: [{ title: "美國 11 月 PPI 生產者物價指數", time: "2026-12-15T21:30:00+08:00", note: "PCE 通膨領先指標與供應鏈成本" }], latestRelease: { period: "2026年10月 PPI 報告 (11/13 發布)", actual: "年增 +6.5% YoY", momText: "月增率：+0.3% MoM (核心 +0.3%)", expected: "月增 +0.4% MoM", prior: "年增 +6.3% / 月增 +1.4%", priorNote: "9月 PPI 月增 +1.4%", verdictBadge: "月增降溫・年增創高", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月最終需求 PPI", val: "+0.3% MoM / +6.5% YoY" }, { label: "核心 PPI", val: "+0.5% MoM / +4.9% YoY" }], impacts: ["10 月最終需求 PPI 月增率回落至 +0.3%，帶來短線喘息空間。"], sourceName: "美國勞工統計局 (BLS)", sourceLinks: [{ label: "BLS PPI 報告 PDF", url: "https://www.bls.gov/news.release/pdf/ppi.pdf" }] } },
+      { id: "pce", categoryName: "💳 美國 PCE 物價指數", badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30", accentBorder: "border-l-4 border-l-cyan-500", schedule: [{ title: "美國 10 月 PCE 個人消費支出物價", time: "2026-11-25T21:30:00+08:00", note: "聯準會最重視之核心通膨指標 (BEA)" }], latestRelease: { period: "2026年9月 PCE 報告 (10/29 發布)", actual: "整體 +3.6% / 核心 +3.1%", momText: "月增率：整體 +0.5% / 核心 +0.3% MoM", expected: "整體 +3.5% (月增 +0.4%)", prior: "整體 +3.4% (月增 +0.3%)", priorNote: "8月核心月增 +0.3%", verdictBadge: "核心持平・整體偏熱", verdictColor: "text-rose-300 bg-rose-500/20 border-rose-500/30", subMetrics: [{ label: "9月整體 PCE", val: "+3.6% YoY / +0.5% MoM" }, { label: "9月核心 PCE", val: "+3.1% YoY / +0.3% MoM" }], impacts: ["9 月核心 PCE 年增 +3.1%，市場高度關注 11 月 25 日即將公布的 10 月報告。"], sourceName: "美國經濟分析局 (BEA)", sourceLinks: [{ label: "BEA PCE 報告 PDF", url: "https://www.bea.gov/sites/default/files/2026-10/pi0926.pdf" }] } },
+      { id: "retail", categoryName: "🛍️ 美國零售銷售數據", badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30", accentBorder: "border-l-4 border-l-pink-500", schedule: [{ title: "美國 11 月零售銷售 (Retail Sales)", time: "2026-12-16T21:30:00+08:00", note: "佔美國 GDP 近 70% 之內需消費指標" }], latestRelease: { period: "2026年10月 零售銷售 (11/17 發布)", actual: "$7,482 億 (月增 +0.4%)", momText: "月增率：+0.4% MoM (核心 +0.3%)", expected: "月增 +0.3% MoM", prior: "月增 +0.8% MoM", priorNote: "9月月增 +0.8%", verdictBadge: "溫和優於預期 (+0.1%)", verdictColor: "text-emerald-300 bg-emerald-500/20 border-emerald-500/30", subMetrics: [{ label: "10月零售總銷售額", val: "$7,482.10 億美元 (+0.4% MoM)" }, { label: "核心零售銷售", val: "+0.3% MoM / +4.9% YoY" }], impacts: ["10 月零售銷售月增 +0.4% 略優於預期，展現年底消費旺季動能。"], sourceName: "美國人口普查局 (Census Bureau)", sourceLinks: [{ label: "Census 零售銷售 PDF", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" }] } },
+      { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-l-purple-500", schedule: [{ title: "AVGO 博通財報 & 台積電月營收", time: "2026-12-10T13:30:00+08:00", note: "關注客製化 AI ASIC 與 CoWoS 產能" }], latestRelease: { period: "NVDA 輝達 Q3 財報 & 台積電營收實績", actual: "營收年增 +78.4% YoY", momText: "資料中心季增：+17.5% QoQ", expected: "毛利率財測 74.5%–75.5%", prior: "實際毛利率 75.0%", priorNote: "Blackwell 全面放量出貨", verdictBadge: "營收與財測雙雙優於預期", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 下季營收指引", val: "預估再季增 +12%" }], impacts: ["輝達財報與台積電單月營收雙雙確立 AI 算力基建需求。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
     function buildDynamicDailyMarketReport() {
-      const g = (sym, defP, defPct) => {
+      const g = (sym) => {
         const it = allAssetsMap[sym];
-        const p = (it && Number(it.price) > 0) ? Number(it.price) : (getDeterministicFallbackQuote(sym)[0] || defP);
-        const pct = (it && it.change_pct !== undefined && Number(it.price) > 0) ? Number(it.change_pct) : (getDeterministicFallbackQuote(sym)[1] ?? defPct);
-        return { price: formatDisplayPrice(p, sym), pct: formatSignedPct(pct), rawPct: pct };
+        const p = (it && Number(it.price) > 0) ? Number(it.price) : 0;
+        const pct = (it && it.change_pct !== undefined && p > 0) ? Number(it.change_pct) : 0;
+        return { price: p > 0 ? formatDisplayPrice(p, sym) : "同步中", pct: p > 0 ? formatSignedPct(pct) : "--", rawPct: pct };
       };
 
-      const sp = g("^GSPC", 7561.67, -0.40), dji = g("^DJI", 52347.55, 0.10), ixic = g("^IXIC", 25136.27, -0.91), sox = g("^SOX", 10146.32, -3.43), rut = g("^RUT", 2418.65, -0.62);
-      const twii = g("^TWII", 40194.91, 0.26), twoii = g("^TWOII", 307.55, -0.31), txf = g("TXF", 40332.00, 0.56);
-      const vixUs = g("^VIX", 19.30, 3.21), vixTw = g("^VIXTWN", 38.45, -4.54);
-      const us2y = g("US2Y", 4.88, 0.02), tnx = g("^TNX", 5.15, 0.10), tyx = g("^TYX", 5.47, 0.08);
-      const twd = g("TWD=X", 32.95, 0.18), dxy = g("DX-Y.NYB", 103.20, 0.20);
-      const gc = g("GC=F", 3883.20, 0.15), bz = g("BZ=F", 91.77, -1.47), cl = g("CL=F", 82.94, -2.02);
-      const zs = g("ZS=F", 1222.49, -0.25), zw = g("ZW=F", 589.01, -1.05), zc = g("ZC=F", 444.83, -0.43);
-      const btc = g("BTC-USD", 64566.98, 0.69), eth = g("ETH-USD", 1814.48, -5.86);
-      const tsmTw = g("2330.TW", 2175.00, 0.23), mtkTw = g("2454.TW", 3940.00, 2.60), deltaTw = g("2308.TW", 1120.00, 0.00), honhaiTw = g("2317.TW", 218.50, 0.00);
-      const nvda = g("NVDA", 162.85, -2.01), tsmUs = g("TSM", 398.73, -1.67);
+      const sp = g("^GSPC"), dji = g("^DJI"), ixic = g("^IXIC"), sox = g("^SOX"), rut = g("^RUT");
+      const twii = g("^TWII"), twoii = g("^TWOII"), txf = g("TXF");
+      const vixUs = g("^VIX"), vixTw = g("^VIXTWN");
+      const us2y = g("US2Y"), tnx = g("^TNX"), tyx = g("^TYX");
+      const twd = g("TWD=X"), dxy = g("DX-Y.NYB");
+      const gc = g("GC=F"), bz = g("BZ=F"), cl = g("CL=F");
+      const zs = g("ZS=F"), zw = g("ZW=F"), zc = g("ZC=F");
+      const btc = g("BTC-USD"), eth = g("ETH-USD");
+      const tsmTw = g("2330.TW"), mtkTw = g("2454.TW"), deltaTw = g("2308.TW"), honhaiTw = g("2317.TW");
+      const nvda = g("NVDA"), tsmUs = g("TSM");
 
       const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
       const fPt = getLastVerifiedPoint(chips.foreign_buy, chips.dates);
@@ -923,40 +836,34 @@
 
       const twTopSectors = computeDynamicTopPerformingSectors("TW");
       const usTopSectors = computeDynamicTopPerformingSectors("US");
-      const twTop3Str = twTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "AI 伺服器與先進封裝鏈";
-      const usTop3Str = usTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "雲端 AI 與半導體設備鏈";
-
+      const twTop3Str = twTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "同步中";
+      const usTop3Str = usTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "同步中";
       const nowStr = new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
 
       return {
-        report_date: `${nowStr} CST (即時動態更新)`,
-        headline: `台股加權收報 ${twii.price} (${twii.pct})、台指期日盤收 ${txf.price} (${txf.pct})、證交所擔保維持率 ${guarPt.val}%・上市櫃融資維持率 ${combPt.val}%`,
+        report_date: `${nowStr} CST`,
+        headline: `台股加權報 ${twii.price} (${twii.pct})、台指期報 ${txf.price} (${txf.pct})、證交所擔保維持率 ${guarPt.val ?? '--'}%・上市櫃融資維持率 ${combPt.val ?? '--'}%`,
         market_drivers: [
-          `【一、美股五大指數(含羅素2000)與 VIX 恐慌情緒】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 指數報 ${rut.price} (${rut.pct})；美國 CBOE VIX 恐慌指數報 ${vixUs.price} (${vixUs.pct})，輝達 (NVDA) 報 ${nvda.price} (${nvda.pct})、台積電 ADR (TSM) 報 ${tsmUs.price} (${tsmUs.pct})。`,
-          `【二、台股大盤、台指期近月日/夜盤、臺指 VIX 與核心權值股】台灣加權指數收報 ${twii.price} 點 (${twii.pct})，12月台指期近月 (TXF) 日盤收報 ${txf.price} 點 (${txf.pct})，櫃買指數報 ${twoii.price} 點 (${twoii.pct})，臺指選擇權波動率指數 (VIXTWN) 報 ${vixTw.price} (${vixTw.pct})。核心權值股方面，2330 台積電收報 ${tsmTw.price} 元 (${tsmTw.pct})、2454 聯發科收報 ${mtkTw.price} 元 (${mtkTw.pct})、2308 台達電報 ${deltaTw.price} 元 (${deltaTw.pct})、2317 鴻海報 ${honhaiTw.price} 元 (${honhaiTw.pct})。`,
-          `【三、當日台美股最強勢產業鏈輪動】台股今日表現最強勢前三大族群依序為：${twTop3Str}；美股強勢族群則聚焦於：${usTop3Str}。`,
-          `【四、三大法人籌碼 (${fPt.date})、官方融資餘額與維持率 (${guarPt.date})】外資及陸資買賣超 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億元、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億元、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億元，三大法人合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億元；上市融資餘額 (${mPt.date}) 為 ${mPt.val} 億元、上櫃融資餘額為 ${otcPt.val} 億元；證交所全市場整戶擔保維持率 (${guarPt.date}) 為 ${guarPt.val}%，上市櫃融資維持率為 ${combPt.val}% (MacroMicro 圖表 53117)。`,
-          `【五、美債殖利率、外匯、原油、CBOT 農產品與加密貨幣】美國 2 年期公債殖利率報 ${us2y.price}%、10 年期報 ${tnx.price}%、30 年期報 ${tyx.price}%；美元指數 (DXY) 報 ${dxy.price}、美元兌新台幣報 ${twd.price}；黃金期貨報 ${gc.price} 美元 (${gc.pct})、布蘭特原油報 ${bz.price} 美元 (${bz.pct})、WTI 原油報 ${cl.price} 美元 (${cl.pct})；CBOT 黃豆報 ${zs.price} (${zs.pct})、小麥報 ${zw.price} (${zw.pct})、玉米報 ${zc.price} (${zc.pct})；比特幣 (BTC) 報 ${btc.price} 美元 (${btc.pct})、以太幣 (ETH) 報 ${eth.price} 美元 (${eth.pct})。`
+          `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
+          `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，台指期報 ${txf.price} (${txf.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
+          `【三、台美股強勢產業鏈輪動】台股前三大強勢族群：${twTop3Str}；美股前三大強勢族群：${usTop3Str}。`,
+          `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${guarPt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；擔保維持率 ${guarPt.val ?? '--'}%、上市櫃融資維持率 ${combPt.val ?? '--'}%。`,
+          `【五、美債、外匯、原油、農產品與加密貨幣】美債 2Y ${us2y.price}% / 10Y ${tnx.price}% / 30Y ${tyx.price}%；DXY ${dxy.price}、USD/TWD ${twd.price}；黃金 ${gc.price} (${gc.pct})、布蘭特原油 ${bz.price} (${bz.pct})、WTI 原油 ${cl.price} (${cl.pct})；黃豆 ${zs.price}、小麥 ${zw.price}、玉米 ${zc.price}；BTC ${btc.price} (${btc.pct})、ETH ${eth.price} (${eth.pct})。`
         ],
         bullish_factors: [
-          `🔥 投信連日逢低承接 (${fPt.date} 買超 +${(tPt.val || 0).toFixed(2)} 億元)：內資投信與高股息/科技 ETF 買盤積極承接 AI 散熱、網通交換器與 IC 設計龍頭股。`,
-          `🔥 融資維持率處於 ${guarPt.val}% / ${combPt.val}%：高於 130% 追繳警戒線，且上市融資餘額單日已主動減肥 157.77 億元至 5,087.21 億元，浮額有效沉澱。`,
-          `🔥 AI 伺服器與先進封裝基本面強勁：台積電單月營收連創歷史新高，CoWoS 與次世代 AI 機櫃進入拉貨旺季。`
+          `🔥 強勢族群輪動 (${twTop3Str})：資金持續聚焦具備基本面與營收動能之核心供應鏈。`,
+          `🔥 融資維持率監控 (${guarPt.val ?? '--'}% / ${combPt.val ?? '--'}%)：高於 130% 追繳警戒線，籌碼結構維持可控。`
         ],
         bearish_factors: [
-          `❄️ 外資現貨調節壓力 (${fPt.date} 外資賣超 ${(fPt.val || 0).toFixed(2)} 億元)：美元兌新台幣處於 ${twd.price} 水位，外資於現貨市場持續調節提款。`,
-          `❄️ 長天期美債殖利率維持高檔：美國 10 年期公債殖利率處於 ${tnx.price}%、2 年期處於 ${us2y.price}%，壓抑高本益比小型股之估值空間。`
+          `❄️ 法人動向與匯率波動：持續追蹤外資現貨買賣超 (${fPt.date}: ${(fPt.val || 0).toFixed(2)} 億) 與美元兌新台幣 (${twd.price}) 變化。`,
+          `❄️ 美債殖利率水位：10 年期公債殖利率處於 ${tnx.price}%，影響高估值成長股本益比空間。`
         ],
         upcoming_macro_week: [
-          { date: "11/18 (週三) 21:30", event: "🏗️ 美國 10 月新屋開工與營建許可", consensus: "預期年化 134 萬戶", impact: "檢驗高房貸利率環境對美國房市與居家修繕/營建供應鏈之影響" },
-          { date: "11/19 (週四) 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "預期 22.0 萬人", impact: "高頻檢視美國勞動市場韌性與聯準會政策空間" },
-          { date: "11/20 (週五) 16:00", event: "🇹🇼 台灣 10 月外銷訂單統計 (經濟部)", consensus: "預期年增 +9.5% YoY", impact: "驗證台灣 AI 伺服器、資通訊產品與電子零組件海外接單動能" },
-          { date: "11/25 (下週三) 21:30", event: "💳 美國 10 月核心 PCE 物價指數", consensus: "預期月增 +0.3% MoM", impact: "聯準會 12 月 FOMC 會議前最關鍵之核心通膨指標" }
+          { date: "本週四 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "高頻追蹤美國勞動市場", impact: "牽動美債殖利率與聯準會政策預期" },
+          { date: "11/25 21:30", event: "💳 美國 10 月核心 PCE 物價指數", consensus: "聯準會首選核心通膨指標", impact: "12 月 FOMC 會議前最關鍵通膨數據" }
         ],
         upcoming_earnings_week: [
-          { date: "11/19 (週四) 14:00 CST", ticker: "2382.TW", name: "廣達 / AI 伺服器鏈法說追蹤", focus: "GB200 機櫃量產時程與明年資本支出展望" },
-          { date: "11/20 (週五) 05:00 CST", ticker: "PANW", name: "Palo Alto Networks 財報", focus: "企業雲端資安支出與 AI 零信任防護平台訂單增長" },
-          { date: "11/24 (下週二) 05:00 CST", ticker: "DELL", name: "戴爾 (Dell) 財報法說會", focus: "AI 伺服器在手訂單積壓金額 (Backlog) 與毛利率表現" }
+          { date: "近期追蹤", ticker: "DELL", name: "戴爾 (Dell) 財報法說會", focus: "AI 伺服器在手訂單積壓金額 (Backlog) 與毛利率" }
         ]
       };
     }
@@ -964,7 +871,7 @@
     function renderDailyMarketReport() {
       const rep = buildDynamicDailyMarketReport();
       if (!rep) return;
-      document.getElementById("daily-report-date").textContent = `報告日期：${rep.report_date}`;
+      document.getElementById("daily-report-date").textContent = `報告時間：${rep.report_date}`;
       document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
       document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map(d => `<li class="border-b border-slate-800/70 pb-2.5 last:border-0">${d}</li>`).join("");
       document.getElementById("daily-report-bulls").innerHTML = (rep.bullish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
@@ -993,46 +900,29 @@
     function computeDynamicTopPerformingSectors(market) {
       const allSectors = getSupplyChainSectorsData();
       const ranked = [];
-
       allSectors.forEach(sec => {
         if (sec.id === "tw_top10" || sec.id === "trillion_club") return;
         const rawItems = sec.stages.flatMap(stg => stg.items);
-        const mktItems = market === "TW"
-          ? rawItems.filter(it => isTwSymbol(it.symbol))
-          : rawItems.filter(it => !isTwSymbol(it.symbol));
-
+        const mktItems = market === "TW" ? rawItems.filter(it => isTwSymbol(it.symbol)) : rawItems.filter(it => !isTwSymbol(it.symbol));
         const uniqueItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
         const validItems = uniqueItems.filter(it => Number(it.price) > 0 && it.change_pct !== undefined && !isNaN(Number(it.change_pct)));
         if (validItems.length === 0) return;
 
         const sumPct = validItems.reduce((acc, it) => acc + Number(it.change_pct), 0);
         const avgPct = Number((sumPct / validItems.length).toFixed(2));
-
         const sortedLeaders = [...validItems].sort((a, b) => Number(b.change_pct) - Number(a.change_pct));
         const top3 = sortedLeaders.slice(0, 3).map(ld => ({
-          symbol: ld.symbol,
-          name: market === "US" ? ld.symbol : cleanTwText(ld.name),
-          price: ld.price,
-          change_pct: Number(Number(ld.change_pct).toFixed(2)),
-          asset_type: ld.asset_type,
-          role: ld.role || ""
+          symbol: ld.symbol, name: market === "US" ? ld.symbol : cleanTwText(ld.name),
+          price: ld.price, change_pct: Number(Number(ld.change_pct).toFixed(2)), asset_type: ld.asset_type, role: ld.role || ""
         }));
 
         const leaderSummaryStr = top3.map(ld => `${ld.name} (${formatSignedPct(ld.change_pct)})`).join("、");
         const topRolesStr = top3.map(ld => ld.role).filter(Boolean).slice(0, 2).join("與");
-        const dynamicReason = `【當日領漲指標：${leaderSummaryStr}】${sec.subtitle || sec.title}。資金聚焦於${topRolesStr || '核心供應鏈'}等關鍵環節，帶動族群整體表現位居${market === 'TW' ? '台股' : '美股'}前茅。`;
-
         ranked.push({
-          sector_id: sec.id,
-          market: market,
-          title: sec.title,
-          avg_pct: avgPct,
-          stock_count: validItems.length,
-          leaders: top3,
-          reason: dynamicReason
+          sector_id: sec.id, market, title: sec.title, avg_pct: avgPct, stock_count: validItems.length, leaders: top3,
+          reason: `【領漲指標：${leaderSummaryStr}】${sec.subtitle || sec.title}。資金聚焦於${topRolesStr || '核心供應鏈'}。`
         });
       });
-
       ranked.sort((a, b) => b.avg_pct - a.avg_pct);
       return ranked.slice(0, 6);
     }
@@ -1040,11 +930,8 @@
     function renderTopPerformingSectors() {
       const container = document.getElementById("sc-top-performing-grid");
       if (!container) return;
-
       const dynamicList = computeDynamicTopPerformingSectors(currentTopMarket);
-      const list = dynamicList.length > 0
-        ? dynamicList
-        : (currentTopMarket === "TW" ? (window.DEFAULT_TW_TOP_SECTORS || []) : (window.DEFAULT_US_TOP_SECTORS || []));
+      const list = dynamicList.length > 0 ? dynamicList : (currentTopMarket === "TW" ? (window.DEFAULT_TW_TOP_SECTORS || []) : (window.DEFAULT_US_TOP_SECTORS || []));
 
       container.innerHTML = list.slice(0, 6).map((sec, idx) => {
         const rankColors = ["bg-rose-500/25 text-rose-300 border-rose-500/50", "bg-amber-500/25 text-amber-300 border-amber-500/50", "bg-emerald-500/25 text-emerald-300 border-emerald-500/50"];
@@ -1062,17 +949,16 @@
             <div>
               <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5 mb-2.5">
                 <div class="flex items-center gap-2"><span class="text-xs font-bold px-2 py-0.5 rounded border mono ${rBadgeCls}">TOP ${idx + 1}</span><h3 class="text-base font-bold text-white">${sec.title}</h3></div>
-                <div class="text-right mono"><span class="text-[10px] text-slate-400 block">當日族群平均漲跌</span><strong class="text-sm font-bold ${getColorClass(avgPct, currentTopMarket === 'US' ? 'us_stock' : 'tw_stock')}">${formatSignedPct(avgPct)}</strong></div>
+                <div class="text-right mono"><span class="text-[10px] text-slate-400 block">族群平均漲跌</span><strong class="text-sm font-bold ${getColorClass(avgPct, currentTopMarket === 'US' ? 'us_stock' : 'tw_stock')}">${formatSignedPct(avgPct)}</strong></div>
               </div>
-              <div class="mb-2.5"><span class="text-[10px] text-slate-400 font-bold block mb-1">🚀 當日領漲指標股 (點擊個股可看詳情)：</span><div class="flex flex-wrap gap-1.5">${leadersHtml}</div></div>
+              <div class="mb-2.5"><span class="text-[10px] text-slate-400 font-bold block mb-1">🚀 領漲指標股：</span><div class="flex flex-wrap gap-1.5">${leadersHtml}</div></div>
               <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">${sec.reason}</p>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]"><span class="text-slate-400">共 ${sec.stock_count || 6} 檔成分股即時統計</span><span class="text-rose-400 font-bold hover:underline">點此展開上中下游完整成分股 &rarr;</span></div>
+            <div class="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]"><span class="text-slate-400">共 ${sec.stock_count || 6} 檔成分股</span><span class="text-rose-400 font-bold hover:underline">展開完整成分股 &rarr;</span></div>
           </div>`;
       }).join("");
     }
-
-    function applyVerifiedNov13IfMissing(item) {
+    function applyFallbackIfMissing(item) {
       if (!item) return item;
       const vq = getDeterministicFallbackQuote(item.symbol);
       if (vq && vq[0] > 0) {
@@ -1095,40 +981,24 @@
     }
 
     function getInitialDashboardStructure() {
-      const mk = (sym, name, type, fg = null, fund = {}) => applyVerifiedNov13IfMissing({
+      const mk = (sym, name, type, fg = null) => applyFallbackIfMissing({
         symbol: sym, name, asset_type: type, future_group: fg, price: 0, prev_close: 0, change: 0, change_pct: 0,
-        ext_session: (!isCryptoSymbol(sym) && (type === "us_stock" || type === "futures")) ? ensureUsExtSession(sym, 0) : null,
-        intraday: [], history: [],
-        fundamentals: { pe: fund.pe || "N/A", forward_pe: fund.fpe || "無預估", eps: fund.eps || "N/A", gross_margin: fund.gm || "N/A", operating_margin: fund.om || "N/A", roe: fund.roe || "N/A", yoy_rev_growth: fund.yoy || "N/A" },
+        ext_session: null, intraday: [], history: [],
+        fundamentals: { pe: "N/A", forward_pe: "無預估", eps: "N/A", gross_margin: "N/A", operating_margin: "N/A", roe: "N/A", yoy_rev_growth: "N/A" },
         news_sentiment: null
       });
 
       return {
-        last_updated: "正在同步當日最新收盤與即時報價...",
+        last_updated: "正在同步最新市場數據...",
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         fear_greed: { us_cnn: { score: 31, label_zh: "恐懼", label_en: "FEAR" }, crypto_alt: { score: 25, label_zh: "極度恐懼", label_en: "EXTREME FEAR" } },
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
         fx_rates: [mk("TWD=X", "美元/台幣 (USD/TWD)", "fx_rate"), mk("AUDUSD=X", "澳幣/美元 (AUD/USD)", "fx_rate"), mk("CHF=X", "美元/瑞士法郎 (USD/CHF)", "fx_rate"), mk("JPY=X", "美元/日圓 (USD/JPY)", "fx_rate"), mk("EURUSD=X", "歐元/美元 (EUR/USD)", "fx_rate"), mk("GBPUSD=X", "英鎊/美元 (GBP/USD)", "fx_rate"), mk("CNY=X", "美元/人民幣 (USD/CNY)", "fx_rate"), mk("DX-Y.NYB", "美元指數 (DXY)", "fx_rate")],
-        us_stocks: [
-          mk("NVDA", "NVDA", "us_stock", null, { pe: 42.8, fpe: 31.5, eps: 3.80, gm: "75.0%", om: "62.1%", roe: "115.2%", yoy: "+78.4%" }),
-          mk("TSM", "TSM", "us_stock", null, { pe: 24.1, fpe: 19.8, eps: 16.54, gm: "57.8%", om: "47.5%", roe: "31.2%", yoy: "+39.0%" }),
-          mk("SPCX", "SPCX", "us_stock", null, { pe: "N/A", fpe: 68.5, eps: -0.25, gm: "54.2%", om: "28.4%", roe: "24.6%", yoy: "+64.8%" }),
-          mk("AMD", "AMD", "us_stock", null, { pe: 48.5, fpe: 32.4, eps: 11.01, gm: "51.2%", om: "24.8%", roe: "18.5%", yoy: "+35.2%" }),
-          mk("GOOGL", "GOOGL", "us_stock", null, { pe: 26.4, fpe: 22.8, eps: 11.20, gm: "58.1%", om: "32.3%", roe: "30.8%", yoy: "+15.1%" }),
-          mk("META", "META", "us_stock", null, { pe: 28.2, fpe: 24.1, eps: 22.75, gm: "81.5%", om: "41.2%", roe: "36.1%", yoy: "+18.9%" }),
-          mk("TSLA", "TSLA", "us_stock", null, { pe: 88.5, fpe: 68.2, eps: 4.41, gm: "18.2%", om: "9.3%", roe: "20.4%", yoy: "+12.8%" }),
-          mk("AVGO", "AVGO", "us_stock", null, { pe: 39.2, fpe: 28.5, eps: 8.85, gm: "66.5%", om: "58.2%", roe: "41.5%", yoy: "+47.0%" }),
-          mk("AMZN", "AMZN", "us_stock", null, { pe: 42.1, fpe: 33.5, eps: 6.33, gm: "48.0%", om: "11.0%", roe: "22.6%", yoy: "+11.0%" }),
-          mk("AAPL", "AAPL", "us_stock", null, { pe: 38.5, fpe: 31.2, eps: 9.25, gm: "46.2%", om: "31.5%", roe: "147.2%", yoy: "+8.1%" }),
-          mk("MSFT", "MSFT", "us_stock", null, { pe: 36.8, fpe: 30.5, eps: 14.23, gm: "69.8%", om: "44.6%", roe: "37.1%", yoy: "+16.0%" })
-        ],
+        us_stocks: ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"].map(s => mk(s, s, "us_stock")),
         tw_stocks: [
-          mk("2330.TW", "2330 台積電", "tw_stock", null, { pe: 22.5, fpe: 18.8, eps: 98.25, roe: "31.2%", gm: "57.8%", om: "47.5%", yoy: "+36.0%" }),
-          mk("2454.TW", "2454 聯發科", "tw_stock", null, { pe: 62.6, fpe: 24.5, eps: 60.56, roe: "27.5%", gm: "48.8%", om: "19.5%", yoy: "+19.4%" }),
-          mk("2308.TW", "2308 台達電", "tw_stock", null, { pe: 31.2, fpe: 25.4, eps: 35.90, roe: "19.8%", gm: "34.2%", om: "14.8%", yoy: "+22.4%" }),
-          mk("2317.TW", "2317 鴻海", "tw_stock", null, { pe: 15.8, fpe: 12.6, eps: 13.77, roe: "11.4%", gm: "6.4%", om: "3.2%", yoy: "+20.1%" }),
-          mk("3711.TW", "3711 日月光投控", "tw_stock", null, { pe: 24.6, fpe: 19.2, eps: 22.31, roe: "15.9%", gm: "18.5%", om: "9.2%", yoy: "+18.3%" })
+          mk("2330.TW", "2330 台積電", "tw_stock"), mk("2454.TW", "2454 聯發科", "tw_stock"),
+          mk("2308.TW", "2308 台達電", "tw_stock"), mk("2317.TW", "2317 鴻海", "tw_stock"), mk("3711.TW", "3711 日月光投控", "tw_stock")
         ],
         futures_commodities: [
           mk("TXF", "台指期近月", "futures", "us_index_futures"),
@@ -1138,7 +1008,7 @@
           mk("ZS=F", "黃豆期貨 (CBOT)", "futures", "agri_futures"), mk("ZW=F", "小麥期貨 (CBOT)", "futures", "agri_futures"), mk("ZC=F", "玉米期貨 (CBOT)", "futures", "agri_futures"),
           mk("BTC-USD", "比特幣 (BTC)", "futures", "crypto_assets"), mk("ETH-USD", "以太幣 (ETH)", "futures", "crypto_assets")
         ],
-        tw_chips_visual: JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS)),
+        tw_chips_visual: JSON.parse(JSON.stringify(OFFLINE_FALLBACK_TW_CHIPS)),
         mops_general: []
       };
     }
@@ -1158,12 +1028,7 @@
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
         renderDailyMarketReport();
         setTimeout(() => {
-          if (mainChart) mainChart.resize();
-          if (instChart) instChart.resize();
-          if (marginChart) marginChart.resize();
-          if (maintChart) maintChart.resize();
-          if (fgUsChart) fgUsChart.resize();
-          if (fgCryptoChart) fgCryptoChart.resize();
+          [mainChart, instChart, marginChart, maintChart, fgUsChart, fgCryptoChart].forEach(c => { if (c) c.resize(); });
         }, 80);
       }
     }
@@ -1216,22 +1081,22 @@
 
     function createVixRichCard(item) {
       item.name = cleanTwText(item.name);
-      applyVerifiedNov13IfMissing(item);
+      applyFallbackIfMissing(item);
       allAssetsMap[item.symbol] = item;
-      const domId = safeId(item.symbol), val = Number(item.price) || 19.3, colorCls = getColorClass(item.change_pct, item.symbol);
-      let regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🟢 市場情緒平穩 (&lt;20)</span>`;
-      let regimeDesc = item.symbol === "^VIX" ? "目前美股 S&P 500 選擇權隱含波動率處於 20 以下之常態區間，機構未出現恐慌性避險。" : "目前臺指選擇權隱含波動率處於穩定區間，外資避險成本穩定。";
+      const domId = safeId(item.symbol), val = Number(item.price) || 0, colorCls = getColorClass(item.change_pct, item.symbol);
+      let regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🟢 情緒平穩 (&lt;20)</span>`;
+      let regimeDesc = item.symbol === "^VIX" ? "美股 S&P 500 選擇權隱含波動率處於常態區間。" : "臺指選擇權隱含波動率處於穩定區間。";
       if (val >= 30) {
-        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-500/50 animate-pulse">🔴 高度恐慌警戒 (&ge;30)</span>`;
-        regimeDesc = "選擇權隱含波動率突破 30 恐慌分水嶺，顯示法人正大舉買進賣權避險，短線波動劇烈！";
+        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-500/50 animate-pulse">🔴 高度恐慌 (&ge;30)</span>`;
+        regimeDesc = "隱含波動率突破 30 恐慌分水嶺，短線波動劇烈！";
       } else if (val >= 20) {
-        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-amber-500/25 text-amber-300 border border-amber-500/40">🟡 審慎警戒區間 (20~30)</span>`;
-        regimeDesc = "波動率處於 20 至 30 之間，顯示面對重大財報或數據公布前夕，避險買盤有所升溫。";
+        regimeBadge = `<span class="px-2.5 py-0.5 text-xs font-bold rounded bg-amber-500/25 text-amber-300 border border-amber-500/40">🟡 警戒區間 (20~30)</span>`;
+        regimeDesc = "波動率處於 20 至 30 之間，避險買盤升溫。";
       }
-      const marketFlag = item.symbol === "^VIX" ? "🇺🇸 美股標普500波動率 (CBOE)" : "🇹🇼 台灣期交所臺指選波動率 (TAIFEX)";
+      const marketFlag = item.symbol === "^VIX" ? "🇺🇸 美股標普500波動率 (CBOE)" : "🇹🇼 期交所臺指選波動率 (TAIFEX)";
       const officialLink = item.symbol === "^VIXTWN"
         ? `<a href="https://mis.taifex.com.tw/futures/VolatilityQuotes/" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="text-xs px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 font-bold transition">🔗 期交所即時行情</a>`
-        : `<button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 font-bold transition">📊 檢視波動率解析</button>`;
+        : `<button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 font-bold transition">📊 波動率解析</button>`;
 
       return `
         <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 border border-rose-500/30 cursor-pointer flex flex-col justify-between">
@@ -1256,7 +1121,7 @@
     function updateUsBondSpreadIndicator() {
       const el = document.getElementById("us-bond-spread-indicator");
       if (!el) return;
-      const y10 = Number(allAssetsMap["^TNX"]?.price || 5.15), y2 = Number(allAssetsMap["US2Y"]?.price || 4.88);
+      const y10 = Number(allAssetsMap["^TNX"]?.price || 0), y2 = Number(allAssetsMap["US2Y"]?.price || 0);
       if (y10 > 0 && y2 > 0) {
         const spreadBps = Math.round((y10 - y2) * 100), sign = spreadBps > 0 ? "+" : "", status = spreadBps >= 0 ? "正常正斜率 (未倒掛)" : "⚠️ 殖利率倒掛";
         el.textContent = `10Y - 2Y 殖利率利差：${sign}${spreadBps} bps (${status})`;
@@ -1295,15 +1160,10 @@
             const fallbackQ = getDeterministicFallbackQuote(it.symbol);
             const usePrice = (existing && Number(existing.price) > 0) ? existing.price : fallbackQ[0];
             const usePct = (existing && existing.change_pct !== undefined && Number(existing.price) > 0) ? existing.change_pct : fallbackQ[1];
-            const merged = applyVerifiedNov13IfMissing({
-              symbol: it.symbol,
-              name: cleanTwText(it.name),
-              role: it.role,
+            const merged = applyFallbackIfMissing({
+              symbol: it.symbol, name: cleanTwText(it.name), role: it.role,
               asset_type: isUs ? "us_stock" : "tw_stock",
-              price: usePrice,
-              prev_close: existing?.prev_close || 0,
-              change: existing?.change || 0,
-              change_pct: usePct,
+              price: usePrice, prev_close: existing?.prev_close || 0, change: existing?.change || 0, change_pct: usePct,
               ext_session: isUs ? ensureUsExtSession(it.symbol, usePrice, existing?.ext_session) : null,
               history: existing?.history || [],
               fundamentals: ensureValidFundamentals(it.symbol, existing?.fundamentals),
@@ -1396,11 +1256,8 @@
       item.fundamentals = f;
       const marketTag = isUs ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">🇺🇸 US</span>` : `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">🇹🇼 TW</span>`;
       const extObj = isUs ? ensureUsExtSession(item.symbol, item.price, item.ext_session) : null;
-      const scExtHtml = isUs
-        ? `<div class="sc-ext-${domId} mt-1.5 pt-1 border-t border-slate-800/60 flex items-center justify-between text-[11px] mono">
-             <span class="text-slate-400">${extObj.label || '盤前/盤後'}:</span>
-             <span class="${getColorClass(extObj.change_pct, 'us_stock')} font-semibold">${formatDisplayPrice(extObj.price, item.symbol)} (${formatSignedPct(extObj.change_pct)})</span>
-           </div>`
+      const scExtHtml = (isUs && extObj)
+        ? `<div class="sc-ext-${domId} mt-1.5 pt-1 border-t border-slate-800/60 flex items-center justify-between text-[11px] mono"><span class="text-slate-400">${extObj.label || '盤前/盤後'}:</span><span class="${getColorClass(extObj.change_pct, 'us_stock')} font-semibold">${formatDisplayPrice(extObj.price, item.symbol)} (${formatSignedPct(extObj.change_pct)})</span></div>`
         : "";
 
       return `
@@ -1487,9 +1344,9 @@
         const stageBadges = ["第一階段 / 上游", "第二階段 / 中游", "第三階段 / 下游"];
         const twList = stg.items.filter(x => isTwSymbol(x.symbol)), usList = stg.items.filter(x => !isTwSymbol(x.symbol));
         let bodyHtml = "";
-        if (currentScMarket === "TW") bodyHtml = twList.length > 0 ? `<div class="space-y-3">${twList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以國際美股大廠為主，可切換至「🇺🇸 美股供應鏈」或「🌐 台美同屏」檢視</div>`;
-        else if (currentScMarket === "US") bodyHtml = usList.length > 0 ? `<div class="space-y-3">${usList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主，可切換至「🇹🇼 台股供應鏈」或「🌐 台美同屏」檢視</div>`;
-        else bodyHtml = `<div class="space-y-4"><div class="bg-rose-950/15 border border-rose-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-rose-300 border-b border-rose-500/20 pb-1.5 flex items-center justify-between"><span>🇹🇼 台股供應鏈代表 (${twList.length} 檔)</span><span class="text-[10px] text-slate-400">紅漲綠跌</span></div>${twList.length > 0 ? twList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無台股代表</div>`}</div><div class="bg-emerald-950/15 border border-emerald-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-emerald-300 border-b border-emerald-500/20 pb-1.5 flex items-center justify-between"><span>🇺🇸 美股供應鏈代表 (${usList.length} 檔)</span><span class="text-[10px] text-slate-400">綠漲紅跌</span></div>${usList.length > 0 ? usList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無美股代表</div>`}</div></div>`;
+        if (currentScMarket === "TW") bodyHtml = twList.length > 0 ? `<div class="space-y-3">${twList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以國際美股大廠為主</div>`;
+        else if (currentScMarket === "US") bodyHtml = usList.length > 0 ? `<div class="space-y-3">${usList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主</div>`;
+        else bodyHtml = `<div class="space-y-4"><div class="bg-rose-950/15 border border-rose-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-rose-300 border-b border-rose-500/20 pb-1.5 flex items-center justify-between"><span>🇹🇼 台股供應鏈 (${twList.length} 檔)</span></div>${twList.length > 0 ? twList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無台股代表</div>`}</div><div class="bg-emerald-950/15 border border-emerald-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-emerald-300 border-b border-emerald-500/20 pb-1.5 flex items-center justify-between"><span>🇺🇸 美股供應鏈 (${usList.length} 檔)</span></div>${usList.length > 0 ? usList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無美股代表</div>`}</div></div>`;
         const shownCount = currentScMarket === "TW" ? twList.length : (currentScMarket === "US" ? usList.length : stg.items.length);
         return `<div class="card-bg rounded-xl p-4 ${stageColors[sIdx % 3]} flex flex-col justify-between"><div><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${stageBadges[sIdx % 3]}</span><h4 class="text-sm font-bold text-white mt-0.5">${stg.stage_name}</h4></div><span class="text-[11px] text-slate-400 mono shrink-0">${shownCount} 檔</span></div>${bodyHtml}</div></div>`;
       }).join("");
@@ -1512,16 +1369,15 @@
         const asset = allAssetsMap[sym];
         if (!asset) return;
         ensureSyntheticHistoryIfEmpty(asset);
-        let filtered = asset.history;
-        if (currentScRange === "1W") filtered = asset.history.slice(-6);
-        else if (currentScRange === "1M") filtered = asset.history.slice(-22);
-        else if (currentScRange === "YTD") filtered = asset.history.filter(d => d.date >= `${new Date().getFullYear()}-01-01`);
-        else if (currentScRange === "1Y") filtered = asset.history.slice(-252);
+        let filtered = asset.history || [];
+        if (currentScRange === "1W") filtered = filtered.slice(-6);
+        else if (currentScRange === "1M") filtered = filtered.slice(-22);
+        else if (currentScRange === "YTD") filtered = filtered.filter(d => d.date >= `${new Date().getFullYear()}-01-01`);
+        else if (currentScRange === "1Y") filtered = filtered.slice(-252);
         else if (currentScRange === "CUSTOM") {
           const s = document.getElementById("sc-custom-start")?.value || "2025-01-01", e = document.getElementById("sc-custom-end")?.value || "2026-12-31";
-          filtered = asset.history.filter(d => d.date >= s && d.date <= e);
+          filtered = filtered.filter(d => d.date >= s && d.date <= e);
         }
-        if (filtered.length < 2) filtered = asset.history.slice(-22);
         allSeriesMap[sym] = {};
         filtered.forEach(p => { xSet.add(p.date); allSeriesMap[sym][p.date] = Number(p.close); });
       });
@@ -1570,14 +1426,14 @@
       const currentTitle = localStorage.getItem("MARKET2_CUSTOM_EARN_TITLE") || "2330 台積電 Q4 法說會";
       const currentTime = localStorage.getItem("MARKET2_CUSTOM_EARN_TIME") || "2027-01-14 14:00";
       const currentNote = localStorage.getItem("MARKET2_CUSTOM_EARN_NOTE") || "關注全年資本支出與 CoWoS 擴產進度";
-      const title = prompt("請輸入想置頂追蹤的「法說會 / 財報名稱」（若輸入空白則恢復預設排程）：", currentTitle);
+      const title = prompt("請輸入想置頂追蹤的「法說會 / 財報名稱」（空白則恢復預設）：", currentTitle);
       if (title === null) return;
       if (title.trim() === "") { localStorage.removeItem("MARKET2_CUSTOM_EARNINGS"); renderMacroCountdowns(); return; }
-      const timeStr = prompt("請輸入法說會台灣時間 (格式 YYYY-MM-DD HH:MM)：", currentTime);
+      const timeStr = prompt("請輸入台灣時間 (格式 YYYY-MM-DD HH:MM)：", currentTime);
       if (!timeStr) return;
-      const noteStr = prompt("請輸入法說會觀察重點備註：", currentNote) || "重點法說會追蹤";
+      const noteStr = prompt("請輸入觀察重點備註：", currentNote) || "重點法說會追蹤";
       const isoTime = timeStr.trim().replace(" ", "T") + ":00+08:00";
-      if (isNaN(new Date(isoTime).getTime())) { alert("時間格式不正確，請使用 YYYY-MM-DD HH:MM 格式"); return; }
+      if (isNaN(new Date(isoTime).getTime())) { alert("時間格式不正確"); return; }
       localStorage.setItem("MARKET2_CUSTOM_EARN_TITLE", title.trim());
       localStorage.setItem("MARKET2_CUSTOM_EARN_TIME", timeStr.trim());
       localStorage.setItem("MARKET2_CUSTOM_EARN_NOTE", noteStr.trim());
@@ -1590,7 +1446,7 @@
       if (!cat || !cat.latestRelease) return;
       const rel = cat.latestRelease, badgeEl = document.getElementById("macro-modal-badge");
       badgeEl.textContent = cat.categoryName; badgeEl.className = `text-xs font-bold px-2.5 py-0.5 rounded border ${cat.badgeColor}`;
-      document.getElementById("macro-modal-title").textContent = `${cat.categoryName.replace(/^[^\s]+\s/, '')} — 最新官方數據與市場影響深度剖析`;
+      document.getElementById("macro-modal-title").textContent = `${cat.categoryName.replace(/^[^\s]+\s/, '')} — 最新官方數據與市場影響`;
       document.getElementById("macro-modal-release-meta").textContent = `最新公布期別：${rel.period} ｜ 資料來源：${rel.sourceName}`;
       document.getElementById("macro-modal-actual").textContent = rel.actual;
       document.getElementById("macro-modal-mom").textContent = rel.momText;
@@ -1634,7 +1490,7 @@
               <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/80 text-xs mono"><div class="bg-slate-900/70 p-2 rounded border border-slate-800/60"><span class="text-[10px] text-slate-400 block mb-0.5">🎯 市場預期</span><span class="text-slate-100 font-bold">${rel.expected}</span></div><div class="bg-slate-900/70 p-2 rounded border border-slate-800/60"><span class="text-[10px] text-slate-400 block mb-0.5">⏪ 上個月數據</span><span class="text-slate-300 font-bold">${rel.prior}</span></div></div>
             </div>
           </div>
-          <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs"><span class="text-slate-400 text-[11px] truncate">${rel.sourceName}</span><span class="text-indigo-400 font-bold hover:underline shrink-0">📊 影響分析與來源 &rarr;</span></div>
+          <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs"><span class="text-slate-400 text-[11px] truncate">${rel.sourceName}</span><span class="text-indigo-400 font-bold hover:underline shrink-0">📊 影響分析 &rarr;</span></div>
         </div>`;
     }
 
@@ -1646,20 +1502,20 @@
       row2.innerHTML = MACRO_CALENDAR_CATEGORIES.slice(4, 7).map(cat => buildSingleMacroCardHtml(cat, nowMs, customEarn)).join("");
     }
 
-    function getLatestUsdTwdRate() { const twdItem = allAssetsMap["TWD=X"], p = twdItem && twdItem.price ? Number(twdItem.price) : 0; return (p > 25 && p < 40) ? p : 32.95; }
+    function getLatestUsdTwdRate() { const twdItem = allAssetsMap["TWD=X"], p = twdItem && twdItem.price ? Number(twdItem.price) : 0; return (p > 25 && p < 40) ? p : 32.5; }
 
     function computeTwdCrossQuoteText(symbol, rawPrice) {
-      const p = Number(rawPrice) || (getDeterministicFallbackQuote(symbol)[0] || 0);
+      const p = Number(rawPrice) || 0;
       if (!p || isNaN(p) || p <= 0) return "";
       const usdTwd = getLatestUsdTwdRate();
-      if (symbol === "TWD=X") return `🇹🇼 1 美金 = ${p.toFixed(2)} 台幣 (1 台幣 ≈ ${(1 / p).toFixed(4)} 美金)`;
-      if (symbol === "AUDUSD=X") return `🇹🇼 新台幣計價：1 澳幣 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
-      if (symbol === "CHF=X") return `🇹🇼 新台幣計價：1 瑞士法郎 ≈ ${(usdTwd / p).toFixed(2)} 台幣`;
-      if (symbol === "JPY=X") return `🇹🇼 新台幣計價：1 日圓 ≈ ${(usdTwd / p).toFixed(4)} 台幣`;
-      if (symbol === "CNY=X") return `🇹🇼 新台幣計價：1 人民幣 ≈ ${(usdTwd / p).toFixed(2)} 台幣`;
-      if (symbol === "EURUSD=X") return `🇹🇼 新台幣計價：1 歐元 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
-      if (symbol === "GBPUSD=X") return `🇹🇼 新台幣計價：1 英鎊 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
-      if (symbol === "DX-Y.NYB") return `🇹🇼 美元兌新台幣基準：${usdTwd.toFixed(2)} 台幣`;
+      if (symbol === "TWD=X") return `🇹🇼 1 美金 = ${p.toFixed(2)} 台幣`;
+      if (symbol === "AUDUSD=X") return `🇹🇼 1 澳幣 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
+      if (symbol === "CHF=X") return `🇹🇼 1 瑞士法郎 ≈ ${(usdTwd / p).toFixed(2)} 台幣`;
+      if (symbol === "JPY=X") return `🇹🇼 1 日圓 ≈ ${(usdTwd / p).toFixed(4)} 台幣`;
+      if (symbol === "CNY=X") return `🇹🇼 1 人民幣 ≈ ${(usdTwd / p).toFixed(2)} 台幣`;
+      if (symbol === "EURUSD=X") return `🇹🇼 1 歐元 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
+      if (symbol === "GBPUSD=X") return `🇹🇼 1 英鎊 ≈ ${(p * usdTwd).toFixed(2)} 台幣`;
+      if (symbol === "DX-Y.NYB") return `🇹🇼 美元兌台幣基準：${usdTwd.toFixed(2)}`;
       return "";
     }
 
@@ -1674,7 +1530,7 @@
 
     function createQuoteCard(item, forceTickerOnly = false) {
       item.name = cleanTwText(item.name);
-      applyVerifiedNov13IfMissing(item);
+      applyFallbackIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol), titleText = forceTickerOnly ? item.symbol : item.name, colorCls = getColorClass(item.change_pct, item.symbol);
       let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
@@ -1700,17 +1556,14 @@
 
     function createUsStockRichCard(item) {
       item.name = item.symbol;
-      applyVerifiedNov13IfMissing(item);
+      applyFallbackIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol), colorCls = getColorClass(item.change_pct, "us_stock"), f = ensureValidFundamentals(item.symbol, item.fundamentals);
       item.fundamentals = f;
       const extObj = ensureUsExtSession(item.symbol, item.price, item.ext_session);
-      const extColor = getColorClass(extObj.change_pct, "us_stock");
-      const extHtml = `
-        <div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono">
-          <span class="text-slate-400 text-[11px]">${extObj.label || '盤前/盤後'}：</span>
-          <span class="${extColor} font-semibold">${formatDisplayPrice(extObj.price)} (${formatSignedPct(extObj.change_pct)})</span>
-        </div>`;
+      const extHtml = extObj
+        ? `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-xs mono"><span class="text-slate-400 text-[11px]">${extObj.label || '盤前/盤後'}：</span><span class="${getColorClass(extObj.change_pct, 'us_stock')} font-semibold">${formatDisplayPrice(extObj.price)} (${formatSignedPct(extObj.change_pct)})</span></div>`
+        : `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
       const ns = buildDynamicStockNewsAndMops(item);
       const topBull = cleanTwText(ns.bullish?.[0]?.title || "");
       const topBear = cleanTwText(ns.bearish?.[0]?.title || "");
@@ -1744,11 +1597,11 @@
 
     function createTwStockCard(item) {
       item.name = cleanTwText(item.name);
-      applyVerifiedNov13IfMissing(item);
+      applyFallbackIfMissing(item);
       allAssetsMap[item.symbol] = item;
       const domId = safeId(item.symbol), colorCls = getColorClass(item.change_pct, item.asset_type), f = ensureValidFundamentals(item.symbol, item.fundamentals);
       item.fundamentals = f;
-      let revHtml = `<div class="text-xs text-slate-400 mt-2">月營收：點開檢視公開資訊觀測站 (MOPS) 最新申報數據與財報指標</div>`;
+      let revHtml = `<div class="text-xs text-slate-400 mt-2">月營收：點開檢視公開資訊觀測站 (MOPS) 最新申報數據</div>`;
       if (f.monthly_rev) {
         const momCls = getColorClass(f.monthly_rev.mom, "tw_stock"), yoyCls = getColorClass(f.monthly_rev.yoy, "tw_stock");
         revHtml = `<div class="bg-slate-900/70 rounded p-2.5 border border-slate-800/90 mt-2"><div class="flex items-center justify-between text-xs mb-1"><span class="font-bold text-amber-400">MOPS 最新月營收 (${f.monthly_rev.month})</span><span class="mono font-bold text-white">${f.monthly_rev.revenue_yi}</span></div><div class="flex items-center justify-between text-xs mono"><span>月增 (MoM): <strong class="${momCls}">${formatSignedPct(f.monthly_rev.mom)}</strong></span><span>年增 (YoY): <strong class="${yoyCls}">${formatSignedPct(f.monthly_rev.yoy)}</strong></span></div></div>`;
@@ -1788,106 +1641,44 @@
       if (item.news_sentiment && item.news_sentiment.categories && item.news_sentiment.categories.fundamentals_mops) {
         return item.news_sentiment;
       }
-      const sym = item.symbol;
-      const isTw = isTwSymbol(sym);
-      const code = isTw ? sym.split(".")[0] : sym;
-      const name = cleanTwText(item.name || sym);
-      const f = ensureValidFundamentals(sym, item.fundamentals);
-      const mRev = f.monthly_rev;
-
+      const sym = item.symbol, isTw = isTwSymbol(sym), code = isTw ? sym.split(".")[0] : sym, name = cleanTwText(item.name || sym);
+      const f = ensureValidFundamentals(sym, item.fundamentals), mRev = f.monthly_rev;
       const fundBulls = [], fundBears = [];
       if (isTw && mRev) {
         const yoyV = parseFloat(mRev.yoy || 0), momV = parseFloat(mRev.mom || 0);
-        const revItem = {
-          title: `[MOPS官方月營收 (${mRev.month})] 單月營收 ${mRev.revenue_yi}（月增率 ${momV >= 0 ? '+' : ''}${momV}% / 年增率 ${yoyV >= 0 ? '+' : ''}${yoyV}%）`,
-          url: "https://mops.twse.com.tw/mops/#/web/t05st10_ifrs",
-          date: "來源：公開資訊觀測站 (MOPS) 每月營業收入彙總表"
-        };
-        if (yoyV >= 0) fundBulls.push(revItem);
-        else fundBears.push(revItem);
-      } else if (isTw) {
-        fundBulls.push({
-          title: `[MOPS月營收與財報查詢] ${name} (${code}) 最新季度毛利率 ${f.gross_margin}、營業利益率 ${f.operating_margin}、季營收年增率 ${f.yoy_rev_growth}`,
-          url: "https://mops.twse.com.tw/mops/#/web/t05st10_ifrs",
-          date: "來源：公開資訊觀測站 (MOPS) 營收與財報專區"
-        });
+        const revItem = { title: `[MOPS官方月營收 (${mRev.month})] 單月營收 ${mRev.revenue_yi}（月增 ${momV >= 0 ? '+' : ''}${momV}% / 年增 ${yoyV >= 0 ? '+' : ''}${yoyV}%）`, url: "https://mops.twse.com.tw/mops/#/web/t05st10_ifrs", date: "來源：公開資訊觀測站 (MOPS)" };
+        (yoyV >= 0 ? fundBulls : fundBears).push(revItem);
       }
-
       const finUrl = isTw ? "https://mops.twse.com.tw/mops/#/web/t163sb04" : `https://finance.yahoo.com/quote/${sym}/financials/`;
-      const finSrc = isTw ? "來源：MOPS 綜合損益表 / TradingView 財報資料庫" : `來源：SEC Filings / Yahoo Finance (${sym} Financials)`;
-
-      fundBulls.push({
-        title: `[最新財報獲利實績] ${name} 稀釋 EPS (TTM) 為 ${f.eps}、股東權益報酬率 (ROE) 為 ${f.roe}、毛利率 ${f.gross_margin}、營益率 ${f.operating_margin}、營收年增率 ${f.yoy_rev_growth}`,
-        url: finUrl,
-        date: finSrc
-      });
-
-      fundBears.push({
-        title: `[估值與財務指標檢視] ${name} 當前本益比 (PE) 為 ${f.pe} 倍、預估本益比 (Forward PE) 為 ${f.forward_pe}，須追蹤後續季度毛利率 (${f.gross_margin}) 與營益率 (${f.operating_margin}) 變化`,
-        url: finUrl,
-        date: finSrc
-      });
+      const finSrc = isTw ? "來源：MOPS 綜合損益表 / TradingView" : `來源：SEC Filings / Yahoo Finance (${sym})`;
+      fundBulls.push({ title: `[最新財報實績] ${name} EPS ${f.eps}、ROE ${f.roe}、毛利率 ${f.gross_margin}、營益率 ${f.operating_margin}、營收年增 ${f.yoy_rev_growth}`, url: finUrl, date: finSrc });
+      fundBears.push({ title: `[估值檢視] ${name} 本益比 PE ${f.pe} 倍、預估本益比 ${f.forward_pe}`, url: finUrl, date: finSrc });
 
       const qName = encodeURIComponent(isTw ? `${name} ${code}` : `${sym} stock`);
       const evBulls = [
-        {
-          title: `📰 檢視「${name} (${sym})」於 Google 新聞之最新外資報告、法說會展望與訂單動態`,
-          url: `https://news.google.com/search?q=${qName}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`,
-          date: "新聞來源：Google News 財經新聞即時檢索 (點擊開啟原文列表)"
-        },
-        {
-          title: `📰 檢視「${name} (${sym})」於 Yahoo 股市 / Yahoo Finance 之最新個股新聞與法人評等`,
-          url: isTw ? `https://tw.stock.yahoo.com/quote/${sym}/news` : `https://finance.yahoo.com/quote/${sym}/news/`,
-          date: "新聞來源：Yahoo 財經個股新聞專區"
-        }
+        { title: `📰 檢視「${name} (${sym})」Google 新聞最新報導`, url: `https://news.google.com/search?q=${qName}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`, date: "Google News 即時檢索" },
+        { title: `📰 檢視「${name} (${sym})」Yahoo 財經個股新聞`, url: isTw ? `https://tw.stock.yahoo.com/quote/${sym}/news` : `https://finance.yahoo.com/quote/${sym}/news/`, date: "Yahoo 財經" }
       ];
-      const evBears = [
-        {
-          title: `⚠️ 檢視「${name} (${sym})」最新法人賣超、估值修正或供應鏈風險相關新聞報導`,
-          url: `https://news.google.com/search?q=${encodeURIComponent((isTw ? name : sym) + ' 風險 OR 賣超 OR 下滑')}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`,
-          date: "新聞來源：Google News 風險與籌碼異動檢索"
-        }
-      ];
+      const evBears = [{ title: `⚠️ 檢視「${name} (${sym})」最新風險與法人賣超新聞`, url: `https://news.google.com/search?q=${encodeURIComponent((isTw ? name : sym) + ' 風險 OR 賣超 OR 下滑')}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`, date: "Google News" }];
 
       return {
-        bullish: [fundBulls[0], evBulls[0]],
-        bearish: [fundBears[0], evBears[0]],
+        bullish: [fundBulls[0], evBulls[0]], bearish: [fundBears[0], evBears[0]],
         categories: {
-          fundamentals_mops: {
-            label: isTw ? "📑 MOPS重訊・最新月營收・財報指標" : "📑 SEC最新財報・季營收・獲利指標",
-            bullish: fundBulls,
-            bearish: fundBears
-          },
-          events: {
-            label: "📰 產業與個股新聞時事 (附來源連結)",
-            bullish: evBulls,
-            bearish: evBears
-          }
+          fundamentals_mops: { label: isTw ? "📑 MOPS重訊・最新月營收・財報指標" : "📑 SEC最新財報・季營收・獲利指標", bullish: fundBulls, bearish: fundBears },
+          events: { label: "📰 產業與個股新聞時事 (附來源連結)", bullish: evBulls, bearish: evBears }
         }
       };
     }
 
     function getNormalizedCategories(item) {
       const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
-      if (isStock) {
-        const built = buildDynamicStockNewsAndMops(item);
-        return built.categories;
-      }
+      if (isStock) return buildDynamicStockNewsAndMops(item).categories;
       const ns = item.news_sentiment || {};
       if (ns.categories && Object.keys(ns.categories).length > 0) return ns.categories;
-      const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)";
-      const qSym = encodeURIComponent(item.name || item.symbol);
+      const cbName = CLIENT_CB_MAP[item.symbol] || "美國聯準會 (Fed)", qSym = encodeURIComponent(item.name || item.symbol);
       return {
-        central_bank: {
-          label: `🏦 ${cbName}決策`,
-          bullish: [{ title: `[${cbName}] 檢視最新利率決策聲明與貨幣政策指引`, url: "https://www.macromicro.me/central-bank", date: "來源：MacroMicro 央行專區" }],
-          bearish: [{ title: `[${cbName}] 留意通膨黏著度與市場利差變動風險`, url: "https://www.macromicro.me/central-bank", date: "來源：MacroMicro 央行專區" }]
-        },
-        macro: {
-          label: "📊 總經數據指標",
-          bullish: [{ title: `[總經數據] ${cleanTwText(item.name)} 最新報價 ${formatDisplayPrice(item.price, item.symbol)} (${formatSignedPct(item.change_pct)})`, url: `https://finance.yahoo.com/quote/${encodeURIComponent(item.symbol)}/`, date: "來源：Yahoo Finance / 官方交易所" }],
-          bearish: [{ title: `[總經風險] 留意國際資金流動與跨市場波動風險`, url: `https://news.google.com/search?q=${qSym}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`, date: "來源：Google News 總經新聞" }]
-        }
+        central_bank: { label: `🏦 ${cbName}決策`, bullish: [{ title: `[${cbName}] 檢視最新利率決策聲明`, url: "https://www.macromicro.me/central-bank", date: "MacroMicro 央行專區" }], bearish: [{ title: `[${cbName}] 留意通膨與利差變動風險`, url: "https://www.macromicro.me/central-bank", date: "MacroMicro 央行專區" }] },
+        macro: { label: "📊 總經數據指標", bullish: [{ title: `[最新報價] ${cleanTwText(item.name)} ${formatDisplayPrice(item.price, item.symbol)} (${formatSignedPct(item.change_pct)})`, url: `https://finance.yahoo.com/quote/${encodeURIComponent(item.symbol)}/`, date: "Yahoo Finance" }], bearish: [{ title: `[總經風險] 檢視最新跨市場新聞`, url: `https://news.google.com/search?q=${qSym}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`, date: "Google News" }] }
       };
     }
 
@@ -1898,12 +1689,12 @@
       if (!item) return;
       const categories = getNormalizedCategories(item), catKeys = Object.keys(categories), tabsEl = document.getElementById("modal-category-tabs");
       const allBtnCls = currentModalTab === "ALL" ? "bg-blue-600 text-white border-blue-500" : "bg-slate-800 text-slate-300 border-slate-700";
-      tabsEl.innerHTML = `<button onclick="switchModalCategoryTab('ALL')" class="px-3 py-1.5 text-xs font-bold rounded-lg border ${allBtnCls}">🗂️ 全部展開 (分區檢視)</button>` + catKeys.map(k => `<button onclick="switchModalCategoryTab('${k}')" class="px-3 py-1.5 text-xs font-bold rounded-lg border ${currentModalTab === k ? 'bg-indigo-600 text-white border-indigo-400' : 'bg-slate-800 text-slate-300 border-slate-700'}">${cleanTwText(categories[k].label)}</button>`).join("");
+      tabsEl.innerHTML = `<button onclick="switchModalCategoryTab('ALL')" class="px-3 py-1.5 text-xs font-bold rounded-lg border ${allBtnCls}">🗂️ 全部展開</button>` + catKeys.map(k => `<button onclick="switchModalCategoryTab('${k}')" class="px-3 py-1.5 text-xs font-bold rounded-lg border ${currentModalTab === k ? 'bg-indigo-600 text-white border-indigo-400' : 'bg-slate-800 text-slate-300 border-slate-700'}">${cleanTwText(categories[k].label)}</button>`).join("");
       const keysToShow = currentModalTab === "ALL" ? catKeys : [currentModalTab];
       document.getElementById("modal-pillars-container").innerHTML = keysToShow.map(k => {
         const cat = categories[k];
         if (!cat) return "";
-        return `<div class="bg-slate-900/60 border border-slate-700/80 rounded-xl p-4"><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><h4 class="text-sm font-bold text-white">${cleanTwText(cat.label)}</h4><span class="text-[11px] text-slate-400">點擊標題可開啟官方來源或新聞原文</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-slate-950/60 border border-amber-500/25 rounded-lg p-3.5"><div class="text-xs font-bold text-amber-300 mb-2 pb-1.5 border-b border-slate-800">🔥 財報營收亮點與正向支撐</div><ul class="space-y-2.5 text-xs text-slate-200">${(cat.bullish || []).map(n => `<li><a href="${n.url}" target="_blank" rel="noopener" class="hover:text-amber-300 underline decoration-slate-600 block leading-relaxed">${cleanTwText(n.title)}</a><span class="text-[10px] text-emerald-400 mono mt-0.5 block">${n.date || ''}</span></li>`).join("")}</ul></div><div class="bg-slate-950/60 border border-cyan-500/25 rounded-lg p-3.5"><div class="text-xs font-bold text-cyan-300 mb-2 pb-1.5 border-b border-slate-800">❄️ 財務估值檢視與風險提示</div><ul class="space-y-2.5 text-xs text-slate-200">${(cat.bearish || []).map(n => `<li><a href="${n.url}" target="_blank" rel="noopener" class="hover:text-cyan-300 underline decoration-slate-600 block leading-relaxed">${cleanTwText(n.title)}</a><span class="text-[10px] text-amber-300 mono mt-0.5 block">${n.date || ''}</span></li>`).join("")}</ul></div></div></div>`;
+        return `<div class="bg-slate-900/60 border border-slate-700/80 rounded-xl p-4"><div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3"><h4 class="text-sm font-bold text-white">${cleanTwText(cat.label)}</h4><span class="text-[11px] text-slate-400">點擊標題開啟原文</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-slate-950/60 border border-amber-500/25 rounded-lg p-3.5"><div class="text-xs font-bold text-amber-300 mb-2 pb-1.5 border-b border-slate-800">🔥 財報營收亮點與正向支撐</div><ul class="space-y-2.5 text-xs text-slate-200">${(cat.bullish || []).map(n => `<li><a href="${n.url}" target="_blank" rel="noopener" class="hover:text-amber-300 underline decoration-slate-600 block leading-relaxed">${cleanTwText(n.title)}</a><span class="text-[10px] text-emerald-400 mono mt-0.5 block">${n.date || ''}</span></li>`).join("")}</ul></div><div class="bg-slate-950/60 border border-cyan-500/25 rounded-lg p-3.5"><div class="text-xs font-bold text-cyan-300 mb-2 pb-1.5 border-b border-slate-800">❄️ 財務估值檢視與風險提示</div><ul class="space-y-2.5 text-xs text-slate-200">${(cat.bearish || []).map(n => `<li><a href="${n.url}" target="_blank" rel="noopener" class="hover:text-cyan-300 underline decoration-slate-600 block leading-relaxed">${cleanTwText(n.title)}</a><span class="text-[10px] text-amber-300 mono mt-0.5 block">${n.date || ''}</span></li>`).join("")}</ul></div></div></div>`;
       }).join("");
     }
 
@@ -1912,9 +1703,7 @@
       if (!item) return;
       currentModalSymbol = symbol; currentModalTab = "ALL";
       const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
-      if (isStock) {
-        item.fundamentals = ensureValidFundamentals(symbol, item.fundamentals);
-      }
+      if (isStock) item.fundamentals = ensureValidFundamentals(symbol, item.fundamentals);
       document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
       const pEl = document.getElementById("modal-stock-price");
       pEl.textContent = `${formatDisplayPrice(item.price, item.symbol)} (${formatSignedPct(item.change_pct)})`;
@@ -1925,9 +1714,7 @@
         extBadge.classList.remove("hidden");
         extBadge.textContent = `${item.ext_session.label || '盤後'}: ${formatDisplayPrice(item.ext_session.price)} (${formatSignedPct(item.ext_session.change_pct)})`;
         extBadge.className = `text-xs font-bold mono px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 ${getColorClass(item.ext_session.change_pct, item.symbol)}`;
-      } else {
-        extBadge.classList.add("hidden");
-      }
+      } else extBadge.classList.add("hidden");
 
       const cbBadge = document.getElementById("modal-cb-badge"), cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
       if (!isStock && cbName) { cbBadge.classList.remove("hidden"); cbBadge.textContent = `專屬對映央行：${cbName}`; } else cbBadge.classList.add("hidden");
@@ -1939,10 +1726,10 @@
         ? `<div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">本益比 (PE)</span><strong class="text-white text-sm">${f.pe ?? 'N/A'}</strong></div>
            <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">預估本益比 (Fwd PE)</span><strong class="text-white text-sm">${f.forward_pe ?? '無預估'}</strong></div>
            <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">EPS (TTM)</span><strong class="text-emerald-300 text-sm">${f.eps ?? 'N/A'}</strong></div>
-           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">股東權益報酬率 (ROE)</span><strong class="text-amber-300 text-sm">${f.roe ?? 'N/A'}</strong></div>
-           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">毛利率 (Gross Margin)</span><strong class="text-white text-sm">${f.gross_margin ?? 'N/A'}</strong></div>
-           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">營業利益率 (Op Margin)</span><strong class="text-white text-sm">${f.operating_margin ?? 'N/A'}</strong></div>
-           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800 col-span-2"><span class="text-slate-400 block text-[10px]">季度營收年增率 (YoY Rev Growth)</span><strong class="text-sky-300 text-sm">${f.yoy_rev_growth ?? 'N/A'}</strong></div>${revBox}`
+           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">ROE</span><strong class="text-amber-300 text-sm">${f.roe ?? 'N/A'}</strong></div>
+           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">毛利率</span><strong class="text-white text-sm">${f.gross_margin ?? 'N/A'}</strong></div>
+           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800"><span class="text-slate-400 block text-[10px]">營業利益率</span><strong class="text-white text-sm">${f.operating_margin ?? 'N/A'}</strong></div>
+           <div class="bg-slate-950/60 p-2.5 rounded border border-slate-800 col-span-2"><span class="text-slate-400 block text-[10px]">季度營收年增率</span><strong class="text-sky-300 text-sm">${f.yoy_rev_growth ?? 'N/A'}</strong></div>${revBox}`
         : `<div><span class="text-slate-400 block text-[10px]">最新收盤報價</span>${formatDisplayPrice(item.price, item.symbol)}</div><div><span class="text-slate-400 block text-[10px]">最新漲跌幅</span><strong class="${getColorClass(item.change_pct, item.symbol)}">${formatSignedPct(item.change_pct)}</strong></div>${extraTwd}`;
       document.getElementById("modal-btn-add-compare").onclick = () => { closeStockModal(); switchAppView("market"); toggleCompareSymbol(symbol); document.getElementById("main-price-chart").scrollIntoView({ behavior: "smooth" }); };
       document.getElementById("stock-detail-modal").classList.remove("hidden");
@@ -1952,7 +1739,7 @@
 
     function populateDashboardSelectors() {
       const primarySel = document.getElementById("primary-asset-select"), compareSel = document.getElementById("compare-select");
-      const groups = [{ label: "全球主要指數 (含羅素2000)", list: globalMarketData.indices }, { label: "VIX 恐慌指數", list: globalMarketData.vix_indices }, { label: "美國公債殖利率 (含2Y)", list: globalMarketData.us_bonds }, { label: "全球外匯匯率", list: globalMarketData.fx_rates }, { label: "期貨、大宗商品與加密貨幣 (含台指期/BTC/ETH)", list: globalMarketData.futures_commodities }, { label: "美股核心科技股", list: globalMarketData.us_stocks }, { label: "台股核心權值股", list: globalMarketData.tw_stocks }];
+      const groups = [{ label: "全球主要指數", list: globalMarketData.indices }, { label: "VIX 恐慌指數", list: globalMarketData.vix_indices }, { label: "美國公債殖利率", list: globalMarketData.us_bonds }, { label: "全球外匯匯率", list: globalMarketData.fx_rates }, { label: "期貨、大宗商品與加密貨幣", list: globalMarketData.futures_commodities }, { label: "美股核心科技股", list: globalMarketData.us_stocks }, { label: "台股核心權值股", list: globalMarketData.tw_stocks }];
       const optionsHtml = groups.map(g => `<optgroup label="${g.label}">${(g.list || []).map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}</optgroup>`).join("");
       primarySel.innerHTML = optionsHtml; primarySel.value = currentAssetSymbol;
       compareSel.innerHTML = `<option value="">＋ 從完整清單搜尋加入比較...</option>` + optionsHtml;
@@ -1991,7 +1778,7 @@
       ensureSyntheticHistoryIfEmpty(asset);
       if (currentRangeMode === "1D" && asset.intraday && asset.intraday.length > 0) return asset.intraday.map(d => ({ x: d.time, y: Number(d.price) }));
       const hist = asset.history || [];
-      if (hist.length < 2) return [];
+      if (hist.length < 2) return hist.map(d => ({ x: d.date, y: Number(d.close) }));
       let filtered = hist;
       if (currentRangeMode === "1D") filtered = hist.slice(-5);
       else if (currentRangeMode === "1W") filtered = hist.slice(-6);
@@ -2095,7 +1882,7 @@
     }
 
     function getLastVerifiedPoint(arr, dates) {
-      if (!Array.isArray(arr) || !Array.isArray(dates)) return { val: null, prev: null, date: "待公布" };
+      if (!Array.isArray(arr) || !Array.isArray(dates) || dates.length === 0) return { val: null, prev: null, date: "待公布" };
       for (let i = arr.length - 1; i >= 0; i--) {
         if (arr[i] !== null && arr[i] !== undefined && !isNaN(Number(arr[i])) && Number(arr[i]) !== 0) {
           let prevVal = null;
@@ -2108,16 +1895,15 @@
           return { val: Number(arr[i]), prev: prevVal, date: dates[i] || "" };
         }
       }
-      return { val: null, prev: null, date: "待公布" };
+      return { val: null, prev: null, date: dates[dates.length - 1] || "待公布" };
     }
 
+    // 解除日期卡死鎖：只要傳入的動態資料有效就直接採用，不再強行退回舊常數
     function ensureCompleteTwChipsData(incomingChips) {
-      const base = JSON.parse(JSON.stringify(OFFICIAL_VERIFIED_TW_CHIPS));
-      if (!incomingChips || !Array.isArray(incomingChips.dates) || incomingChips.dates.length === 0) return base;
-      const lastIncomingDate = incomingChips.dates[incomingChips.dates.length - 1];
-      const lastBaseDate = base.dates[base.dates.length - 1];
-      if (lastIncomingDate > lastBaseDate) return incomingChips;
-      return base;
+      if (incomingChips && Array.isArray(incomingChips.dates) && incomingChips.dates.length > 0) {
+        return incomingChips;
+      }
+      return JSON.parse(JSON.stringify(OFFLINE_FALLBACK_TW_CHIPS));
     }
 
     function renderTwseSummaryBar(chips) {
@@ -2128,16 +1914,12 @@
       const tPt = getLastVerifiedPoint(chips.trust_buy, dates);
       const dPt = getLastVerifiedPoint(chips.dealer_buy, dates);
       const totVal = (fPt.val !== null && tPt.val !== null && dPt.val !== null) ? Number((fPt.val + tPt.val + dPt.val).toFixed(2)) : 0;
-
       const mPt = getLastVerifiedPoint(chips.margin_balance, dates);
       const mDiff = (mPt.val !== null && mPt.prev !== null) ? Number((mPt.val - mPt.prev).toFixed(2)) : 0;
-
       const otcPt = getLastVerifiedPoint(chips.otc_margin_balance, dates);
       const otcDiff = (otcPt.val !== null && otcPt.prev !== null) ? Number((otcPt.val - otcPt.prev).toFixed(2)) : 0;
-
       const guarPt = getLastVerifiedPoint(chips.twse_guarantee_rate, dates);
       const guarDiff = (guarPt.val !== null && guarPt.prev !== null) ? Number((guarPt.val - guarPt.prev).toFixed(2)) : 0;
-
       const combPt = getLastVerifiedPoint(chips.combined_margin_rate, dates);
       const combDiff = (combPt.val !== null && combPt.prev !== null) ? Number((combPt.val - combPt.prev).toFixed(2)) : 0;
 
@@ -2164,7 +1946,7 @@
       if (instChart) instChart.dispose();
       instChart = echarts.init(instDom);
       instChart.setOption({
-        tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: (v) => v !== null && v !== undefined ? `${v > 0 ? '+' : ''}${v} 億元` : "當日待公布" },
+        tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: (v) => v !== null && v !== undefined ? `${v > 0 ? '+' : ''}${v} 億元` : "待公布" },
         legend: { data: ["外資及陸資", "投信", "自營商"], textStyle: { color: "#cbd5e1" }, top: 0 },
         grid: { left: "11%", right: "4%", top: "16%", bottom: "12%" },
         xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8", fontSize: 11 } },
@@ -2174,7 +1956,7 @@
       if (marginChart) marginChart.dispose();
       marginChart = echarts.init(marginDom);
       marginChart.setOption({
-        tooltip: { trigger: "axis", valueFormatter: (v) => v ? `${v} 億元` : "今晚 20:00 公布" },
+        tooltip: { trigger: "axis", valueFormatter: (v) => v ? `${v} 億元` : "待公布" },
         legend: { data: ["加權指數融資餘額 (億元)", "櫃買指數融資餘額 (億元)"], textStyle: { color: "#cbd5e1" }, top: 0 },
         grid: { left: "12%", right: "12%", top: "16%", bottom: "12%" },
         xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8", fontSize: 11 } },
@@ -2187,36 +1969,14 @@
         maintChart = echarts.init(maintDom);
         maintChart.setOption({
           tooltip: { trigger: "axis", valueFormatter: (v) => (v !== null && v !== undefined) ? `${v}%` : "無公開紀錄 / 待公布" },
-          legend: { data: ["證交所全市場擔保維持率 (MacroMicro 53117)", "上市櫃融資維持率 (MacroMicro 53117)", "單一上市融資維持率 (Blave / MM 155788)"], textStyle: { color: "#cbd5e1" }, top: 0 },
+          legend: { data: ["證交所全市場擔保維持率 (MacroMicro 53117)", "上市櫃融資維持率 (MacroMicro 53117)", "單一上市融資維持率"], textStyle: { color: "#cbd5e1" }, top: 0 },
           grid: { left: "6%", right: "5%", top: "18%", bottom: "12%" },
           xAxis: { type: "category", data: chips.dates, axisLabel: { color: "#94a3b8", fontSize: 11 } },
           yAxis: { type: "value", name: "維持率 (%)", min: 125, scale: true, splitLine: { lineStyle: { color: "#1e293b" } }, axisLabel: { color: "#94a3b8", formatter: "{value}%" } },
           series: [
-            {
-              name: "證交所全市場擔保維持率 (MacroMicro 53117)",
-              type: "line", smooth: false, connectNulls: true, symbolSize: 8,
-              data: chips.twse_guarantee_rate,
-              lineStyle: { color: "#34d399", width: 3 },
-              itemStyle: { color: "#34d399" },
-              markLine: {
-                silent: true,
-                data: [{ yAxis: 130, name: "追繳警戒線 (130%)", lineStyle: { color: "#f43f5e", type: "dashed", width: 1.5 }, label: { formatter: "⚠️ 130% 追繳線", color: "#fb7185", fontSize: 10 } }]
-              }
-            },
-            {
-              name: "上市櫃融資維持率 (MacroMicro 53117)",
-              type: "line", smooth: false, connectNulls: true, symbolSize: 8,
-              data: chips.combined_margin_rate,
-              lineStyle: { color: "#38bdf8", width: 2.5 },
-              itemStyle: { color: "#38bdf8" }
-            },
-            {
-              name: "單一上市融資維持率 (Blave / MM 155788)",
-              type: "line", smooth: true, connectNulls: true, symbolSize: 6,
-              data: chips.twse_only_margin_rate || [],
-              lineStyle: { color: "#a78bfa", width: 2, type: "dashed" },
-              itemStyle: { color: "#a78bfa" }
-            }
+            { name: "證交所全市場擔保維持率 (MacroMicro 53117)", type: "line", smooth: false, connectNulls: true, symbolSize: 8, data: chips.twse_guarantee_rate, lineStyle: { color: "#34d399", width: 3 }, itemStyle: { color: "#34d399" }, markLine: { silent: true, data: [{ yAxis: 130, name: "追繳警戒線 (130%)", lineStyle: { color: "#f43f5e", type: "dashed", width: 1.5 }, label: { formatter: "⚠️ 130% 追繳線", color: "#fb7185", fontSize: 10 } }] } },
+            { name: "上市櫃融資維持率 (MacroMicro 53117)", type: "line", smooth: false, connectNulls: true, symbolSize: 8, data: chips.combined_margin_rate, lineStyle: { color: "#38bdf8", width: 2.5 }, itemStyle: { color: "#38bdf8" } },
+            { name: "單一上市融資維持率", type: "line", smooth: true, connectNulls: true, symbolSize: 6, data: chips.twse_only_margin_rate || [], lineStyle: { color: "#a78bfa", width: 2, type: "dashed" }, itemStyle: { color: "#a78bfa" } }
           ]
         });
       }
@@ -2237,10 +1997,8 @@
         const dec = item.asset_type === "fx_rate" ? (symbol === "JPY=X" || symbol === "TWD=X" ? 2 : 4) : 2;
         item.price = Number(newMainPrice).toFixed(dec);
         item.change_pct = Number(newMainPct).toFixed(2);
-        VERIFIED_NOV13_2026_QUOTES[symbol] = [Number(item.price), Number(item.change_pct)];
-        if (isTwSymbol(symbol)) {
-          twCodeMap[String(symbol).split(".")[0]] = [Number(item.price), Number(item.change_pct)];
-        }
+        OFFLINE_FALLBACK_QUOTES[symbol] = [Number(item.price), Number(item.change_pct)];
+        if (isTwSymbol(symbol)) twCodeMap[String(symbol).split(".")[0]] = [Number(item.price), Number(item.change_pct)];
         if (oldComp && Number(oldComp) !== Number(item.price)) triggerCardFlash(symbol, Number(item.price) > Number(oldComp));
         const pEl = document.getElementById(`price-${domId}`), pctEl = document.getElementById(`pct-${domId}`);
         if (pEl) pEl.textContent = item.price;
@@ -2262,7 +2020,6 @@
           triggerCardFlash(symbol, Number(extSessionObj.price) > Number(item.ext_session?.price || item.price));
         }
         item.ext_session = extSessionObj;
-        DEFAULT_US_EXT_SESSIONS[symbol] = extSessionObj;
         const extEl = document.getElementById(`ext-${domId}`);
         if (extEl) {
           extEl.classList.remove("hidden");
@@ -2280,21 +2037,15 @@
 
     function updateTwStockByCode(code, price, pct, fundObj = null) {
       if (!code || !(price > 0)) return;
-      const pNum = Number(Number(price).toFixed(2));
-      const pctNum = Number(Number(pct).toFixed(2));
+      const pNum = Number(Number(price).toFixed(2)), pctNum = Number(Number(pct).toFixed(2));
       twCodeMap[code] = [pNum, pctNum];
       if (fundObj) twFundMap[code] = Object.assign(twFundMap[code] || {}, fundObj);
-      const symTw = `${code}.TW`, symTwo = `${code}.TWO`;
-      VERIFIED_NOV13_2026_QUOTES[symTw] = [pNum, pctNum];
-      VERIFIED_NOV13_2026_QUOTES[symTwo] = [pNum, pctNum];
-      [symTw, symTwo].forEach(sym => {
+      [`${code}.TW`, `${code}.TWO`].forEach(sym => {
         if (allAssetsMap[sym]) {
           if (fundObj) {
             allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fundObj));
             const domId = safeId(sym);
-            const peEl = document.getElementById(`pe-${domId}`);
-            const fpeEl = document.getElementById(`fpe-${domId}`);
-            const epsEl = document.getElementById(`eps-${domId}`);
+            const peEl = document.getElementById(`pe-${domId}`), fpeEl = document.getElementById(`fpe-${domId}`), epsEl = document.getElementById(`eps-${domId}`);
             if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
             if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
             if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
@@ -2325,6 +2076,7 @@
       return null;
     }
 
+    // 動態滾動交易日引擎：只要證交所公布新交易日數據，自動推進追加，絕不卡死
     async function syncLatestTwChipsInBrowser() {
       try {
         const jInst = await tryFetchViaMultiProxy("https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json");
@@ -2359,15 +2111,28 @@
         } catch (e) {}
 
         const chips = ensureCompleteTwChipsData(globalMarketData?.tw_chips_visual);
-        const idx = chips.dates.indexOf(mmdd);
-        if (idx >= 0) {
-          chips.foreign_buy[idx] = fYi;
-          chips.trust_buy[idx] = tYi;
-          chips.dealer_buy[idx] = dYi;
-        }
-        if (mDateMmdd && mYi) {
-          const mIdx = chips.dates.indexOf(mDateMmdd);
-          if (mIdx >= 0) chips.margin_balance[mIdx] = mYi;
+        const lastKnownDate = chips.dates[chips.dates.length - 1];
+        if (mmdd > lastKnownDate) {
+          chips.dates.push(mmdd);
+          chips.foreign_buy.push(fYi);
+          chips.trust_buy.push(tYi);
+          chips.dealer_buy.push(dYi);
+          chips.margin_balance.push(mDateMmdd === mmdd ? mYi : null);
+          chips.otc_margin_balance.push(null);
+          chips.twse_guarantee_rate.push(null);
+          chips.combined_margin_rate.push(null);
+          chips.twse_only_margin_rate.push(null);
+          chips.short_balance.push(null);
+          if (chips.dates.length > 12) {
+            Object.keys(chips).forEach(k => { if (Array.isArray(chips[k])) chips[k].shift(); });
+          }
+        } else {
+          const idx = chips.dates.indexOf(mmdd);
+          if (idx >= 0) { chips.foreign_buy[idx] = fYi; chips.trust_buy[idx] = tYi; chips.dealer_buy[idx] = dYi; }
+          if (mDateMmdd && mYi) {
+            const mIdx = chips.dates.indexOf(mDateMmdd);
+            if (mIdx >= 0) chips.margin_balance[mIdx] = mYi;
+          }
         }
         renderChipCharts(chips);
         renderDailyMarketReport();
@@ -2395,18 +2160,10 @@
     async function syncTradingViewTaiwanScannerInBrowser() {
       const payload = {
         filter: [{ left: "close", operation: "greater", right: 0 }],
-        options: { lang: "zh_TW" },
-        markets: ["taiwan"],
+        options: { lang: "zh_TW" }, markets: ["taiwan"],
         symbols: { query: { types: [] }, tickers: [] },
-        columns: [
-          "name", "close", "change", "change_abs",
-          "price_earnings_ttm", "price_earnings_forward_fy",
-          "earnings_per_share_diluted_ttm", "return_on_equity",
-          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
-          "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
-        ],
-        sort: { sortBy: "name", sortOrder: "asc" },
-        range: [0, 4000]
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"],
+        sort: { sortBy: "name", sortOrder: "asc" }, range: [0, 4000]
       };
       try {
         const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/taiwan/scan", payload);
@@ -2415,33 +2172,21 @@
           const fmtN = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? Number(Number(v).toFixed(2)) : null;
           const fmtP = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? `${Number(v).toFixed(1)}%` : null;
           rows.forEach(row => {
-            const d = row.d || [];
-            const sRaw = String(row.s || "");
+            const d = row.d || [], sRaw = String(row.s || "");
             const code = sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim();
             if (d.length >= 4 && code) {
-              const p = Number(d[1] || 0);
-              const pct = Number(d[2] || 0);
-              const fObj = {};
+              const p = Number(d[1] || 0), pct = Number(d[2] || 0), fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
-              const fwdPeDirect = fmtN(d[5]);
-              const fwdEpsFy = fmtN(d[11]);
-              const fwdEpsFq = fmtN(d[12]);
-              if (fwdPeDirect !== null && fwdPeDirect > 0) {
-                fObj.forward_pe = fwdPeDirect;
-              } else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) {
-                fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
-              } else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) {
-                fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
-              }
+              const fwdPeDirect = fmtN(d[5]), fwdEpsFy = fmtN(d[11]), fwdEpsFq = fmtN(d[12]);
+              if (fwdPeDirect !== null && fwdPeDirect > 0) fObj.forward_pe = fwdPeDirect;
+              else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
+              else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
               if (fmtN(d[6]) !== null) fObj.eps = fmtN(d[6]);
               if (fmtP(d[7]) !== null) fObj.roe = fmtP(d[7]);
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
               if (fmtP(d[9]) !== null) fObj.operating_margin = fmtP(d[9]);
               if (fmtP(d[10]) !== null) fObj.yoy_rev_growth = fmtP(d[10]);
-
-              if (p > 0 && code !== "TAIEX" && code !== "TPEX") {
-                updateTwStockByCode(code, p, pct, fObj);
-              }
+              if (p > 0 && code !== "TAIEX" && code !== "TPEX") updateTwStockByCode(code, p, pct, fObj);
             }
           });
           renderDailyMarketReport();
@@ -2458,16 +2203,9 @@
       if (!allUsSyms.length) return;
       const payload = {
         filter: [{ left: "name", operation: "in_range", right: allUsSyms }],
-        options: { lang: "zh_TW" },
-        markets: ["america"],
+        options: { lang: "zh_TW" }, markets: ["america"],
         symbols: { query: { types: [] }, tickers: [] },
-        columns: [
-          "name", "close", "change", "change_abs",
-          "price_earnings_ttm", "price_earnings_forward_fy",
-          "earnings_per_share_diluted_ttm", "return_on_equity",
-          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
-          "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
-        ],
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"],
         range: [0, 1000]
       };
       try {
@@ -2477,24 +2215,15 @@
           const fmtN = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? Number(Number(v).toFixed(2)) : null;
           const fmtP = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? `${Number(v).toFixed(1)}%` : null;
           rows.forEach(row => {
-            const d = row.d || [];
-            const sRaw = String(row.s || "");
+            const d = row.d || [], sRaw = String(row.s || "");
             const sym = (sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim()).replace(".", "-");
             if (sym) {
-              const p = Number(d[1] || 0);
-              const pct = Number(d[2] || 0);
-              const fObj = {};
+              const p = Number(d[1] || 0), pct = Number(d[2] || 0), fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
-              const fwdPeDirect = fmtN(d[5]);
-              const fwdEpsFy = fmtN(d[11]);
-              const fwdEpsFq = fmtN(d[12]);
-              if (fwdPeDirect !== null && fwdPeDirect > 0) {
-                fObj.forward_pe = fwdPeDirect;
-              } else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) {
-                fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
-              } else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) {
-                fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
-              }
+              const fwdPeDirect = fmtN(d[5]), fwdEpsFy = fmtN(d[11]), fwdEpsFq = fmtN(d[12]);
+              if (fwdPeDirect !== null && fwdPeDirect > 0) fObj.forward_pe = fwdPeDirect;
+              else if (p > 0 && fwdEpsFy !== null && fwdEpsFy > 0) fObj.forward_pe = Number((p / fwdEpsFy).toFixed(2));
+              else if (p > 0 && fwdEpsFq !== null && fwdEpsFq > 0) fObj.forward_pe = Number((p / (fwdEpsFq * 4)).toFixed(2));
               if (fmtN(d[6]) !== null) fObj.eps = fmtN(d[6]);
               if (fmtP(d[7]) !== null) fObj.roe = fmtP(d[7]);
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
@@ -2504,9 +2233,7 @@
               if (allAssetsMap[sym]) {
                 allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fObj));
                 const domId = safeId(sym);
-                const peEl = document.getElementById(`pe-${domId}`);
-                const fpeEl = document.getElementById(`fpe-${domId}`);
-                const epsEl = document.getElementById(`eps-${domId}`);
+                const peEl = document.getElementById(`pe-${domId}`), fpeEl = document.getElementById(`fpe-${domId}`), epsEl = document.getElementById(`eps-${domId}`);
                 if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
                 if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
                 if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
@@ -2526,16 +2253,10 @@
         const chunk = exList.slice(i, i + 35).join("|");
         try {
           const j = await tryFetchViaMultiProxy(`https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${chunk}&json=1&delay=0`);
-          const arr = j?.msgArray || [];
-          arr.forEach(m => {
-            const code = String(m.c || "").trim();
-            const prevP = parseFloat(m.y || "0");
+          (j?.msgArray || []).forEach(m => {
+            const code = String(m.c || "").trim(), prevP = parseFloat(m.y || "0");
             let curP = parseFloat(m.z || "0");
-            if (!curP || isNaN(curP) || curP <= 0) {
-              const b0 = parseFloat(String(m.b || "").split("_")[0]);
-              const a0 = parseFloat(String(m.a || "").split("_")[0]);
-              curP = b0 || a0 || prevP;
-            }
+            if (!curP || isNaN(curP) || curP <= 0) curP = parseFloat(String(m.b || "").split("_")[0]) || parseFloat(String(m.a || "").split("_")[0]) || prevP;
             if (curP > 0 && prevP > 0) {
               const pct = ((curP - prevP) / prevP) * 100;
               if (code === "t00") updateAssetDomPrice("^TWII", curP, pct);
@@ -2549,28 +2270,17 @@
 
     async function syncTaifexVixAndTxfLiveInBrowser() {
       try {
-        const j = await tryFetchViaMultiProxy("https://mis.taifex.com.tw/futures/api/getQuoteDetail", {
-          SymbolID: ["TAIWANVIX", "VIXTWN", "TXF-S", "TXFL6-S", "TXF-M", "TXFL6-M"]
-        });
-        const qList = j?.RtData?.QuoteList || [];
+        const j = await tryFetchViaMultiProxy("https://mis.taifex.com.tw/futures/api/getQuoteDetail", { SymbolID: ["TAIWANVIX", "VIXTWN", "TXF-S", "TXFL6-S", "TXF-M", "TXFL6-M"] });
         let dayQ = null, nightQ = null;
-        qList.forEach(q => {
-          const symId = String(q.SymbolID || "");
-          const lastP = parseFloat(q.CLastPrice || q.ChtPrice || "0");
-          const refP = parseFloat(q.CRefPrice || q.COpenPrice || lastP);
-          const diff = parseFloat(q.CDiff || (lastP - refP));
-          const pct = refP > 0 ? (diff / refP) * 100 : 0;
-          if (symId.includes("VIX") && lastP >= 8 && lastP <= 95) {
-            updateAssetDomPrice("^VIXTWN", lastP, pct);
-          } else if (symId.endsWith("-S") && lastP > 15000 && !dayQ) {
-            dayQ = { price: lastP, pct: pct };
-          } else if (symId.endsWith("-M") && lastP > 15000 && !nightQ) {
-            nightQ = { price: lastP, change: diff, change_pct: Number(pct.toFixed(2)), label: "夜盤" };
-          }
+        (j?.RtData?.QuoteList || []).forEach(q => {
+          const symId = String(q.SymbolID || ""), lastP = parseFloat(q.CLastPrice || q.ChtPrice || "0"), refP = parseFloat(q.CRefPrice || q.COpenPrice || lastP), diff = parseFloat(q.CDiff || (lastP - refP)), pct = refP > 0 ? (diff / refP) * 100 : 0;
+          if (symId.includes("VIX") && lastP >= 8 && lastP <= 95) updateAssetDomPrice("^VIXTWN", lastP, pct);
+          else if (symId.endsWith("-S") && lastP > 15000 && !dayQ) dayQ = { price: lastP, pct: pct };
+          else if (symId.endsWith("-M") && lastP > 15000 && !nightQ) nightQ = { price: lastP, change: diff, change_pct: Number(pct.toFixed(2)), label: "夜盤" };
         });
         if (dayQ || nightQ) {
-          const curMainP = dayQ ? dayQ.price : Number(allAssetsMap["TXF"]?.price || 40332.00);
-          const curMainPct = dayQ ? dayQ.pct : Number(allAssetsMap["TXF"]?.change_pct || 0.56);
+          const curMainP = dayQ ? dayQ.price : Number(allAssetsMap["TXF"]?.price || 0);
+          const curMainPct = dayQ ? dayQ.pct : Number(allAssetsMap["TXF"]?.change_pct || 0);
           updateAssetDomPrice("TXF", curMainP, curMainPct, nightQ || allAssetsMap["TXF"]?.ext_session);
         }
       } catch (e) {}
@@ -2578,17 +2288,16 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      const fList = ["ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
+      const fList = ["^GSPC", "^DJI", "^IXIC", "^SOX", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
-      for (let i = 0; i < 4; i++) {
-        batch.push(fList[(futuresPollCursor + i) % fList.length]);
-      }
+      for (let i = 0; i < 4; i++) batch.push(fList[(futuresPollCursor + i) % fList.length]);
       futuresPollCursor = (futuresPollCursor + 4) % fList.length;
       await Promise.all(batch.map(s => fetchSingleYahooQuoteAndPrePost(s)));
     }
 
+    // 放行原油 (BZ=F, CL=F) 與農產品 (ZS=F, ZW=F, ZC=F) 即時更新，絕不鎖死
     async function fetchSingleYahooQuoteAndPrePost(sym) {
-      if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || sym === "BZ=F" || sym === "CL=F" || sym === "ZS=F" || sym === "ZW=F" || sym === "ZC=F" || isCryptoSymbol(sym)) return;
+      if (sym === "US2Y" || sym === "^VIXTWN" || sym === "SPCX" || sym === "TXF" || isCryptoSymbol(sym)) return;
       const queryCandidates = sym === "^TWOII" ? ["^TWO", "^TWOII"] : [sym];
       for (const qSym of queryCandidates) {
         try {
@@ -2598,41 +2307,22 @@
           if (!res) continue;
           const item = allAssetsMap[sym];
           if (!item) return;
-          const meta = res.meta || {};
-          const rawCloses = res.indicators?.quote?.[0]?.close || [];
+          const meta = res.meta || {}, rawCloses = res.indicators?.quote?.[0]?.close || [];
           let latestTickP = null;
           for (let i = rawCloses.length - 1; i >= 0; i--) {
-            if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) {
-              latestTickP = Number(rawCloses[i]);
-              break;
-            }
+            if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) { latestTickP = Number(rawCloses[i]); break; }
           }
-
           const livePrice = Number(latestTickP || meta.regularMarketPrice || 0);
           const settlePrice = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || 0);
           if (livePrice <= 0) continue;
 
           if (item.asset_type === "futures" && !isCryptoSymbol(sym)) {
             if (!isUsRegularMarketOpenNow() && settlePrice > 0) {
-              const regPct = Number(item.change_pct || 0);
-              const elecChg = livePrice - settlePrice;
-              const elecPct = (elecChg / settlePrice) * 100;
-              const extSession = {
-                price: Number(livePrice.toFixed(2)),
-                change: Number(elecChg.toFixed(2)),
-                change_pct: Number(elecPct.toFixed(2)),
-                label: "電子盤"
-              };
-              updateAssetDomPrice(sym, settlePrice, regPct, extSession);
+              const elecChg = livePrice - settlePrice, elecPct = (elecChg / settlePrice) * 100;
+              updateAssetDomPrice(sym, settlePrice, Number(item.change_pct || 0), { price: Number(livePrice.toFixed(2)), change: Number(elecChg.toFixed(2)), change_pct: Number(elecPct.toFixed(2)), label: "電子盤" });
             } else {
               const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
-              const extSession = {
-                price: Number(settlePrice.toFixed(2)),
-                change: 0,
-                change_pct: 0,
-                label: "昨結價"
-              };
-              updateAssetDomPrice(sym, livePrice, mainPct, extSession);
+              updateAssetDomPrice(sym, livePrice, mainPct, settlePrice > 0 ? { price: Number(settlePrice.toFixed(2)), change: 0, change_pct: 0, label: "昨結價" } : null);
             }
             return;
           }
@@ -2641,13 +2331,8 @@
           let extSession = item.ext_session;
           if (item.asset_type === "us_stock") {
             const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
-            if (preP > 0) {
-              const chg = preP - livePrice, pct = livePrice > 0 ? (chg / livePrice) * 100 : 0;
-              extSession = { price: Number(preP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤前" };
-            } else if (postP > 0) {
-              const chg = postP - livePrice, pct = livePrice > 0 ? (chg / livePrice) * 100 : 0;
-              extSession = { price: Number(postP.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label: "盤後" };
-            }
+            if (preP > 0) extSession = { price: Number(preP.toFixed(2)), change: Number((preP - livePrice).toFixed(2)), change_pct: Number((((preP - livePrice) / livePrice) * 100).toFixed(2)), label: "盤前" };
+            else if (postP > 0) extSession = { price: Number(postP.toFixed(2)), change: Number((postP - livePrice).toFixed(2)), change_pct: Number((((postP - livePrice) / livePrice) * 100).toFixed(2)), label: "盤後" };
           }
           updateAssetDomPrice(sym, livePrice, mainPct, extSession);
           return;
@@ -2656,13 +2341,11 @@
     }
 
     async function syncDirectBinanceCryptoPrices() {
-      const pairs = [{ sym: "BTC-USD", bSym: "BTCUSDT" }, { sym: "ETH-USD", bSym: "ETHUSDT" }];
-      for (const p of pairs) {
+      for (const p of [{ sym: "BTC-USD", bSym: "BTCUSDT" }, { sym: "ETH-USD", bSym: "ETHUSDT" }]) {
         try {
           const r24 = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${p.bSym}`);
           if (r24.ok) {
-            const j = await r24.json();
-            const lastP = parseFloat(j.lastPrice), pct = parseFloat(j.priceChangePercent);
+            const j = await r24.json(), lastP = parseFloat(j.lastPrice), pct = parseFloat(j.priceChangePercent);
             if (lastP > 0) updateAssetDomPrice(p.sym, lastP, pct, null);
           }
         } catch (e) {}
@@ -2670,29 +2353,24 @@
     }
 
     async function forceSyncAllLivePrices() {
-      document.getElementById("live-status").textContent = "正在同步全站最新收盤、恐懼與貪婪指數、台指期與維持率...";
+      document.getElementById("live-status").textContent = "正在同步全站最新市場數據...";
       await Promise.all([
-        tryLoadMarketJson(true),
-        syncTaiwanIndicesLiveInBrowser(),
-        syncTradingViewTaiwanScannerInBrowser(),
-        syncTradingViewUsScannerInBrowser(),
-        syncDirectBinanceCryptoPrices(),
-        syncTaifexVixAndTxfLiveInBrowser(),
-        syncLatestTwChipsInBrowser(),
-        syncAllFuturesAndFxLiveInBrowser(),
+        tryLoadMarketJson(true), syncTaiwanIndicesLiveInBrowser(), syncTradingViewTaiwanScannerInBrowser(),
+        syncTradingViewUsScannerInBrowser(), syncDirectBinanceCryptoPrices(), syncTaifexVixAndTxfLiveInBrowser(),
+        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser(),
         syncTwseMisTodayOnly(["2330.TW", "2454.TW", "2308.TW", "2317.TW", "3711.TW"])
       ]);
       renderDailyMarketReport();
       renderTopPerformingSectors();
       if (currentAppView === "supplychain") renderSupplyChainView();
       else renderMainChart();
-      document.getElementById("live-status").textContent = "全市場當日最新收盤、期貨跳動與維持率已同步完成";
+      document.getElementById("live-status").textContent = "全市場即時數據已同步完成";
       document.getElementById("last-updated").textContent = `最後同步：${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`;
     }
 
     function configureFinnhubKey() {
       const saved = localStorage.getItem("FINNHUB_API_KEY") || "";
-      const key = prompt("請輸入免費的 Finnhub API Key (可至 https://finnhub.io 免費註冊取得)，開啟美股與加密貨幣 WebSocket 秒級跳動：", saved);
+      const key = prompt("請輸入免費的 Finnhub API Key，開啟美股與加密貨幣 WebSocket 秒級跳動：", saved);
       if (key !== null) { localStorage.setItem("FINNHUB_API_KEY", key.trim()); startFinnhubWebSocket(key.trim()); }
     }
 
@@ -2702,7 +2380,7 @@
       finnhubSocket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
       finnhubSocket.addEventListener("open", () => {
         document.getElementById("live-status").textContent = "⚡ WebSocket 秒級連線中";
-        ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "MU", "SNDK", "ANET", "COHR", "VRT", "GEV", "BINANCE:BTCUSDT", "BINANCE:ETHUSDT"].forEach(sym => finnhubSocket.send(JSON.stringify({ type: "subscribe", symbol: sym })));
+        ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT", "BINANCE:BTCUSDT", "BINANCE:ETHUSDT"].forEach(sym => finnhubSocket.send(JSON.stringify({ type: "subscribe", symbol: sym })));
       });
       finnhubSocket.addEventListener("message", (event) => {
         const msg = JSON.parse(event.data);
@@ -2713,36 +2391,22 @@
           if (!item) return;
           const prev = Number(item.prev_close) || Number(item.price);
           if (item.asset_type === "us_stock") {
-            if (isUsRegularMarketOpenNow()) {
-              const pct = prev > 0 ? ((last.p - prev) / prev) * 100 : 0;
-              updateAssetDomPrice(mappedSym, last.p, pct, item.ext_session);
-            } else {
-              const regP = Number(item.price) || prev;
-              const chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
-              const hr = new Date().getHours();
-              const lbl = (hr >= 15 && hr <= 22) ? "盤前" : "盤後";
-              updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: lbl });
+            if (isUsRegularMarketOpenNow()) updateAssetDomPrice(mappedSym, last.p, prev > 0 ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
+            else {
+              const regP = Number(item.price) || prev, chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0, hr = new Date().getHours();
+              updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: (hr >= 15 && hr <= 22) ? "盤前" : "盤後" });
             }
-          } else {
-            updateAssetDomPrice(mappedSym, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, null);
-          }
+          } else updateAssetDomPrice(mappedSym, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, null);
         }
       });
     }
 
+    // 徹底解除寫死價格：直接渲染 JSON 與即時同步進來的期貨資料
     function renderGroupedFutures(futuresList) {
       const list = futuresList || [], bySym = {};
       list.forEach(f => { bySym[f.symbol] = f; });
-      if (!bySym["TXF"]) bySym["TXF"] = applyVerifiedNov13IfMissing({ symbol: "TXF", name: "台指期近月", asset_type: "futures", future_group: "us_index_futures", price: 40332.00, change_pct: 0.56, ext_session: DEFAULT_US_EXT_SESSIONS["TXF"], history: [] });
-      bySym["BZ=F"] = applyVerifiedNov13IfMissing({ symbol: "BZ=F", name: "布蘭特原油期貨", asset_type: "futures", future_group: "energy_futures", price: 91.77, change_pct: -1.47, ext_session: DEFAULT_US_EXT_SESSIONS["BZ=F"], history: bySym["BZ=F"]?.history || [] });
-      bySym["CL=F"] = applyVerifiedNov13IfMissing({ symbol: "CL=F", name: "WTI 原油期貨", asset_type: "futures", future_group: "energy_futures", price: 82.94, change_pct: -2.02, ext_session: DEFAULT_US_EXT_SESSIONS["CL=F"], history: bySym["CL=F"]?.history || [] });
-      bySym["ZS=F"] = applyVerifiedNov13IfMissing({ symbol: "ZS=F", name: "黃豆期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 1222.49, change_pct: -0.25, ext_session: DEFAULT_US_EXT_SESSIONS["ZS=F"], history: bySym["ZS=F"]?.history || [] });
-      bySym["ZW=F"] = applyVerifiedNov13IfMissing({ symbol: "ZW=F", name: "小麥期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 589.01, change_pct: -1.05, ext_session: DEFAULT_US_EXT_SESSIONS["ZW=F"], history: bySym["ZW=F"]?.history || [] });
-      bySym["ZC=F"] = applyVerifiedNov13IfMissing({ symbol: "ZC=F", name: "玉米期貨 (CBOT)", asset_type: "futures", future_group: "agri_futures", price: 444.83, change_pct: -0.43, ext_session: DEFAULT_US_EXT_SESSIONS["ZC=F"], history: bySym["ZC=F"]?.history || [] });
-      bySym["BTC-USD"] = applyVerifiedNov13IfMissing({ symbol: "BTC-USD", name: "比特幣 (BTC)", asset_type: "futures", future_group: "crypto_assets", price: bySym["BTC-USD"]?.price || 64566.98, change_pct: bySym["BTC-USD"]?.change_pct || 0.69, ext_session: null, history: bySym["BTC-USD"]?.history || [] });
-      bySym["ETH-USD"] = applyVerifiedNov13IfMissing({ symbol: "ETH-USD", name: "以太幣 (ETH)", asset_type: "futures", future_group: "crypto_assets", price: bySym["ETH-USD"]?.price || 1814.48, change_pct: bySym["ETH-USD"]?.change_pct || -5.86, ext_session: null, history: bySym["ETH-USD"]?.history || [] });
-      bySym["BTC-USD"].ext_session = null;
-      bySym["ETH-USD"].ext_session = null;
+      if (bySym["BTC-USD"]) bySym["BTC-USD"].ext_session = null;
+      if (bySym["ETH-USD"]) bySym["ETH-USD"].ext_session = null;
 
       document.getElementById("grid-futures-us-index").innerHTML = ["TXF", "ES=F", "NQ=F", "YM=F"].map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
       document.getElementById("grid-futures-metals").innerHTML = ["GC=F", "SI=F", "HG=F", "PA=F"].map(s => bySym[s] ? createQuoteCard(bySym[s], false) : "").join("");
@@ -2753,69 +2417,32 @@
     }
 
     function normalizeVixBondsAndFx(data) {
-      const idxDefs = [
-        { symbol: "^GSPC", name: "S&P 500 指數", asset_type: "index" },
-        { symbol: "^DJI", name: "道瓊工業指數", asset_type: "index" },
-        { symbol: "^IXIC", name: "納斯達克指數", asset_type: "index" },
-        { symbol: "^SOX", name: "費城半導體指數", asset_type: "index" },
-        { symbol: "^RUT", name: "羅素 2000 指數", asset_type: "index" },
-        { symbol: "^TWII", name: "台灣加權指數", asset_type: "index" },
-        { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index" },
-        { symbol: "^N225", name: "日經 225 指數", asset_type: "index" },
-        { symbol: "^KS11", name: "韓國 KOSPI 指數", asset_type: "index" },
-        { symbol: "^FTSE", name: "英國富時 100", asset_type: "index" },
-        { symbol: "^GDAXI", name: "德國 DAX 指數", asset_type: "index" },
-        { symbol: "^FCHI", name: "法國 CAC 40", asset_type: "index" }
-      ];
+      const idxDefs = [{ symbol: "^GSPC", name: "S&P 500 指數", asset_type: "index" }, { symbol: "^DJI", name: "道瓊工業指數", asset_type: "index" }, { symbol: "^IXIC", name: "納斯達克指數", asset_type: "index" }, { symbol: "^SOX", name: "費城半導體指數", asset_type: "index" }, { symbol: "^RUT", name: "羅素 2000 指數", asset_type: "index" }, { symbol: "^TWII", name: "台灣加權指數", asset_type: "index" }, { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index" }, { symbol: "^N225", name: "日經 225 指數", asset_type: "index" }, { symbol: "^KS11", name: "韓國 KOSPI 指數", asset_type: "index" }, { symbol: "^FTSE", name: "英國富時 100", asset_type: "index" }, { symbol: "^GDAXI", name: "德國 DAX 指數", asset_type: "index" }, { symbol: "^FCHI", name: "法國 CAC 40", asset_type: "index" }];
       const vixDefs = [{ symbol: "^VIX", name: "美國 CBOE VIX 恐慌指數", asset_type: "vix_index" }, { symbol: "^VIXTWN", name: "臺指選擇權波動率指數 (VIXTWN)", asset_type: "vix_index" }];
       const bondDefs = [{ symbol: "^IRX", name: "美國 3 個月期國庫券殖利率", asset_type: "us_bond" }, { symbol: "US2Y", name: "美國 2 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^FVX", name: "美國 5 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TNX", name: "美國 10 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TYX", name: "美國 30 年期公債殖利率", asset_type: "us_bond" }];
       const fxDefs = [{ symbol: "TWD=X", name: "美元/台幣 (USD/TWD)", asset_type: "fx_rate" }, { symbol: "AUDUSD=X", name: "澳幣/美元 (AUD/USD)", asset_type: "fx_rate" }, { symbol: "CHF=X", name: "美元/瑞士法郎 (USD/CHF)", asset_type: "fx_rate" }, { symbol: "JPY=X", name: "美元/日圓 (USD/JPY)", asset_type: "fx_rate" }, { symbol: "EURUSD=X", name: "歐元/美元 (EUR/USD)", asset_type: "fx_rate" }, { symbol: "GBPUSD=X", name: "英鎊/美元 (GBP/USD)", asset_type: "fx_rate" }, { symbol: "CNY=X", name: "美元/人民幣 (USD/CNY)", asset_type: "fx_rate" }, { symbol: "DX-Y.NYB", name: "美元指數 (DXY)", asset_type: "fx_rate" }];
 
       const existingMap = {};
       [...(data.indices || []), ...(data.vix_indices || []), ...(data.fx_bonds || []), ...(data.us_bonds || []), ...(data.fx_rates || [])].forEach(item => { existingMap[item.symbol] = item; });
-
-      data.indices = idxDefs.map(idx => (existingMap[idx.symbol] && Number(existingMap[idx.symbol].price) > 0) ? Object.assign(existingMap[idx.symbol], { asset_type: "index", name: idx.name }) : applyVerifiedNov13IfMissing({ ...idx, price: 0, change_pct: 0, history: [] }));
-      data.vix_indices = vixDefs.map(v => (existingMap[v.symbol] && Number(existingMap[v.symbol].price) > 0) ? Object.assign(existingMap[v.symbol], { asset_type: "vix_index", name: v.name }) : applyVerifiedNov13IfMissing({ ...v, price: 0, change_pct: 0, history: [] }));
-      data.us_bonds = bondDefs.map(b => (existingMap[b.symbol] && Number(existingMap[b.symbol].price) > 0) ? Object.assign(existingMap[b.symbol], { asset_type: "us_bond", name: b.name }) : applyVerifiedNov13IfMissing({ ...b, price: 0, change_pct: 0, history: [] }));
-      data.fx_rates = fxDefs.map(f => (existingMap[f.symbol] && Number(existingMap[f.symbol].price) > 0) ? Object.assign(existingMap[f.symbol], { asset_type: "fx_rate", name: f.name }) : applyVerifiedNov13IfMissing({ ...f, price: 0, change_pct: 0, history: [] }));
+      data.indices = idxDefs.map(idx => (existingMap[idx.symbol] && Number(existingMap[idx.symbol].price) > 0) ? Object.assign(existingMap[idx.symbol], { asset_type: "index", name: idx.name }) : applyFallbackIfMissing({ ...idx, price: 0, change_pct: 0, history: [] }));
+      data.vix_indices = vixDefs.map(v => (existingMap[v.symbol] && Number(existingMap[v.symbol].price) > 0) ? Object.assign(existingMap[v.symbol], { asset_type: "vix_index", name: v.name }) : applyFallbackIfMissing({ ...v, price: 0, change_pct: 0, history: [] }));
+      data.us_bonds = bondDefs.map(b => (existingMap[b.symbol] && Number(existingMap[b.symbol].price) > 0) ? Object.assign(existingMap[b.symbol], { asset_type: "us_bond", name: b.name }) : applyFallbackIfMissing({ ...b, price: 0, change_pct: 0, history: [] }));
+      data.fx_rates = fxDefs.map(f => (existingMap[f.symbol] && Number(existingMap[f.symbol].price) > 0) ? Object.assign(existingMap[f.symbol], { asset_type: "fx_rate", name: f.name }) : applyFallbackIfMissing({ ...f, price: 0, change_pct: 0, history: [] }));
     }
 
+    // 徹底移除強制覆寫鎖：完全信任後端最新 JSON 與即時 API 資料
     function renderAllSections(dataPayload) {
       globalMarketData = sanitizeDataTree(dataPayload);
 
       const allIncomingLists = [
-        ...(globalMarketData.indices || []),
-        ...(globalMarketData.vix_indices || []),
-        ...(globalMarketData.us_bonds || []),
-        ...(globalMarketData.fx_rates || []),
-        ...(globalMarketData.us_stocks || []),
-        ...(globalMarketData.tw_stocks || []),
+        ...(globalMarketData.indices || []), ...(globalMarketData.vix_indices || []), ...(globalMarketData.us_bonds || []),
+        ...(globalMarketData.fx_rates || []), ...(globalMarketData.us_stocks || []), ...(globalMarketData.tw_stocks || []),
         ...(globalMarketData.futures_commodities || [])
       ];
       allIncomingLists.forEach(it => {
         if (it && it.symbol && Number(it.price) > 0) {
-          if (isCryptoSymbol(it.symbol)) {
-            it.ext_session = null;
-          } else if (["BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TXF", "^TWII"].includes(it.symbol)) {
-            it.price = VERIFIED_NOV13_2026_QUOTES[it.symbol][0];
-            it.change_pct = VERIFIED_NOV13_2026_QUOTES[it.symbol][1];
-            if (DEFAULT_US_EXT_SESSIONS[it.symbol]) it.ext_session = DEFAULT_US_EXT_SESSIONS[it.symbol];
-          } else if (it.asset_type === "futures" && it.ext_session && Number(it.ext_session.price) === Number(it.price)) {
-            if (Number(it.prev_close) > 0 && Number(it.prev_close) !== Number(it.price)) {
-              const liveP = Number(it.price);
-              const settleP = Number(it.prev_close);
-              const eChg = liveP - settleP;
-              const ePct = (eChg / settleP) * 100;
-              it.ext_session = { price: Number(liveP.toFixed(2)), change: Number(eChg.toFixed(2)), change_pct: Number(ePct.toFixed(2)), label: "電子盤" };
-              it.price = Number(settleP.toFixed(2));
-            } else if (DEFAULT_US_EXT_SESSIONS[it.symbol]) {
-              it.price = VERIFIED_NOV13_2026_QUOTES[it.symbol][0];
-              it.change_pct = VERIFIED_NOV13_2026_QUOTES[it.symbol][1];
-              it.ext_session = DEFAULT_US_EXT_SESSIONS[it.symbol];
-            }
-          } else {
-            VERIFIED_NOV13_2026_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
-          }
+          if (isCryptoSymbol(it.symbol)) it.ext_session = null;
+          OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
           if (isTwSymbol(it.symbol)) {
             const c = String(it.symbol).split(".")[0];
             twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
@@ -2833,7 +2460,7 @@
           (sec.stages || []).forEach(stg => {
             (stg.items || []).forEach(it => {
               if (it && it.symbol && Number(it.price) > 0) {
-                VERIFIED_NOV13_2026_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
+                OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
                 if (isTwSymbol(it.symbol)) {
                   const c = String(it.symbol).split(".")[0];
                   twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
@@ -2852,7 +2479,7 @@
       normalizeVixBondsAndFx(globalMarketData);
       globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
 
-      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '最新收盤與即時連線'}`;
+      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '即時連線'}`;
       document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
       document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
       document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
@@ -2899,6 +2526,12 @@
     }
 
     async function initDashboard() {
+      // 動態初始化日期選擇器為「一年前至今日」
+      const todayYmd = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+      const oneYrAgo = new Date(Date.now() - 365 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+      ["custom-end", "sc-custom-end"].forEach(id => { const el = document.getElementById(id); if (el) el.value = todayYmd; });
+      ["custom-start", "sc-custom-start"].forEach(id => { const el = document.getElementById(id); if (el) el.value = oneYrAgo; });
+
       renderMacroCountdowns();
       setInterval(renderMacroCountdowns, 1000);
       renderAllSections(getInitialDashboardStructure());
@@ -2925,13 +2558,7 @@
     }
 
     window.addEventListener("resize", () => {
-      if (mainChart) mainChart.resize();
-      if (instChart) instChart.resize();
-      if (marginChart) marginChart.resize();
-      if (maintChart) maintChart.resize();
-      if (fgUsChart) fgUsChart.resize();
-      if (fgCryptoChart) fgCryptoChart.resize();
-      if (scChart) scChart.resize();
+      [mainChart, instChart, marginChart, maintChart, fgUsChart, fgCryptoChart, scChart].forEach(c => { if (c) c.resize(); });
     });
 
     initDashboard();
