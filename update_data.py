@@ -572,7 +572,62 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                         yf_map[sym]["change"] = chg
                         yf_map[sym]["change_pct"] = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
                         yf_map[sym]["ext_session"] = None
+                                        elif sym in {"ZS=F", "ZW=F", "ZC=F"}:
+                        # 農產品期貨：大字顯示近月連續合約即時價，不顯示電子盤
+                        chg = round(latest_tick_p - prev_c, 2)
+                        pct = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
+                        yf_map[sym]["price"] = latest_tick_p
+                        yf_map[sym]["change"] = chg
+                        yf_map[sym]["change_pct"] = pct
+                        yf_map[sym]["ext_session"] = None
                     elif sym in FUTURES_AND_COMMODITIES:
+                        today_us = (now_tw - datetime.timedelta(hours=13)).strftime("%Y-%m-%d")
+                        last_hist_date = yf_map[sym]["history"][-1]["date"] if yf_map[sym]["history"] else ""
+                        settle_p = prev_c if (last_hist_date == today_us and prev_c > 0) else reg_p
+                        chg = round(latest_tick_p - settle_p, 2)
+                        pct = round((chg / settle_p) * 100, 2) if settle_p > 0 else 0.0
+                        yf_map[sym]["price"] = latest_tick_p
+                        yf_map[sym]["prev_close"] = settle_p
+                        yf_map[sym]["change"] = chg
+                        yf_map[sym]["change_pct"] = pct
+                        yf_map[sym]["ext_session"] = {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
+                    else:
+                        e_chg = round(latest_tick_p - reg_p, 2)
+                        e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
+                        lbl = "盤前" if 15 <= now_tw.hour <= 22 else "盤後"
+                        yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": lbl}
+                except Exception:
+                    continue
+        except Exception:
+            pass
+
+    # 動態計算並抓取芝商所 (CME/CBOT) 農產品主力合約報價作為小字顯示（自動換月，零寫死）
+    agri_schedules = {
+        "ZS=F": ("ZS", [(1,"F"),(3,"H"),(5,"K"),(7,"N"),(8,"Q"),(9,"U"),(11,"X")]),
+        "ZW=F": ("ZW", [(3,"H"),(5,"K"),(7,"N"),(9,"U"),(12,"Z")]),
+        "ZC=F": ("ZC", [(3,"H"),(5,"K"),(7,"N"),(9,"U"),(12,"Z")])
+    }
+    eff_m = now_tw.month + (1 if now_tw.day >= 15 else 0)
+    for base_sym, (root, months) in agri_schedules.items():
+        if base_sym not in yf_map: continue
+        picked = next(((now_tw.year, code) for dm, code in months if dm > eff_m), (now_tw.year + 1, months[0][1]))
+        cme_ticker = f"{root}{picked[1]}{str(picked[0])[-2:]}.CBT"
+        cme_label = f"芝商所 {root}{picked[1]}{str(picked[0])[-1:]}"
+        try:
+            df_cme = yf.download(cme_ticker, period="5d", interval="1d", progress=False)
+            if df_cme is not None and not df_cme.empty and "Close" in df_cme.columns:
+                c_vals = df_cme["Close"].dropna()
+                if len(c_vals) >= 2:
+                    c_last = round(safe_float(c_vals.iloc[-1]), 2)
+                    c_prev = round(safe_float(c_vals.iloc[-2]), 2)
+                    c_chg = round(c_last - c_prev, 2)
+                    c_pct = round((c_chg / c_prev) * 100, 2) if c_prev > 0 else 0.0
+                    yf_map[base_sym]["ext_session"] = {"price": c_last, "change": c_chg, "change_pct": c_pct, "label": cme_label}
+        except Exception:
+            pass
+
+    return yf_map
+
                         e_chg = round(latest_tick_p - reg_p, 2)
                         e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
                         yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": "電子盤"}
