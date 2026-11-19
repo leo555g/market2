@@ -522,7 +522,7 @@
     let mainChart = null, instChart = null, marginChart = null, maintChart = null, fgUsChart = null, fgCryptoChart = null, scChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
-    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^IXIC": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
     function isCryptoSymbol(sym) {
       return sym === "BTC-USD" || sym === "ETH-USD";
@@ -541,7 +541,6 @@
       }
     }
 
-    // 零寫死日期與價格：全部由 data/market_data.json 與即時 API 動態填入
     const OFFLINE_FALLBACK_TW_CHIPS = {
       ymds: [], dates: [], foreign_buy: [], trust_buy: [], dealer_buy: [],
       margin_balance: [], otc_margin_balance: [], twse_only_margin_rate: [], short_balance: []
@@ -551,7 +550,10 @@
 
     function ensureUsExtSession(symbol, regularPrice, existingExt = null) {
       if (isCryptoSymbol(symbol)) return null;
-      if (existingExt && Number(existingExt.price) > 0 && Number(existingExt.price) !== Number(regularPrice)) return existingExt;
+      if (existingExt && Number(existingExt.price) > 0) {
+        if (String(existingExt.label || "").includes("芝商所")) return existingExt;
+        if (Number(existingExt.price) !== Number(regularPrice)) return existingExt;
+      }
       return null;
     }
 
@@ -596,12 +598,13 @@
 
     function renderFearAndGreedGauge(domId, score, labelZh, labelEn) {
       const dom = document.getElementById(domId);
-      if (!dom || typeof echarts === "undefined") return null;
+      if (!dom) return null;
       let chartInst = echarts.getInstanceByDom(dom);
       if (!chartInst) chartInst = echarts.init(dom);
 
-      const hasScore = score !== null && score !== undefined && !isNaN(Number(score));
-      const val = hasScore ? Math.max(0, Math.min(100, Math.round(Number(score)))) : 50;
+      const val = (score !== null && score !== undefined && !isNaN(Number(score)))
+        ? Math.max(0, Math.min(100, Math.round(Number(score))))
+        : 50;
       const option = {
         backgroundColor: "transparent",
         series: [
@@ -652,7 +655,7 @@
             detail: {
               valueAnimation: true, offsetCenter: [0, "-6%"], fontSize: 34, fontWeight: "900",
               fontFamily: "'JetBrains Mono', monospace",
-              formatter: hasScore ? "{value}" : "--",
+              formatter: (score !== null && score !== undefined && !isNaN(Number(score))) ? "{value}" : "--",
               color: "#0f172a"
             },
             data: [{ value: val }]
@@ -690,7 +693,7 @@
     function exportAllMarketDataToCSV() {
       getSupplyChainSectorsData();
       const rows = [
-        ["資產分類", "代碼 (Symbol)", "名稱 (Name)", "最新收盤/即時價", "單日漲跌幅 (%)", "盤前/盤後/夜盤/芝商所", "次要報價漲跌 (%)", "本益比 (PE)", "預估 PE", "EPS (TTM)", "ROE", "毛利率", "營業利益率", "季營收年增", "產業鏈定位 / 備註"]
+        ["資產分類", "代碼 (Symbol)", "名稱 (Name)", "最新收盤/即時價", "單日漲跌幅 (%)", "盤前/盤後/夜盤/次月合約", "次月/盤後漲跌 (%)", "本益比 (PE)", "預估 PE", "EPS (TTM)", "ROE", "毛利率", "營業利益率", "季營收年增", "產業鏈定位 / 備註"]
       ];
       const addedSyms = new Set();
       const pushAssetRow = (categoryLabel, item, extraNote = "") => {
@@ -808,7 +811,7 @@
         return { price: p > 0 ? formatDisplayPrice(p, sym) : "同步中", pct: p > 0 ? formatSignedPct(pct) : "--", rawPct: pct };
       };
 
-      const sp = g("^GSPC"), dji = g("^DJI"), ixic = g("^IXIC"), sox = g("^SOX"), rut = g("^RUT");
+      const sp = g("^GSPC"), dji = g("^DJI"), ndx = g("^NDX"), sox = g("^SOX"), rut = g("^RUT");
       const twii = g("^TWII"), twoii = g("^TWOII"), txf = g("TXF");
       const vixUs = g("^VIX"), vixTw = g("^VIXTWN");
       const us2y = g("US2Y"), tnx = g("^TNX"), tyx = g("^TYX");
@@ -837,9 +840,9 @@
 
       return {
         report_date: `${nowStr} CST`,
-        headline: `台股加權報 ${twii.price} (${twii.pct})、櫃買報 ${twoii.price} (${twoii.pct})、台指期報 ${txf.price} (${txf.pct})、上市融資維持率 ${ratePt.val ?? '--'}%`,
+        headline: `台股加權報 ${twii.price} (${twii.pct})、櫃買報 ${twoii.price} (${twoii.pct})、納斯達克 100 指數報 ${ndx.price} (${ndx.pct})、上市融資維持率 ${ratePt.val ?? '--'}%`,
         market_drivers: [
-          `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克報 ${ixic.price} (${ixic.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
+          `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克 100 指數報 ${ndx.price} (${ndx.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
           `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，台指期報 ${txf.price} (${txf.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
           `【三、台美股強勢產業鏈輪動】台股前三大強勢族群：${twTop3Str}；美股前三大強勢族群：${usTop3Str}。`,
           `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${ratePt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；大盤上市融資維持率 ${ratePt.val ?? '--'}%、融券餘額 ${shortPt.val ?? '--'} 萬張。`,
@@ -985,7 +988,7 @@
 
       return {
         last_updated: "正在同步最新市場數據...",
-        indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^IXIC", "納斯達克指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
+        indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^NDX", "納斯達克 100 指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         fear_greed: { us_cnn: { score: null, label_zh: "同步中", label_en: "LOADING" }, crypto_alt: { score: null, label_zh: "同步中", label_en: "LOADING" } },
         us_bonds: [mk("^IRX", "美國 3 個月期國庫券殖利率", "us_bond"), mk("US2Y", "美國 2 年期公債殖利率", "us_bond"), mk("^FVX", "美國 5 年期公債殖利率", "us_bond"), mk("^TNX", "美國 10 年期公債殖利率", "us_bond"), mk("^TYX", "美國 30 年期公債殖利率", "us_bond")],
@@ -1356,7 +1359,7 @@
 
     function renderSupplyChainChart() {
       const dom = document.getElementById("sc-comparison-chart");
-      if (!dom || typeof echarts === "undefined") return;
+      if (!dom) return;
       if (!scChart) scChart = echarts.init(dom);
       const allSeriesMap = {}, xSet = new Set();
 
@@ -1531,7 +1534,7 @@
       let extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 text-xs mono hidden"></div>`;
       if (!isCryptoSymbol(item.symbol) && item.ext_session && item.ext_session.price !== null && Number(item.ext_session.price) > 0) {
         const extColor = getColorClass(item.ext_session.change_pct, item.symbol);
-        extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] mono"><span class="text-slate-400">${item.ext_session.label || '次要報價'}:</span><span class="${extColor} font-semibold">${formatDisplayPrice(item.ext_session.price, item.symbol)} (${formatSignedPct(item.ext_session.change_pct)})</span></div>`;
+        extHtml = `<div id="ext-${domId}" class="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] mono"><span class="text-slate-400">${item.ext_session.label || '盤後'}:</span><span class="${extColor} font-semibold">${formatDisplayPrice(item.ext_session.price, item.symbol)} (${formatSignedPct(item.ext_session.change_pct)})</span></div>`;
       }
       const twdCrossHtml = item.asset_type === "fx_rate" ? `<div class="mt-1.5 pt-1.5 border-t border-slate-800/80"><span id="twd-cross-${domId}" class="text-[11px] font-bold text-amber-300 mono block">${computeTwdCrossQuoteText(item.symbol, item.price)}</span></div>` : "";
       const cbLabel = CLIENT_CB_MAP[item.symbol], infoBtnText = cbLabel ? `🏦 ${cbLabel.split(" ")[0]}/總經` : "📊 總經/時事";
@@ -1707,7 +1710,7 @@
       const extBadge = document.getElementById("modal-stock-ext");
       if (!isCryptoSymbol(symbol) && item.ext_session && Number(item.ext_session.price) > 0) {
         extBadge.classList.remove("hidden");
-        extBadge.textContent = `${item.ext_session.label || '次要報價'}: ${formatDisplayPrice(item.ext_session.price)} (${formatSignedPct(item.ext_session.change_pct)})`;
+        extBadge.textContent = `${item.ext_session.label || '盤後'}: ${formatDisplayPrice(item.ext_session.price)} (${formatSignedPct(item.ext_session.change_pct)})`;
         extBadge.className = `text-xs font-bold mono px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 ${getColorClass(item.ext_session.change_pct, item.symbol)}`;
       } else extBadge.classList.add("hidden");
 
@@ -1734,7 +1737,6 @@
 
     function populateDashboardSelectors() {
       const primarySel = document.getElementById("primary-asset-select"), compareSel = document.getElementById("compare-select");
-      if (!primarySel || !compareSel || !globalMarketData) return;
       const groups = [{ label: "全球主要指數", list: globalMarketData.indices }, { label: "VIX 恐慌指數", list: globalMarketData.vix_indices }, { label: "美國公債殖利率", list: globalMarketData.us_bonds }, { label: "全球外匯匯率", list: globalMarketData.fx_rates }, { label: "期貨、大宗商品與加密貨幣", list: globalMarketData.futures_commodities }, { label: "美股核心科技股", list: globalMarketData.us_stocks }, { label: "台股核心權值股", list: globalMarketData.tw_stocks }];
       const optionsHtml = groups.map(g => `<optgroup label="${g.label}">${(g.list || []).map(item => `<option value="${item.symbol}">${item.asset_type === 'us_stock' ? item.symbol : cleanTwText(item.name)} (${item.symbol})</option>`).join("")}</optgroup>`).join("");
       primarySel.innerHTML = optionsHtml; primarySel.value = currentAssetSymbol;
@@ -1760,9 +1762,7 @@
 
     function renderCompareChips() {
       const activeList = [currentAssetSymbol, ...compareSymbols];
-      const container = document.getElementById("compare-chips-container");
-      if (!container) return;
-      container.innerHTML = activeList.map((sym, idx) => {
+      document.getElementById("compare-chips-container").innerHTML = activeList.map((sym, idx) => {
         const asset = allAssetsMap[sym];
         if (!asset) return "";
         const label = asset.asset_type === "us_stock" ? asset.symbol : cleanTwText(asset.name), color = CHART_COLORS[idx % CHART_COLORS.length];
@@ -1818,12 +1818,11 @@
 
     function renderMainChart(customStart = null, customEnd = null) {
       const primaryAsset = allAssetsMap[currentAssetSymbol];
-      const chartDom = document.getElementById("main-price-chart");
-      if (!primaryAsset || !chartDom || typeof echarts === "undefined") return;
+      if (!primaryAsset) return;
       renderCompareChips();
       const activeSymbols = [currentAssetSymbol, ...compareSymbols], isCompareMode = activeSymbols.length > 1;
       const modeBadge = document.getElementById("chart-mode-badge"), summaryEl = document.getElementById("comparison-return-summary");
-      if (!mainChart) mainChart = echarts.init(chartDom);
+      if (!mainChart) mainChart = echarts.init(document.getElementById("main-price-chart"));
 
       if (!isCompareMode) {
         const displayName = primaryAsset.asset_type === "us_stock" ? primaryAsset.symbol : cleanTwText(primaryAsset.name);
@@ -1938,7 +1937,6 @@
       const chips = ensureCompleteTwChipsData(rawChips);
       if (globalMarketData) globalMarketData.tw_chips_visual = chips;
       renderTwseSummaryBar(chips);
-      if (typeof echarts === "undefined") return;
       const instDom = document.getElementById("chart-institutional"), marginDom = document.getElementById("chart-margin"), maintDom = document.getElementById("chart-maintenance-ratio");
       if (!instDom || !marginDom) return;
       if (instChart) instChart.dispose();
@@ -2030,7 +2028,7 @@
         if (extEl) {
           extEl.classList.remove("hidden");
           extEl.className = "mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] mono";
-          extEl.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '次要報價'}：</span><span class="${getColorClass(extSessionObj.change_pct, item.symbol)} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
+          extEl.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '盤後'}：</span><span class="${getColorClass(extSessionObj.change_pct, item.symbol)} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
         }
         document.querySelectorAll(`.sc-ext-${domId}`).forEach(el => {
           el.classList.remove("hidden");
@@ -2080,59 +2078,6 @@
         } catch (e) {}
       }
       return null;
-    }
-
-    // TradingView CME/CBOT/NYMEX/ICE 交易所原始期貨報價同步（避免 Yahoo 換月跳空）
-    async function syncTradingViewFuturesInBrowser() {
-      const symbolMap = {
-        "CBOT:ZS1!": "ZS=F", "CBOT:ZW1!": "ZW=F", "CBOT:ZC1!": "ZC=F",
-        "NYMEX:CL1!": "CL=F", "ICEEUR:BRN1!": "BZ=F",
-        "CME_MINI:ES1!": "ES=F", "CME_MINI:NQ1!": "NQ=F", "CBOT_MINI:YM1!": "YM=F",
-        "COMEX:GC1!": "GC=F", "COMEX:SI1!": "SI=F", "COMEX:HG1!": "HG=F", "NYMEX:PA1!": "PA=F"
-      };
-      const agriSch = {
-        "ZS=F": ["ZS", [[1,"F"],[3,"H"],[5,"K"],[7,"N"],[8,"Q"],[9,"U"],[11,"X"]]],
-        "ZW=F": ["ZW", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]],
-        "ZC=F": ["ZC", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]]
-      };
-      const nowD = new Date(), effM = (nowD.getMonth() + 1) + (nowD.getDate() >= 15 ? 1 : 0);
-      const cmeMap = {};
-      Object.entries(agriSch).forEach(([baseSym, [root, months]]) => {
-        const found = months.find(([dm]) => dm > effM);
-        const yr = found ? nowD.getFullYear() : nowD.getFullYear() + 1;
-        const code = found ? found[1] : months[0][1];
-        cmeMap[`CBOT:${root}${code}${yr}`] = [baseSym, `芝商所 ${root}${code}${String(yr).slice(-1)}`];
-      });
-
-      const payload = {
-        symbols: { tickers: [...Object.keys(symbolMap), ...Object.keys(cmeMap)], query: { types: [] } },
-        columns: ["close", "change", "change_abs"]
-      };
-      try {
-        const j = await tryFetchViaMultiProxy("https://scanner.tradingview.com/futures/scan", payload);
-        const rows = j?.data || [];
-        const agriExt = {};
-        const mainMap = {};
-        rows.forEach(row => {
-          const tvSym = String(row.s || "").trim(), d = row.d || [];
-          if (d.length < 3) return;
-          const p = Number(d[0] || 0), pct = Number(d[1] || 0), chg = Number(d[2] || 0);
-          if (!(p > 0)) return;
-          if (symbolMap[tvSym]) {
-            const target = symbolMap[tvSym], prevP = Number((p - chg).toFixed(2));
-            mainMap[target] = {
-              price: p, pct: pct,
-              ext: ["ZS=F", "ZW=F", "ZC=F"].includes(target) ? null : { price: prevP, change: 0, change_pct: 0, label: "前日結算" }
-            };
-          } else if (cmeMap[tvSym]) {
-            const [baseSym, label] = cmeMap[tvSym];
-            agriExt[baseSym] = { price: Number(p.toFixed(2)), change: Number(chg.toFixed(2)), change_pct: Number(pct.toFixed(2)), label };
-          }
-        });
-        Object.entries(mainMap).forEach(([sym, q]) => {
-          updateAssetDomPrice(sym, q.price, q.pct, agriExt[sym] || q.ext);
-        });
-      } catch (e) {}
     }
 
     async function syncLatestTwChipsInBrowser() {
@@ -2265,8 +2210,7 @@
                 if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
                 if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
                 if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
-                const needFill = !allAssetsMap[sym].price || Number(allAssetsMap[sym].price) <= 0;
-                if (p > 0 && (isUsRegularMarketOpenNow() || needFill)) updateAssetDomPrice(sym, p, pct);
+                if (p > 0 && isUsRegularMarketOpenNow()) updateAssetDomPrice(sym, p, pct);
               }
             }
           });
@@ -2317,8 +2261,7 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      // 原油與農產品改由 TradingView Futures Scanner 同步，避免被 Yahoo 換月跳空覆蓋
-      const fList = ["^GSPC", "^DJI", "^IXIC", "^SOX", "^RUT", "^VIX", "US2Y", "^TNX", "^TYX", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB", "SPCX", "NVDA", "TSM"];
+      const fList = ["^GSPC", "^DJI", "^NDX", "^SOX", "^RUT", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
       for (let i = 0; i < 4; i++) batch.push(fList[(futuresPollCursor + i) % fList.length]);
       futuresPollCursor = (futuresPollCursor + 4) % fList.length;
@@ -2327,7 +2270,6 @@
 
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "^VIXTWN" || sym === "TXF" || isCryptoSymbol(sym)) return;
-      if (["BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F"].includes(sym) && Number(allAssetsMap[sym]?.price || 0) > 0) return;
       const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : (sym === "US2Y" ? ["2YY=F"] : [sym]);
       for (const qSym of queryCandidates) {
         try {
@@ -2346,10 +2288,43 @@
           const settlePrice = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || 0);
           if (livePrice <= 0) continue;
 
+          if (["ZS=F", "ZW=F", "ZC=F"].includes(sym)) {
+            try {
+              const sch = {
+                "ZS=F": ["ZS", [[1,"F"],[3,"H"],[5,"K"],[7,"N"],[8,"Q"],[9,"U"],[11,"X"]]],
+                "ZW=F": ["ZW", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]],
+                "ZC=F": ["ZC", [[3,"H"],[5,"K"],[7,"N"],[9,"U"],[12,"Z"]]]
+              }[sym];
+              const nowD = new Date(), curY = nowD.getFullYear(), curM = nowD.getMonth() + 1, curDay = nowD.getDate();
+              const seq = [];
+              [curY, curY + 1].forEach(y => sch[1].forEach(([dm, code]) => {
+                if (y > curY || dm > curM || (dm === curM && curDay < 10)) seq.push([y, code]);
+              }));
+              const [fy, fc] = seq[0], [ny, nc] = seq[1];
+              const fTicker = `${sch[0]}${fc}${String(fy).slice(-2)}.CBT`;
+              const nTicker = `${sch[0]}${nc}${String(ny).slice(-2)}.CBT`;
+              const nLabel = `芝商所 ${sch[0]}${nc}${String(ny).slice(-1)}`;
+
+              const fetchCbt = async (tk) => {
+                const d = await tryFetchViaMultiProxy(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(tk)}?interval=1d&range=5d`);
+                const cl = (d?.chart?.result?.[0]?.indicators?.quote?.[0]?.close || []).filter(v => v !== null && v > 0);
+                if (cl.length >= 2) {
+                  const last = Number(cl[cl.length - 1]), prev = Number(cl[cl.length - 2]);
+                  return { price: Number(last.toFixed(2)), change: Number((last - prev).toFixed(2)), change_pct: Number((((last - prev) / prev) * 100).toFixed(2)) };
+                }
+                return null;
+              };
+              const [fQ, nQ] = await Promise.all([fetchCbt(fTicker), fetchCbt(nTicker)]);
+              const cmeExt = nQ ? { ...nQ, label: nLabel } : item.ext_session;
+              if (fQ) updateAssetDomPrice(sym, fQ.price, fQ.change_pct, cmeExt);
+              else if (nQ) updateAssetDomPrice(sym, item.price, item.change_pct, cmeExt);
+            } catch (e) {}
+            return;
+          }
+
           if (item.asset_type === "futures" && !isCryptoSymbol(sym)) {
             const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
-            const extObj = ["ZS=F", "ZW=F", "ZC=F"].includes(sym) ? item.ext_session : (settlePrice > 0 ? { price: Number(settlePrice.toFixed(2)), change: 0, change_pct: 0, label: "前日結算" } : null);
-            updateAssetDomPrice(sym, livePrice, mainPct, extObj);
+            updateAssetDomPrice(sym, livePrice, mainPct, settlePrice > 0 ? { price: Number(settlePrice.toFixed(2)), change: 0, change_pct: 0, label: "前日結算" } : null);
             return;
           }
 
@@ -2382,8 +2357,8 @@
       document.getElementById("live-status").textContent = "正在同步全站最新市場數據...";
       await Promise.all([
         tryLoadMarketJson(true), syncTaiwanIndicesLiveInBrowser(), syncTradingViewTaiwanScannerInBrowser(),
-        syncTradingViewUsScannerInBrowser(), syncTradingViewFuturesInBrowser(), syncDirectBinanceCryptoPrices(),
-        syncTaifexVixAndTxfLiveInBrowser(), syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser()
+        syncTradingViewUsScannerInBrowser(), syncDirectBinanceCryptoPrices(), syncTaifexVixAndTxfLiveInBrowser(),
+        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser()
       ]);
       renderDailyMarketReport();
       renderTopPerformingSectors();
@@ -2416,9 +2391,8 @@
           if (!item) return;
           const prev = Number(item.prev_close) || Number(item.price);
           if (item.asset_type === "us_stock") {
-            if (isUsRegularMarketOpenNow() || !item.price || Number(item.price) <= 0) {
-              updateAssetDomPrice(mappedSym, last.p, prev > 0 ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
-            } else {
+            if (isUsRegularMarketOpenNow()) updateAssetDomPrice(mappedSym, last.p, prev > 0 ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
+            else {
               const regP = Number(item.price) || prev, chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0, hr = new Date().getHours();
               updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: (hr >= 15 && hr <= 22) ? "盤前" : "盤後" });
             }
@@ -2442,7 +2416,7 @@
     }
 
     function normalizeVixBondsAndFx(data) {
-      const idxDefs = [{ symbol: "^GSPC", name: "S&P 500 指數", asset_type: "index" }, { symbol: "^DJI", name: "道瓊工業指數", asset_type: "index" }, { symbol: "^IXIC", name: "納斯達克指數", asset_type: "index" }, { symbol: "^SOX", name: "費城半導體指數", asset_type: "index" }, { symbol: "^RUT", name: "羅素 2000 指數", asset_type: "index" }, { symbol: "^TWII", name: "台灣加權指數", asset_type: "index" }, { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index" }, { symbol: "^N225", name: "日經 225 指數", asset_type: "index" }, { symbol: "^KS11", name: "韓國 KOSPI 指數", asset_type: "index" }, { symbol: "^FTSE", name: "英國富時 100", asset_type: "index" }, { symbol: "^GDAXI", name: "德國 DAX 指數", asset_type: "index" }, { symbol: "^FCHI", name: "法國 CAC 40", asset_type: "index" }];
+      const idxDefs = [{ symbol: "^GSPC", name: "S&P 500 指數", asset_type: "index" }, { symbol: "^DJI", name: "道瓊工業指數", asset_type: "index" }, { symbol: "^NDX", name: "納斯達克 100 指數", asset_type: "index" }, { symbol: "^SOX", name: "費城半導體指數", asset_type: "index" }, { symbol: "^RUT", name: "羅素 2000 指數", asset_type: "index" }, { symbol: "^TWII", name: "台灣加權指數", asset_type: "index" }, { symbol: "^TWOII", name: "台灣櫃買指數", asset_type: "index" }, { symbol: "^N225", name: "日經 225 指數", asset_type: "index" }, { symbol: "^KS11", name: "韓國 KOSPI 指數", asset_type: "index" }, { symbol: "^FTSE", name: "英國富時 100", asset_type: "index" }, { symbol: "^GDAXI", name: "德國 DAX 指數", asset_type: "index" }, { symbol: "^FCHI", name: "法國 CAC 40", asset_type: "index" }];
       const vixDefs = [{ symbol: "^VIX", name: "美國 CBOE VIX 恐慌指數", asset_type: "vix_index" }, { symbol: "^VIXTWN", name: "臺指選擇權波動率指數 (VIXTWN)", asset_type: "vix_index" }];
       const bondDefs = [{ symbol: "^IRX", name: "美國 3 個月期國庫券殖利率", asset_type: "us_bond" }, { symbol: "US2Y", name: "美國 2 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^FVX", name: "美國 5 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TNX", name: "美國 10 年期公債殖利率", asset_type: "us_bond" }, { symbol: "^TYX", name: "美國 30 年期公債殖利率", asset_type: "us_bond" }];
       const fxDefs = [{ symbol: "TWD=X", name: "美元/台幣 (USD/TWD)", asset_type: "fx_rate" }, { symbol: "AUDUSD=X", name: "澳幣/美元 (AUD/USD)", asset_type: "fx_rate" }, { symbol: "CHF=X", name: "美元/瑞士法郎 (USD/CHF)", asset_type: "fx_rate" }, { symbol: "JPY=X", name: "美元/日圓 (USD/JPY)", asset_type: "fx_rate" }, { symbol: "EURUSD=X", name: "歐元/美元 (EUR/USD)", asset_type: "fx_rate" }, { symbol: "GBPUSD=X", name: "英鎊/美元 (GBP/USD)", asset_type: "fx_rate" }, { symbol: "CNY=X", name: "美元/人民幣 (USD/CNY)", asset_type: "fx_rate" }, { symbol: "DX-Y.NYB", name: "美元指數 (DXY)", asset_type: "fx_rate" }];
@@ -2456,83 +2430,78 @@
     }
 
     function renderAllSections(dataPayload) {
-      try {
-        globalMarketData = sanitizeDataTree(dataPayload);
+      globalMarketData = sanitizeDataTree(dataPayload);
 
-        const allIncomingLists = [
-          ...(globalMarketData.indices || []), ...(globalMarketData.vix_indices || []), ...(globalMarketData.us_bonds || []),
-          ...(globalMarketData.fx_rates || []), ...(globalMarketData.us_stocks || []), ...(globalMarketData.tw_stocks || []),
-          ...(globalMarketData.futures_commodities || [])
-        ];
-        allIncomingLists.forEach(it => {
-          if (it && it.symbol && Number(it.price) > 0) {
-            if (isCryptoSymbol(it.symbol)) it.ext_session = null;
-            OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
-            if (isTwSymbol(it.symbol)) {
-              const c = String(it.symbol).split(".")[0];
-              twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
-              if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
-            } else if (it.fundamentals) {
-              usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
-            }
-            it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
-            allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
+      const allIncomingLists = [
+        ...(globalMarketData.indices || []), ...(globalMarketData.vix_indices || []), ...(globalMarketData.us_bonds || []),
+        ...(globalMarketData.fx_rates || []), ...(globalMarketData.us_stocks || []), ...(globalMarketData.tw_stocks || []),
+        ...(globalMarketData.futures_commodities || [])
+      ];
+      allIncomingLists.forEach(it => {
+        if (it && it.symbol && Number(it.price) > 0) {
+          if (isCryptoSymbol(it.symbol)) it.ext_session = null;
+          OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
+          if (isTwSymbol(it.symbol)) {
+            const c = String(it.symbol).split(".")[0];
+            twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
+            if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
+          } else if (it.fundamentals) {
+            usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
           }
-        });
+          it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
+          allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
+        }
+      });
 
-        if (Array.isArray(globalMarketData.supply_chain_sectors)) {
-          globalMarketData.supply_chain_sectors.forEach(sec => {
-            (sec.stages || []).forEach(stg => {
-              (stg.items || []).forEach(it => {
-                if (it && it.symbol && Number(it.price) > 0) {
-                  OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
-                  if (isTwSymbol(it.symbol)) {
-                    const c = String(it.symbol).split(".")[0];
-                    twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
-                    if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
-                  } else if (it.fundamentals) {
-                    usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
-                  }
-                  it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
-                  allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
+      if (Array.isArray(globalMarketData.supply_chain_sectors)) {
+        globalMarketData.supply_chain_sectors.forEach(sec => {
+          (sec.stages || []).forEach(stg => {
+            (stg.items || []).forEach(it => {
+              if (it && it.symbol && Number(it.price) > 0) {
+                OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
+                if (isTwSymbol(it.symbol)) {
+                  const c = String(it.symbol).split(".")[0];
+                  twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
+                  if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
+                } else if (it.fundamentals) {
+                  usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
                 }
-              });
+                it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
+                allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
+              }
             });
           });
-        }
-
-        normalizeVixBondsAndFx(globalMarketData);
-        globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
-
-        document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '即時連線'}`;
-        document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
-        document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
-        document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
-        document.getElementById("grid-fx-rates").innerHTML = (globalMarketData.fx_rates || []).map(x => createQuoteCard(x, false)).join("");
-        renderGroupedFutures(globalMarketData.futures_commodities);
-        document.getElementById("grid-us-stocks").innerHTML = (globalMarketData.us_stocks || []).map(s => createUsStockRichCard(s)).join("");
-        document.getElementById("grid-tw-stocks").innerHTML = (globalMarketData.tw_stocks || []).map(t => createTwStockCard(t)).join("");
-
-        try { updateFearAndGreedDisplay(globalMarketData.fear_greed); } catch (e) {}
-        try { updateUsBondSpreadIndicator(); } catch (e) {}
-        try { refreshAllFxTwdSublabels(); } catch (e) {}
-        try { getSupplyChainSectorsData(); renderTopPerformingSectors(); } catch (e) {}
-        try { renderDailyMarketReport(); } catch (e) {}
-
-        const mopsContainer = document.getElementById("mops-list");
-        if (mopsContainer) {
-          mopsContainer.innerHTML = (globalMarketData.mops_general && globalMarketData.mops_general.length > 0)
-            ? globalMarketData.mops_general.map(m => `<div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs py-1.5 border-b border-slate-800/60"><div class="truncate pr-2"><span class="font-bold text-amber-400 mono mr-2">${m.code} ${cleanTwText(m.name)}</span><span class="text-slate-200">${cleanTwText(m.subject)}</span></div><div class="flex items-center gap-3 shrink-0"><span class="text-slate-500 mono">${m.date} ${m.time}</span><a href="${m.url}" target="_blank" class="text-blue-400 hover:underline">詳情</a></div></div>`).join("")
-            : `<div class="text-xs text-slate-400">目前公開資訊觀測站無當日最新重大訊息或處於非公告時段。</div>`;
-        }
-
-        try { populateDashboardSelectors(); } catch (e) {}
-        try { renderMainChart(); } catch (e) {}
-        try { renderChipCharts(globalMarketData.tw_chips_visual); } catch (e) {}
-        if (currentAppView === "supplychain") { try { renderSupplyChainView(); } catch (e) {} }
-      } catch (err) {
-        console.error("renderAllSections error:", err);
+        });
       }
+
+      normalizeVixBondsAndFx(globalMarketData);
+      globalMarketData.tw_chips_visual = ensureCompleteTwChipsData(globalMarketData.tw_chips_visual);
+
+      document.getElementById("last-updated").textContent = `最後更新：${globalMarketData.last_updated || '即時連線'}`;
+      document.getElementById("grid-indices").innerHTML = (globalMarketData.indices || []).map(i => createQuoteCard(i, false)).join("");
+      document.getElementById("grid-vix-indices").innerHTML = (globalMarketData.vix_indices || []).map(v => createVixRichCard(v)).join("");
+      document.getElementById("grid-us-bonds").innerHTML = (globalMarketData.us_bonds || []).map(b => createQuoteCard(b, false)).join("");
+      document.getElementById("grid-fx-rates").innerHTML = (globalMarketData.fx_rates || []).map(x => createQuoteCard(x, false)).join("");
+      renderGroupedFutures(globalMarketData.futures_commodities);
+      document.getElementById("grid-us-stocks").innerHTML = (globalMarketData.us_stocks || []).map(s => createUsStockRichCard(s)).join("");
+      document.getElementById("grid-tw-stocks").innerHTML = (globalMarketData.tw_stocks || []).map(t => createTwStockCard(t)).join("");
+
+      updateFearAndGreedDisplay(globalMarketData.fear_greed);
+      updateUsBondSpreadIndicator();
+      refreshAllFxTwdSublabels();
+      getSupplyChainSectorsData();
+      renderTopPerformingSectors();
+      renderDailyMarketReport();
+
+      const mopsContainer = document.getElementById("mops-list");
+      mopsContainer.innerHTML = (globalMarketData.mops_general && globalMarketData.mops_general.length > 0)
+        ? globalMarketData.mops_general.map(m => `<div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs py-1.5 border-b border-slate-800/60"><div class="truncate pr-2"><span class="font-bold text-amber-400 mono mr-2">${m.code} ${cleanTwText(m.name)}</span><span class="text-slate-200">${cleanTwText(m.subject)}</span></div><div class="flex items-center gap-3 shrink-0"><span class="text-slate-500 mono">${m.date} ${m.time}</span><a href="${m.url}" target="_blank" class="text-blue-400 hover:underline">詳情</a></div></div>`).join("")
+        : `<div class="text-xs text-slate-400">目前公開資訊觀測站無當日最新重大訊息或處於非公告時段。</div>`;
+
+      populateDashboardSelectors();
+      renderMainChart();
+      renderChipCharts(globalMarketData.tw_chips_visual);
+      if (currentAppView === "supplychain") renderSupplyChainView();
     }
 
     async function tryLoadMarketJson(forceRender = false) {
@@ -2555,40 +2524,34 @@
     }
 
     async function initDashboard() {
-      try {
-        const todayYmd = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
-        const oneYrAgo = new Date(Date.now() - 365 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
-        ["custom-end", "sc-custom-end"].forEach(id => { const el = document.getElementById(id); if (el) el.value = todayYmd; });
-        ["custom-start", "sc-custom-start"].forEach(id => { const el = document.getElementById(id); if (el) el.value = oneYrAgo; });
+      const todayYmd = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+      const oneYrAgo = new Date(Date.now() - 365 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+      ["custom-end", "sc-custom-end"].forEach(id => { const el = document.getElementById(id); if (el) el.value = todayYmd; });
+      ["custom-start", "sc-custom-start"].forEach(id => { const el = document.getElementById(id); if (el) el.value = oneYrAgo; });
 
-        renderMacroCountdowns();
-        setInterval(renderMacroCountdowns, 1000);
-        renderAllSections(getInitialDashboardStructure());
-        await tryLoadMarketJson(true);
+      renderMacroCountdowns();
+      setInterval(renderMacroCountdowns, 1000);
+      renderAllSections(getInitialDashboardStructure());
+      await tryLoadMarketJson(true);
 
-        syncTaiwanIndicesLiveInBrowser();
-        syncTradingViewTaiwanScannerInBrowser();
-        syncTradingViewUsScannerInBrowser();
-        syncTradingViewFuturesInBrowser();
-        syncDirectBinanceCryptoPrices();
-        syncTaifexVixAndTxfLiveInBrowser();
-        syncLatestTwChipsInBrowser();
-        syncAllFuturesAndFxLiveInBrowser();
+      syncTaiwanIndicesLiveInBrowser();
+      syncTradingViewTaiwanScannerInBrowser();
+      syncTradingViewUsScannerInBrowser();
+      syncDirectBinanceCryptoPrices();
+      syncTaifexVixAndTxfLiveInBrowser();
+      syncLatestTwChipsInBrowser();
+      syncAllFuturesAndFxLiveInBrowser();
 
-        setInterval(syncDirectBinanceCryptoPrices, 10000);
-        setInterval(syncAllFuturesAndFxLiveInBrowser, 8000);
-        setInterval(syncTaiwanIndicesLiveInBrowser, 20000);
-        setInterval(syncTaifexVixAndTxfLiveInBrowser, 15000);
-        setInterval(syncTradingViewTaiwanScannerInBrowser, 30000);
-        setInterval(syncTradingViewFuturesInBrowser, 60000);
-        setInterval(syncLatestTwChipsInBrowser, 45000);
-        setInterval(() => tryLoadMarketJson(false), 30000);
+      setInterval(syncDirectBinanceCryptoPrices, 10000);
+      setInterval(syncAllFuturesAndFxLiveInBrowser, 6000);
+      setInterval(syncTaiwanIndicesLiveInBrowser, 20000);
+      setInterval(syncTaifexVixAndTxfLiveInBrowser, 15000);
+      setInterval(syncTradingViewTaiwanScannerInBrowser, 30000);
+      setInterval(syncLatestTwChipsInBrowser, 45000);
+      setInterval(() => tryLoadMarketJson(false), 30000);
 
-        const savedKey = localStorage.getItem("FINNHUB_API_KEY");
-        if (savedKey) startFinnhubWebSocket(savedKey);
-      } catch (err) {
-        console.error("initDashboard error:", err);
-      }
+      const savedKey = localStorage.getItem("FINNHUB_API_KEY");
+      if (savedKey) startFinnhubWebSocket(savedKey);
     }
 
     window.addEventListener("resize", () => {
