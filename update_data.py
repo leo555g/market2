@@ -82,11 +82,7 @@ FUTURES_AND_COMMODITIES = {
 def fetch_official_tw_monthly_revenues():
     rev_map = {}
     headers = {"User-Agent": "Mozilla/5.0"}
-    endpoints = [
-        "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
-        "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap05_O"
-    ]
-    for url in endpoints:
+    for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap05_L", "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap05_O"]:
         try:
             r = requests.get(url, headers=headers, timeout=10, verify=False)
             if r.status_code == 200:
@@ -101,8 +97,7 @@ def fetch_official_tw_monthly_revenues():
                         rev_yi = round(cur_rev / 1e5, 2)
                         m_str = f"{ym[:3]}年{ym[3:]}月" if len(ym) == 5 else ym
                         rev_map[code] = {
-                            "month": m_str,
-                            "revenue_yi": f"{rev_yi:,.2f} 億元",
+                            "month": m_str, "revenue_yi": f"{rev_yi:,.2f} 億元",
                             "mom": round(mom, 2) if mom is not None else 0.0,
                             "yoy": round(yoy, 2) if yoy is not None else 0.0,
                             "cum_yoy": round(cum_yoy, 2) if cum_yoy is not None else 0.0
@@ -123,13 +118,11 @@ def fetch_official_mops_material_news():
                     code = str(row.get("公司代號") or "").strip()
                     name = to_trad(row.get("公司名稱") or "")
                     subj = to_trad(row.get("主旨") or "").replace("\n", " ").strip()
-                    dt = str(row.get("發言日期") or "")
-                    tm = str(row.get("發言時間") or "")
+                    dt, tm = str(row.get("發言日期") or ""), str(row.get("發言時間") or "")
                     if code and subj:
                         item_obj = {"code": code, "name": name, "subject": subj, "date": dt, "time": tm, "url": "https://mops.twse.com.tw/mops/#/web/t05st01"}
                         mops_by_code.setdefault(code, []).append(item_obj)
-                        if len(mops_general) < 25:
-                            mops_general.append(item_obj)
+                        if len(mops_general) < 25: mops_general.append(item_obj)
         except Exception:
             pass
     return mops_by_code, mops_general
@@ -147,8 +140,7 @@ def fetch_google_news_rss_for_stock(query_str, max_items=3):
                 link = item.findtext("link") or "#"
                 pub_date = (item.findtext("pubDate") or "")[:16]
                 source = to_trad(item.findtext("source") or "財經新聞")
-                if title:
-                    news_list.append({"title": title, "url": link, "date": f"{source}・{pub_date}"})
+                if title: news_list.append({"title": title, "url": link, "date": f"{source}・{pub_date}"})
     except Exception:
         pass
     return news_list
@@ -164,20 +156,18 @@ def classify_fg_label(score):
 
 def fetch_fear_and_greed_indices():
     fg_data = {
-        "us_cnn": {"score": 31, "label_zh": "恐懼", "label_en": "FEAR", "prev_close": 33, "updated": now_tw.strftime("%Y-%m-%d"), "source": "CNN Fear & Greed Index"},
-        "crypto_alt": {"score": 25, "label_zh": "極度恐懼", "label_en": "EXTREME FEAR", "prev_close": 28, "updated": now_tw.strftime("%Y-%m-%d"), "source": "Alternative.me Crypto F&G"}
+        "us_cnn": {"score": None, "label_zh": "同步中", "label_en": "LOADING", "prev_close": None, "updated": now_tw.strftime("%Y-%m-%d"), "source": "CNN Fear & Greed Index"},
+        "crypto_alt": {"score": None, "label_zh": "同步中", "label_en": "LOADING", "prev_close": None, "updated": now_tw.strftime("%Y-%m-%d"), "source": "Alternative.me Crypto F&G"}
     }
-    headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/json", "Referer": "https://www.cnn.com/markets/fear-and-greed"}
     try:
-        r_cnn = requests.get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata", headers=headers, timeout=8)
+        r_cnn = requests.get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata", headers={"User-Agent": "Mozilla/5.0", "Referer": "https://www.cnn.com/markets/fear-and-greed"}, timeout=8)
         if r_cnn.status_code == 200:
             fg_obj = (r_cnn.json() or {}).get("fear_and_greed") or {}
             sc = safe_float(fg_obj.get("score"), None)
             prev_sc = safe_float(fg_obj.get("previous_close"), None)
-            ts = str(fg_obj.get("timestamp", ""))[:10]
             if sc is not None and 0 <= sc <= 100:
                 l_zh, l_en = classify_fg_label(sc)
-                fg_data["us_cnn"] = {"score": round(sc), "label_zh": l_zh, "label_en": l_en, "prev_close": round(prev_sc) if prev_sc is not None else round(sc), "updated": ts or now_tw.strftime("%Y-%m-%d"), "source": "CNN Business 官方 API"}
+                fg_data["us_cnn"] = {"score": round(sc), "label_zh": l_zh, "label_en": l_en, "prev_close": round(prev_sc) if prev_sc is not None else round(sc), "updated": str(fg_obj.get("timestamp", ""))[:10] or now_tw.strftime("%Y-%m-%d"), "source": "CNN Business 官方 API"}
     except Exception:
         pass
     try:
@@ -194,180 +184,188 @@ def fetch_fear_and_greed_indices():
         pass
     return fg_data
 
-# 5. 全自動滾動更新台股籌碼與維持率 (讀取舊檔 -> 追加新日期 -> 保留近 12 日)
-def scrape_macromicro_53117_latest():
-    mm_res = {"guar_cur": None, "guar_prev": None, "comb_cur": None, "comb_prev": None}
-    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
-    for url in ["https://www.macromicro.me/charts/53117/taiwan-taiex-maintenance-margin", "https://sc.macromicro.me/charts/53117/taiwan-taiex-maintenance-margin"]:
-        try:
-            r = requests.get(url, headers=headers, timeout=8)
-            if r.status_code == 200:
-                txt = r.text
-                m_g = re.search(r'全(?:市|市場)(?:擔|担)保(?:維|维)持率.*?(\d{3}\.\d{2})\s*%.*?(\d{3}\.\d{2})\s*%', txt, re.S)
-                m_c = re.search(r'上市(?:櫃|柜)融資(?:維|维)持率.*?(\d{3}\.\d{2})\s*%.*?(\d{3}\.\d{2})\s*%', txt, re.S)
-                if m_g:
-                    mm_res["guar_cur"], mm_res["guar_prev"] = float(m_g.group(1)), float(m_g.group(2))
-                if m_c:
-                    mm_res["comb_cur"], mm_res["comb_prev"] = float(m_c.group(1)), float(m_c.group(2))
-                if mm_res["guar_cur"] and mm_res["comb_cur"]:
-                    break
-        except Exception:
-            pass
-    return mm_res
+# 5. 全自動台股三大法人 + 上市櫃融資餘額 + 官方公式實算每日上市融資維持率 (零寫死日期！)
+def fetch_twse_close_prices_for_date(ymd, headers):
+    px = {}
+    try:
+        r = requests.get(f"https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={ymd}&type=ALLBUT0999&response=json", headers=headers, timeout=10, verify=False)
+        if r.status_code == 200:
+            j = r.json()
+            if j.get("stat") == "OK":
+                for tb in (j.get("tables") or []):
+                    fields = [str(f).strip() for f in (tb.get("fields") or [])]
+                    if "證券代號" in fields and "收盤價" in fields:
+                        ic, ip = fields.index("證券代號"), fields.index("收盤價")
+                        for row in (tb.get("data") or []):
+                            if len(row) > max(ic, ip):
+                                p = safe_float(row[ip], 0.0)
+                                if p > 0: px[str(row[ic]).strip()] = p
+    except Exception:
+        pass
+    return px
 
-def parse_twse_mi_margn_summary(j_data):
+def parse_mi_margn_all_with_ratio(j_data, px_map):
     if not j_data or j_data.get("stat") != "OK":
         return None, None, None, None
     d_str = str(j_data.get("date", "")).strip()
-    mmdd = f"{d_str[4:6]}/{d_str[6:8]}" if len(d_str) == 8 else None
-    prev_yi, today_yi, short_wan = None, None, None
+    today_yi, short_wan, margin_k_ntd = None, None, 0.0
+    total_mv_ntd = 0.0
+
     for tb in (j_data.get("tables") or []):
         fields = [str(x).strip() for x in (tb.get("fields") or [])]
         rows = tb.get("data") or []
         if any("項目" in f for f in fields) and any("今日餘額" in f for f in fields):
-            idx_today, idx_prev = 5, 4
-            for i, fn in enumerate(fields):
-                if "今日餘額" in fn: idx_today = i
-                elif "前日餘額" in fn: idx_prev = i
+            idx_t = next((i for i, f in enumerate(fields) if "今日餘額" in f), 5)
             for r in rows:
-                if not r or len(r) <= idx_today: continue
+                if len(r) <= idx_t: continue
                 title = str(r[0]).strip()
                 if "融資金額" in title:
-                    p_q = safe_float(r[idx_prev], 0.0)
-                    t_q = safe_float(r[idx_today], 0.0)
+                    t_q = safe_float(r[idx_t], 0.0)
                     if t_q > 1e6:
-                        prev_yi = round(p_q / 1e5, 2) if p_q > 1e6 else None
+                        margin_k_ntd = t_q
                         today_yi = round(t_q / 1e5, 2)
                 elif "融券" in title:
-                    s_z = safe_float(r[idx_today], 0.0)
-                    if s_z > 1000:
-                        short_wan = round(s_z / 1e4, 2)
-    return mmdd, prev_yi, today_yi, short_wan
+                    s_z = safe_float(r[idx_t], 0.0)
+                    if s_z > 1000: short_wan = round(s_z / 1e4, 2)
+        elif any("代號" in f for f in fields) and any("今日餘額" in f for f in fields) and px_map:
+            idx_c = next((i for i, f in enumerate(fields) if "代號" in f), 0)
+            # 第一個「今日餘額」欄位即為融資今日餘額 (張)
+            idx_mlot = next((i for i, f in enumerate(fields) if "今日餘額" in f), 6)
+            for r in rows:
+                if len(r) <= max(idx_c, idx_mlot): continue
+                code = str(r[idx_c]).strip()
+                lots = safe_float(r[idx_mlot], 0.0)
+                if lots > 0 and code in px_map:
+                    total_mv_ntd += lots * 1000.0 * px_map[code]
 
-def ensure_date_slot(chips, mmdd):
-    if mmdd in chips["dates"]:
-        return chips["dates"].index(mmdd)
-    if not chips["dates"] or mmdd > chips["dates"][-1]:
-        chips["dates"].append(mmdd)
-        for k in ["foreign_buy", "trust_buy", "dealer_buy", "margin_balance", "otc_margin_balance", "twse_guarantee_rate", "combined_margin_rate", "twse_only_margin_rate", "short_balance"]:
-            chips.setdefault(k, []).append(None)
-        return len(chips["dates"]) - 1
-    return -1
+    maint_rate = None
+    if margin_k_ntd > 1e6 and total_mv_ntd > 0:
+        r_val = (total_mv_ntd / (margin_k_ntd * 1000.0)) * 100.0
+        if 100.0 <= r_val <= 250.0:
+            maint_rate = round(r_val, 2)
+    return d_str, today_yi, short_wan, maint_rate
 
 def fetch_twse_official_margin_and_maintenance():
-    chips = {
-        "dates": ["11/04", "11/05", "11/06", "11/09", "11/10", "11/11", "11/12", "11/13", "11/16", "11/17", "11/18"],
-        "foreign_buy": [-1499.00, -1024.61, -911.88, -900.56, -341.17, -7.66, -6.85, 288.37, -701.89, -380.93, -765.64],
-        "trust_buy": [272.58, 225.94, 266.91, 313.12, 398.91, 185.85, 125.68, 82.37, -183.02, -9.34, 175.58],
-        "dealer_buy": [-375.19, -435.27, -494.76, -248.37, -119.97, 34.56, -65.41, 68.92, -259.03, -156.96, -42.02],
-        "margin_balance": [5969.50, 5764.09, 5340.53, 5399.16, 5366.80, 5411.58, 5334.75, 5365.99, 5244.98, 5087.21, None],
-        "otc_margin_balance": [1909.19, 1840.37, 1699.74, 1701.54, 1693.08, 1718.02, 1700.77, 1720.20, 1677.33, 1604.42, None],
-        "twse_guarantee_rate": [167.42, 159.77, 158.05, 168.44, None, None, 173.99, 177.48, 165.98, 161.25, None],
-        "combined_margin_rate": [None, 154.00, None, None, 163.00, None, 166.13, 169.74, 157.53, 152.28, None],
-        "twse_only_margin_rate": [164.67, 155.74, 151.93, 162.46, 167.99, 174.18, 167.23, 170.67, 158.52, 153.72, None],
-        "short_balance": [24.68, 27.71, 24.28, 22.21, 21.11, 20.90, 21.05, 20.88, 21.74, 20.80, None]
-    }
-    # 優先讀取本地已存檔之最新歷史紀錄，讓日期可以無縫滾動往後追加
+    headers = {"User-Agent": "Mozilla/5.0"}
+    # 讀取本地已驗證的歷史快取 (以 YYYYMMDD 為 key)，避免每次重跑 10 天完整收盤價表導致超時
+    records_by_ymd = {}
     if os.path.exists("data/market_data.json"):
         try:
             with open("data/market_data.json", "r", encoding="utf-8") as f:
                 old_c = (json.load(f) or {}).get("tw_chips_visual") or {}
-                if isinstance(old_c.get("dates"), list) and len(old_c["dates"]) >= 5 and old_c["dates"][-1] >= chips["dates"][-1]:
-                    chips = old_c
+                ymds = old_c.get("ymds") or []
+                for i, ymd in enumerate(ymds):
+                    if isinstance(ymd, str) and len(ymd) == 8:
+                        records_by_ymd[ymd] = {
+                            "foreign_buy": (old_c.get("foreign_buy") or [None]*len(ymds))[i],
+                            "trust_buy": (old_c.get("trust_buy") or [None]*len(ymds))[i],
+                            "dealer_buy": (old_c.get("dealer_buy") or [None]*len(ymds))[i],
+                            "margin_balance": (old_c.get("margin_balance") or [None]*len(ymds))[i],
+                            "otc_margin_balance": (old_c.get("otc_margin_balance") or [None]*len(ymds))[i],
+                            "twse_only_margin_rate": (old_c.get("twse_only_margin_rate") or [None]*len(ymds))[i],
+                            "short_balance": (old_c.get("short_balance") or [None]*len(ymds))[i]
+                        }
         except Exception:
             pass
 
-    headers = {"User-Agent": "Mozilla/5.0"}
+    # 動態往回掃描最近 18 個日曆日，收滿 10 個真實交易日
+    collected_days = 0
+    for offset in range(0, 18):
+        if collected_days >= 10:
+            break
+        dt = now_tw - datetime.timedelta(days=offset)
+        if dt.weekday() >= 5:
+            continue
+        ymd = dt.strftime("%Y%m%d")
+        rec = records_by_ymd.get(ymd) or {
+            "foreign_buy": None, "trust_buy": None, "dealer_buy": None,
+            "margin_balance": None, "otc_margin_balance": None,
+            "twse_only_margin_rate": None, "short_balance": None
+        }
 
-    # A. 抓取證交所 BFI82U 三大法人買賣超 (15:00 後更新)
-    for offset in range(0, 5):
-        check_dt = now_tw - datetime.timedelta(days=offset)
-        if check_dt.weekday() >= 5: continue
-        ymd_str = check_dt.strftime("%Y%m%d")
-        try:
-            r_inst = requests.get(f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate={ymd_str}&type=day&response=json", headers=headers, timeout=8, verify=False)
-            if r_inst.status_code == 200:
-                j = r_inst.json()
-                if j.get("stat") == "OK" and j.get("data"):
-                    d_str = str(j.get("date", ymd_str)).strip()
-                    mmdd = f"{d_str[4:6]}/{d_str[6:8]}" if len(d_str) == 8 else None
-                    f_yi, t_yi, d_sum = None, None, 0.0
-                    for row in j["data"]:
-                        name = str(row[0]).strip()
-                        diff_val = safe_float(row[3], 0.0) / 1e8
-                        if "外資及陸資" in name and "外資自營商" not in name: f_yi = round(diff_val, 2)
-                        elif "投信" in name: t_yi = round(diff_val, 2)
-                        elif "自營商" in name: d_sum += diff_val
-                    if mmdd and f_yi is not None and t_yi is not None:
-                        idx = ensure_date_slot(chips, mmdd)
-                        if idx >= 0:
-                            chips["foreign_buy"][idx] = f_yi
-                            chips["trust_buy"][idx] = t_yi
-                            chips["dealer_buy"][idx] = round(d_sum, 2)
-                        break
-        except Exception:
-            pass
+        # 只要是近 2 天，或缺少三大法人資料，就即時抓 BFI82U
+        got_day = False
+        if offset <= 2 or rec["foreign_buy"] is None:
+            try:
+                r_inst = requests.get(f"https://www.twse.com.tw/rwd/zh/fund/BFI82U?type=day&dayDate={ymd}&response=json", headers=headers, timeout=8, verify=False)
+                if r_inst.status_code == 200:
+                    j = r_inst.json()
+                    if j.get("stat") == "OK" and str(j.get("date", "")).strip() == ymd and j.get("data"):
+                        f_sum, t_sum, d_sum = 0.0, 0.0, 0.0
+                        for row in j["data"]:
+                            name = str(row[0]).strip()
+                            diff_val = safe_float(row[3], 0.0) / 1e8
+                            if "外資" in name: f_sum += diff_val
+                            elif "投信" in name: t_sum += diff_val
+                            elif "自營商" in name: d_sum += diff_val
+                        rec["foreign_buy"] = round(f_sum, 2)
+                        rec["trust_buy"] = round(t_sum, 2)
+                        rec["dealer_buy"] = round(d_sum, 2)
+                        got_day = True
+                time.sleep(0.2)
+            except Exception:
+                pass
+        else:
+            got_day = True
 
-    # B. 抓取證交所 MI_MARGN 上市融資餘額 (20:00 後更新)
-    for offset in range(0, 5):
-        check_dt = now_tw - datetime.timedelta(days=offset)
-        if check_dt.weekday() >= 5: continue
-        ymd_str = check_dt.strftime("%Y%m%d")
-        try:
-            r_m = requests.get(f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd_str}&selectType=MS&response=json", headers=headers, timeout=8, verify=False)
-            if r_m.status_code == 200:
-                m_date, p_yi, t_yi, s_wan = parse_twse_mi_margn_summary(r_m.json())
-                if m_date and t_yi:
-                    idx = ensure_date_slot(chips, m_date)
-                    if idx >= 0:
-                        chips["margin_balance"][idx] = t_yi
-                        if idx > 0 and p_yi: chips["margin_balance"][idx - 1] = p_yi
-                        if s_wan: chips["short_balance"][idx] = s_wan
-                    break
-        except Exception:
-            pass
+        # 只要是近 2 天，或缺少融資餘額/維持率，就抓 MI_MARGN?selectType=ALL + MI_INDEX 實算維持率
+        if got_day and (offset <= 2 or rec["margin_balance"] is None or rec["twse_only_margin_rate"] is None):
+            try:
+                r_m = requests.get(f"https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd}&selectType=ALL&response=json", headers=headers, timeout=10, verify=False)
+                if r_m.status_code == 200:
+                    jm = r_m.json()
+                    if jm.get("stat") == "OK" and str(jm.get("date", "")).strip() == ymd:
+                        px_map = fetch_twse_close_prices_for_date(ymd, headers)
+                        _, t_yi, s_wan, m_rate = parse_mi_margn_all_with_ratio(jm, px_map)
+                        if t_yi: rec["margin_balance"] = t_yi
+                        if s_wan: rec["short_balance"] = s_wan
+                        if m_rate: rec["twse_only_margin_rate"] = m_rate
+                time.sleep(0.25)
+            except Exception:
+                pass
 
-    # C. 抓取櫃買中心 TPEx 上櫃融資餘額
+        if got_day:
+            records_by_ymd[ymd] = rec
+            collected_days += 1
+
+    # 抓取櫃買中心最新上櫃融資餘額
     try:
         r_otc = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
         if r_otc.status_code == 200:
             j_otc = r_otc.json()
-            d_otc = str(j_otc.get("date", "")).strip()
-            otc_mmdd = f"{d_otc[4:6]}/{d_otc[6:8]}" if len(d_otc) == 8 else None
+            raw_d = str(j_otc.get("date", "")).strip()
+            otc_ymd = None
+            if len(raw_d) == 8 and raw_d.isdigit():
+                otc_ymd = raw_d
+            elif "/" in raw_d:
+                parts = raw_d.split("/")
+                if len(parts) == 3:
+                    y_num = int(parts[0]) + (1911 if int(parts[0]) < 1900 else 0)
+                    otc_ymd = f"{y_num:04d}{int(parts[1]):02d}{int(parts[2]):02d}"
             otc_bal = None
             for tb in (j_otc.get("tables") or []):
                 for s_row in (tb.get("summary") or []):
                     for cell in s_row:
                         v = safe_float(cell, 0.0)
                         if v > 1e7: v = round(v / 1e5, 2)
-                        if 1000.0 <= v <= 3500.0:
-                            otc_bal = round(v, 2)
-            if otc_mmdd and otc_bal:
-                idx = ensure_date_slot(chips, otc_mmdd)
-                if idx >= 0:
-                    chips["otc_margin_balance"][idx] = otc_bal
+                        if 800.0 <= v <= 4000.0: otc_bal = round(v, 2)
+            if otc_ymd and otc_bal and otc_ymd in records_by_ymd:
+                records_by_ymd[otc_ymd]["otc_margin_balance"] = otc_bal
     except Exception:
         pass
 
-    # D. 抓取 MacroMicro 53117 最新擔保維持率與上市櫃融資維持率
-    mm_latest = scrape_macromicro_53117_latest()
-    if mm_latest["guar_cur"] and mm_latest["comb_cur"] and len(chips["dates"]) >= 2:
-        # 擔保維持率為 T+1 公布，對齊最近一個已結算融資的交易日
-        target_idx = len(chips["dates"]) - 1
-        if chips["margin_balance"][target_idx] is None and target_idx > 0:
-            target_idx -= 1
-        chips["twse_guarantee_rate"][target_idx] = mm_latest["guar_cur"]
-        chips["combined_margin_rate"][target_idx] = mm_latest["comb_cur"]
-        if target_idx > 0:
-            if mm_latest["guar_prev"]: chips["twse_guarantee_rate"][target_idx - 1] = mm_latest["guar_prev"]
-            if mm_latest["comb_prev"]: chips["combined_margin_rate"][target_idx - 1] = mm_latest["comb_prev"]
-
-    # 保持最近 12 個交易日滾動窗口
-    for k in list(chips.keys()):
-        if isinstance(chips[k], list) and len(chips[k]) > 12:
-            chips[k] = chips[k][-12:]
-
-    return chips
+    sorted_ymds = sorted(records_by_ymd.keys())[-10:]
+    return {
+        "ymds": sorted_ymds,
+        "dates": [f"{d[4:6]}/{d[6:8]}" for d in sorted_ymds],
+        "foreign_buy": [records_by_ymd[d]["foreign_buy"] for d in sorted_ymds],
+        "trust_buy": [records_by_ymd[d]["trust_buy"] for d in sorted_ymds],
+        "dealer_buy": [records_by_ymd[d]["dealer_buy"] for d in sorted_ymds],
+        "margin_balance": [records_by_ymd[d]["margin_balance"] for d in sorted_ymds],
+        "otc_margin_balance": [records_by_ymd[d]["otc_margin_balance"] for d in sorted_ymds],
+        "twse_only_margin_rate": [records_by_ymd[d]["twse_only_margin_rate"] for d in sorted_ymds],
+        "short_balance": [records_by_ymd[d]["short_balance"] for d in sorted_ymds]
+    }
 
 TV_FUND_COLUMNS = [
     "name", "close", "change", "change_abs",
@@ -383,10 +381,8 @@ def parse_tv_fundamentals(d):
     if fwd_pe == "N/A" and p > 0:
         eps_fy = safe_float(d[11], 0.0) if len(d) > 11 else 0.0
         eps_fq = safe_float(d[12], 0.0) if len(d) > 12 else 0.0
-        if eps_fy > 0:
-            fwd_pe = round(p / eps_fy, 2)
-        elif eps_fq > 0:
-            fwd_pe = round(p / (eps_fq * 4), 2)
+        if eps_fy > 0: fwd_pe = round(p / eps_fy, 2)
+        elif eps_fq > 0: fwd_pe = round(p / (eps_fq * 4), 2)
     return {
         "pe": fmt_num_str(d[4]) if len(d) > 4 else "N/A",
         "forward_pe": fwd_pe if fwd_pe != "N/A" else "無預估",
@@ -437,32 +433,84 @@ def fetch_tradingview_us_fundamentals(us_sym_list):
                 d = row.get("d") or []
                 t_raw = str(row.get("s", ""))
                 sym = (t_raw.split(":")[-1].strip() if ":" in t_raw else str(d[0]).strip()).replace(".", "-")
-                if len(d) >= 5 and sym:
-                    us_fund_map[sym] = parse_tv_fundamentals(d)
+                if len(d) >= 5 and sym: us_fund_map[sym] = parse_tv_fundamentals(d)
     except Exception:
         pass
     return us_fund_map
 
+# 6. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取 (徹底解決櫃買指數卡在同步中)
 def fetch_tw_official_all_channels():
     snapshot = {"indices": {}, "stocks": {}, "fund_map": {}}
+    headers = {"User-Agent": "Mozilla/5.0"}
     tv_stocks, tv_fund_map = fetch_tradingview_taiwan_full_market()
     snapshot["stocks"].update(tv_stocks)
     snapshot["fund_map"].update(tv_fund_map)
+
+    # 通道 A：證交所官方 MIS 即時端點 (同時抓加權 tse_t00.tw 與 櫃買 otc_o00.tw)
     try:
-        r_idx = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json", headers={"User-Agent": "Mozilla/5.0"}, timeout=8, verify=False)
-        if r_idx.status_code == 200:
-            for tb in (r_idx.json().get("tables") or []):
-                for row in (tb.get("data") or []):
-                    if row and ("發行量加權股價指數" in str(row[0]) or "加權股價指數" in str(row[0])):
-                        cur_p = safe_float(row[1], 0.0)
-                        chg_p = safe_float(row[3], 0.0)
-                        if "-" in str(row[2]) or "green" in str(row[2]).lower(): chg_p = -abs(chg_p)
-                        prev_p = cur_p - chg_p
-                        pct_p = round((chg_p / prev_p) * 100, 2) if prev_p > 0 else 0.0
-                        if cur_p > 15000:
-                            snapshot["indices"]["^TWII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": round(chg_p, 2), "change_pct": pct_p}
+        r_mis = requests.get("https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0", headers=headers, timeout=8, verify=False)
+        if r_mis.status_code == 200:
+            for m in (r_mis.json().get("msgArray") or []):
+                code = str(m.get("c", "")).strip()
+                cur_p = safe_float(m.get("z"), 0.0)
+                prev_p = safe_float(m.get("y"), 0.0)
+                if cur_p > 0 and prev_p > 0:
+                    chg_p = round(cur_p - prev_p, 2)
+                    pct_p = round((chg_p / prev_p) * 100, 2)
+                    if code == "t00":
+                        snapshot["indices"]["^TWII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg_p, "change_pct": pct_p}
+                    elif code == "o00":
+                        snapshot["indices"]["^TWOII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": chg_p, "change_pct": pct_p}
     except Exception:
         pass
+
+    # 通道 B：證交所盤後 MI_INDEX (補齊加權指數)
+    if "^TWII" not in snapshot["indices"]:
+        try:
+            r_idx = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json", headers=headers, timeout=8, verify=False)
+            if r_idx.status_code == 200:
+                for tb in (r_idx.json().get("tables") or []):
+                    for row in (tb.get("data") or []):
+                        if row and ("發行量加權股價指數" in str(row[0]) or "加權股價指數" in str(row[0])):
+                            cur_p, chg_p = safe_float(row[1], 0.0), safe_float(row[3], 0.0)
+                            if "-" in str(row[2]) or "green" in str(row[2]).lower(): chg_p = -abs(chg_p)
+                            prev_p = cur_p - chg_p
+                            if cur_p > 10000 and prev_p > 0:
+                                snapshot["indices"]["^TWII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": round(chg_p, 2), "change_pct": round((chg_p / prev_p) * 100, 2)}
+        except Exception:
+            pass
+
+    # 通道 C：櫃買中心官方 OpenAPI & 盤後指數 JSON (雙重備援確保櫃買指數 ^TWOII 絕不斷線)
+    if "^TWOII" not in snapshot["indices"]:
+        try:
+            r_tpex = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_index", headers=headers, timeout=8, verify=False)
+            if r_tpex.status_code == 200:
+                arr = r_tpex.json()
+                if isinstance(arr, list) and arr:
+                    last = arr[-1]
+                    cur_p = safe_float(last.get("Close") or last.get("Index") or last.get("收盤指數"), 0.0)
+                    chg_p = safe_float(last.get("Change") or last.get("漲跌"), 0.0)
+                    prev_p = cur_p - chg_p
+                    if cur_p > 50 and prev_p > 0:
+                        snapshot["indices"]["^TWOII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": round(chg_p, 2), "change_pct": round((chg_p / prev_p) * 100, 2)}
+        except Exception:
+            pass
+
+    if "^TWOII" not in snapshot["indices"]:
+        try:
+            r_inx = requests.get("https://www.tpex.org.tw/www/zh-tw/indexInfo/inx?response=json", headers=headers, timeout=8, verify=False)
+            if r_inx.status_code == 200:
+                rows = ((r_inx.json().get("tables") or [{}])[0].get("data")) or []
+                if rows:
+                    last = rows[-1]
+                    cur_p = safe_float(last[1], 0.0) if len(last) > 1 else 0.0
+                    chg_p = safe_float(last[2], 0.0) if len(last) > 2 else 0.0
+                    prev_p = cur_p - chg_p
+                    if cur_p > 50 and prev_p > 0:
+                        snapshot["indices"]["^TWOII"] = {"price": round(cur_p, 2), "prev_close": round(prev_p, 2), "change": round(chg_p, 2), "change_pct": round((chg_p / prev_p) * 100, 2)}
+        except Exception:
+            pass
+
     return snapshot
 
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
@@ -472,8 +520,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
     for s in dict.fromkeys(symbols_list):
         if s in skip_set: continue
         if s == "^TWOII":
-            yf_download_syms.append("^TWO")
-            sym_alias_map["^TWO"] = "^TWOII"
+            yf_download_syms.append("^TWOII")
         else:
             yf_download_syms.append(s)
 
@@ -518,17 +565,14 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                     if closes.empty or sym not in yf_map: continue
                     latest_tick_p = round(safe_float(closes.iloc[-1]), 2)
                     if latest_tick_p <= 0: continue
-                    reg_p = yf_map[sym]["price"]
-                    prev_c = yf_map[sym]["prev_close"]
+                    reg_p, prev_c = yf_map[sym]["price"], yf_map[sym]["prev_close"]
                     if sym in ["BTC-USD", "ETH-USD"]:
-                        # 加密貨幣 24 小時交易，直接更新大字且絕不設定 ext_session
                         chg = round(latest_tick_p - prev_c, 2)
                         yf_map[sym]["price"] = latest_tick_p
                         yf_map[sym]["change"] = chg
                         yf_map[sym]["change_pct"] = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
                         yf_map[sym]["ext_session"] = None
                     elif sym in FUTURES_AND_COMMODITIES:
-                        # 國際期貨：大字保留日 K 線正規結算價 (reg_p)，小字寫入最新電子盤價
                         e_chg = round(latest_tick_p - reg_p, 2)
                         e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
                         yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": "電子盤"}
@@ -541,7 +585,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                     continue
         except Exception:
             pass
-
     return yf_map
 
 def fetch_official_us2y_and_taifex_vixtwn_and_txf():
@@ -693,6 +736,10 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
             off_idx = tw_official["indices"][symbol]
             if off_idx["price"] > 0:
                 p_val, prev_val, chg_val, pct_val = off_idx["price"], off_idx["prev_close"], off_idx["change"], off_idx["change_pct"]
+                today_str = now_tw.strftime("%Y-%m-%d")
+                if not hist: hist = [{"date": today_str, "close": p_val}]
+                elif hist[-1]["date"] != today_str: hist.append({"date": today_str, "close": p_val})
+                else: hist[-1]["close"] = p_val
         elif tw_code and tw_code in tw_official.get("stocks", {}):
             offs = tw_official["stocks"][tw_code]
             if offs["price"] > 0:
