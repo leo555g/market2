@@ -79,20 +79,39 @@ now_tw = datetime.datetime.now(tw_tz)
 DELISTED_BLACKLIST = {"2867.TW", "2809.TW", "2888.TW", "MMC"}
 
 INDICES = {
-    "^GSPC": "S&P 500 指數", "^DJI": "道瓊工業指數", "^IXIC": "納斯達克指數",
-    "^SOX": "費城半導體指數", "^RUT": "羅素 2000 指數",
-    "^TWII": "台灣加權指數", "^TWOII": "台灣櫃買指數", "^N225": "日經 225 指數",
-    "^KS11": "韓國 KOSPI 指數", "^FTSE": "英國富時 100", "^GDAXI": "德國 DAX 指數", "^FCHI": "法國 CAC 40"
+    "^GSPC": "S&P 500 指數",
+    "^DJI": "道瓊工業指數",
+    "^NDX": "納斯達克 100 指數",
+    "^SOX": "費城半導體指數",
+    "^RUT": "羅素 2000 指數",
+    "^TWII": "台灣加權指數",
+    "^TWOII": "台灣櫃買指數",
+    "^N225": "日經 225 指數",
+    "^KS11": "韓國 KOSPI 指數",
+    "^FTSE": "英國富時 100",
+    "^GDAXI": "德國 DAX 指數",
+    "^FCHI": "法國 CAC 40"
 }
-VIX_INDICES = {"^VIX": "美國 CBOE VIX 恐慌指數", "^VIXTWN": "臺指選擇權波動率指數 (VIXTWN)"}
+VIX_INDICES = {
+    "^VIX": "美國 CBOE VIX 恐慌指數",
+    "^VIXTWN": "臺指選擇權波動率指數 (VIXTWN)"
+}
 US_BONDS = {
-    "^IRX": "美國 3 個月期國庫券殖利率", "US2Y": "美國 2 年期公債殖利率",
-    "^FVX": "美國 5 年期公債殖利率", "^TNX": "美國 10 年期公債殖利率", "^TYX": "美國 30 年期公債殖利率"
+    "^IRX": "美國 3 個月期國庫券殖利率",
+    "US2Y": "美國 2 年期公債殖利率",
+    "^FVX": "美國 5 年期公債殖利率",
+    "^TNX": "美國 10 年期公債殖利率",
+    "^TYX": "美國 30 年期公債殖利率"
 }
 FX_RATES = {
-    "TWD=X": "美元/台幣 (USD/TWD)", "AUDUSD=X": "澳幣/美元 (AUD/USD)", "CHF=X": "美元/瑞士法郎 (USD/CHF)",
-    "JPY=X": "美元/日圓 (USD/JPY)", "EURUSD=X": "歐元/美元 (EUR/USD)", "GBPUSD=X": "英鎊/美元 (GBP/USD)",
-    "CNY=X": "美元/人民幣 (USD/CNY)", "DX-Y.NYB": "美元指數 (DXY)"
+    "TWD=X": "美元/台幣 (USD/TWD)",
+    "AUDUSD=X": "澳幣/美元 (AUD/USD)",
+    "CHF=X": "美元/瑞士法郎 (USD/CHF)",
+    "JPY=X": "美元/日圓 (USD/JPY)",
+    "EURUSD=X": "歐元/美元 (EUR/USD)",
+    "GBPUSD=X": "英鎊/美元 (GBP/USD)",
+    "CNY=X": "美元/人民幣 (USD/CNY)",
+    "DX-Y.NYB": "美元指數 (DXY)"
 }
 US_STOCKS = ["NVDA", "TSM", "SPCX", "AMD", "GOOGL", "META", "TSLA", "AVGO", "AMZN", "AAPL", "MSFT"]
 TW_STOCKS = {
@@ -244,7 +263,7 @@ def fetch_fear_and_greed_indices():
         pass
     return fg_data
 
-# 5. 全自動台股三大法人 + 上市櫃融資餘額 + 官方公式實算上市融資維持率 (零寫死日期)
+# 5. 全自動台股三大法人 + 上市櫃融資餘額(10日完整) + 官方公式實算每日上市融資維持率 (零寫死日期)
 def fetch_twse_close_prices_for_date(ymd, headers):
     px = {}
     try:
@@ -389,36 +408,31 @@ def fetch_twse_official_margin_and_maintenance():
             except Exception:
                 pass
 
+        # 逐日抓取櫃買中心上櫃融資餘額，補齊全部 10 個交易日
+        if got_day and (offset <= 2 or rec["otc_margin_balance"] is None):
+            try:
+                tpex_d = dt.strftime("%Y/%m/%d")
+                r_otc = requests.get(f"https://www.tpex.org.tw/www/zh-tw/margin/balance?date={tpex_d}&response=json", headers=headers, timeout=8, verify=False)
+                if r_otc.status_code == 200:
+                    j_otc = r_otc.json()
+                    otc_bal = None
+                    for tb in (j_otc.get("tables") or []):
+                        for s_row in (tb.get("summary") or []):
+                            for cell in s_row:
+                                v = safe_float(cell, 0.0)
+                                if v > 1e7:
+                                    v = round(v / 1e5, 2)
+                                if 800.0 <= v <= 4000.0:
+                                    otc_bal = round(v, 2)
+                    if otc_bal:
+                        rec["otc_margin_balance"] = otc_bal
+                time.sleep(0.2)
+            except Exception:
+                pass
+
         if got_day:
             records_by_ymd[ymd] = rec
             collected_days += 1
-
-    try:
-        r_otc = requests.get("https://www.tpex.org.tw/www/zh-tw/margin/balance?response=json", headers=headers, timeout=8, verify=False)
-        if r_otc.status_code == 200:
-            j_otc = r_otc.json()
-            raw_d = str(j_otc.get("date", "")).strip()
-            otc_ymd = None
-            if len(raw_d) == 8 and raw_d.isdigit():
-                otc_ymd = raw_d
-            elif "/" in raw_d:
-                parts = raw_d.split("/")
-                if len(parts) == 3:
-                    y_num = int(parts[0]) + (1911 if int(parts[0]) < 1900 else 0)
-                    otc_ymd = f"{y_num:04d}{int(parts[1]):02d}{int(parts[2]):02d}"
-            otc_bal = None
-            for tb in (j_otc.get("tables") or []):
-                for s_row in (tb.get("summary") or []):
-                    for cell in s_row:
-                        v = safe_float(cell, 0.0)
-                        if v > 1e7:
-                            v = round(v / 1e5, 2)
-                        if 800.0 <= v <= 4000.0:
-                            otc_bal = round(v, 2)
-            if otc_ymd and otc_bal and otc_ymd in records_by_ymd:
-                records_by_ymd[otc_ymd]["otc_margin_balance"] = otc_bal
-    except Exception:
-        pass
 
     sorted_ymds = sorted(records_by_ymd.keys())[-10:]
     return {
@@ -485,8 +499,8 @@ def fetch_tradingview_taiwan_full_market():
         pass
     return tv_stocks, tv_fund_map
 
-def fetch_tradingview_us_quotes_and_fundamentals(us_sym_list):
-    us_quote_map, us_fund_map = {}, {}
+def fetch_tradingview_us_fundamentals(us_sym_list):
+    us_fund_map = {}
     clean_us = [s.replace("-", ".") for s in set(us_sym_list) if s and not s.startswith("^") and "=" not in s]
     payload = {
         "filter": [{"left": "name", "operation": "in_range", "right": clean_us}],
@@ -502,72 +516,48 @@ def fetch_tradingview_us_quotes_and_fundamentals(us_sym_list):
                 t_raw = str(row.get("s", ""))
                 sym = (t_raw.split(":")[-1].strip() if ":" in t_raw else str(d[0]).strip()).replace(".", "-")
                 if len(d) >= 5 and sym:
-                    p, pct, chg = safe_float(d[1], 0.0), safe_float(d[2], 0.0), safe_float(d[3], 0.0)
-                    if p > 0:
-                        us_quote_map[sym] = {"price": round(p, 2), "prev_close": round(p - chg, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
                     us_fund_map[sym] = parse_tv_fundamentals(d)
     except Exception:
         pass
-    return us_quote_map, us_fund_map
+    return us_fund_map
 
-# 6. TradingView CME/CBOT/NYMEX/ICE 交易所原始期貨報價 (修正 Yahoo 換月跳空與補齊芝商所主力小字)
 def fetch_tradingview_futures_quotes():
-    tv_main, tv_agri_cme = {}, {}
+    tv_fut_map = {}
     symbol_map = {
-        "CBOT:ZS1!": "ZS=F", "CBOT:ZW1!": "ZW=F", "CBOT:ZC1!": "ZC=F",
-        "NYMEX:CL1!": "CL=F", "ICEEUR:BRN1!": "BZ=F",
-        "CME_MINI:ES1!": "ES=F", "CME_MINI:NQ1!": "NQ=F", "CBOT_MINI:YM1!": "YM=F",
-        "COMEX:GC1!": "GC=F", "COMEX:SI1!": "SI=F", "COMEX:HG1!": "HG=F", "NYMEX:PA1!": "PA=F"
+        "NYMEX:CL1!": "CL=F",
+        "ICEEUR:BRN1!": "BZ=F",
+        "CME_MINI:ES1!": "ES=F",
+        "CME_MINI:NQ1!": "NQ=F",
+        "CBOT_MINI:YM1!": "YM=F",
+        "COMEX:GC1!": "GC=F",
+        "COMEX:SI1!": "SI=F",
+        "COMEX:HG1!": "HG=F",
+        "NYMEX:PA1!": "PA=F"
     }
-    agri_schedules = {
-        "ZS=F": ("ZS", [(1, "F"), (3, "H"), (5, "K"), (7, "N"), (8, "Q"), (9, "U"), (11, "X")]),
-        "ZW=F": ("ZW", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")]),
-        "ZC=F": ("ZC", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")])
-    }
-    eff_m = now_tw.month + (1 if now_tw.day >= 15 else 0)
-    cme_contract_map = {}
-    for base_sym, (root, months) in agri_schedules.items():
-        picked = next(((now_tw.year, code) for dm, code in months if dm > eff_m), (now_tw.year + 1, months[0][1]))
-        tv_code = f"CBOT:{root}{picked[1]}{picked[0]}"
-        label = f"芝商所 {root}{picked[1]}{str(picked[0])[-1:]}"
-        cme_contract_map[tv_code] = (base_sym, label)
-
-    all_tickers = list(symbol_map.keys()) + list(cme_contract_map.keys())
     payload = {
-        "symbols": {"tickers": all_tickers, "query": {"types": []}},
+        "symbols": {"tickers": list(symbol_map.keys()), "query": {"types": []}},
         "columns": ["close", "change", "change_abs"]
     }
     try:
-        r = requests.post("https://scanner.tradingview.com/futures/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=12)
+        r = requests.post("https://scanner.tradingview.com/futures/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=10)
         if r.status_code == 200:
             for row in (r.json().get("data") or []):
                 tv_sym = str(row.get("s", "")).strip()
                 d = row.get("d") or []
-                if len(d) < 3:
-                    continue
-                p, pct, chg = safe_float(d[0], 0.0), safe_float(d[1], 0.0), safe_float(d[2], 0.0)
-                if p <= 0:
-                    continue
-                if tv_sym in symbol_map:
-                    target = symbol_map[tv_sym]
-                    prev_p = round(p - chg, 2)
-                    tv_main[target] = {
-                        "price": round(p, 2), "prev_close": prev_p,
-                        "change": round(chg, 2), "change_pct": round(pct, 2),
-                        "ext_session": None if target in {"ZS=F", "ZW=F", "ZC=F"} else {"price": prev_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
-                    }
-                elif tv_sym in cme_contract_map:
-                    base_sym, label = cme_contract_map[tv_sym]
-                    tv_agri_cme[base_sym] = {"price": round(p, 2), "change": round(chg, 2), "change_pct": round(pct, 2), "label": label}
-    except Exception as e:
-        print(f"[Warn] TV futures scan error: {e}")
+                if tv_sym in symbol_map and len(d) >= 3:
+                    p, pct, chg = safe_float(d[0], 0.0), safe_float(d[1], 0.0), safe_float(d[2], 0.0)
+                    if p > 0:
+                        prev_c = round(p - chg, 2)
+                        tv_fut_map[symbol_map[tv_sym]] = {
+                            "price": round(p, 2), "prev_close": prev_c,
+                            "change": round(chg, 2), "change_pct": round(pct, 2),
+                            "ext_session": {"price": prev_c, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
+                        }
+    except Exception:
+        pass
+    return tv_fut_map
 
-    for base_sym, cme_ext in tv_agri_cme.items():
-        if base_sym in tv_main:
-            tv_main[base_sym]["ext_session"] = cme_ext
-    return tv_main, tv_agri_cme
-
-# 7. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取
+# 6. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取
 def fetch_tw_official_all_channels():
     snapshot = {"indices": {}, "stocks": {}, "fund_map": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -671,7 +661,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set]
+    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set and s not in {"ZS=F", "ZW=F", "ZC=F"}]
     for i in range(0, len(fut_and_us), 35):
         chunk = fut_and_us[i:i + 35]
         try:
@@ -705,7 +695,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                         yf_map[sym]["prev_close"] = settle_p
                         yf_map[sym]["change"] = chg
                         yf_map[sym]["change_pct"] = pct
-                        yf_map[sym]["ext_session"] = None if sym in {"ZS=F", "ZW=F", "ZC=F"} else {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
+                        yf_map[sym]["ext_session"] = {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
                     else:
                         e_chg = round(latest_tick_p - reg_p, 2)
                         e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
@@ -716,24 +706,70 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
+    # 自動計算農產品「未到期近月合約 (大字)」與「次月芝商所合約 (小字)」(零寫死日期、無電子盤)
+    agri_schedules = {
+        "ZS=F": ("ZS", [(1, "F"), (3, "H"), (5, "K"), (7, "N"), (8, "Q"), (9, "U"), (11, "X")]),
+        "ZW=F": ("ZW", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")]),
+        "ZC=F": ("ZC", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")])
+    }
+    for base_sym, (root, months) in agri_schedules.items():
+        if base_sym not in yf_map:
+            yf_map[base_sym] = {"price": 0.0, "prev_close": 0.0, "change": 0.0, "change_pct": 0.0, "history": [], "ext_session": None}
+        seq = [
+            (y, dm, code) for y in (now_tw.year, now_tw.year + 1) for (dm, code) in months
+            if (y > now_tw.year) or (dm > now_tw.month) or (dm == now_tw.month and now_tw.day < 10)
+        ]
+        if len(seq) < 2:
+            continue
+        front_y, _, front_code = seq[0]
+        next_y, _, next_code = seq[1]
+        front_ticker = f"{root}{front_code}{str(front_y)[-2:]}.CBT"
+        next_ticker = f"{root}{next_code}{str(next_y)[-2:]}.CBT"
+        next_label = f"芝商所 {root}{next_code}{str(next_y)[-1:]}"
+
+        try:
+            df_front = yf.download(front_ticker, period="5d", interval="1d", progress=False)
+            f_vals = extract_close_series(df_front)
+            if len(f_vals) >= 2:
+                f_last, f_prev = round(safe_float(f_vals.iloc[-1]), 2), round(safe_float(f_vals.iloc[-2]), 2)
+                f_chg = round(f_last - f_prev, 2)
+                yf_map[base_sym]["price"] = f_last
+                yf_map[base_sym]["prev_close"] = f_prev
+                yf_map[base_sym]["change"] = f_chg
+                yf_map[base_sym]["change_pct"] = round((f_chg / f_prev) * 100, 2) if f_prev > 0 else 0.0
+        except Exception:
+            pass
+
+        try:
+            df_next = yf.download(next_ticker, period="5d", interval="1d", progress=False)
+            n_vals = extract_close_series(df_next)
+            if len(n_vals) >= 2:
+                n_last, n_prev = round(safe_float(n_vals.iloc[-1]), 2), round(safe_float(n_vals.iloc[-2]), 2)
+                n_chg = round(n_last - n_prev, 2)
+                n_pct = round((n_chg / n_prev) * 100, 2) if n_prev > 0 else 0.0
+                yf_map[base_sym]["ext_session"] = {"price": n_last, "change": n_chg, "change_pct": n_pct, "label": next_label}
+        except Exception:
+            pass
+
     return yf_map
 
-def fetch_official_us2y_and_taifex_vixtwn_and_txf():
+def fetch_official_us2y_and_taifex_vixtwn_and_txf(existing_yf_map):
     extra = {}
-    try:
-        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
-        if r.status_code == 200:
-            df = pd.read_csv(io.StringIO(r.text))
-            if len(df.columns) >= 2:
-                d_col, v_col = df.columns[0], df.columns[1]
-                df[v_col] = pd.to_numeric(df[v_col], errors="coerce")
-                df = df.dropna().tail(260)
-                pts = [{"date": str(row[d_col]).strip(), "close": round(float(row[v_col]), 2)} for _, row in df.iterrows() if float(row[v_col]) > 0]
-                if len(pts) >= 2:
-                    lc, pc = pts[-1]["close"], pts[-2]["close"]
-                    extra["US2Y"] = {"price": lc, "prev_close": pc, "change": round(lc - pc, 2), "change_pct": round(((lc - pc) / pc) * 100, 2), "history": pts, "ext_session": None}
-    except Exception:
-        pass
+    if "US2Y" not in existing_yf_map or safe_float(existing_yf_map.get("US2Y", {}).get("price"), 0.0) <= 0:
+        try:
+            r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
+            if r.status_code == 200:
+                df = pd.read_csv(io.StringIO(r.text))
+                if len(df.columns) >= 2:
+                    d_col, v_col = df.columns[0], df.columns[1]
+                    df[v_col] = pd.to_numeric(df[v_col], errors="coerce")
+                    df = df.dropna().tail(260)
+                    pts = [{"date": str(row[d_col]).strip(), "close": round(float(row[v_col]), 2)} for _, row in df.iterrows() if float(row[v_col]) > 0]
+                    if len(pts) >= 2:
+                        lc, pc = pts[-1]["close"], pts[-2]["close"]
+                        extra["US2Y"] = {"price": lc, "prev_close": pc, "change": round(lc - pc, 2), "change_pct": round(((lc - pc) / pc) * 100, 2), "history": pts, "ext_session": None}
+        except Exception:
+            pass
 
     headers_mis = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json;charset=UTF-8", "Referer": "https://mis.taifex.com.tw/futures/"}
     for sym_id in ["TAIWANVIX", "VIXTWN"]:
@@ -855,7 +891,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_quote_map, us_fund_map, rev_map, mops_by_code, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_fund_map, rev_map, mops_by_code, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -867,10 +903,6 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
     chg_val = safe_float(y_data.get("change"), 0.0)
     pct_val = safe_float(y_data.get("change_pct"), 0.0)
     ext_obj = None if symbol in ["BTC-USD", "ETH-USD"] else y_data.get("ext_session")
-
-    if asset_type == "us_stock" and p_val <= 0 and symbol in us_quote_map:
-        uq = us_quote_map[symbol]
-        p_val, prev_val, chg_val, pct_val = uq["price"], uq["prev_close"], uq["change"], uq["change_pct"]
 
     if tw_official:
         if symbol in tw_official.get("indices", {}):
@@ -933,7 +965,7 @@ def main():
         payload["mops_general"] = mops_general
 
         tw_official = fetch_tw_official_all_channels()
-        us_quote_map, us_fund_map = fetch_tradingview_us_quotes_and_fundamentals(all_us_eq)
+        us_fund_map = fetch_tradingview_us_fundamentals(all_us_eq)
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
 
         all_required_syms = (
@@ -943,23 +975,20 @@ def main():
         )
 
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
-        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf())
+        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf(yf_map))
 
-        tv_fut_main, tv_agri_cme = fetch_tradingview_futures_quotes()
-        for f_sym, f_q in tv_fut_main.items():
+        # 使用 TradingView 官方交易所期貨報價同步原油、金屬與美指期貨
+        for f_sym, f_q in fetch_tradingview_futures_quotes().items():
             if f_sym in yf_map:
                 yf_map[f_sym].update(f_q)
             else:
                 yf_map[f_sym] = {**f_q, "history": [{"date": now_tw.strftime("%Y-%m-%d"), "close": f_q["price"]}]}
-        for a_sym, a_ext in tv_agri_cme.items():
-            if a_sym in yf_map:
-                yf_map[a_sym]["ext_session"] = a_ext
 
         core_rss_set = set(US_STOCKS + [m["ticker"] for m in TW_STOCKS.values()])
         built_cache = {}
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
-                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, yf_map, tw_official, us_quote_map, us_fund_map, rev_map, mops_by_code, fetch_rss=(sym in core_rss_set))
+                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, yf_map, tw_official, us_fund_map, rev_map, mops_by_code, fetch_rss=(sym in core_rss_set))
             cp = dict(built_cache[sym])
             cp["name"] = to_trad(name)
             if f_group:
