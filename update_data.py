@@ -266,7 +266,6 @@ def fetch_fear_and_greed_indices():
         except Exception:
             pass
 
-    # 若本次 CNN 連線失敗，保留先前 data/market_data.json 中已成功抓取的有效數值
     if fg_data["us_cnn"]["score"] is None and os.path.exists("data/market_data.json"):
         try:
             with open("data/market_data.json", "r", encoding="utf-8") as f:
@@ -300,7 +299,6 @@ def fetch_fear_and_greed_indices():
     except Exception:
         pass
     return fg_data
-
 
 # 5. 全自動台股三大法人 + 上市櫃融資餘額(10日完整) + 官方公式實算每日上市融資維持率 (零寫死日期)
 def fetch_twse_close_prices_for_date(ymd, headers):
@@ -447,7 +445,6 @@ def fetch_twse_official_margin_and_maintenance():
             except Exception:
                 pass
 
-        # 逐日抓取櫃買中心上櫃融資餘額，補齊全部 10 個交易日
         if got_day and (offset <= 2 or rec["otc_margin_balance"] is None):
             try:
                 tpex_d = dt.strftime("%Y/%m/%d")
@@ -491,7 +488,8 @@ TV_FUND_COLUMNS = [
     "price_earnings_ttm", "price_earnings_forward_fy",
     "earnings_per_share_diluted_ttm", "return_on_equity",
     "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
-    "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"
+    "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq",
+    "market_cap_basic", "type", "description", "sector"
 ]
 
 def parse_tv_fundamentals(d):
@@ -515,7 +513,7 @@ def parse_tv_fundamentals(d):
     }
 
 def fetch_tradingview_taiwan_full_market():
-    tv_stocks, tv_fund_map = {}, {}
+    tv_stocks, tv_fund_map, tv_meta_map = {}, {}, {}
     payload = {
         "filter": [{"left": "close", "operation": "greater", "right": 0}],
         "options": {"lang": "zh_TW"}, "markets": ["taiwan"],
@@ -528,15 +526,23 @@ def fetch_tradingview_taiwan_full_market():
             for row in (r.json().get("data") or []):
                 d = row.get("d") or []
                 t_raw = str(row.get("s", ""))
+                exch = t_raw.split(":")[0].strip().upper() if ":" in t_raw else "TWSE"
                 code = t_raw.split(":")[-1].strip() if ":" in t_raw else (str(d[0]).strip() if d else "")
                 if len(d) >= 4 and code:
                     p, pct, chg = safe_float(d[1], 0.0), safe_float(d[2], 0.0), safe_float(d[3], 0.0)
                     if p > 0:
                         tv_stocks[code] = {"price": round(p, 2), "prev_close": round(p - chg, 2), "change": round(chg, 2), "change_pct": round(pct, 2)}
                         tv_fund_map[code] = parse_tv_fundamentals(d)
+                        tv_meta_map[code] = {
+                            "exchange": exch,
+                            "market_cap": safe_float(d[13], 0.0) if len(d) > 13 else 0.0,
+                            "type": str(d[14] or "").strip().lower() if len(d) > 14 else "",
+                            "description": to_trad(d[15]) if len(d) > 15 and d[15] else code,
+                            "sector": to_trad(d[16]) if len(d) > 16 and d[16] else "其他產業"
+                        }
     except Exception:
         pass
-    return tv_stocks, tv_fund_map
+    return tv_stocks, tv_fund_map, tv_meta_map
 
 def fetch_tradingview_us_fundamentals(us_sym_list):
     us_fund_map = {}
@@ -598,11 +604,12 @@ def fetch_tradingview_futures_quotes():
 
 # 6. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取
 def fetch_tw_official_all_channels():
-    snapshot = {"indices": {}, "stocks": {}, "fund_map": {}}
+    snapshot = {"indices": {}, "stocks": {}, "fund_map": {}, "meta_map": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
-    tv_stocks, tv_fund_map = fetch_tradingview_taiwan_full_market()
+    tv_stocks, tv_fund_map, tv_meta_map = fetch_tradingview_taiwan_full_market()
     snapshot["stocks"].update(tv_stocks)
     snapshot["fund_map"].update(tv_fund_map)
+    snapshot["meta_map"].update(tv_meta_map)
 
     try:
         r_mis = requests.get("https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0", headers=headers, timeout=8, verify=False)
@@ -992,7 +999,8 @@ def main():
         "indices": [], "vix_indices": [], "fear_greed": fetch_fear_and_greed_indices(),
         "us_bonds": [], "fx_rates": [], "fx_bonds": [],
         "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
-        "supply_chain_sectors": [], "tw_chips_visual": {}, "mops_general": []
+        "supply_chain_sectors": [], "other_100b_tw_stocks": [],
+        "tw_chips_visual": {}, "mops_general": []
     }
 
     try:
@@ -1007,10 +1015,31 @@ def main():
         us_fund_map = fetch_tradingview_us_fundamentals(all_us_eq)
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
 
+        # 自動偵測全台股市值 >= 1,000 億元 (排除 ETF) 且未收錄於 supply_chain_db.js 之個股
+        existing_tw_codes = {s.split(".")[0] for s in sc_items_map.keys() if s.endswith(".TW") or s.endswith(".TWO")}
+        other_100b_meta = []
+        for code, meta in (tw_official.get("meta_map") or {}).items():
+            if (
+                meta.get("type") == "stock"
+                and re.match(r"^[1-9]\d{3}$", code)
+                and meta.get("market_cap", 0.0) >= 100_000_000_000
+                and code not in existing_tw_codes
+            ):
+                suffix = ".TWO" if meta.get("exchange") == "TPEX" else ".TW"
+                other_100b_meta.append({
+                    "symbol": f"{code}{suffix}",
+                    "code": code,
+                    "name": f"{code} {meta.get('description') or code}",
+                    "market_cap_yi": round(meta["market_cap"] / 1e8, 1),
+                    "sector": meta.get("sector") or "其他產業"
+                })
+        other_100b_meta.sort(key=lambda x: x["market_cap_yi"], reverse=True)
+
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
             list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] +
-            list(FUTURES_AND_COMMODITIES.keys()) + list(sc_items_map.keys())
+            list(FUTURES_AND_COMMODITIES.keys()) + list(sc_items_map.keys()) +
+            [m["symbol"] for m in other_100b_meta]
         )
 
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
@@ -1050,12 +1079,20 @@ def main():
             q["role"] = meta["role"]
             sc_flat.append(q)
         payload["supply_chain_sectors"] = [{"id": "all_synced_items", "stages": [{"stage_name": "synced", "items": sc_flat}]}]
+
+        other_100b_items = []
+        for m in other_100b_meta:
+            q = get_asset(m["symbol"], m["name"], "tw_stock")
+            q["market_cap_yi"] = m["market_cap_yi"]
+            q["role"] = f"市值 {m['market_cap_yi']:,.0f} 億｜{m['sector']}"
+            other_100b_items.append(q)
+        payload["other_100b_tw_stocks"] = other_100b_items
     except Exception as e:
         print(f"[Warn] Main loop partial error: {e}")
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
         json.dump(clean_json_nans(payload), f, ensure_ascii=False, indent=2, allow_nan=False)
-    print(f"Success! Completed in {time.time()-t0:.1f}s.")
+    print(f"Success! Completed in {time.time()-t0:.1f}s. Auto-detected {len(payload['other_100b_tw_stocks'])} other >=100B TWD stocks.")
 
 if __name__ == "__main__":
     main()
