@@ -362,6 +362,7 @@
         <div class="text-xs font-bold text-amber-300 mb-2">🔗 跨產業上中下游垂直串接快速導覽：</div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
           <button id="quick-nav-tw-top10" onclick="selectScSector('tw_top10')" class="px-2.5 py-1 rounded bg-rose-500/25 hover:bg-rose-600 text-rose-200 font-bold border border-rose-500/40 transition">🏆 台股市值前十大權值股</button>
+          <button id="quick-nav-other-100b" onclick="selectScSector('other_100b_tw')" class="px-2.5 py-1 rounded bg-amber-500/25 hover:bg-amber-600 text-amber-200 font-bold border border-amber-500/40 transition">💎 其他千億市值大型股 (自動補齊)</button>
           <button id="quick-nav-us-trillion" onclick="selectScSector('trillion_club')" class="px-2.5 py-1 rounded bg-emerald-500/25 hover:bg-emerald-600 text-emerald-200 font-bold border border-emerald-500/40 transition hidden">👑 美股一兆美元俱樂部</button>
           <span class="text-slate-500">｜</span>
           <button onclick="selectScSector('silicon_wafer')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 transition">① 矽晶圓</button><span class="text-slate-500">&rarr;</span>
@@ -596,7 +597,7 @@
       return item;
     }
 
-        function renderFearAndGreedGauge(domId, score, labelZh, labelEn) {
+    function renderFearAndGreedGauge(domId, score, labelZh, labelEn) {
       const dom = document.getElementById(domId);
       if (!dom) return null;
       let chartInst = echarts.getInstanceByDom(dom);
@@ -678,7 +679,7 @@
       chartInst.setOption(option);
       return chartInst;
     }
-    
+
     function updateFearAndGreedDisplay(fgData) {
       if (!fgData) return;
       const us = fgData.us_cnn || { score: null, label_zh: "同步中", label_en: "LOADING" };
@@ -912,7 +913,7 @@
       const allSectors = getSupplyChainSectorsData();
       const ranked = [];
       allSectors.forEach(sec => {
-        if (sec.id === "tw_top10" || sec.id === "trillion_club") return;
+        if (sec.id === "tw_top10" || sec.id === "trillion_club" || sec.id === "other_100b_tw") return;
         const rawItems = sec.stages.flatMap(stg => stg.items);
         const mktItems = market === "TW" ? rawItems.filter(it => isTwSymbol(it.symbol)) : rawItems.filter(it => !isTwSymbol(it.symbol));
         const uniqueItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
@@ -1019,6 +1020,7 @@
           mk("ZS=F", "黃豆期貨 (CBOT)", "futures", "agri_futures"), mk("ZW=F", "小麥期貨 (CBOT)", "futures", "agri_futures"), mk("ZC=F", "玉米期貨 (CBOT)", "futures", "agri_futures"),
           mk("BTC-USD", "比特幣 (BTC)", "futures", "crypto_assets"), mk("ETH-USD", "以太幣 (ETH)", "futures", "crypto_assets")
         ],
+        other_100b_tw_stocks: [],
         tw_chips_visual: JSON.parse(JSON.stringify(OFFLINE_FALLBACK_TW_CHIPS)),
         mops_general: []
       };
@@ -1148,19 +1150,41 @@
           ? (m === "TW" ? "px-4 py-1.5 rounded-lg text-xs font-bold transition bg-rose-600 text-white shadow" : (m === "US" ? "px-4 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow" : "px-4 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white shadow"))
           : "px-4 py-1.5 rounded-lg text-xs font-bold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
       });
-      const navTwTop10 = document.getElementById("quick-nav-tw-top10"), navUsTrillion = document.getElementById("quick-nav-us-trillion");
-      if (navTwTop10 && navUsTrillion) {
-        navTwTop10.classList.toggle("hidden", mode === "US");
-        navUsTrillion.classList.toggle("hidden", mode === "TW");
-      }
+      const navTwTop10 = document.getElementById("quick-nav-tw-top10"), navOther100b = document.getElementById("quick-nav-other-100b"), navUsTrillion = document.getElementById("quick-nav-us-trillion");
+      if (navTwTop10) navTwTop10.classList.toggle("hidden", mode === "US");
+      if (navOther100b) navOther100b.classList.toggle("hidden", mode === "US");
+      if (navUsTrillion) navUsTrillion.classList.toggle("hidden", mode === "TW");
       if (mode === "TW" && currentScSectorId === "trillion_club") currentScSectorId = "tw_top10";
-      else if (mode === "US" && currentScSectorId === "tw_top10") currentScSectorId = "trillion_club";
+      else if (mode === "US" && (currentScSectorId === "tw_top10" || currentScSectorId === "other_100b_tw")) currentScSectorId = "trillion_club";
       scCompareSymbols = [];
       renderSupplyChainView();
     }
 
     function getSupplyChainSectorsData() {
-      const dbList = window.FULL_SUPPLY_CHAIN_SECTORS || [];
+      const dbList = [...(window.FULL_SUPPLY_CHAIN_SECTORS || [])];
+      const other100b = globalMarketData?.other_100b_tw_stocks || [];
+      if (other100b.length > 0) {
+        const tier1 = other100b.filter(x => Number(x.market_cap_yi || 0) >= 2000);
+        const tier2 = other100b.filter(x => Number(x.market_cap_yi || 0) >= 1300 && Number(x.market_cap_yi || 0) < 2000);
+        const tier3 = other100b.filter(x => Number(x.market_cap_yi || 0) < 1300);
+        const dynamicSec = {
+          id: "other_100b_tw",
+          category: "指標權值專區",
+          onlyMarket: "TW",
+          title: "💎 其他千億市值大型股 (自動補齊)",
+          subtitle: `每日自動比對全台股總市值 ≥ 1,000 億 (排除 ETF) 且尚未歸入既有 39 大產業鏈之個股，目前共 ${other100b.length} 檔`,
+          upLinks: ["tw_top10"],
+          downLinks: [],
+          stages: [
+            { stage_name: "大型權值組 (市值 ≥ 2,000 億元)", items: tier1 },
+            { stage_name: "中大型權值組 (市值 1,300 ～ 2,000 億元)", items: tier2 },
+            { stage_name: "千億門檻組 (市值 1,000 ～ 1,300 億元)", items: tier3 }
+          ]
+        };
+        const twTopIdx = dbList.findIndex(s => s.id === "tw_top10");
+        if (twTopIdx >= 0) dbList.splice(twTopIdx + 1, 0, dynamicSec);
+        else dbList.unshift(dynamicSec);
+      }
       return dbList.map(sec => ({
         ...sec,
         stages: sec.stages.map(stg => ({
@@ -1169,16 +1193,16 @@
             const existing = allAssetsMap[it.symbol];
             const isUs = !isTwSymbol(it.symbol);
             const fallbackQ = getDeterministicFallbackQuote(it.symbol);
-            const usePrice = (existing && Number(existing.price) > 0) ? existing.price : fallbackQ[0];
-            const usePct = (existing && existing.change_pct !== undefined && Number(existing.price) > 0) ? existing.change_pct : fallbackQ[1];
+            const usePrice = (existing && Number(existing.price) > 0) ? existing.price : (Number(it.price) > 0 ? it.price : fallbackQ[0]);
+            const usePct = (existing && existing.change_pct !== undefined && Number(existing.price) > 0) ? existing.change_pct : (Number(it.price) > 0 ? it.change_pct : fallbackQ[1]);
             const merged = applyFallbackIfMissing({
-              symbol: it.symbol, name: cleanTwText(it.name), role: it.role,
+              symbol: it.symbol, name: cleanTwText(it.name), role: it.role || "",
               asset_type: isUs ? "us_stock" : "tw_stock",
-              price: usePrice, prev_close: existing?.prev_close || 0, change: existing?.change || 0, change_pct: usePct,
-              ext_session: isUs ? ensureUsExtSession(it.symbol, usePrice, existing?.ext_session) : null,
-              history: existing?.history || [],
-              fundamentals: ensureValidFundamentals(it.symbol, existing?.fundamentals),
-              news_sentiment: existing?.news_sentiment || null
+              price: usePrice, prev_close: existing?.prev_close || it.prev_close || 0, change: existing?.change || it.change || 0, change_pct: usePct,
+              ext_session: isUs ? ensureUsExtSession(it.symbol, usePrice, existing?.ext_session || it.ext_session) : null,
+              history: (existing?.history && existing.history.length > 1) ? existing.history : (it.history || []),
+              fundamentals: ensureValidFundamentals(it.symbol, existing?.fundamentals || it.fundamentals),
+              news_sentiment: existing?.news_sentiment || it.news_sentiment || null
             });
             allAssetsMap[it.symbol] = merged;
             return merged;
@@ -1190,7 +1214,7 @@
     function getMarketFilteredSectors(allSectors) {
       return allSectors.filter(sec => {
         if (currentScMarket === "TW" && (sec.onlyMarket === "US" || sec.id === "trillion_club")) return false;
-        if (currentScMarket === "US" && (sec.onlyMarket === "TW" || sec.id === "tw_top10")) return false;
+        if (currentScMarket === "US" && (sec.onlyMarket === "TW" || sec.id === "tw_top10" || sec.id === "other_100b_tw")) return false;
         return true;
       });
     }
@@ -1211,7 +1235,7 @@
 
     function selectScSector(sectorId) {
       currentScSectorId = sectorId;
-      if (sectorId === "tw_top10" && currentScMarket === "US") { switchScMarketFilter("TW"); return; }
+      if ((sectorId === "tw_top10" || sectorId === "other_100b_tw") && currentScMarket === "US") { switchScMarketFilter("TW"); return; }
       if (sectorId === "trillion_club" && currentScMarket === "TW") { switchScMarketFilter("US"); return; }
       scCompareSymbols = [];
       renderSupplyChainView();
@@ -1319,12 +1343,12 @@
 
       document.getElementById("sc-sector-tabs").innerHTML = visibleSectors.map(s => {
         const isAct = s.id === activeSec.id, rawStgItems = s.stages.flatMap(st => st.items);
-        const mktItems = (s.id === "tw_top10" || s.id === "trillion_club") ? rawStgItems : filterItemsByScMarket(rawStgItems);
+        const mktItems = (s.id === "tw_top10" || s.id === "other_100b_tw" || s.id === "trillion_club") ? rawStgItems : filterItemsByScMarket(rawStgItems);
         const uniqueMktItems = Array.from(new Map(mktItems.map(item => [item.symbol, item])).values());
         const validPcts = uniqueMktItems.map(x => Number(x.change_pct)).filter(n => !isNaN(n) && n !== 0);
         const avgPct = validPcts.length ? validPcts.reduce((a, b) => a + b, 0) / validPcts.length : 0;
-        const colorType = s.id === "trillion_club" ? "us_stock" : (s.id === "tw_top10" ? "tw_stock" : (currentScMarket === "US" ? "us_stock" : "tw_stock"));
-        const tagPrefix = s.id === "tw_top10" ? "🇹🇼台股" : (s.id === "trillion_club" ? "🇺🇸美股" : (currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')));
+        const colorType = s.id === "trillion_club" ? "us_stock" : ((s.id === "tw_top10" || s.id === "other_100b_tw") ? "tw_stock" : (currentScMarket === "US" ? "us_stock" : "tw_stock"));
+        const tagPrefix = (s.id === "tw_top10" || s.id === "other_100b_tw") ? "🇹🇼台股" : (s.id === "trillion_club" ? "🇺🇸美股" : (currentScMarket === 'TW' ? '🇹🇼台股' : (currentScMarket === 'US' ? '🇺🇸美股' : '🌐台美')));
         return `<button onclick="selectScSector('${s.id}')" class="text-left p-3 rounded-xl border transition-all ${isAct ? 'bg-indigo-600/30 border-indigo-400 shadow-md ring-1 ring-indigo-400' : 'bg-slate-900/80 border-slate-800 hover:border-slate-600'}"><div class="flex items-center justify-between"><span class="text-xs font-bold text-white truncate">${s.title}</span></div><div class="flex items-center justify-between text-[10px] mono mt-1.5"><span class="text-slate-400">${tagPrefix}・${uniqueMktItems.length}檔</span><span class="font-bold ${getColorClass(avgPct, colorType)}">${formatSignedPct(avgPct)}</span></div></button>`;
       }).join("");
 
@@ -1355,7 +1379,7 @@
         const stageBadges = ["第一階段 / 上游", "第二階段 / 中游", "第三階段 / 下游"];
         const twList = stg.items.filter(x => isTwSymbol(x.symbol)), usList = stg.items.filter(x => !isTwSymbol(x.symbol));
         let bodyHtml = "";
-        if (currentScMarket === "TW") bodyHtml = twList.length > 0 ? `<div class="space-y-3">${twList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以國際美股大廠為主</div>`;
+        if (currentScMarket === "TW") bodyHtml = twList.length > 0 ? `<div class="space-y-3">${twList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段目前無符合條件之台股代表</div>`;
         else if (currentScMarket === "US") bodyHtml = usList.length > 0 ? `<div class="space-y-3">${usList.map(buildScStockCardHtml).join("")}</div>` : `<div class="text-xs text-slate-500 py-4 text-center">此階段以台灣供應鏈為主</div>`;
         else bodyHtml = `<div class="space-y-4"><div class="bg-rose-950/15 border border-rose-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-rose-300 border-b border-rose-500/20 pb-1.5 flex items-center justify-between"><span>🇹🇼 台股供應鏈 (${twList.length} 檔)</span></div>${twList.length > 0 ? twList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無台股代表</div>`}</div><div class="bg-emerald-950/15 border border-emerald-500/20 rounded-xl p-3 space-y-2.5"><div class="text-xs font-bold text-emerald-300 border-b border-emerald-500/20 pb-1.5 flex items-center justify-between"><span>🇺🇸 美股供應鏈 (${usList.length} 檔)</span></div>${usList.length > 0 ? usList.map(buildScStockCardHtml).join("") : `<div class="text-xs text-slate-500 py-2">無美股代表</div>`}</div></div>`;
         const shownCount = currentScMarket === "TW" ? twList.length : (currentScMarket === "US" ? usList.length : stg.items.length);
@@ -2448,7 +2472,8 @@
       const allIncomingLists = [
         ...(globalMarketData.indices || []), ...(globalMarketData.vix_indices || []), ...(globalMarketData.us_bonds || []),
         ...(globalMarketData.fx_rates || []), ...(globalMarketData.us_stocks || []), ...(globalMarketData.tw_stocks || []),
-        ...(globalMarketData.futures_commodities || [])
+        ...(globalMarketData.futures_commodities || []),
+        ...(globalMarketData.other_100b_tw_stocks || [])
       ];
       allIncomingLists.forEach(it => {
         if (it && it.symbol && Number(it.price) > 0) {
