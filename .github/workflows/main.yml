@@ -60,5 +60,5 @@ jobs:
           mkdir -p data
           mv /tmp/market_data.json.bak data/market_data.json
           git add data/market_data.json
-          git diff --staged --quiet || git commit -m "Auto-update market_data.json [skip ci]"
+          git diff --staged --quiet || git commit -m "Auto-update market_data.json"
           git push origin main
