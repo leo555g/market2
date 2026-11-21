@@ -2210,7 +2210,7 @@
                 if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
                 if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
                 if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
-                if (p > 0 && isUsRegularMarketOpenNow()) updateAssetDomPrice(sym, p, pct);
+                if (p > 0) updateAssetDomPrice(sym, p, pct);
               }
             }
           });
