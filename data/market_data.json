@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-21 13:48:34 CST",
+  "last_updated": "2026-11-21 13:56:12 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -39736,7 +39736,7 @@
         },
         {
           "date": "2025-11-25",
-          "close": 177.4
+          "close": 177.39
         },
         {
           "date": "2025-11-26",
@@ -49203,7 +49203,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.25
+          "close": 271.24
         },
         {
           "date": "2025-12-19",
@@ -51572,7 +51572,7 @@
         },
         {
           "date": "2026-02-10",
-          "close": 1863.41
+          "close": 1863.42
         },
         {
           "date": "2026-02-11",
@@ -53485,9 +53485,9 @@
                 "date": "自由財經・Sat, 21 Nov 2026"
               },
               {
-                "title": "2454 聯發科 - 郭明錤：Google明年下修博通TPU出貨約百萬顆「聯發科」可望受惠- 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5MSEV1RUZETXFRcWNsNlpYT2t0Y0pMZFYyU3pkWm4xMWZPbmkwbFJIRE9DRkZrSHN2ZXlWOGl3eVdDcEwwVHQtMFBIdy1oOFd1WUEyV3BuU20?oc=5",
-                "date": "CMoney・Sat, 21 Nov 2026"
+                "title": "《價值型投資最新產業研究報告》聯發科 (2454-TW) 雲端大廠加速自研晶片，加單與轉單推升成長空間 - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1jSmZ3TllnUEM0ZnZZaDZTY1NIWjhsVXVCUXUwWDkzUTgzRGlXRC1hVUhNbnVXNlNJVmQwZFpQZmxoNzhMdVhQYUJGZlNRdkk?oc=5",
+                "date": "鉅亨網・Tue, 17 Nov 2026"
               }
             ],
             "bearish": [
@@ -69208,10 +69208,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 55891.67,
+      "price": 55717.39,
       "prev_close": 61901.82,
-      "change": -6010.15,
-      "change_pct": -9.71,
+      "change": -6184.43,
+      "change_pct": -9.99,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -70673,7 +70673,7 @@
         },
         {
           "date": "2026-11-21",
-          "close": 55867.83
+          "close": 55739.67
         }
       ],
       "fundamentals": {
@@ -70693,10 +70693,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1564.36,
+      "price": 1557.3,
       "prev_close": 1755.19,
-      "change": -190.83,
-      "change_pct": -10.87,
+      "change": -197.89,
+      "change_pct": -11.27,
       "ext_session": null,
       "intraday": [],
       "history": [
@@ -72158,7 +72158,7 @@
         },
         {
           "date": "2026-11-21",
-          "close": 1563.08
+          "close": 1558.11
         }
       ],
       "fundamentals": {
@@ -72505,7 +72505,7 @@
                 },
                 {
                   "date": "2026-02-10",
-                  "close": 1863.41
+                  "close": 1863.42
                 },
                 {
                   "date": "2026-02-11",
@@ -74418,9 +74418,9 @@
                         "date": "自由財經・Sat, 21 Nov 2026"
                       },
                       {
-                        "title": "2454 聯發科 - 郭明錤：Google明年下修博通TPU出貨約百萬顆「聯發科」可望受惠- 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5MSEV1RUZETXFRcWNsNlpYT2t0Y0pMZFYyU3pkWm4xMWZPbmkwbFJIRE9DRkZrSHN2ZXlWOGl3eVdDcEwwVHQtMFBIdy1oOFd1WUEyV3BuU20?oc=5",
-                        "date": "CMoney・Sat, 21 Nov 2026"
+                        "title": "《價值型投資最新產業研究報告》聯發科 (2454-TW) 雲端大廠加速自研晶片，加單與轉單推升成長空間 - 鉅亨網",
+                        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1jSmZ3TllnUEM0ZnZZaDZTY1NIWjhsVXVCUXUwWDkzUTgzRGlXRC1hVUhNbnVXNlNJVmQwZFpQZmxoNzhMdVhQYUJGZlNRdkk?oc=5",
+                        "date": "鉅亨網・Tue, 17 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -83175,7 +83175,7 @@
                 },
                 {
                   "date": "2025-11-25",
-                  "close": 177.4
+                  "close": 177.39
                 },
                 {
                   "date": "2025-11-26",
@@ -86557,7 +86557,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 271.25
+                  "close": 271.24
                 },
                 {
                   "date": "2025-12-19",
@@ -92724,7 +92724,7 @@
                 },
                 {
                   "date": "2026-01-14",
-                  "close": 1066.84
+                  "close": 1066.83
                 },
                 {
                   "date": "2026-01-15",
@@ -92776,7 +92776,7 @@
                 },
                 {
                   "date": "2026-02-03",
-                  "close": 997.42
+                  "close": 997.43
                 },
                 {
                   "date": "2026-02-04",
@@ -113716,7 +113716,7 @@
                 },
                 {
                   "date": "2026-04-30",
-                  "close": 257.41
+                  "close": 257.4
                 },
                 {
                   "date": "2026-05-01",
@@ -127612,7 +127612,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 278.12
+                  "close": 278.11
                 },
                 {
                   "date": "2026-01-30",
@@ -173246,7 +173246,7 @@
                 },
                 {
                   "date": "2026-01-05",
-                  "close": 117.06
+                  "close": 117.05
                 },
                 {
                   "date": "2026-01-06",
@@ -229490,7 +229490,7 @@
                 },
                 {
                   "date": "2025-12-26",
-                  "close": 2313.04
+                  "close": 2313.05
                 },
                 {
                   "date": "2025-12-29",
@@ -339081,7 +339081,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 315.87
+                  "close": 315.88
                 },
                 {
                   "date": "2026-01-30",
@@ -343647,7 +343647,7 @@
                 },
                 {
                   "date": "2026-04-14",
-                  "close": 1359.34
+                  "close": 1359.33
                 },
                 {
                   "date": "2026-04-15",
@@ -385359,7 +385359,7 @@
                 },
                 {
                   "date": "2025-11-26",
-                  "close": 588.29
+                  "close": 588.28
                 },
                 {
                   "date": "2025-11-28",
@@ -397523,7 +397523,7 @@
                 },
                 {
                   "date": "2026-01-15",
-                  "close": 638.21
+                  "close": 638.2
                 },
                 {
                   "date": "2026-01-16",
@@ -398911,7 +398911,7 @@
                 },
                 {
                   "date": "2026-05-01",
-                  "close": 295.63
+                  "close": 295.64
                 },
                 {
                   "date": "2026-05-04",
@@ -430313,7 +430313,7 @@
                 },
                 {
                   "date": "2026-04-07",
-                  "close": 141.12
+                  "close": 141.11
                 },
                 {
                   "date": "2026-04-08",
@@ -509275,7 +509275,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 289.87
+                  "close": 289.86
                 },
                 {
                   "date": "2026-02-06",
@@ -530839,7 +530839,7 @@
                 },
                 {
                   "date": "2025-12-16",
-                  "close": 660.05
+                  "close": 660.04
                 },
                 {
                   "date": "2025-12-17",
@@ -572471,7 +572471,7 @@
                 },
                 {
                   "date": "2026-03-09",
-                  "close": 276.68
+                  "close": 276.69
                 },
                 {
                   "date": "2026-03-10",
@@ -580043,7 +580043,7 @@
                 },
                 {
                   "date": "2026-03-04",
-                  "close": 211.09
+                  "close": 211.1
                 },
                 {
                   "date": "2026-03-05",
@@ -679771,7 +679771,7 @@
                 },
                 {
                   "date": "2026-01-26",
-                  "close": 65.51
+                  "close": 65.52
                 },
                 {
                   "date": "2026-01-27",
@@ -702409,7 +702409,7 @@
                 },
                 {
                   "date": "2026-01-07",
-                  "close": 877.41
+                  "close": 877.4
                 },
                 {
                   "date": "2026-01-08",
