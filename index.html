@@ -678,63 +678,7 @@
       chartInst.setOption(option);
       return chartInst;
     }
-            type: "gauge",
-            startAngle: 180,
-            endAngle: 0,
-            min: 0,
-            max: 100,
-            radius: "105%",
-            center: ["50%", "72%"],
-            splitNumber: 4,
-            axisLine: {
-              lineStyle: {
-                width: 58,
-                color: [
-                  [0.25, "#d47a72"],
-                  [0.45, "#dca09a"],
-                  [0.55, "#b0b5bc"],
-                  [0.75, "#82bfa6"],
-                  [1.00, "#5aa88a"]
-                ]
-              }
-            },
-            pointer: {
-              icon: "triangle",
-              length: "75%",
-              width: 9,
-              offsetCenter: [0, "-12%"],
-              itemStyle: { color: "#1e293b", shadowColor: "rgba(0,0,0,0.5)", shadowBlur: 6 }
-            },
-            axisTick: { distance: 6, splitNumber: 5, lineStyle: { width: 1.5, color: "#94a3b8" } },
-            splitLine: { distance: 6, length: 10, lineStyle: { width: 2.5, color: "#cbd5e1" } },
-            axisLabel: {
-              distance: -35, color: "#334155", fontSize: 13, fontWeight: "bold",
-              formatter: function (value) {
-                if (value === 0) return "- 0";
-                if (value === 50) return "50";
-                if (value === 100) return "100 -";
-                return "";
-              }
-            },
-            anchor: {
-              show: true, showAbove: true, size: 110,
-              itemStyle: { color: "#e2e8f0", shadowColor: "rgba(0, 0, 0, 0.4)", shadowBlur: 10 }
-            },
-            title: { show: false },
-            detail: {
-              valueAnimation: true, offsetCenter: [0, "-6%"], fontSize: 34, fontWeight: "900",
-              fontFamily: "'JetBrains Mono', monospace",
-              formatter: (score !== null && score !== undefined && !isNaN(Number(score))) ? "{value}" : "--",
-              color: "#0f172a"
-            },
-            data: [{ value: val }]
-          }
-        ]
-      };
-      chartInst.setOption(option);
-      return chartInst;
-    }
-
+    
     function updateFearAndGreedDisplay(fgData) {
       if (!fgData) return;
       const us = fgData.us_cnn || { score: null, label_zh: "同步中", label_en: "LOADING" };
