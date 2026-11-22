@@ -113,7 +113,92 @@ class SimpleTableParser(HTMLParser):
 
 tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
-DELISTED_BLACKLIST = {"2867.TW", "2809.TW", "2888.TW", "MMC"}
+
+DELISTED_BLACKLIST = {
+    "2867.TW", "2809.TW", "2888.TW", "MMC",
+    "OSAT", "SEMICONDUCTOR", "FIBERGLASS", "BBU", "PLASTICS",
+    "FINANCE", "SHIPPING", "TGV", "STEEL"
+}
+
+ADR_TO_TW_MAP = {
+    "TSM": "2330",
+    "UMC": "2303",
+    "ASX": "3711",
+    "CHT": "2412"
+}
+
+SECTOR_ZH_MAP = {
+    "Electronic Technology": "電子科技",
+    "Technology Services": "科技服務",
+    "Semiconductors": "半導體",
+    "Electronic Components": "電子零組件",
+    "Electronic Production Equipment": "電子生產設備",
+    "Computer Processing Hardware": "電腦運算硬體",
+    "Computer Peripherals": "電腦週邊設備",
+    "Telecommunications Equipment": "通信網路設備",
+    "Wireless Telecommunications": "無線電信",
+    "Major Telecommunications": "電信服務",
+    "Packaged Software": "套裝軟體",
+    "Internet Software/Services": "網際網路軟體與服務",
+    "Information Technology Services": "資訊科技服務",
+    "Data Processing Services": "資料處理服務",
+    "Finance": "金融業",
+    "Major Banks": "大型銀行",
+    "Regional Banks": "區域銀行",
+    "Investment Banks/Brokers": "投資銀行與券商",
+    "Financial Conglomerates": "金融控股",
+    "Multi-Line Insurance": "綜合保險",
+    "Life/Health Insurance": "壽險與健康險",
+    "Property/Casualty Insurance": "產物保險",
+    "Producer Manufacturing": "工業製造",
+    "Industrial Machinery": "工業機械",
+    "Electrical Products": "電機與重電產品",
+    "Aerospace & Defense": "航太與國防軍工",
+    "Auto Parts: OEM": "汽車零組件",
+    "Motor Vehicles": "汽車製造",
+    "Process Industries": "基礎原物料",
+    "Chemicals: Major Diversified": "綜合化工",
+    "Chemicals: Specialty": "特用化學",
+    "Chemicals: Agricultural": "農業化學",
+    "Non-Energy Minerals": "非能源礦業",
+    "Steel": "鋼鐵業",
+    "Construction Materials": "建材與水泥",
+    "Engineering & Construction": "營建與工程",
+    "Homebuilding": "住宅建設",
+    "Real Estate Development": "不動產開發",
+    "Energy Minerals": "能源礦業",
+    "Integrated Oil": "綜合石油能源",
+    "Oil & Gas Production": "油氣開採",
+    "Oil Refining/Marketing": "石油煉製與行銷",
+    "Utilities": "公用事業",
+    "Electric Utilities": "電力公用事業",
+    "Transportation": "交通運輸",
+    "Marine Shipping": "海運航運",
+    "Airlines": "航空業",
+    "Air Freight/Couriers": "航空貨運與快遞",
+    "Health Technology": "醫療生技科技",
+    "Pharmaceuticals: Major": "大型製藥",
+    "Biotechnology": "生物科技",
+    "Medical Specialties": "醫療器材與耗材",
+    "Consumer Durables": "耐久消費品",
+    "Consumer Non-Durables": "非耐久消費品",
+    "Consumer Services": "消費服務",
+    "Retail Trade": "零售貿易",
+    "Internet Retail": "電子商務零售",
+    "Restaurants": "餐飲業",
+    "Hotels/Resorts/Cruise lines": "飯店與觀光旅遊",
+    "Communications": "通訊媒體",
+    "Commercial Services": "商業服務",
+    "Distribution Services": "通路分銷服務",
+    "Industrial Services": "工業服務",
+    "Miscellaneous": "其他綜合產業"
+}
+
+def translate_sector_label(val):
+    s = str(val or "").strip()
+    if not s:
+        return ""
+    return SECTOR_ZH_MAP.get(s, to_trad(s))
 
 INDICES = {
     "^GSPC": "S&P 500 指數",
@@ -176,10 +261,11 @@ FUTURES_AND_COMMODITIES = {
     "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
-# 0. 讀取既有 market_data.json 作為報價防漏備援與官方主要經營業務快取
+# 0. 讀取既有 market_data.json 作為報價防漏備援與公司簡介快取
 def load_previous_cache():
     old_assets = {}
     cached_tw_biz = {}
+    cached_us_wiki = {}
     if os.path.exists("data/market_data.json"):
         try:
             with open("data/market_data.json", "r", encoding="utf-8") as f:
@@ -204,12 +290,15 @@ def load_previous_cache():
                         "ext_session": it.get("ext_session")
                     }
                 prof = it.get("profile")
-                if (sym.endswith(".TW") or sym.endswith(".TWO")) and isinstance(prof, dict):
-                    if prof.get("business_source") == "ic.tpex.org.tw" and prof.get("summary"):
-                        cached_tw_biz[sym.split(".")[0]] = prof["summary"]
+                if isinstance(prof, dict) and prof.get("summary"):
+                    bs = prof.get("business_source") or ""
+                    if (sym.endswith(".TW") or sym.endswith(".TWO")) and bs in ("tw_yahoo_profile", "mops_t05st03", "ic.tpex.org.tw"):
+                        cached_tw_biz[sym.split(".")[0]] = {"text": prof["summary"], "source": bs}
+                    elif bs == "zh.wikipedia.org":
+                        cached_us_wiki[sym] = prof["summary"]
         except Exception:
             pass
-    return old_assets, cached_tw_biz
+    return old_assets, cached_tw_biz, cached_us_wiki
 
 # 1. 官方月營收 OpenAPI (上市 + 上櫃)
 def fetch_official_tw_monthly_revenues():
@@ -264,7 +353,7 @@ def fetch_official_mops_material_news():
             pass
     return mops_by_code, mops_general
 
-# 2.5 上市櫃公司官方基本資料 OpenAPI + 產業價值鏈資訊平台 (ic.tpex.org.tw) 官方「主要經營業務」
+# 2.5 上市櫃公司官方基本資料 OpenAPI + 3 通道繁體中文「主要經營業務」+ 美股維基百科繁中首段
 def fetch_official_tw_company_profiles():
     prof_map = {}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -311,89 +400,200 @@ def fetch_official_tw_company_profiles():
         pass
     return prof_map
 
-def fetch_ic_tpex_main_business(code, debug=False):
+def _strip_html_to_text(raw_html):
+    cleaned = re.sub(r'(?is)<(script|style).*?>.*?</\1>', ' ', raw_html)
+    cleaned = re.sub(r'(?i)<(br|/p|/div|/tr|/td|/th|/li|/span)[^>]*>', '\n', cleaned)
+    cleaned = html_lib.unescape(re.sub(r'<[^>]+>', ' ', cleaned))
+    cleaned = re.sub(r'[ \t\r\f\v]+', ' ', cleaned)
+    return re.sub(r'\n+', '\n', cleaned).strip()
+
+def fetch_tw_main_business_3channels(code, sym, debug=False):
+    ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    # 通道 1：Yahoo 奇摩股市基本資料頁 (同步證交所/櫃買中心「主要經營業務」，海外 IP 最穩)
     try:
-        r = requests.get(
-            f"https://ic.tpex.org.tw/company_basic.php?stk_code={code}",
-            headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"},
+        r_y = requests.get(
+            f"https://tw.stock.yahoo.com/quote/{sym}/profile",
+            headers={"User-Agent": ua, "Accept-Language": "zh-TW,zh;q=0.9"},
+            timeout=10
+        )
+        if debug:
+            print(f"[TW Biz Debug] {code} YahooProfile HTTP={r_y.status_code} bytes={len(r_y.content)}")
+        if r_y.status_code == 200:
+            raw = r_y.text
+            # 1a. 先從內嵌 JSON 抓 mainBusiness / businessDescription
+            for pat in [r'"mainBusiness"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"', r'"主要經營業務"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"']:
+                mj = re.search(pat, raw)
+                if mj:
+                    val = bytes(mj.group(1), "utf-8").decode("unicode_escape", errors="ignore")
+                    val = re.sub(r'\s+', ' ', html_lib.unescape(val)).strip()
+                    if len(val) >= 8:
+                        if debug:
+                            print(f"[TW Biz Debug] {code} YahooJSON extracted({len(val)} chars): {val[:35]}...")
+                        return to_trad(val), "tw_yahoo_profile"
+            # 1b. 再從純文字區塊擷取「主要經營業務」
+            plain = _strip_html_to_text(raw)
+            m_txt = re.search(r'主要經營業務\s*\n\s*([^\n]{8,600})', plain)
+            if m_txt:
+                cand = m_txt.group(1).strip()
+                if not any(bad in cand for bad in ["公司名稱", "英文簡稱", "成立時間", "上市日期", "上櫃日期"]):
+                    if debug:
+                        print(f"[TW Biz Debug] {code} YahooHTML extracted({len(cand)} chars): {cand[:35]}...")
+                    return to_trad(cand), "tw_yahoo_profile"
+    except Exception as e:
+        if debug:
+            print(f"[TW Biz Debug] {code} YahooProfile err: {e}")
+
+    # 通道 2：公開資訊觀測站 (mopsov.twse.com.tw/mops/web/ajax_t05st03)
+    try:
+        r_m = requests.post(
+            "https://mopsov.twse.com.tw/mops/web/ajax_t05st03",
+            data={
+                "encodeURIComponent": "1", "step": "1", "firstin": "1", "off": "1",
+                "queryName": "co_id", "inpuType": "co_id", "TYPEK": "all", "co_id": code
+            },
+            headers={"User-Agent": ua, "Referer": "https://mopsov.twse.com.tw/mops/web/t05st03"},
             timeout=10,
             verify=False
         )
         if debug:
-            print(f"[TW Biz Debug] {code} HTTP={r.status_code} bytes={len(r.content)}")
-        if r.status_code != 200:
-            return ""
-        r.encoding = "utf-8"
-        raw_html = r.text
-
-        # 方法 1：不依賴 <table> 結構，去標籤後依官方版面順序擷取「主要經營業務」至「財務報表」區段
-        cleaned = re.sub(r'(?is)<(script|style).*?>.*?</\1>', ' ', raw_html)
-        cleaned = re.sub(r'(?i)<(br|/p|/div|/tr|/td|/th|/li)[^>]*>', '\n', cleaned)
-        cleaned = html_lib.unescape(re.sub(r'<[^>]+>', ' ', cleaned))
-        plain = re.sub(r'[ \t\r\f\v]+', ' ', cleaned)
-        plain = re.sub(r'\n+', ' ', plain).strip()
-
-        m = re.search(r'主要經營業務\s*(.+?)\s*(?:財務報表|現金流量表|資產負債表|最近期財務報告|交易資訊)', plain)
-        if m:
-            seg = m.group(1).strip()
-            m_date = re.search(r'\d{4}-\d{2}-\d{2}\s*(.+)$', seg)
-            if m_date:
-                seg = m_date.group(1).strip()
-            else:
-                seg = re.sub(r'^(?:上市|上櫃|興櫃)\s+\S+\s+', '', seg).strip()
-            if len(seg) >= 6:
-                if debug:
-                    print(f"[TW Biz Debug] {code} extracted({len(seg)} chars): {seg[:40]}...")
-                return to_trad(seg)
-
-        # 方法 2（備援）：表格結構解析
-        parser = SimpleTableParser()
-        parser.feed(raw_html)
-        rows = parser.rows
-        for r_idx, row in enumerate(rows):
-            for c_idx, cell in enumerate(row):
-                if "主要經營業務" in cell:
-                    if r_idx + 1 < len(rows) and c_idx < len(rows[r_idx + 1]):
-                        cand = rows[r_idx + 1][c_idx].strip()
-                        if len(cand) >= 6 and "市場別" not in cand and "主要經營業務" not in cand:
-                            return to_trad(cand)
-                    if c_idx + 1 < len(row):
-                        cand = row[c_idx + 1].strip()
-                        if len(cand) >= 6 and "市場別" not in cand:
-                            return to_trad(cand)
+            print(f"[TW Biz Debug] {code} MOPS_t05st03 HTTP={r_m.status_code} bytes={len(r_m.content)}")
+        if r_m.status_code == 200:
+            r_m.encoding = "utf-8"
+            parser = SimpleTableParser()
+            parser.feed(r_m.text)
+            for row in parser.rows:
+                for i, cell in enumerate(row):
+                    if "主要經營業務" in cell and i + 1 < len(row):
+                        cand = row[i + 1].strip()
+                        if len(cand) >= 6:
+                            if debug:
+                                print(f"[TW Biz Debug] {code} MOPS extracted({len(cand)} chars): {cand[:35]}...")
+                            return to_trad(cand), "mops_t05st03"
     except Exception as e:
         if debug:
-            print(f"[TW Biz Debug] {code} error: {e}")
-    return ""
+            print(f"[TW Biz Debug] {code} MOPS err: {e}")
 
-def enrich_tw_official_main_business(target_tw_codes, cached_tw_biz, max_fetch=250):
-    # 自動淘汰先前可能誤抓到的過短殘缺字串 (< 15 字)
+    # 通道 3：產業價值鏈資訊平台 (ic.tpex.org.tw)
+    try:
+        r_ic = requests.get(
+            f"https://ic.tpex.org.tw/company_basic.php?stk_code={code}",
+            headers={"User-Agent": ua},
+            timeout=10,
+            verify=False
+        )
+        if r_ic.status_code == 200:
+            r_ic.encoding = r_ic.apparent_encoding or "utf-8"
+            plain = re.sub(r'\n+', ' ', _strip_html_to_text(r_ic.text))
+            m_ic = re.search(r'主要經營業務\s*(.+?)\s*(?:財務報表|現金流量表|資產負債表|最近期財務報告)', plain)
+            if m_ic:
+                seg = m_ic.group(1).strip()
+                m_d = re.search(r'\d{4}-\d{2}-\d{2}\s*(.+)$', seg)
+                if m_d:
+                    seg = m_d.group(1).strip()
+                if len(seg) >= 8:
+                    return to_trad(seg), "ic.tpex.org.tw"
+    except Exception:
+        pass
+
+    return "", ""
+
+def enrich_tw_official_main_business(tw_sym_list, cached_tw_biz, max_fetch=220):
+    code_to_sym = {}
+    for sym in tw_sym_list:
+        if sym and (sym.endswith(".TW") or sym.endswith(".TWO")):
+            code = sym.split(".")[0]
+            if code not in code_to_sym:
+                code_to_sym[code] = sym
+
     for k in list(cached_tw_biz.keys()):
-        if len(str(cached_tw_biz.get(k) or "").strip()) < 15:
+        val = cached_tw_biz.get(k)
+        txt = val.get("text") if isinstance(val, dict) else str(val or "")
+        if len(txt.strip()) < 10:
             cached_tw_biz.pop(k, None)
 
-    missing = [c for c in dict.fromkeys(target_tw_codes) if c and c not in cached_tw_biz][:max_fetch]
+    missing = [(c, s) for c, s in code_to_sym.items() if c not in cached_tw_biz][:max_fetch]
     if not missing:
         return cached_tw_biz
 
-    first_code = missing[0]
-    first_biz = fetch_ic_tpex_main_business(first_code, debug=True)
-    if first_biz:
-        cached_tw_biz[first_code] = first_biz
+    c0, s0 = missing[0]
+    txt0, src0 = fetch_tw_main_business_3channels(c0, s0, debug=True)
+    if txt0:
+        cached_tw_biz[c0] = {"text": txt0, "source": src0}
 
     rest = missing[1:]
     if rest:
-        with ThreadPoolExecutor(max_workers=5) as ex:
-            futs = {ex.submit(fetch_ic_tpex_main_business, c, False): c for c in rest}
+        with ThreadPoolExecutor(max_workers=6) as ex:
+            futs = {ex.submit(fetch_tw_main_business_3channels, c, s, False): c for c, s in rest}
             for fut in as_completed(futs):
                 code = futs[fut]
                 try:
-                    biz = fut.result()
-                    if biz:
-                        cached_tw_biz[code] = biz
+                    txt, src = fut.result()
+                    if txt:
+                        cached_tw_biz[code] = {"text": txt, "source": src}
                 except Exception:
                     pass
     return cached_tw_biz
+
+US_WIKI_TITLES = {
+    "NVDA": "輝達", "AMD": "超微半導體", "GOOGL": "Alphabet", "META": "Meta_Platforms",
+    "TSLA": "特斯拉", "AVGO": "博通公司", "AMZN": "亞馬遜公司", "AAPL": "蘋果公司",
+    "MSFT": "微軟", "INTC": "英特爾", "QCOM": "高通", "MU": "美光科技",
+    "ASML": "艾司摩爾", "AMAT": "應用材料", "LRCX": "泛林集團", "KLAC": "科磊",
+    "ARM": "安謀控股", "NFLX": "Netflix", "ORCL": "甲骨文公司", "CRM": "Salesforce",
+    "PLTR": "Palantir_Technologies", "SMCI": "美超微電腦", "DELL": "戴爾科技",
+    "ANET": "Arista_Networks", "MRVL": "邁威爾科技", "TXN": "德州儀器",
+    "ADI": "亞德諾半導體", "SNPS": "新思科技", "CDNS": "益華電腦", "VRT": "Vertiv",
+    "ETN": "伊頓公司", "GEV": "GE_Vernova", "JPM": "摩根大通", "BRK-B": "波克夏·海瑟威",
+    "LLY": "禮來公司", "UNH": "聯合健康集團", "V": "Visa", "MA": "萬事達卡",
+    "WMT": "沃爾瑪", "COST": "好市多", "XOM": "埃克森美孚", "CVX": "雪佛龍",
+    "LMT": "洛克希德·馬丁", "RTX": "RTX公司", "BA": "波音"
+}
+
+def fetch_zh_wiki_intro(title_or_query):
+    if not title_or_query:
+        return ""
+    headers = {"User-Agent": "MarketDashboardBot/1.0 (https://leo555g.github.io/market2/)"}
+    try:
+        r = requests.get(
+            "https://zh.wikipedia.org/w/api.php",
+            params={
+                "action": "query", "prop": "extracts", "exintro": "1", "explaintext": "1",
+                "exsentences": "3", "redirects": "1", "variant": "zh-tw", "format": "json",
+                "titles": title_or_query
+            },
+            headers=headers,
+            timeout=6
+        )
+        if r.status_code == 200:
+            pages = ((r.json().get("query") or {}).get("pages")) or {}
+            for pid, pinfo in pages.items():
+                if str(pid) != "-1":
+                    ext = re.sub(r'\s+', ' ', str(pinfo.get("extract") or "")).strip()
+                    if len(ext) >= 20:
+                        return to_trad(ext)
+    except Exception:
+        pass
+    return ""
+
+def enrich_us_zh_wiki_summaries(us_sym_list, us_prof_meta, cached_us_wiki, max_fetch=35):
+    fetched = 0
+    for sym in dict.fromkeys(us_sym_list):
+        if sym in ADR_TO_TW_MAP or sym in DELISTED_BLACKLIST or sym in cached_us_wiki:
+            continue
+        if fetched >= max_fetch:
+            break
+        title = US_WIKI_TITLES.get(sym)
+        if not title:
+            full_n = (us_prof_meta.get(sym) or {}).get("full_name") or ""
+            clean_n = re.sub(r'\b(Inc\.?|Corp\.?|Corporation|Ltd\.?|Limited|PLC|N\.V\.|Holdings?|Group|Company|Co\.?)\b', '', full_n, flags=re.I).strip(" ,.")
+            title = clean_n
+        if title:
+            intro = fetch_zh_wiki_intro(title)
+            if intro:
+                cached_us_wiki[sym] = intro
+            fetched += 1
+            time.sleep(0.1)
+    return cached_us_wiki
 
 # 3. Google News RSS
 def fetch_google_news_rss_for_stock(query_str, max_items=3):
@@ -740,8 +940,8 @@ def fetch_tradingview_taiwan_full_market():
                             tv_mcap_map[code] = round(mcap, 0)
                         tv_prof_meta[code] = {
                             "description": to_trad(d[14]) if len(d) > 14 and d[14] else "",
-                            "sector": to_trad(d[15]) if len(d) > 15 and d[15] else "",
-                            "industry": to_trad(d[16]) if len(d) > 16 and d[16] else ""
+                            "sector": translate_sector_label(d[15]) if len(d) > 15 and d[15] else "",
+                            "industry": translate_sector_label(d[16]) if len(d) > 16 and d[16] else ""
                         }
     except Exception:
         pass
@@ -770,8 +970,8 @@ def fetch_tradingview_us_fundamentals(us_sym_list):
                         us_mcap_map[sym] = round(mcap, 0)
                     us_prof_meta[sym] = {
                         "full_name": str(d[14] or "").strip() if len(d) > 14 else "",
-                        "sector": to_trad(d[15]) if len(d) > 15 and d[15] else "",
-                        "industry": to_trad(d[16]) if len(d) > 16 and d[16] else ""
+                        "sector": translate_sector_label(d[15]) if len(d) > 15 and d[15] else "",
+                        "industry": translate_sector_label(d[16]) if len(d) > 16 and d[16] else ""
                     }
     except Exception:
         pass
@@ -918,7 +1118,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    # 核心指數、美債、外匯與期貨單檔重試防漏機制（特別保障 ^KS11、^N225 與歐股指數）
+    # 核心指數、美債、外匯與期貨單檔重試防漏機制（保障 ^KS11、^N225 與歐股指數）
     core_priority = [s for s in list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) + list(FUTURES_AND_COMMODITIES.keys()) if s not in skip_set]
     for sym in core_priority:
         if sym in yf_map and safe_float(yf_map[sym].get("price"), 0.0) > 0:
@@ -985,7 +1185,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    # 自動計算農產品「未到期近月合約 (大字)」與「次月芝商所合約 (小字)」(零寫死日期)
     agri_schedules = {
         "ZS=F": ("ZS", [(1, "F"), (3, "H"), (5, "K"), (7, "N"), (8, "Q"), (9, "U"), (11, "X")]),
         "ZW=F": ("ZW", [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")]),
@@ -1035,7 +1234,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
 def fetch_official_us2y_and_taifex_vixtwn_and_txf():
     extra = {}
     us2y_pts = []
-    # 來源 1：美國財政部官方每日殖利率曲線 CSV (跨年度抓齊 1 年歷史)
     for yr in (now_tw.year - 1, now_tw.year):
         try:
             u_tr = f"https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/{yr}/all?type=daily_treasury_yield_curve&field_tdr_date_value={yr}&page&_format=csv"
@@ -1057,7 +1255,6 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
     if us2y_pts:
         us2y_pts = sorted({p["date"]: p for p in us2y_pts}.values(), key=lambda x: x["date"])[-260:]
 
-    # 來源 2（備援）：FRED DGS2
     if len(us2y_pts) < 2:
         try:
             r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
@@ -1080,7 +1277,6 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
             "history": us2y_pts, "ext_session": None
         }
 
-    # 來源 3（盤中即時加值層）：CNBC US2Y
     try:
         r_cnbc = requests.get(
             "https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=US2Y&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json",
@@ -1124,7 +1320,6 @@ def fetch_official_us2y_and_taifex_vixtwn_and_txf():
         except Exception:
             pass
 
-    # 動態推算期交所當月與次月台指期合約代碼 (零寫死合約月份)
     taifex_m_codes = "ABCDEFGHIJKL"
     txf_day_ids, txf_night_ids = ["TXF-S"], ["TXF-M"]
     for m_off in (0, 1, 2):
@@ -1185,7 +1380,9 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
             sector_stocks_map.setdefault(sec_id, [])
             for m in triple_pat.finditer(blk):
                 sym, name, role = m.group(1).strip(), m.group(2).strip(), m.group(3).strip()
-                if sym in DELISTED_BLACKLIST:
+                if sym in DELISTED_BLACKLIST or len(sym) > 10:
+                    continue
+                if not (sym.endswith(".TW") or sym.endswith(".TWO")) and len(sym) > 5 and "-" not in sym:
                     continue
                 items_map[sym] = {"symbol": sym, "name": to_trad(name), "role": to_trad(role)}
                 if sym not in sector_stocks_map[sec_id]:
@@ -1236,7 +1433,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -1274,7 +1471,6 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
                 else:
                     hist[-1]["close"] = p_val
 
-    # 若當次抓取失敗 (p_val <= 0)，自動沿用前一份 market_data.json 有效報價與歷史資料，避免變回「同步中...」
     if p_val <= 0 and symbol in old_assets:
         oa = old_assets[symbol]
         p_val = oa["price"]
@@ -1294,39 +1490,47 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
         "monthly_rev": rev_map.get(tw_code) if tw_code else None
     }
 
-    # 公司簡介：台股採用官方 t187ap03 + ic.tpex.org.tw「主要經營業務」（零機翻）；美股採純淨版（零機翻）
     profile_obj = None
     if asset_type in ["us_stock", "tw_stock"]:
-        if tw_code:
-            off_p = tw_prof_official.get(tw_code) or {}
-            tv_pm = (tw_official.get("prof_meta") or {}).get(tw_code) or {}
-            biz_text = cached_tw_biz.get(tw_code) or ""
+        mapped_tw_code = tw_code or ADR_TO_TW_MAP.get(symbol)
+        if mapped_tw_code:
+            off_p = tw_prof_official.get(mapped_tw_code) or {}
+            tv_pm = (tw_official.get("prof_meta") or {}).get(mapped_tw_code) or (us_prof_meta.get(symbol) or {})
+            biz_entry = cached_tw_biz.get(mapped_tw_code) or {}
+            biz_text = biz_entry.get("text") if isinstance(biz_entry, dict) else str(biz_entry or "")
+            biz_src_key = biz_entry.get("source") if isinstance(biz_entry, dict) else ""
+            src_label_map = {
+                "tw_yahoo_profile": "Yahoo 奇摩股市 (同步證交所/櫃買中心)",
+                "mops_t05st03": "公開資訊觀測站 (MOPS)",
+                "ic.tpex.org.tw": "產業價值鏈資訊平台 (ic.tpex.org.tw)"
+            }
             src_parts = [off_p.get("source") or "TradingView"]
-            if biz_text:
-                src_parts.append("產業價值鏈資訊平台 (ic.tpex.org.tw)")
+            if biz_src_key in src_label_map:
+                src_parts.append(src_label_map[biz_src_key])
             profile_obj = {
-                "full_name": off_p.get("full_name") or tv_pm.get("description") or to_trad(display_name),
-                "sector": tv_pm.get("sector") or "",
-                "industry": tv_pm.get("industry") or "",
+                "full_name": off_p.get("full_name") or tv_pm.get("description") or tv_pm.get("full_name") or to_trad(display_name),
+                "sector": translate_sector_label(tv_pm.get("sector") or ""),
+                "industry": translate_sector_label(tv_pm.get("industry") or ""),
                 "chairman": off_p.get("chairman") or "",
                 "gm": off_p.get("gm") or "",
                 "spokesman": off_p.get("spokesman") or "",
                 "tax_id": off_p.get("tax_id") or "",
                 "website": off_p.get("website") or "",
                 "summary": biz_text,
-                "business_source": "ic.tpex.org.tw" if biz_text else "",
+                "business_source": biz_src_key,
                 "source": " / ".join(src_parts)
             }
         else:
             us_pm = us_prof_meta.get(symbol) or {}
+            wiki_txt = cached_us_wiki.get(symbol) or ""
             profile_obj = {
                 "full_name": us_pm.get("full_name") or symbol,
-                "sector": us_pm.get("sector") or "",
-                "industry": us_pm.get("industry") or "",
+                "sector": translate_sector_label(us_pm.get("sector") or ""),
+                "industry": translate_sector_label(us_pm.get("industry") or ""),
                 "website": "",
-                "summary": "",
-                "business_source": "",
-                "source": "TradingView"
+                "summary": wiki_txt,
+                "business_source": "zh.wikipedia.org" if wiki_txt else "",
+                "source": "TradingView / 維基百科 (繁體中文)" if wiki_txt else "TradingView"
             }
 
     ns_obj = build_stock_specific_sentiment_and_news(symbol, to_trad(display_name), f_dict, mops_by_code, fetch_rss=fetch_rss) if asset_type in ["us_stock", "tw_stock"] else None
@@ -1342,7 +1546,7 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
 def main():
     t0 = time.time()
     os.makedirs("data", exist_ok=True)
-    old_assets, cached_tw_biz = load_previous_cache()
+    old_assets, cached_tw_biz, cached_us_wiki = load_previous_cache()
 
     payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
@@ -1355,17 +1559,19 @@ def main():
     try:
         sc_items_map, _ = parse_sectors_and_symbols_from_js("supply_chain_db.js")
         all_us_eq = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
-        all_tw_codes = list(TW_STOCKS.keys()) + [s.split(".")[0] for s in sc_items_map.keys() if (s.endswith(".TW") or s.endswith(".TWO"))]
+        all_tw_syms = [m["ticker"] for m in TW_STOCKS.values()] + [s for s in sc_items_map.keys() if (s.endswith(".TW") or s.endswith(".TWO"))]
 
         rev_map = fetch_official_tw_monthly_revenues()
         mops_by_code, mops_general = fetch_official_mops_material_news()
         payload["mops_general"] = mops_general
 
         tw_prof_official = fetch_official_tw_company_profiles()
-        cached_tw_biz = enrich_tw_official_main_business(all_tw_codes, cached_tw_biz, max_fetch=250)
+        cached_tw_biz = enrich_tw_official_main_business(all_tw_syms, cached_tw_biz, max_fetch=220)
 
         tw_official = fetch_tw_official_all_channels()
         us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
+        cached_us_wiki = enrich_us_zh_wiki_summaries(list(US_STOCKS) + all_us_eq, us_prof_meta, cached_us_wiki, max_fetch=35)
+
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
 
         all_required_syms = (
@@ -1389,7 +1595,7 @@ def main():
             if sym not in built_cache:
                 built_cache[sym] = build_asset_object(
                     sym, name, a_type, f_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map,
-                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz,
+                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki,
                     fetch_rss=(sym in core_rss_set)
                 )
             cp = dict(built_cache[sym])
@@ -1419,7 +1625,7 @@ def main():
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
         json.dump(clean_json_nans(payload), f, ensure_ascii=False, indent=2, allow_nan=False)
-    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached official TW biz: {len(cached_tw_biz)}")
+    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached TW biz: {len(cached_tw_biz)}, US wiki: {len(cached_us_wiki)}")
 
 if __name__ == "__main__":
     main()
