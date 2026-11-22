@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-22 22:54:42 CST",
+  "last_updated": "2026-11-22 23:12:41 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -39883,7 +39883,7 @@
         "price": 130.01,
         "change": 4.48,
         "change_pct": 3.57,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -39897,7 +39897,7 @@
         },
         {
           "date": "2025-11-25",
-          "close": 177.39
+          "close": 177.4
         },
         {
           "date": "2025-11-26",
@@ -40999,7 +40999,7 @@
         "price": 328.6,
         "change": 9.89,
         "change_pct": 3.1,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -42115,7 +42115,7 @@
         "price": 129.55,
         "change": 1.76,
         "change_pct": 1.38,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -42679,7 +42679,7 @@
         "price": 439.39,
         "change": 15.0,
         "change_pct": 3.53,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -43795,7 +43795,7 @@
         "price": 270.18,
         "change": 4.89,
         "change_pct": 1.84,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -44916,7 +44916,7 @@
         "price": 567.5,
         "change": 6.66,
         "change_pct": 1.19,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -46032,7 +46032,7 @@
         "price": 351.08,
         "change": 5.26,
         "change_pct": 1.52,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -47069,9 +47069,9 @@
             "date": "SEC Filings / Yahoo Finance (TSLA)"
           },
           {
-            "title": "TSLA Stock Climbs Amid Reports Of SpaceX Tie-Up As Early As December - TradingView",
-            "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOc01DbjN2MTMwVmM4dWdET0pPU1JjUnNxdmtQaXpTT0k1dHhDNUVHc3VHcTBQVnZ0NDBKeWhQdzNrVG5PSVFCVE01X1BfLWRDejlRYVpMdEhMRVVXdjFUZTVZZGppNFNnZ3NiVFQzVU9LQXV5aE1vdkVCbWtGdmV3RDJVUENEc3k5VFFpMzlaak03YlJLSHRBQV9ONEkzeWwxbGt2dUZFVVg3aWpOdFFnQ1BoTG9TNWxua3Y2VjVqSUNsNDhWRjZB?oc=5",
-            "date": "TradingView・Thu, 12 Nov 2026"
+            "title": "Tesla’s Robotaxi Push Gets Wall Street Cheer — Barclays Sees 20% Upside Potential In TSLA Stock - TradingView",
+            "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPZ3hDb2tiZ3M3SXYweVRjOFV1d3Uxb1lObTNnMkhlaTFualM1Z3pMMHZXdGN3d2ZNRDFHbVJldXNSQklvUm5LZEM4RThmdXcyVlpQVENQaFQ2RS03YWJJSFBpMllhaUQ0YS1fMGtQVVFlb2pycldCVjdsazkxa3BhUVlwcHJZOVQxWkJfZ0tOLXpJR3g3Vkk1dzlxM1lFa0syTzd0bTR2ekFFRG9FbHZkemhqY1pHbXYzR2Y5c2haQWR3ZVMwLUpmZWN0Zl8wdk9uU01RRENkdGhicmtCWWpyelUybWdoN3kzd3g0X09rYTRZOXBJOVQxQjIxV3lVc0FY?oc=5",
+            "date": "TradingView・Tue, 17 Nov 2026"
           }
         ],
         "bearish": [
@@ -47081,9 +47081,9 @@
             "date": "SEC Filings / Yahoo Finance (TSLA)"
           },
           {
-            "title": "【00:42 即時新聞】Tesla(TSLA) 跌5%：AI 信用風險升溫、AI 股重挫拖累馬斯克版圖 - 美股放大鏡",
-            "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPUHN4dGtQdm1hbTBoYlV0UWc0N2ZpalQ2eXN6Nm5lWV9WU3J2X3VWRHRfdVFzVndhQkw2RVE0TXA4bEZBc0p5c0wxdzN6SFVySmFMZVIwRGh0cGUxaXJzNmZ0UTBCRzRMak9hdFFJdGs1V3BPSVF1QkZycnhSdDJqcHNDaUxOWHVtT0haMFdueDFSd3Jr?oc=5",
-            "date": "美股放大鏡・Fri, 20 Nov 2026"
+            "title": "🔗 檢視「TSLA (TSLA)」最新風險與法人籌碼報導",
+            "url": "https://news.google.com/search?q=TSLA&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
+            "date": "Google News"
           }
         ],
         "categories": {
@@ -47108,9 +47108,9 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "TSLA Stock Climbs Amid Reports Of SpaceX Tie-Up As Early As December - TradingView",
-                "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOc01DbjN2MTMwVmM4dWdET0pPU1JjUnNxdmtQaXpTT0k1dHhDNUVHc3VHcTBQVnZ0NDBKeWhQdzNrVG5PSVFCVE01X1BfLWRDejlRYVpMdEhMRVVXdjFUZTVZZGppNFNnZ3NiVFQzVU9LQXV5aE1vdkVCbWtGdmV3RDJVUENEc3k5VFFpMzlaak03YlJLSHRBQV9ONEkzeWwxbGt2dUZFVVg3aWpOdFFnQ1BoTG9TNWxua3Y2VjVqSUNsNDhWRjZB?oc=5",
-                "date": "TradingView・Thu, 12 Nov 2026"
+                "title": "Tesla’s Robotaxi Push Gets Wall Street Cheer — Barclays Sees 20% Upside Potential In TSLA Stock - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPZ3hDb2tiZ3M3SXYweVRjOFV1d3Uxb1lObTNnMkhlaTFualM1Z3pMMHZXdGN3d2ZNRDFHbVJldXNSQklvUm5LZEM4RThmdXcyVlpQVENQaFQ2RS03YWJJSFBpMllhaUQ0YS1fMGtQVVFlb2pycldCVjdsazkxa3BhUVlwcHJZOVQxWkJfZ0tOLXpJR3g3Vkk1dzlxM1lFa0syTzd0bTR2ekFFRG9FbHZkemhqY1pHbXYzR2Y5c2haQWR3ZVMwLUpmZWN0Zl8wdk9uU01RRENkdGhicmtCWWpyelUybWdoN3kzd3g0X09rYTRZOXBJOVQxQjIxV3lVc0FY?oc=5",
+                "date": "TradingView・Tue, 17 Nov 2026"
               },
               {
                 "title": "Tesla (TSLA) Stock Price, News, Quotes, Financial Reports - Moomoo",
@@ -47118,16 +47118,21 @@
                 "date": "Moomoo・Wed, 18 Nov 2026"
               },
               {
-                "title": "大摩看好特斯拉(TSLA.US) Cybercab開放個人購買：訂閱模式有望開闢自動駕駛第二變現路徑作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE84QzNzajhCMVNpWWs4T01yOGRuLVZIWW1md25jV01xeUZpaHlPalR6ak9QY2FfUGMwZEJwQ3A4UFVMRENNU2VHM19RbFVWbTVsODI5T3V1UGhxNzZRZHVvSUNJX3dyMEtPcnpjSEhJSF8?oc=5",
-                "date": "Investing.com 香港 - 股市報價& 財經新聞・Tue, 17 Nov 2026"
+                "title": "Gary Black Warns SpaceX-Tesla Merger Could Wipe Out 24% Premium in Weeks: 'Massive Dilution' Could Crush Shares - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQc1FFUkhWUWcwcU45R21EWW5CV3JrekJ6dW04SlIySllXUVVPbHY4bkJWWXUxdHBnc3VnbFMwdFYyMEJTU29NSnc0bUNxdjU1Wkx1S0N5eHNFa2U2d2xpVEpmaXdfUWxkRTZaUVBVTm41aU5sTWZWaUtsdktKM09MWGhWSFlKaWdibXU4M0o1d3M4UldjWE1KYmJ5NzQ5NWxNeEJRNmhSUjFkclFpZXE1a0tTSlktM0MtRXdQb2hXdEdJVlR6al8wdlZweXJTRTk5UC1HUi1wdURvQUNvTmZ0ZV9wbzlDcXJaaUZUVW5TOXo4UHI0SURSZw?oc=5",
+                "date": "TradingView・Fri, 20 Nov 2026"
+              },
+              {
+                "title": "TSLA 特斯拉- Analyst Drops Stark Tesla Stock Price Target - 股市爆料同學會 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE85WXVqRlZDVVpfVHBiUkppWHFoTHJoTV8zamZYdGFuOVlqeUwwdmFORWhMM3U3Nks0S1NFekF2czlHUmVwQUxvTm5XTHduWDFWam83MDk0NXI?oc=5",
+                "date": "CMoney・Tue, 18 Aug 2026"
               }
             ],
             "bearish": [
               {
-                "title": "【00:42 即時新聞】Tesla(TSLA) 跌5%：AI 信用風險升溫、AI 股重挫拖累馬斯克版圖 - 美股放大鏡",
-                "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPUHN4dGtQdm1hbTBoYlV0UWc0N2ZpalQ2eXN6Nm5lWV9WU3J2X3VWRHRfdVFzVndhQkw2RVE0TXA4bEZBc0p5c0wxdzN6SFVySmFMZVIwRGh0cGUxaXJzNmZ0UTBCRzRMak9hdFFJdGs1V3BPSVF1QkZycnhSdDJqcHNDaUxOWHVtT0haMFdueDFSd3Jr?oc=5",
-                "date": "美股放大鏡・Fri, 20 Nov 2026"
+                "title": "🔗 檢視「TSLA (TSLA)」最新風險與法人籌碼報導",
+                "url": "https://news.google.com/search?q=TSLA&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
+                "date": "Google News"
               }
             ]
           }
@@ -47148,7 +47153,7 @@
         "price": 311.51,
         "change": 7.1,
         "change_pct": 2.33,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -48264,7 +48269,7 @@
         "price": 251.0,
         "change": 4.18,
         "change_pct": 1.69,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -49380,7 +49385,7 @@
         "price": 344.87,
         "change": 2.31,
         "change_pct": 0.67,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -50501,7 +50506,7 @@
         "price": 489.49,
         "change": 4.97,
         "change_pct": 1.03,
-        "label": "盤前"
+        "label": "盤後"
       },
       "intraday": [],
       "history": [
@@ -51592,8 +51597,8 @@
                 "date": "TradingView・Fri, 26 Jun 2026"
               },
               {
-                "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
+                "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
                 "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
               }
             ],
@@ -53787,9 +53792,9 @@
                 "date": "CMoney・Fri, 20 Nov 2026"
               },
               {
-                "title": "大摩：聯發科可望贏得新 TPU 專案 重申目標價6,188元 - UDN",
-                "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBxaUJSN1ZuUUlwdHc0cWxZX0dMVlFiaDN6TDliYmc5U21MbHhpcVp6LW5DM0Eyd19WRHc1Y3F1NHVHWHg0dmR5ZTNHSEFkMDQ30gFWQVVfeXFMTTQyMWlNb1hKcUwyMnNxaVdySDJDWmx6cUVCVndZM1ZnZEJhbGNzVXBON1B1aGdWeVJzWTFTZWtaR0xtNU1Ca05KbUx1cU05ZnFpRjRkOFE?oc=5",
-                "date": "UDN・Sun, 22 Nov 2026"
+                "title": "大摩：聯發科可望贏得新 TPU 專案 重申目標價6,188元 | 市場焦點 | 證券 - 經濟日報",
+                "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1PcHlTdzh6anl4M3JuWktid1pQT1BKQTNIV2YwYkYxTGlHb3ZQdHZRZnItZ1lsVVBmT0JvY05zcmJHSjdzc0FXbDQzS0RZT3ptaXRFY1pjOXVhQQ?oc=5",
+                "date": "經濟日報・Sun, 22 Nov 2026"
               }
             ],
             "bearish": [
@@ -54835,8 +54840,8 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
-            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+            "title": "2308 台達電 - 負32% 報到 - 股市爆料同學會 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9lM0t2Y1JfbmVtMnJfZkk5Qkh4QTdJM1BWVE1hTUhSTkowcjB3SzI4UHJJcnpxcVVwLW5iSUtweGVGOGRiRlV1Z1pfa0VFY1lWYkVja2pWUko?oc=5",
             "date": "CMoney・Sun, 22 Nov 2026"
           }
         ],
@@ -54847,9 +54852,9 @@
             "date": "MOPS 財務報表 / TradingView"
           },
           {
-            "title": "台達電跌到900元！ 大摩「超狂目標價」曝光 2王牌還沒發酵 - Yahoo股市",
-            "url": "https://news.google.com/rss/articles/CBMi4gJBVV95cUxNNnk0dkNEQTBhNFJFeXlqOHF0RFhSWUlqLXAydnplVndvcUJXWDhNUG96OGRNZXZWZUlwcWVvOTcwcEYzNTZQeC16Y252Z05PNDV6aFRqdERjNVJKdUR1d3ZfdC1yZVNXa3JxTE42T20tNmgzNkU3WUktTGlsWkdzTnFlUVBUWjU3Q2RJSVhPZnlxTHJoUkxCOE5TOWlYZGdXV09GWXQ5ZjJ6YVdFWXR2QjU1Wlpna0Fta0ltWF84UUZQY1k1UXFJMHh3SDdNa0VrUDBXejF2eDIxaGQwc1Y5cUdCYW9Tci1GQ21mYURZeHJzWUZwdmdfdmRvVGdicGFNLTY4VHliVkY2ZG1KcS1UQXloQ3NFWWRPazlkSEktUmNENWF1dFpjQ2JaR1dwSUVqcGhrWldmMnBYemZMaHM4Z1M5SkNDck9mS2ZXTFNjTldqeVJ2RWo0V3EwM25Da2RlUmc?oc=5",
-            "date": "Yahoo股市・Fri, 20 Nov 2026"
+            "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由財經",
+            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBZSnluRllGLUxRaEw1NWtzMjJ3N2s4VllMT0ZqQ3pSdzBzMHpSSzU5MTFwVjBPQWpUQ2kyTlJtYnc3ZjMyeWRhN2FDcFhLYlFVTHduNm9XZDdnOHZzRE5F0gFkQVVfeXFMTjU1blhTcVliZ1FlbjN4aHltbU5BRkY0TUZaSXlrejB3V2FjVUhHUXMyM1g3ZmJHeTN3TFpDU3czZzdnVDY3SldvX2hJR2ZTZWtUVGREWUs4RVlmTkM4a2M3WjljbQ?oc=5",
+            "date": "自由財經・Sun, 22 Nov 2026"
           }
         ],
         "categories": {
@@ -54879,12 +54884,17 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                "title": "2308 台達電 - 負32% 報到 - 股市爆料同學會 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9lM0t2Y1JfbmVtMnJfZkk5Qkh4QTdJM1BWVE1hTUhSTkowcjB3SzI4UHJJcnpxcVVwLW5iSUtweGVGOGRiRlV1Z1pfa0VFY1lWYkVja2pWUko?oc=5",
                 "date": "CMoney・Sun, 22 Nov 2026"
               }
             ],
             "bearish": [
+              {
+                "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由財經",
+                "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBZSnluRllGLUxRaEw1NWtzMjJ3N2s4VllMT0ZqQ3pSdzBzMHpSSzU5MTFwVjBPQWpUQ2kyTlJtYnc3ZjMyeWRhN2FDcFhLYlFVTHduNm9XZDdnOHZzRE5F0gFkQVVfeXFMTjU1blhTcVliZ1FlbjN4aHltbU5BRkY0TUZaSXlrejB3V2FjVUhHUXMyM1g3ZmJHeTN3TFpDU3czZzdnVDY3SldvX2hJR2ZTZWtUVGREWUs4RVlmTkM4a2M3WjljbQ?oc=5",
+                "date": "自由財經・Sun, 22 Nov 2026"
+              },
               {
                 "title": "台達電跌到900元！ 大摩「超狂目標價」曝光 2王牌還沒發酵 - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMi4gJBVV95cUxNNnk0dkNEQTBhNFJFeXlqOHF0RFhSWUlqLXAydnplVndvcUJXWDhNUG96OGRNZXZWZUlwcWVvOTcwcEYzNTZQeC16Y252Z05PNDV6aFRqdERjNVJKdUR1d3ZfdC1yZVNXa3JxTE42T20tNmgzNkU3WUktTGlsWkdzTnFlUVBUWjU3Q2RJSVhPZnlxTHJoUkxCOE5TOWlYZGdXV09GWXQ5ZjJ6YVdFWXR2QjU1Wlpna0Fta0ltWF84UUZQY1k1UXFJMHh3SDdNa0VrUDBXejF2eDIxaGQwc1Y5cUdCYW9Tci1GQ21mYURZeHJzWUZwdmdfdmRvVGdicGFNLTY4VHliVkY2ZG1KcS1UQXloQ3NFWWRPazlkSEktUmNENWF1dFpjQ2JaR1dwSUVqcGhrWldmMnBYemZMaHM4Z1M5SkNDck9mS2ZXTFNjTldqeVJ2RWo0V3EwM25Da2RlUmc?oc=5",
@@ -54894,11 +54904,6 @@
                 "title": "72萬股民好慘！台達電跌停　千元失守、創逾10個月低點 - ETtoday財經雲",
                 "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4yc3ZWeE9fNURfTVVmQ3Flclk3a3JDdGZpUDlKaDZJVGNBUzRKVHl0bEdub0p3aGZjR3hxcWRZWXlGV1dKQzVQV0U0eVJXQWtfSGfSAVBBVV95cUxPRTR6Q3BJWXNYMm1QZ0prOVJiQTBfS2taR19QSmlPYmJWODRkbExSckkyRmFzOVdNYkRPZG5uMkF3eHlSbUhfODJibG14eU9RQw?oc=5",
                 "date": "ETtoday財經雲・Fri, 20 Nov 2026"
-              },
-              {
-                "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由時報",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9tLUVyR0gxU3JsZ1hlT0tZck9DcWNaWEh2QjVrSE5wdzBsZHZRWTVYaUpZVjNNdUpTb1g5SXl1SjhTVl9WX3dPcGoxWUVwWWdkUUlOUFhTLXQ?oc=5",
-                "date": "自由時報・Sun, 22 Nov 2026"
               }
             ]
           }
@@ -69532,10 +69537,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 60823.52,
+      "price": 60800.72,
       "prev_close": 60094.09,
-      "change": 729.43,
-      "change_pct": 1.21,
+      "change": 706.63,
+      "change_pct": 1.18,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -71002,7 +71007,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 60804.69
+          "close": 60781.73
         }
       ],
       "fundamentals": {
@@ -71023,10 +71028,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1709.17,
+      "price": 1709.84,
       "prev_close": 1682.2,
-      "change": 26.97,
-      "change_pct": 1.6,
+      "change": 27.64,
+      "change_pct": 1.64,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -72493,7 +72498,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 1708.65
+          "close": 1709.33
         }
       ],
       "fundamentals": {
@@ -74791,9 +74796,9 @@
                         "date": "CMoney・Fri, 20 Nov 2026"
                       },
                       {
-                        "title": "大摩：聯發科可望贏得新 TPU 專案 重申目標價6,188元 - UDN",
-                        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBxaUJSN1ZuUUlwdHc0cWxZX0dMVlFiaDN6TDliYmc5U21MbHhpcVp6LW5DM0Eyd19WRHc1Y3F1NHVHWHg0dmR5ZTNHSEFkMDQ30gFWQVVfeXFMTTQyMWlNb1hKcUwyMnNxaVdySDJDWmx6cUVCVndZM1ZnZEJhbGNzVXBON1B1aGdWeVJzWTFTZWtaR0xtNU1Ca05KbUx1cU05ZnFpRjRkOFE?oc=5",
-                        "date": "UDN・Sun, 22 Nov 2026"
+                        "title": "大摩：聯發科可望贏得新 TPU 專案 重申目標價6,188元 | 市場焦點 | 證券 - 經濟日報",
+                        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1PcHlTdzh6anl4M3JuWktid1pQT1BKQTNIV2YwYkYxTGlHb3ZQdHZRZnItZ1lsVVBmT0JvY05zcmJHSjdzc0FXbDQzS0RZT3ptaXRFY1pjOXVhQQ?oc=5",
+                        "date": "經濟日報・Sun, 22 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -78038,8 +78043,8 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
-                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                    "title": "2308 台達電 - 負32% 報到 - 股市爆料同學會 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9lM0t2Y1JfbmVtMnJfZkk5Qkh4QTdJM1BWVE1hTUhSTkowcjB3SzI4UHJJcnpxcVVwLW5iSUtweGVGOGRiRlV1Z1pfa0VFY1lWYkVja2pWUko?oc=5",
                     "date": "CMoney・Sun, 22 Nov 2026"
                   }
                 ],
@@ -78050,9 +78055,9 @@
                     "date": "MOPS 財務報表 / TradingView"
                   },
                   {
-                    "title": "台達電跌到900元！ 大摩「超狂目標價」曝光 2王牌還沒發酵 - Yahoo股市",
-                    "url": "https://news.google.com/rss/articles/CBMi4gJBVV95cUxNNnk0dkNEQTBhNFJFeXlqOHF0RFhSWUlqLXAydnplVndvcUJXWDhNUG96OGRNZXZWZUlwcWVvOTcwcEYzNTZQeC16Y252Z05PNDV6aFRqdERjNVJKdUR1d3ZfdC1yZVNXa3JxTE42T20tNmgzNkU3WUktTGlsWkdzTnFlUVBUWjU3Q2RJSVhPZnlxTHJoUkxCOE5TOWlYZGdXV09GWXQ5ZjJ6YVdFWXR2QjU1Wlpna0Fta0ltWF84UUZQY1k1UXFJMHh3SDdNa0VrUDBXejF2eDIxaGQwc1Y5cUdCYW9Tci1GQ21mYURZeHJzWUZwdmdfdmRvVGdicGFNLTY4VHliVkY2ZG1KcS1UQXloQ3NFWWRPazlkSEktUmNENWF1dFpjQ2JaR1dwSUVqcGhrWldmMnBYemZMaHM4Z1M5SkNDck9mS2ZXTFNjTldqeVJ2RWo0V3EwM25Da2RlUmc?oc=5",
-                    "date": "Yahoo股市・Fri, 20 Nov 2026"
+                    "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由財經",
+                    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBZSnluRllGLUxRaEw1NWtzMjJ3N2s4VllMT0ZqQ3pSdzBzMHpSSzU5MTFwVjBPQWpUQ2kyTlJtYnc3ZjMyeWRhN2FDcFhLYlFVTHduNm9XZDdnOHZzRE5F0gFkQVVfeXFMTjU1blhTcVliZ1FlbjN4aHltbU5BRkY0TUZaSXlrejB3V2FjVUhHUXMyM1g3ZmJHeTN3TFpDU3czZzdnVDY3SldvX2hJR2ZTZWtUVGREWUs4RVlmTkM4a2M3WjljbQ?oc=5",
+                    "date": "自由財經・Sun, 22 Nov 2026"
                   }
                 ],
                 "categories": {
@@ -78082,12 +78087,17 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                        "title": "2308 台達電 - 負32% 報到 - 股市爆料同學會 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9lM0t2Y1JfbmVtMnJfZkk5Qkh4QTdJM1BWVE1hTUhSTkowcjB3SzI4UHJJcnpxcVVwLW5iSUtweGVGOGRiRlV1Z1pfa0VFY1lWYkVja2pWUko?oc=5",
                         "date": "CMoney・Sun, 22 Nov 2026"
                       }
                     ],
                     "bearish": [
+                      {
+                        "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由財經",
+                        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBZSnluRllGLUxRaEw1NWtzMjJ3N2s4VllMT0ZqQ3pSdzBzMHpSSzU5MTFwVjBPQWpUQ2kyTlJtYnc3ZjMyeWRhN2FDcFhLYlFVTHduNm9XZDdnOHZzRE5F0gFkQVVfeXFMTjU1blhTcVliZ1FlbjN4aHltbU5BRkY0TUZaSXlrejB3V2FjVUhHUXMyM1g3ZmJHeTN3TFpDU3czZzdnVDY3SldvX2hJR2ZTZWtUVGREWUs4RVlmTkM4a2M3WjljbQ?oc=5",
+                        "date": "自由財經・Sun, 22 Nov 2026"
+                      },
                       {
                         "title": "台達電跌到900元！ 大摩「超狂目標價」曝光 2王牌還沒發酵 - Yahoo股市",
                         "url": "https://news.google.com/rss/articles/CBMi4gJBVV95cUxNNnk0dkNEQTBhNFJFeXlqOHF0RFhSWUlqLXAydnplVndvcUJXWDhNUG96OGRNZXZWZUlwcWVvOTcwcEYzNTZQeC16Y252Z05PNDV6aFRqdERjNVJKdUR1d3ZfdC1yZVNXa3JxTE42T20tNmgzNkU3WUktTGlsWkdzTnFlUVBUWjU3Q2RJSVhPZnlxTHJoUkxCOE5TOWlYZGdXV09GWXQ5ZjJ6YVdFWXR2QjU1Wlpna0Fta0ltWF84UUZQY1k1UXFJMHh3SDdNa0VrUDBXejF2eDIxaGQwc1Y5cUdCYW9Tci1GQ21mYURZeHJzWUZwdmdfdmRvVGdicGFNLTY4VHliVkY2ZG1KcS1UQXloQ3NFWWRPazlkSEktUmNENWF1dFpjQ2JaR1dwSUVqcGhrWldmMnBYemZMaHM4Z1M5SkNDck9mS2ZXTFNjTldqeVJ2RWo0V3EwM25Da2RlUmc?oc=5",
@@ -78097,11 +78107,6 @@
                         "title": "72萬股民好慘！台達電跌停　千元失守、創逾10個月低點 - ETtoday財經雲",
                         "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4yc3ZWeE9fNURfTVVmQ3Flclk3a3JDdGZpUDlKaDZJVGNBUzRKVHl0bEdub0p3aGZjR3hxcWRZWXlGV1dKQzVQV0U0eVJXQWtfSGfSAVBBVV95cUxPRTR6Q3BJWXNYMm1QZ0prOVJiQTBfS2taR19QSmlPYmJWODRkbExSckkyRmFzOVdNYkRPZG5uMkF3eHlSbUhfODJibG14eU9RQw?oc=5",
                         "date": "ETtoday財經雲・Fri, 20 Nov 2026"
-                      },
-                      {
-                        "title": "台達電慘跌至900元！股民自嘲「被加摯友」 Threads掀認親潮 - 自由時報",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9tLUVyR0gxU3JsZ1hlT0tZck9DcWNaWEh2QjVrSE5wdzBsZHZRWTVYaUpZVjNNdUpTb1g5SXl1SjhTVl9WX3dPcGoxWUVwWWdkUUlOUFhTLXQ?oc=5",
-                        "date": "自由時報・Sun, 22 Nov 2026"
                       }
                     ]
                   }
@@ -83655,7 +83660,7 @@
                 "price": 130.01,
                 "change": 4.48,
                 "change_pct": 3.57,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -83669,7 +83674,7 @@
                 },
                 {
                   "date": "2025-11-25",
-                  "close": 177.39
+                  "close": 177.4
                 },
                 {
                   "date": "2025-11-26",
@@ -84772,7 +84777,7 @@
                 "price": 328.6,
                 "change": 9.89,
                 "change_pct": 3.1,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -85889,7 +85894,7 @@
                 "price": 311.51,
                 "change": 7.1,
                 "change_pct": 2.33,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -87006,7 +87011,7 @@
                 "price": 344.87,
                 "change": 2.31,
                 "change_pct": 0.67,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -88128,7 +88133,7 @@
                 "price": 489.49,
                 "change": 4.97,
                 "change_pct": 1.03,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -89219,8 +89224,8 @@
                         "date": "TradingView・Fri, 26 Jun 2026"
                       },
                       {
-                        "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
+                        "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
                         "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
                       }
                     ],
@@ -89250,7 +89255,7 @@
                 "price": 270.18,
                 "change": 4.89,
                 "change_pct": 1.84,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -90372,7 +90377,7 @@
                 "price": 251.0,
                 "change": 4.18,
                 "change_pct": 1.69,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -91489,7 +91494,7 @@
                 "price": 567.5,
                 "change": 6.66,
                 "change_pct": 1.19,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -92606,7 +92611,7 @@
                 "price": 129.55,
                 "change": 1.76,
                 "change_pct": 1.38,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -93171,7 +93176,7 @@
                 "price": 1348.06,
                 "change": 0.95,
                 "change_pct": 0.07,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -93317,7 +93322,7 @@
                 },
                 {
                   "date": "2026-01-14",
-                  "close": 1066.83
+                  "close": 1066.84
                 },
                 {
                   "date": "2026-01-15",
@@ -93369,7 +93374,7 @@
                 },
                 {
                   "date": "2026-02-03",
-                  "close": 997.43
+                  "close": 997.42
                 },
                 {
                   "date": "2026-02-04",
@@ -94278,7 +94283,7 @@
                 "price": 571.0,
                 "change": 1.0,
                 "change_pct": 0.18,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -95385,7 +95390,7 @@
                 "price": 351.08,
                 "change": 5.26,
                 "change_pct": 1.52,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -96422,9 +96427,9 @@
                     "date": "SEC Filings / Yahoo Finance (TSLA)"
                   },
                   {
-                    "title": "TSLA Stock Climbs Amid Reports Of SpaceX Tie-Up As Early As December - TradingView",
-                    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOc01DbjN2MTMwVmM4dWdET0pPU1JjUnNxdmtQaXpTT0k1dHhDNUVHc3VHcTBQVnZ0NDBKeWhQdzNrVG5PSVFCVE01X1BfLWRDejlRYVpMdEhMRVVXdjFUZTVZZGppNFNnZ3NiVFQzVU9LQXV5aE1vdkVCbWtGdmV3RDJVUENEc3k5VFFpMzlaak03YlJLSHRBQV9ONEkzeWwxbGt2dUZFVVg3aWpOdFFnQ1BoTG9TNWxua3Y2VjVqSUNsNDhWRjZB?oc=5",
-                    "date": "TradingView・Thu, 12 Nov 2026"
+                    "title": "Tesla’s Robotaxi Push Gets Wall Street Cheer — Barclays Sees 20% Upside Potential In TSLA Stock - TradingView",
+                    "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPZ3hDb2tiZ3M3SXYweVRjOFV1d3Uxb1lObTNnMkhlaTFualM1Z3pMMHZXdGN3d2ZNRDFHbVJldXNSQklvUm5LZEM4RThmdXcyVlpQVENQaFQ2RS03YWJJSFBpMllhaUQ0YS1fMGtQVVFlb2pycldCVjdsazkxa3BhUVlwcHJZOVQxWkJfZ0tOLXpJR3g3Vkk1dzlxM1lFa0syTzd0bTR2ekFFRG9FbHZkemhqY1pHbXYzR2Y5c2haQWR3ZVMwLUpmZWN0Zl8wdk9uU01RRENkdGhicmtCWWpyelUybWdoN3kzd3g0X09rYTRZOXBJOVQxQjIxV3lVc0FY?oc=5",
+                    "date": "TradingView・Tue, 17 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -96434,9 +96439,9 @@
                     "date": "SEC Filings / Yahoo Finance (TSLA)"
                   },
                   {
-                    "title": "【00:42 即時新聞】Tesla(TSLA) 跌5%：AI 信用風險升溫、AI 股重挫拖累馬斯克版圖 - 美股放大鏡",
-                    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPUHN4dGtQdm1hbTBoYlV0UWc0N2ZpalQ2eXN6Nm5lWV9WU3J2X3VWRHRfdVFzVndhQkw2RVE0TXA4bEZBc0p5c0wxdzN6SFVySmFMZVIwRGh0cGUxaXJzNmZ0UTBCRzRMak9hdFFJdGs1V3BPSVF1QkZycnhSdDJqcHNDaUxOWHVtT0haMFdueDFSd3Jr?oc=5",
-                    "date": "美股放大鏡・Fri, 20 Nov 2026"
+                    "title": "🔗 檢視「TSLA (TSLA)」最新風險與法人籌碼報導",
+                    "url": "https://news.google.com/search?q=TSLA&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
+                    "date": "Google News"
                   }
                 ],
                 "categories": {
@@ -96461,9 +96466,9 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "TSLA Stock Climbs Amid Reports Of SpaceX Tie-Up As Early As December - TradingView",
-                        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOc01DbjN2MTMwVmM4dWdET0pPU1JjUnNxdmtQaXpTT0k1dHhDNUVHc3VHcTBQVnZ0NDBKeWhQdzNrVG5PSVFCVE01X1BfLWRDejlRYVpMdEhMRVVXdjFUZTVZZGppNFNnZ3NiVFQzVU9LQXV5aE1vdkVCbWtGdmV3RDJVUENEc3k5VFFpMzlaak03YlJLSHRBQV9ONEkzeWwxbGt2dUZFVVg3aWpOdFFnQ1BoTG9TNWxua3Y2VjVqSUNsNDhWRjZB?oc=5",
-                        "date": "TradingView・Thu, 12 Nov 2026"
+                        "title": "Tesla’s Robotaxi Push Gets Wall Street Cheer — Barclays Sees 20% Upside Potential In TSLA Stock - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPZ3hDb2tiZ3M3SXYweVRjOFV1d3Uxb1lObTNnMkhlaTFualM1Z3pMMHZXdGN3d2ZNRDFHbVJldXNSQklvUm5LZEM4RThmdXcyVlpQVENQaFQ2RS03YWJJSFBpMllhaUQ0YS1fMGtQVVFlb2pycldCVjdsazkxa3BhUVlwcHJZOVQxWkJfZ0tOLXpJR3g3Vkk1dzlxM1lFa0syTzd0bTR2ekFFRG9FbHZkemhqY1pHbXYzR2Y5c2haQWR3ZVMwLUpmZWN0Zl8wdk9uU01RRENkdGhicmtCWWpyelUybWdoN3kzd3g0X09rYTRZOXBJOVQxQjIxV3lVc0FY?oc=5",
+                        "date": "TradingView・Tue, 17 Nov 2026"
                       },
                       {
                         "title": "Tesla (TSLA) Stock Price, News, Quotes, Financial Reports - Moomoo",
@@ -96471,16 +96476,21 @@
                         "date": "Moomoo・Wed, 18 Nov 2026"
                       },
                       {
-                        "title": "大摩看好特斯拉(TSLA.US) Cybercab開放個人購買：訂閱模式有望開闢自動駕駛第二變現路徑作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE84QzNzajhCMVNpWWs4T01yOGRuLVZIWW1md25jV01xeUZpaHlPalR6ak9QY2FfUGMwZEJwQ3A4UFVMRENNU2VHM19RbFVWbTVsODI5T3V1UGhxNzZRZHVvSUNJX3dyMEtPcnpjSEhJSF8?oc=5",
-                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Tue, 17 Nov 2026"
+                        "title": "Gary Black Warns SpaceX-Tesla Merger Could Wipe Out 24% Premium in Weeks: 'Massive Dilution' Could Crush Shares - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQc1FFUkhWUWcwcU45R21EWW5CV3JrekJ6dW04SlIySllXUVVPbHY4bkJWWXUxdHBnc3VnbFMwdFYyMEJTU29NSnc0bUNxdjU1Wkx1S0N5eHNFa2U2d2xpVEpmaXdfUWxkRTZaUVBVTm41aU5sTWZWaUtsdktKM09MWGhWSFlKaWdibXU4M0o1d3M4UldjWE1KYmJ5NzQ5NWxNeEJRNmhSUjFkclFpZXE1a0tTSlktM0MtRXdQb2hXdEdJVlR6al8wdlZweXJTRTk5UC1HUi1wdURvQUNvTmZ0ZV9wbzlDcXJaaUZUVW5TOXo4UHI0SURSZw?oc=5",
+                        "date": "TradingView・Fri, 20 Nov 2026"
+                      },
+                      {
+                        "title": "TSLA 特斯拉- Analyst Drops Stark Tesla Stock Price Target - 股市爆料同學會 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE85WXVqRlZDVVpfVHBiUkppWHFoTHJoTV8zamZYdGFuOVlqeUwwdmFORWhMM3U3Nks0S1NFekF2czlHUmVwQUxvTm5XTHduWDFWam83MDk0NXI?oc=5",
+                        "date": "CMoney・Tue, 18 Aug 2026"
                       }
                     ],
                     "bearish": [
                       {
-                        "title": "【00:42 即時新聞】Tesla(TSLA) 跌5%：AI 信用風險升溫、AI 股重挫拖累馬斯克版圖 - 美股放大鏡",
-                        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPUHN4dGtQdm1hbTBoYlV0UWc0N2ZpalQ2eXN6Nm5lWV9WU3J2X3VWRHRfdVFzVndhQkw2RVE0TXA4bEZBc0p5c0wxdzN6SFVySmFMZVIwRGh0cGUxaXJzNmZ0UTBCRzRMak9hdFFJdGs1V3BPSVF1QkZycnhSdDJqcHNDaUxOWHVtT0haMFdueDFSd3Jr?oc=5",
-                        "date": "美股放大鏡・Fri, 20 Nov 2026"
+                        "title": "🔗 檢視「TSLA (TSLA)」最新風險與法人籌碼報導",
+                        "url": "https://news.google.com/search?q=TSLA&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
+                        "date": "Google News"
                       }
                     ]
                   }
@@ -96502,7 +96512,7 @@
                 "price": 128.13,
                 "change": 0.18,
                 "change_pct": 0.14,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -102054,7 +102064,7 @@
                 "price": 156.67,
                 "change": 4.47,
                 "change_pct": 2.94,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -103077,10 +103087,10 @@
                 "full_name": "ARM Holdings PLC Sponsored ADR",
                 "sector": "Electronic Technology",
                 "industry": "Semiconductors",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United Kingdom",
+                "employees": 9584,
+                "website": "https://www.arm.com",
+                "summary": "Arm Holdings plc researches, develops, licenses, and markets central processing unit (CPU) intellectual property (IP), graphics processing unit IP, systems IP, compute subsystems (CSS), and associated software, tools and related services. The company provides a product portfolio, including CPU IP, GPU and neural processing unit (NPU) accelerators, system IP such as interconnects, compute platform products including pre-integrated CSSs, and development tools and software. The company serves semiconductor companies, original equipment manufacturers (OEMs), cloud service providers (CSPs), and organizations developing chips for end markets such as smartphones, consumer electronics, industrial IoT, embedded systems, cloud data centers, networking, automotive, and robotics. It provides its products and services in the United States, China, Japan, Taiwan, Korea, and internationally. The company was founded in 1990 and is based in Cambridge, United Kingdom. Arm Holdings plc operates as a subsidiary of SoftBank Group Corp.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -103161,7 +103171,7 @@
                 "price": 402.9,
                 "change": 6.73,
                 "change_pct": 1.7,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -104184,10 +104194,10 @@
                 "full_name": "Synopsys, Inc.",
                 "sector": "Technology Services",
                 "industry": "Packaged Software",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 28000,
+                "website": "https://www.synopsys.com",
+                "summary": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries. It operates in two segments, Design Automation and Design IP. The company offers Digital and Custom IC Design solution that provides digital design implementation solutions; Verification solution that offers virtual prototyping, static and formal verification, simulation, emulation, field programmable gate array (FPGA)-based prototyping, and debug solutions; FPGA design products that are programmed to perform specific functions; synopsys technology computer-aided design (TCAD), mask synthesis, and manufacturing analytic solutions; and AI-driven EDA solutions. It also provides pre-verified and silicon-proven IP solutions, logic libraries and embedded memories, processor and security solutions, IP Offerings for the automotive market, SOC infrastructure IP, data path and building block IP, and mathematical and floating-point components. Synopsys, Inc. has a strategic collaboration with Arm Holdings plc for development of AGI CPU that provides solutions across its full-stack design portfolio including EDA, interface IP, and hardware-assisted verification (HAV). It has a strategic partnership with OpenAI to revolutionize the design of semiconductors. Synopsys, Inc. has a strategic agreement with Amazon to accelerate Amazon's custom silicon innovation and advance the development of complex AI-powered products and cloud infrastructure. The company was incorporated in 1986 and is headquartered in Sunnyvale, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -104268,7 +104278,7 @@
                 "price": 284.1,
                 "change": 2.52,
                 "change_pct": 0.89,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -105291,10 +105301,10 @@
                 "full_name": "Cadence Design Systems, Inc.",
                 "sector": "Technology Services",
                 "industry": "Packaged Software",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 13800,
+                "website": "https://www.cadence.com",
+                "summary": "Cadence Design Systems, Inc. develops computational, AI-driven software, hardware, and silicon intellectual property products and solutions. The company offers functional verification services, such as Jasper, a formal verification platform; Xcelium, a parallel logic simulation platform; Verisium, a generative AI solution; Palladium, an enterprise emulation platform; and Protium, a prototyping platform for chip verification, as well as digital IC design and sign off products, including Innovus platform; and custom IC design and simulation product include Virtuoso, a platform to design and verify analog. It also provides Xcelium logic simulator and other front-end verification and virtual prototyping technologies; controllers and physical interfaces; PCI Express, universal accelerator and compute express links, and multiple memory interfaces; and Tensilica, a digital signal processor. In addition, the company's design IP portfolio includes serializer/deserializer, peripheral component interconnect, USB, and other standard protocols; and Secure-IC, a solution for embedded security IP. Additionally, it provides System Design and Analysis (SD&A) platform, a solution that enables end-to-end system-level design and verification across chips, packages, PCBs, and electronic systems; Allegro X and Orca X platforms for PCB and advanced packaging; Sigrity X for signal and power integrity; AIR for RF design; Fidelity for computational fluid dynamics; Celsius for thermal and airflow analysis; Clarity 3D solver for electromagnetic and power electronics analysis and simulation; Integrity 3D-IC solution for 3D-IC and multi-chiplet designs; the Optimality Intelligent System Explorer, Reality digital twin, and Millennium enterprise multiphasic platforms; Allegro system design platform; and molecular modeling and simulation solutions and services. The company has a strategic collaboration with NVIDIA. The company was incorporated in 1987 and is headquartered in San Jose, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -106376,7 +106386,7 @@
                 "spokesman": "王德善",
                 "tax_id": "31659649",
                 "website": "www.alchip.com",
-                "summary": "",
+                "summary": "Alchip Technologies, Limited, together with its subsidiaries, engages in the research, design, development, and manufacturing of application specific integrated circuits and system on a chip in the United States, China, Japan, Taiwan, and internationally. It offers ASIC design services, including SoC frontend design, physical backend design, and design for testability, as well as low power, high performance, and advanced package solutions; production services, such as advanced packaging, advanced testing, and product engineering services, as well as quality assurance and policy; and IP services comprising IP integration and verification. The company is also involved in general investment activities; provision of product technical support and consultation services; and software development and services. Its products are used in AI, HPC/supercomputer, mobile phones, entertainment device, networking equipment, and electronic product sectors. The company was founded in 1992 and is headquartered in Taipei, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -107463,7 +107473,7 @@
                 "spokesman": "廖俊傑",
                 "tax_id": "16299879",
                 "website": "www.guc-asic.com",
-                "summary": "",
+                "summary": "Global Unichip Corp. engages in the research and development, production, testing, and sale of embedded memory and logic components, analog components, cell libraries, and EDA tools for various IC applications. It offers ASIC and wafer products, as well as non-recurring engineering services. The company also provides product design, technical support, and consulting services. In addition, it offers SoC design services, such as technology design, design methodology, low power solution, and testability design services; SoC manufacturing services, including packaging, testing and product engineering, and quality and reliability, as well as supply chain management services; and IP portfolio comprising high bandwidth memory IPs, multi-die interLink IPs, mixed-signal front-end IPs, and embedded memory IPs. The company was formerly known as Chuangyi Electronics Corporation and changed its name to Global Unichip Corp. in October 1998. The company was incorporated in 1998 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -108550,7 +108560,7 @@
                 "spokesman": "曾雯如",
                 "tax_id": "84149060",
                 "website": "www.faraday-tech.com",
-                "summary": "",
+                "summary": "Faraday Technology Corporation, together with its subsidiaries, operates as a fabless ASIC/SoC and silicon intellectual property (IP) provider in China, Taiwan, Japan, the United States, and internationally. The company offers ASIC/SoC design services, including architecture exploration, integration express, verification exploration, SoReal! 2.0 virtual platform, and CPU development services; SoC platforms, such as OSKit, FlashKit, HiSpeedKit, and FPGAKit; turnkey solutions comprising process technology, design methodology, fabrication services, package services, test services, failure analysis, and reliability services; and SONOS eFlash platform, UMC 14nm, 28/22nm ASIC solution, FPGA-Go-ASIC service, Al and HPC solitopns, IoT MCU solutions, FinFET ASIC solution, and automotive solutions. It also provides silicon IP products, including analog, digital, IO functional libraries, interface solution, logic core cell libraries, memory compiler, and hot IP solutions. The company was incorporated in 1993 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -108636,7 +108646,7 @@
                 "price": 125.7,
                 "change": 3.42,
                 "change_pct": 2.8,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -109659,10 +109669,10 @@
                 "full_name": "Marvell Technology, Inc.",
                 "sector": "Electronic Technology",
                 "industry": "Semiconductors",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 7480,
+                "website": "https://www.marvell.com",
+                "summary": "Marvell Technology, Inc., together with its subsidiaries, provides data infrastructure semiconductor solutions and spanning the data center core to network edge in the United States, Argentina, China, India, Israel, Japan, Singapore, South Korea, Taiwan, Vietnam, and internationally. The company develops and scales system-on-a-chip architectures, integrating analog, mixed-signal, and digital signal processing functionality. It offers a portfolio of ethernet solutions, including spanning controllers, network adapters, physical transceivers, and switches; single or multiple core processors; and custom application specific integrated circuits, interconnects, fibre channel adapters, and processors. The company also provides interconnect products, including pulse amplitude modulation, coherent and coherent-lite digital signal processors (DSPs), laser drivers, trans-impedance amplifiers, silicon photonics, co-packaged optics, linear pluggable optics chipsets, data center interconnect, active electrical cable DSPs and peripheral component interconnect express retimer solutions; fibre channel products comprising host bus adapters and controllers for server and storage system connectivity; storage controllers for hard disk drives and solid-state-drives; host system interfaces, including serial advanced technology attachment and serial attached SCSI, peripheral component interconnect express, compute express link switches, non-volatile memory express (NVMe), and NVMe over fabrics; and develops ultra accelerator linkTM switches and ethernet for scale-up networking switches. The company serves data centers, communications, and other markets. It offers its products through direct customers and distributors. The company has collaboration with to address AI infrastructure needs at the server and pod levels. Marvell Technology, Inc. was incorporated in 1995 and is headquartered in Wilmington, Delaware.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -110744,7 +110754,7 @@
                 "spokesman": "趙敬堯",
                 "tax_id": "22507241",
                 "website": "www.kyec.com.tw",
-                "summary": "",
+                "summary": "King Yuan Electronics Co., Ltd. designs, manufactures, sells, tests, and assembles integrated circuits. It offers test services, such as wafer probing; final test; burn-in; system level testing; and back end service. It also provides Technology Innovation, including wafer level chip scale package (WLCSP); high power burn in; and KYEC Bio Chip Testing, as well as equipment development, spare parts and test program, automation control, and vertical card. It also provides engineering services for Memory applications; consumer electronics testing solutions for games, digital audio, digital TV, set top box, and others; logic and mixed signal IC testing services; liquid crystal display driver test solutions for TFT LCD, Gate Drivers, STN segment/common drivers, LCD controllers/drivers and OLED controllers/drivers; and pupil module solution, CSP FT test solution, high parallelism test solution for area image sensor, low temperature test solution, and light sensor test solutions. In addition, the company offers radio system integration, feasibility studies for cost and performance, circuit design and characterization, evaluation board design service, process definition services; testing, diagnosis, verification, characterization, and debugging services for SOC devices, such as ASIC and ASSP; micro-electro mechanical systems and biochip testing solutions; and technology support services. The company was incorporated in 1987 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -111830,8 +111840,8 @@
                 "gm": "馬中迅",
                 "spokesman": "於志強",
                 "tax_id": "12649951",
-                "website": "",
-                "summary": "",
+                "website": "https://www.phison.com",
+                "summary": "Phison Electronics Corp., together with its subsidiaries, designs, manufactures, and sells flash memory controllers and peripheral system applications in Asia, the United States, Europe, Australia, and internationally. The company offers solid-state drives (SSDs); external SSDs with thunderbolt or USB connect; flash memory cards; USB flash drives; SSD controller for desktop gaming, laptop PC, desktop workstation, and storage; and eMMC, UFS, and other turnkey solutions. It also provides integrated circuits and systems, and electronics hardware and software and rendering of related services; and electronic components. In addition, the company engages in investment and trading activities; researches, designs, develops, manufactures, imports, exports, and sells storage devices and electronic components; and provides software development and technical support services. It serves original equipment manufacturers, NAND product manufacturers, consumer, retail, system integrators, computing, industrial, and automotive industries. The company was incorporated in 2000 and is headquartered in Jhunan, Taiwan.",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -112917,8 +112927,8 @@
                 "gm": "曲明",
                 "spokesman": "趙捷",
                 "tax_id": "28422591",
-                "website": "",
-                "summary": "",
+                "website": "https://www.paradetech.com",
+                "summary": "Parade Technologies, Ltd., operates as a fabless semiconductor company in South Korea, China, Taiwan, Japan, and internationally. It engages in research and development, and marketing, and sale of high-speed interface standards, and touch controller and display processing integrated circuit (IC) chips for products used in computers, consumer electronics, and display panels. The company's products portfolio comprises datacenter active copper cables, high-speed interface ICs, including PCI Express/SATA, USBs, DisplayPorts, HDMIs, and protocol converters; display and touch integrated system ICs, such as touch embedded TCONs and source drivers, touch and gate level shifters, embedded DisplayPort timing controllers, display panel source drivers, Tcons with embedded source drivers and touch, touch and display driver integrated products, and DisplayPort LCD monitor controllers; truetouch touch screen controllers; and automotive ICs, such as touch with embedded drivers, USB, display protocol converters, display Tcons, source drivers, and touch, PCI express interface, HDMI interface, and display interface. Parade Technologies, Ltd. was incorporated in 2005 and is based in Grand Cayman, Cayman Islands.",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -113004,7 +113014,7 @@
                 "price": 133.38,
                 "change": 3.37,
                 "change_pct": 2.59,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -113470,7 +113480,7 @@
                 },
                 {
                   "date": "2026-05-11",
-                  "close": 260.69
+                  "close": 260.7
                 },
                 {
                   "date": "2026-05-12",
@@ -114027,10 +114037,10 @@
                 "full_name": "Silicon Motion Technology Corporation Sponsored ADR",
                 "sector": "Electronic Technology",
                 "industry": "Semiconductors",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "Hong Kong",
+                "employees": 2009,
+                "website": "https://www.siliconmotion.com",
+                "summary": "Silicon Motion Technology Corporation, together with its subsidiaries, designs, develops, and markets NAND flash controllers for solid-state storage devices and related devices in China, Japan, Singapore, Taiwan, Korea, the United States, and internationally. It offers controllers for computing-grade solid state drives (SSDs), which are used in PCs and other client devices; enterprise-grade SSDs used in enterprise and hyperscale data centers; eMMC and UFS mobile embedded storage for use in smartphones and IoT devices; flash memory cards and flash drives for use in expandable storage; and specialized SSDs that are used in industrial, commercial, and automotive applications. The company markets its controllers under the SMI brand; and single-chip SSDs under the FerriSSD, Ferri-eMMC, and Ferri-UFS brands. It markets and sells its products through direct sales personnel and independent electronics distributors to NAND flash makers, module makers, hyperscalers, and OEMs. Silicon Motion Technology Corporation was founded in 1995 and is based in Hong Kong, Hong Kong.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -114111,7 +114121,7 @@
                 "price": 189.1,
                 "change": 5.83,
                 "change_pct": 3.18,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -114549,7 +114559,7 @@
                 },
                 {
                   "date": "2026-04-30",
-                  "close": 257.4
+                  "close": 257.41
                 },
                 {
                   "date": "2026-05-01",
@@ -115134,10 +115144,10 @@
                 "full_name": "Lam Research Corporation",
                 "sector": "Producer Manufacturing",
                 "industry": "Industrial Machinery",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 24300,
+                "website": "https://www.lamresearch.com",
+                "summary": "Lam Research Corporation designs, manufactures, markets, refurbishes, and services semiconductor processing equipment used in the fabrication of integrated circuits in the United States, China, Korea, Taiwan, Japan, Southeast Asia, and Europe. The company offers ALTUS systems to deposit conformal or selective films for tungsten or molybdenum metallization applications; SABRE electrochemical deposition products for copper interconnect transition, which support copper damascene manufacturing; Striker single-wafer atomic layer deposition products for dielectric film solutions; and VECTOR plasma-enhanced chemical vapor deposition (CVD) products. It also provides Akara, a conductor etch system designed to enhance etch precision, selectivity, and defect control; Argos, Prevos, and Selis, which are selective etch systems used in the fabrication of advanced logic and memory devices that require precise control at nanoscale dimensions; Flex for dielectric etch applications; Vantex, a dielectric etch system that provides RF technology and repeatable wafer-to-wafer performance enabled by Equipment Intelligence solutions; Kiyo for conductor etch applications; Syndion for deep silicon etch; and Versys metal products for metal etch processes. In addition, the company offers Coronus bevel clean products to enhance die yield and Da Vinci, DV-Prime, EOS, and SP series products to address various wafer cleaning applications. Further, it provides Reliant deposition, etch, and clean products; Sense.i platform products; and customer service, spares, and upgrades. Lam Research Corporation was incorporated in 1980 and is headquartered in Fremont, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -115218,7 +115228,7 @@
                 "price": 312.66,
                 "change": 10.03,
                 "change_pct": 3.31,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -116241,10 +116251,10 @@
                 "full_name": "Applied Materials, Inc.",
                 "sector": "Producer Manufacturing",
                 "industry": "Industrial Machinery",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 41500,
+                "website": "https://www.appliedmaterials.com",
+                "summary": "Applied Materials, Inc. provides materials engineering solutions, equipment, services, and software to the semiconductor and related industries in the United States, China, Korea, Taiwan, Japan, Southeast Asia, Europe, and internationally. The company operates through Semiconductor Systems and Applied Global Services (AGS) segments. The Semiconductor Systems segment includes semiconductor capital equipment to enable materials engineering steps, including etch, rapid thermal processing, deposition, chemical mechanical planarization, metrology and inspection, wafer packaging, and ion implantation. The AGS segment offers integrated solutions to optimize equipment and fab performance and productivity comprising spares, upgrades, services, and 200 millimeter and other equipment and factory automation software for semiconductor and other products. It serves manufacturers of semiconductor wafers and chips, and other electronic devices. Applied Materials, Inc. was incorporated in 1967 and is headquartered in Santa Clara, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -117326,7 +117336,7 @@
                 "spokesman": "李培瑛",
                 "tax_id": "89390656",
                 "website": "https://www.nanya.com",
-                "summary": "",
+                "summary": "Nanya Technology Corporation research, develops, manufactures, and sells semiconductor products in Taiwan, Japan, Malaysia, China, the United States, Thailand, Germany, Singapore, Poland and internationally. It offers standard dynamic random-access memory (DRAM), low power DRAM, MCP and eMCP, and KGD products, as well as modules; and other memory products and Elixir brands. The company engages in the import and export of its machinery, equipment, and raw materials. Its products have applications in home and entertainment, office and enterprise, mobile and portable, industrial, and automotive. Nanya Technology Corporation was incorporated in 1995 and is headquartered in New Taipei City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -118413,7 +118423,7 @@
                 "spokesman": "範祥雲",
                 "tax_id": "22099218",
                 "website": "WWW.WINBOND.COM",
-                "summary": "",
+                "summary": "Winbond Electronics Corporation engages in the research, development, production and sales of integrated circuits, various semiconductor components and other system products. The company offers customized memory solutions, including CUBE(3DCaaS), pseudo static random access memory, DDR/SDR, LPDDR/LPSDR, Known Good Die wafer products; electrical simulation, wafer-level speed testing, and other services; redistribution layers; and failure analysis services, as well as low power SDR, DDR, DDR2, DDR3, and DDR4/4X SDRAM products. It also provides specialty DRAM products, such as SDRAM, DDR SDRAM, DDR2 SDRAM, DDR3 SDRAM, and DDR4 SDRAM products; code storage flash memory products comprising serial NOR, 1.2V serial NOR, octal NOR, QspiNAND, OctalNAND, SLC NAND, NAND based MCP, SpiStack, and authentication flash products; TrustME secure flash memory, such as secure flash memory, and secure memory elements; and logic IC products. In addition, the company is involved in the research, development, design, sale, and after-sales service of semiconductors and 6-inch wafer fab production, testing, and foundry services; E-commerce and investment business; semiconductor component design and marketing services; smart factory solutions; semiconductor-related hardware and software system integration design; design, research, testing, sales, and service of integrated circuits and auxiliary equipment; develops automotive and industrial control software and services; customer service and technical support; computer software services; computers and peripherals, and software wholesale; repair, testing, and related technical consulting services; and rental of semiconductor-related equipment. It markets its products through distributors and online. The company's products are used in computer, communication, consumer, automotive, and industrial electronics. Winbond Electronics Corporation was incorporated in 1987 and is headquartered in Taichung, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -119500,7 +119510,7 @@
                 "spokesman": "吳敏求",
                 "tax_id": "22099548",
                 "website": "http://www.macronix.com",
-                "summary": "",
+                "summary": "Macronix International Co., Ltd. engages in the design, manufacture, and supply of integrated circuits and memory chips. The company provides a range of NOR flash, NAND flash, e MMC, and read-only memory products. It also offers wafer foundry services to IC design and IDM companies; ArmorFlash, a security solution for a range of identification, authentication, and encryption requirements; and LybraFlash, a solution for gigabit flash memory. In addition, the company develops integrated circuit systems and software; and provides after-sales services. It serves the consumer, communications, computing, industrial, automotive, networking, IOT, and other markets. It sells its products in Taiwan, Japan, the United States, Europe, and rest of Asia. The company was founded in 1989 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -120587,7 +120597,7 @@
                 "spokesman": "吳鴻基",
                 "tax_id": "16130280",
                 "website": "www.esmt.com.tw",
-                "summary": "",
+                "summary": "Elite Semiconductor Microelectronics Technology Inc. engages in the research, development, production, manufacturing, and sales of dynamic and static random-access memory, flash memory, analog integrated circuit, analog, and digital mixed integrated circuit in Taiwan, Asia, and internationally. It also offers memory IC, mixed signal IC, applications notes, DRAM, flash, MCP, industrial grade, automotive grade, known good die, eMMC, PSRAM, audio, power management, signal conditioner, motor control, RC servo PCBA, voltage regulator, high side switch, photocoupler, H bridge driver, 3 phase gate driver, 3 phase motor control ASIC, and optical sensor. The company was incorporated in 1998 and is based in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -120673,7 +120683,7 @@
                 "price": 610.6,
                 "change": 16.09,
                 "change_pct": 2.71,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -121696,10 +121706,10 @@
                 "full_name": "Micron Technology, Inc.",
                 "sector": "Electronic Technology",
                 "industry": "Semiconductors",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 61000,
+                "website": "https://www.micron.com",
+                "summary": "Micron Technology, Inc. engages in the provision of semiconductor memory and storage products in the United States, Taiwan, Mainland China, other Asia Pacific countries, Japan, Europe, and internationally. It operates through Cloud Memory Business Unit, Core Data Center Business Unit, Mobile and Client Business Unit, and Automotive and Embedded Business Unit segments. The company provides dynamic random access memory (DRAM) products, including High-Bandwidth Memory, doublie data rate, low-power DRAM, and graphics DRAM products; NAND products comprising solid state drives, managed NAND, and multi-chip packages; and NOR products. The company sells its products under the Micron brand name and private labels through its own direct sales force, sales or representative offices, as well as through distributors, retailers, and independent sales representatives. Micron Technology, Inc. was founded in 1978 and is headquartered in Boise, Idaho.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -121780,7 +121790,7 @@
                 "price": 81.4,
                 "change": -12.99,
                 "change_pct": -13.76,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -122799,10 +122809,10 @@
                 "full_name": "Sandisk Corporation",
                 "sector": "Electronic Technology",
                 "industry": "Computer Peripherals",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 11100,
+                "website": "https://www.sandisk.com",
+                "summary": "Sandisk Corporation develops, manufactures, and sells data storage devices and solutions using NAND flash technology in the Americas, Europe, the Middle East, Africa, Asia, and internationally. The company provides solid state drives for desktop and notebook PCs, gaming consoles, and set top boxes; and flash-based embedded storage products for mobile phones, tablets, notebook PCs and other portable and wearable devices, automotive applications, Internet of Things, industrial, and connected home applications, as well as removable cards, universal serial bus drives, and wafers and components. It sells its products to computer manufacturers and original equipment manufacturers, datacenters, private cloud customers, cloud service providers, resellers, distributors, and retailers through its sales personnel, dealers, distributors, retailers, and subsidiaries. Sandisk Corporation was incorporated in 2024 and is based in Milpitas, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -123884,7 +123894,7 @@
                 "spokesman": "沈俊宏",
                 "tax_id": "16082267",
                 "website": "https://www.pti.com.tw/",
-                "summary": "",
+                "summary": "Powertech Technology Inc., together with its subsidiaries, researches, designs, develops, assembles, manufactures, packages, tests, and sells various integrated circuit (IC) products in Taiwan, Japan, Singapore, the United States, Europe, China, Hong Kong, Macao, and internationally. It provides chip probing and final test; IC packaging services, such as wafer level packing, flip chips, wire bond BGA, lead frame, and system in package; module assembly services; and quality management services. The company is also involved in the design, manufacturing, assembly, testing, and sale of semiconductors; metal surface treatment on semiconductor wire frame; and metal plating on semiconductor lead frame, as well as in investment and wafer probing testing activities. In addition, it offers IC assembly, burn in, and system level assembly. Powertech Technology Inc. was incorporated in 1997 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -124970,8 +124980,8 @@
                 "gm": "陳玲娟",
                 "spokesman": "林明慧",
                 "tax_id": "12861019",
-                "website": "",
-                "summary": "",
+                "website": "https://www.adata.com",
+                "summary": "ADATA Technology Co., Ltd. manufactures and sells memory products worldwide. The company provides computer memory products, solid state drives (SSDs), external SSDs/external hard drives, USB flash drives, memory cards, power banks, USB cables, and AI translators. It also offers axial flux motors, air-cooled motors, liquid-cooled motors, and motor controllers; and LED lighting products. In addition, the company offers notebooks, PC parts and components, peripherals, keyboard, mouse, and headset. Further, it is involved in venue leasing, culture, and education, creative and art and catering, herb cultivation and farm activities; trades in electronic material and components, and car equipment; and wholesale and retail of food products. Additionally, the company engages in design, manufacture, and selling of semiconductor components, as well as research, develops, manufactures, and sells earphones. Furthermore, it is involved in the agricultural biotech related business. The company was incorporated in 2001 and is headquartered in New Taipei City, Taiwan.",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -126058,7 +126068,7 @@
                 "spokesman": "夏紹安",
                 "tax_id": "97418375",
                 "website": "WWW.TEAMGROUPINC.COM",
-                "summary": "",
+                "summary": "Team Group Inc. manufactures and trades integrated circuit chips, memory, and computer peripheral equipment in Taiwan, Asia, America, Europe, and internationally. The company offers desktop, laptop, and workstation memory; 2.5 inches, external/portable, and M.2 SSD cards, as well as enclosure kit; SD, MicroSD, CFexpress memory cards, and memory card readers; USB drives; and peripherals, such as case, fan, CPU cooler, SSD cooler, and accessories. It also sells electronic products and components. Team Group Inc. was founded in 1997 and is headquartered in New Taipei City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -127259,8 +127269,8 @@
                 "gm": "鄧茂松",
                 "spokesman": "蔡婷婷",
                 "tax_id": "22099694",
-                "website": "",
-                "summary": "",
+                "website": "https://www.etron.com",
+                "summary": "Etron Technology, Inc. designs, produces, and sells various integrated circuits in Taiwan, Asia, and internationally. The company offers commercial DRAMs (dynamic random access memory) for high-bandwidth and low-power consumption products, including computer peripherals, communication, and consumer products; industrial DRAMs that are used in surveillance, point of sale systems, smart meters, programmable logic controllers, and human-machine interface platforms; innovative DRAMs for AI, 5G, cloud computing, and automotive; and automotive DRAMs for use in CDs, DVDs, automotive HDDs, navigation products, instrument clusters, audios, automotive cameras, automotive infotainments, and advanced driver assistance systems. It also provides known-good-die-memory integrated circuits and non-volatile flash memory solutions; USB connectivity; and 3D sensing solutions. Etron Technology, Inc. was founded in 1991 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -128347,7 +128357,7 @@
                 "spokesman": "黃國樑",
                 "tax_id": "16130042",
                 "website": "www.chipmos.com",
-                "summary": "",
+                "summary": "ChipMOS TECHNOLOGIES INC. engages in the research and development, manufacture, and sale of integrated circuits, and related assembly and testing services in Taiwan, Japan, the People's Republic of China, and internationally. It operates through five segments: Testing; Assembly; Display Panel Driver Semiconductor Assembly and Testing; Bumping; and Others. The company offers leadframe-based packages, such as the small outline package, thin small outline package, and quad flat package; and substrate-based packages, including FBGA, VFBGA, stacked chip-scale package, TFBGA, LGA, COG, and COF; and testing solutions comprising professional wafer and final testing, tester/tooling correlation, test program verification, engineering lot and pilot lot run arrangement, engineering support, device failure mode analysis, and automation system for simple digital logic, complex ASIC, high speed digital, memory, and mixed signal and display driver IC devices. It also provides bumping services; intellectual property management and enabling technologies; and turnkey services, such as wafer bumping/RDL, wafer sort, assembly, final test, and drop shipment to display driver IC, memory IC, and logic mixed-signal IC. The company serves fabless companies, integrated device manufacturers, and foundries. ChipMOS TECHNOLOGIES INC. was incorporated in 1997 and is headquartered in Hsinchu City, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -128433,7 +128443,7 @@
                 "price": 268.5,
                 "change": 7.39,
                 "change_pct": 2.83,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -129456,10 +129466,10 @@
                 "full_name": "Western Digital Corporation",
                 "sector": "Electronic Technology",
                 "industry": "Computer Peripherals",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 40000,
+                "website": "https://www.westerndigital.com",
+                "summary": "Western Digital Corporation engages in the development, manufacture, and sale of data storage devices and solutions based on hard disk drive (HDD) technology in the United States, Asia, Europe, the Middle East, and Africa. The company offers internal HDDs, data center drives, data center platforms, external drives, portable drives, NAS for home and office, and accessories. It sells its data storage devices and solutions through its computer sales personnel, dealers, distributors, retailers, and subsidiaries. The company has a collaboration with Open Quantum Design for the development of quantum error correction technology and related systems to advance reliable quantum computing. Western Digital Corporation was founded in 1970 and is headquartered in San Jose, California.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -129540,7 +129550,7 @@
                 "price": 469.0,
                 "change": 11.99,
                 "change_pct": 2.62,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -130563,10 +130573,10 @@
                 "full_name": "Seagate Technology Holdings PLC",
                 "sector": "Electronic Technology",
                 "industry": "Computer Peripherals",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "Singapore",
+                "employees": 30000,
+                "website": "https://www.seagate.com",
+                "summary": "Seagate Technology Holdings plc engages in providing data storage solutions in Singapore, the United States, the Netherlands, and internationally. The company offers External and internal hard drives; external and internal solid-state drives (SSDs); enterprise hard drives and SSDs; data storage systems; network attached storage (NAS) hard drives; video and analytics hard drives; and hyperscale and cloud solution. It offers its products for Healthcare, Media & Entertainment, Surveillance & Security, and telecommunication industry. The company sells its products primarily to original equipment manufacturers, distributors, and retailers. The company was founded in 1978 and is based in Singapore.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -131648,7 +131658,7 @@
                 "spokesman": "林嘉明",
                 "tax_id": "11914002",
                 "website": "www.taiwanglass.com",
-                "summary": "",
+                "summary": "Taiwan Glass Ind. Corp. manufactures, processes, and sells various glass products in Taiwan, China, and internationally. The company operates through Flat-panel, Glassware, and Glass Fibers segments. The company offers float and processed glass; auto glass; ultra-thin glass; photovoltaic glass; and fabric and fiber glass. It also provides liquor, wine and beer, food jar, pepper, spice, sauce, oil and vinegar, soft drink, juice and milk, pharmaceutical, and cobalt blue containers; tableware, such as bowls and plates, water tumblers, wine glasses, mugs, color, storage jars and boxes, ashtrays, candleholders, and others products; and kitchenware comprising tea pots, pitchers, bubble balls, storage jars, coffee pots, and glass covers. Taiwan Glass Ind. Corp. was founded in 1964 and is based in Taipei, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -132850,7 +132860,7 @@
                 "spokesman": "李遠忠",
                 "tax_id": "36075449",
                 "website": "https://www.alliedsupreme.com",
-                "summary": "",
+                "summary": "Allied Supreme Corp., together with its subsidiaries, manufactures and sells fluoropolymer resin in China, America, and Taiwan. The company offers fluoropolymer materials, lining products, and coatings; customized products, such as injection molding products, overflow sink/tank, PTFE micro-powders, and PTFE compounds; and solutions for semiconductor, flat panel display, solar, pharmaceutical, biochemical, petrochemical, and traditional chemical industries. It also provides fluoropolymer lining, such sheet lining, iso container, immersion coil and shell and tube type heat exchanger; chemical filter housing; lined pipe and fittings; flexible hose and fluoropolymer coating. It serves the semiconductor, panel, and petrochemical industries. Allied Supreme Corp. was founded in 1981 and is headquartered in Taipei, Taiwan.",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -132936,7 +132946,7 @@
                 "price": 96.94,
                 "change": 2.56,
                 "change_pct": 2.71,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -133959,10 +133969,10 @@
                 "full_name": "Corning Inc",
                 "sector": "Electronic Technology",
                 "industry": "Electronic Components",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 67200,
+                "website": "https://www.corning.com",
+                "summary": "Corning Incorporated operates in optical communications, display, specialty materials, automotive, and life sciences businesses in the United States, Canada, Mexico, Japan, Taiwan, China, South Korea, Germany, and internationally. The company provides optical fibers and cables; and hardware and equipment products, such as cable assemblies, fiber optic hardware and connectors, optical components and couplers, closures, network interface devices, and other accessories for the telecommunications industry, businesses, governments, and individuals. It also offers glass substrates for flat panel displays, including liquid crystal displays and organic light-emitting diodes that are used in televisions, notebook computers, desktop monitors, tablets, and handheld devices. In addition, it manufactures products that offer material formulations for glass, glass ceramics, crystals, precision metrology instruments, and software, as well as glass wafers and substrates, tinted sunglasses, and radiation shielding products for markets, such as mobile consumer electronics, semiconductor equipment optics and consumables, aerospace and defense optics, radiation shielding products, sunglasses, and telecommunications components. Further, the company provides ceramic substrates and filter products for emissions control in mobile, gasoline, and diesel applications, as well as technical glass and optic products and solutions for the interior and exterior of vehicles. Additionally, it offers laboratory products, including plastic vessels, liquid handling plastics, specialty surfaces, cell culture media, and serum, as well as general labware, and glassware and equipment under the Corning, Falcon, PYREX, and Axygen brands. It also offers polysilicon products and pharmaceutical glass tubing and vials. The company was formerly known as Corning Glass Works and changed its name to Corning Incorporated in April 1989. Corning Incorporated was founded in 1851 and is headquartered in Corning, New York.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -134043,7 +134053,7 @@
                 "price": 128.42,
                 "change": 3.89,
                 "change_pct": 3.12,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -135066,10 +135076,10 @@
                 "full_name": "Entegris, Inc.",
                 "sector": "Producer Manufacturing",
                 "industry": "Industrial Machinery",
-                "country": "",
-                "employees": null,
-                "website": "",
-                "summary": "",
+                "country": "United States",
+                "employees": 7700,
+                "website": "https://www.entegris.com",
+                "summary": "Entegris, Inc. provides advanced materials and process solutions for the semiconductor and other high-technology industries in North America, Taiwan, South Korea, Japan, China, Europe, and Southeast Asia. It operates in two segments, Materials Solutions (MS) and Advanced Purity Solutions (APS). The MS segment provides materials-based solutions, such as chemical vapor and atomic layer deposition materials, chemical mechanical planarization slurries and pads, ion implantation specialty gases, formulated etch and clean materials, and other specialty materials. The APS segment offers filtration, purification, and contamination-control solutions for the semiconductor manufacturing processes, semiconductor ecosystem, and other high-technology industries. The company's customers include logic and memory semiconductor device manufacturers, semiconductor equipment makers, gas and chemical manufacturing companies, and wafer grower companies; and outsourced semiconductor assembly and test facilities, flat panel display equipment makers, and manufacturers of hard disk drive components and devices. It serves manufacturers and suppliers in the solar and life science industries, electrical discharge machining customers, glass manufacturers, aerospace manufacturers, and manufacturers of biomedical implantation devices. Entegris, Inc. was founded in 1966 and is headquartered in Billerica, Massachusetts.",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -141672,7 +141682,7 @@
                 "price": 175.02,
                 "change": 4.86,
                 "change_pct": 2.86,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -146040,7 +146050,7 @@
                 "price": 53.03,
                 "change": 1.75,
                 "change_pct": 3.41,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -147147,7 +147157,7 @@
                 "price": 439.39,
                 "change": 15.0,
                 "change_pct": 3.53,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -151622,7 +151632,7 @@
                 "price": 504.43,
                 "change": 1.6,
                 "change_pct": 0.32,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -152729,7 +152739,7 @@
                 "price": 297.09,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -158184,7 +158194,7 @@
                 "price": 19.85,
                 "change": 0.63,
                 "change_pct": 3.28,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -161465,7 +161475,7 @@
                 "price": 36.22,
                 "change": 0.66,
                 "change_pct": 1.86,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -168122,7 +168132,7 @@
                 "price": 1291.5,
                 "change": 25.28,
                 "change_pct": 2.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -168308,7 +168318,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 1446.3
+                  "close": 1446.29
                 },
                 {
                   "date": "2026-01-30",
@@ -169229,7 +169239,7 @@
                 "price": 130.35,
                 "change": 3.48,
                 "change_pct": 2.74,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -184467,7 +184477,7 @@
                 "price": 152.9,
                 "change": 2.96,
                 "change_pct": 1.97,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -192096,7 +192106,7 @@
                 "price": 286.18,
                 "change": 8.16,
                 "change_pct": 2.94,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -193203,7 +193213,7 @@
                 "price": 22.16,
                 "change": 0.51,
                 "change_pct": 2.36,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -198658,7 +198668,7 @@
                 "price": 75.36,
                 "change": 2.34,
                 "change_pct": 3.2,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -204113,7 +204123,7 @@
                 "price": 30.71,
                 "change": 0.47,
                 "change_pct": 1.55,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -205220,7 +205230,7 @@
                 "price": 27.38,
                 "change": 1.11,
                 "change_pct": 4.23,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -208501,7 +208511,7 @@
                 "price": 211.99,
                 "change": 7.21,
                 "change_pct": 3.52,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -209608,7 +209618,7 @@
                 "price": 265.0,
                 "change": 3.49,
                 "change_pct": 1.33,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -215063,7 +215073,7 @@
                 "price": 472.1,
                 "change": 11.56,
                 "change_pct": 2.51,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -220518,7 +220528,7 @@
                 "price": 193.56,
                 "change": 6.34,
                 "change_pct": 3.39,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -221625,7 +221635,7 @@
                 "price": 291.9,
                 "change": 6.86,
                 "change_pct": 2.41,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -222732,7 +222742,7 @@
                 "price": 33.82,
                 "change": 0.89,
                 "change_pct": 2.7,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -227100,7 +227110,7 @@
                 "price": 172.74,
                 "change": 5.12,
                 "change_pct": 3.05,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -228207,7 +228217,7 @@
                 "price": 92.0,
                 "change": 1.36,
                 "change_pct": 1.5,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -229314,7 +229324,7 @@
                 "price": 239.11,
                 "change": 4.74,
                 "change_pct": 2.02,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -242493,7 +242503,7 @@
                 "price": 45.23,
                 "change": 0.87,
                 "change_pct": 1.96,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -251209,7 +251219,7 @@
                 "price": 520.1,
                 "change": -0.11,
                 "change_pct": -0.02,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -251475,7 +251485,7 @@
                 },
                 {
                   "date": "2026-02-27",
-                  "close": 478.32
+                  "close": 478.31
                 },
                 {
                   "date": "2026-03-02",
@@ -252316,7 +252326,7 @@
                 "price": 9.71,
                 "change": -0.06,
                 "change_pct": -0.61,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -253423,7 +253433,7 @@
                 "price": 7.0,
                 "change": 0.12,
                 "change_pct": 1.74,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -256704,7 +256714,7 @@
                 "price": 163.32,
                 "change": -2.28,
                 "change_pct": -1.38,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -257811,7 +257821,7 @@
                 "price": 46.4,
                 "change": -0.08,
                 "change_pct": -0.17,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -258918,7 +258928,7 @@
                 "price": 22.33,
                 "change": 0.02,
                 "change_pct": 0.09,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -264470,7 +264480,7 @@
                 "price": 110.02,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -267751,7 +267761,7 @@
                 "price": 109.57,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -271147,7 +271157,7 @@
                 "price": 29.1,
                 "change": 0.07,
                 "change_pct": 0.24,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -272254,7 +272264,7 @@
                 "price": 145.44,
                 "change": 0.01,
                 "change_pct": 0.01,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -277709,7 +277719,7 @@
                 "price": 60.86,
                 "change": 2.01,
                 "change_pct": 3.42,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -292947,7 +292957,7 @@
                 "price": 228.0,
                 "change": 2.23,
                 "change_pct": 0.99,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -294054,7 +294064,7 @@
                 "price": 207.03,
                 "change": 5.23,
                 "change_pct": 2.59,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -296345,7 +296355,7 @@
                 "price": 89.2,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -308322,7 +308332,7 @@
                 "price": 357.58,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -318125,7 +318135,7 @@
                 "price": 71.47,
                 "change": 1.75,
                 "change_pct": 2.51,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -319232,7 +319242,7 @@
                 "price": 199.97,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -322513,7 +322523,7 @@
                 "price": 68.86,
                 "change": 2.62,
                 "change_pct": 3.96,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -323620,7 +323630,7 @@
                 "price": 142.48,
                 "change": 2.72,
                 "change_pct": 1.95,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -333522,7 +333532,7 @@
                 "price": 22.81,
                 "change": 0.45,
                 "change_pct": 2.01,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -347770,7 +347780,7 @@
                 "price": 270.75,
                 "change": 7.0,
                 "change_pct": 2.65,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -348877,7 +348887,7 @@
                 "price": 352.25,
                 "change": 6.33,
                 "change_pct": 1.83,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -349063,7 +349073,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 315.87
+                  "close": 315.88
                 },
                 {
                   "date": "2026-01-30",
@@ -349984,7 +349994,7 @@
                 "price": 61.11,
                 "change": 0.27,
                 "change_pct": 0.44,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -351091,7 +351101,7 @@
                 "price": 40.84,
                 "change": 1.73,
                 "change_pct": 4.42,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -353285,7 +353295,7 @@
                 "price": 1176.0,
                 "change": 33.95,
                 "change_pct": 2.97,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -353675,7 +353685,7 @@
                 },
                 {
                   "date": "2026-04-14",
-                  "close": 1359.33
+                  "close": 1359.34
                 },
                 {
                   "date": "2026-04-15",
@@ -358740,7 +358750,7 @@
                 "price": 242.11,
                 "change": 2.49,
                 "change_pct": 1.04,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -368543,7 +368553,7 @@
                 "price": 316.0,
                 "change": 4.67,
                 "change_pct": 1.5,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -369650,7 +369660,7 @@
                 "price": 177.99,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -375105,7 +375115,7 @@
                 "price": 127.0,
                 "change": 2.33,
                 "change_pct": 1.87,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -376212,7 +376222,7 @@
                 "price": 170.5,
                 "change": 4.26,
                 "change_pct": 2.56,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -379493,7 +379503,7 @@
                 "price": 80.36,
                 "change": 0.66,
                 "change_pct": 0.83,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -386035,7 +386045,7 @@
                 "price": 124.35,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -389316,7 +389326,7 @@
                 "price": 46.7,
                 "change": 0.71,
                 "change_pct": 1.54,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -395858,7 +395868,7 @@
                 "price": 713.94,
                 "change": 14.61,
                 "change_pct": 2.09,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -396965,7 +396975,7 @@
                 "price": 405.47,
                 "change": 1.81,
                 "change_pct": 0.45,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -399258,7 +399268,7 @@
                 "price": 241.46,
                 "change": 4.05,
                 "change_pct": 1.71,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -400365,7 +400375,7 @@
                 "price": 116.75,
                 "change": 1.5,
                 "change_pct": 1.3,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -401472,7 +401482,7 @@
                 "price": 83.44,
                 "change": -0.01,
                 "change_pct": -0.01,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -402579,7 +402589,7 @@
                 "price": 577.58,
                 "change": 18.55,
                 "change_pct": 3.32,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -402881,7 +402891,7 @@
                 },
                 {
                   "date": "2026-03-12",
-                  "close": 566.62
+                  "close": 566.61
                 },
                 {
                   "date": "2026-03-13",
@@ -408034,7 +408044,7 @@
                 "price": 500.74,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -409141,7 +409151,7 @@
                 "price": 270.87,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -412422,7 +412432,7 @@
                 "price": 88.05,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -413529,7 +413539,7 @@
                 "price": 172.25,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -421158,7 +421168,7 @@
                 "price": 67.25,
                 "change": 0.07,
                 "change_pct": 0.1,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -422265,7 +422275,7 @@
                 "price": 10.71,
                 "change": 0.04,
                 "change_pct": 0.37,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -423372,7 +423382,7 @@
                 "price": 136.5,
                 "change": 2.48,
                 "change_pct": 1.85,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -429914,7 +429924,7 @@
                 "price": 205.96,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -436456,7 +436466,7 @@
                 "price": 402.0,
                 "change": 3.54,
                 "change_pct": 0.89,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -436534,7 +436544,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 292.66
+                  "close": 292.67
                 },
                 {
                   "date": "2025-12-19",
@@ -437660,7 +437670,7 @@
                 "price": 160.4,
                 "change": 0.41,
                 "change_pct": 0.26,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -438767,7 +438777,7 @@
                 "price": 209.34,
                 "change": 0.97,
                 "change_pct": 0.47,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -439874,7 +439884,7 @@
                 "price": 135.0,
                 "change": -1.12,
                 "change_pct": -0.82,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -440981,7 +440991,7 @@
                 "price": 148.81,
                 "change": 0.21,
                 "change_pct": 0.14,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -442088,7 +442098,7 @@
                 "price": 46.18,
                 "change": 0.29,
                 "change_pct": 0.63,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -443195,7 +443205,7 @@
                 "price": 44.83,
                 "change": 0.02,
                 "change_pct": 0.04,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -444302,7 +444312,7 @@
                 "price": 64.31,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -445409,7 +445419,7 @@
                 "price": 30.55,
                 "change": 0.19,
                 "change_pct": 0.63,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -446516,7 +446526,7 @@
                 "price": 84.8,
                 "change": 0.43,
                 "change_pct": 0.51,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -447623,7 +447633,7 @@
                 "price": 290.21,
                 "change": -4.63,
                 "change_pct": -1.57,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -453078,7 +453088,7 @@
                 "price": 368.5,
                 "change": 1.31,
                 "change_pct": 0.36,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -454185,7 +454195,7 @@
                 "price": 240.37,
                 "change": 1.04,
                 "change_pct": 0.43,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -455292,7 +455302,7 @@
                 "price": 336.35,
                 "change": 2.17,
                 "change_pct": 0.65,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -458573,7 +458583,7 @@
                 "price": 56.0,
                 "change": 0.16,
                 "change_pct": 0.29,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -469463,7 +469473,7 @@
                 "price": 58.9,
                 "change": 0.13,
                 "change_pct": 0.22,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -476005,7 +476015,7 @@
                 "price": 24.1,
                 "change": 0.83,
                 "change_pct": 3.57,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -477112,7 +477122,7 @@
                 "price": 209.16,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -478219,7 +478229,7 @@
                 "price": 1140.0,
                 "change": 18.78,
                 "change_pct": 1.67,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -483674,7 +483684,7 @@
                 "price": 311.5,
                 "change": 1.88,
                 "change_pct": 0.61,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -484781,7 +484791,7 @@
                 "price": 212.64,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -488062,7 +488072,7 @@
                 "price": 157.65,
                 "change": 1.76,
                 "change_pct": 1.13,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -489169,7 +489179,7 @@
                 "price": 47.4,
                 "change": 1.98,
                 "change_pct": 4.36,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -490276,7 +490286,7 @@
                 "price": 9.17,
                 "change": 0.4,
                 "change_pct": 4.56,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -492470,7 +492480,7 @@
                 "price": 145.58,
                 "change": 2.09,
                 "change_pct": 1.46,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -495850,7 +495860,7 @@
                 "price": 190.98,
                 "change": 0.81,
                 "change_pct": 0.43,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -496957,7 +496967,7 @@
                 "price": 343.24,
                 "change": 1.74,
                 "change_pct": 0.51,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -498064,7 +498074,7 @@
                 "price": 89.65,
                 "change": 2.86,
                 "change_pct": 3.3,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -501345,7 +501355,7 @@
                 "price": 565.5,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -502452,7 +502462,7 @@
                 "price": 536.25,
                 "change": 1.94,
                 "change_pct": 0.36,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -514429,7 +514439,7 @@
                 "price": 29.32,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -518797,7 +518807,7 @@
                 "price": 289.4,
                 "change": 2.11,
                 "change_pct": 0.73,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -519904,7 +519914,7 @@
                 "price": 106.51,
                 "change": 0.29,
                 "change_pct": 0.27,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -521011,7 +521021,7 @@
                 "price": 307.0,
                 "change": 3.01,
                 "change_pct": 0.99,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -521217,7 +521227,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 289.87
+                  "close": 289.86
                 },
                 {
                   "date": "2026-02-06",
@@ -525476,7 +525486,7 @@
                 "price": 225.0,
                 "change": 0.56,
                 "change_pct": 0.25,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -526583,7 +526593,7 @@
                 "price": 124.94,
                 "change": 0.38,
                 "change_pct": 0.31,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -529864,7 +529874,7 @@
                 "price": 334.0,
                 "change": -9.32,
                 "change_pct": -2.71,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -530971,7 +530981,7 @@
                 "price": 218.34,
                 "change": -11.1,
                 "change_pct": -4.84,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -532078,7 +532088,7 @@
                 "price": 103.29,
                 "change": 2.1,
                 "change_pct": 2.08,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -533185,7 +533195,7 @@
                 "price": 88.82,
                 "change": 1.21,
                 "change_pct": 1.38,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -534292,7 +534302,7 @@
                 "price": 183.0,
                 "change": 2.38,
                 "change_pct": 1.32,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -540834,7 +540844,7 @@
                 "price": 221.2,
                 "change": 0.03,
                 "change_pct": 0.01,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -541941,7 +541951,7 @@
                 "price": 219.0,
                 "change": 1.29,
                 "change_pct": 0.59,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -543048,7 +543058,7 @@
                 "price": 273.15,
                 "change": 2.71,
                 "change_pct": 1.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -551753,7 +551763,7 @@
                 "price": 37.82,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -552860,7 +552870,7 @@
                 "price": 286.2,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -553967,7 +553977,7 @@
                 "price": 133.76,
                 "change": 0.04,
                 "change_pct": 0.03,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -555074,7 +555084,7 @@
                 "price": 27.44,
                 "change": 0.04,
                 "change_pct": 0.15,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -556181,7 +556191,7 @@
                 "price": 435.64,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -557288,7 +557298,7 @@
                 "price": 515.02,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -558395,7 +558405,7 @@
                 "price": 920.69,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -559502,7 +559512,7 @@
                 "price": 167.58,
                 "change": 1.15,
                 "change_pct": 0.69,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -566159,7 +566169,7 @@
                 "price": 673.5,
                 "change": 3.96,
                 "change_pct": 0.59,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -567266,7 +567276,7 @@
                 "price": 221.31,
                 "change": 0.95,
                 "change_pct": 0.43,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -568373,7 +568383,7 @@
                 "price": 401.0,
                 "change": 1.95,
                 "change_pct": 0.49,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -569480,7 +569490,7 @@
                 "price": 103.0,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -570587,7 +570597,7 @@
                 "price": 309.75,
                 "change": -0.25,
                 "change_pct": -0.08,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -571694,7 +571704,7 @@
                 "price": 42.2,
                 "change": 0.22,
                 "change_pct": 0.52,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -575135,7 +575145,7 @@
                 },
                 {
                   "date": "2025-12-05",
-                  "close": 123.04
+                  "close": 123.03
                 },
                 {
                   "date": "2025-12-08",
@@ -576177,7 +576187,7 @@
                 "price": 1069.43,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -577284,7 +577294,7 @@
                 "price": 339.0,
                 "change": -0.09,
                 "change_pct": -0.03,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -577474,7 +577484,7 @@
                 },
                 {
                   "date": "2026-01-30",
-                  "close": 356.42
+                  "close": 356.41
                 },
                 {
                   "date": "2026-02-02",
@@ -584913,7 +584923,7 @@
                 "price": 335.5,
                 "change": -4.35,
                 "change_pct": -1.28,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -586020,7 +586030,7 @@
                 "price": 394.0,
                 "change": -0.48,
                 "change_pct": -0.12,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -587127,7 +587137,7 @@
                 "price": 271.0,
                 "change": 0.1,
                 "change_pct": 0.04,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -588234,7 +588244,7 @@
                 "price": 124.32,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -593689,7 +593699,7 @@
                 "price": 231.39,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -594796,7 +594806,7 @@
                 "price": 373.39,
                 "change": 1.76,
                 "change_pct": 0.47,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -595903,7 +595913,7 @@
                 "price": 206.22,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -597010,7 +597020,7 @@
                 "price": 325.0,
                 "change": -8.07,
                 "change_pct": -2.42,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -600291,7 +600301,7 @@
                 "price": 404.8,
                 "change": 2.93,
                 "change_pct": 0.73,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -601398,7 +601408,7 @@
                 "price": 625.84,
                 "change": 0.25,
                 "change_pct": 0.04,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -602505,7 +602515,7 @@
                 "price": 303.97,
                 "change": 2.27,
                 "change_pct": 0.75,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -603612,7 +603622,7 @@
                 "price": 171.24,
                 "change": 1.24,
                 "change_pct": 0.73,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -604719,7 +604729,7 @@
                 "price": 307.56,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -605826,7 +605836,7 @@
                 "price": 443.0,
                 "change": 3.43,
                 "change_pct": 0.78,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -618890,7 +618900,7 @@
                 "price": 312.8,
                 "change": 2.27,
                 "change_pct": 0.73,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -619997,7 +620007,7 @@
                 "price": 47.25,
                 "change": 0.21,
                 "change_pct": 0.45,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -621104,7 +621114,7 @@
                 "price": 79.54,
                 "change": 0.92,
                 "change_pct": 1.17,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -622211,7 +622221,7 @@
                 "price": 111.59,
                 "change": 0.97,
                 "change_pct": 0.88,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -623318,7 +623328,7 @@
                 "price": 797.99,
                 "change": 7.3,
                 "change_pct": 0.92,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -624425,7 +624435,7 @@
                 "price": 168.17,
                 "change": 2.5,
                 "change_pct": 1.51,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -624819,7 +624829,7 @@
                 },
                 {
                   "date": "2026-04-15",
-                  "close": 188.41
+                  "close": 188.4
                 },
                 {
                   "date": "2026-04-16",
@@ -637467,7 +637477,7 @@
                 "price": 72.0,
                 "change": 0.81,
                 "change_pct": 1.14,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -638574,7 +638584,7 @@
                 "price": 90.94,
                 "change": 0.78,
                 "change_pct": 0.87,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -639681,7 +639691,7 @@
                 "price": 1108.04,
                 "change": 6.32,
                 "change_pct": 0.57,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -640788,7 +640798,7 @@
                 "price": 110.99,
                 "change": 0.19,
                 "change_pct": 0.17,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -641895,7 +641905,7 @@
                 "price": 89.25,
                 "change": 0.71,
                 "change_pct": 0.8,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -643002,7 +643012,7 @@
                 "price": 341.92,
                 "change": 2.18,
                 "change_pct": 0.64,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -646283,7 +646293,7 @@
                 "price": 518.0,
                 "change": 7.55,
                 "change_pct": 1.48,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -647390,7 +647400,7 @@
                 "price": 613.19,
                 "change": 3.94,
                 "change_pct": 0.65,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -662628,7 +662638,7 @@
                 "price": 123.37,
                 "change": 0.87,
                 "change_pct": 0.71,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -663735,7 +663745,7 @@
                 "price": 184.52,
                 "change": 0.31,
                 "change_pct": 0.17,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -664842,7 +664852,7 @@
                 "price": 968.22,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -665949,7 +665959,7 @@
                 "price": 339.42,
                 "change": 0.38,
                 "change_pct": 0.11,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -667056,7 +667066,7 @@
                 "price": 215.69,
                 "change": -5.15,
                 "change_pct": -2.33,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -671424,7 +671434,7 @@
                 "price": 78.35,
                 "change": 0.18,
                 "change_pct": 0.23,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -676994,7 +677004,7 @@
                 "price": 144.91,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -678101,7 +678111,7 @@
                 "price": 170.5,
                 "change": 0.14,
                 "change_pct": 0.08,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -679208,7 +679218,7 @@
                 "price": 406.64,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -680315,7 +680325,7 @@
                 "price": 356.25,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -681422,7 +681432,7 @@
                 "price": 300.0,
                 "change": 3.52,
                 "change_pct": 1.19,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -691225,7 +691235,7 @@
                 "price": 272.0,
                 "change": -1.24,
                 "change_pct": -0.45,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -692332,7 +692342,7 @@
                 "price": 103.48,
                 "change": 0.35,
                 "change_pct": 0.34,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -693439,7 +693449,7 @@
                 "price": 35.55,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -694546,7 +694556,7 @@
                 "price": 160.7,
                 "change": 0.0,
                 "change_pct": 0.0,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -695750,7 +695760,7 @@
                 "price": 67.05,
                 "change": 0.1,
                 "change_pct": 0.15,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -695924,7 +695934,7 @@
                 },
                 {
                   "date": "2026-01-26",
-                  "close": 65.52
+                  "close": 65.51
                 },
                 {
                   "date": "2026-01-27",
@@ -705553,7 +705563,7 @@
                 "price": 169.32,
                 "change": -0.05,
                 "change_pct": -0.03,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -706660,7 +706670,7 @@
                 "price": 96.92,
                 "change": -0.07,
                 "change_pct": -0.07,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -707767,7 +707777,7 @@
                 "price": 140.44,
                 "change": -0.1,
                 "change_pct": -0.07,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -708874,7 +708884,7 @@
                 "price": 184.25,
                 "change": 0.16,
                 "change_pct": 0.09,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -709981,7 +709991,7 @@
                 "price": 33.04,
                 "change": 0.12,
                 "change_pct": 0.36,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -718697,7 +718707,7 @@
                 "price": 1103.37,
                 "change": 1.22,
                 "change_pct": 0.11,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
@@ -719804,7 +719814,7 @@
                 "price": 140.68,
                 "change": 1.06,
                 "change_pct": 0.76,
-                "label": "盤前"
+                "label": "盤後"
               },
               "intraday": [],
               "history": [
