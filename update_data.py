@@ -1,5 +1,6 @@
 import os, re, sys, io, json, math, time, datetime
 import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
 from urllib.parse import quote
 import pytz, requests, urllib3
 import pandas as pd
@@ -74,6 +75,40 @@ def extract_close_series(df, ticker=None):
         pass
     return pd.Series(dtype=float)
 
+class SimpleTableParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.rows = []
+        self._in_tr = False
+        self._in_cell = False
+        self._cur_row = []
+        self._cur_cell = []
+
+    def handle_starttag(self, tag, attrs):
+        t = tag.lower()
+        if t == "tr":
+            self._in_tr = True
+            self._cur_row = []
+        elif t in ("td", "th") and self._in_tr:
+            self._in_cell = True
+            self._cur_cell = []
+        elif t == "br" and self._in_cell:
+            self._cur_cell.append(" ")
+
+    def handle_endtag(self, tag):
+        t = tag.lower()
+        if t in ("td", "th") and self._in_cell:
+            self._cur_row.append(re.sub(r"\s+", " ", "".join(self._cur_cell)).strip())
+            self._in_cell = False
+        elif t == "tr" and self._in_tr:
+            if self._cur_row:
+                self.rows.append(self._cur_row)
+            self._in_tr = False
+
+    def handle_data(self, data):
+        if self._in_cell:
+            self._cur_cell.append(data)
+
 tw_tz = pytz.timezone('Asia/Taipei')
 now_tw = datetime.datetime.now(tw_tz)
 DELISTED_BLACKLIST = {"2867.TW", "2809.TW", "2888.TW", "MMC"}
@@ -139,6 +174,42 @@ FUTURES_AND_COMMODITIES = {
     "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
+# 0. 讀取既有 market_data.json 作為報價防漏備援與官方主要經營業務快取
+def load_previous_cache():
+    old_assets = {}
+    cached_tw_biz = {}
+    if os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_data = json.load(f) or {}
+            buckets = []
+            for k in ["indices", "vix_indices", "us_bonds", "fx_rates", "us_stocks", "tw_stocks", "futures_commodities"]:
+                buckets.extend(old_data.get(k) or [])
+            for sec in (old_data.get("supply_chain_sectors") or []):
+                for stg in (sec.get("stages") or []):
+                    buckets.extend(stg.get("items") or [])
+            for it in buckets:
+                sym = it.get("symbol")
+                if not sym:
+                    continue
+                if safe_float(it.get("price"), 0.0) > 0:
+                    old_assets[sym] = {
+                        "price": safe_float(it.get("price"), 0.0),
+                        "prev_close": safe_float(it.get("prev_close"), 0.0),
+                        "change": safe_float(it.get("change"), 0.0),
+                        "change_pct": safe_float(it.get("change_pct"), 0.0),
+                        "history": it.get("history") or [],
+                        "ext_session": it.get("ext_session")
+                    }
+                prof = it.get("profile")
+                if (sym.endswith(".TW") or sym.endswith(".TWO")) and isinstance(prof, dict):
+                    # 僅保留來自官方 ic.tpex.org.tw 的主要經營業務，自動淘汰舊版機翻摘要
+                    if prof.get("business_source") == "ic.tpex.org.tw" and prof.get("summary"):
+                        cached_tw_biz[sym.split(".")[0]] = prof["summary"]
+        except Exception:
+            pass
+    return old_assets, cached_tw_biz
+
 # 1. 官方月營收 OpenAPI (上市 + 上櫃)
 def fetch_official_tw_monthly_revenues():
     rev_map = {}
@@ -192,7 +263,7 @@ def fetch_official_mops_material_news():
             pass
     return mops_by_code, mops_general
 
-# 2.5 上市櫃公司官方基本資料 OpenAPI (t187ap03_L / mopsfin_t187ap03_O) + 繁體中文業務簡介快取
+# 2.5 上市櫃公司官方基本資料 OpenAPI + 產業價值鏈資訊平台 (ic.tpex.org.tw) 官方「主要經營業務」
 def fetch_official_tw_company_profiles():
     prof_map = {}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -214,9 +285,6 @@ def fetch_official_tw_company_profiles():
                     "spokesman": clean_val(row.get("發言人")),
                     "tax_id": clean_val(row.get("營利事業統一編號")),
                     "website": clean_val(row.get("網址")),
-                    "founded": clean_val(row.get("成立日期")),
-                    "listed_date": clean_val(row.get("上市日期")),
-                    "capital": clean_val(row.get("實收資本額")),
                     "source": "證交所 OpenAPI (t187ap03_L)"
                 }
     except Exception:
@@ -236,97 +304,56 @@ def fetch_official_tw_company_profiles():
                     "spokesman": clean_val(row.get("Spokesman")),
                     "tax_id": clean_val(row.get("UnifiedBusinessNo.")),
                     "website": clean_val(row.get("Website") or row.get("InternetAddress")),
-                    "founded": clean_val(row.get("DateOfIncorporation")),
-                    "listed_date": clean_val(row.get("DateOfListing")),
-                    "capital": clean_val(row.get("PaidInCapital")),
                     "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
                 }
     except Exception:
         pass
     return prof_map
 
-def load_cached_stock_profiles():
-    cached = {}
-    if os.path.exists("data/market_data.json"):
-        try:
-            with open("data/market_data.json", "r", encoding="utf-8") as f:
-                old_data = json.load(f) or {}
-            buckets = list(old_data.get("us_stocks") or []) + list(old_data.get("tw_stocks") or [])
-            for sec in (old_data.get("supply_chain_sectors") or []):
-                for stg in (sec.get("stages") or []):
-                    buckets.extend(stg.get("items") or [])
-            for it in buckets:
-                sym = it.get("symbol")
-                prof = it.get("profile")
-                if sym and isinstance(prof, dict) and prof.get("summary"):
-                    cached[sym] = prof
-        except Exception:
-            pass
-    return cached
-
-_TRANSLATE_CACHE = {}
-
-def has_cjk(text):
-    return bool(re.search(r'[\u4e00-\u9fff]', str(text or "")))
-
-def translate_to_zh_tw(text):
-    s = str(text or "").strip()
-    if not s or has_cjk(s):
-        return to_trad(s)
-    if s in _TRANSLATE_CACHE:
-        return _TRANSLATE_CACHE[s]
+def fetch_ic_tpex_main_business(code):
     try:
-        r = requests.post(
-            "https://translate.googleapis.com/translate_a/single",
-            params={"client": "gtx", "sl": "en", "tl": "zh-TW", "dt": "t"},
-            data={"q": s},
+        r = requests.get(
+            f"https://ic.tpex.org.tw/company_basic.php?stk_code={code}",
             headers={"User-Agent": "Mozilla/5.0"},
-            timeout=8
+            timeout=8,
+            verify=False
         )
-        if r.status_code == 200:
-            arr = r.json()
-            if isinstance(arr, list) and arr and isinstance(arr[0], list):
-                zh = "".join(str(seg[0]) for seg in arr[0] if isinstance(seg, list) and seg and seg[0])
-                if zh.strip():
-                    res = to_trad(zh.strip())
-                    _TRANSLATE_CACHE[s] = res
-                    return res
+        if r.status_code != 200:
+            return ""
+        r.encoding = "utf-8"
+        parser = SimpleTableParser()
+        parser.feed(r.text)
+        rows = parser.rows
+        for r_idx, row in enumerate(rows):
+            for c_idx, cell in enumerate(row):
+                if "主要經營業務" in cell:
+                    # 格式 A：上方表頭列 (市場別 | 產業類別 | 掛牌日期 | 主要經營業務)，下方為數值列
+                    if r_idx + 1 < len(rows) and c_idx < len(rows[r_idx + 1]):
+                        cand = rows[r_idx + 1][c_idx].strip()
+                        if len(cand) >= 4 and "市場別" not in cand and "主要經營業務" not in cand:
+                            return to_trad(cand)
+                    # 格式 B：左側表頭格、右側數值格
+                    if c_idx + 1 < len(row):
+                        cand = row[c_idx + 1].strip()
+                        if len(cand) >= 4 and "市場別" not in cand:
+                            return to_trad(cand)
     except Exception:
         pass
-    return s
+    return ""
 
-def enrich_missing_yf_summaries(target_syms, cached_profiles, max_fetch=30, max_translate=60):
-    fetched, translated = 0, 0
-    for sym in dict.fromkeys(target_syms):
-        if sym in DELISTED_BLACKLIST:
-            continue
-        prof = cached_profiles.get(sym)
-        if prof and prof.get("summary"):
-            if not has_cjk(prof["summary"]) and translated < max_translate:
-                prof["summary"] = translate_to_zh_tw(prof["summary"])
-                if prof.get("country") and not has_cjk(prof["country"]):
-                    prof["country"] = translate_to_zh_tw(prof["country"])
-                translated += 1
-                time.sleep(0.15)
+def enrich_tw_official_main_business(target_tw_codes, cached_tw_biz, max_fetch=40):
+    fetched = 0
+    for code in dict.fromkeys(target_tw_codes):
+        if not code or code in cached_tw_biz:
             continue
         if fetched >= max_fetch:
-            continue
-        try:
-            info = yf.Ticker(sym).info or {}
-            summary = str(info.get("longBusinessSummary") or "").strip()
-            if summary:
-                country_raw = str(info.get("country") or "").strip()
-                cached_profiles[sym] = {
-                    "summary": translate_to_zh_tw(summary),
-                    "website": str(info.get("website") or "").strip(),
-                    "country": translate_to_zh_tw(country_raw) if country_raw else "",
-                    "employees": info.get("fullTimeEmployees")
-                }
-                fetched += 1
-                time.sleep(0.15)
-        except Exception:
-            continue
-    return cached_profiles
+            break
+        biz = fetch_ic_tpex_main_business(code)
+        if biz:
+            cached_tw_biz[code] = biz
+        fetched += 1
+        time.sleep(0.15)
+    return cached_tw_biz
 
 # 3. Google News RSS
 def fetch_google_news_rss_for_stock(query_str, max_items=3):
@@ -851,6 +878,28 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
+    # 核心指數、美債、外匯與期貨單檔重試防漏機制（特別保障 ^KS11、^N225 與歐股指數）
+    core_priority = [s for s in list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) + list(FUTURES_AND_COMMODITIES.keys()) if s not in skip_set]
+    for sym in core_priority:
+        if sym in yf_map and safe_float(yf_map[sym].get("price"), 0.0) > 0:
+            continue
+        try:
+            hist_df = yf.Ticker(sym).history(period="1y", interval="1d")
+            closes = extract_close_series(hist_df)
+            if not closes.empty:
+                dec = 4 if (sym.endswith("=X") and sym not in ["JPY=X", "TWD=X"]) else 2
+                pts = [{"date": idx.strftime("%Y-%m-%d"), "close": round(safe_float(v), dec)} for idx, v in closes.items() if safe_float(v) > 0]
+                if len(pts) >= 2:
+                    lc, pc = pts[-1]["close"], pts[-2]["close"]
+                    yf_map[sym] = {
+                        "price": lc, "prev_close": pc,
+                        "change": round(lc - pc, dec),
+                        "change_pct": round(((lc - pc) / pc) * 100, 2) if pc > 0 else 0.0,
+                        "history": pts, "ext_session": None
+                    }
+        except Exception:
+            continue
+
     fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set and s not in {"ZS=F", "ZW=F", "ZC=F"}]
     for i in range(0, len(fut_and_us), 35):
         chunk = fut_and_us[i:i + 35]
@@ -1147,7 +1196,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_yf_profiles, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -1185,6 +1234,18 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
                 else:
                     hist[-1]["close"] = p_val
 
+    # 若當次抓取失敗 (p_val <= 0)，自動沿用前一份 market_data.json 有效報價與歷史資料，避免變回「同步中...」
+    if p_val <= 0 and symbol in old_assets:
+        oa = old_assets[symbol]
+        p_val = oa["price"]
+        prev_val = oa["prev_close"] or p_val
+        chg_val = oa["change"]
+        pct_val = oa["change_pct"]
+        if not hist and oa["history"]:
+            hist = oa["history"]
+        if ext_obj is None and symbol not in ["BTC-USD", "ETH-USD"]:
+            ext_obj = oa["ext_session"]
+
     f_dict = {
         "pe": tv_f.get("pe", "N/A"), "forward_pe": tv_f.get("forward_pe", "無預估"),
         "eps": tv_f.get("eps", "N/A"), "gross_margin": tv_f.get("gross_margin", "N/A"),
@@ -1193,35 +1254,39 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
         "monthly_rev": rev_map.get(tw_code) if tw_code else None
     }
 
+    # 公司簡介：台股採用官方 t187ap03 + ic.tpex.org.tw「主要經營業務」（零機翻）；美股採純淨版（零機翻）
     profile_obj = None
     if asset_type in ["us_stock", "tw_stock"]:
-        yf_p = cached_yf_profiles.get(symbol) or {}
         if tw_code:
             off_p = tw_prof_official.get(tw_code) or {}
             tv_pm = (tw_official.get("prof_meta") or {}).get(tw_code) or {}
+            biz_text = cached_tw_biz.get(tw_code) or ""
+            src_parts = [off_p.get("source") or "TradingView"]
+            if biz_text:
+                src_parts.append("產業價值鏈資訊平台 (ic.tpex.org.tw)")
             profile_obj = {
                 "full_name": off_p.get("full_name") or tv_pm.get("description") or to_trad(display_name),
-                "sector": translate_to_zh_tw(tv_pm.get("sector") or ""),
-                "industry": translate_to_zh_tw(tv_pm.get("industry") or ""),
+                "sector": tv_pm.get("sector") or "",
+                "industry": tv_pm.get("industry") or "",
                 "chairman": off_p.get("chairman") or "",
                 "gm": off_p.get("gm") or "",
                 "spokesman": off_p.get("spokesman") or "",
                 "tax_id": off_p.get("tax_id") or "",
-                "website": off_p.get("website") or yf_p.get("website") or "",
-                "summary": yf_p.get("summary") or "",
-                "source": off_p.get("source") or "TradingView / Yahoo Finance"
+                "website": off_p.get("website") or "",
+                "summary": biz_text,
+                "business_source": "ic.tpex.org.tw" if biz_text else "",
+                "source": " / ".join(src_parts)
             }
         else:
             us_pm = us_prof_meta.get(symbol) or {}
             profile_obj = {
                 "full_name": us_pm.get("full_name") or symbol,
-                "sector": translate_to_zh_tw(us_pm.get("sector") or ""),
-                "industry": translate_to_zh_tw(us_pm.get("industry") or ""),
-                "country": translate_to_zh_tw(yf_p.get("country") or ""),
-                "employees": yf_p.get("employees"),
-                "website": yf_p.get("website") or "",
-                "summary": yf_p.get("summary") or "",
-                "source": "TradingView / Yahoo Finance"
+                "sector": us_pm.get("sector") or "",
+                "industry": us_pm.get("industry") or "",
+                "website": "",
+                "summary": "",
+                "business_source": "",
+                "source": "TradingView"
             }
 
     ns_obj = build_stock_specific_sentiment_and_news(symbol, to_trad(display_name), f_dict, mops_by_code, fetch_rss=fetch_rss) if asset_type in ["us_stock", "tw_stock"] else None
@@ -1237,6 +1302,8 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
 def main():
     t0 = time.time()
     os.makedirs("data", exist_ok=True)
+    old_assets, cached_tw_biz = load_previous_cache()
+
     payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
         "indices": [], "vix_indices": [], "fear_greed": fetch_fear_and_greed_indices(),
@@ -1248,19 +1315,18 @@ def main():
     try:
         sc_items_map, _ = parse_sectors_and_symbols_from_js("supply_chain_db.js")
         all_us_eq = list(set(US_STOCKS + [s for s in sc_items_map.keys() if not (s.endswith(".TW") or s.endswith(".TWO"))]))
+        all_tw_codes = list(TW_STOCKS.keys()) + [s.split(".")[0] for s in sc_items_map.keys() if (s.endswith(".TW") or s.endswith(".TWO"))]
 
         rev_map = fetch_official_tw_monthly_revenues()
         mops_by_code, mops_general = fetch_official_mops_material_news()
         payload["mops_general"] = mops_general
 
         tw_prof_official = fetch_official_tw_company_profiles()
+        cached_tw_biz = enrich_tw_official_main_business(all_tw_codes, cached_tw_biz, max_fetch=40)
+
         tw_official = fetch_tw_official_all_channels()
         us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
-
-        cached_yf_profiles = load_cached_stock_profiles()
-        priority_prof_syms = list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] + list(sc_items_map.keys())
-        cached_yf_profiles = enrich_missing_yf_summaries(priority_prof_syms, cached_yf_profiles, max_fetch=30, max_translate=60)
 
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
@@ -1282,8 +1348,8 @@ def main():
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
                 built_cache[sym] = build_asset_object(
-                    sym, name, a_type, f_group, yf_map, tw_official, us_fund_map, us_mcap_map,
-                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_yf_profiles,
+                    sym, name, a_type, f_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map,
+                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz,
                     fetch_rss=(sym in core_rss_set)
                 )
             cp = dict(built_cache[sym])
@@ -1313,7 +1379,7 @@ def main():
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
         json.dump(clean_json_nans(payload), f, ensure_ascii=False, indent=2, allow_nan=False)
-    print(f"Success! Completed in {time.time()-t0:.1f}s.")
+    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached official TW biz: {len(cached_tw_biz)}")
 
 if __name__ == "__main__":
     main()
