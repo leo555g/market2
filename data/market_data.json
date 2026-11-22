@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-22 23:28:35 CST",
+  "last_updated": "2026-11-22 23:40:36 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -7190,995 +7190,14 @@
       "name": "韓國 KOSPI 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 4869.96,
-      "prev_close": 5137.89,
-      "change": -267.93,
-      "change_pct": -5.21,
+      "price": 0.0,
+      "prev_close": 0.0,
+      "change": 0.0,
+      "change_pct": 0.0,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
-      "history": [
-        {
-          "date": "2025-11-20",
-          "close": 4004.85
-        },
-        {
-          "date": "2025-11-21",
-          "close": 3853.26
-        },
-        {
-          "date": "2025-11-24",
-          "close": 3846.06
-        },
-        {
-          "date": "2025-11-25",
-          "close": 3857.78
-        },
-        {
-          "date": "2025-11-26",
-          "close": 3960.87
-        },
-        {
-          "date": "2025-11-27",
-          "close": 3986.91
-        },
-        {
-          "date": "2025-11-28",
-          "close": 3926.59
-        },
-        {
-          "date": "2025-12-01",
-          "close": 3920.37
-        },
-        {
-          "date": "2025-12-02",
-          "close": 3994.93
-        },
-        {
-          "date": "2025-12-03",
-          "close": 4036.3
-        },
-        {
-          "date": "2025-12-04",
-          "close": 4028.51
-        },
-        {
-          "date": "2025-12-05",
-          "close": 4100.05
-        },
-        {
-          "date": "2025-12-08",
-          "close": 4154.85
-        },
-        {
-          "date": "2025-12-09",
-          "close": 4143.55
-        },
-        {
-          "date": "2025-12-10",
-          "close": 4135.0
-        },
-        {
-          "date": "2025-12-11",
-          "close": 4110.62
-        },
-        {
-          "date": "2025-12-12",
-          "close": 4167.16
-        },
-        {
-          "date": "2025-12-15",
-          "close": 4090.59
-        },
-        {
-          "date": "2025-12-16",
-          "close": 3999.13
-        },
-        {
-          "date": "2025-12-17",
-          "close": 4056.41
-        },
-        {
-          "date": "2025-12-18",
-          "close": 3994.51
-        },
-        {
-          "date": "2025-12-19",
-          "close": 4020.55
-        },
-        {
-          "date": "2025-12-22",
-          "close": 4105.93
-        },
-        {
-          "date": "2025-12-23",
-          "close": 4117.32
-        },
-        {
-          "date": "2025-12-24",
-          "close": 4108.62
-        },
-        {
-          "date": "2025-12-26",
-          "close": 4129.68
-        },
-        {
-          "date": "2025-12-29",
-          "close": 4220.56
-        },
-        {
-          "date": "2025-12-30",
-          "close": 4214.17
-        },
-        {
-          "date": "2026-01-02",
-          "close": 4309.63
-        },
-        {
-          "date": "2026-01-05",
-          "close": 4457.52
-        },
-        {
-          "date": "2026-01-06",
-          "close": 4525.48
-        },
-        {
-          "date": "2026-01-07",
-          "close": 4551.06
-        },
-        {
-          "date": "2026-01-08",
-          "close": 4552.37
-        },
-        {
-          "date": "2026-01-09",
-          "close": 4586.32
-        },
-        {
-          "date": "2026-01-12",
-          "close": 4624.79
-        },
-        {
-          "date": "2026-01-13",
-          "close": 4692.64
-        },
-        {
-          "date": "2026-01-14",
-          "close": 4723.1
-        },
-        {
-          "date": "2026-01-15",
-          "close": 4797.55
-        },
-        {
-          "date": "2026-01-16",
-          "close": 4840.74
-        },
-        {
-          "date": "2026-01-19",
-          "close": 4904.66
-        },
-        {
-          "date": "2026-01-20",
-          "close": 4885.75
-        },
-        {
-          "date": "2026-01-21",
-          "close": 4909.93
-        },
-        {
-          "date": "2026-01-22",
-          "close": 4952.53
-        },
-        {
-          "date": "2026-01-23",
-          "close": 4990.07
-        },
-        {
-          "date": "2026-01-26",
-          "close": 4949.59
-        },
-        {
-          "date": "2026-01-27",
-          "close": 5084.85
-        },
-        {
-          "date": "2026-01-28",
-          "close": 5170.81
-        },
-        {
-          "date": "2026-01-29",
-          "close": 5221.25
-        },
-        {
-          "date": "2026-01-30",
-          "close": 5224.36
-        },
-        {
-          "date": "2026-02-02",
-          "close": 4949.67
-        },
-        {
-          "date": "2026-02-03",
-          "close": 5288.08
-        },
-        {
-          "date": "2026-02-04",
-          "close": 5371.1
-        },
-        {
-          "date": "2026-02-05",
-          "close": 5163.57
-        },
-        {
-          "date": "2026-02-06",
-          "close": 5089.14
-        },
-        {
-          "date": "2026-02-09",
-          "close": 5298.04
-        },
-        {
-          "date": "2026-02-10",
-          "close": 5301.69
-        },
-        {
-          "date": "2026-02-11",
-          "close": 5354.49
-        },
-        {
-          "date": "2026-02-12",
-          "close": 5522.27
-        },
-        {
-          "date": "2026-02-13",
-          "close": 5507.01
-        },
-        {
-          "date": "2026-02-19",
-          "close": 5677.25
-        },
-        {
-          "date": "2026-02-20",
-          "close": 5808.53
-        },
-        {
-          "date": "2026-02-23",
-          "close": 5846.09
-        },
-        {
-          "date": "2026-02-24",
-          "close": 5969.64
-        },
-        {
-          "date": "2026-02-25",
-          "close": 6083.86
-        },
-        {
-          "date": "2026-02-26",
-          "close": 6307.27
-        },
-        {
-          "date": "2026-02-27",
-          "close": 6244.13
-        },
-        {
-          "date": "2026-03-03",
-          "close": 5791.91
-        },
-        {
-          "date": "2026-03-04",
-          "close": 5093.54
-        },
-        {
-          "date": "2026-03-05",
-          "close": 5583.9
-        },
-        {
-          "date": "2026-03-06",
-          "close": 5584.87
-        },
-        {
-          "date": "2026-03-09",
-          "close": 5251.87
-        },
-        {
-          "date": "2026-03-10",
-          "close": 5532.59
-        },
-        {
-          "date": "2026-03-11",
-          "close": 5609.95
-        },
-        {
-          "date": "2026-03-12",
-          "close": 5583.25
-        },
-        {
-          "date": "2026-03-13",
-          "close": 5487.24
-        },
-        {
-          "date": "2026-03-16",
-          "close": 5549.85
-        },
-        {
-          "date": "2026-03-17",
-          "close": 5640.48
-        },
-        {
-          "date": "2026-03-18",
-          "close": 5925.03
-        },
-        {
-          "date": "2026-03-19",
-          "close": 5763.22
-        },
-        {
-          "date": "2026-03-20",
-          "close": 5781.2
-        },
-        {
-          "date": "2026-03-23",
-          "close": 5405.75
-        },
-        {
-          "date": "2026-03-24",
-          "close": 5553.92
-        },
-        {
-          "date": "2026-03-25",
-          "close": 5642.21
-        },
-        {
-          "date": "2026-03-26",
-          "close": 5460.46
-        },
-        {
-          "date": "2026-03-27",
-          "close": 5438.87
-        },
-        {
-          "date": "2026-03-30",
-          "close": 5277.3
-        },
-        {
-          "date": "2026-03-31",
-          "close": 5052.46
-        },
-        {
-          "date": "2026-04-01",
-          "close": 5478.7
-        },
-        {
-          "date": "2026-04-02",
-          "close": 5234.05
-        },
-        {
-          "date": "2026-04-03",
-          "close": 5377.3
-        },
-        {
-          "date": "2026-04-06",
-          "close": 5450.33
-        },
-        {
-          "date": "2026-04-07",
-          "close": 5494.78
-        },
-        {
-          "date": "2026-04-08",
-          "close": 5872.34
-        },
-        {
-          "date": "2026-04-09",
-          "close": 5778.01
-        },
-        {
-          "date": "2026-04-10",
-          "close": 5858.87
-        },
-        {
-          "date": "2026-04-13",
-          "close": 5808.62
-        },
-        {
-          "date": "2026-04-14",
-          "close": 5967.75
-        },
-        {
-          "date": "2026-04-15",
-          "close": 6091.39
-        },
-        {
-          "date": "2026-04-16",
-          "close": 6226.05
-        },
-        {
-          "date": "2026-04-17",
-          "close": 6191.92
-        },
-        {
-          "date": "2026-04-20",
-          "close": 6219.09
-        },
-        {
-          "date": "2026-04-21",
-          "close": 6388.47
-        },
-        {
-          "date": "2026-04-22",
-          "close": 6417.93
-        },
-        {
-          "date": "2026-04-23",
-          "close": 6475.81
-        },
-        {
-          "date": "2026-04-24",
-          "close": 6475.63
-        },
-        {
-          "date": "2026-04-27",
-          "close": 6615.03
-        },
-        {
-          "date": "2026-04-28",
-          "close": 6641.02
-        },
-        {
-          "date": "2026-04-29",
-          "close": 6690.9
-        },
-        {
-          "date": "2026-04-30",
-          "close": 6598.87
-        },
-        {
-          "date": "2026-05-04",
-          "close": 6936.99
-        },
-        {
-          "date": "2026-05-06",
-          "close": 7384.56
-        },
-        {
-          "date": "2026-05-07",
-          "close": 7490.05
-        },
-        {
-          "date": "2026-05-08",
-          "close": 7498.0
-        },
-        {
-          "date": "2026-05-11",
-          "close": 7822.24
-        },
-        {
-          "date": "2026-05-12",
-          "close": 7643.15
-        },
-        {
-          "date": "2026-05-13",
-          "close": 7844.01
-        },
-        {
-          "date": "2026-05-14",
-          "close": 7981.41
-        },
-        {
-          "date": "2026-05-15",
-          "close": 7493.18
-        },
-        {
-          "date": "2026-05-18",
-          "close": 7516.04
-        },
-        {
-          "date": "2026-05-19",
-          "close": 7271.66
-        },
-        {
-          "date": "2026-05-20",
-          "close": 7208.95
-        },
-        {
-          "date": "2026-05-21",
-          "close": 7815.59
-        },
-        {
-          "date": "2026-05-22",
-          "close": 7847.71
-        },
-        {
-          "date": "2026-05-26",
-          "close": 8047.51
-        },
-        {
-          "date": "2026-05-27",
-          "close": 8228.7
-        },
-        {
-          "date": "2026-05-28",
-          "close": 8185.29
-        },
-        {
-          "date": "2026-05-29",
-          "close": 8476.15
-        },
-        {
-          "date": "2026-06-01",
-          "close": 8788.38
-        },
-        {
-          "date": "2026-06-02",
-          "close": 8801.49
-        },
-        {
-          "date": "2026-06-04",
-          "close": 8639.41
-        },
-        {
-          "date": "2026-06-05",
-          "close": 8160.59
-        },
-        {
-          "date": "2026-06-08",
-          "close": 7484.41
-        },
-        {
-          "date": "2026-06-09",
-          "close": 8096.93
-        },
-        {
-          "date": "2026-06-10",
-          "close": 7730.82
-        },
-        {
-          "date": "2026-06-11",
-          "close": 7763.95
-        },
-        {
-          "date": "2026-06-12",
-          "close": 8123.62
-        },
-        {
-          "date": "2026-06-15",
-          "close": 8545.98
-        },
-        {
-          "date": "2026-06-16",
-          "close": 8726.6
-        },
-        {
-          "date": "2026-06-17",
-          "close": 8864.24
-        },
-        {
-          "date": "2026-06-18",
-          "close": 9063.84
-        },
-        {
-          "date": "2026-06-19",
-          "close": 9052.42
-        },
-        {
-          "date": "2026-06-22",
-          "close": 9114.55
-        },
-        {
-          "date": "2026-06-23",
-          "close": 8203.84
-        },
-        {
-          "date": "2026-06-24",
-          "close": 8471.02
-        },
-        {
-          "date": "2026-06-25",
-          "close": 8930.3
-        },
-        {
-          "date": "2026-06-26",
-          "close": 8411.21
-        },
-        {
-          "date": "2026-06-29",
-          "close": 8394.65
-        },
-        {
-          "date": "2026-06-30",
-          "close": 8476.48
-        },
-        {
-          "date": "2026-07-01",
-          "close": 8303.41
-        },
-        {
-          "date": "2026-07-02",
-          "close": 7648.09
-        },
-        {
-          "date": "2026-07-03",
-          "close": 8088.34
-        },
-        {
-          "date": "2026-07-06",
-          "close": 8051.33
-        },
-        {
-          "date": "2026-07-07",
-          "close": 7656.31
-        },
-        {
-          "date": "2026-07-08",
-          "close": 7246.79
-        },
-        {
-          "date": "2026-07-09",
-          "close": 7291.91
-        },
-        {
-          "date": "2026-07-10",
-          "close": 7475.94
-        },
-        {
-          "date": "2026-07-13",
-          "close": 6806.93
-        },
-        {
-          "date": "2026-07-14",
-          "close": 6856.83
-        },
-        {
-          "date": "2026-07-15",
-          "close": 7284.41
-        },
-        {
-          "date": "2026-07-16",
-          "close": 6820.6
-        },
-        {
-          "date": "2026-07-20",
-          "close": 6516.27
-        },
-        {
-          "date": "2026-07-21",
-          "close": 6747.95
-        },
-        {
-          "date": "2026-07-22",
-          "close": 6797.7
-        },
-        {
-          "date": "2026-07-23",
-          "close": 7096.89
-        },
-        {
-          "date": "2026-07-24",
-          "close": 6690.62
-        },
-        {
-          "date": "2026-07-27",
-          "close": 6755.75
-        },
-        {
-          "date": "2026-07-28",
-          "close": 6023.66
-        },
-        {
-          "date": "2026-07-29",
-          "close": 5663.24
-        },
-        {
-          "date": "2026-07-30",
-          "close": 5593.56
-        },
-        {
-          "date": "2026-07-31",
-          "close": 6595.45
-        },
-        {
-          "date": "2026-08-03",
-          "close": 6257.45
-        },
-        {
-          "date": "2026-08-04",
-          "close": 6358.95
-        },
-        {
-          "date": "2026-08-05",
-          "close": 6598.26
-        },
-        {
-          "date": "2026-08-06",
-          "close": 6296.38
-        },
-        {
-          "date": "2026-08-07",
-          "close": 6258.77
-        },
-        {
-          "date": "2026-08-10",
-          "close": 6299.66
-        },
-        {
-          "date": "2026-08-11",
-          "close": 6345.53
-        },
-        {
-          "date": "2026-08-12",
-          "close": 6579.04
-        },
-        {
-          "date": "2026-08-13",
-          "close": 6813.34
-        },
-        {
-          "date": "2026-08-14",
-          "close": 6977.94
-        },
-        {
-          "date": "2026-08-18",
-          "close": 6869.83
-        },
-        {
-          "date": "2026-08-19",
-          "close": 6471.17
-        },
-        {
-          "date": "2026-08-20",
-          "close": 6852.58
-        },
-        {
-          "date": "2026-08-21",
-          "close": 6912.95
-        },
-        {
-          "date": "2026-08-24",
-          "close": 6696.96
-        },
-        {
-          "date": "2026-08-25",
-          "close": 6742.74
-        },
-        {
-          "date": "2026-08-26",
-          "close": 6808.21
-        },
-        {
-          "date": "2026-08-27",
-          "close": 6912.37
-        },
-        {
-          "date": "2026-08-28",
-          "close": 6788.88
-        },
-        {
-          "date": "2026-08-31",
-          "close": 6820.02
-        },
-        {
-          "date": "2026-09-01",
-          "close": 6835.8
-        },
-        {
-          "date": "2026-09-02",
-          "close": 6562.72
-        },
-        {
-          "date": "2026-09-03",
-          "close": 6579.48
-        },
-        {
-          "date": "2026-09-04",
-          "close": 6687.21
-        },
-        {
-          "date": "2026-09-07",
-          "close": 6995.39
-        },
-        {
-          "date": "2026-09-08",
-          "close": 6954.52
-        },
-        {
-          "date": "2026-09-09",
-          "close": 7051.64
-        },
-        {
-          "date": "2026-09-10",
-          "close": 7033.92
-        },
-        {
-          "date": "2026-09-11",
-          "close": 6909.91
-        },
-        {
-          "date": "2026-09-14",
-          "close": 6684.37
-        },
-        {
-          "date": "2026-09-15",
-          "close": 6627.26
-        },
-        {
-          "date": "2026-09-16",
-          "close": 6717.97
-        },
-        {
-          "date": "2026-09-17",
-          "close": 6715.41
-        },
-        {
-          "date": "2026-09-18",
-          "close": 6894.23
-        },
-        {
-          "date": "2026-09-21",
-          "close": 7007.72
-        },
-        {
-          "date": "2026-09-22",
-          "close": 7017.91
-        },
-        {
-          "date": "2026-09-23",
-          "close": 7080.92
-        },
-        {
-          "date": "2026-09-28",
-          "close": 6889.74
-        },
-        {
-          "date": "2026-09-29",
-          "close": 6870.81
-        },
-        {
-          "date": "2026-09-30",
-          "close": 6838.04
-        },
-        {
-          "date": "2026-10-01",
-          "close": 6971.35
-        },
-        {
-          "date": "2026-10-02",
-          "close": 7003.74
-        },
-        {
-          "date": "2026-10-06",
-          "close": 6941.39
-        },
-        {
-          "date": "2026-10-07",
-          "close": 6803.9
-        },
-        {
-          "date": "2026-10-08",
-          "close": 6625.93
-        },
-        {
-          "date": "2026-10-12",
-          "close": 6384.24
-        },
-        {
-          "date": "2026-10-13",
-          "close": 6035.35
-        },
-        {
-          "date": "2026-10-14",
-          "close": 6008.81
-        },
-        {
-          "date": "2026-10-15",
-          "close": 5554.22
-        },
-        {
-          "date": "2026-10-16",
-          "close": 5668.05
-        },
-        {
-          "date": "2026-10-19",
-          "close": 5768.01
-        },
-        {
-          "date": "2026-10-20",
-          "close": 5552.74
-        },
-        {
-          "date": "2026-10-21",
-          "close": 5735.66
-        },
-        {
-          "date": "2026-10-22",
-          "close": 5533.77
-        },
-        {
-          "date": "2026-10-23",
-          "close": 5550.3
-        },
-        {
-          "date": "2026-10-26",
-          "close": 5469.47
-        },
-        {
-          "date": "2026-10-27",
-          "close": 5638.34
-        },
-        {
-          "date": "2026-10-28",
-          "close": 6012.44
-        },
-        {
-          "date": "2026-10-29",
-          "close": 5937.66
-        },
-        {
-          "date": "2026-10-30",
-          "close": 5730.74
-        },
-        {
-          "date": "2026-11-02",
-          "close": 5859.08
-        },
-        {
-          "date": "2026-11-03",
-          "close": 5648.79
-        },
-        {
-          "date": "2026-11-04",
-          "close": 5683.8
-        },
-        {
-          "date": "2026-11-05",
-          "close": 5383.8
-        },
-        {
-          "date": "2026-11-06",
-          "close": 5059.69
-        },
-        {
-          "date": "2026-11-09",
-          "close": 5018.85
-        },
-        {
-          "date": "2026-11-10",
-          "close": 5239.13
-        },
-        {
-          "date": "2026-11-11",
-          "close": 5375.36
-        },
-        {
-          "date": "2026-11-12",
-          "close": 5342.73
-        },
-        {
-          "date": "2026-11-13",
-          "close": 5290.53
-        },
-        {
-          "date": "2026-11-16",
-          "close": 5100.5
-        },
-        {
-          "date": "2026-11-17",
-          "close": 4968.48
-        },
-        {
-          "date": "2026-11-18",
-          "close": 5067.44
-        },
-        {
-          "date": "2026-11-19",
-          "close": 5137.89
-        },
-        {
-          "date": "2026-11-20",
-          "close": 4869.96
-        }
-      ],
+      "history": [],
       "fundamentals": {
         "pe": "N/A",
         "forward_pe": "無預估",
@@ -42025,7 +41044,7 @@
         "country": "台灣",
         "employees": 76907,
         "website": "https://www.tsmc.com",
-        "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體裝置。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
+        "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體元件。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
         "source": "TradingView / Yahoo Finance"
       },
       "news_sentiment": {
@@ -43705,7 +42724,7 @@
         "country": "美國",
         "employees": 31000,
         "website": "https://www.amd.com",
-        "summary": "Advanced Micro Devices, Inc. 作為一家國際半導體公司運營。它分為三個部分：數據中心、客戶端和遊戲以及嵌入式。該公司提供人工智慧 (AI) 加速器、微處理器和圖形處理單元 (GPU) 作為獨立設備或合併到加速處理單元、晶片組以及資料中心和專業 GPU 中；嵌入式處理器和半定製系統單晶片（SoC）產品、微處理器和SoC開發服務和技術、資料處理單元、現場可編程閘陣列（FPGA）、模組系統、AIC網頁產品和自適應系統產品。它提供AMD Ryzen、AMD Ryzen AI、AMD Ryzen PRO、AMD Ryzen Threadripper、AMD Ryzen Threadripper PRO、AMD Athlon和AMD PRO A系列品牌的處理器； AMD Radeon 顯示卡和 AMD Embedded Radeon 顯示卡下的大規模基礎設施； AMD Radeon Pro 展示卡上的專業提供者和超顯卡。該公司以 AMD Instinct 加速器和 Radeon PRO V 系列品牌提供資料中心顯示卡； AMD EPYC（霄龍）品牌的伺服器微處理器； AMD Athlon、AMD Geode、AMD Ryzen、AMD EPYC、AMD R 系列和 G 系列品牌下的低功耗解決方案； UltraScale+、Artix-7、Artix UltraScale+、Spartan-6 和 Spartan-7 品牌下的 FPGA 產品； Zynq-7000、Zynq UltraScale+ MPSoC、Zynq UltraScale+ RFSoC、Versal HBM、Versal Premium、Versal Prime、Versal 和Versalo、Versalo、Versalo 和 Alsalve；品牌下的運算和網路加速板產品。它為原始設備和設計製造商、公共雲服務提供商、系統集成商、分銷商和插件板製造商提供服務。該公司成立於 1969 年，總部位於加利福尼亞州聖克拉拉。",
+        "summary": "Advanced Micro Devices, Inc. 作為國際半導體公司營運。它分為三個部分：資料中心、客戶端和遊戲以及嵌入式。該公司提供人工智慧 (AI) 加速器、微處理器和圖形處理單元 (GPU) 作為獨立設備或合併到加速處理單元、晶片組以及資料中心和專業 GPU 中；嵌入式處理器和半定製系統單晶片（SoC）產品、微處理器和SoC開發服務和技術、資料處理單元、現場可編程閘陣列（FPGA）、模組系統、AIC網頁產品和自適應系統產品。它提供AMD Ryzen、AMD Ryzen AI、AMD Ryzen PRO、AMD Ryzen Threadripper、AMD Ryzen Threadripper PRO、AMD Athlon和AMD PRO A系列品牌的處理器； AMD Radeon 顯示卡和 AMD Embedded Radeon 顯示卡下的大規模基礎設施； AMD Radeon Pro 展示卡上的專業提供者和超顯卡。該公司以 AMD Instinct 加速器和 Radeon PRO V 系列品牌提供資料中心顯示卡； AMD EPYC（霄龍）品牌的伺服器微處理器； AMD Athlon、AMD Geode、AMD Ryzen、AMD EPYC、AMD R 系列和 G 系列品牌下的低功耗解決方案； UltraScale+、Artix-7、Artix UltraScale+、Spartan-6 和 Spartan-7 品牌下的 FPGA 產品； Zynq-7000、Zynq UltraScale+ MPSoC、Zynq UltraScale+ RFSoC、Versal HBM、Versal Premium、Versal Prime、Versal 和Versalo、Versalo、Versalo 和 Alsalve；品牌下的運算和網路加速板產品。它為原始設備和設計製造商、公有雲服務提供者、系統整合商、分銷商和插件板製造商提供服務。該公司成立於 1969 年，總部位於加州聖克拉拉。",
         "source": "TradingView / Yahoo Finance"
       },
       "news_sentiment": {
@@ -44821,7 +43840,7 @@
         "country": "美國",
         "employees": 204757,
         "website": "https://abc.xyz",
-        "summary": "Alphabet Inc. 在美國、歐洲、中東、非洲、亞太地區、加拿大和拉丁美洲提供各種產品和平台。它透過谷歌服務、谷歌雲端和其他賭注部門運作。 Google 服務部門提供產品和服務，包括廣告、Android、Chrome、裝置、Gmail、Google 雲端硬碟、Google 地圖、Google 照片、Google Play、搜尋和 YouTube。它還參與 Google Play 和 YouTube 中應用程式的銷售和應用程式內購買以及數位內容；和設備，以及提供 YouTube 消費者訂閱服務，例如 YouTube TV、YouTube Music 和 Premium、NFL Sunday Ticket 和 Google One。 Google Cloud 部門為 AI 解決方案提供以消費為基礎的費用和訂閱，包括 AI 基礎架構、Vertex AI 平台和 Gemini 企業。它還提供網路安全、資料和分析服務； Google Workspace，包括以企業為基礎的雲端的通訊和協作工具，例如日曆、Gmail、Docs、Drive 和 Meet；及其他企業服務。其他投注部門銷售運輸和網路服務。 Alphabet Inc. 成立於 1998 年，總部位於加州山景城。",
+        "summary": "Alphabet Inc. 在美國、歐洲、中東、非洲、亞太地區、加拿大和拉丁美洲提供各種產品和平台。它通過谷歌服務、谷歌雲和其他賭注部門運營。 Google 服務部門提供產品和服務，包括廣告、Android、Chrome、裝置、Gmail、Google 雲端硬碟、Google 地圖、Google 照片、Google Play、搜尋和 YouTube。它還參與 Google Play 和 YouTube 中應用程式的銷售和應用程式內購買以及數位內容；和設備，以及提供 YouTube 消費者訂閱服務，例如 YouTube TV、YouTube Music 和 Premium、NFL Sunday Ticket 和 Google One。 Google Cloud 部門為 AI 解決方案提供基於消費的費用和訂閱，包括 AI 基礎設施、Vertex AI 平台和 Gemini 企業。它還提供網路安全、資料和分析服務； Google Workspace，包括以企業為基礎的雲端的通訊和協作工具，例如日曆、Gmail、Docs、Drive 和 Meet；及其他企業服務。其他投注部門銷售運輸和互聯網服務。 Alphabet Inc. 成立於 1998 年，總部位於加利福尼亞州山景城。",
         "source": "TradingView / Yahoo Finance"
       },
       "news_sentiment": {
@@ -45995,11 +45014,6 @@
                 "title": "Meta Platforms(META) Stock Price Today | Quotes & News - Moomoo",
                 "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOejY3MG95WlJ2cHFtUU5xVUlPSnlPLTdKREhUV1VZN3lkVWR6VGpsTDRGQnJ4Ynh1Wm9IY1lLTFVPRHJJS21WaEF4MW5YZjQ4Z0VITGF1dGNNSjZacmlueUxhenBYM01pN1c1WTkzUVpzZ0d5MFcweENLaHZxZXJobFV2VXlUZXkyalpJNWNORnhqR04zb1lQOWsxQU1ielJSNkJzZ01mVmlZeE5QTFZxOFo3T3pEUG5kMndxc0JINTBsWExiVzJ0QWdlblFBT0V4UGt6eURBWGJUTlUwV2dodE4xbXNnT0N4LU9nNFBnRXk5TTVsV2NMZlA5ZkZ3S25zczhnT0RQdXVjc2tKLXVwNnlEbEVadFQyQkdNQXF3?oc=5",
                 "date": "Moomoo・Sun, 22 Nov 2026"
-              },
-              {
-                "title": "Meta遇法律訴訟 暫停發行新股票 - Singtaousa",
-                "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5mdGZXVnZRS1BDZC1pZVEwaUI1c0lsamxnYU1vTU1rQ05kMDNsZndHUzlyNE5sY2ViYVhoSS10bkdTbjhFamt2QmRQQXprbEQzMkZfd0FzVWFLRzZOVkYtaTJxZDlBd2FaTHMxUkxrSjlEYnREdVViS1BB?oc=5",
-                "date": "Singtaousa・Sat, 21 Nov 2026"
               }
             ],
             "bearish": [
@@ -46007,6 +45021,11 @@
                 "title": "Meta擴大AI資本支出衝擊現金流 股價收跌3.27% - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOZTV5ZGUtLW4yRW83Ylpjd0NJaHZkYk9pYkRHSDhrdktSMUJoR0NVSm41bnh5SFM5OVk5MFRBZlJIUk1nbGhXRml5d1NFRU5qRFQwRjJUMmw5MllvcE1ib0dIM2J2RFNpX3U3QVBsOHMtY1hMWWNkU0tLOW1IVzZRNzlELWR1aGlQSng1aWRUYXVRRWxKMVBhYzAwdXg1UGRJM2xXLU9oZUxmQTItY3IwUmp5cXRwcVdNaHU1bWlWeFByal9Ddm1aeXNXaWp4RzJvcy00aThCZG9ibmlCODZ2ZTJpTXpQOXdIUE1Eb0ktWWl5LVd2b2lKcG54RzFGUVZPUmQ1bWZEa3N4TFd3QTNfa3hQdkFCNnM5d1FXNDRB?oc=5",
                 "date": "Yahoo股市・Thu, 19 Nov 2026"
+              },
+              {
+                "title": "【03:12 即時新聞】Meta Platforms(META) 跌5%／AI信仰動搖＋債務與股本籌資壓力升溫 - 美股放大鏡",
+                "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOTG1FdVRqc3kxaVAwUm9yRkFERlJabkVEOEkwZ1BiUm85OU1xQmZWQ2pwUXZJRWY0MERPWE5UNXVqQ3RNOHh2ZlA5TEFSNUdSUzdnS0p3X2JucjVTejZBWGd0Qi1vZTJBRnkwRC01UVdPM1RIM2VsUXptc0lNRUZHaS0xNW44bVc4Q0E1d2tteldXRGFF?oc=5",
+                "date": "美股放大鏡・Fri, 20 Nov 2026"
               },
               {
                 "title": "Meta Platforms Inc(META)股票11月19日收盤下跌3.27%：關鍵驅動因素揭曉 - TradingKey",
@@ -48185,9 +47204,9 @@
             "date": "SEC Filings / Yahoo Finance (AVGO)"
           },
           {
-            "title": "Why Is Broadcom (AVGO) Stock Trending After Hours? - TradingView",
-            "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNXzM1VE84N29zaUdhQ1N3SUVkVHNpdHRKNFYzZW91QV9RN0ViMDdXU3hkRFVCaUdJRDNTaEFvMnNZU3U5VnNjczNEdWZWTllYU0hGRGxWU0xPVG1qOElUbWUzSHNhOWM0V3hiTjlBU0tabFl4WUc4Qmgtd2VUckJlTEQ5WDkzYjZqVlNvMXlSQS00RUxfNU9sQjRpTld4aUs5MTNDYk9RR18?oc=5",
-            "date": "TradingView・Wed, 11 Nov 2026"
+            "title": "AVGO股價和圖表 — NASDAQ:AVGO - TradingView",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5kdDVWWDVRWE9Lem9KV2dYTmpTQjRWOWV2cGNkZHQtQ1lESjRpLURLYlRscDBmeFc0dWpabzVjbV9ZQVFEb0RFTlRaYVVESVc3YXJIdVpscXpLams?oc=5",
+            "date": "TradingView・Tue, 20 Oct 2026"
           }
         ],
         "bearish": [
@@ -48224,9 +47243,9 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "Why Is Broadcom (AVGO) Stock Trending After Hours? - TradingView",
-                "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNXzM1VE84N29zaUdhQ1N3SUVkVHNpdHRKNFYzZW91QV9RN0ViMDdXU3hkRFVCaUdJRDNTaEFvMnNZU3U5VnNjczNEdWZWTllYU0hGRGxWU0xPVG1qOElUbWUzSHNhOWM0V3hiTjlBU0tabFl4WUc4Qmgtd2VUckJlTEQ5WDkzYjZqVlNvMXlSQS00RUxfNU9sQjRpTld4aUs5MTNDYk9RR18?oc=5",
-                "date": "TradingView・Wed, 11 Nov 2026"
+                "title": "AVGO股價和圖表 — NASDAQ:AVGO - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5kdDVWWDVRWE9Lem9KV2dYTmpTQjRWOWV2cGNkZHQtQ1lESjRpLURLYlRscDBmeFc0dWpabzVjbV9ZQVFEb0RFTlRaYVVESVc3YXJIdVpscXpLams?oc=5",
+                "date": "TradingView・Tue, 20 Oct 2026"
               },
               {
                 "title": "Broadcom(AVGO) Stock Price Today | Quotes & News - Moomoo",
@@ -49290,7 +48309,7 @@
         "country": "美國",
         "employees": 1638000,
         "website": "https://www.amazon.com",
-        "summary": "Amazon.com, Inc. 通過北美和國際的在線和實體店從事消費品零售、廣告和訂閱服務。該公司通過三個部門運營：北美部門、國際部門和亞馬遜網絡服務部門 (AWS)。它還生產和銷售電子設備，包括 Kindle、fire 平板電腦、fire TV、echo、ring、blink 和 eero；並開發和製作媒體內容。此外，該公司還提供一些計劃，使賣家能夠在其商店中銷售他們的產品；以及允許作者、獨立出版商、音樂家、電影製作人、Twitch 主播、技能和應用程式開發人員以及其他人發布和銷售內容的程式。此外，它還提供運算、儲存、人工智慧、資料庫、分析、機器學習和其他服務，以及透過贊助廣告、展示和影片廣告等程式提供的廣告服務。此外，該公司還提供亞馬遜 Prime 會員計劃。該公司通過其商店提供的產品包括購買用於轉售的商品和內容以及第三方賣家提供的產品。它服務於消費者、賣家、開發者、企業、內容創作者、廣告商和員工。該公司成立於1994年，總部位於華盛頓州西雅圖。",
+        "summary": "Amazon.com, Inc. 透過北美和國際的線上和實體店從事消費品零售、廣告和訂閱服務。該公司透過三個部門運作：北美部門、國際部門和亞馬遜網路服務部門 (AWS)。它還生產和銷售電子設備，包括 Kindle、fire 平板電腦、fire TV、echo、ring、blink 和 eero；並開發和製作媒體內容。此外，該公司還提供一些計劃，使賣家能夠在其商店中銷售他們的產品；以及允許作者、獨立出版商、音樂家、電影製作人、Twitch 主播、技能和應用程式開發人員以及其他人發布和銷售內容的程式。此外，它還提供運算、儲存、人工智慧、資料庫、分析、機器學習和其他服務，以及透過贊助廣告、展示和影片廣告等程式提供的廣告服務。此外，該公司還提供亞馬遜 Prime 會員計劃。該公司透過其商店提供的產品包括購買用於轉售的商品和內容以及第三方賣家提供的產品。它服務於消費者、賣家、開發者、企業、內容創作者、廣告商和員工。該公司成立於1994年，總部位於華盛頓州西雅圖。",
         "source": "TradingView / Yahoo Finance"
       },
       "news_sentiment": {
@@ -49350,9 +48369,9 @@
                 "date": "Moomoo・Fri, 20 Nov 2026"
               },
               {
-                "title": "AMZN預測 — 2027的目標價 - TradingView",
-                "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1YOC1ldHBQekp3REh2V2ttTzlxU2M3ZURfVDc0cERDYnFuaThHRDc4X0dNQmJmejZuWUMzTGNNWjVNUWEzZXZkTnp5NzJzMHVXVUhUNjB0RmtpOWFyeVY0TUxIWjVMVk9FWHNiRHV3dnNtMHRnS0hfeg?oc=5",
-                "date": "TradingView・Thu, 25 Jun 2026"
+                "title": "Amazon.com Inc(AMZN)股票11月18日盤中上漲3.28%：投資者必看的核心資訊 - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQdEFMSW5FTGVmdkdLdlczVzRkQ2VIVy0ybXBySzd2XzdtSUdsQVBjQ3U3U1ZxMHdfYndHS3R3Tm8wUUl1ZWVMY19ReDczY3J3UjBvT0llNUtYNDAyT0Z1TlNSWVdVX25JT3JsdkFsYklnWmRrZkVLUUZVUENJUHJ4cE4zV3FMOWxmZkFqUFZPSnNRS1UwUWc?oc=5",
+                "date": "TradingKey・Wed, 18 Nov 2026"
               }
             ],
             "bearish": [
@@ -49458,7 +48477,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.24
+          "close": 271.25
         },
         {
           "date": "2025-12-19",
@@ -50461,19 +49480,19 @@
                 "date": "CMoney投資網誌・Fri, 20 Nov 2026"
               },
               {
-                "title": "Apple(AAPL) Stock Price Today | Quotes & News - Moomoo",
-                "url": "https://news.google.com/rss/articles/CBMitgJBVV95cUxOZ2I4SzNrYTc1WVcyWm85VDVFVW1tVFhvbjFuLWd6NjVPd3VlSTdYY2xIQ015bF9SUmozSGhoOEhLUThiVmI1dkhDTHMxLU5KSk1mRWhJV1VkMUxVZGtIdVoyV290OHktWW13U1plalhLRkVPN05ZdVJ3ZTlkRjhZVGExSGY3QVVZa01TelM4RVY3OTFrQXZTakhzNG5NaVlPaW5XUlVNWEc5VFFsajlGZE5YTTF3YzhXS2g5eDQwcm1PcjZsVWFwYm5HSlVmeWQtM0VlTmtFZEdhSXJIM3ByX3kxenE5M1M5TGlGcUZvN2xxOXNEaGpvVGhlcVBXOEU0UFc5TGQyZGZKYkR1S3o5UXpzbzg3dHp1WjRzWkxwM1FiUGotYzlYY3ZNcmY1Y1RvelloaHdn?oc=5",
-                "date": "Moomoo・Tue, 17 Nov 2026"
-              },
-              {
                 "title": "Abirstock的NASDAQ:AAPL的Is Apple Stock Getting Too Expensive? - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOemYwbWVyX3gzODlFSVR4UDJSR0lzb2VfWlBhSzJzX0VOOHFIWkRXdWNMV29jMU1xOHczNjBpdEZhSV84aDhxb2dCRGtBVFZhdWk4emVWVk1Fd2ZRNGtJUmlmVWk2RmNJMnFRV1B1YnNzeU5HUTNGeVJXZUJNejE0R1NGM1ZZbHVDblVEVg?oc=5",
                 "date": "TradingView・Wed, 23 Sep 2026"
               },
               {
-                "title": "傳蘋果(AAPL.US)開發自主AI智能體：能寫代碼、瀏覽網頁、控制應用，正面與OpenAI與Meta等競爭作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5jTVhwVWh6Vk13eDRteDl1eU5nc25KWER0XzVrQ3VBSndGTlR6ZzI2UmtQeWJiS3BNQjhLcFFsNXBjTzdtRURNR1V2LWgteEtfSUhnWEZmdDJGUmgxZFdMaUY3SnVybk5OdXIwMVpOUlQ?oc=5",
-                "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+                "title": "Apple(AAPL) Stock Price Today | Quotes & News - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMitgJBVV95cUxOZ2I4SzNrYTc1WVcyWm85VDVFVW1tVFhvbjFuLWd6NjVPd3VlSTdYY2xIQ015bF9SUmozSGhoOEhLUThiVmI1dkhDTHMxLU5KSk1mRWhJV1VkMUxVZGtIdVoyV290OHktWW13U1plalhLRkVPN05ZdVJ3ZTlkRjhZVGExSGY3QVVZa01TelM4RVY3OTFrQXZTakhzNG5NaVlPaW5XUlVNWEc5VFFsajlGZE5YTTF3YzhXS2g5eDQwcm1PcjZsVWFwYm5HSlVmeWQtM0VlTmtFZEdhSXJIM3ByX3kxenE5M1M5TGlGcUZvN2xxOXNEaGpvVGhlcVBXOEU0UFc5TGQyZGZKYkR1S3o5UXpzbzg3dHp1WjRzWkxwM1FiUGotYzlYY3ZNcmY1Y1RvelloaHdn?oc=5",
+                "date": "Moomoo・Tue, 17 Nov 2026"
+              },
+              {
+                "title": "AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
+                "date": "永豐金證券・Mon, 04 May 2026"
               }
             ],
             "bearish": [
@@ -51527,7 +50546,7 @@
         "country": "美國",
         "employees": 223000,
         "website": "https://www.microsoft.com",
-        "summary": "Microsoft Corporation 是一家技術公司，為全球個人和企業開發並支援一系列技術解決方案。其產品包括操作系統、服務器應用程序、業務解決方案應用程序、軟件開發工具、桌面和服務器管理工​​具以及視頻遊戲；和設備，例如個人電腦、平板電腦、遊戲和娛樂控制檯、其他智能設備以及相關配件。該公司的生產力和業務流程部門提供 Microsoft 365 Commercial、企業移動性 + 安全性、Power BI、Exchange、SharePoint、Microsoft Teams、Microsoft 365 安全性和合規性、Microsoft 365 Copilot 以及 Windows Commercial 本地部署和 Office 許可本地部署。該部門還提供 Microsoft 365 消費者產品和雲服務； LinkedIn，包括人才解決方案、營銷解決方案、訂閱和銷售解決方案； Dynamics 365，一組基於雲的應用程序；以及本地 ERP 和 CRM 應用程序。其智能雲部門提供服務器產品和雲服務；基於雲和人工智能消費的服務、GitHub 雲服務、健康和生命科學雲服務以及虛擬桌面產品和其他雲服務； SQL Server、Windows Server、Visual Studio、System Center 和相關客戶端訪問許可證；以及企業支持服務、行業解決方案、Microsoft 合作伙伴網絡和學習經驗。該公司的更多個人計算部門提供 Windows OEM 許可以及包括 Surface 和 PC 配件在內的設備； XBOX 硬件以及 XBOX 第一方和第三方內容和服務； XBOX 遊戲通行證和其他訂閱； XBOX雲遊戲、廣告等雲服務；以及由 Bing、Copilot、Microsoft News、Microsoft Edge 和第三方附屬公司組成的搜索廣告。它透過合作夥伴和零售網路銷售其產品。該公司成立於 1975 年，總部位於華盛頓州雷德蒙德。",
+        "summary": "Microsoft Corporation 是一家技術公司，為全球個人和企業開發並支援一系列技術解決方案。其產品包括作業系統、伺服器應用程式、業務解決方案應用程式、軟體開發工具、桌面和伺服器管理工具以及視訊遊戲；和設備，例如個人電腦、平板電腦、遊戲和娛樂控制檯、其他智慧型設備以及相關配件。該公司的生產力和業務流程部門提供 Microsoft 365 Commercial、企業移動性 + 安全性、Power BI、Exchange、SharePoint、Microsoft Teams、Microsoft 365 安全性和合規性、Microsoft 365 Copilot 以及 Windows Commercial 本地部署和 Office 許可本地部署。該部門還提供 Microsoft 365 消費者產品和雲端服務； LinkedIn，包括人才解決方案、行銷解決方案、訂閱和銷售解決方案； Dynamics 365，一組基於雲端的應用程式；以及本地 ERP 和 CRM 應用程式。其智慧雲端部門提供伺服器產品和雲端服務；基於雲端和人工智慧消費的服務、GitHub 雲端服務、健康和生命科學雲端服務以及虛擬桌面產品和其他雲端服務； SQL Server、Windows Server、Visual Studio、System Center 和相關客戶端存取許可證；以及企業支援服務、產業解決方案、Microsoft 合作夥伴網路和學習經驗。該公司的更多個人運算部門提供 Windows OEM 許可以及包括 Surface 和 PC 配件在內的設備； XBOX 硬體以及 XBOX 第一方和第三方內容和服務； XBOX 遊戲通行證和其他訂閱； XBOX雲遊戲、廣告等雲端服務；以及由 Bing、Copilot、Microsoft News、Microsoft Edge 和第三方附屬公司組成的搜尋廣告。它透過合作夥伴和零售網路銷售其產品。該公司成立於 1975 年，總部位於華盛頓州雷德蒙德。",
         "source": "TradingView / Yahoo Finance"
       },
       "news_sentiment": {
@@ -51587,14 +50606,14 @@
                 "date": "鉅亨號・Sat, 21 Nov 2026"
               },
               {
-                "title": "MSFT預測 — 2027的目標價 - TradingView",
-                "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
-                "date": "TradingView・Fri, 26 Jun 2026"
-              },
-              {
                 "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
                 "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
                 "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+              },
+              {
+                "title": "MSFT預測 — 2027的目標價 - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
+                "date": "TradingView・Fri, 26 Jun 2026"
               }
             ],
             "bearish": [
@@ -52625,7 +51644,7 @@
         "spokesman": "黃仁昭",
         "tax_id": "22099131",
         "website": "https://www.tsmc.com",
-        "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體裝置。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
+        "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體元件。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -52648,9 +51667,9 @@
             "date": "MOPS 財務報表 / TradingView"
           },
           {
-            "title": "🔗 檢視「2330 台積電 (2330.TW)」最新風險與法人籌碼報導",
-            "url": "https://news.google.com/search?q=2330%20%E5%8F%B0%E7%A9%8D%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-            "date": "Google News"
+            "title": "三大法人買賣超 – 外資買超(3653)健策、(3008)大立光，投信買超(3665)貿聯-KY、(2330)台積電，法人合計賣超461.03億元 - 永豐金證券",
+            "url": "https://news.google.com/rss/articles/CBMi1wRBVV95cUxPM3NPYkQ4c0Iyd09yekFaeVdrQTBDNUt1OFBIZ1Eya0puLWdwSEdpajZaaGZoaG9HVjRlQy1qcnNGdW9ZZ3VTenNQU1hxaFhQQktsaFZWd1Bwem9TTGJPbG0xQ1pYbWJmcGVadTlMQ2FNM2pZYnZpeDZxeXA4UUJ5MFFnTGZpQTVNcDRjQVhoVF9WLVhDRUE0YVhFaVd0c1pCeTloNy0yVmdiLWdmTUpfNWVkYWpWTkhzN2wtVkJUMnlhemhKSkYtdk5hVDVtT0pZcTBQeWZWM3V3dkR3X3NmV1RMUi1jYkllWmJ0SXZ2Uk1lWlFaV08wNFg5Q1dRR0xvNW5nUjJWQkt4elQ3NFk1TVlRcFVfcXBiZXRCeHpfRVV6OFQ0cUhzZkFMRVZPMV9qUEF1b1ZuRjVQYk5uV2UwZjBueHg2Z0E1N3hCdFhTcDhacUFGVE9MdFlUWTA1cDl1dlpWSzJFRHh3dkUxcm9oZlMxRG4wMW81X2xGMzhpY2p3VmQ3dGxNaHR5dHBjMDRfMWxOZVMta001ZERlblhCVTFEVjc2MEdRdDlVdXhQWTB0bGJ1VHlrLVNmdTJfUDRlZlJFWU0yN2R6WlRfZ2IwNDk4U2F3U2lxcXFPNVVIUlBFLXlHQ0lIazBvREswQ0pPZTZnN0JGNVdVWkZfNzkxVzZoTjhOYmd3aV9pd3ZqQTFDcEo1TlBDUUFFdUFVY1djbC1XOE5VODBuRHpTUWFpUFVnLWpIbTJTYk5DdUc2Tms3djh1djQ1NmRDUW0tWnZ6dGpqNVFFNA?oc=5",
+            "date": "永豐金證券・Fri, 20 Nov 2026"
           }
         ],
         "categories": {
@@ -52685,26 +51704,21 @@
                 "date": "CMoney・Sun, 22 Nov 2026"
               },
               {
-                "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、2330 台積電、0056 元大高股息、00878 國泰永續高股息、00919 群益台灣精選高息(1120)｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxOcEkzQ2VTYWxmNXZlNUJjSWhDYUtRWmtKUGlmdGFJV3ZjTndkMUEzQzBqMHUzVnJ0TVhQVzhHeVZ1d0dYSlBtbk1WWjVhMFJhS0dQMnlFTTF5Q0hnemxzVFNYTzZJQXZTUndfZkQ1dFN3Mk1Sa0dSUHVxQTN4T3FmbzJsdlNaN2p0TGpqZUNaQVNFN3Q0V254QWVNZlVQckNHOW5sdWMzSm9hNlBQOEpHSENQQjVQYnNmaTVRRk1YOUNycVd3dDZCNmxoOWFfVms1RFY4RGctZUlmN2FVWVFxUmtCN2lPQjJ5N1JLQjJuNzVLTXNRR1BrMkJ3Tl85Y2dHeHdSTTRzNHE4UWJvcEN5X1gtdUk1OUtaaFg4VG9NWW5uRUE1S1B6a2JOMENURTVkWnQxRG9qVnRnakZDTzVFRjlJc0NCVTVkSmJuRGJyVWs3ZWF6LTRXZDZVUkZUb0VUQTNMcFhrVGd3b2tTZE5zNnI1ZG9aMTV5TXliblRWWXNaUnJ6QzJURzIxamR5aXdyT2tDVG1QS0ZqSWZZTy1DcW1PaEh3N0lwdEtveWEwb0lUSjNwZl9xdElPMlJMLVFIQjV0X1FaVkhwcUh0Wjl0Nl84elRya3BKdmxlUzdwMllPOFJ3R2czWTBtWDB2YUp5UjlXVkZrc21vUFF3djRkdE1Fb0RiOUM3eEZSaEZmcTBObFpCYlhfc3RQMm13eGY2cTM3WGVCUEtLS3dQUkF6VWhZSXFtR1Fac0dSdE4xRUF6MklRbTVOQjhRaVF3eFI3RlNjNnkyMm5nMXhzQVl0SzVJYWw5VW5BQ1hEbDlrdkJIMXFfSjRxS1pVOG4zVzRiY01BazhkUmlaUmt6N2xuUmc3Y3NNTFhT?oc=5",
-                "date": "永豐金證券・Fri, 20 Nov 2026"
-              },
-              {
                 "title": "2330 台積電 - 作夢行情變惡夢行情，還是勸大家勿追反彈，保留現金面對未來二年- 股市爆料同學會 - CMoney",
                 "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5iNlNsQ2VqT1RYWTJSZkc1WDRPTDVDMm8tZGF5T0Y2X2VwaGc2TS0zQ3luSUhXeUtoZXFtS1Z5RmtIWHR0RlFPM1I1eHhDZGxIV2dXV09iNHg?oc=5",
                 "date": "CMoney・Sun, 22 Nov 2026"
               },
               {
-                "title": "2330 台積電 - 1130多頭集合 - 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9vNHpBQjhyNHViLXY4QVFXbHZRMHBKNWlSRG5ITnhKOVZuWG9zOHdHbGlIdmZvRGZ4b2I5aUxUeFZqNlEyU2RITjd6dmx2amtOYTdxMUp3WVc?oc=5",
-                "date": "CMoney・Sun, 22 Nov 2026"
+                "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、2330 台積電、0056 元大高股息、00878 國泰永續高股息、00919 群益台灣精選高息(1120)｜豐雲學堂2026 年 11 月 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxOcEkzQ2VTYWxmNXZlNUJjSWhDYUtRWmtKUGlmdGFJV3ZjTndkMUEzQzBqMHUzVnJ0TVhQVzhHeVZ1d0dYSlBtbk1WWjVhMFJhS0dQMnlFTTF5Q0hnemxzVFNYTzZJQXZTUndfZkQ1dFN3Mk1Sa0dSUHVxQTN4T3FmbzJsdlNaN2p0TGpqZUNaQVNFN3Q0V254QWVNZlVQckNHOW5sdWMzSm9hNlBQOEpHSENQQjVQYnNmaTVRRk1YOUNycVd3dDZCNmxoOWFfVms1RFY4RGctZUlmN2FVWVFxUmtCN2lPQjJ5N1JLQjJuNzVLTXNRR1BrMkJ3Tl85Y2dHeHdSTTRzNHE4UWJvcEN5X1gtdUk1OUtaaFg4VG9NWW5uRUE1S1B6a2JOMENURTVkWnQxRG9qVnRnakZDTzVFRjlJc0NCVTVkSmJuRGJyVWs3ZWF6LTRXZDZVUkZUb0VUQTNMcFhrVGd3b2tTZE5zNnI1ZG9aMTV5TXliblRWWXNaUnJ6QzJURzIxamR5aXdyT2tDVG1QS0ZqSWZZTy1DcW1PaEh3N0lwdEtveWEwb0lUSjNwZl9xdElPMlJMLVFIQjV0X1FaVkhwcUh0Wjl0Nl84elRya3BKdmxlUzdwMllPOFJ3R2czWTBtWDB2YUp5UjlXVkZrc21vUFF3djRkdE1Fb0RiOUM3eEZSaEZmcTBObFpCYlhfc3RQMm13eGY2cTM3WGVCUEtLS3dQUkF6VWhZSXFtR1Fac0dSdE4xRUF6MklRbTVOQjhRaVF3eFI3RlNjNnkyMm5nMXhzQVl0SzVJYWw5VW5BQ1hEbDlrdkJIMXFfSjRxS1pVOG4zVzRiY01BazhkUmlaUmt6N2xuUmc3Y3NNTFhT?oc=5",
+                "date": "永豐金證券・Fri, 20 Nov 2026"
               }
             ],
             "bearish": [
               {
-                "title": "🔗 檢視「2330 台積電 (2330.TW)」最新風險與法人籌碼報導",
-                "url": "https://news.google.com/search?q=2330%20%E5%8F%B0%E7%A9%8D%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                "date": "Google News"
+                "title": "三大法人買賣超 – 外資買超(3653)健策、(3008)大立光，投信買超(3665)貿聯-KY、(2330)台積電，法人合計賣超461.03億元 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi1wRBVV95cUxPM3NPYkQ4c0Iyd09yekFaeVdrQTBDNUt1OFBIZ1Eya0puLWdwSEdpajZaaGZoaG9HVjRlQy1qcnNGdW9ZZ3VTenNQU1hxaFhQQktsaFZWd1Bwem9TTGJPbG0xQ1pYbWJmcGVadTlMQ2FNM2pZYnZpeDZxeXA4UUJ5MFFnTGZpQTVNcDRjQVhoVF9WLVhDRUE0YVhFaVd0c1pCeTloNy0yVmdiLWdmTUpfNWVkYWpWTkhzN2wtVkJUMnlhemhKSkYtdk5hVDVtT0pZcTBQeWZWM3V3dkR3X3NmV1RMUi1jYkllWmJ0SXZ2Uk1lWlFaV08wNFg5Q1dRR0xvNW5nUjJWQkt4elQ3NFk1TVlRcFVfcXBiZXRCeHpfRVV6OFQ0cUhzZkFMRVZPMV9qUEF1b1ZuRjVQYk5uV2UwZjBueHg2Z0E1N3hCdFhTcDhacUFGVE9MdFlUWTA1cDl1dlpWSzJFRHh3dkUxcm9oZlMxRG4wMW81X2xGMzhpY2p3VmQ3dGxNaHR5dHBjMDRfMWxOZVMta001ZERlblhCVTFEVjc2MEdRdDlVdXhQWTB0bGJ1VHlrLVNmdTJfUDRlZlJFWU0yN2R6WlRfZ2IwNDk4U2F3U2lxcXFPNVVIUlBFLXlHQ0lIazBvREswQ0pPZTZnN0JGNVdVWkZfNzkxVzZoTjhOYmd3aV9pd3ZqQTFDcEo1TlBDUUFFdUFVY1djbC1XOE5VODBuRHpTUWFpUFVnLWpIbTJTYk5DdUc2Tms3djh1djQ1NmRDUW0tWnZ6dGpqNVFFNA?oc=5",
+                "date": "永豐金證券・Fri, 20 Nov 2026"
               }
             ]
           }
@@ -53727,7 +52741,7 @@
         "spokesman": "顧大為",
         "tax_id": "84149961",
         "website": "http://www.mediatek.com",
-        "summary": "聯發科公司在台灣、亞洲其他地區和國際上從事多媒體積體電路 (IC) 的研究、開發、生產、製造和行銷。該公司提供各種應用的多媒體、電腦週邊設備、面向消費者的 IC 和其他 IC。並提供軟硬體解決方案的設計、試運轉、維護保養及技術諮詢服務；及其 IC 產品的銷售及授權專利及電路佈局權。此外，該公司還提供研究、行銷和技術服務；智慧財產權管理服務；和一般投資服務。該公司成立於1997年，總部位於台灣新竹市。",
+        "summary": "聯發科公司在台灣、亞洲其他地區和國際上從事多媒體積體電路 (IC) 的研究、開發、生產、製造和行銷。該公司提供各種應用的多媒體、電腦週邊設備、面向消費者的 IC 和其他 IC。並提供軟硬體解決方案的設計、試運轉、維護保養及技術諮詢服務；以及銷售及授權其積體電路產品的專利及電路佈局權。此外，該公司還提供研究、行銷和技術服務；智慧財產權管理服務；和一般投資服務。該公司成立於1997年，總部位於台灣新竹市。",
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -53738,9 +52752,9 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "聯發科（2454）做什麼？Q3財報優於預期、執行長喊話挺股價，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-            "url": "https://news.google.com/rss/articles/CBMi5gNBVV95cUxNeW8xY0ZJeTZNS1hpSkxMSmZrSVVOUk5zYm52WmdFcnl2LVAySXE0VkJhWmQxZU01Q19hMmlKdHd5SVNPMEk3UkM5RDZNYVE4WDNlRFkydGt2V0p4MUlkTEM2T3drMktydlBwTnNBRHEtWUtRdnhscE9DM0hCSnYyZHJvZFkxeUVFTTdFQXZwa0xEMHhOU0ZBT1VQQWRvdlhaMjZpMVV1T0dPRnYyOVR1R2JvZC1fNkJhajlZLXVyM2VCaXA2RmtlRVRVYm92b2otakNJdTdUZUZGYmlfUnZBU0tlemVLaXdBa1VGM0xla3hLQ25sTWd3V3ZySXMzZGxuLWJ3Wlg3dXU3UnNjal9nWTR0UVpyR1J4RGNZS2tNVXFvVmdJbktDWFF5OGUzdFdBU2YyYTE1UFN4NldqQmttUWNucXV4cnFzUnJ2S2VNTkROMS11RTh3NHloZ1U2NW9ORnJYckg2US15bTJFbUVnSHZCS21hWmJDSnREQUZfNXhCc0oyaGp4cHpNTUduV2NXTDg5WkVQWFBCWGlZSlMwS3hvSFRwbU1VbGFvalBBYmlZM2RtcnAyNTZGQ3RFQW1fZXZBa1ZuNlYwZjJ6MzRKc01xUTdYZWNNTzdKeEQ2ZEJVNFZaT0E?oc=5",
-            "date": "永豐金證券・Thu, 19 Nov 2026"
+            "title": "2454 聯發科 - 市場普遍認為聯發科（2454）具備強勁的中長線成長潛力，但也... - 股市爆料同學會 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBxZTQzb3kySFZvUWh2VDRRYnlNcnJkM09WYnp0YkhaTVNVWUIzRF9JR3ZoS0hDQkFYNVVsSFEzbWdsSlJtNW16S0lEeTFBMHI4QkxDZDhGTWY?oc=5",
+            "date": "CMoney・Fri, 20 Nov 2026"
           }
         ],
         "bearish": [
@@ -53750,9 +52764,9 @@
             "date": "MOPS 財務報表 / TradingView"
           },
           {
-            "title": "聯發科跌停背後有隱憂？美外資點出「2關鍵因素」 估今年EPS達73元、最新目標價曝光 - Yahoo股市",
-            "url": "https://news.google.com/rss/articles/CBMi3ANBVV95cUxNNlNWN0I5MDdyUHlvbS1EYTFzb2FEN2NneTdTMkhfckV1UlhYQjlvQnNLSVU4enNMSko2NGN0bnZiX3ViRWk3VjJQemI5aXFfTlV2THdib0NRekgtOGlUeUhUMXpQZ29Kdl9SeTQxU2lPOUsxVi1oZ0o4WGM2Y0g2by1zcUcwWnh4amdlQk14SU9Ud0VHVzc5a2doTTg1bU1LUEVFVGpLaVhxczJkT1RXY3IwRmZSQjlGVWZMSUJZV3JITVdyZTUyU2hLOEdxbWxoSTNVak9GWXY0bTJKalVmdGMtR1dESElsamZrVUFhbF9oMzZhWE9NWG9pZ3lCTXg3SkllY05wVC1FYzU1YmdfMHR1QXNrQkZTeXAwaG5qRzAyU2VKVVVRMndHZHZ0VnEwUzBNM1hOcEZ2NUxJSDduVmgwVHNtVHF3STc2NG80WnVJdFJTdHdSaTRCWHVIWXhJa0diTG96ejl2bjQ4TmVaWHE4dE44TlY4eUcxZ1VqTVBjSkxSMm9ROG9UXzdKWkdGX2d2b3RKUnEzMGx3c2FWQVRNczNYOHFQZ1Fya2ZHZk1pQnpneWhiMGZSZHdvY1F0WUZyX3hmNzRNNU1BMnlsUEFkVjhsQVBCUkdISw?oc=5",
-            "date": "Yahoo股市・Sat, 21 Nov 2026"
+            "title": "三大法人買賣超 – 外資買超(2454)聯發科、(2303)聯電，投信買超(2330)台積電、(3017)奇鋐，法人合計買超439.66億元 - 永豐金證券",
+            "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxQdWJqM2d2THJIMllITXZqY0RNODA4dXg0WjhWVm1VME9MOFl6eHhBVVJqUXE3MkcwYlJFV0VpME5IcG9tMkh1ck5SaFNrcXdPMEM3WVVrN3o3d2RudXNSWGYwS2xFSXJqd1Y0S1FHcFZ0dTk3NXVDTERRSjh6TlJsMUFXR1U4aC1GXzVfZTJwMTUzZFNDRDVhbUlZdHdvSnRraC1VdDVsNXZ0VkVyaDlyRGdKMkdzOXQxX3lsdzZ0bEk3TVhfQ3Zhekdleld4NDlzLVVxdlZ0VHpSLUxocHZDT29lbGpQdW9MQjBPVkR1STRxbmtsRW9EbnIzRkk5ejdRekhIWllZQWJKZVBqSDdMTG8wd19hbVR6TEk0Z2J0TGkwY2dPTDhvS040T3ZvbHA2TTY1S0d4ODNqeGpaeXFTa0N2TEVtMzFrYkc0emVXcU1Ob0g2Z3IwQkdVakpkeHFreE9wZmd2SGtKV2dLNEJSV0hKVEptRm84MW1KVy1RNkRzWEpDRDJDeVJtWG14M3QzX2EzV1hPbFJSMDlDT3FQb3g4WmFWWHB2Q1BzMnpLWTZVWUJGVWsxSXViS2d5YkNWb3V4QWpQRU9yWTlHQ3o4eWJ0eERsQUY5OXFuaUNfRFo0X09FcFltTXdNbEN2YjlTeGV1N1hVU3pyczB0VXhhLUNKeVdOMUNSME5GNDlsaXhWZjRVWnNCU2MwTEstMjVGMDNDVnlqSVlTZzUtdEcxUC12Q0pFNmFrTUhKWXRmc1ZnZlhzUEE5d296a1NsNDBYWDZB?oc=5",
+            "date": "永豐金證券・Fri, 13 Nov 2026"
           }
         ],
         "categories": {
@@ -53782,11 +52796,6 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "聯發科（2454）做什麼？Q3財報優於預期、執行長喊話挺股價，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMi5gNBVV95cUxNeW8xY0ZJeTZNS1hpSkxMSmZrSVVOUk5zYm52WmdFcnl2LVAySXE0VkJhWmQxZU01Q19hMmlKdHd5SVNPMEk3UkM5RDZNYVE4WDNlRFkydGt2V0p4MUlkTEM2T3drMktydlBwTnNBRHEtWUtRdnhscE9DM0hCSnYyZHJvZFkxeUVFTTdFQXZwa0xEMHhOU0ZBT1VQQWRvdlhaMjZpMVV1T0dPRnYyOVR1R2JvZC1fNkJhajlZLXVyM2VCaXA2RmtlRVRVYm92b2otakNJdTdUZUZGYmlfUnZBU0tlemVLaXdBa1VGM0xla3hLQ25sTWd3V3ZySXMzZGxuLWJ3Wlg3dXU3UnNjal9nWTR0UVpyR1J4RGNZS2tNVXFvVmdJbktDWFF5OGUzdFdBU2YyYTE1UFN4NldqQmttUWNucXV4cnFzUnJ2S2VNTkROMS11RTh3NHloZ1U2NW9ORnJYckg2US15bTJFbUVnSHZCS21hWmJDSnREQUZfNXhCc0oyaGp4cHpNTUduV2NXTDg5WkVQWFBCWGlZSlMwS3hvSFRwbU1VbGFvalBBYmlZM2RtcnAyNTZGQ3RFQW1fZXZBa1ZuNlYwZjJ6MzRKc01xUTdYZWNNTzdKeEQ2ZEJVNFZaT0E?oc=5",
-                "date": "永豐金證券・Thu, 19 Nov 2026"
-              },
-              {
                 "title": "2454 聯發科 - 市場普遍認為聯發科（2454）具備強勁的中長線成長潛力，但也... - 股市爆料同學會 - CMoney",
                 "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBxZTQzb3kySFZvUWh2VDRRYnlNcnJkM09WYnp0YkhaTVNVWUIzRF9JR3ZoS0hDQkFYNVVsSFEzbWdsSlJtNW16S0lEeTFBMHI4QkxDZDhGTWY?oc=5",
                 "date": "CMoney・Fri, 20 Nov 2026"
@@ -53798,6 +52807,11 @@
               }
             ],
             "bearish": [
+              {
+                "title": "三大法人買賣超 – 外資買超(2454)聯發科、(2303)聯電，投信買超(2330)台積電、(3017)奇鋐，法人合計買超439.66億元 - 永豐金證券",
+                "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxQdWJqM2d2THJIMllITXZqY0RNODA4dXg0WjhWVm1VME9MOFl6eHhBVVJqUXE3MkcwYlJFV0VpME5IcG9tMkh1ck5SaFNrcXdPMEM3WVVrN3o3d2RudXNSWGYwS2xFSXJqd1Y0S1FHcFZ0dTk3NXVDTERRSjh6TlJsMUFXR1U4aC1GXzVfZTJwMTUzZFNDRDVhbUlZdHdvSnRraC1VdDVsNXZ0VkVyaDlyRGdKMkdzOXQxX3lsdzZ0bEk3TVhfQ3Zhekdleld4NDlzLVVxdlZ0VHpSLUxocHZDT29lbGpQdW9MQjBPVkR1STRxbmtsRW9EbnIzRkk5ejdRekhIWllZQWJKZVBqSDdMTG8wd19hbVR6TEk0Z2J0TGkwY2dPTDhvS040T3ZvbHA2TTY1S0d4ODNqeGpaeXFTa0N2TEVtMzFrYkc0emVXcU1Ob0g2Z3IwQkdVakpkeHFreE9wZmd2SGtKV2dLNEJSV0hKVEptRm84MW1KVy1RNkRzWEpDRDJDeVJtWG14M3QzX2EzV1hPbFJSMDlDT3FQb3g4WmFWWHB2Q1BzMnpLWTZVWUJGVWsxSXViS2d5YkNWb3V4QWpQRU9yWTlHQ3o4eWJ0eERsQUY5OXFuaUNfRFo0X09FcFltTXdNbEN2YjlTeGV1N1hVU3pyczB0VXhhLUNKeVdOMUNSME5GNDlsaXhWZjRVWnNCU2MwTEstMjVGMDNDVnlqSVlTZzUtdEcxUC12Q0pFNmFrTUhKWXRmc1ZnZlhzUEE5d296a1NsNDBYWDZB?oc=5",
+                "date": "永豐金證券・Fri, 13 Nov 2026"
+              },
               {
                 "title": "聯發科跌停背後有隱憂？美外資點出「2關鍵因素」 估今年EPS達73元、最新目標價曝光 - Yahoo股市",
                 "url": "https://news.google.com/rss/articles/CBMi3ANBVV95cUxNNlNWN0I5MDdyUHlvbS1EYTFzb2FEN2NneTdTMkhfckV1UlhYQjlvQnNLSVU4enNMSko2NGN0bnZiX3ViRWk3VjJQemI5aXFfTlV2THdib0NRekgtOGlUeUhUMXpQZ29Kdl9SeTQxU2lPOUsxVi1oZ0o4WGM2Y0g2by1zcUcwWnh4amdlQk14SU9Ud0VHVzc5a2doTTg1bU1LUEVFVGpLaVhxczJkT1RXY3IwRmZSQjlGVWZMSUJZV3JITVdyZTUyU2hLOEdxbWxoSTNVak9GWXY0bTJKalVmdGMtR1dESElsamZrVUFhbF9oMzZhWE9NWG9pZ3lCTXg3SkllY05wVC1FYzU1YmdfMHR1QXNrQkZTeXAwaG5qRzAyU2VKVVVRMndHZHZ0VnEwUzBNM1hOcEZ2NUxJSDduVmgwVHNtVHF3STc2NG80WnVJdFJTdHdSaTRCWHVIWXhJa0diTG96ejl2bjQ4TmVaWHE4dE44TlY4eUcxZ1VqTVBjSkxSMm9ROG9UXzdKWkdGX2d2b3RKUnEzMGx3c2FWQVRNczNYOHFQZ1Fya2ZHZk1pQnpneWhiMGZSZHdvY1F0WUZyX3hmNzRNNU1BMnlsUEFkVjhsQVBCUkdISw?oc=5",
@@ -54824,7 +53838,7 @@
         "spokesman": "周志宏",
         "tax_id": "34051920",
         "website": "https://www.deltaww.com/zh-TW/index",
-        "summary": "台達電子及其子公司在中國大陸、美國、台灣、泰國和國際上提供電源和熱管理解決方案。它通過電力電子、移動、自動化和基礎設施部門運營。該公司提供電感器、變壓器元件、網路產品、EMI 濾波器、螺線管、電流檢測電阻器、電源模組以及沖壓和包覆成型元件；嵌入式電源、適配器、工業和醫療電源解決方案、工業電池充電、USB插座、氫動力和高壓電源解決方案；直流無水風扇和 EC 風扇和鼓風機、汽車熱和空氣解決方案。它還提供電動汽車電力電子、牽引和 X-in-1 產品。此外，該公司還提供驅動和電能品質、運動、控制、機器人和製造設備，以及現場設備、軟體和工業 PC；樓宇管理與控制、室內空氣品質、LED照明、智慧監控、健康照明、建築解決方案。此外，還提供電信電源系統、網路和農村電氣化系統、UPS和資料中心基礎設施以及電能品質產品；電動車充電、儲能係統、光伏逆變器、能源管理、風電變流器、固態變壓器、中壓驅動、高壓電源、自動測試設備、氫能和燃料電池解決方案、商業牆面設備和高性能媒體解決方案、設備 DLP 設備/媒體解決方案。此外，它還提供建築管理和控制解決方案的諮詢服務。台達電子有限公司成立於 1971 年，總部位於台灣台北。",
+        "summary": "台達電子及其子公司在中國大陸、美國、台灣、泰國和國際上提供電源和熱管理解決方案。它透過電力電子、行動、自動化和基礎設施部門運作。該公司提供電感器、變壓器元件、網路產品、EMI 濾波器、螺線管、電流檢測電阻器、電源模組以及沖壓和包覆成型元件；嵌入式電源、適配器、工業和醫療電源解決方案、工業電池充電、USB插座、氫動力和高壓電源解決方案；直流無水風扇和 EC 風扇和鼓風機、汽車熱和空氣解決方案。它還提供電動車電力電子、牽引和 X-in-1 產品。此外，該公司還提供驅動和電能品質、運動、控制、機器人和製造設備，以及現場設備、軟體和工業 PC；樓宇管理與控制、室內空氣品質、LED照明、智慧監控、健康照明、建築解決方案。此外，還提供電信電源系統、網路和農村電氣化系統、UPS和資料中心基礎設施以及電能品質產品；電動車充電、儲能係統、光伏逆變器、能源管理、風電變流器、固態變壓器、中壓驅動、高壓電源、自動測試設備、氫能和燃料電池解決方案、商業牆面設備和高性能媒體解決方案、設備 DLP 設備/媒體解決方案。此外，它還提供建築管理和控制解決方案的諮詢服務。台達電子有限公司成立於 1971 年，總部位於台灣台北。",
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -54835,9 +53849,9 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "🔗 檢視「2308 台達電 (2308.TW)」Google 新聞最新報導",
-            "url": "https://news.google.com/search?q=2308%20%E5%8F%B0%E9%81%94%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-            "date": "Google News"
+            "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+            "date": "CMoney・Sun, 22 Nov 2026"
           }
         ],
         "bearish": [
@@ -54879,9 +53893,9 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "🔗 檢視「2308 台達電 (2308.TW)」Google 新聞最新報導",
-                "url": "https://news.google.com/search?q=2308%20%E5%8F%B0%E9%81%94%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                "date": "Google News"
+                "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                "date": "CMoney・Sun, 22 Nov 2026"
               }
             ],
             "bearish": [
@@ -54899,11 +53913,6 @@
                 "title": "72萬股民好慘！台達電跌停　千元失守、創逾10個月低點 - ETtoday財經雲",
                 "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4yc3ZWeE9fNURfTVVmQ3Flclk3a3JDdGZpUDlKaDZJVGNBUzRKVHl0bEdub0p3aGZjR3hxcWRZWXlGV1dKQzVQV0U0eVJXQWtfSGfSAVBBVV95cUxPRTR6Q3BJWXNYMm1QZ0prOVJiQTBfS2taR19QSmlPYmJWODRkbExSckkyRmFzOVdNYkRPZG5uMkF3eHlSbUhfODJibG14eU9RQw?oc=5",
                 "date": "ETtoday財經雲・Fri, 20 Nov 2026"
-              },
-              {
-                "title": "美亞股市殺聲四起！台股一度跌逾1,600點失守37K 台達電、信驊重挫 - UDN",
-                "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5jZDRlZUtuai1zY3Q5eGZYWGdySnBjbzhINC11bTliZG5fV19nMEFuVmp5OWtCLW9wLTRsWXNhSk54SFZYNEJxQjV1SWRCNnBL0gFWQVVfeXFMTlpzcTdzUHV0QVJjQ0RzRUplZFZkVlpCU05JaTdnQUw1MTNmMHFNZzZZNzU3Z2pVZ1NWUW53czkwWU5FUzhkZExNQm1UZk1fakdGZTZHWFE?oc=5",
-                "date": "UDN・Fri, 20 Nov 2026"
               }
             ]
           }
@@ -55926,7 +54935,7 @@
         "spokesman": "巫俊毅",
         "tax_id": "04541302",
         "website": "https://www.honhai.com/zh-tw",
-        "summary": "鴻海精密工業股份有限公司提供電子製造服務。該公司提供消費性電子產品，包括智慧型手機、功能手機、穿戴式裝置、電視、遊戲機、機上盒和音訊系統；雲端和網路產品，包括路由器、伺服器、邊緣運算、資料中心、衛星通訊和其他相關設備；電子運算設備，例如桌上型電腦、筆記型電腦、平板電腦、多功能設備和印表機；及連接器、精密光學元件、鏡頭、電子元件、電子元件、電子元件。該公司在美國、新加坡、愛爾蘭、中國大陸、日本、印度、台灣、越南、墨西哥和國際上開展業務。該公司成立於1974年，總部位於台灣新北市。",
+        "summary": "鴻海精密工業股份有限公司提供電子製造服務。該公司提供消費性電子產品，包括智慧型手機、功能手機、穿戴式裝置、電視、遊戲機、機上盒和音訊系統；雲端和網路產品，包括路由器、伺服器、邊緣運算、資料中心、衛星通訊和其他相關設備；電子運算設備，例如桌上型電腦、筆記型電腦、平板電腦、多功能設備和印表機；以及連接器、精密光學元件、鏡頭、電子元件、電子元件、電子元件。該公司在美國、新加坡、愛爾蘭、中國大陸、日本、印度、台灣、越南、墨西哥和國際上開展業務。該公司成立於1974年，總部位於台灣新北市。",
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -57028,7 +56037,7 @@
         "spokesman": "吳田玉",
         "tax_id": "29187308",
         "website": "www.aseglobal.com",
-        "summary": "日月光科技控股有限公司及其子公司在美國、台灣、亞洲其他地區、歐洲和國際上提供半導體製造服務。它透過包裝、測試和 EMS 運作。該公司提供半導體封裝、互連材料生產、前端工程測試、晶圓探測和最終測試服務，以及與計算、外圍設備、通信、工業、汽車和服務器應用相關的 EMS（電子製造服務）集成解決方案。它還提供交鑰匙服務，例如封裝、測試以及將半導體直接運送給最終用戶；引線鍵合，包括引線框架和基於基板的封裝；高級包；異構集成；以及其他與測試相關的服務。此外，該公司還從事房產租賃業務；房地產開發、建設、銷售和管理；停車場管理；購物中心物業租賃；商業綜合體服務和百貨商店交易活動的管理，以及提供社交、營銷和銷售、信息軟件、租賃和投資、售後和銷售支持服務。此外，還從事基板生產；投資諮詢及倉儲管理；電子元件和新型電子應用的設計和製造；技術諮詢；組織和人力資源的管理、培訓和諮詢；塑料投影；天線、射頻放大器和波帶、PCB 和調諧器的製造和銷售；以及研究和開發活動。日月光科技控股有限公司成立於 1984 年，總部位於台灣高雄。",
+        "summary": "日月光科技控股有限公司及其子公司在美國、台灣、亞洲其他地區、歐洲和國際上提供半導體製造服務。它透過包裝、測試和 EMS 運作。該公司提供半導體封裝、互連材料生產、前端工程測試、晶圓探測和最終測試服務，以及與計算、週邊設備、通訊、工業、汽車和伺服器應用相關的 EMS（電子製造服務）整合解決方案。它還提供交鑰匙服務，例如封裝、測試以及將半導體直接運送給最終用戶；引線鍵合，包括引線框架和基於基板的封裝；高級包；異構整合；以及其他與測試相關的服務。此外，該公司還從事房產租賃業務；房地產開發、建設、銷售和管理；停車場管理；購物中心物業租賃；商業綜合體服務和百貨公司交易活動的管理，以及提供社交、行銷和銷售、資訊軟體、租賃和投資、售後和銷售支援服務。此外，也從事基板生產；投資諮詢及倉儲管理；電子元件和新型電子應用的設計和製造；技術諮詢；組織和人力資源的管理、培訓和諮詢；塑膠投影；天線、射頻放大器和波帶、PCB 和調諧器的製造和銷售；以及研究和開發活動。日月光科技控股有限公司成立於 1984 年，總部位於台灣高雄。",
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -57088,14 +56097,14 @@
                 "date": "CMoney・Thu, 19 Nov 2026"
               },
               {
+                "title": "日月光投控：矽品精密工業11/11~20取得廠務工程，計約7.62億元 - 台視全球資訊網",
+                "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNGU2RmloSG84NUYxYWNMMDZXQ3h4OENkblpuelZvS1gxSllfUVV1dlhSX0ZleENPNzhZN1Y0X3dyUkEyNEVXWTFCaVpOYm1iY05fZjNxZTRYekJ5dThtWC1WcExRVnhhTmY5QUp4bVZXaWstMU84U2xaX3NNZktwYmViRmFUaVRUNzFGb3pFanpWUQ?oc=5",
+                "date": "台視全球資訊網・Fri, 20 Nov 2026"
+              },
+              {
                 "title": "【09:10 即時新聞】日月光投控(3711)盤中走強，AI封測族群買盤迴流 - CMoney投資網誌",
                 "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbFFUN0F3Zm9hUWJtMHVMSDlLTHdBSmJ0cmUza2JhS2R3a05PNnNuT0xQWmFsZk80dDdWZnJDcDhTY2d3c00teTNnd1NqRkdRcUhDRDd0Y2pFVldJUnE4QXowNmpJWVZGSmdWNWswbFdaYnJvb3VrLUs3YXFJR295a3ljekhTLXI3WGgwX3BB?oc=5",
                 "date": "CMoney投資網誌・Wed, 18 Nov 2026"
-              },
-              {
-                "title": "日月光投控：矽品精密工業11/11~20取得廠務工程，計約7.62億元 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5ka0djYy1HbU1EenNkRDV3X3YzR0VuNHN5Z0lDcXM0dEgxN3R4NGM4NWNBQTdueGFpNjNwNUJWeG5URWV2T0lpWXhxVlowMG1vdXhZMkdXdGo?oc=5",
-                "date": "CMoney・Fri, 20 Nov 2026"
               }
             ],
             "bearish": [
@@ -69537,10 +68546,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 60770.72,
+      "price": 60684.95,
       "prev_close": 60094.09,
-      "change": 676.63,
-      "change_pct": 1.13,
+      "change": 590.86,
+      "change_pct": 0.98,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -71007,7 +70016,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 60774.91
+          "close": 60707.08
         }
       ],
       "fundamentals": {
@@ -71028,10 +70037,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1714.46,
+      "price": 1713.73,
       "prev_close": 1682.2,
-      "change": 32.26,
-      "change_pct": 1.92,
+      "change": 31.53,
+      "change_pct": 1.87,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -72498,7 +71507,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 1715.04
+          "close": 1715.14
         }
       ],
       "fundamentals": {
@@ -73634,7 +72643,7 @@
                 "spokesman": "黃仁昭",
                 "tax_id": "22099131",
                 "website": "https://www.tsmc.com",
-                "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體裝置。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
+                "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體元件。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -73657,9 +72666,9 @@
                     "date": "MOPS 財務報表 / TradingView"
                   },
                   {
-                    "title": "🔗 檢視「2330 台積電 (2330.TW)」最新風險與法人籌碼報導",
-                    "url": "https://news.google.com/search?q=2330%20%E5%8F%B0%E7%A9%8D%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                    "date": "Google News"
+                    "title": "三大法人買賣超 – 外資買超(3653)健策、(3008)大立光，投信買超(3665)貿聯-KY、(2330)台積電，法人合計賣超461.03億元 - 永豐金證券",
+                    "url": "https://news.google.com/rss/articles/CBMi1wRBVV95cUxPM3NPYkQ4c0Iyd09yekFaeVdrQTBDNUt1OFBIZ1Eya0puLWdwSEdpajZaaGZoaG9HVjRlQy1qcnNGdW9ZZ3VTenNQU1hxaFhQQktsaFZWd1Bwem9TTGJPbG0xQ1pYbWJmcGVadTlMQ2FNM2pZYnZpeDZxeXA4UUJ5MFFnTGZpQTVNcDRjQVhoVF9WLVhDRUE0YVhFaVd0c1pCeTloNy0yVmdiLWdmTUpfNWVkYWpWTkhzN2wtVkJUMnlhemhKSkYtdk5hVDVtT0pZcTBQeWZWM3V3dkR3X3NmV1RMUi1jYkllWmJ0SXZ2Uk1lWlFaV08wNFg5Q1dRR0xvNW5nUjJWQkt4elQ3NFk1TVlRcFVfcXBiZXRCeHpfRVV6OFQ0cUhzZkFMRVZPMV9qUEF1b1ZuRjVQYk5uV2UwZjBueHg2Z0E1N3hCdFhTcDhacUFGVE9MdFlUWTA1cDl1dlpWSzJFRHh3dkUxcm9oZlMxRG4wMW81X2xGMzhpY2p3VmQ3dGxNaHR5dHBjMDRfMWxOZVMta001ZERlblhCVTFEVjc2MEdRdDlVdXhQWTB0bGJ1VHlrLVNmdTJfUDRlZlJFWU0yN2R6WlRfZ2IwNDk4U2F3U2lxcXFPNVVIUlBFLXlHQ0lIazBvREswQ0pPZTZnN0JGNVdVWkZfNzkxVzZoTjhOYmd3aV9pd3ZqQTFDcEo1TlBDUUFFdUFVY1djbC1XOE5VODBuRHpTUWFpUFVnLWpIbTJTYk5DdUc2Tms3djh1djQ1NmRDUW0tWnZ6dGpqNVFFNA?oc=5",
+                    "date": "永豐金證券・Fri, 20 Nov 2026"
                   }
                 ],
                 "categories": {
@@ -73694,26 +72703,21 @@
                         "date": "CMoney・Sun, 22 Nov 2026"
                       },
                       {
-                        "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、2330 台積電、0056 元大高股息、00878 國泰永續高股息、00919 群益台灣精選高息(1120)｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                        "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxOcEkzQ2VTYWxmNXZlNUJjSWhDYUtRWmtKUGlmdGFJV3ZjTndkMUEzQzBqMHUzVnJ0TVhQVzhHeVZ1d0dYSlBtbk1WWjVhMFJhS0dQMnlFTTF5Q0hnemxzVFNYTzZJQXZTUndfZkQ1dFN3Mk1Sa0dSUHVxQTN4T3FmbzJsdlNaN2p0TGpqZUNaQVNFN3Q0V254QWVNZlVQckNHOW5sdWMzSm9hNlBQOEpHSENQQjVQYnNmaTVRRk1YOUNycVd3dDZCNmxoOWFfVms1RFY4RGctZUlmN2FVWVFxUmtCN2lPQjJ5N1JLQjJuNzVLTXNRR1BrMkJ3Tl85Y2dHeHdSTTRzNHE4UWJvcEN5X1gtdUk1OUtaaFg4VG9NWW5uRUE1S1B6a2JOMENURTVkWnQxRG9qVnRnakZDTzVFRjlJc0NCVTVkSmJuRGJyVWs3ZWF6LTRXZDZVUkZUb0VUQTNMcFhrVGd3b2tTZE5zNnI1ZG9aMTV5TXliblRWWXNaUnJ6QzJURzIxamR5aXdyT2tDVG1QS0ZqSWZZTy1DcW1PaEh3N0lwdEtveWEwb0lUSjNwZl9xdElPMlJMLVFIQjV0X1FaVkhwcUh0Wjl0Nl84elRya3BKdmxlUzdwMllPOFJ3R2czWTBtWDB2YUp5UjlXVkZrc21vUFF3djRkdE1Fb0RiOUM3eEZSaEZmcTBObFpCYlhfc3RQMm13eGY2cTM3WGVCUEtLS3dQUkF6VWhZSXFtR1Fac0dSdE4xRUF6MklRbTVOQjhRaVF3eFI3RlNjNnkyMm5nMXhzQVl0SzVJYWw5VW5BQ1hEbDlrdkJIMXFfSjRxS1pVOG4zVzRiY01BazhkUmlaUmt6N2xuUmc3Y3NNTFhT?oc=5",
-                        "date": "永豐金證券・Fri, 20 Nov 2026"
-                      },
-                      {
                         "title": "2330 台積電 - 作夢行情變惡夢行情，還是勸大家勿追反彈，保留現金面對未來二年- 股市爆料同學會 - CMoney",
                         "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5iNlNsQ2VqT1RYWTJSZkc1WDRPTDVDMm8tZGF5T0Y2X2VwaGc2TS0zQ3luSUhXeUtoZXFtS1Z5RmtIWHR0RlFPM1I1eHhDZGxIV2dXV09iNHg?oc=5",
                         "date": "CMoney・Sun, 22 Nov 2026"
                       },
                       {
-                        "title": "2330 台積電 - 1130多頭集合 - 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9vNHpBQjhyNHViLXY4QVFXbHZRMHBKNWlSRG5ITnhKOVZuWG9zOHdHbGlIdmZvRGZ4b2I5aUxUeFZqNlEyU2RITjd6dmx2amtOYTdxMUp3WVc?oc=5",
-                        "date": "CMoney・Sun, 22 Nov 2026"
+                        "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、2330 台積電、0056 元大高股息、00878 國泰永續高股息、00919 群益台灣精選高息(1120)｜豐雲學堂2026 年 11 月 - 永豐金證券",
+                        "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxOcEkzQ2VTYWxmNXZlNUJjSWhDYUtRWmtKUGlmdGFJV3ZjTndkMUEzQzBqMHUzVnJ0TVhQVzhHeVZ1d0dYSlBtbk1WWjVhMFJhS0dQMnlFTTF5Q0hnemxzVFNYTzZJQXZTUndfZkQ1dFN3Mk1Sa0dSUHVxQTN4T3FmbzJsdlNaN2p0TGpqZUNaQVNFN3Q0V254QWVNZlVQckNHOW5sdWMzSm9hNlBQOEpHSENQQjVQYnNmaTVRRk1YOUNycVd3dDZCNmxoOWFfVms1RFY4RGctZUlmN2FVWVFxUmtCN2lPQjJ5N1JLQjJuNzVLTXNRR1BrMkJ3Tl85Y2dHeHdSTTRzNHE4UWJvcEN5X1gtdUk1OUtaaFg4VG9NWW5uRUE1S1B6a2JOMENURTVkWnQxRG9qVnRnakZDTzVFRjlJc0NCVTVkSmJuRGJyVWs3ZWF6LTRXZDZVUkZUb0VUQTNMcFhrVGd3b2tTZE5zNnI1ZG9aMTV5TXliblRWWXNaUnJ6QzJURzIxamR5aXdyT2tDVG1QS0ZqSWZZTy1DcW1PaEh3N0lwdEtveWEwb0lUSjNwZl9xdElPMlJMLVFIQjV0X1FaVkhwcUh0Wjl0Nl84elRya3BKdmxlUzdwMllPOFJ3R2czWTBtWDB2YUp5UjlXVkZrc21vUFF3djRkdE1Fb0RiOUM3eEZSaEZmcTBObFpCYlhfc3RQMm13eGY2cTM3WGVCUEtLS3dQUkF6VWhZSXFtR1Fac0dSdE4xRUF6MklRbTVOQjhRaVF3eFI3RlNjNnkyMm5nMXhzQVl0SzVJYWw5VW5BQ1hEbDlrdkJIMXFfSjRxS1pVOG4zVzRiY01BazhkUmlaUmt6N2xuUmc3Y3NNTFhT?oc=5",
+                        "date": "永豐金證券・Fri, 20 Nov 2026"
                       }
                     ],
                     "bearish": [
                       {
-                        "title": "🔗 檢視「2330 台積電 (2330.TW)」最新風險與法人籌碼報導",
-                        "url": "https://news.google.com/search?q=2330%20%E5%8F%B0%E7%A9%8D%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                        "date": "Google News"
+                        "title": "三大法人買賣超 – 外資買超(3653)健策、(3008)大立光，投信買超(3665)貿聯-KY、(2330)台積電，法人合計賣超461.03億元 - 永豐金證券",
+                        "url": "https://news.google.com/rss/articles/CBMi1wRBVV95cUxPM3NPYkQ4c0Iyd09yekFaeVdrQTBDNUt1OFBIZ1Eya0puLWdwSEdpajZaaGZoaG9HVjRlQy1qcnNGdW9ZZ3VTenNQU1hxaFhQQktsaFZWd1Bwem9TTGJPbG0xQ1pYbWJmcGVadTlMQ2FNM2pZYnZpeDZxeXA4UUJ5MFFnTGZpQTVNcDRjQVhoVF9WLVhDRUE0YVhFaVd0c1pCeTloNy0yVmdiLWdmTUpfNWVkYWpWTkhzN2wtVkJUMnlhemhKSkYtdk5hVDVtT0pZcTBQeWZWM3V3dkR3X3NmV1RMUi1jYkllWmJ0SXZ2Uk1lWlFaV08wNFg5Q1dRR0xvNW5nUjJWQkt4elQ3NFk1TVlRcFVfcXBiZXRCeHpfRVV6OFQ0cUhzZkFMRVZPMV9qUEF1b1ZuRjVQYk5uV2UwZjBueHg2Z0E1N3hCdFhTcDhacUFGVE9MdFlUWTA1cDl1dlpWSzJFRHh3dkUxcm9oZlMxRG4wMW81X2xGMzhpY2p3VmQ3dGxNaHR5dHBjMDRfMWxOZVMta001ZERlblhCVTFEVjc2MEdRdDlVdXhQWTB0bGJ1VHlrLVNmdTJfUDRlZlJFWU0yN2R6WlRfZ2IwNDk4U2F3U2lxcXFPNVVIUlBFLXlHQ0lIazBvREswQ0pPZTZnN0JGNVdVWkZfNzkxVzZoTjhOYmd3aV9pd3ZqQTFDcEo1TlBDUUFFdUFVY1djbC1XOE5VODBuRHpTUWFpUFVnLWpIbTJTYk5DdUc2Tms3djh1djQ1NmRDUW0tWnZ6dGpqNVFFNA?oc=5",
+                        "date": "永豐金證券・Fri, 20 Nov 2026"
                       }
                     ]
                   }
@@ -74736,7 +73740,7 @@
                 "spokesman": "顧大為",
                 "tax_id": "84149961",
                 "website": "http://www.mediatek.com",
-                "summary": "聯發科公司在台灣、亞洲其他地區和國際上從事多媒體積體電路 (IC) 的研究、開發、生產、製造和行銷。該公司提供各種應用的多媒體、電腦週邊設備、面向消費者的 IC 和其他 IC。並提供軟硬體解決方案的設計、試運轉、維護保養及技術諮詢服務；及其 IC 產品的銷售及授權專利及電路佈局權。此外，該公司還提供研究、行銷和技術服務；智慧財產權管理服務；和一般投資服務。該公司成立於1997年，總部位於台灣新竹市。",
+                "summary": "聯發科公司在台灣、亞洲其他地區和國際上從事多媒體積體電路 (IC) 的研究、開發、生產、製造和行銷。該公司提供各種應用的多媒體、電腦週邊設備、面向消費者的 IC 和其他 IC。並提供軟硬體解決方案的設計、試運轉、維護保養及技術諮詢服務；以及銷售及授權其積體電路產品的專利及電路佈局權。此外，該公司還提供研究、行銷和技術服務；智慧財產權管理服務；和一般投資服務。該公司成立於1997年，總部位於台灣新竹市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -74747,9 +73751,9 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "聯發科（2454）做什麼？Q3財報優於預期、執行長喊話挺股價，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                    "url": "https://news.google.com/rss/articles/CBMi5gNBVV95cUxNeW8xY0ZJeTZNS1hpSkxMSmZrSVVOUk5zYm52WmdFcnl2LVAySXE0VkJhWmQxZU01Q19hMmlKdHd5SVNPMEk3UkM5RDZNYVE4WDNlRFkydGt2V0p4MUlkTEM2T3drMktydlBwTnNBRHEtWUtRdnhscE9DM0hCSnYyZHJvZFkxeUVFTTdFQXZwa0xEMHhOU0ZBT1VQQWRvdlhaMjZpMVV1T0dPRnYyOVR1R2JvZC1fNkJhajlZLXVyM2VCaXA2RmtlRVRVYm92b2otakNJdTdUZUZGYmlfUnZBU0tlemVLaXdBa1VGM0xla3hLQ25sTWd3V3ZySXMzZGxuLWJ3Wlg3dXU3UnNjal9nWTR0UVpyR1J4RGNZS2tNVXFvVmdJbktDWFF5OGUzdFdBU2YyYTE1UFN4NldqQmttUWNucXV4cnFzUnJ2S2VNTkROMS11RTh3NHloZ1U2NW9ORnJYckg2US15bTJFbUVnSHZCS21hWmJDSnREQUZfNXhCc0oyaGp4cHpNTUduV2NXTDg5WkVQWFBCWGlZSlMwS3hvSFRwbU1VbGFvalBBYmlZM2RtcnAyNTZGQ3RFQW1fZXZBa1ZuNlYwZjJ6MzRKc01xUTdYZWNNTzdKeEQ2ZEJVNFZaT0E?oc=5",
-                    "date": "永豐金證券・Thu, 19 Nov 2026"
+                    "title": "2454 聯發科 - 市場普遍認為聯發科（2454）具備強勁的中長線成長潛力，但也... - 股市爆料同學會 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBxZTQzb3kySFZvUWh2VDRRYnlNcnJkM09WYnp0YkhaTVNVWUIzRF9JR3ZoS0hDQkFYNVVsSFEzbWdsSlJtNW16S0lEeTFBMHI4QkxDZDhGTWY?oc=5",
+                    "date": "CMoney・Fri, 20 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -74759,9 +73763,9 @@
                     "date": "MOPS 財務報表 / TradingView"
                   },
                   {
-                    "title": "聯發科跌停背後有隱憂？美外資點出「2關鍵因素」 估今年EPS達73元、最新目標價曝光 - Yahoo股市",
-                    "url": "https://news.google.com/rss/articles/CBMi3ANBVV95cUxNNlNWN0I5MDdyUHlvbS1EYTFzb2FEN2NneTdTMkhfckV1UlhYQjlvQnNLSVU4enNMSko2NGN0bnZiX3ViRWk3VjJQemI5aXFfTlV2THdib0NRekgtOGlUeUhUMXpQZ29Kdl9SeTQxU2lPOUsxVi1oZ0o4WGM2Y0g2by1zcUcwWnh4amdlQk14SU9Ud0VHVzc5a2doTTg1bU1LUEVFVGpLaVhxczJkT1RXY3IwRmZSQjlGVWZMSUJZV3JITVdyZTUyU2hLOEdxbWxoSTNVak9GWXY0bTJKalVmdGMtR1dESElsamZrVUFhbF9oMzZhWE9NWG9pZ3lCTXg3SkllY05wVC1FYzU1YmdfMHR1QXNrQkZTeXAwaG5qRzAyU2VKVVVRMndHZHZ0VnEwUzBNM1hOcEZ2NUxJSDduVmgwVHNtVHF3STc2NG80WnVJdFJTdHdSaTRCWHVIWXhJa0diTG96ejl2bjQ4TmVaWHE4dE44TlY4eUcxZ1VqTVBjSkxSMm9ROG9UXzdKWkdGX2d2b3RKUnEzMGx3c2FWQVRNczNYOHFQZ1Fya2ZHZk1pQnpneWhiMGZSZHdvY1F0WUZyX3hmNzRNNU1BMnlsUEFkVjhsQVBCUkdISw?oc=5",
-                    "date": "Yahoo股市・Sat, 21 Nov 2026"
+                    "title": "三大法人買賣超 – 外資買超(2454)聯發科、(2303)聯電，投信買超(2330)台積電、(3017)奇鋐，法人合計買超439.66億元 - 永豐金證券",
+                    "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxQdWJqM2d2THJIMllITXZqY0RNODA4dXg0WjhWVm1VME9MOFl6eHhBVVJqUXE3MkcwYlJFV0VpME5IcG9tMkh1ck5SaFNrcXdPMEM3WVVrN3o3d2RudXNSWGYwS2xFSXJqd1Y0S1FHcFZ0dTk3NXVDTERRSjh6TlJsMUFXR1U4aC1GXzVfZTJwMTUzZFNDRDVhbUlZdHdvSnRraC1VdDVsNXZ0VkVyaDlyRGdKMkdzOXQxX3lsdzZ0bEk3TVhfQ3Zhekdleld4NDlzLVVxdlZ0VHpSLUxocHZDT29lbGpQdW9MQjBPVkR1STRxbmtsRW9EbnIzRkk5ejdRekhIWllZQWJKZVBqSDdMTG8wd19hbVR6TEk0Z2J0TGkwY2dPTDhvS040T3ZvbHA2TTY1S0d4ODNqeGpaeXFTa0N2TEVtMzFrYkc0emVXcU1Ob0g2Z3IwQkdVakpkeHFreE9wZmd2SGtKV2dLNEJSV0hKVEptRm84MW1KVy1RNkRzWEpDRDJDeVJtWG14M3QzX2EzV1hPbFJSMDlDT3FQb3g4WmFWWHB2Q1BzMnpLWTZVWUJGVWsxSXViS2d5YkNWb3V4QWpQRU9yWTlHQ3o4eWJ0eERsQUY5OXFuaUNfRFo0X09FcFltTXdNbEN2YjlTeGV1N1hVU3pyczB0VXhhLUNKeVdOMUNSME5GNDlsaXhWZjRVWnNCU2MwTEstMjVGMDNDVnlqSVlTZzUtdEcxUC12Q0pFNmFrTUhKWXRmc1ZnZlhzUEE5d296a1NsNDBYWDZB?oc=5",
+                    "date": "永豐金證券・Fri, 13 Nov 2026"
                   }
                 ],
                 "categories": {
@@ -74791,11 +73795,6 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "聯發科（2454）做什麼？Q3財報優於預期、執行長喊話挺股價，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                        "url": "https://news.google.com/rss/articles/CBMi5gNBVV95cUxNeW8xY0ZJeTZNS1hpSkxMSmZrSVVOUk5zYm52WmdFcnl2LVAySXE0VkJhWmQxZU01Q19hMmlKdHd5SVNPMEk3UkM5RDZNYVE4WDNlRFkydGt2V0p4MUlkTEM2T3drMktydlBwTnNBRHEtWUtRdnhscE9DM0hCSnYyZHJvZFkxeUVFTTdFQXZwa0xEMHhOU0ZBT1VQQWRvdlhaMjZpMVV1T0dPRnYyOVR1R2JvZC1fNkJhajlZLXVyM2VCaXA2RmtlRVRVYm92b2otakNJdTdUZUZGYmlfUnZBU0tlemVLaXdBa1VGM0xla3hLQ25sTWd3V3ZySXMzZGxuLWJ3Wlg3dXU3UnNjal9nWTR0UVpyR1J4RGNZS2tNVXFvVmdJbktDWFF5OGUzdFdBU2YyYTE1UFN4NldqQmttUWNucXV4cnFzUnJ2S2VNTkROMS11RTh3NHloZ1U2NW9ORnJYckg2US15bTJFbUVnSHZCS21hWmJDSnREQUZfNXhCc0oyaGp4cHpNTUduV2NXTDg5WkVQWFBCWGlZSlMwS3hvSFRwbU1VbGFvalBBYmlZM2RtcnAyNTZGQ3RFQW1fZXZBa1ZuNlYwZjJ6MzRKc01xUTdYZWNNTzdKeEQ2ZEJVNFZaT0E?oc=5",
-                        "date": "永豐金證券・Thu, 19 Nov 2026"
-                      },
-                      {
                         "title": "2454 聯發科 - 市場普遍認為聯發科（2454）具備強勁的中長線成長潛力，但也... - 股市爆料同學會 - CMoney",
                         "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBxZTQzb3kySFZvUWh2VDRRYnlNcnJkM09WYnp0YkhaTVNVWUIzRF9JR3ZoS0hDQkFYNVVsSFEzbWdsSlJtNW16S0lEeTFBMHI4QkxDZDhGTWY?oc=5",
                         "date": "CMoney・Fri, 20 Nov 2026"
@@ -74807,6 +73806,11 @@
                       }
                     ],
                     "bearish": [
+                      {
+                        "title": "三大法人買賣超 – 外資買超(2454)聯發科、(2303)聯電，投信買超(2330)台積電、(3017)奇鋐，法人合計買超439.66億元 - 永豐金證券",
+                        "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxQdWJqM2d2THJIMllITXZqY0RNODA4dXg0WjhWVm1VME9MOFl6eHhBVVJqUXE3MkcwYlJFV0VpME5IcG9tMkh1ck5SaFNrcXdPMEM3WVVrN3o3d2RudXNSWGYwS2xFSXJqd1Y0S1FHcFZ0dTk3NXVDTERRSjh6TlJsMUFXR1U4aC1GXzVfZTJwMTUzZFNDRDVhbUlZdHdvSnRraC1VdDVsNXZ0VkVyaDlyRGdKMkdzOXQxX3lsdzZ0bEk3TVhfQ3Zhekdleld4NDlzLVVxdlZ0VHpSLUxocHZDT29lbGpQdW9MQjBPVkR1STRxbmtsRW9EbnIzRkk5ejdRekhIWllZQWJKZVBqSDdMTG8wd19hbVR6TEk0Z2J0TGkwY2dPTDhvS040T3ZvbHA2TTY1S0d4ODNqeGpaeXFTa0N2TEVtMzFrYkc0emVXcU1Ob0g2Z3IwQkdVakpkeHFreE9wZmd2SGtKV2dLNEJSV0hKVEptRm84MW1KVy1RNkRzWEpDRDJDeVJtWG14M3QzX2EzV1hPbFJSMDlDT3FQb3g4WmFWWHB2Q1BzMnpLWTZVWUJGVWsxSXViS2d5YkNWb3V4QWpQRU9yWTlHQ3o4eWJ0eERsQUY5OXFuaUNfRFo0X09FcFltTXdNbEN2YjlTeGV1N1hVU3pyczB0VXhhLUNKeVdOMUNSME5GNDlsaXhWZjRVWnNCU2MwTEstMjVGMDNDVnlqSVlTZzUtdEcxUC12Q0pFNmFrTUhKWXRmc1ZnZlhzUEE5d296a1NsNDBYWDZB?oc=5",
+                        "date": "永豐金證券・Fri, 13 Nov 2026"
+                      },
                       {
                         "title": "聯發科跌停背後有隱憂？美外資點出「2關鍵因素」 估今年EPS達73元、最新目標價曝光 - Yahoo股市",
                         "url": "https://news.google.com/rss/articles/CBMi3ANBVV95cUxNNlNWN0I5MDdyUHlvbS1EYTFzb2FEN2NneTdTMkhfckV1UlhYQjlvQnNLSVU4enNMSko2NGN0bnZiX3ViRWk3VjJQemI5aXFfTlV2THdib0NRekgtOGlUeUhUMXpQZ29Kdl9SeTQxU2lPOUsxVi1oZ0o4WGM2Y0g2by1zcUcwWnh4amdlQk14SU9Ud0VHVzc5a2doTTg1bU1LUEVFVGpLaVhxczJkT1RXY3IwRmZSQjlGVWZMSUJZV3JITVdyZTUyU2hLOEdxbWxoSTNVak9GWXY0bTJKalVmdGMtR1dESElsamZrVUFhbF9oMzZhWE9NWG9pZ3lCTXg3SkllY05wVC1FYzU1YmdfMHR1QXNrQkZTeXAwaG5qRzAyU2VKVVVRMndHZHZ0VnEwUzBNM1hOcEZ2NUxJSDduVmgwVHNtVHF3STc2NG80WnVJdFJTdHdSaTRCWHVIWXhJa0diTG96ejl2bjQ4TmVaWHE4dE44TlY4eUcxZ1VqTVBjSkxSMm9ROG9UXzdKWkdGX2d2b3RKUnEzMGx3c2FWQVRNczNYOHFQZ1Fya2ZHZk1pQnpneWhiMGZSZHdvY1F0WUZyX3hmNzRNNU1BMnlsUEFkVjhsQVBCUkdISw?oc=5",
@@ -75833,7 +74837,7 @@
                 "spokesman": "吳田玉",
                 "tax_id": "29187308",
                 "website": "www.aseglobal.com",
-                "summary": "日月光科技控股有限公司及其子公司在美國、台灣、亞洲其他地區、歐洲和國際上提供半導體製造服務。它透過包裝、測試和 EMS 運作。該公司提供半導體封裝、互連材料生產、前端工程測試、晶圓探測和最終測試服務，以及與計算、外圍設備、通信、工業、汽車和服務器應用相關的 EMS（電子製造服務）集成解決方案。它還提供交鑰匙服務，例如封裝、測試以及將半導體直接運送給最終用戶；引線鍵合，包括引線框架和基於基板的封裝；高級包；異構集成；以及其他與測試相關的服務。此外，該公司還從事房產租賃業務；房地產開發、建設、銷售和管理；停車場管理；購物中心物業租賃；商業綜合體服務和百貨商店交易活動的管理，以及提供社交、營銷和銷售、信息軟件、租賃和投資、售後和銷售支持服務。此外，還從事基板生產；投資諮詢及倉儲管理；電子元件和新型電子應用的設計和製造；技術諮詢；組織和人力資源的管理、培訓和諮詢；塑料投影；天線、射頻放大器和波帶、PCB 和調諧器的製造和銷售；以及研究和開發活動。日月光科技控股有限公司成立於 1984 年，總部位於台灣高雄。",
+                "summary": "日月光科技控股有限公司及其子公司在美國、台灣、亞洲其他地區、歐洲和國際上提供半導體製造服務。它透過包裝、測試和 EMS 運作。該公司提供半導體封裝、互連材料生產、前端工程測試、晶圓探測和最終測試服務，以及與計算、週邊設備、通訊、工業、汽車和伺服器應用相關的 EMS（電子製造服務）整合解決方案。它還提供交鑰匙服務，例如封裝、測試以及將半導體直接運送給最終用戶；引線鍵合，包括引線框架和基於基板的封裝；高級包；異構整合；以及其他與測試相關的服務。此外，該公司還從事房產租賃業務；房地產開發、建設、銷售和管理；停車場管理；購物中心物業租賃；商業綜合體服務和百貨公司交易活動的管理，以及提供社交、行銷和銷售、資訊軟體、租賃和投資、售後和銷售支援服務。此外，也從事基板生產；投資諮詢及倉儲管理；電子元件和新型電子應用的設計和製造；技術諮詢；組織和人力資源的管理、培訓和諮詢；塑膠投影；天線、射頻放大器和波帶、PCB 和調諧器的製造和銷售；以及研究和開發活動。日月光科技控股有限公司成立於 1984 年，總部位於台灣高雄。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -75893,14 +74897,14 @@
                         "date": "CMoney・Thu, 19 Nov 2026"
                       },
                       {
+                        "title": "日月光投控：矽品精密工業11/11~20取得廠務工程，計約7.62億元 - 台視全球資訊網",
+                        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNGU2RmloSG84NUYxYWNMMDZXQ3h4OENkblpuelZvS1gxSllfUVV1dlhSX0ZleENPNzhZN1Y0X3dyUkEyNEVXWTFCaVpOYm1iY05fZjNxZTRYekJ5dThtWC1WcExRVnhhTmY5QUp4bVZXaWstMU84U2xaX3NNZktwYmViRmFUaVRUNzFGb3pFanpWUQ?oc=5",
+                        "date": "台視全球資訊網・Fri, 20 Nov 2026"
+                      },
+                      {
                         "title": "【09:10 即時新聞】日月光投控(3711)盤中走強，AI封測族群買盤迴流 - CMoney投資網誌",
                         "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbFFUN0F3Zm9hUWJtMHVMSDlLTHdBSmJ0cmUza2JhS2R3a05PNnNuT0xQWmFsZk80dDdWZnJDcDhTY2d3c00teTNnd1NqRkdRcUhDRDd0Y2pFVldJUnE4QXowNmpJWVZGSmdWNWswbFdaYnJvb3VrLUs3YXFJR295a3ljekhTLXI3WGgwX3BB?oc=5",
                         "date": "CMoney投資網誌・Wed, 18 Nov 2026"
-                      },
-                      {
-                        "title": "日月光投控：矽品精密工業11/11~20取得廠務工程，計約7.62億元 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5ka0djYy1HbU1EenNkRDV3X3YzR0VuNHN5Z0lDcXM0dEgxN3R4NGM4NWNBQTdueGFpNjNwNUJWeG5URWV2T0lpWXhxVlowMG1vdXhZMkdXdGo?oc=5",
-                        "date": "CMoney・Fri, 20 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -76930,7 +75934,7 @@
                 "spokesman": "巫俊毅",
                 "tax_id": "04541302",
                 "website": "https://www.honhai.com/zh-tw",
-                "summary": "鴻海精密工業股份有限公司提供電子製造服務。該公司提供消費性電子產品，包括智慧型手機、功能手機、穿戴式裝置、電視、遊戲機、機上盒和音訊系統；雲端和網路產品，包括路由器、伺服器、邊緣運算、資料中心、衛星通訊和其他相關設備；電子運算設備，例如桌上型電腦、筆記型電腦、平板電腦、多功能設備和印表機；及連接器、精密光學元件、鏡頭、電子元件、電子元件、電子元件。該公司在美國、新加坡、愛爾蘭、中國大陸、日本、印度、台灣、越南、墨西哥和國際上開展業務。該公司成立於1974年，總部位於台灣新北市。",
+                "summary": "鴻海精密工業股份有限公司提供電子製造服務。該公司提供消費性電子產品，包括智慧型手機、功能手機、穿戴式裝置、電視、遊戲機、機上盒和音訊系統；雲端和網路產品，包括路由器、伺服器、邊緣運算、資料中心、衛星通訊和其他相關設備；電子運算設備，例如桌上型電腦、筆記型電腦、平板電腦、多功能設備和印表機；以及連接器、精密光學元件、鏡頭、電子元件、電子元件、電子元件。該公司在美國、新加坡、愛爾蘭、中國大陸、日本、印度、台灣、越南、墨西哥和國際上開展業務。該公司成立於1974年，總部位於台灣新北市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -78032,7 +77036,7 @@
                 "spokesman": "周志宏",
                 "tax_id": "34051920",
                 "website": "https://www.deltaww.com/zh-TW/index",
-                "summary": "台達電子及其子公司在中國大陸、美國、台灣、泰國和國際上提供電源和熱管理解決方案。它通過電力電子、移動、自動化和基礎設施部門運營。該公司提供電感器、變壓器元件、網路產品、EMI 濾波器、螺線管、電流檢測電阻器、電源模組以及沖壓和包覆成型元件；嵌入式電源、適配器、工業和醫療電源解決方案、工業電池充電、USB插座、氫動力和高壓電源解決方案；直流無水風扇和 EC 風扇和鼓風機、汽車熱和空氣解決方案。它還提供電動汽車電力電子、牽引和 X-in-1 產品。此外，該公司還提供驅動和電能品質、運動、控制、機器人和製造設備，以及現場設備、軟體和工業 PC；樓宇管理與控制、室內空氣品質、LED照明、智慧監控、健康照明、建築解決方案。此外，還提供電信電源系統、網路和農村電氣化系統、UPS和資料中心基礎設施以及電能品質產品；電動車充電、儲能係統、光伏逆變器、能源管理、風電變流器、固態變壓器、中壓驅動、高壓電源、自動測試設備、氫能和燃料電池解決方案、商業牆面設備和高性能媒體解決方案、設備 DLP 設備/媒體解決方案。此外，它還提供建築管理和控制解決方案的諮詢服務。台達電子有限公司成立於 1971 年，總部位於台灣台北。",
+                "summary": "台達電子及其子公司在中國大陸、美國、台灣、泰國和國際上提供電源和熱管理解決方案。它透過電力電子、行動、自動化和基礎設施部門運作。該公司提供電感器、變壓器元件、網路產品、EMI 濾波器、螺線管、電流檢測電阻器、電源模組以及沖壓和包覆成型元件；嵌入式電源、適配器、工業和醫療電源解決方案、工業電池充電、USB插座、氫動力和高壓電源解決方案；直流無水風扇和 EC 風扇和鼓風機、汽車熱和空氣解決方案。它還提供電動車電力電子、牽引和 X-in-1 產品。此外，該公司還提供驅動和電能品質、運動、控制、機器人和製造設備，以及現場設備、軟體和工業 PC；樓宇管理與控制、室內空氣品質、LED照明、智慧監控、健康照明、建築解決方案。此外，還提供電信電源系統、網路和農村電氣化系統、UPS和資料中心基礎設施以及電能品質產品；電動車充電、儲能係統、光伏逆變器、能源管理、風電變流器、固態變壓器、中壓驅動、高壓電源、自動測試設備、氫能和燃料電池解決方案、商業牆面設備和高性能媒體解決方案、設備 DLP 設備/媒體解決方案。此外，它還提供建築管理和控制解決方案的諮詢服務。台達電子有限公司成立於 1971 年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -78043,9 +77047,9 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "🔗 檢視「2308 台達電 (2308.TW)」Google 新聞最新報導",
-                    "url": "https://news.google.com/search?q=2308%20%E5%8F%B0%E9%81%94%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                    "date": "Google News"
+                    "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                    "date": "CMoney・Sun, 22 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -78087,9 +77091,9 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "🔗 檢視「2308 台達電 (2308.TW)」Google 新聞最新報導",
-                        "url": "https://news.google.com/search?q=2308%20%E5%8F%B0%E9%81%94%E9%9B%BB&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-                        "date": "Google News"
+                        "title": "2308 台達電- 台達電為全球AI伺服器電源龍頭，董事長鄭平表示，台達電近年主... - 股市爆料同學會 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LWGhtRDlBUmJXSHJ3eW1CdElGOFZteWVESHctRUVSeUQ0UVdCVnRJT2hWWmZIQ05OWUNPdTVlRXY4QTlQWkZGcV8xdXBvTnYzV3JGdjdYWGk?oc=5",
+                        "date": "CMoney・Sun, 22 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -78107,11 +77111,6 @@
                         "title": "72萬股民好慘！台達電跌停　千元失守、創逾10個月低點 - ETtoday財經雲",
                         "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4yc3ZWeE9fNURfTVVmQ3Flclk3a3JDdGZpUDlKaDZJVGNBUzRKVHl0bEdub0p3aGZjR3hxcWRZWXlGV1dKQzVQV0U0eVJXQWtfSGfSAVBBVV95cUxPRTR6Q3BJWXNYMm1QZ0prOVJiQTBfS2taR19QSmlPYmJWODRkbExSckkyRmFzOVdNYkRPZG5uMkF3eHlSbUhfODJibG14eU9RQw?oc=5",
                         "date": "ETtoday財經雲・Fri, 20 Nov 2026"
-                      },
-                      {
-                        "title": "美亞股市殺聲四起！台股一度跌逾1,600點失守37K 台達電、信驊重挫 - UDN",
-                        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5jZDRlZUtuai1zY3Q5eGZYWGdySnBjbzhINC11bTliZG5fV19nMEFuVmp5OWtCLW9wLTRsWXNhSk54SFZYNEJxQjV1SWRCNnBL0gFWQVVfeXFMTlpzcTdzUHV0QVJjQ0RzRUplZFZkVlpCU05JaTdnQUw1MTNmMHFNZzZZNzU3Z2pVZ1NWUW53czkwWU5FUzhkZExNQm1UZk1fakdGZTZHWFE?oc=5",
-                        "date": "UDN・Fri, 20 Nov 2026"
                       }
                     ]
                   }
@@ -80221,7 +79220,7 @@
                 "spokesman": "韓蔚廷",
                 "tax_id": "03374805",
                 "website": "www.fubon.com",
-                "summary": "富邦金控在台灣、亞洲和國際上提供各種金融產品和服務。其業務包括銀行業務、財產保險業務、人壽保險業務、證券業務和其他業務。該公司提供的保險產品包括財產險、傷亡險、人壽險、健康險、意外險、火災險、交通險、漁船險、汽車險、責任險、工程險、核險、保函險、信用證險、個人和商業多重險，以及颱風、洪水和地震保險產品。它還提供零售和消費者、企業和投資銀行服務；經紀、交易和承銷服務；以及投資和財務管理以及外匯。此外，該公司還提供存貸款、信託、票據融資和信用卡服務；投資境外金融機構；以及保險經紀和代理服務。此外，還從事創業投資、債權管理、股票期貨經紀、共同基金銷售、能源技術服務、再保險業務、資產管理、體育場館管理、體育活動以及房地產投資和管理。富邦金控股份有限公司成立於1961年，總部位於台灣台北。",
+                "summary": "富邦金控在台灣、亞洲及國際上提供各種金融產品及服務。其業務包括銀行業務、財產保險業務、人壽保險業務、證券業務和其他業務。該公司提供的保險產品包括財產險、傷亡險、人壽險、健康險、意外險、火災險、交通險、漁船險、汽車險、責任險、工程險、核險、保函險、信用證險、個人和商業多重險，以及颱風、洪水和地震保險產品。它還提供零售和消費者、企業和投資銀行服務；經紀、交易和承銷服務；以及投資和財務管理以及外匯。此外，該公司還提供存貸款、信託、票據融資和信用卡服務；投資境外金融機構；以及保險經紀和代理服務。此外，還從事創業投資、債權管理、股票期貨經紀、共同基金銷售、能源技術服務、再保險業務、資產管理、體育場館管理、體育活動以及房地產投資和管理。富邦金控股份有限公司成立於1961年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -82395,7 +81394,7 @@
                 "spokesman": "許文馨",
                 "tax_id": "96979933",
                 "website": "https://www.cht.com.tw",
-                "summary": "中華電信股份有限公司及其子公司在台灣和國際上作為綜合電信服務供應商運作。該公司透過消費者業務、企業業務、國際業務和其他部門運營。其服務主要包括行動、固網、資訊和通訊技術（ICT）以及銷售和其他服務。該公司提供行動服務，包括預付費和後付費方案；固定線路服務，例如固定寬頻和語音、租用線路、視訊和衛星服務；固定寬頻業務包括寬頻存取、數據通訊和Wi-Fi服務。它還提供包括雲端、內容交付網路、先進網路防禦系統和網路應用防火牆在內的ICT服務。此外，該公司還透過其直營商店、線上商店和第三方零售商在其行動網路上向客戶分銷和銷售手機和穿戴式設備，並提供互連服務。該公司成立於1996年，總部位於台灣台北。",
+                "summary": "中華電信股份有限公司及其子公司在台灣和國際上作為綜合電信服務供應商運作。該公司透過消費者業務、企業業務、國際業務和其他部門運營。其服務主要包括行動、固定電話、資訊和通訊技術（ICT）以及銷售和其他服務。該公司提供行動服務，包括預付費和後付費方案；固定線路服務，例如固定寬頻和語音、租用線路、視訊和衛星服務；固定寬頻服務包括寬頻存取、數據通訊和Wi-Fi服務。它還提供包括雲端、內容交付網路、先進網路防禦系統和網路應用防火牆在內的ICT服務。此外，該公司還透過其直營商店、線上商店和第三方零售商在其行動網路上向客戶分銷和銷售手機和穿戴式設備，並提供互連服務。該公司成立於1996年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -83476,13 +82475,13 @@
               "profile": {
                 "full_name": "中國信託金融控股股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "顏文隆",
                 "gm": "高麗雪",
                 "spokesman": "高麗雪",
                 "tax_id": "80333992",
                 "website": "https://www.ctbcholding.com",
-                "summary": "中國信託金融控股有限公司及其子公司在台灣、亞洲和北美從事企業和個人金融、人壽保險及其他業務。該公司提供商業銀行和資本市場服務；客製化融資、財富管理和信貸服務；人壽保險服務；設計、提供和交易各種金融產品。也涉及存款及貸款；證券及期貨；創投；資產管理；發行、銷售各類彩券；獎品兌換營運管理、促銷活動；個人保險；投資信託；經營分期付款銷售業務；服務、租賃業務及應收帳款；現金採購及銷售；保證;債務及資金管理；證券投資諮詢；及批發業務。此外，該公司還提供教育用品、樂器和娛樂產品；投資管理諮詢；融資租賃；產品保險；房地產租賃；老年人住房；家庭企業和資訊軟體服務；和酒店業務。公司前身為中信金控股份有限公司，於2013年6月更名為中信金控股份有限公司。中信金控股份有限公司成立於2002年，總部位於台灣台北市。",
+                "summary": "中國信託金融控股有限公司及其子公司在台灣、亞洲和北美從事企業和個人金融、人壽保險及其他業務。該公司提供商業銀行和資本市場服務；客製化融資及財富管理和信貸服務；人壽保險服務；設計、提供和交易各種金融產品。也涉及存款及貸款；證券及期貨；創投；資產管理；發行、銷售各類彩券；獎品兌換營運管理、促銷活動；個人保險；投資信託；經營分期付款銷售業務；服務、租賃業務及應收帳款；現金採購及銷售；保證;債務及資金管理；證券投資諮詢；及批發業務。此外，該公司還提供教育用品、樂器和娛樂產品；投資管理諮詢；融資租賃；產品保險；房地產租賃；老年人住房；家庭企業和資訊軟體服務；和酒店業務。公司前身為中信金控股份有限公司，於2013年6月更名為中信金控股份有限公司。中信金控股份有限公司成立於2002年，總部位於台灣台北市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -85808,7 +84807,7 @@
                 "country": "台灣",
                 "employees": 76907,
                 "website": "https://www.tsmc.com",
-                "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體裝置。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
+                "summary": "台積電及其子公司在台灣、中國大陸、歐洲、中東、非洲、日本、美國和國際上製造、封裝、測試和銷售積體電路和其他半導體元件。它提供各種晶圓製造工藝，例如製造互補金屬氧化物半導體 (CMOS) 邏輯、混合訊號、射頻、嵌入式記憶體、雙極 CMOS 混合訊號等的製程。該公司還提供客戶和工程支援服務；口罩製造；投資科技新創公司；彩色濾光片的研究、設計、開發、製造、包裝、測試和銷售；和投資活動。其產品應用於高效能運算、智慧型手機、物聯網、汽車和數位消費性電子產品。台積電成立於1987年，總部位於台灣新竹市。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -86936,9 +85935,9 @@
                     "date": "SEC Filings / Yahoo Finance (AVGO)"
                   },
                   {
-                    "title": "Why Is Broadcom (AVGO) Stock Trending After Hours? - TradingView",
-                    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNXzM1VE84N29zaUdhQ1N3SUVkVHNpdHRKNFYzZW91QV9RN0ViMDdXU3hkRFVCaUdJRDNTaEFvMnNZU3U5VnNjczNEdWZWTllYU0hGRGxWU0xPVG1qOElUbWUzSHNhOWM0V3hiTjlBU0tabFl4WUc4Qmgtd2VUckJlTEQ5WDkzYjZqVlNvMXlSQS00RUxfNU9sQjRpTld4aUs5MTNDYk9RR18?oc=5",
-                    "date": "TradingView・Wed, 11 Nov 2026"
+                    "title": "AVGO股價和圖表 — NASDAQ:AVGO - TradingView",
+                    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5kdDVWWDVRWE9Lem9KV2dYTmpTQjRWOWV2cGNkZHQtQ1lESjRpLURLYlRscDBmeFc0dWpabzVjbV9ZQVFEb0RFTlRaYVVESVc3YXJIdVpscXpLams?oc=5",
+                    "date": "TradingView・Tue, 20 Oct 2026"
                   }
                 ],
                 "bearish": [
@@ -86975,9 +85974,9 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "Why Is Broadcom (AVGO) Stock Trending After Hours? - TradingView",
-                        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNXzM1VE84N29zaUdhQ1N3SUVkVHNpdHRKNFYzZW91QV9RN0ViMDdXU3hkRFVCaUdJRDNTaEFvMnNZU3U5VnNjczNEdWZWTllYU0hGRGxWU0xPVG1qOElUbWUzSHNhOWM0V3hiTjlBU0tabFl4WUc4Qmgtd2VUckJlTEQ5WDkzYjZqVlNvMXlSQS00RUxfNU9sQjRpTld4aUs5MTNDYk9RR18?oc=5",
-                        "date": "TradingView・Wed, 11 Nov 2026"
+                        "title": "AVGO股價和圖表 — NASDAQ:AVGO - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5kdDVWWDVRWE9Lem9KV2dYTmpTQjRWOWV2cGNkZHQtQ1lESjRpLURLYlRscDBmeFc0dWpabzVjbV9ZQVFEb0RFTlRaYVVESVc3YXJIdVpscXpLams?oc=5",
+                        "date": "TradingView・Tue, 20 Oct 2026"
                       },
                       {
                         "title": "Broadcom(AVGO) Stock Price Today | Quotes & News - Moomoo",
@@ -87094,7 +86093,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 271.24
+                  "close": 271.25
                 },
                 {
                   "date": "2025-12-19",
@@ -88097,19 +87096,19 @@
                         "date": "CMoney投資網誌・Fri, 20 Nov 2026"
                       },
                       {
-                        "title": "Apple(AAPL) Stock Price Today | Quotes & News - Moomoo",
-                        "url": "https://news.google.com/rss/articles/CBMitgJBVV95cUxOZ2I4SzNrYTc1WVcyWm85VDVFVW1tVFhvbjFuLWd6NjVPd3VlSTdYY2xIQ015bF9SUmozSGhoOEhLUThiVmI1dkhDTHMxLU5KSk1mRWhJV1VkMUxVZGtIdVoyV290OHktWW13U1plalhLRkVPN05ZdVJ3ZTlkRjhZVGExSGY3QVVZa01TelM4RVY3OTFrQXZTakhzNG5NaVlPaW5XUlVNWEc5VFFsajlGZE5YTTF3YzhXS2g5eDQwcm1PcjZsVWFwYm5HSlVmeWQtM0VlTmtFZEdhSXJIM3ByX3kxenE5M1M5TGlGcUZvN2xxOXNEaGpvVGhlcVBXOEU0UFc5TGQyZGZKYkR1S3o5UXpzbzg3dHp1WjRzWkxwM1FiUGotYzlYY3ZNcmY1Y1RvelloaHdn?oc=5",
-                        "date": "Moomoo・Tue, 17 Nov 2026"
-                      },
-                      {
                         "title": "Abirstock的NASDAQ:AAPL的Is Apple Stock Getting Too Expensive? - TradingView",
                         "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOemYwbWVyX3gzODlFSVR4UDJSR0lzb2VfWlBhSzJzX0VOOHFIWkRXdWNMV29jMU1xOHczNjBpdEZhSV84aDhxb2dCRGtBVFZhdWk4emVWVk1Fd2ZRNGtJUmlmVWk2RmNJMnFRV1B1YnNzeU5HUTNGeVJXZUJNejE0R1NGM1ZZbHVDblVEVg?oc=5",
                         "date": "TradingView・Wed, 23 Sep 2026"
                       },
                       {
-                        "title": "傳蘋果(AAPL.US)開發自主AI智能體：能寫代碼、瀏覽網頁、控制應用，正面與OpenAI與Meta等競爭作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5jTVhwVWh6Vk13eDRteDl1eU5nc25KWER0XzVrQ3VBSndGTlR6ZzI2UmtQeWJiS3BNQjhLcFFsNXBjTzdtRURNR1V2LWgteEtfSUhnWEZmdDJGUmgxZFdMaUY3SnVybk5OdXIwMVpOUlQ?oc=5",
-                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+                        "title": "Apple(AAPL) Stock Price Today | Quotes & News - Moomoo",
+                        "url": "https://news.google.com/rss/articles/CBMitgJBVV95cUxOZ2I4SzNrYTc1WVcyWm85VDVFVW1tVFhvbjFuLWd6NjVPd3VlSTdYY2xIQ015bF9SUmozSGhoOEhLUThiVmI1dkhDTHMxLU5KSk1mRWhJV1VkMUxVZGtIdVoyV290OHktWW13U1plalhLRkVPN05ZdVJ3ZTlkRjhZVGExSGY3QVVZa01TelM4RVY3OTFrQXZTakhzNG5NaVlPaW5XUlVNWEc5VFFsajlGZE5YTTF3YzhXS2g5eDQwcm1PcjZsVWFwYm5HSlVmeWQtM0VlTmtFZEdhSXJIM3ByX3kxenE5M1M5TGlGcUZvN2xxOXNEaGpvVGhlcVBXOEU0UFc5TGQyZGZKYkR1S3o5UXpzbzg3dHp1WjRzWkxwM1FiUGotYzlYY3ZNcmY1Y1RvelloaHdn?oc=5",
+                        "date": "Moomoo・Tue, 17 Nov 2026"
+                      },
+                      {
+                        "title": "AAPL美股｜AAPL是什麼？AAPL蘋果財報？APPLE股票怎麼買賣？AAPL美股有配息嗎？(NASDAQ交易所資訊統整) - 永豐金證券",
+                        "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNVlRncmpYdlRIRFJuSjBsby1SemNfcDI0d1M4OHJmcU5pVFRmaDEtMDNpQnF4aUNHZzlVOUpQYmN6ckJNSUtFdjRBaVFiUXhVVWxxR2dZcmRZcDBkSDVhcUh5U0ZNd1BqQnVOSElUT3d3bks2YlluU1Ywei1kaEVjamNQYUtyZkVvN2xaWWJub2Rudjhad0ozdVRubjJRQng3cks2QXZqT2VncXd0NVBXdFl5c1l1R2NNMUNpWU43RUNGd0Y3OG40VTY2VklnSzVSaG5uTml1RGdHSjViZ3BGNzZBU2tkNHZmQnR3SVlNQ0xEdEtXcUk5SjhPS2xFYWtHV2ZDTzRYb2xQMkNTakxmRkF4VlM0ZlBqcjFyRlVSUk5heVlPWWhjNWRpMnptdGVVa3AxclNwV2t3T2E1cmpIX3lvc3hZYjVtYTJCeWk1M0ZRQUFkNEpodm1tT3VJZTlhOGRBZ0FncUZ4SFFLOHItQlh3enc3QXVmQkU5WFp3M1V2aGRwdHU0aGpQREpfczZLZ1RUbXZESjNZVllfdklBdzNmS2h0QVBZa0lIMTZkbUJHVXpEVzFpSDI1MEVLZzlWYzlNMFk5T05OV0s2OTFiWVM4RllMQUtkSzlaV0tWWlJxSW9yek1BZmxSZTNlZ0hqemNqOW1TdU0?oc=5",
+                        "date": "永豐金證券・Mon, 04 May 2026"
                       }
                     ],
                     "bearish": [
@@ -89164,7 +88163,7 @@
                 "country": "美國",
                 "employees": 223000,
                 "website": "https://www.microsoft.com",
-                "summary": "Microsoft Corporation 是一家技術公司，為全球個人和企業開發並支援一系列技術解決方案。其產品包括操作系統、服務器應用程序、業務解決方案應用程序、軟件開發工具、桌面和服務器管理工​​具以及視頻遊戲；和設備，例如個人電腦、平板電腦、遊戲和娛樂控制檯、其他智能設備以及相關配件。該公司的生產力和業務流程部門提供 Microsoft 365 Commercial、企業移動性 + 安全性、Power BI、Exchange、SharePoint、Microsoft Teams、Microsoft 365 安全性和合規性、Microsoft 365 Copilot 以及 Windows Commercial 本地部署和 Office 許可本地部署。該部門還提供 Microsoft 365 消費者產品和雲服務； LinkedIn，包括人才解決方案、營銷解決方案、訂閱和銷售解決方案； Dynamics 365，一組基於雲的應用程序；以及本地 ERP 和 CRM 應用程序。其智能雲部門提供服務器產品和雲服務；基於雲和人工智能消費的服務、GitHub 雲服務、健康和生命科學雲服務以及虛擬桌面產品和其他雲服務； SQL Server、Windows Server、Visual Studio、System Center 和相關客戶端訪問許可證；以及企業支持服務、行業解決方案、Microsoft 合作伙伴網絡和學習經驗。該公司的更多個人計算部門提供 Windows OEM 許可以及包括 Surface 和 PC 配件在內的設備； XBOX 硬件以及 XBOX 第一方和第三方內容和服務； XBOX 遊戲通行證和其他訂閱； XBOX雲遊戲、廣告等雲服務；以及由 Bing、Copilot、Microsoft News、Microsoft Edge 和第三方附屬公司組成的搜索廣告。它透過合作夥伴和零售網路銷售其產品。該公司成立於 1975 年，總部位於華盛頓州雷德蒙德。",
+                "summary": "Microsoft Corporation 是一家技術公司，為全球個人和企業開發並支援一系列技術解決方案。其產品包括作業系統、伺服器應用程式、業務解決方案應用程式、軟體開發工具、桌面和伺服器管理工具以及視訊遊戲；和設備，例如個人電腦、平板電腦、遊戲和娛樂控制檯、其他智慧型設備以及相關配件。該公司的生產力和業務流程部門提供 Microsoft 365 Commercial、企業移動性 + 安全性、Power BI、Exchange、SharePoint、Microsoft Teams、Microsoft 365 安全性和合規性、Microsoft 365 Copilot 以及 Windows Commercial 本地部署和 Office 許可本地部署。該部門還提供 Microsoft 365 消費者產品和雲端服務； LinkedIn，包括人才解決方案、行銷解決方案、訂閱和銷售解決方案； Dynamics 365，一組基於雲端的應用程式；以及本地 ERP 和 CRM 應用程式。其智慧雲端部門提供伺服器產品和雲端服務；基於雲端和人工智慧消費的服務、GitHub 雲端服務、健康和生命科學雲端服務以及虛擬桌面產品和其他雲端服務； SQL Server、Windows Server、Visual Studio、System Center 和相關客戶端存取許可證；以及企業支援服務、產業解決方案、Microsoft 合作夥伴網路和學習經驗。該公司的更多個人運算部門提供 Windows OEM 許可以及包括 Surface 和 PC 配件在內的設備； XBOX 硬體以及 XBOX 第一方和第三方內容和服務； XBOX 遊戲通行證和其他訂閱； XBOX雲遊戲、廣告等雲端服務；以及由 Bing、Copilot、Microsoft News、Microsoft Edge 和第三方附屬公司組成的搜尋廣告。它透過合作夥伴和零售網路銷售其產品。該公司成立於 1975 年，總部位於華盛頓州雷德蒙德。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -89224,14 +88223,14 @@
                         "date": "鉅亨號・Sat, 21 Nov 2026"
                       },
                       {
-                        "title": "MSFT預測 — 2027的目標價 - TradingView",
-                        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
-                        "date": "TradingView・Fri, 26 Jun 2026"
-                      },
-                      {
                         "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
                         "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
                         "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+                      },
+                      {
+                        "title": "MSFT預測 — 2027的目標價 - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
+                        "date": "TradingView・Fri, 26 Jun 2026"
                       }
                     ],
                     "bearish": [
@@ -90286,7 +89285,7 @@
                 "country": "美國",
                 "employees": 204757,
                 "website": "https://abc.xyz",
-                "summary": "Alphabet Inc. 在美國、歐洲、中東、非洲、亞太地區、加拿大和拉丁美洲提供各種產品和平台。它透過谷歌服務、谷歌雲端和其他賭注部門運作。 Google 服務部門提供產品和服務，包括廣告、Android、Chrome、裝置、Gmail、Google 雲端硬碟、Google 地圖、Google 照片、Google Play、搜尋和 YouTube。它還參與 Google Play 和 YouTube 中應用程式的銷售和應用程式內購買以及數位內容；和設備，以及提供 YouTube 消費者訂閱服務，例如 YouTube TV、YouTube Music 和 Premium、NFL Sunday Ticket 和 Google One。 Google Cloud 部門為 AI 解決方案提供以消費為基礎的費用和訂閱，包括 AI 基礎架構、Vertex AI 平台和 Gemini 企業。它還提供網路安全、資料和分析服務； Google Workspace，包括以企業為基礎的雲端的通訊和協作工具，例如日曆、Gmail、Docs、Drive 和 Meet；及其他企業服務。其他投注部門銷售運輸和網路服務。 Alphabet Inc. 成立於 1998 年，總部位於加州山景城。",
+                "summary": "Alphabet Inc. 在美國、歐洲、中東、非洲、亞太地區、加拿大和拉丁美洲提供各種產品和平台。它通過谷歌服務、谷歌雲和其他賭注部門運營。 Google 服務部門提供產品和服務，包括廣告、Android、Chrome、裝置、Gmail、Google 雲端硬碟、Google 地圖、Google 照片、Google Play、搜尋和 YouTube。它還參與 Google Play 和 YouTube 中應用程式的銷售和應用程式內購買以及數位內容；和設備，以及提供 YouTube 消費者訂閱服務，例如 YouTube TV、YouTube Music 和 Premium、NFL Sunday Ticket 和 Google One。 Google Cloud 部門為 AI 解決方案提供基於消費的費用和訂閱，包括 AI 基礎設施、Vertex AI 平台和 Gemini 企業。它還提供網路安全、資料和分析服務； Google Workspace，包括以企業為基礎的雲端的通訊和協作工具，例如日曆、Gmail、Docs、Drive 和 Meet；及其他企業服務。其他投注部門銷售運輸和互聯網服務。 Alphabet Inc. 成立於 1998 年，總部位於加利福尼亞州山景城。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -91408,7 +90407,7 @@
                 "country": "美國",
                 "employees": 1638000,
                 "website": "https://www.amazon.com",
-                "summary": "Amazon.com, Inc. 通過北美和國際的在線和實體店從事消費品零售、廣告和訂閱服務。該公司通過三個部門運營：北美部門、國際部門和亞馬遜網絡服務部門 (AWS)。它還生產和銷售電子設備，包括 Kindle、fire 平板電腦、fire TV、echo、ring、blink 和 eero；並開發和製作媒體內容。此外，該公司還提供一些計劃，使賣家能夠在其商店中銷售他們的產品；以及允許作者、獨立出版商、音樂家、電影製作人、Twitch 主播、技能和應用程式開發人員以及其他人發布和銷售內容的程式。此外，它還提供運算、儲存、人工智慧、資料庫、分析、機器學習和其他服務，以及透過贊助廣告、展示和影片廣告等程式提供的廣告服務。此外，該公司還提供亞馬遜 Prime 會員計劃。該公司通過其商店提供的產品包括購買用於轉售的商品和內容以及第三方賣家提供的產品。它服務於消費者、賣家、開發者、企業、內容創作者、廣告商和員工。該公司成立於1994年，總部位於華盛頓州西雅圖。",
+                "summary": "Amazon.com, Inc. 透過北美和國際的線上和實體店從事消費品零售、廣告和訂閱服務。該公司透過三個部門運作：北美部門、國際部門和亞馬遜網路服務部門 (AWS)。它還生產和銷售電子設備，包括 Kindle、fire 平板電腦、fire TV、echo、ring、blink 和 eero；並開發和製作媒體內容。此外，該公司還提供一些計劃，使賣家能夠在其商店中銷售他們的產品；以及允許作者、獨立出版商、音樂家、電影製作人、Twitch 主播、技能和應用程式開發人員以及其他人發布和銷售內容的程式。此外，它還提供運算、儲存、人工智慧、資料庫、分析、機器學習和其他服務，以及透過贊助廣告、展示和影片廣告等程式提供的廣告服務。此外，該公司還提供亞馬遜 Prime 會員計劃。該公司透過其商店提供的產品包括購買用於轉售的商品和內容以及第三方賣家提供的產品。它服務於消費者、賣家、開發者、企業、內容創作者、廣告商和員工。該公司成立於1994年，總部位於華盛頓州西雅圖。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -91468,9 +90467,9 @@
                         "date": "Moomoo・Fri, 20 Nov 2026"
                       },
                       {
-                        "title": "AMZN預測 — 2027的目標價 - TradingView",
-                        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1YOC1ldHBQekp3REh2V2ttTzlxU2M3ZURfVDc0cERDYnFuaThHRDc4X0dNQmJmejZuWUMzTGNNWjVNUWEzZXZkTnp5NzJzMHVXVUhUNjB0RmtpOWFyeVY0TUxIWjVMVk9FWHNiRHV3dnNtMHRnS0hfeg?oc=5",
-                        "date": "TradingView・Thu, 25 Jun 2026"
+                        "title": "Amazon.com Inc(AMZN)股票11月18日盤中上漲3.28%：投資者必看的核心資訊 - TradingKey",
+                        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQdEFMSW5FTGVmdkdLdlczVzRkQ2VIVy0ybXBySzd2XzdtSUdsQVBjQ3U3U1ZxMHdfYndHS3R3Tm8wUUl1ZWVMY19ReDczY3J3UjBvT0llNUtYNDAyT0Z1TlNSWVdVX25JT3JsdkFsYklnWmRrZkVLUUZVUENJUHJ4cE4zV3FMOWxmZkFqUFZPSnNRS1UwUWc?oc=5",
+                        "date": "TradingKey・Wed, 18 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -92578,11 +91577,6 @@
                         "title": "Meta Platforms(META) Stock Price Today | Quotes & News - Moomoo",
                         "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOejY3MG95WlJ2cHFtUU5xVUlPSnlPLTdKREhUV1VZN3lkVWR6VGpsTDRGQnJ4Ynh1Wm9IY1lLTFVPRHJJS21WaEF4MW5YZjQ4Z0VITGF1dGNNSjZacmlueUxhenBYM01pN1c1WTkzUVpzZ0d5MFcweENLaHZxZXJobFV2VXlUZXkyalpJNWNORnhqR04zb1lQOWsxQU1ielJSNkJzZ01mVmlZeE5QTFZxOFo3T3pEUG5kMndxc0JINTBsWExiVzJ0QWdlblFBT0V4UGt6eURBWGJUTlUwV2dodE4xbXNnT0N4LU9nNFBnRXk5TTVsV2NMZlA5ZkZ3S25zczhnT0RQdXVjc2tKLXVwNnlEbEVadFQyQkdNQXF3?oc=5",
                         "date": "Moomoo・Sun, 22 Nov 2026"
-                      },
-                      {
-                        "title": "Meta遇法律訴訟 暫停發行新股票 - Singtaousa",
-                        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5mdGZXVnZRS1BDZC1pZVEwaUI1c0lsamxnYU1vTU1rQ05kMDNsZndHUzlyNE5sY2ViYVhoSS10bkdTbjhFamt2QmRQQXprbEQzMkZfd0FzVWFLRzZOVkYtaTJxZDlBd2FaTHMxUkxrSjlEYnREdVViS1BB?oc=5",
-                        "date": "Singtaousa・Sat, 21 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -92590,6 +91584,11 @@
                         "title": "Meta擴大AI資本支出衝擊現金流 股價收跌3.27% - Yahoo股市",
                         "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOZTV5ZGUtLW4yRW83Ylpjd0NJaHZkYk9pYkRHSDhrdktSMUJoR0NVSm41bnh5SFM5OVk5MFRBZlJIUk1nbGhXRml5d1NFRU5qRFQwRjJUMmw5MllvcE1ib0dIM2J2RFNpX3U3QVBsOHMtY1hMWWNkU0tLOW1IVzZRNzlELWR1aGlQSng1aWRUYXVRRWxKMVBhYzAwdXg1UGRJM2xXLU9oZUxmQTItY3IwUmp5cXRwcVdNaHU1bWlWeFByal9Ddm1aeXNXaWp4RzJvcy00aThCZG9ibmlCODZ2ZTJpTXpQOXdIUE1Eb0ktWWl5LVd2b2lKcG54RzFGUVZPUmQ1bWZEa3N4TFd3QTNfa3hQdkFCNnM5d1FXNDRB?oc=5",
                         "date": "Yahoo股市・Thu, 19 Nov 2026"
+                      },
+                      {
+                        "title": "【03:12 即時新聞】Meta Platforms(META) 跌5%／AI信仰動搖＋債務與股本籌資壓力升溫 - 美股放大鏡",
+                        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOTG1FdVRqc3kxaVAwUm9yRkFERlJabkVEOEkwZ1BiUm85OU1xQmZWQ2pwUXZJRWY0MERPWE5UNXVqQ3RNOHh2ZlA5TEFSNUdSUzdnS0p3X2JucjVTejZBWGd0Qi1vZTJBRnkwRC01UVdPM1RIM2VsUXptc0lNRUZHaS0xNW44bVc4Q0E1d2tteldXRGFF?oc=5",
+                        "date": "美股放大鏡・Fri, 20 Nov 2026"
                       },
                       {
                         "title": "Meta Platforms Inc(META)股票11月19日收盤下跌3.27%：關鍵驅動因素揭曉 - TradingKey",
@@ -93379,7 +92378,7 @@
                 },
                 {
                   "date": "2026-02-03",
-                  "close": 997.43
+                  "close": 997.42
                 },
                 {
                   "date": "2026-02-04",
@@ -94207,7 +93206,7 @@
                 "country": "美國",
                 "employees": 50000,
                 "website": "https://www.lilly.com",
-                "summary": "禮來公司在美國、歐洲、中國、日本和國際上發現、開發、製造和銷售人類藥品。該公司提供心臟代謝健康產品，包括Basaglar、Humalog、Humalog Mix 75/25、Humalog U-100、Humalog U-200、Humalog Mix 50/50、閑泌胰島素、賴脯胰島素魚精脯蛋白、賴脯胰島素混合75/25、優泌林、優林泌素、 Jardiance、Mounjaro 和 Trulicity 用於治療第 2 型糖尿病；和 Zepbound 治療肥胖。它還提供腫瘤產品，例如用於胃癌或胃食道交界腺癌二線治療的Cyramza；愛必妥（Erbitux）用於治療結直腸癌和頭頸癌； Inluriyo 治療乳腺癌； Jaypirca 用於治療慢性淋巴細胞白血病或小淋巴細胞淋巴瘤； Retevmo) 的經典轉移性非小細胞肺癌；達伯型淋巴瘤。此外，該公司還提供免疫學產品，其中包括 Ebglyss；奧盧米特；天啊！和塔爾茨。此外，它還提供 Emgality 來預防偏頭痛和陣發性叢集性頭痛； Kisubla 用於治療有症狀的阿茲海默症。該公司與 Boehringer Ingelheim Pharmaceuticals, Inc. 就 Jardiance 產品系列進行合作；和 F. Hoffmann-La Roche Ltd 和 Genentech, Inc. 的 lebrikizumab，以及與 Almirall, S.A. 的 Ebglyss 的許可協議；和中外製藥有限公司的未公開生產 健康生產有限公司的單藥生產； BioArctic AB（公開）用於新療法； QurCan Therapeutics Inc 開發用於治療中樞神經系統和周圍神經系統的 PLNP 基因醫學療法；和 Abbisko Therapeutics 致力於發現和開發跨多個靶點的藥物。該公司成立於 1876 年，總部位於印第安納州印第安納波利斯。",
+                "summary": "禮來公司在美國、歐洲、中國、日本和國際上發現、開發、製造和銷售人類藥品。該公司提供心臟代謝健康產品，包括Basaglar、Humalog、Humalog Mix 75/25、Humalog U-100、Humalog U-200、Humalog Mix 50/50、閑泌胰島素、賴脯胰島素魚精脯蛋白、賴脯胰島素混合75/25、優泌林、優林泌素、 Jardiance、Mounjaro 和 Trulicity 用於治療第 2 型糖尿病；和 Zepbound 治療肥胖症。它還提供腫瘤產品，例如用於胃癌或胃食道交界腺癌二線治療的Cyramza；愛必妥（Erbitux）用於治療結直腸癌和頭頸癌； Inluriyo 治療乳腺癌； Jaypirca 用於治療慢性淋巴細胞白血病或小淋巴細胞淋巴瘤； Retevmo) 的經典轉移性非小細胞肺癌；達伯型淋巴瘤。此外，該公司還提供免疫學產品，其中包括 Ebglyss；奧盧米特；天啊！和塔爾茨。此外，它還提供 Emgality 來預防偏頭痛和陣發性叢集性頭痛； Kisubla 用於治療有症狀的阿茲海默症。該公司與 Boehringer Ingelheim Pharmaceuticals, Inc. 就 Jardiance 產品系列進行合作；和 F. Hoffmann-La Roche Ltd 和 Genentech, Inc. 的 lebrikizumab，以及與 Almirall, S.A. 的 Ebglyss 的許可協議；和中外製藥有限公司的未公開生產 健康生產有限公司的單藥生產； BioArctic AB（公開）用於新療法； QurCan Therapeutics Inc 開發用於治療中樞神經系統和周圍神經系統的 PLNP 基因醫學療法；和 Abbisko Therapeutics 致力於發現和開發跨多個靶點的藥物。該公司成立於 1876 年，總部位於印第安納州印第安納波利斯。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -95314,7 +94313,7 @@
                 "country": "美國",
                 "employees": 387800,
                 "website": "https://www.berkshirehathaway.com",
-                "summary": "波克夏海瑟威及其子公司從事保險、鐵路貨運和公用事業業務。該公司提供財產保險、意外傷害保險、人壽保險、意外保險、健康保險和再保險；在北美運營鐵路系統；利用天然氣、煤炭、風能、太陽能、水力發電、核能和地熱源發電、傳輸、儲存和分配電力；經營天然氣分配和儲存設施、州際管道、液化天然氣設施以及壓縮機和計量站；並持有煤礦量權益。它生產盒裝巧克力和其他糖果產品；特殊化學品、金屬切割工具以及航空航天和發電應用部件；預製和現場建造的住宅、地板產品；絕緣、屋頂和工程產品；建築和工程組件；油漆和塗料；磚和磚石產品，並提供製造和現場建造的房屋建築以及相關的貸款和金融服務。此外，該公司還提供休閒車、服裝、鞋類、玩具、珠寶、客製化相框產品、鹼性電池、物流服務以及專業航空培訓和共享飛機所有權計劃；鑄件、鍛件、緊固件/緊固件系統、航空結構和精密部件；以及鈷、鎳和鈦合金。此外，它還分銷電視和資訊、雜貨和非食品消費品；特許經營和服務快餐店；並分銷電子元件。此外，它還零售汽車；傢俱、床上用品和配件；家用電器、電子產品和地板覆蓋物；手錶、家居裝飾和維修服務；銷售廚具；以及摩托車服裝和設備。該公司成立於1998年，總部位於內布拉斯加州奧馬哈。",
+                "summary": "波克夏海瑟威及其子公司從事保險、鐵路貨運和公用事業業務。該公司提供財產保險、意外傷害保險、人壽保險、意外保險、健康保險和再保險；在北美運營鐵路系統；利用天然氣、煤炭、風能、太陽能、水力發電、核能和地熱源發電、傳輸、儲存和分配電力；經營天然氣分配和儲存設施、州際管道、液化天然氣設施以及壓縮機和計量站；並持有煤礦量權益。它生產盒裝巧克力和其他糖果產品；特殊化學品、金屬切割工具以及航空航天和發電應用部件；預製和現場建造的住宅、地板產品；絕緣、屋頂和工程產品；建築和工程組件；油漆和塗料；磚和磚石產品，並提供製造和現場建造的房屋建築以及相關的貸款和金融服務。此外，該公司還提供休閒車、服裝、鞋類、玩具、珠寶、客製化相框產品、鹼性電池、物流服務以及專業航空培訓和共享飛機所有權計劃；鑄件、鍛件、緊固件/緊固件系統、航空結構和精密部件；以及鈷、鎳和鈦合金。此外，它還分銷電視和資訊、雜貨和非食品消費品；特許經營和服務快餐店；並分銷電子元件。此外，它還零售汽車；傢俱、床上用品和配件；家用電器、電子產品和地板覆蓋物；手錶、家居裝飾和維修服務；銷售廚具；以及摩托車服裝和裝備。該公司成立於1998年，總部位於內布拉斯加州奧馬哈。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -101978,7 +100977,7 @@
                 "spokesman": "林鬱昕",
                 "tax_id": "53503847",
                 "website": "www.apmemory.com",
-                "summary": "AP Memory Technology Corporation, together with its subsidiaries, designs, develops, licenses, manufactures, and sells customized memory-related integrated circuit (IC) chip products and technologies in China, Singapore, Taiwan, Europe, the United States, and internationally. The company provides pseudo static random-access memory (PSRAM) and low power double data rate (LPDDR) for IoT, wearables, and display devices; and stack silicon capacitors for temperature and voltage stability. It also offers VHMTM series, a DRAM working with SoC through WoW 3D stacking technology, including VHMStack and VHMInterposer; and S-SiCap interposer IP for computing and AI applications, as well as wearable devices and smart homes. In addition, the company provides product design and R&D technical services. AP Memory Technology Corporation was incorporated in 2011 and is headquartered in Zhubei, Taiwan.",
+                "summary": "AP Memory Technology Corporation 及其子公司在中國、新加坡、台灣、歐洲、美國和國際上設計、開發、授權、製造和銷售客製化的記憶體相關積體電路 (IC) 晶片產品和技術。該公司為物聯網、穿戴式裝置和顯示裝置提供偽靜態隨機存取記憶體（PSRAM）和低功耗雙倍資料速率（LPDDR）；並堆疊矽電容器以實現溫度和電壓穩定性。它還提供VHMTM系列，透過WoW 3D堆疊技術與SoC配合使用的DRAM，包括VHMStack和VHMInterposer；用於運算和人工智慧應用以及穿戴式裝置和智慧家居的S-SiCap中介層IP。此外，公司也提供產品設計和研發技術服務。 AP內存科技股份有限公司成立於2011年，總部位於台灣竹北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -109672,7 +108671,7 @@
                 "country": "美國",
                 "employees": 7480,
                 "website": "https://www.marvell.com",
-                "summary": "Marvell Technology, Inc. 及其子公司在美國、阿根廷、中國、印度、以色列、日本、新加坡、韓國、台灣、越南和國際上提供資料基礎設施半導體解決方案，涵蓋資料中心核心到網路邊緣。該公司開發並擴展系統單晶片架構，整合類比、混合訊號和數位訊號處理功能。它提供了一系列乙太網路解決方案，包括跨接控制器、網路適配器、實體收發器和交換器；單核心或多核心處理器；以及客製化專用積體電路、互連、光纖通道適配器和處理器。該公司還提供互連產品，包括脈衝幅度調變、相干和相干精簡版數位訊號處理器（DSP）、雷射驅動器、互連抗放大器、矽光子、共封裝光學元件、線性可插拔光學晶片組、資料中心互連、主動電纜DSP和周邊組件互連快速重定時器解決方案；光纖通道產品，包括用於伺服器和儲存系統連接的主機匯流排適配器和控制器；硬碟和固態驅動器的儲存控制器；主機系統接口，包括串行高級技術附件和串行連接SCSI、週邊元件互連 Express、運算 Express 連結交換器、非揮發性記憶體 Express (NVMe) 和 NVMe over Fabrics；並開發用於擴展網路交換器的 Ultra Accelerator LinkTM 交換器和乙太網路。該公司服務於數據中心、通訊和其他市場。它透過直接客戶和分銷商提供產品。該公司與 合作，解決伺服器和 Pod 層級的人工智慧基礎設施需求。 Marvell Technology, Inc. 成立於 1995 年，總部位於德拉瓦州威爾明頓。",
+                "summary": "Marvell Technology, Inc. 及其子公司在美國、阿根廷、中國、印度、以色列、日本、新加坡、韓國、台灣、越南和國際上提供資料基礎設施半導體解決方案，涵蓋資料中心核心到網路邊緣。該公司開發並擴展系統單晶片架構，整合類比、混合訊號和數位訊號處理功能。它提供了一系列乙太網路解決方案，包括跨接控制器、網路適配器、實體收發器和交換器；單核心或多核心處理器；以及客製化專用積體電路、互連、光纖通道適配器和處理器。該公司還提供互連產品，包括脈衝幅度調變、相干和相干精簡版數位訊號處理器（DSP）、雷射驅動器、互連抗放大器、矽光子、共封裝光學元件、線性可插拔光學晶片組、資料中心互連、主動電纜DSP和周邊組件互連快速重定時器解決方案；光纖通道產品，包括用於伺服器和儲存系統連接的主機匯流排適配器和控制器；硬碟和固態驅動器的儲存控制器；主機系統接口，包括串行高級技術附件和串行連接SCSI、週邊元件互連 Express、運算 Express 連結交換器、非揮發性記憶體 Express (NVMe) 和 NVMe over Fabrics；並開發用於擴展網路交換器的 Ultra Accelerator LinkTM 交換器和乙太網路。該公司服務於數據中心、通訊和其他市場。它透過直接客戶和分銷商提供產品。該公司與 合作，以滿足伺服器和 Pod 層級的人工智慧基礎設施需求。 Marvell Technology, Inc. 成立於 1995 年，總部位於德拉瓦州威爾明頓。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -113480,7 +112479,7 @@
                 },
                 {
                   "date": "2026-05-11",
-                  "close": 260.7
+                  "close": 260.69
                 },
                 {
                   "date": "2026-05-12",
@@ -114559,7 +113558,7 @@
                 },
                 {
                   "date": "2026-04-30",
-                  "close": 257.41
+                  "close": 257.4
                 },
                 {
                   "date": "2026-05-01",
@@ -116254,7 +115253,7 @@
                 "country": "美國",
                 "employees": 41500,
                 "website": "https://www.appliedmaterials.com",
-                "summary": "應用材料公司為美國、中國、韓國、台灣、日本、東南亞、歐洲和國際的半導體及相關產業提供材料工程解決方案、設備、服務和軟體。該公司透過半導體系統和應用全球服務（AGS）部門營運。半導體系統部門包括半導體資本設備，以實現材料工程步驟，包括蝕刻、快速熱處理、沉積、化學機械平坦化、計量和檢測、晶圓封裝和離子注入。 AGS 部門提供整合解決方案，以優化設備和晶圓廠的性能和生產力，包括備件、升級、服務以及用於半導體和其他產品的 200 毫米及其他設備和工廠自動化軟體。它為半導體晶圓和晶片以及其他電子設備的製造商提供服務。應用材料公司成立於 1967 年，總部位於加州聖克拉拉。",
+                "summary": "應用材料公司為美國、中國、韓國、台灣、日本、東南亞、歐洲和國際的半導體及相關行業提供材料工程解決方案、設備、服務和軟件。該公司透過半導體系統和應用全球服務（AGS）部門營運。半導體系統部門包括半導體資本設備，以實現材料工程步驟，包括蝕刻、快速熱處理、沉積、化學機械平坦化、計量和檢測、晶圓封裝和離子注入。 AGS 部門提供集成解決方案，以優化設備和晶圓廠的性能和生產力，包括備件、升級、服務以及用於半導體和其他產品的 200 毫米及其他設備和工廠自動化軟件。它為半導體晶圓和晶片以及其他電子設備的製造商提供服務。應用材料公司成立於 1967 年，總部位於加州聖克拉拉。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -118423,7 +117422,7 @@
                 "spokesman": "範祥雲",
                 "tax_id": "22099218",
                 "website": "WWW.WINBOND.COM",
-                "summary": "華邦電子股份有限公司從事積體電路、各類半導體元件及其他系統產品的研發、生產及銷售。本公司提供客製化記憶體解決方案，包括CUBE(3DCaaS)、偽靜態隨機記憶體、DDR/SDR、LPDDR/LPSDR、Known Good Die晶圓產品；電氣模擬、晶圓級速度測試等服務；重新分配層；和故障分析服務，以及低功耗 SDR、DDR、DDR2、DDR3 和 DDR4/444X4X4X。它還提供特殊DRAM產品，如SDRAM、DDR SDRAM、DDR2 SDRAM、DDR3 SDRAM和DDR4 SDRAM產品；代碼儲存快閃記憶體產品，包括串行NOR、1.2V串行NOR、八進制NOR、QspiNAND、MEalNAND、SLC NAND、基於閃存器認證產品的MCP、基於系統認證的MCP、Stack和安全元件；此外，公司還涉足半導體的研發、設計、銷售和售後服務以及6英寸晶圓廠的生產、測試和代工服務；電子商務及投資業務；半導體元件設計和營銷服務；智能工廠解決方案；半導體相關軟硬體系統整合設計；集成電道路及輔助設備的設計、研究、測試、銷售及服務；開發汽車及工業控制軟體及服務；客戶服務及技術支援；電腦軟體服務；電腦及週邊設備、軟體批發；維修、偵測及相關技術諮詢服務；及半導體相關設備的租賃。它透過分銷商和線上行銷其產品。該公司的產品應用於電腦、通訊、消費性電子、汽車和工業電子領域。華邦電子股份有限公司成立於1987年，總部位於台灣台中市。",
+                "summary": "華邦電子股份有限公司從事積體電路、各類半導體元件及其他系統產品的研發、生產及銷售。本公司提供客製化記憶體解決方案，包括CUBE(3DCaaS)、偽靜態隨機記憶體、DDR/SDR、LPDDR/LPSDR、Known Good Die晶圓產品；電氣模擬、晶圓級速度測試等服務；重新分配層；和故障分析服務，以及低功耗 SDR、DDR、DDR2、DDR3 和 DDR4/444X4X4X。它還提供特殊DRAM產品，如SDRAM、DDR SDRAM、DDR2 SDRAM、DDR3 SDRAM和DDR4 SDRAM產品；代碼儲存快閃記憶體產品，包括串行NOR、1.2V串行NOR、八進制NOR、QspiNAND、MEalNAND、SLC NAND、基於閃存器認證產品的MCP、基於系統認證的MCP、Stack和安全元件；此外，公司還涉足半導體的研發、設計、銷售和售後服務以及6吋晶圓廠的生產、測試和代工服務；E-commerce and investment business;半導體元件設計和行銷服務；智慧工廠解決方案；半導體相關電路系統整合設計； software services;電腦及週邊設備、軟體批發；維修、偵測及相關技術諮詢服務； and rental of semiconductor-related equipment.它透過經銷商和線上行銷其產品。該公司的產品應用於電腦、通訊、消費性電子、汽車和工業電子領域。華邦電子股份有限公司成立於1987年，總部位於台灣台中市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -121709,7 +120708,7 @@
                 "country": "美國",
                 "employees": 61000,
                 "website": "https://www.micron.com",
-                "summary": "美光科技公司在美國、台灣、中國大陸、其他亞太國家、日本、歐洲和國際上提供半導體記憶體和儲存產品。該公司透過雲端儲存業務部、核心資料中心業務部、行動和客戶端業務部以及汽車和嵌入式業務部等部門進行營運。本公司提供動態隨機存取記憶體（DRAM）產品，包括高頻寬記憶體、雙倍資料速率、低功耗DRAM和圖形DRAM產品； NAND 產品，包括固態硬碟、託管 NAND 和多晶片封裝；和 NOR 產品。該公司透過自己的直銷團隊、銷售或代表處以及分銷商、零售商和獨立銷售代表以美光品牌和自有品牌銷售其產品。美光科技公司成立於 1978 年，總部位於愛達荷州博伊西。",
+                "summary": "美光科技公司在美國、台灣、中國大陸、其他亞太國家、日本、歐洲和國際上提供半導體記憶體和儲存產品。該公司通過雲存儲業務部、核心數據中心業務部、移動和客戶端業務部以及汽車和嵌入式業務部等部門進行運營。公司提供動態隨機存取存儲器（DRAM）產品，包括高帶寬存儲器、雙倍數據速率、低功耗DRAM和圖形DRAM產品； NAND 產品，包括固態硬盤、託管 NAND 和多芯片封裝；和 NOR 產品。該公司通過自己的直銷隊伍、銷售或代表處以及分銷商、零售商和獨立銷售代表以美光品牌和自有品牌銷售其產品。美光科技公司成立於 1978 年，總部位於愛達荷州博伊西。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -124981,7 +123980,7 @@
                 "spokesman": "林明慧",
                 "tax_id": "12861019",
                 "website": "https://www.adata.com",
-                "summary": "威剛科技有限公司在全球生產和銷售記憶體產品。該公司提供電腦記憶體產品、固態硬碟（SSD）、外部SSD/外部硬碟、USB隨身碟、記憶卡、行動電源、USB電纜和AI翻譯器。它還提供軸向磁通馬達、風冷馬達、液冷馬達和馬達控制器；和LED照明產品。此外，該公司還提供筆記型電腦、電腦零件、週邊設備、鍵盤、滑鼠和耳機。進一步涉足場地租賃、文化教育、創意藝術餐飲、藥材種植、農耕活動；電子材料及零件、汽車設備貿易；以及食品的批發和零售。此外，該公司還從事半導體元件的設計、製造和銷售，以及耳機的研究、開發、製造和銷售。此外，它還涉足農業生物技術相關業務。該公司成立於2001年，總部位於台灣新北市。",
+                "summary": "威剛科技有限公司在全球生產和銷售內存產品。該公司提供電腦記憶體產品、固態硬碟（SSD）、外部SSD/外部硬碟、USB隨身碟、記憶卡、行動電源、USB電纜和AI翻譯器。它還提供軸向磁通電機、風冷電機、液冷電機和電機控制器；和LED照明產品。此外，該公司還提供筆記本電腦、電腦零部件、外圍設備、鍵盤、鼠標和耳機。進一步涉足場地租賃、文化教育、創意藝術餐飲、藥材種植、農耕活動；電子材料及零件、汽車設備貿易；以及食品的批發和零售。此外，該公司還從事半導體元件的設計、製造和銷售，以及耳機的研究、開發、製造和銷售。此外，它還涉足農業生物技術相關業務。該公司成立於2001年，總部位於台灣新北市。",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -126068,7 +125067,7 @@
                 "spokesman": "夏紹安",
                 "tax_id": "97418375",
                 "website": "WWW.TEAMGROUPINC.COM",
-                "summary": "十銣集團在台灣、亞洲、美洲、歐洲和國際上製造和銷售積體電路晶片、記憶體和電腦週邊設備。該公司提供桌上型電腦、筆記型電腦和工作站記憶體； 2.5 吋、外接/便攜式和 M.2 SSD 卡以及外殼套件； SD、MicroSD、CFexpress 記憶卡和記憶卡讀卡機； USB 隨身碟；以及週邊設備，例如機殼、風扇、CPU 冷卻器、SSD 冷卻器和配件。它還銷售電子產品和零件。十銣科技成立於1997年，總部位於台灣新北市。",
+                "summary": "十銓集團在台灣、亞洲、美洲、歐洲和國際上製造和銷售集成電路芯片、存儲器和計算機外圍設備。該公司提供桌上型電腦、筆記型電腦和工作站記憶體； 2.5 吋、外接/便攜式和 M.2 SSD 卡以及外殼套件； SD、MicroSD、CFexpress 記憶卡和記憶卡讀卡機； USB 隨身碟；以及週邊設備，例如機殼、風扇、CPU 冷卻器、SSD 冷卻器和配件。它還銷售電子產品和零件。十銓科技成立於1997年，總部位於台灣新北市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -128357,7 +127356,7 @@
                 "spokesman": "黃國樑",
                 "tax_id": "16130042",
                 "website": "www.chipmos.com",
-                "summary": "茂茂科技股份有限公司在台灣、日本、中華人民共和國及國際上從事積體電路的研發、製造和銷售以及相關封裝和測試服務。它通過五個部分運作：測試；集會;顯示面板驅動器半導體組裝和測試；碰撞；和其他。該公司提供基於引線框架的封裝，例如小外形封裝、薄型小外形封裝和四方扁平封裝；以及基於基板的封裝，包括 FBGA、VFBGA、堆疊晶片級封裝、TFBGA、LGA、COG 和 COF；和測試解決方案，包括專業晶圓和最終測試、測試儀/工具、邏輯測試、測試器/工具ASIC、高速數位、記憶體以及混合訊號和顯示器驅動器 IC 裝置的自動化系統。也提供碰觸服務；智慧財產權管理和支援技術；以及統包服務，例如晶圓凸點/RDL、晶圓分類、組裝、最終測試以及直接運送到顯示器驅動器 IC、記憶體 IC 和邏輯混合訊號 IC。該公司為無晶圓廠公司、整合裝置製造商和代工廠提供服務。茂茂科技股份有限公司成立於1997年，總部位於台灣新竹市。",
+                "summary": "茂茂科技股份有限公司在台灣、日本、中華人民共和國及國際上從事積體電路的研發、製造和銷售以及相關封裝和測試服務。它通過五個部分運作：測試；集會;顯示面板驅動器半導體組裝和測試；碰撞；和其他。該公司提供基於引線框架的封裝，例如小外形封裝、薄型小外形封裝和四方扁平封裝；和基於基板的封裝，包括 FBGA、VFBGA、堆疊晶片級封裝、TFBGA、LGA、COG 和 COF；和測試解決方案，包括專業晶圓和最終測試、測試儀/工具、邏輯測試、測試器/工具ASIC、高速數位、記憶體以及混合訊號和顯示器驅動器 IC 裝置的自動化系統。也提供碰觸服務；智慧財產權管理和支援技術；以及統包服務，例如晶圓凸點/RDL、晶圓分類、組裝、最終測試以及直接運送到顯示器驅動器 IC、記憶體 IC 和邏輯混合訊號 IC。該公司為無晶圓廠公司、整合裝置製造商和代工廠提供服務。茂茂科技股份有限公司成立於1997年，總部位於台灣新竹市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -128629,7 +127628,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 278.11
+                  "close": 278.12
                 },
                 {
                   "date": "2026-01-30",
@@ -129469,7 +128468,7 @@
                 "country": "美國",
                 "employees": 40000,
                 "website": "https://www.westerndigital.com",
-                "summary": "西部數據公司在美國、亞洲、歐洲、中東和非洲從事基於硬碟 (HDD) 技術的資料儲存設備和解決方案的開發、製造和銷售。該公司提供內置 HDD、數據中心硬盤、數據中心平台、外置硬盤、便攜式硬盤、家庭和辦公室 NAS 以及配件。它通過其計算機銷售人員、經銷商、分銷商、零售商和子公司銷售其數據存儲設備和解決方案。該公司與 Open Quantum Design 合作開發量子糾錯技術和相關係統，以推進可靠的量子計算。西部數據公司成立於 1970 年，總部位於加利福尼亞州聖何塞。",
+                "summary": "西部數據公司在美國、亞洲、歐洲、中東和非洲從事基於硬碟 (HDD) 技術的資料儲存設備和解決方案的開發、製造和銷售。該公司提供內建 HDD、資料中心硬碟、資料中心平台、外接硬碟、便攜式硬碟、家庭和辦公室 NAS 以及配件。它透過其電腦銷售人員、經銷商、分銷商、零售商和子公司銷售其資料儲存設備和解決方案。該公司與 Open Quantum Design 合作開發量子糾錯技術和相關係統，以推進可靠的量子運算。西部數據公司成立於 1970 年，總部位於加州聖荷西。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -131658,7 +130657,7 @@
                 "spokesman": "林嘉明",
                 "tax_id": "11914002",
                 "website": "www.taiwanglass.com",
-                "summary": "台灣玻璃工業股份有限公司在台灣、中國大陸和國際上製造、加工和銷售各種玻璃產品。該公司透過平板、玻璃器皿和玻璃纖維部門運作。該公司提供浮法玻璃和加工玻璃；汽車玻璃；超薄玻璃；光伏玻璃；以及織物和玻璃纖維。它還提供白酒、葡萄酒和啤酒、食品罐、胡椒、香料、醬汁、油和醋、軟飲料、果汁和牛奶、藥品和鈷藍色容器；餐具，例如碗和盤、水杯、酒杯、杯子、顏色、儲物罐和盒子、菸灰缸、燭台和其他產品；以及廚房用具，包括茶壺、水罐、泡泡球、儲物罐、咖啡壺和玻璃蓋。台灣玻璃工業股份有限公司成立於 1964 年，總部位於台灣台北。",
+                "summary": "台灣玻璃工業股份有限公司在台灣、中國大陸和國際上製造、加工和銷售各種玻璃產品。該公司透過平板、玻璃器皿和玻璃纖維部門運作。該公司提供浮法玻璃和加工玻璃；汽車玻璃；超薄玻璃；光伏玻璃；以及織物和玻璃纖維。它還提供白酒、葡萄酒和啤酒、食物罐、胡椒、香料、醬汁、油和醋、軟性飲料、果汁和牛奶、藥品和鈷藍色容器；餐具，例如碗和盤、水杯、酒杯、杯子、顏色、儲物罐和盒子、煙灰缸、燭台和其他產品；以及廚房用具，包括茶壺、水罐、泡泡球、儲物罐、燭台和其他產品；台灣玻璃工業股份有限公司成立於 1964 年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -132860,7 +131859,7 @@
                 "spokesman": "李遠忠",
                 "tax_id": "36075449",
                 "website": "https://www.alliedsupreme.com",
-                "summary": "Allied Supreme Corp. 及其子公司在中國、美國和台灣生產和銷售含氟聚合物樹脂。該公司提供含氟聚合物材料、襯裡產品和塗料；客製化產品，如注塑產品、溢流槽/槽、聚四氟乙烯微粉、聚四氟乙烯化合物；以及半導體、平板顯示、太陽能、製藥、生化、石化、傳統化工等行業的解決方案。它還提供含氟聚合物襯裡，如板襯裡、iso容器、浸入式盤管和管殼式熱交換器；化學過濾器外殼；內襯管道及配件；柔性軟管和含氟聚合物塗層。它服務於半導體、面板和石化行業。 Allied Supreme Corp. 成立於 1981 年，總部位於台灣台北。",
+                "summary": "Allied Supreme Corp. 及其子公司在中國、美國和台灣生產和銷售含氟聚合物樹脂。該公司提供含氟聚合物材料、襯裡產品和塗料；客製化產品，如注塑產品、溢流槽/槽、聚四氟乙烯微粉、聚四氟乙烯化合物；以及半導體、平板顯示、太陽能、製藥、生化、石化、傳統化工等行業的解決方案。它還提供含氟聚合物襯裡，如板襯、iso容器、浸入式盤管和管殼式熱交換器；化學過濾器外殼；內襯管道及配件；柔性軟管和含氟聚合物塗層。它服務於半導體、面板和石化行業。 Allied Supreme Corp. 成立於 1981 年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -133972,7 +132971,7 @@
                 "country": "美國",
                 "employees": 67200,
                 "website": "https://www.corning.com",
-                "summary": "康寧公司在美國、加拿大、墨西哥、日本、台灣、中國、韓國、德國和國際上經營光通訊、顯示器、特殊材料、汽車和生命科學業務。本公司提供光纖、光纖；硬體和設備產品，例如電纜組件、光纖硬體和連接器、光學元件和耦合器、閉合件、網路介面設備以及電信業、企業、政府和個人的其他配件。它還提供用於平板顯示器的玻璃基板，包括用於電視、筆記型電腦、桌上型顯示器、平板電腦和手持設備的液晶顯示器和有機發光二極管。此外，該公司還生產為玻璃、玻璃陶瓷、晶體、精密計量儀器和軟體提供材料配方的產品，以及玻璃晶圓和基板、有色太陽眼鏡和輻射屏蔽產品，供行動消費性電子產品、半導體設備光學和消耗品、航空航天和國防光學、輻射屏蔽產品、太陽眼鏡和電信組件等市場使用。此外，該公司還提供用於汽車、汽油和柴油應用中排放控制的陶瓷基材和過濾器產品，以及用於車輛內部和外部的技術玻璃和光學產品和解決方案。此外，它還提供康寧、Falcon、PYREX 和 Axygen 品牌的實驗室產品，包括塑膠容器、液體處理塑膠、特殊表面、細胞培養基和血清，以及通用實驗室器具、玻璃器皿和設備。它還提供多晶矽產品以及藥用玻璃管和小瓶。該公司前身為康寧玻璃廠，1989年4月更名為康寧公司。康寧公司成立於1851年，總部位於紐約州康寧市。",
+                "summary": "康寧公司在美國、加拿大、墨西哥、日本、台灣、中國、韓國、德國和國際上經營光通訊、顯示器、特殊材料、汽車和生命科學業務。本公司提供光纖、光纖；硬體和設備產品，例如電纜組件、光纖硬體和連接器、光學元件和耦合器、閉合件、網路介面設備以及電信業、企業、政府和個人的其他配件。它還提供用於平板顯示器的玻璃基板，包括用於電視、筆記型電腦、桌上型顯示器、平板電腦和手持設備的液晶顯示器和有機發光二極管。此外，該公司還生產為玻璃、玻璃陶瓷、晶體、精密計量儀器和軟體提供材料配方的產品，以及玻璃晶圓和基板、有色太陽眼鏡和輻射屏蔽產品，供行動消費性電子產品、半導體設備光學和消耗品、航空航天和國防光學、輻射屏蔽產品、太陽眼鏡和電信組件等市場使用。此外，該公司還提供用於汽車、汽油和柴油應用中排放控制的陶瓷基材和過濾器產品，以及用於車輛內部和外部的技術玻璃和光學產品和解決方案。此外，它還提供康寧、Falcon、PYREX 和 Axygen 品牌的實驗室產品，包括塑膠容器、液體處理塑膠、特殊表面、細胞培養基和血清，以及通用實驗室器具、玻璃器皿和設備。它還提供多晶矽產品和藥用玻璃管和小瓶。該公司前身為康寧玻璃廠，1989年4月更名為康寧公司。康寧公司成立於1851年，總部位於紐約州康寧市。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -137248,7 +136247,7 @@
                 "spokesman": "沈淑&#30494;",
                 "tax_id": "30901647",
                 "website": "www.scientech.com.tw/zh-hant",
-                "summary": "科技公司從事半導體、液晶顯示器（LCD）、發光二極體（LED）和太陽能發電產業製程設備的研發、生產、銷售和維護。該公司提供化學分析和生物技術設備；遠端控制系統；鏡頭;平板顯示器；光罩/光罩及半導體前端製程設備； MEMS/化合物半導體/LED產品；半導體封裝及測試設備； 3D列印設備；及濕式工作台/單晶圓濕式製程設備，以及臨時鍵結/分離/玻璃回收工具。服務半導體（前端、後端、GaAs）、平板顯示器、LED、資料儲存、科學儀器、高科技相關產業。該公司成立於 1979 年，總部位於台灣台北。",
+                "summary": "科技公司從事半導體、液晶顯示器（LCD）、發光二極體（LED）和太陽能發電產業製程設備的研發、生產、銷售和維護。該公司提供化學分析和生物技術設備；遠端控制系統；鏡頭;平板顯示器；光罩/光罩及半導體前端製程設備； MEMS/化合物半導體/LED產品；半導體封裝及測試設備； 3D列印設備；及濕式工作台/單晶圓濕式製程設備，以及臨時鍵結/分離/玻璃回收工具。服務於半導體（前端、後端、GaAs）、平板顯示、LED、數據存儲、科學儀器、高科技相關行業。該公司成立於 1979 年，總部位於台灣台北。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -141596,7 +140595,7 @@
                 "spokesman": "葉振祥",
                 "tax_id": "36049822",
                 "website": "https://www.usuntek.com",
-                "summary": "優盛科技股份有限公司及其子公司在台灣、中國大陸和國際上設計、生產和維護自動化設備。本公司提供先進的製程設備系統，包括OCA貼合機、3D自動貼合機、OCR貼合機、G10玻璃密開機、狹縫塗佈機、薄膜塗佈系統、真空室乾燥機、Demura+gamma圖靈機等；非標客製化自動化設備，如自動鏡片組裝機CCM、振鏡系統、自動遮罩機、鞋底磨板設備上下磨板設備、自打式設備上下磨料機、定裝機組提供智慧製造解決方案，包括全單面膠合木、金屬工業加工應用、地紗切割系統、玻璃自動輸送系統、玻纖紗生產全廠自動化系統、玻纖編織全廠自動化整合系統；自動化倉儲應用及物流系統；及 AMR 解決方案。此外，本公司還提供覆銅板浸漬系統、覆銅板PP切割、覆銅板鋪放和脫冊、覆銅板切割系統、裝板機和下板機以及自動撕蓋機。此外，還涉及提供設備維護；備件銷售；電子材料批發、零售；自動化設備生產；奈米鍍膜光學玻璃的生產和銷售；和投資活動。優盛科技股份有限公司成立於1981年，總部位於台灣桃園市。",
+                "summary": "優盛科技股份有限公司及其子公司在台灣、中國大陸和國際上設計、生產和維護自動化設備。公司提供先進的工藝設備系統，包括OCA貼合機、3D自動貼合機、OCR貼合機、G10玻璃密開機、狹縫塗布機、薄膜塗布系統、真空室乾燥機、Demura+gamma圖靈機等；非標定製自動化設備，如自動鏡片組裝機CCM、振鏡系統、掩模機、鞋底磨邊機、雙面自動貼合機、自動上下料機、鋰電池設備、激光打標等。提供智能製造解決方案，包括全單面膠合木、金屬工業加工應用、地紗切割系統、玻璃自動輸送系統、玻纖紗生產全廠自動化系統、玻纖編織全廠自動化集成系統；自動化倉儲應用及物流系統；和 AMR 解決方案。此外，公司還提供覆銅板浸漬系統、覆銅板PP切割、覆銅板鋪放和脫冊、覆銅板切割系統、裝板機和下板機以及自動撕蓋機。此外，還涉及提供設備維護；備件銷售；電子材料批發、零售；自動化設備生產；納米鍍膜光學玻璃的生產和銷售；和投資活動。優盛科技股份有限公司成立於1981年，總部位於台灣桃園市。",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -145964,7 +144963,7 @@
                 "spokesman": "張博儀",
                 "tax_id": "84149738",
                 "website": "www.auo.com",
-                "summary": "友達光電股份有限公司從事薄膜電晶體液晶顯示器（TFT-LCD）及其他各種應用平面顯示器的研究、開發、生產和銷售。該公司透過兩個部門運作：顯示部門和能源部門。它還設計、製造和銷售矽錠、太陽能矽片和太陽能組件，並為太陽能係統專案提供技術工程和維護服務。該公司也銷售及租賃內容管理系統及相關硬體；設計數位看板內容及現場策展解決方案；設計、製造及銷售TFT-LCD模組、背光模組、電視機及相關零件。此外，也從事醫療器材的研發、製造和銷售；與場地租賃和教育活動相關的服務；研究與開發、智慧財產權相關業務；太陽能和再生能源發電； HMI 和汽車氣候控制系統的研發、專案管理、採購、製造、供應鏈管理、銷售、管理、支援服務；水處理技術及EPC專案規劃設計、能源此外，本公司也設計、開發及銷售醫療保健產業的軟體及硬體；牙科數位資訊相關管理平台及解決方案；提供智慧製造相關軟硬體整合系統及設備，以及軟體開發及相關顧問服務； TFT-LCD面板的售後服務；及投資服務。公司前身為友達光電股份有限公司，於 2022 年 6 月更名為友達光電股份有限公司。友達光電股份有限公司成立於 1996 年，總部位於台灣新竹市。",
+                "summary": "友達光電股份有限公司從事薄膜晶體管液晶顯示器（TFT-LCD）及其他各種應用平板顯示器的研究、開發、生產和銷售。該公司透過兩個部門運作：顯示部門和能源部門。它還設計、製造和銷售矽錠、太陽能矽片和太陽能組件，並為太陽能係統專案提供技術工程和維護服務。該公司還銷售和租賃內容管理系統及相關硬件；設計數字標牌內容和現場策展解決方案；設計、製造和銷售TFT-LCD模塊、背光模塊、電視機及相關零部件。此外，還從事醫療器械的研發、製造和銷售；與場地租賃和教育活動相關的服務；研究與開發、知識產權相關業務；太陽能和可再生能源發電； HMI 和汽車氣候控制系統的研發、項目管理、採購、製造、供應鏈管理、銷售、管理、支持服務；水處理技術及EPC項目規劃設計、節能設備及能效項目、設施智能管理及環境可持續解決方案、管理諮詢、碳排放相關軟件服務。此外，公司還設計、開發和銷售醫療保健行業的軟件和硬件；牙科數字信息相關管理平台及解決方案；提供智能製造相關軟硬件集成系統及設備，以及軟件開發及相關諮詢服務； TFT-LCD面板的售後服務；和投資服務。公司前身為友達光電股份有限公司，於 2022 年 6 月更名為友達光電股份有限公司。友達光電股份有限公司成立於 1996 年，總部位於台灣新竹市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -148183,7 +147182,7 @@
                 "country": "美國",
                 "employees": 31000,
                 "website": "https://www.amd.com",
-                "summary": "Advanced Micro Devices, Inc. 作為一家國際半導體公司運營。它分為三個部分：數據中心、客戶端和遊戲以及嵌入式。該公司提供人工智慧 (AI) 加速器、微處理器和圖形處理單元 (GPU) 作為獨立設備或合併到加速處理單元、晶片組以及資料中心和專業 GPU 中；嵌入式處理器和半定製系統單晶片（SoC）產品、微處理器和SoC開發服務和技術、資料處理單元、現場可編程閘陣列（FPGA）、模組系統、AIC網頁產品和自適應系統產品。它提供AMD Ryzen、AMD Ryzen AI、AMD Ryzen PRO、AMD Ryzen Threadripper、AMD Ryzen Threadripper PRO、AMD Athlon和AMD PRO A系列品牌的處理器； AMD Radeon 顯示卡和 AMD Embedded Radeon 顯示卡下的大規模基礎設施； AMD Radeon Pro 展示卡上的專業提供者和超顯卡。該公司以 AMD Instinct 加速器和 Radeon PRO V 系列品牌提供資料中心顯示卡； AMD EPYC（霄龍）品牌的伺服器微處理器； AMD Athlon、AMD Geode、AMD Ryzen、AMD EPYC、AMD R 系列和 G 系列品牌下的低功耗解決方案； UltraScale+、Artix-7、Artix UltraScale+、Spartan-6 和 Spartan-7 品牌下的 FPGA 產品； Zynq-7000、Zynq UltraScale+ MPSoC、Zynq UltraScale+ RFSoC、Versal HBM、Versal Premium、Versal Prime、Versal 和Versalo、Versalo、Versalo 和 Alsalve；品牌下的運算和網路加速板產品。它為原始設備和設計製造商、公共雲服務提供商、系統集成商、分銷商和插件板製造商提供服務。該公司成立於 1969 年，總部位於加利福尼亞州聖克拉拉。",
+                "summary": "Advanced Micro Devices, Inc. 作為國際半導體公司營運。它分為三個部分：資料中心、客戶端和遊戲以及嵌入式。該公司提供人工智慧 (AI) 加速器、微處理器和圖形處理單元 (GPU) 作為獨立設備或合併到加速處理單元、晶片組以及資料中心和專業 GPU 中；嵌入式處理器和半定製系統單晶片（SoC）產品、微處理器和SoC開發服務和技術、資料處理單元、現場可編程閘陣列（FPGA）、模組系統、AIC網頁產品和自適應系統產品。它提供AMD Ryzen、AMD Ryzen AI、AMD Ryzen PRO、AMD Ryzen Threadripper、AMD Ryzen Threadripper PRO、AMD Athlon和AMD PRO A系列品牌的處理器； AMD Radeon 顯示卡和 AMD Embedded Radeon 顯示卡下的大規模基礎設施； AMD Radeon Pro 展示卡上的專業提供者和超顯卡。該公司以 AMD Instinct 加速器和 Radeon PRO V 系列品牌提供資料中心顯示卡； AMD EPYC（霄龍）品牌的伺服器微處理器； AMD Athlon、AMD Geode、AMD Ryzen、AMD EPYC、AMD R 系列和 G 系列品牌下的低功耗解決方案； UltraScale+、Artix-7、Artix UltraScale+、Spartan-6 和 Spartan-7 品牌下的 FPGA 產品； Zynq-7000、Zynq UltraScale+ MPSoC、Zynq UltraScale+ RFSoC、Versal HBM、Versal Premium、Versal Prime、Versal 和Versalo、Versalo、Versalo 和 Alsalve；品牌下的運算和網路加速板產品。它為原始設備和設計製造商、公有雲服務提供者、系統整合商、分銷商和插件板製造商提供服務。該公司成立於 1969 年，總部位於加州聖克拉拉。",
                 "source": "TradingView / Yahoo Finance"
               },
               "news_sentiment": {
@@ -152981,7 +151980,7 @@
                 },
                 {
                   "date": "2026-02-19",
-                  "close": 275.45
+                  "close": 275.44
                 },
                 {
                   "date": "2026-02-20",
@@ -154847,7 +153846,7 @@
                 "spokesman": "彭欣瑜",
                 "tax_id": "28113286",
                 "website": "https://www.sas-globalwafers.com",
-                "summary": "GlobalWafers Co., Ltd., together with its subsidiaries, researches, develops, designs, manufactures and sells semiconductor ingots/wafers in Taiwan and internationally. The company offers Epi wafers, polished wafers, diffusion wafers, annealed wafers, SOI wafers, FZ wafers, and compound wafers, as well as epitaxial wafer and silicon ingot. It also provides technical and management information consulting services. The company was founded in 1981 and is based in Hsinchu City, Taiwan.",
+                "summary": "環球晶圓股份有限公司及其子公司在台灣和國際上研究、開發、設計、製造和銷售半導體錠/晶圓。該公司提供 Epi 晶圓、拋光晶圓、擴散晶圓、退火晶圓、SOI 晶圓、FZ 晶圓和化合物晶圓，以及外延晶圓和矽錠。它還提供技術和管理資訊諮詢服務。該公司成立於 1981 年，總部位於台灣新竹市。",
                 "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
@@ -160302,7 +159301,7 @@
                 "spokesman": "黃豐年",
                 "tax_id": "84149884",
                 "website": "www.psi.com.tw",
-                "summary": "菲尼克斯矽國際股份有限公司在台灣從事晶圓製程服務開發、晶圓製造及晶圓減薄業務。提供晶圓回收製程服務以及半導體IC製造製程監控的新測試晶圓產品；以及導阻和超薄晶圓的晶圓減薄產品，以及晶圓正面/背面的金屬膜沉積和蝕刻製程以及晶圓測試。公司成立於1986年，總部位於台灣新竹市。",
+                "summary": "菲尼克斯矽國際股份有限公司在台灣從事晶圓製程服務開發、晶圓製造及晶圓減薄業務。提供晶圓回收工藝服務以及用於半導體IC製造工藝監控的新測試晶圓產品；以及導阻和超薄晶圓的晶圓減薄產品，以及晶圓正面/背面的金屬膜沉積和蝕刻工藝以及晶圓測試。公司成立於1986年，總部位於台灣新竹市。",
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -168318,7 +167317,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 1446.3
+                  "close": 1446.29
                 },
                 {
                   "date": "2026-01-30",
@@ -349073,7 +348072,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 315.87
+                  "close": 315.88
                 },
                 {
                   "date": "2026-01-30",
@@ -395886,7 +394885,7 @@
                 },
                 {
                   "date": "2025-11-26",
-                  "close": 588.28
+                  "close": 588.29
                 },
                 {
                   "date": "2025-11-28",
@@ -408194,7 +407193,7 @@
                 },
                 {
                   "date": "2026-01-15",
-                  "close": 638.21
+                  "close": 638.2
                 },
                 {
                   "date": "2026-01-16",
@@ -409593,7 +408592,7 @@
                 },
                 {
                   "date": "2026-05-01",
-                  "close": 295.63
+                  "close": 295.64
                 },
                 {
                   "date": "2026-05-04",
@@ -436374,7 +435373,7 @@
               "profile": {
                 "full_name": "豐達科技股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "蔡豐賜",
                 "gm": "林威村",
                 "spokesman": "李文正",
@@ -440906,7 +439905,7 @@
               "profile": {
                 "full_name": "ConocoPhillips",
                 "sector": "能源礦產",
-                "industry": "Oil & Gas Production",
+                "industry": "石油和天然氣生產",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -441361,7 +440360,7 @@
                 },
                 {
                   "date": "2026-04-07",
-                  "close": 141.12
+                  "close": 141.11
                 },
                 {
                   "date": "2026-04-08",
@@ -445334,7 +444333,7 @@
               "profile": {
                 "full_name": "Williams Companies, Inc.",
                 "sector": "工業服務",
-                "industry": "Oil & Gas Pipelines",
+                "industry": "石油和天然氣管道",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -446441,7 +445440,7 @@
               "profile": {
                 "full_name": "Kinder Morgan Inc Class P",
                 "sector": "工業服務",
-                "industry": "Oil & Gas Pipelines",
+                "industry": "石油和天然氣管道",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -448655,7 +447654,7 @@
               "profile": {
                 "full_name": "Cheniere Energy, Inc.",
                 "sector": "工業服務",
-                "industry": "Oil & Gas Pipelines",
+                "industry": "石油和天然氣管道",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -449735,7 +448734,7 @@
               "profile": {
                 "full_name": "台塑石化股份有限公司",
                 "sector": "能源礦產",
-                "industry": "Oil Refining/Marketing",
+                "industry": "煉油/行銷",
                 "chairman": "曹明",
                 "gm": "林克彥",
                 "spokesman": "林克彥",
@@ -454110,7 +453109,7 @@
               "profile": {
                 "full_name": "Marathon Petroleum Corporation",
                 "sector": "能源礦產",
-                "industry": "Oil Refining/Marketing",
+                "industry": "煉油/行銷",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -455217,7 +454216,7 @@
               "profile": {
                 "full_name": "Phillips 66",
                 "sector": "能源礦產",
-                "industry": "Oil Refining/Marketing",
+                "industry": "煉油/行銷",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -456324,7 +455323,7 @@
               "profile": {
                 "full_name": "Valero Energy Corporation",
                 "sector": "能源礦產",
-                "industry": "Oil Refining/Marketing",
+                "industry": "煉油/行銷",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -478144,7 +477143,7 @@
               "profile": {
                 "full_name": "Howmet Aerospace Inc.",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -479251,7 +478250,7 @@
               "profile": {
                 "full_name": "TransDigm Group Incorporated",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -480331,7 +479330,7 @@
               "profile": {
                 "full_name": "晟田科技工業股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "謝永昌",
                 "gm": "黃寶文",
                 "spokesman": "黃(方方土)宇",
@@ -481418,7 +480417,7 @@
               "profile": {
                 "full_name": "千附精密股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "張瓊如",
                 "gm": "賴明村",
                 "spokesman": "陳依汝",
@@ -482505,7 +481504,7 @@
               "profile": {
                 "full_name": "駐龍精密機械股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "王昆生",
                 "gm": "陳玄益",
                 "spokesman": "李汶育",
@@ -483592,7 +482591,7 @@
               "profile": {
                 "full_name": "寶一科技股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "曾國浩",
                 "gm": "曾國浩",
                 "spokesman": "胡淑賢",
@@ -484706,7 +483705,7 @@
               "profile": {
                 "full_name": "GE Aerospace",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -486893,7 +485892,7 @@
               "profile": {
                 "full_name": "漢翔航空工業股份有限公司",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "chairman": "曹進平",
                 "gm": "莊秀美",
                 "spokesman": "莊秀美",
@@ -487979,8 +486978,8 @@
               },
               "profile": {
                 "full_name": "長榮航太科技股份有限公司",
-                "sector": "Transportation",
-                "industry": "Other Transportation",
+                "sector": "運輸",
+                "industry": "其他交通",
                 "chairman": "黃南宏",
                 "gm": "謝新文",
                 "spokesman": "謝新文",
@@ -489094,7 +488093,7 @@
               "profile": {
                 "full_name": "Boeing Company",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -490201,7 +489200,7 @@
               "profile": {
                 "full_name": "Rocket Lab Corporation",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -491308,7 +490307,7 @@
               "profile": {
                 "full_name": "Intuitive Machines, Inc. Class A",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -494582,7 +493581,7 @@
               "profile": {
                 "full_name": "雷虎科技股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Recreational Products",
+                "industry": "休閒產品",
                 "chairman": "陳冠如",
                 "gm": "蘇聖傑",
                 "spokesman": "卓宜儒",
@@ -495768,7 +494767,7 @@
               "profile": {
                 "full_name": "龍德造船工業股份有限公司",
                 "sector": "生產者製造",
-                "industry": "Trucks/Construction/Farm Machinery",
+                "industry": "卡車/建築/農業機械",
                 "chairman": "黃守真",
                 "gm": "黃守龍",
                 "spokesman": "黃守真",
@@ -496882,7 +495881,7 @@
               "profile": {
                 "full_name": "RTX Corporation",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -497989,7 +496988,7 @@
               "profile": {
                 "full_name": "General Dynamics Corporation",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -499096,7 +498095,7 @@
               "profile": {
                 "full_name": "AeroVironment, Inc.",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -500176,7 +499175,7 @@
               "profile": {
                 "full_name": "台灣國際造船股份有限公司",
                 "sector": "生產者製造",
-                "industry": "Trucks/Construction/Farm Machinery",
+                "industry": "卡車/建築/農業機械",
                 "chairman": "陳政宏",
                 "gm": "蔡坤宗",
                 "spokesman": "周志明",
@@ -501262,8 +500261,8 @@
               },
               "profile": {
                 "full_name": "亞洲航空股份有限公司",
-                "sector": "Transportation",
-                "industry": "Other Transportation",
+                "sector": "運輸",
+                "industry": "其他交通",
                 "chairman": "李偉賢",
                 "gm": "李偉賢",
                 "spokesman": "朱芳慧",
@@ -502377,7 +501376,7 @@
               "profile": {
                 "full_name": "Lockheed Martin Corporation",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -502720,7 +501719,7 @@
                 },
                 {
                   "date": "2026-02-25",
-                  "close": 697.4
+                  "close": 697.39
                 },
                 {
                   "date": "2026-02-26",
@@ -503484,7 +502483,7 @@
               "profile": {
                 "full_name": "Northrop Grumman Corp.",
                 "sector": "電子技術",
-                "industry": "Aerospace & Defense",
+                "industry": "航空航太與國防",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -504563,8 +503562,8 @@
               },
               "profile": {
                 "full_name": "長榮國際儲運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "邱顯育",
                 "gm": "林振芳",
                 "spokesman": "林振芳",
@@ -505650,8 +504649,8 @@
               },
               "profile": {
                 "full_name": "中國貨櫃運輸股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "林宏年",
                 "gm": "黃國樑",
                 "spokesman": "陳政宏",
@@ -506737,8 +505736,8 @@
               },
               "profile": {
                 "full_name": "長榮海運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "張衍義",
                 "gm": "吳光輝",
                 "spokesman": "吳光輝",
@@ -507824,8 +506823,8 @@
               },
               "profile": {
                 "full_name": "陽明海運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "蔡豐明",
                 "gm": "李明輝",
                 "spokesman": "李明輝",
@@ -508911,8 +507910,8 @@
               },
               "profile": {
                 "full_name": "萬海航運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "久福花園股份有限公司",
                 "gm": "謝福隆",
                 "spokesman": "蘇麗梅",
@@ -509998,8 +508997,8 @@
               },
               "profile": {
                 "full_name": "長榮航空股份有限公司",
-                "sector": "Transportation",
-                "industry": "Airlines",
+                "sector": "運輸",
+                "industry": "航空",
                 "chairman": "林寶水",
                 "gm": "孫嘉明",
                 "spokesman": "陳耀銘",
@@ -511085,8 +510084,8 @@
               },
               "profile": {
                 "full_name": "中華航空股份有限公司",
-                "sector": "Transportation",
-                "industry": "Airlines",
+                "sector": "運輸",
+                "industry": "航空",
                 "chairman": "高星潢",
                 "gm": "陳漢銘",
                 "spokesman": "魯淑慧",
@@ -512172,8 +511171,8 @@
               },
               "profile": {
                 "full_name": "星宇航空股份有限公司",
-                "sector": "Transportation",
-                "industry": "Airlines",
+                "sector": "運輸",
+                "industry": "航空",
                 "chairman": "張國煒",
                 "gm": "翟健華",
                 "spokesman": "梁文龍",
@@ -513259,8 +512258,8 @@
               },
               "profile": {
                 "full_name": "裕民航運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "徐旭東",
                 "gm": "王書吉",
                 "spokesman": "張宗良",
@@ -514346,8 +513345,8 @@
               },
               "profile": {
                 "full_name": "慧洋海運股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "藍俊昇",
                 "gm": "藍俊昇",
                 "spokesman": "薛亦駿",
@@ -515460,8 +514459,8 @@
               },
               "profile": {
                 "full_name": "ZIM Integrated Shipping Services Ltd.",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -516540,8 +515539,8 @@
               },
               "profile": {
                 "full_name": "台驊國際控股股份有限公司",
-                "sector": "Transportation",
-                "industry": "Marine Shipping",
+                "sector": "運輸",
+                "industry": "海運",
                 "chairman": "張立秋",
                 "gm": "顏益財",
                 "spokesman": "王春英",
@@ -517627,8 +516626,8 @@
               },
               "profile": {
                 "full_name": "中菲行國際物流股份有限公司",
-                "sector": "Transportation",
-                "industry": "Air Freight/Couriers",
+                "sector": "運輸",
+                "industry": "空運/快遞",
                 "chairman": "錢文君",
                 "gm": "施振昇",
                 "spokesman": "阮耀樟",
@@ -518714,8 +517713,8 @@
               },
               "profile": {
                 "full_name": "嘉裡大榮物流股份有限公司",
-                "sector": "Transportation",
-                "industry": "Trucking",
+                "sector": "運輸",
+                "industry": "卡車運輸",
                 "chairman": "沈宗桂",
                 "gm": "財務暨行政總處：阮慧雯",
                 "spokesman": "阮慧雯",
@@ -519828,8 +518827,8 @@
               },
               "profile": {
                 "full_name": "Union Pacific Corporation",
-                "sector": "Transportation",
-                "industry": "Railroads",
+                "sector": "運輸",
+                "industry": "鐵路",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -520935,8 +519934,8 @@
               },
               "profile": {
                 "full_name": "United Parcel Service, Inc. Class B",
-                "sector": "Transportation",
-                "industry": "Air Freight/Couriers",
+                "sector": "運輸",
+                "industry": "空運/快遞",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -521227,7 +520226,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 289.86
+                  "close": 289.87
                 },
                 {
                   "date": "2026-02-06",
@@ -522042,8 +521041,8 @@
               },
               "profile": {
                 "full_name": "FedEx Corporation",
-                "sector": "Transportation",
-                "industry": "Air Freight/Couriers",
+                "sector": "運輸",
+                "industry": "空運/快遞",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -546241,7 +545240,7 @@
               "profile": {
                 "full_name": "康霈生技股份有限公司",
                 "sector": "健康科技",
-                "industry": "Biotechnology",
+                "industry": "生物技術",
                 "chairman": "徐坴暉",
                 "gm": "凌玉芳",
                 "spokesman": "張慧敏",
@@ -549497,7 +548496,7 @@
               "profile": {
                 "full_name": "中裕新藥股份有限公司",
                 "sector": "健康科技",
-                "industry": "Biotechnology",
+                "industry": "生物技術",
                 "chairman": "陳明村",
                 "gm": "張金明",
                 "spokesman": "張金明",
@@ -557213,7 +556212,7 @@
               "profile": {
                 "full_name": "Amgen Inc.",
                 "sector": "健康科技",
-                "industry": "Biotechnology",
+                "industry": "生物技術",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -559722,7 +558721,7 @@
                 },
                 {
                   "date": "2026-02-06",
-                  "close": 149.81
+                  "close": 149.8
                 },
                 {
                   "date": "2026-02-09",
@@ -560534,7 +559533,7 @@
               "profile": {
                 "full_name": "Gilead Sciences, Inc.",
                 "sector": "健康科技",
-                "industry": "Biotechnology",
+                "industry": "生物技術",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -562701,7 +561700,7 @@
               "profile": {
                 "full_name": "台康生技股份有限公司",
                 "sector": "健康科技",
-                "industry": "Biotechnology",
+                "industry": "生物技術",
                 "chairman": "劉理成",
                 "gm": "劉理成",
                 "spokesman": "劉理成",
@@ -564875,7 +563874,7 @@
               "profile": {
                 "full_name": "精華光學股份有限公司",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "chairman": "陳明賢",
                 "gm": "周育然",
                 "spokesman": "周華玲",
@@ -564990,7 +563989,7 @@
               "profile": {
                 "full_name": "泰博科技股份有限公司",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "chairman": "陳朝旺",
                 "gm": "陳朝旺",
                 "spokesman": "陳朝旺",
@@ -566077,7 +565076,7 @@
               "profile": {
                 "full_name": "邦特生物科技股份有限公司",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "chairman": "李明忠",
                 "gm": "林進隆",
                 "spokesman": "黃繹中",
@@ -567191,7 +566190,7 @@
               "profile": {
                 "full_name": "Thermo Fisher Scientific Inc.",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -568298,7 +567297,7 @@
               "profile": {
                 "full_name": "Danaher Corporation",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -569405,7 +568404,7 @@
               "profile": {
                 "full_name": "Intuitive Surgical, Inc.",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -570512,7 +569511,7 @@
               "profile": {
                 "full_name": "Abbott Laboratories",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -571619,7 +570618,7 @@
               "profile": {
                 "full_name": "Stryker Corporation",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -572726,7 +571725,7 @@
               "profile": {
                 "full_name": "Boston Scientific Corporation",
                 "sector": "健康科技",
-                "industry": "Medical Specialties",
+                "industry": "醫療專業",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -575008,7 +574007,7 @@
               "profile": {
                 "full_name": "佳醫健康事業股份有限公司",
                 "sector": "分銷服務",
-                "industry": "Medical Distributors",
+                "industry": "醫療經銷商",
                 "chairman": "傅輝東",
                 "gm": "張明正",
                 "spokesman": "周臣孝",
@@ -576095,7 +575094,7 @@
               "profile": {
                 "full_name": "葡萄王生技股份有限公司",
                 "sector": "健康科技",
-                "industry": "Pharmaceuticals: Other",
+                "industry": "藥品：其他",
                 "chairman": "曾盛麟",
                 "gm": "曾盛麟",
                 "spokesman": "洪俊銘",
@@ -577209,7 +576208,7 @@
               "profile": {
                 "full_name": "McKesson Corporation",
                 "sector": "分銷服務",
-                "industry": "Medical Distributors",
+                "industry": "醫療經銷商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -578316,7 +577315,7 @@
               "profile": {
                 "full_name": "Cencora, Inc.",
                 "sector": "分銷服務",
-                "industry": "Medical Distributors",
+                "industry": "醫療經銷商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -583744,7 +582743,7 @@
               "profile": {
                 "full_name": "潤泰創新國際股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "簡滄圳",
                 "gm": "盧玉璜",
                 "spokesman": "陳柏宇",
@@ -585944,8 +584943,8 @@
               },
               "profile": {
                 "full_name": "UnitedHealth Group Incorporated",
-                "sector": "Health Services",
-                "industry": "Managed Health Care",
+                "sector": "健康服務",
+                "industry": "管理醫療保健",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -587051,8 +586050,8 @@
               },
               "profile": {
                 "full_name": "Elevance Health, Inc.",
-                "sector": "Health Services",
-                "industry": "Managed Health Care",
+                "sector": "健康服務",
+                "industry": "管理醫療保健",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -588158,8 +587157,8 @@
               },
               "profile": {
                 "full_name": "Cigna Group",
-                "sector": "Health Services",
-                "industry": "Managed Health Care",
+                "sector": "健康服務",
+                "industry": "管理醫療保健",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -591433,7 +590432,7 @@
               "profile": {
                 "full_name": "第一產物保險股份有限公司",
                 "sector": "金融",
-                "industry": "Specialty Insurance",
+                "industry": "專業保險",
                 "chairman": "李正漢",
                 "gm": "陳信坤",
                 "spokesman": "吳東穎",
@@ -598042,7 +597041,7 @@
               "profile": {
                 "full_name": "Aon Plc Class A",
                 "sector": "金融",
-                "industry": "Insurance Brokers/Services",
+                "industry": "保險經紀人/服務",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -600209,7 +599208,7 @@
               "profile": {
                 "full_name": "中華票券金融股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "張政權",
                 "gm": "魏政祥",
                 "spokesman": "劉立凡",
@@ -604644,7 +603643,7 @@
               "profile": {
                 "full_name": "Intercontinental Exchange, Inc.",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -605751,7 +604750,7 @@
               "profile": {
                 "full_name": "CME Group Inc. Class A",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -609025,7 +608024,7 @@
               "profile": {
                 "full_name": "合作金庫金融控股股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "林衍茂",
                 "gm": "蘇佐政",
                 "spokesman": "陳幼婉",
@@ -611199,7 +610198,7 @@
               "profile": {
                 "full_name": "華南金融控股股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "陳芬蘭",
                 "gm": "蕭玉美",
                 "spokesman": "陳伯壎",
@@ -612286,7 +611285,7 @@
               "profile": {
                 "full_name": "永豐金融控股股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "陳思寬",
                 "gm": "朱士廷",
                 "spokesman": "許如玫",
@@ -613373,7 +612372,7 @@
               "profile": {
                 "full_name": "上海商業儲蓄銀行股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "李慶言",
                 "gm": "郭進一",
                 "spokesman": "呂紹宇",
@@ -614460,7 +613459,7 @@
               "profile": {
                 "full_name": "彰化商業銀行股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "胡光華",
                 "gm": "簡志光",
                 "spokesman": "莊政祺",
@@ -615547,7 +614546,7 @@
               "profile": {
                 "full_name": "台灣中小企業銀行股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "李嘉祥",
                 "gm": "李國忠",
                 "spokesman": "曾國樑",
@@ -616634,7 +615633,7 @@
               "profile": {
                 "full_name": "台中商業銀行股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "李瑞倉",
                 "gm": "董益源",
                 "spokesman": "鄭榮國",
@@ -617721,7 +616720,7 @@
               "profile": {
                 "full_name": "聯邦商業銀行股份有限公司",
                 "sector": "金融",
-                "industry": "Regional Banks",
+                "industry": "地區銀行",
                 "chairman": "林鴻聯",
                 "gm": "許維文",
                 "spokesman": "楊巨昌",
@@ -624350,7 +623349,7 @@
               "profile": {
                 "full_name": "Goldman Sachs Group, Inc.",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -626537,7 +625536,7 @@
               "profile": {
                 "full_name": "元大金融控股股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "翁健",
                 "gm": "黃維誠",
                 "spokesman": "黃維誠",
@@ -627624,7 +626623,7 @@
               "profile": {
                 "full_name": "統一綜合證券股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "林寬成",
                 "gm": "楊凱智",
                 "spokesman": "安芝立",
@@ -628711,7 +627710,7 @@
               "profile": {
                 "full_name": "群益金鼎證券股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "周秀真",
                 "gm": "楊傑斌",
                 "spokesman": "曹光志",
@@ -629798,7 +628797,7 @@
               "profile": {
                 "full_name": "群益期貨股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "賈中道",
                 "gm": "毛振華",
                 "spokesman": "陳啟豪",
@@ -630885,7 +629884,7 @@
               "profile": {
                 "full_name": "元大期貨股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "林添富",
                 "gm": "高毅瑞",
                 "spokesman": "袁良慧",
@@ -631966,7 +630965,7 @@
               "profile": {
                 "full_name": "康和綜合證券股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "鄭大宇",
                 "gm": "陳志豪",
                 "spokesman": "康景泰",
@@ -633048,7 +632047,7 @@
               "profile": {
                 "full_name": "福邦證券股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "黃炳鈞",
                 "gm": "陳松正",
                 "spokesman": "朱室澄",
@@ -634129,7 +633128,7 @@
               "profile": {
                 "full_name": "宏遠證券股份有限公司",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "chairman": "姜克勤",
                 "gm": "林禎民",
                 "spokesman": "廖宏彬",
@@ -638499,7 +637498,7 @@
               "profile": {
                 "full_name": "Interactive Brokers Group, Inc. Class A",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -639606,7 +638605,7 @@
               "profile": {
                 "full_name": "Charles Schwab Corp",
                 "sector": "金融",
-                "industry": "Investment Banks/Brokers",
+                "industry": "投資銀行/經紀商",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -646411,7 +645410,7 @@
                 },
                 {
                   "date": "2026-01-05",
-                  "close": 610.9
+                  "close": 610.91
                 },
                 {
                   "date": "2026-01-06",
@@ -647315,7 +646314,7 @@
               "profile": {
                 "full_name": "Caterpillar Inc.",
                 "sector": "生產者製造",
-                "industry": "Trucks/Construction/Farm Machinery",
+                "industry": "卡車/建築/農業機械",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -648422,7 +647421,7 @@
               "profile": {
                 "full_name": "Deere & Company",
                 "sector": "生產者製造",
-                "industry": "Trucks/Construction/Farm Machinery",
+                "industry": "卡車/建築/農業機械",
                 "country": "",
                 "employees": null,
                 "website": "",
@@ -650589,7 +649588,7 @@
               "profile": {
                 "full_name": "華固建設股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "鍾榮昌",
                 "gm": "洪嘉昇",
                 "spokesman": "劉若梅",
@@ -653850,7 +652849,7 @@
               "profile": {
                 "full_name": "冠德建設股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "馬志綱",
                 "gm": "張勝安",
                 "spokesman": "張勝安",
@@ -654937,7 +653936,7 @@
               "profile": {
                 "full_name": "國泰建設股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "張清櫆",
                 "gm": "郭文鎧",
                 "spokesman": "林清樑",
@@ -656024,7 +655023,7 @@
               "profile": {
                 "full_name": "太子建設開發股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "羅智先",
                 "gm": "林宏俊",
                 "spokesman": "林俊良",
@@ -658198,7 +657197,7 @@
               "profile": {
                 "full_name": "宏盛建設股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "林新欽",
                 "gm": "郭力維(代理)",
                 "spokesman": "陳育德",
@@ -659285,7 +658284,7 @@
               "profile": {
                 "full_name": "隆大營建事業股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "陳武聰",
                 "gm": "洪茂源",
                 "spokesman": "陳又齊",
@@ -660372,7 +659371,7 @@
               "profile": {
                 "full_name": "永信建設開發股份有限公司",
                 "sector": "耐久性消費品",
-                "industry": "Homebuilding",
+                "industry": "住宅建築",
                 "chairman": "陳俊銘",
                 "gm": "陳俊銘",
                 "spokesman": "陳怡均",
@@ -695934,7 +694933,7 @@
                 },
                 {
                   "date": "2026-01-26",
-                  "close": 65.52
+                  "close": 65.51
                 },
                 {
                   "date": "2026-01-27",
@@ -718833,7 +717832,7 @@
                 },
                 {
                   "date": "2026-01-07",
-                  "close": 877.4
+                  "close": 877.41
                 },
                 {
                   "date": "2026-01-08",
