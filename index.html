@@ -45,7 +45,7 @@
           <span>📊 視窗一：全球市場(含羅素2000)・恐懼與貪婪指數・台指期・融資維持率・每日報告</span>
         </button>
         <button id="nav-tab-supplychain" onclick="switchAppView('supplychain')" class="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white">
-          <span>🔬 視窗二：42大細分產業鏈追蹤室 (全個股完整財報 / 台股前十大 / 美股兆元榜 / 強勢榜)</span>
+          <span>🔬 視窗二：市場熱力圖・42大細分產業鏈追蹤室 (完整財報 / 台股前十大 / 美股兆元榜 / 強勢榜)</span>
         </button>
       </div>
       <span class="text-xs text-slate-400 pr-2 hidden sm:inline">點擊上方按鈕可隨時切換視窗</span>
@@ -316,8 +316,29 @@
     </section>
   </main>
 
-  <!-- 視窗二：42 大細分產業鏈上中下游深度追蹤室 -->
+  <!-- 視窗二：市場市值熱力圖 & 42 大細分產業鏈上中下游深度追蹤室 -->
   <section id="view-supply-chain" class="max-w-7xl mx-auto space-y-6 hidden">
+    <!-- 視窗二頂部：市場市值熱力圖 (Treemap) -->
+    <div class="card-bg rounded-xl p-5 border border-sky-500/40 shadow-xl">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-3.5">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="px-2.5 py-1 text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40 rounded">🗺️ 市值加權熱力圖</span>
+            <h2 id="heatmap-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股全產業市值熱力圖 (紅漲綠跌・區塊面積依真實總市值)</h2>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">依大類產業分群並自動去重，滑鼠懸停檢視即時報價與市值，點擊任一方塊可直接開啟財報與新聞視窗</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <div id="heatmap-legend-bar" class="flex items-center gap-0.5 text-[10px] mono font-bold"></div>
+          <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-lg border border-slate-800">
+            <button id="hm-btn-tw" onclick="switchHeatmapMarket('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股 (紅漲綠跌)</button>
+            <button id="hm-btn-us" onclick="switchHeatmapMarket('US')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white">🇺🇸 美股 (綠漲紅跌)</button>
+          </div>
+        </div>
+      </div>
+      <div id="sc-market-heatmap" class="w-full h-[520px] md:h-[620px] rounded-xl overflow-hidden bg-slate-950/90 border border-slate-800"></div>
+    </div>
+
     <div class="card-bg rounded-xl p-5 border border-rose-500/40 shadow-xl">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-slate-800 pb-3.5 mb-4">
         <div>
@@ -520,12 +541,12 @@
   <script>
     try { ["MARKET2_REAL_CACHE_V3", "MARKET2_REAL_CACHE_V4", "MARKET2_LIVE_CACHE_V5", "MARKET2_LIVE_CACHE_V6"].forEach(k => localStorage.removeItem(k)); } catch (e) {}
 
-    let globalMarketData = null, allAssetsMap = {}, twCodeMap = {}, twFundMap = {}, usFundMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
-    let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW";
-    let mainChart = null, instChart = null, marginChart = null, maintChart = null, fgUsChart = null, fgCryptoChart = null, scChart = null, finnhubSocket = null, lastJsonTimestamp = "";
+    let globalMarketData = null, allAssetsMap = {}, twCodeMap = {}, twFundMap = {}, usFundMap = {}, twMcapMap = {}, usMcapMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
+    let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW", currentHeatmapMarket = "TW";
+    let mainChart = null, instChart = null, marginChart = null, maintChart = null, fgUsChart = null, fgCryptoChart = null, scChart = null, heatmapChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
-    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國富時 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
     function isCryptoSymbol(sym) {
       return sym === "BTC-USD" || sym === "ETH-USD";
@@ -597,6 +618,181 @@
       const today = new Date().toISOString().slice(0, 10);
       item.history = [{ date: today, close: Number(pEnd.toFixed(2)) }];
       return item;
+    }
+
+    // ==================== 視窗二：市場市值熱力圖 (Treemap) ====================
+    function getHeatmapColor(pct, isTw) {
+      const v = Number(pct) || 0;
+      if (Math.abs(v) < 0.08) return "#334155";
+      if (isTw) {
+        if (v >= 3) return "#e11d48";
+        if (v >= 2) return "#be123c";
+        if (v >= 1) return "#9f1239";
+        if (v > 0) return "#7f1d1d";
+        if (v <= -3) return "#10b981";
+        if (v <= -2) return "#059669";
+        if (v <= -1) return "#047857";
+        return "#065f46";
+      } else {
+        if (v >= 3) return "#10b981";
+        if (v >= 2) return "#059669";
+        if (v >= 1) return "#047857";
+        if (v > 0) return "#065f46";
+        if (v <= -3) return "#e11d48";
+        if (v <= -2) return "#be123c";
+        if (v <= -1) return "#9f1239";
+        return "#7f1d1d";
+      }
+    }
+
+    function renderHeatmapLegend(isTw) {
+      const bar = document.getElementById("heatmap-legend-bar");
+      if (!bar) return;
+      const steps = isTw
+        ? [["-3%", "#10b981"], ["-2%", "#059669"], ["-1%", "#047857"], ["0%", "#334155"], ["+1%", "#9f1239"], ["+2%", "#be123c"], ["+3%", "#e11d48"]]
+        : [["-3%", "#e11d48"], ["-2%", "#be123c"], ["-1%", "#9f1239"], ["0%", "#334155"], ["+1%", "#047857"], ["+2%", "#059669"], ["+3%", "#10b981"]];
+      bar.innerHTML = steps.map(([lbl, bg]) => `<span class="px-1.5 py-0.5 rounded text-white" style="background-color:${bg}">${lbl}</span>`).join("");
+    }
+
+    function switchHeatmapMarket(market) {
+      currentHeatmapMarket = market;
+      const btnTw = document.getElementById("hm-btn-tw"), btnUs = document.getElementById("hm-btn-us"), titleEl = document.getElementById("heatmap-title");
+      if (market === "TW") {
+        if (btnTw) btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow";
+        if (btnUs) btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
+        if (titleEl) titleEl.textContent = "🇹🇼 台股全產業市值熱力圖 (紅漲綠跌・區塊面積依真實總市值)";
+      } else {
+        if (btnUs) btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-emerald-600 text-white shadow";
+        if (btnTw) btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
+        if (titleEl) titleEl.textContent = "🇺🇸 美股全產業市值熱力圖 (綠漲紅跌・區塊面積依真實總市值)";
+      }
+      renderMarketHeatmap();
+    }
+
+    function renderMarketHeatmap() {
+      const dom = document.getElementById("sc-market-heatmap");
+      if (!dom) return;
+      const isTw = currentHeatmapMarket === "TW";
+      renderHeatmapLegend(isTw);
+
+      const allSectors = getSupplyChainSectorsData();
+      const seenSyms = new Set();
+      const catGroups = {};
+
+      const collectFromSectors = (secList) => {
+        secList.forEach(sec => {
+          const catName = sec.category || "其他產業";
+          (sec.stages || []).forEach(stg => {
+            (stg.items || []).forEach(it => {
+              if (!it || !it.symbol) return;
+              const matchMkt = isTw ? isTwSymbol(it.symbol) : !isTwSymbol(it.symbol);
+              if (!matchMkt || seenSyms.has(it.symbol)) return;
+              seenSyms.add(it.symbol);
+              const live = allAssetsMap[it.symbol] || it;
+              const code = isTw ? String(it.symbol).split(".")[0] : it.symbol;
+              const rawMcap = Number(live.market_cap || (isTw ? twMcapMap[code] : usMcapMap[it.symbol]) || 0);
+              const fallbackMcap = isTw ? 6e10 : 3e10;
+              const sizeVal = rawMcap > 0 ? rawMcap : fallbackMcap;
+              const pct = Number(live.change_pct || 0);
+              const shortLabel = isTw ? cleanTwText(live.name || it.name).replace(/^\d+\s*/, "") : it.symbol;
+
+              if (!catGroups[catName]) catGroups[catName] = [];
+              catGroups[catName].push({
+                name: shortLabel,
+                fullName: cleanTwText(live.name || it.name),
+                symbol: it.symbol,
+                price: Number(live.price || 0),
+                pct: pct,
+                rawMcap: rawMcap,
+                value: sizeVal,
+                itemStyle: { color: getHeatmapColor(pct, isTw), borderColor: "#0b0f19", borderWidth: 1 }
+              });
+            });
+          });
+        });
+      };
+
+      // 先收錄實際產業大類，最後再補錄僅存在於指標權值專區的個股，避免重複
+      collectFromSectors(allSectors.filter(s => s.category !== "指標權值專區"));
+      collectFromSectors(allSectors.filter(s => s.category === "指標權值專區"));
+
+      const treeData = Object.keys(catGroups)
+        .filter(k => catGroups[k].length > 0)
+        .map(catName => ({
+          name: catName,
+          children: catGroups[catName].sort((a, b) => b.value - a.value)
+        }));
+
+      if (!heatmapChart) heatmapChart = echarts.init(dom);
+      heatmapChart.setOption({
+        backgroundColor: "#0b0f19",
+        tooltip: {
+          backgroundColor: "rgba(15, 23, 42, 0.96)",
+          borderColor: "#334155",
+          textStyle: { color: "#f8fafc", fontSize: 12 },
+          formatter: function (info) {
+            const d = info.data || {};
+            if (!d.symbol) return `<div class="font-bold text-sky-300">${d.name || ""}</div>`;
+            const mcapStr = d.rawMcap > 0
+              ? (isTw ? `${(d.rawMcap / 1e8).toLocaleString("zh-TW", { maximumFractionDigits: 0 })} 億台幣` : `$${(d.rawMcap / 1e8).toLocaleString("en-US", { maximumFractionDigits: 1 })} 億美元`)
+              : "同步中";
+            const pctCls = isTw ? (d.pct >= 0 ? "#fb7185" : "#34d399") : (d.pct >= 0 ? "#34d399" : "#fb7185");
+            return `
+              <div style="min-width:170px;">
+                <div style="font-weight:700;font-size:13px;margin-bottom:4px;">${d.fullName} <span style="color:#94a3b8;font-size:11px;">(${d.symbol})</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;"><span>最新報價：</span><b>${formatDisplayPrice(d.price, d.symbol)}</b></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;"><span>單日漲跌：</span><b style="color:${pctCls}">${formatSignedPct(d.pct)}</b></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;"><span>公司總市值：</span><b>${mcapStr}</b></div>
+                <div style="color:#94a3b8;font-size:10px;margin-top:4px;">點擊方塊展開財報與新聞</div>
+              </div>`;
+          }
+        },
+        series: [{
+          name: isTw ? "台股市場熱力圖" : "美股市場熱力圖",
+          type: "treemap",
+          roam: false,
+          nodeClick: false,
+          width: "100%",
+          height: "100%",
+          breadcrumb: { show: false },
+          leafDepth: 2,
+          upperLabel: {
+            show: true,
+            height: 22,
+            color: "#e2e8f0",
+            backgroundColor: "#0f172a",
+            fontWeight: "bold",
+            fontSize: 11,
+            padding: [2, 6]
+          },
+          levels: [
+            { itemStyle: { borderColor: "#020617", borderWidth: 3, gapWidth: 3 }, upperLabel: { show: false } },
+            { itemStyle: { borderColor: "#1e293b", borderWidth: 2, gapWidth: 1 }, upperLabel: { show: true } },
+            { itemStyle: { borderColor: "#0b0f19", borderWidth: 1, gapWidth: 1 } }
+          ],
+          label: {
+            show: true,
+            position: "inside",
+            color: "#ffffff",
+            fontFamily: "'Noto Sans TC', 'JetBrains Mono', sans-serif",
+            formatter: function (params) {
+              const d = params.data || {};
+              if (!d.symbol) return d.name || "";
+              return `{nm|${d.name}}\n{pc|${formatSignedPct(d.pct)}}`;
+            },
+            rich: {
+              nm: { fontSize: 12, fontWeight: "bold", color: "#ffffff", lineHeight: 16, align: "center" },
+              pc: { fontSize: 11, fontWeight: "bold", color: "rgba(255,255,255,0.92)", lineHeight: 15, align: "center" }
+            }
+          },
+          data: treeData
+        }]
+      }, true);
+
+      heatmapChart.off("click");
+      heatmapChart.on("click", function (params) {
+        if (params.data && params.data.symbol) openStockModal(params.data.symbol);
+      });
     }
 
     function renderFearAndGreedGauge(domId, score, labelZh, labelEn) {
@@ -997,7 +1193,7 @@
     function getInitialDashboardStructure() {
       const mk = (sym, name, type, fg = null) => applyFallbackIfMissing({
         symbol: sym, name, asset_type: type, future_group: fg, price: 0, prev_close: 0, change: 0, change_pct: 0,
-        ext_session: null, intraday: [], history: [],
+        market_cap: 0, ext_session: null, intraday: [], history: [],
         fundamentals: { pe: "N/A", forward_pe: "無預估", eps: "N/A", gross_margin: "N/A", operating_margin: "N/A", roe: "N/A", yoy_rev_growth: "N/A" },
         news_sentiment: null
       });
@@ -1035,7 +1231,10 @@
         btnS.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white";
         renderSupplyChainView();
-        setTimeout(() => { if (scChart) scChart.resize(); }, 80);
+        setTimeout(() => {
+          if (scChart) scChart.resize();
+          if (heatmapChart) heatmapChart.resize();
+        }, 80);
       } else {
         sView.classList.add("hidden"); mView.classList.remove("hidden");
         btnM.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-600/30";
@@ -1174,10 +1373,13 @@
             const fallbackQ = getDeterministicFallbackQuote(it.symbol);
             const usePrice = (existing && Number(existing.price) > 0) ? existing.price : fallbackQ[0];
             const usePct = (existing && existing.change_pct !== undefined && Number(existing.price) > 0) ? existing.change_pct : fallbackQ[1];
+            const code = isUs ? it.symbol : String(it.symbol).split(".")[0];
+            const useMcap = Number(existing?.market_cap || (isUs ? usMcapMap[it.symbol] : twMcapMap[code]) || it.market_cap || 0);
             const merged = applyFallbackIfMissing({
               symbol: it.symbol, name: cleanTwText(it.name), role: it.role,
               asset_type: isUs ? "us_stock" : "tw_stock",
               price: usePrice, prev_close: existing?.prev_close || 0, change: existing?.change || 0, change_pct: usePct,
+              market_cap: useMcap,
               ext_session: isUs ? ensureUsExtSession(it.symbol, usePrice, existing?.ext_session) : null,
               history: existing?.history || [],
               fundamentals: ensureValidFundamentals(it.symbol, existing?.fundamentals),
@@ -1298,6 +1500,7 @@
 
     function renderSupplyChainView() {
       const marketSectors = getMarketFilteredSectors(getSupplyChainSectorsData());
+      renderMarketHeatmap();
       renderTopPerformingSectors();
       if (!marketSectors.length) return;
       const categories = ["ALL", "指標權值專區", "半導體核心", "光通訊與光學", "PCB與載板鏈", "電子零組件", "AI與重電基建", "傳產營建與能源", "太空軍工與航運", "軟體生技與金融"];
@@ -1378,6 +1581,8 @@
       if (!dom) return;
       if (!scChart) scChart = echarts.init(dom);
       const allSeriesMap = {}, xSet = new Set();
+      const dynStart = new Date(Date.now() - 365 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+      const dynEnd = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
 
       scCompareSymbols.forEach(sym => {
         const asset = allAssetsMap[sym];
@@ -1389,7 +1594,7 @@
         else if (currentScRange === "YTD") filtered = filtered.filter(d => d.date >= `${new Date().getFullYear()}-01-01`);
         else if (currentScRange === "1Y") filtered = filtered.slice(-252);
         else if (currentScRange === "CUSTOM") {
-          const s = document.getElementById("sc-custom-start")?.value || "2025-01-01", e = document.getElementById("sc-custom-end")?.value || "2026-12-31";
+          const s = document.getElementById("sc-custom-start")?.value || dynStart, e = document.getElementById("sc-custom-end")?.value || dynEnd;
           filtered = filtered.filter(d => d.date >= s && d.date <= e);
         }
         allSeriesMap[sym] = {};
@@ -1437,8 +1642,9 @@
     function getCustomEarningsList() { try { const raw = localStorage.getItem("MARKET2_CUSTOM_EARNINGS"); if (raw) { const p = JSON.parse(raw); if (Array.isArray(p) && p.length) return p; } } catch (e) {} return null; }
 
     function customizeEarningsEvent() {
-      const currentTitle = localStorage.getItem("MARKET2_CUSTOM_EARN_TITLE") || "2330 台積電 Q4 法說會";
-      const currentTime = localStorage.getItem("MARKET2_CUSTOM_EARN_TIME") || "2027-01-14 14:00";
+      const defaultDate = new Date(Date.now() + 14 * 86400000).toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" }) + " 14:00";
+      const currentTitle = localStorage.getItem("MARKET2_CUSTOM_EARN_TITLE") || "2330 台積電法說會";
+      const currentTime = localStorage.getItem("MARKET2_CUSTOM_EARN_TIME") || defaultDate;
       const currentNote = localStorage.getItem("MARKET2_CUSTOM_EARN_NOTE") || "關注全年資本支出與 CoWoS 擴產進度";
       const title = prompt("請輸入想置頂追蹤的「法說會 / 財報名稱」（空白則恢復預設）：", currentTitle);
       if (title === null) return;
@@ -2009,6 +2215,13 @@
       document.querySelectorAll(`.sc-card-${domId}`).forEach(card => { card.classList.remove("flash-rose", "flash-emerald"); void card.offsetWidth; card.classList.add(cls); });
     }
 
+    let heatmapRefreshTimer = null;
+    function scheduleHeatmapRefresh() {
+      if (currentAppView !== "supplychain") return;
+      clearTimeout(heatmapRefreshTimer);
+      heatmapRefreshTimer = setTimeout(() => { renderMarketHeatmap(); }, 1500);
+    }
+
     function updateAssetDomPrice(symbol, newMainPrice, newMainPct, extSessionObj = null) {
       const item = allAssetsMap[symbol];
       if (!item) return;
@@ -2051,17 +2264,23 @@
           el.innerHTML = `<span class="text-slate-400">${extSessionObj.label || '盤前/盤後'}:</span><span class="${getColorClass(extSessionObj.change_pct, 'us_stock')} font-semibold">${Number(extSessionObj.price).toFixed(2)} (${formatSignedPct(extSessionObj.change_pct)})</span>`;
         });
       }
-      if (currentAppView === "supplychain") renderTopPerformingSectors();
-      else renderDailyMarketReport();
+      if (currentAppView === "supplychain") {
+        renderTopPerformingSectors();
+        scheduleHeatmapRefresh();
+      } else {
+        renderDailyMarketReport();
+      }
     }
 
-    function updateTwStockByCode(code, price, pct, fundObj = null) {
+    function updateTwStockByCode(code, price, pct, fundObj = null, mcapVal = 0) {
       if (!code || !(price > 0)) return;
       const pNum = Number(Number(price).toFixed(2)), pctNum = Number(Number(pct).toFixed(2));
       twCodeMap[code] = [pNum, pctNum];
+      if (mcapVal > 0) twMcapMap[code] = mcapVal;
       if (fundObj) twFundMap[code] = Object.assign(twFundMap[code] || {}, fundObj);
       [`${code}.TW`, `${code}.TWO`].forEach(sym => {
         if (allAssetsMap[sym]) {
+          if (mcapVal > 0) allAssetsMap[sym].market_cap = mcapVal;
           if (fundObj) {
             allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fundObj));
             const domId = safeId(sym);
@@ -2151,7 +2370,7 @@
         filter: [{ left: "close", operation: "greater", right: 0 }],
         options: { lang: "zh_TW" }, markets: ["taiwan"],
         symbols: { query: { types: [] }, tickers: [] },
-        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"],
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq", "market_cap_basic"],
         sort: { sortBy: "name", sortOrder: "asc" }, range: [0, 4000]
       };
       try {
@@ -2164,7 +2383,7 @@
             const d = row.d || [], sRaw = String(row.s || "");
             const code = sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim();
             if (d.length >= 4 && code) {
-              const p = Number(d[1] || 0), pct = Number(d[2] || 0), fObj = {};
+              const p = Number(d[1] || 0), pct = Number(d[2] || 0), mcap = Number(d[13] || 0), fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
               const fwdPeDirect = fmtN(d[5]), fwdEpsFy = fmtN(d[11]), fwdEpsFq = fmtN(d[12]);
               if (fwdPeDirect !== null && fwdPeDirect > 0) fObj.forward_pe = fwdPeDirect;
@@ -2175,7 +2394,7 @@
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
               if (fmtP(d[9]) !== null) fObj.operating_margin = fmtP(d[9]);
               if (fmtP(d[10]) !== null) fObj.yoy_rev_growth = fmtP(d[10]);
-              if (p > 0 && code !== "TAIEX" && code !== "TPEX") updateTwStockByCode(code, p, pct, fObj);
+              if (p > 0 && code !== "TAIEX" && code !== "TPEX") updateTwStockByCode(code, p, pct, fObj, mcap);
             }
           });
           renderDailyMarketReport();
@@ -2194,7 +2413,7 @@
         filter: [{ left: "name", operation: "in_range", right: allUsSyms }],
         options: { lang: "zh_TW" }, markets: ["america"],
         symbols: { query: { types: [] }, tickers: [] },
-        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq"],
+        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq", "market_cap_basic"],
         range: [0, 1000]
       };
       try {
@@ -2207,7 +2426,7 @@
             const d = row.d || [], sRaw = String(row.s || "");
             const sym = (sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim()).replace(".", "-");
             if (sym) {
-              const p = Number(d[1] || 0), pct = Number(d[2] || 0), fObj = {};
+              const p = Number(d[1] || 0), pct = Number(d[2] || 0), mcap = Number(d[13] || 0), fObj = {};
               if (fmtN(d[4]) !== null) fObj.pe = fmtN(d[4]);
               const fwdPeDirect = fmtN(d[5]), fwdEpsFy = fmtN(d[11]), fwdEpsFq = fmtN(d[12]);
               if (fwdPeDirect !== null && fwdPeDirect > 0) fObj.forward_pe = fwdPeDirect;
@@ -2219,7 +2438,9 @@
               if (fmtP(d[9]) !== null) fObj.operating_margin = fmtP(d[9]);
               if (fmtP(d[10]) !== null) fObj.yoy_rev_growth = fmtP(d[10]);
               usFundMap[sym] = Object.assign(usFundMap[sym] || {}, fObj);
+              if (mcap > 0) usMcapMap[sym] = mcap;
               if (allAssetsMap[sym]) {
+                if (mcap > 0) allAssetsMap[sym].market_cap = mcap;
                 allAssetsMap[sym].fundamentals = ensureValidFundamentals(sym, Object.assign(allAssetsMap[sym].fundamentals || {}, fObj));
                 const domId = safeId(sym);
                 const peEl = document.getElementById(`pe-${domId}`), fpeEl = document.getElementById(`fpe-${domId}`), epsEl = document.getElementById(`eps-${domId}`);
@@ -2259,7 +2480,15 @@
 
     async function syncTaifexVixAndTxfLiveInBrowser() {
       try {
-        const j = await tryFetchViaMultiProxy("https://mis.taifex.com.tw/futures/api/getQuoteDetail", { SymbolID: ["TAIWANVIX", "VIXTWN", "TXF-S", "TXFL6-S", "TXF-M", "TXFL6-M"] });
+        const nowD = new Date(), mCodes = "ABCDEFGHIJKL";
+        const symIds = ["TAIWANVIX", "VIXTWN", "TXF-S", "TXF-M"];
+        for (let off = 0; off < 3; off++) {
+          const mIdx = (nowD.getMonth() + off) % 12;
+          const yNum = nowD.getFullYear() + Math.floor((nowD.getMonth() + off) / 12);
+          const cCode = `TXF${mCodes[mIdx]}${String(yNum).slice(-1)}`;
+          symIds.push(`${cCode}-S`, `${cCode}-M`);
+        }
+        const j = await tryFetchViaMultiProxy("https://mis.taifex.com.tw/futures/api/getQuoteDetail", { SymbolID: symIds });
         let dayQ = null, nightQ = null;
         (j?.RtData?.QuoteList || []).forEach(q => {
           const symId = String(q.SymbolID || ""), lastP = parseFloat(q.CLastPrice || q.ChtPrice || "0"), refP = parseFloat(q.CRefPrice || q.COpenPrice || lastP), diff = parseFloat(q.CDiff || (lastP - refP)), pct = refP > 0 ? (diff / refP) * 100 : 0;
@@ -2277,7 +2506,7 @@
 
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
-      const fList = ["^GSPC", "^DJI", "^NDX", "^SOX", "^RUT", "^TWOII", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
+      const fList = ["^GSPC", "^DJI", "^NDX", "^SOX", "^RUT", "^TWOII", "^IRX", "US2Y", "^FVX", "^TNX", "^TYX", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
       const batch = [];
       for (let i = 0; i < 4; i++) batch.push(fList[(futuresPollCursor + i) % fList.length]);
       futuresPollCursor = (futuresPollCursor + 4) % fList.length;
@@ -2374,7 +2603,7 @@
       await Promise.all([
         tryLoadMarketJson(true), syncTaiwanIndicesLiveInBrowser(), syncTradingViewTaiwanScannerInBrowser(),
         syncTradingViewUsScannerInBrowser(), syncDirectBinanceCryptoPrices(), syncTaifexVixAndTxfLiveInBrowser(),
-        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser()
+        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser(), fetchSingleYahooQuoteAndPrePost("US2Y")
       ]);
       renderDailyMarketReport();
       renderTopPerformingSectors();
@@ -2460,9 +2689,11 @@
           if (isTwSymbol(it.symbol)) {
             const c = String(it.symbol).split(".")[0];
             twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
+            if (Number(it.market_cap) > 0) twMcapMap[c] = Number(it.market_cap);
             if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
-          } else if (it.fundamentals) {
-            usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
+          } else {
+            if (Number(it.market_cap) > 0) usMcapMap[it.symbol] = Number(it.market_cap);
+            if (it.fundamentals) usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
           }
           it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
           allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
@@ -2478,9 +2709,11 @@
                 if (isTwSymbol(it.symbol)) {
                   const c = String(it.symbol).split(".")[0];
                   twCodeMap[c] = [Number(it.price), Number(it.change_pct || 0)];
+                  if (Number(it.market_cap) > 0) twMcapMap[c] = Number(it.market_cap);
                   if (it.fundamentals) twFundMap[c] = Object.assign(twFundMap[c] || {}, it.fundamentals);
-                } else if (it.fundamentals) {
-                  usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
+                } else {
+                  if (Number(it.market_cap) > 0) usMcapMap[it.symbol] = Number(it.market_cap);
+                  if (it.fundamentals) usFundMap[it.symbol] = Object.assign(usFundMap[it.symbol] || {}, it.fundamentals);
                 }
                 it.fundamentals = ensureValidFundamentals(it.symbol, it.fundamentals);
                 allAssetsMap[it.symbol] = ensureSyntheticHistoryIfEmpty(it);
@@ -2557,6 +2790,7 @@
       syncTaifexVixAndTxfLiveInBrowser();
       syncLatestTwChipsInBrowser();
       syncAllFuturesAndFxLiveInBrowser();
+      fetchSingleYahooQuoteAndPrePost("US2Y");
 
       setInterval(syncDirectBinanceCryptoPrices, 10000);
       setInterval(syncAllFuturesAndFxLiveInBrowser, 6000);
@@ -2571,7 +2805,7 @@
     }
 
     window.addEventListener("resize", () => {
-      [mainChart, instChart, marginChart, maintChart, fgUsChart, fgCryptoChart, scChart].forEach(c => { if (c) c.resize(); });
+      [mainChart, instChart, marginChart, maintChart, fgUsChart, fgCryptoChart, scChart, heatmapChart].forEach(c => { if (c) c.resize(); });
     });
 
     initDashboard();
