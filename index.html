@@ -326,7 +326,7 @@
             <span class="px-2.5 py-1 text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40 rounded">🗺️ 市值加權熱力圖</span>
             <h2 id="heatmap-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股全產業市值熱力圖 (紅漲綠跌・區塊面積依真實總市值)</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">依大類產業分群並自動去重，滑鼠懸停檢視即時報價與市值，點擊任一方塊可直接開啟財報與新聞視窗</p>
+          <p class="text-xs text-slate-400 mt-1">依大類產業分群並自動去重，滑鼠懸停檢視即時報價與市值，點擊任一方塊可直接開啟公司簡介、財報與新聞視窗</p>
         </div>
         <div class="flex flex-wrap items-center gap-2.5 shrink-0">
           <div id="heatmap-legend-bar" class="flex items-center gap-0.5 text-[10px] mono font-bold"></div>
@@ -363,7 +363,7 @@
             <span class="px-2.5 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded">🔬 獨立產業研究視窗</span>
             <h2 class="text-xl md:text-2xl font-bold text-white">42 大細分產業鏈上、中、下游垂直整合追蹤室</h2>
           </div>
-          <p class="text-xs text-slate-400 mt-1">點擊個股可展開該公司最新一期官方月營收 (MOPS OpenAPI)、財報獲利指標與即時新聞時事來源</p>
+          <p class="text-xs text-slate-400 mt-1">點擊個股可展開公司簡介、最新一期官方月營收 (MOPS OpenAPI)、財報獲利指標與即時新聞時事來源</p>
         </div>
         <button onclick="switchAppView('market')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 self-start lg:self-auto shrink-0">&larr; 返回視窗一：全球市場總覽</button>
       </div>
@@ -511,7 +511,7 @@
     </div>
   </div>
 
-  <!-- 彈出式視窗 B：個股與指數多空情報視窗 -->
+  <!-- 彈出式視窗 B：個股與指數多空情報視窗（含公司簡介） -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
@@ -526,6 +526,7 @@
         </div>
         <button onclick="closeStockModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg w-8 h-8 flex items-center justify-center text-base font-bold transition" title="關閉">✕</button>
       </div>
+      <div id="modal-company-profile" class="hidden bg-slate-900/80 border border-sky-500/30 rounded-xl p-4 mb-5 space-y-2.5"></div>
       <div id="modal-category-tabs" class="flex flex-wrap items-center gap-2 mb-5"></div>
       <div id="modal-pillars-container" class="space-y-6 mb-6"></div>
       <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 mb-4">
@@ -546,7 +547,7 @@
     let mainChart = null, instChart = null, marginChart = null, maintChart = null, fgUsChart = null, fgCryptoChart = null, scChart = null, heatmapChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
-    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國富時 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+    const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
 
     function isCryptoSymbol(sym) {
       return sym === "BTC-USD" || sym === "ETH-USD";
@@ -712,7 +713,6 @@
         });
       };
 
-      // 先收錄實際產業大類，最後再補錄僅存在於指標權值專區的個股，避免重複
       collectFromSectors(allSectors.filter(s => s.category !== "指標權值專區"));
       collectFromSectors(allSectors.filter(s => s.category === "指標權值專區"));
 
@@ -743,7 +743,7 @@
                 <div style="display:flex;justify-content:space-between;gap:12px;"><span>最新報價：</span><b>${formatDisplayPrice(d.price, d.symbol)}</b></div>
                 <div style="display:flex;justify-content:space-between;gap:12px;"><span>單日漲跌：</span><b style="color:${pctCls}">${formatSignedPct(d.pct)}</b></div>
                 <div style="display:flex;justify-content:space-between;gap:12px;"><span>公司總市值：</span><b>${mcapStr}</b></div>
-                <div style="color:#94a3b8;font-size:10px;margin-top:4px;">點擊方塊展開財報與新聞</div>
+                <div style="color:#94a3b8;font-size:10px;margin-top:4px;">點擊方塊展開公司簡介、財報與新聞</div>
               </div>`;
           }
         },
@@ -1195,7 +1195,7 @@
         symbol: sym, name, asset_type: type, future_group: fg, price: 0, prev_close: 0, change: 0, change_pct: 0,
         market_cap: 0, ext_session: null, intraday: [], history: [],
         fundamentals: { pe: "N/A", forward_pe: "無預估", eps: "N/A", gross_margin: "N/A", operating_margin: "N/A", roe: "N/A", yoy_rev_growth: "N/A" },
-        news_sentiment: null
+        profile: null, news_sentiment: null
       });
 
       return {
@@ -1383,6 +1383,7 @@
               ext_session: isUs ? ensureUsExtSession(it.symbol, usePrice, existing?.ext_session) : null,
               history: existing?.history || [],
               fundamentals: ensureValidFundamentals(it.symbol, existing?.fundamentals),
+              profile: existing?.profile || it.profile || null,
               news_sentiment: existing?.news_sentiment || null
             });
             allAssetsMap[it.symbol] = merged;
@@ -1492,7 +1493,7 @@
             <div><span class="text-slate-400 block text-[10px]">營益/年增</span><span class="text-sky-300">${f.operating_margin}/${f.yoy_rev_growth}</span></div>
           </div>
           <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-            <span class="text-indigo-300 font-medium">📊 點擊展開財報與新聞</span>
+            <span class="text-indigo-300 font-medium">🏢 點擊展開簡介、財報與新聞</span>
             <button onclick="event.stopPropagation(); toggleScCompareSymbol('${item.symbol}')" class="px-2 py-0.5 rounded font-bold transition shrink-0 ${isSelected ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">${isSelected ? '✓ 已在圖表比較' : '＋加入疊圖'}</button>
           </div>
         </div>`;
@@ -1809,7 +1810,7 @@
             <div class="mt-2.5 space-y-1 text-xs bg-slate-900/50 p-2 rounded border border-slate-800/80"><div class="truncate text-emerald-200"><strong class="text-emerald-400">🔥 財報/動態：</strong>${topBull}</div><div class="truncate text-rose-200"><strong class="text-rose-400">❄️ 估值/風險：</strong>${topBear}</div></div>
           </div>
           <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between">
-            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">📊 展開財報與新聞來源</button>
+            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">🏢 簡介・財報與新聞</button>
             <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300">＋加入走勢比較</button>
           </div>
         </div>`;
@@ -1833,7 +1834,7 @@
         <div id="card-${domId}" onclick="selectAsset('${item.symbol}'); openStockModal('${item.symbol}');" class="card-bg rounded-xl p-4 flex flex-col justify-between cursor-pointer">
           <div>
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-              <div><h3 class="font-bold text-base text-white">${item.name}</h3><span class="text-[11px] text-indigo-400">點擊開啟「MOPS月營收・財報指標・新聞來源」</span></div>
+              <div><h3 class="font-bold text-base text-white">${item.name}</h3><span class="text-[11px] text-indigo-400">點擊開啟「公司簡介・MOPS月營收・財報・新聞」</span></div>
               <div class="text-right mono"><div id="price-${domId}" class="text-2xl font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="pct-${domId}" class="text-xs font-bold ${colorCls}">${formatSignedPct(item.change_pct)}</div></div>
             </div>
             <div class="mt-3">
@@ -1851,7 +1852,7 @@
             <div class="mt-2.5 space-y-1 text-xs bg-slate-900/50 p-2 rounded border border-slate-800/80"><div class="truncate text-amber-200"><strong class="text-amber-400">🔥 財報/營收：</strong>${topBull}</div><div class="truncate text-cyan-200"><strong class="text-cyan-400">❄️ 估值/風險：</strong>${topBear}</div></div>
           </div>
           <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between">
-            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">📊 展開月營收與新聞來源</button>
+            <button onclick="event.stopPropagation(); openStockModal('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold">🏢 簡介・月營收與新聞</button>
             <button onclick="event.stopPropagation(); toggleCompareSymbol('${item.symbol}')" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300">＋加入走勢比較</button>
           </div>
         </div>`;
@@ -1938,7 +1939,44 @@
 
       const cbBadge = document.getElementById("modal-cb-badge"), cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
       if (!isStock && cbName) { cbBadge.classList.remove("hidden"); cbBadge.textContent = `專屬對映央行：${cbName}`; } else cbBadge.classList.add("hidden");
-      document.getElementById("modal-subtitle").textContent = item.role ? `產業鏈核心技術定位：${item.role}` : (isStock ? "MOPS最新月營收／財報指標與新聞時事來源" : `${cbName || '央行'}利率決策、總經數據與新聞時事`);
+      document.getElementById("modal-subtitle").textContent = item.role ? `產業鏈核心技術定位：${item.role}` : (isStock ? "公司簡介、MOPS最新月營收／財報指標與新聞時事來源" : `${cbName || '央行'}利率決策、總經數據與新聞時事`);
+
+      const profEl = document.getElementById("modal-company-profile");
+      if (profEl) {
+        if (isStock) {
+          const p = item.profile || {};
+          const metaBadges = [
+            p.sector ? `產業大類：${cleanTwText(p.sector)}` : "",
+            p.industry ? `細分產業：${cleanTwText(p.industry)}` : "",
+            p.chairman ? `董事長：${cleanTwText(p.chairman)}` : "",
+            p.gm ? `總經理：${cleanTwText(p.gm)}` : "",
+            p.tax_id ? `統編：${p.tax_id}` : "",
+            p.country ? `總部：${p.country}` : "",
+            p.employees ? `員工數：${Number(p.employees).toLocaleString()} 人` : ""
+          ].filter(Boolean);
+          const rawUrl = String(p.website || "").trim();
+          const safeUrl = rawUrl ? (rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`) : "";
+          const webLink = safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener" class="text-xs text-sky-300 hover:underline font-bold">🌐 公司官網 &rarr;</a>` : "";
+          const roleLine = item.role ? `<p class="text-xs text-indigo-200 leading-relaxed"><strong class="text-indigo-400">核心定位：</strong>${cleanTwText(item.role)}</p>` : "";
+          const summaryLine = p.summary ? `<p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-3 rounded-lg border border-slate-800/80">${cleanTwText(p.summary)}</p>` : "";
+          profEl.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">🏢 公司簡介</span>
+                <span class="text-sm font-bold text-white">${cleanTwText(p.full_name || item.name)}</span>
+              </div>
+              ${webLink}
+            </div>
+            ${metaBadges.length ? `<div class="flex flex-wrap gap-1.5 text-[11px] mono">${metaBadges.map(b => `<span class="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-300">${b}</span>`).join("")}</div>` : ""}
+            ${roleLine}
+            ${summaryLine}
+            <div class="text-[10px] text-slate-500">資料來源：${p.source || "證交所 / 櫃買中心 / TradingView / Yahoo Finance"}</div>`;
+          profEl.classList.remove("hidden");
+        } else {
+          profEl.classList.add("hidden");
+        }
+      }
+
       renderModalPillars();
       const f = item.fundamentals || {}, extraTwd = item.asset_type === "fx_rate" ? `<div class="col-span-2"><span class="text-slate-400 block text-[10px]">新台幣交叉換算匯率</span><strong class="text-amber-300">${computeTwdCrossQuoteText(item.symbol, item.price)}</strong></div>` : "";
       const revBox = (isTwSymbol(symbol) && f.monthly_rev) ? `<div class="bg-slate-950/60 p-2.5 rounded border border-amber-500/30 col-span-2"><span class="text-amber-300 block text-[10px] font-bold">MOPS 最新一期月營收 (${f.monthly_rev.month})</span><strong class="text-white text-sm">${f.monthly_rev.revenue_yi} (月增 ${formatSignedPct(f.monthly_rev.mom)} / 年增 ${formatSignedPct(f.monthly_rev.yoy)})</strong></div>` : "";
@@ -2504,6 +2542,21 @@
       } catch (e) {}
     }
 
+    async function syncUs2yLiveInBrowser() {
+      try {
+        const j = await tryFetchViaMultiProxy("https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=US2Y&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json");
+        const q = j?.FormattedQuoteResult?.FormattedQuote?.[0];
+        if (!q) return;
+        const liveY = parseFloat(String(q.last || "0").replace("%", ""));
+        const prevY = parseFloat(String(q.previous_day_closing || "0").replace("%", ""));
+        if (liveY >= 0.1 && liveY <= 15.0) {
+          const baseP = prevY > 0 ? prevY : Number(allAssetsMap["US2Y"]?.prev_close || liveY);
+          const pct = baseP > 0 ? ((liveY - baseP) / baseP) * 100 : 0;
+          updateAssetDomPrice("US2Y", liveY, pct, null);
+        }
+      } catch (e) {}
+    }
+
     let futuresPollCursor = 0;
     async function syncAllFuturesAndFxLiveInBrowser() {
       const fList = ["^GSPC", "^DJI", "^NDX", "^SOX", "^RUT", "^TWOII", "^IRX", "US2Y", "^FVX", "^TNX", "^TYX", "ES=F", "NQ=F", "YM=F", "GC=F", "SI=F", "HG=F", "PA=F", "BZ=F", "CL=F", "ZS=F", "ZW=F", "ZC=F", "TWD=X", "JPY=X", "EURUSD=X", "DX-Y.NYB"];
@@ -2515,7 +2568,8 @@
 
     async function fetchSingleYahooQuoteAndPrePost(sym) {
       if (sym === "^VIXTWN" || sym === "TXF" || isCryptoSymbol(sym)) return;
-      const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : (sym === "US2Y" ? ["2YY=F"] : [sym]);
+      if (sym === "US2Y") { await syncUs2yLiveInBrowser(); return; }
+      const queryCandidates = sym === "^TWOII" ? ["^TWOII", "^TWO"] : [sym];
       for (const qSym of queryCandidates) {
         try {
           const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(qSym)}?interval=1m&range=1d&includePrePost=true`;
@@ -2603,7 +2657,7 @@
       await Promise.all([
         tryLoadMarketJson(true), syncTaiwanIndicesLiveInBrowser(), syncTradingViewTaiwanScannerInBrowser(),
         syncTradingViewUsScannerInBrowser(), syncDirectBinanceCryptoPrices(), syncTaifexVixAndTxfLiveInBrowser(),
-        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser(), fetchSingleYahooQuoteAndPrePost("US2Y")
+        syncLatestTwChipsInBrowser(), syncAllFuturesAndFxLiveInBrowser(), syncUs2yLiveInBrowser()
       ]);
       renderDailyMarketReport();
       renderTopPerformingSectors();
@@ -2790,7 +2844,7 @@
       syncTaifexVixAndTxfLiveInBrowser();
       syncLatestTwChipsInBrowser();
       syncAllFuturesAndFxLiveInBrowser();
-      fetchSingleYahooQuoteAndPrePost("US2Y");
+      syncUs2yLiveInBrowser();
 
       setInterval(syncDirectBinanceCryptoPrices, 10000);
       setInterval(syncAllFuturesAndFxLiveInBrowser, 6000);
