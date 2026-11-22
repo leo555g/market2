@@ -1,7 +1,9 @@
 import os, re, sys, io, json, math, time, datetime
+import html as html_lib
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from urllib.parse import quote
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import pytz, requests, urllib3
 import pandas as pd
 import yfinance as yf
@@ -203,7 +205,6 @@ def load_previous_cache():
                     }
                 prof = it.get("profile")
                 if (sym.endswith(".TW") or sym.endswith(".TWO")) and isinstance(prof, dict):
-                    # 僅保留來自官方 ic.tpex.org.tw 的主要經營業務，自動淘汰舊版機翻摘要
                     if prof.get("business_source") == "ic.tpex.org.tw" and prof.get("summary"):
                         cached_tw_biz[sym.split(".")[0]] = prof["summary"]
         except Exception:
@@ -310,49 +311,88 @@ def fetch_official_tw_company_profiles():
         pass
     return prof_map
 
-def fetch_ic_tpex_main_business(code):
+def fetch_ic_tpex_main_business(code, debug=False):
     try:
         r = requests.get(
             f"https://ic.tpex.org.tw/company_basic.php?stk_code={code}",
-            headers={"User-Agent": "Mozilla/5.0"},
-            timeout=8,
+            headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"},
+            timeout=10,
             verify=False
         )
+        if debug:
+            print(f"[TW Biz Debug] {code} HTTP={r.status_code} bytes={len(r.content)}")
         if r.status_code != 200:
             return ""
         r.encoding = "utf-8"
+        raw_html = r.text
+
+        # 方法 1：不依賴 <table> 結構，去標籤後依官方版面順序擷取「主要經營業務」至「財務報表」區段
+        cleaned = re.sub(r'(?is)<(script|style).*?>.*?</\1>', ' ', raw_html)
+        cleaned = re.sub(r'(?i)<(br|/p|/div|/tr|/td|/th|/li)[^>]*>', '\n', cleaned)
+        cleaned = html_lib.unescape(re.sub(r'<[^>]+>', ' ', cleaned))
+        plain = re.sub(r'[ \t\r\f\v]+', ' ', cleaned)
+        plain = re.sub(r'\n+', ' ', plain).strip()
+
+        m = re.search(r'主要經營業務\s*(.+?)\s*(?:財務報表|現金流量表|資產負債表|最近期財務報告|交易資訊)', plain)
+        if m:
+            seg = m.group(1).strip()
+            m_date = re.search(r'\d{4}-\d{2}-\d{2}\s*(.+)$', seg)
+            if m_date:
+                seg = m_date.group(1).strip()
+            else:
+                seg = re.sub(r'^(?:上市|上櫃|興櫃)\s+\S+\s+', '', seg).strip()
+            if len(seg) >= 6:
+                if debug:
+                    print(f"[TW Biz Debug] {code} extracted({len(seg)} chars): {seg[:40]}...")
+                return to_trad(seg)
+
+        # 方法 2（備援）：表格結構解析
         parser = SimpleTableParser()
-        parser.feed(r.text)
+        parser.feed(raw_html)
         rows = parser.rows
         for r_idx, row in enumerate(rows):
             for c_idx, cell in enumerate(row):
                 if "主要經營業務" in cell:
-                    # 格式 A：上方表頭列 (市場別 | 產業類別 | 掛牌日期 | 主要經營業務)，下方為數值列
                     if r_idx + 1 < len(rows) and c_idx < len(rows[r_idx + 1]):
                         cand = rows[r_idx + 1][c_idx].strip()
-                        if len(cand) >= 4 and "市場別" not in cand and "主要經營業務" not in cand:
+                        if len(cand) >= 6 and "市場別" not in cand and "主要經營業務" not in cand:
                             return to_trad(cand)
-                    # 格式 B：左側表頭格、右側數值格
                     if c_idx + 1 < len(row):
                         cand = row[c_idx + 1].strip()
-                        if len(cand) >= 4 and "市場別" not in cand:
+                        if len(cand) >= 6 and "市場別" not in cand:
                             return to_trad(cand)
-    except Exception:
-        pass
+    except Exception as e:
+        if debug:
+            print(f"[TW Biz Debug] {code} error: {e}")
     return ""
 
-def enrich_tw_official_main_business(target_tw_codes, cached_tw_biz, max_fetch=40):
-    fetched = 0
-    for code in dict.fromkeys(target_tw_codes):
-        if not code or code in cached_tw_biz:
-            continue
-        if fetched >= max_fetch:
-            break
-        biz = fetch_ic_tpex_main_business(code)
-        if biz:
-            cached_tw_biz[code] = biz
-        fetched += 1
-        time.sleep(0.15)
+def enrich_tw_official_main_business(target_tw_codes, cached_tw_biz, max_fetch=250):
+    # 自動淘汰先前可能誤抓到的過短殘缺字串 (< 15 字)
+    for k in list(cached_tw_biz.keys()):
+        if len(str(cached_tw_biz.get(k) or "").strip()) < 15:
+            cached_tw_biz.pop(k, None)
+
+    missing = [c for c in dict.fromkeys(target_tw_codes) if c and c not in cached_tw_biz][:max_fetch]
+    if not missing:
+        return cached_tw_biz
+
+    first_code = missing[0]
+    first_biz = fetch_ic_tpex_main_business(first_code, debug=True)
+    if first_biz:
+        cached_tw_biz[first_code] = first_biz
+
+    rest = missing[1:]
+    if rest:
+        with ThreadPoolExecutor(max_workers=5) as ex:
+            futs = {ex.submit(fetch_ic_tpex_main_business, c, False): c for c in rest}
+            for fut in as_completed(futs):
+                code = futs[fut]
+                try:
+                    biz = fut.result()
+                    if biz:
+                        cached_tw_biz[code] = biz
+                except Exception:
+                    pass
     return cached_tw_biz
 
 # 3. Google News RSS
@@ -1322,7 +1362,7 @@ def main():
         payload["mops_general"] = mops_general
 
         tw_prof_official = fetch_official_tw_company_profiles()
-        cached_tw_biz = enrich_tw_official_main_business(all_tw_codes, cached_tw_biz, max_fetch=40)
+        cached_tw_biz = enrich_tw_official_main_business(all_tw_codes, cached_tw_biz, max_fetch=250)
 
         tw_official = fetch_tw_official_all_channels()
         us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
