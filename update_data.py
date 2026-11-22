@@ -192,6 +192,102 @@ def fetch_official_mops_material_news():
             pass
     return mops_by_code, mops_general
 
+# 2.5 上市櫃公司官方基本資料 OpenAPI (t187ap03_L / mopsfin_t187ap03_O) + 業務簡介快取
+def fetch_official_tw_company_profiles():
+    prof_map = {}
+    headers = {"User-Agent": "Mozilla/5.0"}
+    def clean_val(v):
+        s = to_trad(str(v or "")).replace("\u3000", " ").strip()
+        return "" if s in ["-", "－", "—", "N/A", "None", "無"] else s
+
+    try:
+        r_l = requests.get("https://openapi.twse.com.tw/v1/opendata/t187ap03_L", headers=headers, timeout=12, verify=False)
+        if r_l.status_code == 200:
+            for row in r_l.json():
+                code = clean_val(row.get("公司代號"))
+                if not code:
+                    continue
+                prof_map[code] = {
+                    "full_name": clean_val(row.get("公司名稱")),
+                    "chairman": clean_val(row.get("董事長")),
+                    "gm": clean_val(row.get("總經理")),
+                    "spokesman": clean_val(row.get("發言人")),
+                    "tax_id": clean_val(row.get("營利事業統一編號")),
+                    "website": clean_val(row.get("網址")),
+                    "founded": clean_val(row.get("成立日期")),
+                    "listed_date": clean_val(row.get("上市日期")),
+                    "capital": clean_val(row.get("實收資本額")),
+                    "source": "證交所 OpenAPI (t187ap03_L)"
+                }
+    except Exception:
+        pass
+
+    try:
+        r_o = requests.get("https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O", headers=headers, timeout=12, verify=False)
+        if r_o.status_code == 200:
+            for row in r_o.json():
+                code = clean_val(row.get("SecuritiesCompanyCode"))
+                if not code:
+                    continue
+                prof_map[code] = {
+                    "full_name": clean_val(row.get("CompanyName")),
+                    "chairman": clean_val(row.get("Chairman")),
+                    "gm": clean_val(row.get("GeneralManager")),
+                    "spokesman": clean_val(row.get("Spokesman")),
+                    "tax_id": clean_val(row.get("UnifiedBusinessNo.")),
+                    "website": clean_val(row.get("Website") or row.get("InternetAddress")),
+                    "founded": clean_val(row.get("DateOfIncorporation")),
+                    "listed_date": clean_val(row.get("DateOfListing")),
+                    "capital": clean_val(row.get("PaidInCapital")),
+                    "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
+                }
+    except Exception:
+        pass
+    return prof_map
+
+def load_cached_stock_profiles():
+    cached = {}
+    if os.path.exists("data/market_data.json"):
+        try:
+            with open("data/market_data.json", "r", encoding="utf-8") as f:
+                old_data = json.load(f) or {}
+            buckets = list(old_data.get("us_stocks") or []) + list(old_data.get("tw_stocks") or [])
+            for sec in (old_data.get("supply_chain_sectors") or []):
+                for stg in (sec.get("stages") or []):
+                    buckets.extend(stg.get("items") or [])
+            for it in buckets:
+                sym = it.get("symbol")
+                prof = it.get("profile")
+                if sym and isinstance(prof, dict) and prof.get("summary"):
+                    cached[sym] = prof
+        except Exception:
+            pass
+    return cached
+
+def enrich_missing_yf_summaries(target_syms, cached_profiles, max_fetch=30):
+    fetched = 0
+    for sym in dict.fromkeys(target_syms):
+        if fetched >= max_fetch:
+            break
+        if sym in DELISTED_BLACKLIST:
+            continue
+        if sym in cached_profiles and cached_profiles[sym].get("summary"):
+            continue
+        try:
+            info = yf.Ticker(sym).info or {}
+            summary = str(info.get("longBusinessSummary") or "").strip()
+            if summary:
+                cached_profiles[sym] = {
+                    "summary": summary,
+                    "website": str(info.get("website") or "").strip(),
+                    "country": str(info.get("country") or "").strip(),
+                    "employees": info.get("fullTimeEmployees")
+                }
+                fetched += 1
+        except Exception:
+            continue
+    return cached_profiles
+
 # 3. Google News RSS
 def fetch_google_news_rss_for_stock(query_str, max_items=3):
     news_list = []
@@ -489,7 +585,7 @@ TV_FUND_COLUMNS = [
     "earnings_per_share_diluted_ttm", "return_on_equity",
     "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
     "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq",
-    "market_cap_basic"
+    "market_cap_basic", "description", "sector", "industry"
 ]
 
 def parse_tv_fundamentals(d):
@@ -513,7 +609,7 @@ def parse_tv_fundamentals(d):
     }
 
 def fetch_tradingview_taiwan_full_market():
-    tv_stocks, tv_fund_map, tv_mcap_map = {}, {}, {}
+    tv_stocks, tv_fund_map, tv_mcap_map, tv_prof_meta = {}, {}, {}, {}
     payload = {
         "filter": [{"left": "close", "operation": "greater", "right": 0}],
         "options": {"lang": "zh_TW"}, "markets": ["taiwan"],
@@ -535,12 +631,17 @@ def fetch_tradingview_taiwan_full_market():
                         mcap = safe_float(d[13], 0.0) if len(d) > 13 else 0.0
                         if mcap > 0:
                             tv_mcap_map[code] = round(mcap, 0)
+                        tv_prof_meta[code] = {
+                            "description": to_trad(d[14]) if len(d) > 14 and d[14] else "",
+                            "sector": to_trad(d[15]) if len(d) > 15 and d[15] else "",
+                            "industry": to_trad(d[16]) if len(d) > 16 and d[16] else ""
+                        }
     except Exception:
         pass
-    return tv_stocks, tv_fund_map, tv_mcap_map
+    return tv_stocks, tv_fund_map, tv_mcap_map, tv_prof_meta
 
 def fetch_tradingview_us_fundamentals(us_sym_list):
-    us_fund_map, us_mcap_map = {}, {}
+    us_fund_map, us_mcap_map, us_prof_meta = {}, {}, {}
     clean_us = [s.replace("-", ".") for s in set(us_sym_list) if s and not s.startswith("^") and "=" not in s]
     payload = {
         "filter": [{"left": "name", "operation": "in_range", "right": clean_us}],
@@ -560,9 +661,14 @@ def fetch_tradingview_us_fundamentals(us_sym_list):
                     mcap = safe_float(d[13], 0.0) if len(d) > 13 else 0.0
                     if mcap > 0:
                         us_mcap_map[sym] = round(mcap, 0)
+                    us_prof_meta[sym] = {
+                        "full_name": str(d[14] or "").strip() if len(d) > 14 else "",
+                        "sector": to_trad(d[15]) if len(d) > 15 and d[15] else "",
+                        "industry": to_trad(d[16]) if len(d) > 16 and d[16] else ""
+                    }
     except Exception:
         pass
-    return us_fund_map, us_mcap_map
+    return us_fund_map, us_mcap_map, us_prof_meta
 
 def fetch_tradingview_futures_quotes():
     tv_fut_map = {}
@@ -602,12 +708,13 @@ def fetch_tradingview_futures_quotes():
 
 # 6. 台灣加權 (^TWII) 與 櫃買指數 (^TWOII) 3 通道官方抓取
 def fetch_tw_official_all_channels():
-    snapshot = {"indices": {}, "stocks": {}, "fund_map": {}, "mcap_map": {}}
+    snapshot = {"indices": {}, "stocks": {}, "fund_map": {}, "mcap_map": {}, "prof_meta": {}}
     headers = {"User-Agent": "Mozilla/5.0"}
-    tv_stocks, tv_fund_map, tv_mcap_map = fetch_tradingview_taiwan_full_market()
+    tv_stocks, tv_fund_map, tv_mcap_map, tv_prof_meta = fetch_tradingview_taiwan_full_market()
     snapshot["stocks"].update(tv_stocks)
     snapshot["fund_map"].update(tv_fund_map)
     snapshot["mcap_map"].update(tv_mcap_map)
+    snapshot["prof_meta"].update(tv_prof_meta)
 
     try:
         r_mis = requests.get("https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0", headers=headers, timeout=8, verify=False)
@@ -675,8 +782,8 @@ def fetch_tw_official_all_channels():
 
 def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
     yf_map = {}
-    skip_set = DELISTED_BLACKLIST | {"^VIXTWN", "TXF"}
-    yf_download_syms = [("2YY=F" if s == "US2Y" else s) for s in dict.fromkeys(symbols_list) if s not in skip_set]
+    skip_set = DELISTED_BLACKLIST | {"US2Y", "^VIXTWN", "TXF"}
+    yf_download_syms = [s for s in dict.fromkeys(symbols_list) if s not in skip_set]
 
     for i in range(0, len(yf_download_syms), 35):
         chunk = yf_download_syms[i:i + 35]
@@ -693,8 +800,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                     pts = [{"date": idx.strftime("%Y-%m-%d"), "close": round(safe_float(v), dec)} for idx, v in closes.items() if safe_float(v) > 0]
                     if len(pts) >= 2:
                         lc, pc = pts[-1]["close"], pts[-2]["close"]
-                        target_key = "US2Y" if y_sym == "2YY=F" else y_sym
-                        yf_map[target_key] = {
+                        yf_map[y_sym] = {
                             "price": lc, "prev_close": pc,
                             "change": round(lc - pc, dec),
                             "change_pct": round(((lc - pc) / pc) * 100, 2) if pc > 0 else 0.0,
@@ -705,8 +811,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    # 納入 2YY=F 進行 5 分鐘盤中即時報價同步
-    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + ["2YY=F"] + us_eq_list) if s not in skip_set and s not in {"ZS=F", "ZW=F", "ZC=F"}]
+    fut_and_us = [s for s in dict.fromkeys(list(FUTURES_AND_COMMODITIES.keys()) + us_eq_list) if s not in skip_set and s not in {"ZS=F", "ZW=F", "ZC=F"}]
     for i in range(0, len(fut_and_us), 35):
         chunk = fut_and_us[i:i + 35]
         try:
@@ -715,8 +820,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                 continue
             for sym in chunk:
                 try:
-                    target_key = "US2Y" if sym == "2YY=F" else sym
-                    if target_key not in yf_map:
+                    if sym not in yf_map:
                         continue
                     closes = extract_close_series(df_ext, sym if len(chunk) > 1 else None)
                     if closes.empty:
@@ -724,18 +828,8 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                     latest_tick_p = round(safe_float(closes.iloc[-1]), 2)
                     if latest_tick_p <= 0:
                         continue
-                    reg_p, prev_c = yf_map[target_key]["price"], yf_map[target_key]["prev_close"]
-                    if target_key == "US2Y":
-                        today_us = (now_tw - datetime.timedelta(hours=13)).strftime("%Y-%m-%d")
-                        last_hist_date = yf_map["US2Y"]["history"][-1]["date"] if yf_map["US2Y"]["history"] else ""
-                        settle_p = prev_c if (last_hist_date == today_us and prev_c > 0) else reg_p
-                        chg = round(latest_tick_p - settle_p, 2)
-                        yf_map["US2Y"]["price"] = latest_tick_p
-                        yf_map["US2Y"]["prev_close"] = settle_p
-                        yf_map["US2Y"]["change"] = chg
-                        yf_map["US2Y"]["change_pct"] = round((chg / settle_p) * 100, 2) if settle_p > 0 else 0.0
-                        yf_map["US2Y"]["ext_session"] = None
-                    elif sym in ["BTC-USD", "ETH-USD"]:
+                    reg_p, prev_c = yf_map[sym]["price"], yf_map[sym]["prev_close"]
+                    if sym in ["BTC-USD", "ETH-USD"]:
                         chg = round(latest_tick_p - prev_c, 2)
                         yf_map[sym]["price"] = latest_tick_p
                         yf_map[sym]["change"] = chg
@@ -809,28 +903,77 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
 
     return yf_map
 
-def fetch_official_us2y_and_taifex_vixtwn_and_txf(existing_yf_map):
+def fetch_official_us2y_and_taifex_vixtwn_and_txf():
     extra = {}
-    # 永遠嘗試抓取 FRED DGS2，與 2YY=F 比對最後交易日，取日期較新者（徹底避免 2YY=F 舊價卡死）
+    us2y_pts = []
+    # 來源 1：美國財政部官方每日殖利率曲線 CSV (跨年度抓齊 1 年歷史)
+    for yr in (now_tw.year - 1, now_tw.year):
+        try:
+            u_tr = f"https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/{yr}/all?type=daily_treasury_yield_curve&field_tdr_date_value={yr}&page&_format=csv"
+            r_tr = requests.get(u_tr, headers={"User-Agent": "Mozilla/5.0"}, timeout=12)
+            if r_tr.status_code == 200 and "2 Yr" in r_tr.text:
+                df_tr = pd.read_csv(io.StringIO(r_tr.text))
+                if "Date" in df_tr.columns and "2 Yr" in df_tr.columns:
+                    for _, row in df_tr.iterrows():
+                        v = safe_float(row["2 Yr"], 0.0)
+                        if v > 0:
+                            try:
+                                d_iso = datetime.datetime.strptime(str(row["Date"]).strip(), "%m/%d/%Y").strftime("%Y-%m-%d")
+                                us2y_pts.append({"date": d_iso, "close": round(v, 2)})
+                            except Exception:
+                                continue
+        except Exception:
+            pass
+
+    if us2y_pts:
+        us2y_pts = sorted({p["date"]: p for p in us2y_pts}.values(), key=lambda x: x["date"])[-260:]
+
+    # 來源 2（備援）：FRED DGS2
+    if len(us2y_pts) < 2:
+        try:
+            r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+            if r.status_code == 200:
+                df = pd.read_csv(io.StringIO(r.text))
+                if len(df.columns) >= 2:
+                    d_col, v_col = df.columns[0], df.columns[1]
+                    df[v_col] = pd.to_numeric(df[v_col], errors="coerce")
+                    df = df.dropna().tail(260)
+                    us2y_pts = [{"date": str(row[d_col]).strip(), "close": round(float(row[v_col]), 2)} for _, row in df.iterrows() if float(row[v_col]) > 0]
+        except Exception:
+            pass
+
+    if len(us2y_pts) >= 2:
+        lc, pc = us2y_pts[-1]["close"], us2y_pts[-2]["close"]
+        extra["US2Y"] = {
+            "price": lc, "prev_close": pc,
+            "change": round(lc - pc, 2),
+            "change_pct": round(((lc - pc) / pc) * 100, 2) if pc > 0 else 0.0,
+            "history": us2y_pts, "ext_session": None
+        }
+
+    # 來源 3（盤中即時加值層）：CNBC US2Y
     try:
-        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2", headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
-        if r.status_code == 200:
-            df = pd.read_csv(io.StringIO(r.text))
-            if len(df.columns) >= 2:
-                d_col, v_col = df.columns[0], df.columns[1]
-                df[v_col] = pd.to_numeric(df[v_col], errors="coerce")
-                df = df.dropna().tail(260)
-                pts = [{"date": str(row[d_col]).strip(), "close": round(float(row[v_col]), 2)} for _, row in df.iterrows() if float(row[v_col]) > 0]
-                if len(pts) >= 2:
-                    fred_last_d = pts[-1]["date"]
-                    cur_us2y = existing_yf_map.get("US2Y") or {}
-                    cur_hist = cur_us2y.get("history") or []
-                    cur_last_d = cur_hist[-1]["date"] if cur_hist else ""
-                    if (not cur_us2y) or safe_float(cur_us2y.get("price"), 0.0) <= 0 or fred_last_d >= cur_last_d:
-                        lc, pc = pts[-1]["close"], pts[-2]["close"]
-                        extra["US2Y"] = {"price": lc, "prev_close": pc, "change": round(lc - pc, 2), "change_pct": round(((lc - pc) / pc) * 100, 2), "history": pts, "ext_session": None}
-                    elif len(cur_hist) < 30:
-                        existing_yf_map["US2Y"]["history"] = pts
+        r_cnbc = requests.get(
+            "https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=US2Y&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json",
+            headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"},
+            timeout=8
+        )
+        if r_cnbc.status_code == 200:
+            q_arr = ((r_cnbc.json().get("FormattedQuoteResult") or {}).get("FormattedQuote")) or []
+            if q_arr:
+                q0 = q_arr[0]
+                live_y = safe_float(q0.get("last"), 0.0)
+                prev_y = safe_float(q0.get("previous_day_closing"), 0.0)
+                if 0.1 <= live_y <= 15.0:
+                    prev_use = prev_y if prev_y > 0 else (extra.get("US2Y", {}).get("prev_close") or live_y)
+                    chg_y = round(live_y - prev_use, 2)
+                    pct_y = round((chg_y / prev_use) * 100, 2) if prev_use > 0 else 0.0
+                    hist_use = extra.get("US2Y", {}).get("history") or [{"date": now_tw.strftime("%Y-%m-%d"), "close": round(live_y, 2)}]
+                    extra["US2Y"] = {
+                        "price": round(live_y, 2), "prev_close": round(prev_use, 2),
+                        "change": chg_y, "change_pct": pct_y,
+                        "history": hist_use, "ext_session": None
+                    }
     except Exception:
         pass
 
@@ -964,7 +1107,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_yf_profiles, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -1010,6 +1153,37 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
         "monthly_rev": rev_map.get(tw_code) if tw_code else None
     }
 
+    profile_obj = None
+    if asset_type in ["us_stock", "tw_stock"]:
+        yf_p = cached_yf_profiles.get(symbol) or {}
+        if tw_code:
+            off_p = tw_prof_official.get(tw_code) or {}
+            tv_pm = (tw_official.get("prof_meta") or {}).get(tw_code) or {}
+            profile_obj = {
+                "full_name": off_p.get("full_name") or tv_pm.get("description") or to_trad(display_name),
+                "sector": tv_pm.get("sector") or "",
+                "industry": tv_pm.get("industry") or "",
+                "chairman": off_p.get("chairman") or "",
+                "gm": off_p.get("gm") or "",
+                "spokesman": off_p.get("spokesman") or "",
+                "tax_id": off_p.get("tax_id") or "",
+                "website": off_p.get("website") or yf_p.get("website") or "",
+                "summary": yf_p.get("summary") or "",
+                "source": off_p.get("source") or "TradingView / Yahoo Finance"
+            }
+        else:
+            us_pm = us_prof_meta.get(symbol) or {}
+            profile_obj = {
+                "full_name": us_pm.get("full_name") or symbol,
+                "sector": us_pm.get("sector") or "",
+                "industry": us_pm.get("industry") or "",
+                "country": yf_p.get("country") or "",
+                "employees": yf_p.get("employees"),
+                "website": yf_p.get("website") or "",
+                "summary": yf_p.get("summary") or "",
+                "source": "TradingView / Yahoo Finance"
+            }
+
     ns_obj = build_stock_specific_sentiment_and_news(symbol, to_trad(display_name), f_dict, mops_by_code, fetch_rss=fetch_rss) if asset_type in ["us_stock", "tw_stock"] else None
 
     return {
@@ -1017,7 +1191,7 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
         "price": round(p_val, dec), "prev_close": round(prev_val, dec), "change": round(chg_val, dec), "change_pct": round(pct_val, 2),
         "market_cap": round(mcap_val, 0) if mcap_val > 0 else 0,
         "ext_session": ext_obj, "intraday": [], "history": hist,
-        "fundamentals": f_dict, "news_sentiment": ns_obj
+        "fundamentals": f_dict, "profile": profile_obj, "news_sentiment": ns_obj
     }
 
 def main():
@@ -1039,9 +1213,14 @@ def main():
         mops_by_code, mops_general = fetch_official_mops_material_news()
         payload["mops_general"] = mops_general
 
+        tw_prof_official = fetch_official_tw_company_profiles()
         tw_official = fetch_tw_official_all_channels()
-        us_fund_map, us_mcap_map = fetch_tradingview_us_fundamentals(all_us_eq)
+        us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
+
+        cached_yf_profiles = load_cached_stock_profiles()
+        priority_prof_syms = list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] + list(sc_items_map.keys())
+        cached_yf_profiles = enrich_missing_yf_summaries(priority_prof_syms, cached_yf_profiles, max_fetch=30)
 
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
@@ -1050,7 +1229,7 @@ def main():
         )
 
         yf_map = download_all_yf_histories_and_ext(all_required_syms, all_us_eq)
-        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf(yf_map))
+        yf_map.update(fetch_official_us2y_and_taifex_vixtwn_and_txf())
 
         for f_sym, f_q in fetch_tradingview_futures_quotes().items():
             if f_sym in yf_map:
@@ -1062,7 +1241,11 @@ def main():
         built_cache = {}
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
-                built_cache[sym] = build_asset_object(sym, name, a_type, f_group, yf_map, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, fetch_rss=(sym in core_rss_set))
+                built_cache[sym] = build_asset_object(
+                    sym, name, a_type, f_group, yf_map, tw_official, us_fund_map, us_mcap_map,
+                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_yf_profiles,
+                    fetch_rss=(sym in core_rss_set)
+                )
             cp = dict(built_cache[sym])
             cp["name"] = to_trad(name)
             if f_group:
