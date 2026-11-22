@@ -192,7 +192,7 @@ def fetch_official_mops_material_news():
             pass
     return mops_by_code, mops_general
 
-# 2.5 上市櫃公司官方基本資料 OpenAPI (t187ap03_L / mopsfin_t187ap03_O) + 業務簡介快取
+# 2.5 上市櫃公司官方基本資料 OpenAPI (t187ap03_L / mopsfin_t187ap03_O) + 繁體中文業務簡介快取
 def fetch_official_tw_company_profiles():
     prof_map = {}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -264,26 +264,66 @@ def load_cached_stock_profiles():
             pass
     return cached
 
-def enrich_missing_yf_summaries(target_syms, cached_profiles, max_fetch=30):
-    fetched = 0
+_TRANSLATE_CACHE = {}
+
+def has_cjk(text):
+    return bool(re.search(r'[\u4e00-\u9fff]', str(text or "")))
+
+def translate_to_zh_tw(text):
+    s = str(text or "").strip()
+    if not s or has_cjk(s):
+        return to_trad(s)
+    if s in _TRANSLATE_CACHE:
+        return _TRANSLATE_CACHE[s]
+    try:
+        r = requests.post(
+            "https://translate.googleapis.com/translate_a/single",
+            params={"client": "gtx", "sl": "en", "tl": "zh-TW", "dt": "t"},
+            data={"q": s},
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=8
+        )
+        if r.status_code == 200:
+            arr = r.json()
+            if isinstance(arr, list) and arr and isinstance(arr[0], list):
+                zh = "".join(str(seg[0]) for seg in arr[0] if isinstance(seg, list) and seg and seg[0])
+                if zh.strip():
+                    res = to_trad(zh.strip())
+                    _TRANSLATE_CACHE[s] = res
+                    return res
+    except Exception:
+        pass
+    return s
+
+def enrich_missing_yf_summaries(target_syms, cached_profiles, max_fetch=30, max_translate=60):
+    fetched, translated = 0, 0
     for sym in dict.fromkeys(target_syms):
-        if fetched >= max_fetch:
-            break
         if sym in DELISTED_BLACKLIST:
             continue
-        if sym in cached_profiles and cached_profiles[sym].get("summary"):
+        prof = cached_profiles.get(sym)
+        if prof and prof.get("summary"):
+            if not has_cjk(prof["summary"]) and translated < max_translate:
+                prof["summary"] = translate_to_zh_tw(prof["summary"])
+                if prof.get("country") and not has_cjk(prof["country"]):
+                    prof["country"] = translate_to_zh_tw(prof["country"])
+                translated += 1
+                time.sleep(0.15)
+            continue
+        if fetched >= max_fetch:
             continue
         try:
             info = yf.Ticker(sym).info or {}
             summary = str(info.get("longBusinessSummary") or "").strip()
             if summary:
+                country_raw = str(info.get("country") or "").strip()
                 cached_profiles[sym] = {
-                    "summary": summary,
+                    "summary": translate_to_zh_tw(summary),
                     "website": str(info.get("website") or "").strip(),
-                    "country": str(info.get("country") or "").strip(),
+                    "country": translate_to_zh_tw(country_raw) if country_raw else "",
                     "employees": info.get("fullTimeEmployees")
                 }
                 fetched += 1
+                time.sleep(0.15)
         except Exception:
             continue
     return cached_profiles
@@ -1161,8 +1201,8 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
             tv_pm = (tw_official.get("prof_meta") or {}).get(tw_code) or {}
             profile_obj = {
                 "full_name": off_p.get("full_name") or tv_pm.get("description") or to_trad(display_name),
-                "sector": tv_pm.get("sector") or "",
-                "industry": tv_pm.get("industry") or "",
+                "sector": translate_to_zh_tw(tv_pm.get("sector") or ""),
+                "industry": translate_to_zh_tw(tv_pm.get("industry") or ""),
                 "chairman": off_p.get("chairman") or "",
                 "gm": off_p.get("gm") or "",
                 "spokesman": off_p.get("spokesman") or "",
@@ -1175,9 +1215,9 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, t
             us_pm = us_prof_meta.get(symbol) or {}
             profile_obj = {
                 "full_name": us_pm.get("full_name") or symbol,
-                "sector": us_pm.get("sector") or "",
-                "industry": us_pm.get("industry") or "",
-                "country": yf_p.get("country") or "",
+                "sector": translate_to_zh_tw(us_pm.get("sector") or ""),
+                "industry": translate_to_zh_tw(us_pm.get("industry") or ""),
+                "country": translate_to_zh_tw(yf_p.get("country") or ""),
                 "employees": yf_p.get("employees"),
                 "website": yf_p.get("website") or "",
                 "summary": yf_p.get("summary") or "",
@@ -1220,7 +1260,7 @@ def main():
 
         cached_yf_profiles = load_cached_stock_profiles()
         priority_prof_syms = list(US_STOCKS) + [m["ticker"] for m in TW_STOCKS.values()] + list(sc_items_map.keys())
-        cached_yf_profiles = enrich_missing_yf_summaries(priority_prof_syms, cached_yf_profiles, max_fetch=30)
+        cached_yf_profiles = enrich_missing_yf_summaries(priority_prof_syms, cached_yf_profiles, max_fetch=30, max_translate=60)
 
         all_required_syms = (
             list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) +
