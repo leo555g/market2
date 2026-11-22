@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-22 22:21:54 CST",
+  "last_updated": "2026-11-22 22:31:59 CST",
   "indices": [
     {
       "symbol": "^GSPC",
@@ -17580,10 +17580,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 33.03,
-      "prev_close": 32.93,
-      "change": 0.1,
-      "change_pct": 0.3,
+      "price": 32.96,
+      "prev_close": 33.03,
+      "change": -0.07,
+      "change_pct": -0.21,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -18627,6 +18627,10 @@
         {
           "date": "2026-11-20",
           "close": 33.03
+        },
+        {
+          "date": "2026-11-22",
+          "close": 32.96
         }
       ],
       "fundamentals": {
@@ -23984,10 +23988,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6772,
+      "price": 6.6765,
       "prev_close": 6.6665,
-      "change": 0.0107,
-      "change_pct": 0.16,
+      "change": 0.01,
+      "change_pct": 0.15,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -25034,7 +25038,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 6.6772
+          "close": 6.6765
         }
       ],
       "fundamentals": {
@@ -31244,10 +31248,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 33.03,
-      "prev_close": 32.93,
-      "change": 0.1,
-      "change_pct": 0.3,
+      "price": 32.96,
+      "prev_close": 33.03,
+      "change": -0.07,
+      "change_pct": -0.21,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -32291,6 +32295,10 @@
         {
           "date": "2026-11-20",
           "close": 33.03
+        },
+        {
+          "date": "2026-11-22",
+          "close": 32.96
         }
       ],
       "fundamentals": {
@@ -37648,10 +37656,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6772,
+      "price": 6.6765,
       "prev_close": 6.6665,
-      "change": 0.0107,
-      "change_pct": 0.16,
+      "change": 0.01,
+      "change_pct": 0.15,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -38698,7 +38706,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 6.6772
+          "close": 6.6765
         }
       ],
       "fundamentals": {
@@ -51349,14 +51357,14 @@
                 "date": "鉅亨號・Sat, 21 Nov 2026"
               },
               {
-                "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
-                "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
-              },
-              {
                 "title": "MSFT預測 — 2027的目標價 - TradingView",
                 "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
                 "date": "TradingView・Fri, 26 Jun 2026"
+              },
+              {
+                "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
+                "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
               }
             ],
             "bearish": [
@@ -51611,7 +51619,7 @@
         },
         {
           "date": "2026-02-10",
-          "close": 1863.42
+          "close": 1863.41
         },
         {
           "date": "2026-02-11",
@@ -69226,10 +69234,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 60647.22,
+      "price": 60560.2,
       "prev_close": 60094.09,
-      "change": 553.13,
-      "change_pct": 0.92,
+      "change": 466.11,
+      "change_pct": 0.78,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -70696,7 +70704,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 60663.05
+          "close": 60555.5
         }
       ],
       "fundamentals": {
@@ -70716,10 +70724,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1704.61,
+      "price": 1700.7,
       "prev_close": 1682.2,
-      "change": 22.41,
-      "change_pct": 1.33,
+      "change": 18.5,
+      "change_pct": 1.1,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -72186,7 +72194,7 @@
         },
         {
           "date": "2026-11-22",
-          "close": 1705.86
+          "close": 1701.52
         }
       ],
       "fundamentals": {
@@ -72535,7 +72543,7 @@
                 },
                 {
                   "date": "2026-02-10",
-                  "close": 1863.42
+                  "close": 1863.41
                 },
                 {
                   "date": "2026-02-11",
@@ -88721,14 +88729,14 @@
                         "date": "鉅亨號・Sat, 21 Nov 2026"
                       },
                       {
-                        "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
-                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
-                      },
-                      {
                         "title": "MSFT預測 — 2027的目標價 - TradingView",
                         "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
                         "date": "TradingView・Fri, 26 Jun 2026"
+                      },
+                      {
+                        "title": "小摩看好微軟(MSFT.US)Copilot：WorkIQ構築差異化優勢 2027年商業化有望提速 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Td3RfWHJVSk1xY0NtLTZFZlhuekpuQ1ZfOHRjVDdMNGtSWlRIbEUzaXFfb3h6UTVlUXU1YnFlRWdGQ2N4WHRGV3Q3OGhtUlBIMlMxdGJZOE15QmFLZGhzTHNzdnhuRXljN0ZRNXdPNm0?oc=5",
+                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -113796,7 +113804,7 @@
                 },
                 {
                   "date": "2026-04-30",
-                  "close": 257.41
+                  "close": 257.4
                 },
                 {
                   "date": "2026-05-01",
@@ -151788,7 +151796,7 @@
                 },
                 {
                   "date": "2026-02-19",
-                  "close": 275.45
+                  "close": 275.44
                 },
                 {
                   "date": "2026-02-20",
@@ -167199,7 +167207,7 @@
                 },
                 {
                   "date": "2026-04-29",
-                  "close": 1390.45
+                  "close": 1390.44
                 },
                 {
                   "date": "2026-04-30",
@@ -234965,7 +234973,7 @@
                 },
                 {
                   "date": "2025-12-26",
-                  "close": 2313.05
+                  "close": 2313.04
                 },
                 {
                   "date": "2025-12-29",
@@ -345738,7 +345746,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 315.88
+                  "close": 315.87
                 },
                 {
                   "date": "2026-01-30",
@@ -392059,7 +392067,7 @@
                 },
                 {
                   "date": "2025-11-26",
-                  "close": 588.28
+                  "close": 588.29
                 },
                 {
                   "date": "2025-11-28",
@@ -404235,7 +404243,7 @@
                 },
                 {
                   "date": "2026-01-15",
-                  "close": 638.21
+                  "close": 638.2
                 },
                 {
                   "date": "2026-01-16",
@@ -432289,7 +432297,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 292.67
+                  "close": 292.66
                 },
                 {
                   "date": "2025-12-19",
@@ -537763,7 +537771,7 @@
                 },
                 {
                   "date": "2025-12-16",
-                  "close": 660.05
+                  "close": 660.04
                 },
                 {
                   "date": "2025-12-17",
@@ -571755,7 +571763,7 @@
                 },
                 {
                   "date": "2026-01-30",
-                  "close": 356.42
+                  "close": 356.41
                 },
                 {
                   "date": "2026-02-02",
@@ -618624,7 +618632,7 @@
                 },
                 {
                   "date": "2026-04-15",
-                  "close": 188.41
+                  "close": 188.4
                 },
                 {
                   "date": "2026-04-16",
@@ -639980,7 +639988,7 @@
                 },
                 {
                   "date": "2026-01-05",
-                  "close": 610.9
+                  "close": 610.91
                 },
                 {
                   "date": "2026-01-06",
@@ -658627,7 +658635,7 @@
                 },
                 {
                   "date": "2026-04-17",
-                  "close": 1072.74
+                  "close": 1072.73
                 },
                 {
                   "date": "2026-04-20",
@@ -658951,7 +658959,7 @@
                 },
                 {
                   "date": "2026-08-13",
-                  "close": 1063.34
+                  "close": 1063.35
                 },
                 {
                   "date": "2026-08-14",
@@ -688975,7 +688983,7 @@
                 },
                 {
                   "date": "2026-01-26",
-                  "close": 65.51
+                  "close": 65.52
                 },
                 {
                   "date": "2026-01-27",
@@ -711634,7 +711642,7 @@
                 },
                 {
                   "date": "2026-01-07",
-                  "close": 877.41
+                  "close": 877.4
                 },
                 {
                   "date": "2026-01-08",
