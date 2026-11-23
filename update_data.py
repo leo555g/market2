@@ -334,40 +334,36 @@ def fetch_index_constituents(old_idx_sets):
     ua_browser = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     ua_wiki = "MarketDashboardBot/1.0 (https://leo555g.github.io/market2/)"
 
-    # 1. 元大台灣 50 (0050) 成分股
+    # 1. 元大台灣 50 (0050) 成分股：元大 API -> 維基百科 Template:臺灣50指數成分股票 -> 維基百科 臺灣50指數
     got_0050 = set()
     try:
         r = requests.get("https://www.yuantaetfs.com/api/StkWeights?date=&fundid=1066", headers={"User-Agent": ua_browser}, timeout=10, verify=False)
         if r.status_code == 200 and r.text.strip().startswith("["):
             for row in r.json():
                 c = str(row.get("code") or "").strip()
-                if re.match(r"^\d{4}$", c):
+                if re.match(r"^\d{4}$", c) and c not in ("0050", "006208"):
                     got_0050.add(c)
     except Exception:
         pass
     if len(got_0050) < 40:
-        try:
-            r_w = requests.get(
-                "https://zh.wikipedia.org/w/api.php",
-                params={"action": "parse", "page": "臺灣50指數", "prop": "text", "format": "json"},
-                headers={"User-Agent": ua_wiki},
-                timeout=10
-            )
-            if r_w.status_code == 200:
-                html_str = ((r_w.json().get("parse") or {}).get("text") or {}).get("*") or ""
-                parser = SimpleTableParser()
-                parser.feed(html_str)
-                for tb in parser.tables:
-                    codes_in_tb = set()
-                    for row in tb:
-                        for cell in row:
-                            if re.match(r"^\d{4}$", cell.strip()):
-                                codes_in_tb.add(cell.strip())
-                    if 45 <= len(codes_in_tb) <= 60:
-                        got_0050 = codes_in_tb
+        for wiki_page in ("Template:臺灣50指數成分股票", "臺灣50指數"):
+            try:
+                r_w = requests.get(
+                    "https://zh.wikipedia.org/w/api.php",
+                    params={"action": "parse", "page": wiki_page, "prop": "text", "format": "json"},
+                    headers={"User-Agent": ua_wiki},
+                    timeout=10
+                )
+                if r_w.status_code == 200:
+                    html_str = ((r_w.json().get("parse") or {}).get("text") or {}).get("*") or ""
+                    plain_str = html_lib.unescape(re.sub(r"<[^>]+>", "", html_str))
+                    cands = set(re.findall(r"(?:臺證所|台證所|TWSE)[：:]\s*(\d{4})", plain_str))
+                    cands -= {"0050", "006208"}
+                    if 45 <= len(cands) <= 60:
+                        got_0050 = cands
                         break
-        except Exception:
-            pass
+            except Exception:
+                pass
     if len(got_0050) >= 40:
         res["tw0050"] = got_0050
 
