@@ -511,7 +511,7 @@
     </div>
   </div>
 
-  <!-- 彈出式視窗 B：個股與指數多空情報視窗（含公司簡介） -->
+  <!-- 彈出式視窗 B：個股與指數多空情報視窗（含公司簡介與成分股標籤） -->
   <div id="stock-detail-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="card-bg border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
       <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
@@ -548,6 +548,15 @@
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
     const CLIENT_CB_MAP = { "^GSPC": "美國聯準會 (Fed)", "^DJI": "美國聯準會 (Fed)", "^NDX": "美國聯準會 (Fed)", "^SOX": "美國聯準會 (Fed)", "^RUT": "美國聯準會 (Fed)", "^TWII": "台灣央行 (CBC)", "^TWOII": "台灣央行 (CBC)", "TXF": "台灣央行 (CBC)", "^N225": "日本央行 (BoJ)", "^KS11": "韓國央行 (BoK)", "^FTSE": "英國央行 (BoE)", "^GDAXI": "歐洲央行 (ECB)", "^FCHI": "歐洲央行 (ECB)", "^VIX": "美國聯準會 (Fed)", "^VIXTWN": "台灣央行 (CBC)" };
+
+    function cleanRoleText(str) {
+      if (!str) return "";
+      return cleanTwText(str)
+        .replace(/[（(]\s*千億美元\s*[）)]/g, "")
+        .replace(/上市千億霸主\s*[：:]?\s*/g, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/^[\s：:·\-－]+|[\s：:·\-－]+$/g, "");
+    }
 
     function isCryptoSymbol(sym) {
       return sym === "BTC-USD" || sym === "ETH-USD";
@@ -922,7 +931,7 @@
         rows.push([
           categoryLabel, item.symbol, cleanTwText(item.name || item.symbol), p, pct, extP, extPct,
           f.pe ?? "", f.forward_pe ?? "", f.eps ?? "", f.roe ?? "", f.gross_margin ?? "", f.operating_margin ?? "", f.yoy_rev_growth ?? "",
-          extraNote || item.role || ""
+          cleanRoleText(extraNote || item.role || "")
         ]);
       };
 
@@ -1123,7 +1132,7 @@
         const sortedLeaders = [...validItems].sort((a, b) => Number(b.change_pct) - Number(a.change_pct));
         const top3 = sortedLeaders.slice(0, 3).map(ld => ({
           symbol: ld.symbol, name: market === "US" ? ld.symbol : cleanTwText(ld.name),
-          price: ld.price, change_pct: Number(Number(ld.change_pct).toFixed(2)), asset_type: ld.asset_type, role: ld.role || ""
+          price: ld.price, change_pct: Number(Number(ld.change_pct).toFixed(2)), asset_type: ld.asset_type, role: cleanRoleText(ld.role || "")
         }));
 
         const leaderSummaryStr = top3.map(ld => `${ld.name} (${formatSignedPct(ld.change_pct)})`).join("、");
@@ -1179,6 +1188,7 @@
           item.prev_close = Number((vq[0] / (1 + vq[1] / 100)).toFixed(dec));
         }
       }
+      if (item.role) item.role = cleanRoleText(item.role);
       if (item.asset_type === "us_stock" || item.asset_type === "tw_stock") {
         item.fundamentals = ensureValidFundamentals(item.symbol, item.fundamentals);
       }
@@ -1200,6 +1210,7 @@
 
       return {
         last_updated: "正在同步最新市場數據...",
+        index_constituents: { tw0050: [], sp500: [], ndx100: [] },
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^NDX", "納斯達克 100 指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         fear_greed: { us_cnn: { score: null, label_zh: "同步中", label_en: "LOADING" }, crypto_alt: { score: null, label_zh: "同步中", label_en: "LOADING" } },
@@ -1261,6 +1272,23 @@
     function safeId(symbol) { return String(symbol).replace(/[^a-zA-Z0-9]/g, "_"); }
     function isTwSymbol(sym) { return String(sym).endsWith(".TW") || String(sym).endsWith(".TWO"); }
     function isGlobalIndexSymbol(sym) { const item = allAssetsMap[sym]; return (item && item.asset_type === "index") || (String(sym).startsWith("^") && sym !== "^VIX" && sym !== "^VIXTWN"); }
+
+    function getStockIndexTags(symbol, profileObj = null) {
+      if (profileObj && Array.isArray(profileObj.index_tags) && profileObj.index_tags.length > 0) {
+        return profileObj.index_tags;
+      }
+      const ic = globalMarketData?.index_constituents || {};
+      const tags = [];
+      if (isTwSymbol(symbol)) {
+        const code = String(symbol).split(".")[0];
+        if (Array.isArray(ic.tw0050) && ic.tw0050.includes(code)) tags.push("0050成分股");
+      } else {
+        const normUs = String(symbol || "").toUpperCase().replace(".", "-");
+        if (Array.isArray(ic.sp500) && ic.sp500.includes(normUs)) tags.push("標普500成分股");
+        if (Array.isArray(ic.ndx100) && ic.ndx100.includes(normUs)) tags.push("納斯達克100成分股");
+      }
+      return tags;
+    }
 
     function isUsGreenUpAsset(symbolOrType) {
       if (symbolOrType === "^VIX" || symbolOrType === "BTC-USD" || symbolOrType === "ETH-USD" || symbolOrType === "us_stock") return true;
@@ -1376,7 +1404,7 @@
             const code = isUs ? it.symbol : String(it.symbol).split(".")[0];
             const useMcap = Number(existing?.market_cap || (isUs ? usMcapMap[it.symbol] : twMcapMap[code]) || it.market_cap || 0);
             const merged = applyFallbackIfMissing({
-              symbol: it.symbol, name: cleanTwText(it.name), role: it.role,
+              symbol: it.symbol, name: cleanTwText(it.name), role: cleanRoleText(it.role),
               asset_type: isUs ? "us_stock" : "tw_stock",
               price: usePrice, prev_close: existing?.prev_close || 0, change: existing?.change || 0, change_pct: usePct,
               market_cap: useMcap,
@@ -1471,6 +1499,7 @@
       const domId = safeId(item.symbol), isSelected = scCompareSymbols.includes(item.symbol), isUs = item.asset_type === "us_stock";
       const f = ensureValidFundamentals(item.symbol, item.fundamentals);
       item.fundamentals = f;
+      const cleanRole = cleanRoleText(item.role || "");
       const marketTag = isUs ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">🇺🇸 US</span>` : `<span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">🇹🇼 TW</span>`;
       const extObj = isUs ? ensureUsExtSession(item.symbol, item.price, item.ext_session) : null;
       const scExtHtml = (isUs && extObj)
@@ -1480,7 +1509,7 @@
       return `
         <div id="sc-card-${domId}" onclick="openStockModal('${item.symbol}')" class="sc-card-${domId} bg-slate-900/85 hover:bg-slate-900 rounded-xl p-3.5 border ${isSelected ? 'border-emerald-500/70' : 'border-slate-800'} cursor-pointer transition-all">
           <div class="flex items-start justify-between gap-2">
-            <div><div class="flex flex-wrap items-center gap-1.5">${marketTag}<span class="font-bold text-white text-sm">${isUs ? item.symbol : item.name}</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 mono">${item.symbol}</span></div><p class="text-[11px] text-indigo-300 font-medium mt-1">🎯 ${item.role}</p></div>
+            <div><div class="flex flex-wrap items-center gap-1.5">${marketTag}<span class="font-bold text-white text-sm">${isUs ? item.symbol : item.name}</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 mono">${item.symbol}</span></div><p class="text-[11px] text-indigo-300 font-medium mt-1">🎯 ${cleanRole}</p></div>
             <div class="text-right mono shrink-0"><div id="sc-price-${domId}" class="sc-price-${domId} text-base font-bold text-white">${formatDisplayPrice(item.price, item.symbol)}</div><div id="sc-pct-${domId}" class="sc-pct-${domId} text-xs font-bold ${getColorClass(item.change_pct, item.asset_type)}">${formatSignedPct(item.change_pct)}</div></div>
           </div>
           ${scExtHtml}
@@ -1925,6 +1954,8 @@
       currentModalSymbol = symbol; currentModalTab = "ALL";
       const isStock = (item.asset_type === "us_stock" || item.asset_type === "tw_stock");
       if (isStock) item.fundamentals = ensureValidFundamentals(symbol, item.fundamentals);
+      const cleanRole = cleanRoleText(item.role || "");
+
       document.getElementById("modal-stock-title").textContent = item.asset_type === "us_stock" ? item.symbol : cleanTwText(item.name);
       const pEl = document.getElementById("modal-stock-price");
       pEl.textContent = `${formatDisplayPrice(item.price, item.symbol)} (${formatSignedPct(item.change_pct)})`;
@@ -1939,31 +1970,38 @@
 
       const cbBadge = document.getElementById("modal-cb-badge"), cbName = cleanTwText(item.news_sentiment?.central_bank_name || CLIENT_CB_MAP[symbol]);
       if (!isStock && cbName) { cbBadge.classList.remove("hidden"); cbBadge.textContent = `專屬對映央行：${cbName}`; } else cbBadge.classList.add("hidden");
-      document.getElementById("modal-subtitle").textContent = item.role ? `產業鏈核心技術定位：${item.role}` : (isStock ? "公司簡介、MOPS最新月營收／財報指標與新聞時事來源" : `${cbName || '央行'}利率決策、總經數據與新聞時事`);
+      document.getElementById("modal-subtitle").textContent = cleanRole ? `產業鏈核心技術定位：${cleanRole}` : (isStock ? "公司簡介、MOPS最新月營收／財報指標與新聞時事來源" : `${cbName || '央行'}利率決策、總經數據與新聞時事`);
 
       const profEl = document.getElementById("modal-company-profile");
       if (profEl) {
         if (isStock) {
           const p = item.profile || {};
+          const idxTags = getStockIndexTags(symbol, p);
+          const idxBadgesHtml = idxTags.map(tag => {
+            if (tag.includes("0050")) return `<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">🏆 ${tag}</span>`;
+            if (tag.includes("標普500")) return `<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🇺🇸 ${tag}</span>`;
+            return `<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">⚡ ${tag}</span>`;
+          }).join("");
+
           const metaBadges = [
             p.sector ? `產業大類：${cleanTwText(p.sector)}` : "",
             p.industry ? `細分產業：${cleanTwText(p.industry)}` : "",
             p.chairman ? `董事長：${cleanTwText(p.chairman)}` : "",
             p.gm ? `總經理：${cleanTwText(p.gm)}` : "",
-            p.tax_id ? `統編：${p.tax_id}` : "",
-            p.country ? `總部：${p.country}` : "",
-            p.employees ? `員工數：${Number(p.employees).toLocaleString()} 人` : ""
+            p.tax_id ? `統編：${p.tax_id}` : ""
           ].filter(Boolean);
           const rawUrl = String(p.website || "").trim();
           const safeUrl = rawUrl ? (rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`) : "";
           const webLink = safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener" class="text-xs text-sky-300 hover:underline font-bold">🌐 公司官網 &rarr;</a>` : "";
-          const roleLine = item.role ? `<p class="text-xs text-indigo-200 leading-relaxed"><strong class="text-indigo-400">核心定位：</strong>${cleanTwText(item.role)}</p>` : "";
-          const summaryLine = p.summary ? `<p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-3 rounded-lg border border-slate-800/80"><strong class="text-sky-300">主要經營業務：</strong>${cleanTwText(p.summary)}</p>` : "";
+          const roleLine = cleanRole ? `<p class="text-xs text-indigo-200 leading-relaxed"><strong class="text-indigo-400">核心定位：</strong>${cleanRole}</p>` : "";
+          const summaryTitle = (p.business_source === "zh.wikipedia.org") ? "公司簡介：" : "主要經營業務：";
+          const summaryLine = p.summary ? `<p class="text-xs text-slate-300 leading-relaxed bg-slate-950/70 p-3 rounded-lg border border-slate-800/80"><strong class="text-sky-300">${summaryTitle}</strong>${cleanTwText(p.summary)}</p>` : "";
           profEl.innerHTML = `
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
-              <div class="flex items-center gap-2">
+              <div class="flex flex-wrap items-center gap-2">
                 <span class="text-xs font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">🏢 公司簡介</span>
                 <span class="text-sm font-bold text-white">${cleanTwText(p.full_name || item.name)}</span>
+                ${idxBadgesHtml}
               </div>
               ${webLink}
             </div>
@@ -2739,6 +2777,7 @@
       allIncomingLists.forEach(it => {
         if (it && it.symbol && Number(it.price) > 0) {
           if (isCryptoSymbol(it.symbol)) it.ext_session = null;
+          if (it.role) it.role = cleanRoleText(it.role);
           OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
           if (isTwSymbol(it.symbol)) {
             const c = String(it.symbol).split(".")[0];
@@ -2759,6 +2798,7 @@
           (sec.stages || []).forEach(stg => {
             (stg.items || []).forEach(it => {
               if (it && it.symbol && Number(it.price) > 0) {
+                if (it.role) it.role = cleanRoleText(it.role);
                 OFFLINE_FALLBACK_QUOTES[it.symbol] = [Number(it.price), Number(it.change_pct || 0)];
                 if (isTwSymbol(it.symbol)) {
                   const c = String(it.symbol).split(".")[0];
