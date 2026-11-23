@@ -1,7 +1,59 @@
 {
-  "last_updated": "2026-11-23 17:03:31 CST",
+  "last_updated": "2026-11-23 17:52:38 CST",
   "index_constituents": {
-    "tw0050": [],
+    "tw0050": [
+      "0062",
+      "1216",
+      "1303",
+      "2059",
+      "2301",
+      "2303",
+      "2308",
+      "2317",
+      "2327",
+      "2330",
+      "2344",
+      "2345",
+      "2357",
+      "2360",
+      "2368",
+      "2382",
+      "2383",
+      "2395",
+      "2408",
+      "2412",
+      "2449",
+      "2454",
+      "2603",
+      "2880",
+      "2881",
+      "2882",
+      "2883",
+      "2884",
+      "2885",
+      "2886",
+      "2887",
+      "2890",
+      "2891",
+      "2892",
+      "3008",
+      "3017",
+      "3037",
+      "3045",
+      "3231",
+      "3443",
+      "3653",
+      "3665",
+      "3711",
+      "4904",
+      "4958",
+      "5880",
+      "6446",
+      "6505",
+      "6669",
+      "7769",
+      "8046"
+    ],
     "sp500": [
       "A",
       "AAPL",
@@ -8796,9 +8848,9 @@
       "name": "英國富時 100",
       "asset_type": "index",
       "future_group": null,
-      "price": 10393.49,
+      "price": 10393.87,
       "prev_close": 10346.3,
-      "change": 47.19,
+      "change": 47.57,
       "change_pct": 0.46,
       "market_cap": 0,
       "ext_session": null,
@@ -9814,7 +9866,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 10393.49
+          "close": 10393.87
         }
       ],
       "fundamentals": {
@@ -9835,9 +9887,9 @@
       "name": "德國 DAX 指數",
       "asset_type": "index",
       "future_group": null,
-      "price": 24950.36,
+      "price": 24952.65,
       "prev_close": 24802.78,
-      "change": 147.58,
+      "change": 149.87,
       "change_pct": 0.6,
       "market_cap": 0,
       "ext_session": null,
@@ -10853,7 +10905,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 24950.36
+          "close": 24952.65
         }
       ],
       "fundamentals": {
@@ -10874,10 +10926,10 @@
       "name": "法國 CAC 40",
       "asset_type": "index",
       "future_group": null,
-      "price": 7976.27,
+      "price": 7968.67,
       "prev_close": 7927.75,
-      "change": 48.52,
-      "change_pct": 0.61,
+      "change": 40.92,
+      "change_pct": 0.52,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -11900,7 +11952,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 7976.27
+          "close": 7968.67
         }
       ],
       "fundamentals": {
@@ -11923,18 +11975,14 @@
       "name": "美國 CBOE VIX 恐慌指數",
       "asset_type": "vix_index",
       "future_group": null,
-      "price": 30.96,
+      "price": 30.49,
       "prev_close": 35.89,
-      "change": -4.93,
-      "change_pct": -13.74,
+      "change": -5.4,
+      "change_pct": -15.05,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
       "history": [
-        {
-          "date": "2025-11-21",
-          "close": 23.43
-        },
         {
           "date": "2025-11-24",
           "close": 20.52
@@ -12432,6 +12480,10 @@
           "close": 16.7
         },
         {
+          "date": "2026-05-25",
+          "close": 16.59
+        },
+        {
           "date": "2026-05-26",
           "close": 17.01
         },
@@ -12720,6 +12772,10 @@
           "close": 14.53
         },
         {
+          "date": "2026-09-07",
+          "close": 15.3
+        },
+        {
           "date": "2026-09-08",
           "close": 15.72
         },
@@ -12937,7 +12993,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 30.96
+          "close": 30.49
         }
       ],
       "fundamentals": {
@@ -14046,8 +14102,8 @@
       "future_group": null,
       "price": 4.69,
       "prev_close": 4.61,
-      "change": 0.08,
-      "change_pct": 1.73,
+      "change": 0.07,
+      "change_pct": 1.52,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -18218,10 +18274,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.86,
+      "price": 32.85,
       "prev_close": 33.03,
-      "change": -0.17,
-      "change_pct": -0.51,
+      "change": -0.18,
+      "change_pct": -0.54,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -19260,7 +19316,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 32.86
+          "close": 32.85
         }
       ],
       "fundamentals": {
@@ -19281,10 +19337,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6654,
+      "price": 0.6651,
       "prev_close": 0.6656,
-      "change": -0.0002,
-      "change_pct": -0.03,
+      "change": -0.0005,
+      "change_pct": -0.08,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -20323,7 +20379,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 0.6654
+          "close": 0.6651
         }
       ],
       "fundamentals": {
@@ -20344,10 +20400,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.839,
+      "price": 0.8388,
       "prev_close": 0.8441,
-      "change": -0.0051,
-      "change_pct": -0.6,
+      "change": -0.0053,
+      "change_pct": -0.63,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -21386,7 +21442,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 0.839
+          "close": 0.8388
         }
       ],
       "fundamentals": {
@@ -21407,10 +21463,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.18,
+      "price": 159.1,
       "prev_close": 159.71,
-      "change": -0.53,
-      "change_pct": -0.33,
+      "change": -0.61,
+      "change_pct": -0.38,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -22449,7 +22505,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 159.18
+          "close": 159.1
         }
       ],
       "fundamentals": {
@@ -22470,10 +22526,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.0988,
+      "price": 1.0982,
       "prev_close": 1.097,
-      "change": 0.0018,
-      "change_pct": 0.16,
+      "change": 0.0012,
+      "change_pct": 0.11,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -23512,7 +23568,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1.0988
+          "close": 1.0982
         }
       ],
       "fundamentals": {
@@ -23533,10 +23589,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3129,
+      "price": 1.3122,
       "prev_close": 1.3086,
-      "change": 0.0043,
-      "change_pct": 0.33,
+      "change": 0.0036,
+      "change_pct": 0.28,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -24575,7 +24631,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1.3129
+          "close": 1.3122
         }
       ],
       "fundamentals": {
@@ -24596,10 +24652,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6635,
+      "price": 6.653,
       "prev_close": 6.6665,
-      "change": -0.003,
-      "change_pct": -0.05,
+      "change": -0.0135,
+      "change_pct": -0.2,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -25638,7 +25694,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 6.6635
+          "close": 6.653
         }
       ],
       "fundamentals": {
@@ -25659,10 +25715,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.69,
+      "price": 103.76,
       "prev_close": 103.81,
-      "change": -0.12,
-      "change_pct": -0.12,
+      "change": -0.05,
+      "change_pct": -0.05,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -26669,7 +26725,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 103.69
+          "close": 103.76
         }
       ],
       "fundamentals": {
@@ -27729,8 +27785,8 @@
       "future_group": null,
       "price": 4.69,
       "prev_close": 4.61,
-      "change": 0.08,
-      "change_pct": 1.73,
+      "change": 0.07,
+      "change_pct": 1.52,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -31899,10 +31955,10 @@
       "name": "美元/台幣 (USD/TWD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 32.86,
+      "price": 32.85,
       "prev_close": 33.03,
-      "change": -0.17,
-      "change_pct": -0.51,
+      "change": -0.18,
+      "change_pct": -0.54,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -32941,7 +32997,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 32.86
+          "close": 32.85
         }
       ],
       "fundamentals": {
@@ -32962,10 +33018,10 @@
       "name": "澳幣/美元 (AUD/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.6654,
+      "price": 0.6651,
       "prev_close": 0.6656,
-      "change": -0.0002,
-      "change_pct": -0.03,
+      "change": -0.0005,
+      "change_pct": -0.08,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -34004,7 +34060,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 0.6654
+          "close": 0.6651
         }
       ],
       "fundamentals": {
@@ -34025,10 +34081,10 @@
       "name": "美元/瑞士法郎 (USD/CHF)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 0.839,
+      "price": 0.8388,
       "prev_close": 0.8441,
-      "change": -0.0051,
-      "change_pct": -0.6,
+      "change": -0.0053,
+      "change_pct": -0.63,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -35067,7 +35123,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 0.839
+          "close": 0.8388
         }
       ],
       "fundamentals": {
@@ -35088,10 +35144,10 @@
       "name": "美元/日圓 (USD/JPY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 159.18,
+      "price": 159.1,
       "prev_close": 159.71,
-      "change": -0.53,
-      "change_pct": -0.33,
+      "change": -0.61,
+      "change_pct": -0.38,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -36130,7 +36186,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 159.18
+          "close": 159.1
         }
       ],
       "fundamentals": {
@@ -36151,10 +36207,10 @@
       "name": "歐元/美元 (EUR/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.0988,
+      "price": 1.0982,
       "prev_close": 1.097,
-      "change": 0.0018,
-      "change_pct": 0.16,
+      "change": 0.0012,
+      "change_pct": 0.11,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -37193,7 +37249,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1.0988
+          "close": 1.0982
         }
       ],
       "fundamentals": {
@@ -37214,10 +37270,10 @@
       "name": "英鎊/美元 (GBP/USD)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 1.3129,
+      "price": 1.3122,
       "prev_close": 1.3086,
-      "change": 0.0043,
-      "change_pct": 0.33,
+      "change": 0.0036,
+      "change_pct": 0.28,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -38256,7 +38312,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1.3129
+          "close": 1.3122
         }
       ],
       "fundamentals": {
@@ -38277,10 +38333,10 @@
       "name": "美元/人民幣 (USD/CNY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 6.6635,
+      "price": 6.653,
       "prev_close": 6.6665,
-      "change": -0.003,
-      "change_pct": -0.05,
+      "change": -0.0135,
+      "change_pct": -0.2,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -39319,7 +39375,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 6.6635
+          "close": 6.653
         }
       ],
       "fundamentals": {
@@ -39340,10 +39396,10 @@
       "name": "美元指數 (DXY)",
       "asset_type": "fx_rate",
       "future_group": null,
-      "price": 103.69,
+      "price": 103.76,
       "prev_close": 103.81,
-      "change": -0.12,
-      "change_pct": -0.12,
+      "change": -0.05,
+      "change_pct": -0.05,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -40350,7 +40406,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 103.69
+          "close": 103.76
         }
       ],
       "fundamentals": {
@@ -40379,9 +40435,9 @@
       "change_pct": -14.01,
       "market_cap": 3025272970581.0,
       "ext_session": {
-        "price": 136.31,
-        "change": 10.78,
-        "change_pct": 8.59,
+        "price": 135.89,
+        "change": 10.36,
+        "change_pct": 8.25,
         "label": "盤前"
       },
       "intraday": [],
@@ -41498,9 +41554,9 @@
       "change_pct": -9.48,
       "market_cap": 1570360545680.0,
       "ext_session": {
-        "price": 342.65,
-        "change": 23.94,
-        "change_pct": 7.51,
+        "price": 339.89,
+        "change": 21.18,
+        "change_pct": 6.65,
         "label": "盤前"
       },
       "intraday": [],
@@ -42512,7 +42568,7 @@
       ],
       "fundamentals": {
         "pe": 20.54,
-        "forward_pe": 18.61,
+        "forward_pe": 18.62,
         "eps": 15.54,
         "gross_margin": "64.8%",
         "operating_margin": "57.8%",
@@ -42549,7 +42605,7 @@
         ],
         "bearish": [
           {
-            "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.61",
+            "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.62",
             "url": "https://finance.yahoo.com/quote/TSM/financials/",
             "date": "SEC Filings / Yahoo Finance (TSM)"
           },
@@ -42571,7 +42627,7 @@
             ],
             "bearish": [
               {
-                "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.61",
+                "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.62",
                 "url": "https://finance.yahoo.com/quote/TSM/financials/",
                 "date": "SEC Filings / Yahoo Finance (TSM)"
               }
@@ -42618,9 +42674,9 @@
       "change_pct": -7.69,
       "market_cap": 1735524117945.0,
       "ext_session": {
-        "price": 132.58,
-        "change": 4.79,
-        "change_pct": 3.75,
+        "price": 132.41,
+        "change": 4.62,
+        "change_pct": 3.62,
         "label": "盤前"
       },
       "intraday": [],
@@ -43120,9 +43176,9 @@
             "date": "SEC Filings / Yahoo Finance (SPCX)"
           },
           {
-            "title": "【01:03 即時新聞】Space Exploration Technologies(SPCX) 股價重挫逾5%／AI晶片租賃壓力與債務風險升溫 - 美股放大鏡",
-            "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ1B3YnZ2dGNjMzRkOHVKSzBQZHE2YkxlQy1PRlN1SjVlbDRLOGhaNnJ0NXFneWVwZWZhMzM0UkdRS2pTczlEQ2d3Q3FoUXJHQzhZZk84T2FvN1ZpQnVibzYzWVdodS1aZ3ZtaE1xUC1KZ01sbHJGTU03eUlxWHlqUVdLZExhTmcwWGRKVzR0Ym1KUUlh?oc=5",
-            "date": "美股放大鏡・Thu, 19 Nov 2026"
+            "title": "SpaceX股價較IPO後高點下跌了30%：接下來會發生什麼？ - TradingKey",
+            "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNam1hckQ3X1JrT0g2MGFmTXJjb1NqNXl6a1VWMlRxMmZUUzFoUUU1eFdqdHJLWkx5bjUtOGg5QVFzZUg5LUViUnVoOE1YRm5NSjRrXzRNZFFiRXFpUVIxcnFSVXFLWlppaS1wM3lyX0hkTnowVmkzcHpRRHVkSHEydjZ3UjJ6WlV2TnNZRDRhQTk5c0FZX3BUbnI1RlNqVkc4eFhZbTg5cV9TUnVDN3BoLWxkSGF5QTlHMmpHVEh4bTFXT2NqUzlEUUNpN2Zkdw?oc=5",
+            "date": "TradingKey・Sun, 22 Nov 2026"
           }
         ],
         "categories": {
@@ -43157,16 +43213,16 @@
                 "date": "永豐金證券・Mon, 16 Nov 2026"
               },
               {
-                "title": "SpaceX（SPCX）日線中軸承壓與下方需求區推演 - Moomoo",
-                "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxON1RxVFJXYVFIbE5kam1iQjUyV2wzOXNYNmpDbzFLSlFBT2hHaFNWUE1kREE1Y0liSXVXU0pYci1CX05hNU45ZEx3Y29MTUMzTVRMcl9JWGlYVnRXdTZ5dXZwdzNRLWxPYkNZUHY1SzBSZW9ucmNtUmVkd1FzMm9wQ2E4Ym0yeHNsZ1RFTy1zTlYzaExPZ1U0VFNjSDlSZjF1enc1c1hrdk9kQW1lWXFsNnFXUmpRdkNrTUo0UEV5amRudzFLRFFwQ25kdw?oc=5",
-                "date": "Moomoo・Fri, 20 Nov 2026"
+                "title": "Anthropic IPO Frenzy: SPCX, CBRS, ARM And Other Mega-Listings Show What Happens After The First-Day Pop - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNMDlnQnVyTDJkam5kQW1URUt1aW5iYmRjT3FzZjNEU2kweDFZc0t3RFktUFBkUlRUdDlJNUNHV21PaDlVUGJ6eU1FWXU2N3Y4SUVHRXhmTURjdlQtb0txdk9fQk1lZnVMdmlYSzNvbEVud2FuajlXQ2w5YXNSeDVjeWxUa2pMZWNEWEdkWGF1LU5EWS1VaGp1MHlJbjVBbmkycnVfMTdGa1lWTEM1UXd2ZGkyVjVrckNBSkJmTmRoSnhITkFZTmk1WHdtcmlCQkZkUU5nMHRnWWNCODB1c21UU2h1NDZxWFlEa0F2MTlrSlBVdw?oc=5",
+                "date": "TradingView・Tue, 17 Nov 2026"
               }
             ],
             "bearish": [
               {
-                "title": "【01:03 即時新聞】Space Exploration Technologies(SPCX) 股價重挫逾5%／AI晶片租賃壓力與債務風險升溫 - 美股放大鏡",
-                "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ1B3YnZ2dGNjMzRkOHVKSzBQZHE2YkxlQy1PRlN1SjVlbDRLOGhaNnJ0NXFneWVwZWZhMzM0UkdRS2pTczlEQ2d3Q3FoUXJHQzhZZk84T2FvN1ZpQnVibzYzWVdodS1aZ3ZtaE1xUC1KZ01sbHJGTU03eUlxWHlqUVdLZExhTmcwWGRKVzR0Ym1KUUlh?oc=5",
-                "date": "美股放大鏡・Thu, 19 Nov 2026"
+                "title": "SpaceX股價較IPO後高點下跌了30%：接下來會發生什麼？ - TradingKey",
+                "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNam1hckQ3X1JrT0g2MGFmTXJjb1NqNXl6a1VWMlRxMmZUUzFoUUU1eFdqdHJLWkx5bjUtOGg5QVFzZUg5LUViUnVoOE1YRm5NSjRrXzRNZFFiRXFpUVIxcnFSVXFLWlppaS1wM3lyX0hkTnowVmkzcHpRRHVkSHEydjZ3UjJ6WlV2TnNZRDRhQTk5c0FZX3BUbnI1RlNqVkc4eFhZbTg5cV9TUnVDN3BoLWxkSGF5QTlHMmpHVEh4bTFXT2NqUzlEUUNpN2Zkdw?oc=5",
+                "date": "TradingKey・Sun, 22 Nov 2026"
               }
             ]
           }
@@ -43184,9 +43240,9 @@
       "change_pct": -13.25,
       "market_cap": 696036664900.0,
       "ext_session": {
-        "price": 452.49,
-        "change": 28.1,
-        "change_pct": 6.62,
+        "price": 447.78,
+        "change": 23.39,
+        "change_pct": 5.51,
         "label": "盤前"
       },
       "intraday": [],
@@ -44303,9 +44359,9 @@
       "change_pct": -2.7,
       "market_cap": 3235509897217.0,
       "ext_session": {
-        "price": 277.59,
-        "change": 12.3,
-        "change_pct": 4.64,
+        "price": 277.11,
+        "change": 11.82,
+        "change_pct": 4.46,
         "label": "盤前"
       },
       "intraday": [],
@@ -45427,9 +45483,9 @@
       "change_pct": -5.93,
       "market_cap": 1433642301357.0,
       "ext_session": {
-        "price": 584.0,
-        "change": 23.16,
-        "change_pct": 4.13,
+        "price": 583.0,
+        "change": 22.16,
+        "change_pct": 3.95,
         "label": "盤前"
       },
       "intraday": [],
@@ -46546,9 +46602,9 @@
       "change_pct": -7.64,
       "market_cap": 1366942820098.0,
       "ext_session": {
-        "price": 363.37,
-        "change": 17.55,
-        "change_pct": 5.07,
+        "price": 361.36,
+        "change": 15.54,
+        "change_pct": 4.49,
         "label": "盤前"
       },
       "intraday": [],
@@ -47665,9 +47721,9 @@
       "change_pct": -12.19,
       "market_cap": 1453140690109.0,
       "ext_session": {
-        "price": 323.0,
-        "change": 18.59,
-        "change_pct": 6.11,
+        "price": 321.01,
+        "change": 16.6,
+        "change_pct": 5.45,
         "label": "盤前"
       },
       "intraday": [],
@@ -48784,9 +48840,9 @@
       "change_pct": -4.1,
       "market_cap": 2668898725155.0,
       "ext_session": {
-        "price": 256.56,
-        "change": 9.74,
-        "change_pct": 3.95,
+        "price": 256.3,
+        "change": 9.48,
+        "change_pct": 3.84,
         "label": "盤前"
       },
       "intraday": [],
@@ -49903,9 +49959,9 @@
       "change_pct": -1.9,
       "market_cap": 4978144107334.0,
       "ext_session": {
-        "price": 348.01,
-        "change": 5.45,
-        "change_pct": 1.59,
+        "price": 347.3,
+        "change": 4.74,
+        "change_pct": 1.38,
         "label": "盤前"
       },
       "intraday": [],
@@ -49984,7 +50040,7 @@
         },
         {
           "date": "2025-12-18",
-          "close": 271.25
+          "close": 271.24
         },
         {
           "date": "2025-12-19",
@@ -51027,9 +51083,9 @@
       "change_pct": -2.77,
       "market_cap": 3598139598062.0,
       "ext_session": {
-        "price": 499.45,
-        "change": 14.93,
-        "change_pct": 3.08,
+        "price": 499.75,
+        "change": 15.23,
+        "change_pct": 3.14,
         "label": "盤前"
       },
       "intraday": [],
@@ -52114,19 +52170,19 @@
                 "date": "Moomoo・Sun, 22 Nov 2026"
               },
               {
-                "title": "Microsoft stock sinks as new AI rival targets $27 billion business - TradingView",
-                "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPa2pURUgxNEcyY1BIUVVoOUR5S184LXNzOWFDQXlOcG5uTDhZSDlKMXNxblVYSHF0VkZMeTQ1M1diQ3ptNGcyemxkVW1QOWU4UjBmVHRlQ2dvd3JacFdIYXhhNGp0blVZcEVLME9xLXFDdEo1eTRnYm9MbUR5XzliaWYtZm8xd19XWFdTMW9tRGdiZlFhLUwtZC1kdFN0aVhHNC15RWFfS3EzYmcyZkp2ZDNHUldoQzd4X3pCNzBSY2hmdw?oc=5",
-                "date": "TradingView・Wed, 11 Nov 2026"
+                "title": "MSFT預測 — 2027的目標價 - TradingView",
+                "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
+                "date": "TradingView・Fri, 26 Jun 2026"
               },
               {
-                "title": "MSFT Nov 2026 535.000 put (MSFT261116P00535000) 過往股價及數據 - Yahoo 財經",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9zTG1TVGZVZWJzN252QjFfekJPZmNaUUgwUlplblJ4dG81LUxhMWZLeFUyY1Fqajlpb2tvVTYtR2dEQTlLRDhzZDF6NkV5Qzlja1pDNzJYaTJaUmhQamlpY1ZVRFh1d0pONzFvdEE1VVQ?oc=5",
-                "date": "Yahoo 財經・Thu, 19 Nov 2026"
+                "title": "花旗：Databricks大會印證企業AI擴散加速，力薦微軟(MSFT.US)、Snowflake(SNOW.US)、Palantir(PLTR.US)、MongoDB(MDB.US)四股作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE4xc2c4dG50RC1yc004RmxJZ2IzYjJVcVlvU3BYR1hYTi11TzAyWGN4Q1dfYzBaV09EOHpBYXFRcmN0UTRlOTFmMVBsU05wdERNVFlRNHpiVDZ4dDhTVHFKYUJvSk41YXBCR2t6Y0NWeGY?oc=5",
+                "date": "Investing.com 香港 - 股市報價& 財經新聞・Fri, 20 Nov 2026"
               },
               {
-                "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
-                "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+                "title": "Microsoft(MSFT) Stock Price Today | Quotes & News - Moomoo",
+                "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQZzAtdGFuN3h1SUNHQzRCaXVnZF9BMDF0M1E2NmZZTDVjNG5PRTkxV0p4bnNsQzIxenJVOUNLYjF5bmlWQ1dLM2lZSWVrTXUwNnUwZlpWVTIwdVJTZ29fWEE4ZUEwcVFhZllUYThZVEQyRHpKQWlRVHFWM040SGVucDJuNXdDWERQUkF6ODBLUjBKNmpxNEpHODRQWXNmOWQxTU1uNDlMSEJ2OFJ5bXlvM0ZDdGxUMEFwTkF1bGhRcDVzSlNyM2llT3pzeFhGTGhlbVpOanpSN1JqaEtRclN0MHIwdkkzd3hUb1F3ZHpRNGFhb3RSMVdJZlJsTDRFYm12aXV5Sk13aWVjcy1xNm9NRXZyOEFoYkw0MEI4cl9pOWE?oc=5",
+                "date": "Moomoo・Wed, 18 Nov 2026"
               }
             ],
             "bearish": [
@@ -53151,7 +53207,9 @@
         "website": "https://www.tsmc.com",
         "summary": "依客戶之訂單與其提供之產品設計說明，以從事製造與銷售積體電路",
         "business_source": "tw_yahoo_profile",
-        "index_tags": [],
+        "index_tags": [
+          "0050成分股"
+        ],
         "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
       },
       "news_sentiment": {
@@ -53162,9 +53220,9 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "2330 台積電 - 卓榮泰要出手了 至於外資會怎玩大家心裡有數 未來一週 加油 - 股市爆料同學會 - CMoney",
-            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9NcTBTcGt1RVRIMnpfd0dTVFZrWTNTdVR3ci1MRkNOUmpsNnh6WGFJUGNuM2RPejhUVFJNS3RTZ2NFb2lFSHRWZllKUl9nSllNSWw0aXN2cks?oc=5",
-            "date": "CMoney・Sun, 22 Nov 2026"
+            "title": "2330 台積電 - 台積加油💪💪 - 股市爆料同學會 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB5TTFqemU4Mkh6Z240RS16Y3VTblR0SFVCZG1RcEJXSHhiN05kVXp5YUVVWVhUb0trUDdLWFhOMHF3aS0xSk1ZT0diRzh1ZHdNem92Yy1TZ0Y?oc=5",
+            "date": "CMoney・Mon, 23 Nov 2026"
           }
         ],
         "bearish": [
@@ -53206,9 +53264,9 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
-                "title": "2330 台積電 - 卓榮泰要出手了 至於外資會怎玩大家心裡有數 未來一週 加油 - 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9NcTBTcGt1RVRIMnpfd0dTVFZrWTNTdVR3ci1MRkNOUmpsNnh6WGFJUGNuM2RPejhUVFJNS3RTZ2NFb2lFSHRWZllKUl9nSllNSWw0aXN2cks?oc=5",
-                "date": "CMoney・Sun, 22 Nov 2026"
+                "title": "2330 台積電 - 台積加油💪💪 - 股市爆料同學會 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB5TTFqemU4Mkh6Z240RS16Y3VTblR0SFVCZG1RcEJXSHhiN05kVXp5YUVVWVhUb0trUDdLWFhOMHF3aS0xSk1ZT0diRzh1ZHdNem92Yy1TZ0Y?oc=5",
+                "date": "CMoney・Mon, 23 Nov 2026"
               },
               {
                 "title": "【即時新聞】台積電(2330)零股爆量湧入！資金輪動，這「3檔概念股」掀多空激戰！ - CMoney投資網誌",
@@ -53216,9 +53274,9 @@
                 "date": "CMoney投資網誌・Mon, 23 Nov 2026"
               },
               {
-                "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、00919 群益台灣精選高息、2330 台積電、0056 元大高股息、00878 國泰永續高股息(1123)｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxPMGQxMFVNY1lNMXQ1YTJpWlJzeElUazN0Q1Y3U3Zjb2hkbE9hd2dCMUVjY1A2aHhHRUt2c0FNU3RtNXpLLU1EU2hGSXBoTno1RS10NlZQckVWdC0yV2JGT181Y25nczZ4akx2U1YwQXdqbmlJTGVHekJ0NXZqbkl2RWE1SnNBM2hkaS11VWZ2TFV5VHdxOE8tSGRTVlhIYy1OemdBMTlhdnpzOUZNSkVHMFpWbVpQZEZxcEhmM3BKQWEzU1kwXzVmbG5DTUVuS3l3Ynd4cktMZEVWMkpDR0hDNGE0ekRzbFpNVHRfbnhJd2xLc3NUbVpRODhRbXlzOXBPcjh2Z09QNE1BRVlYOGNGWl9pOHBrOUJ0Z2lKRHBvOFBnNXQ3UGVoTGZsa25LZ0RvQ1hRaDFlZGItaEdBcXN4Y0x0T043N3BPX1pESlhXdlNhc3c5Yi01RkNuQTg2X09xa096Yk5lcXJBVlVRSndHakpSa2NPQzJmX0E3Sy1xMXI0M1lqRWpOeDZEbXpsLTRQUDBSeDVYSFpiZy0tNHNFUnZJS3F0X29nRGY0SXRfVVZ3TjFYTm5GbTdPRXZBQXJVM2JPSld4U1V5TUFONWJEWjZFcWlSS2d2T3lGRnNGNEg5akFraVVMNnZIM0ZyZ2FNZHRpZFpVQVZNYVdPNTNxOGJGcmdLU2QxN0F0OWxfaXhwN0NJdXVTYkVPaUEtR0NfYWRMQVZSSXVOSWMwZ2U4dTFwLUk1Vzk2MUxtSUNMU2lQckNJUmE3Wng3UjB5cEM4YnNSSTJjREJtNy1ZZnJsaW9wY2E0allaa1JTeXJfWElkMXNqUXJtMFdYSEhDNHp3cTFFNG5kMHdvU29PVUZLeTBlMFlKZndL?oc=5",
-                "date": "永豐金證券・Mon, 23 Nov 2026"
+                "title": "AI要退燒了？台積電駁：先進製程照樣供不應求 - Yahoo股市",
+                "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxPVUF4elNid0tSLVBlVkVpY3hsTTJxNi1wd0pfVGZEN0hlRFFKZVNWdWpuNm1LdUJkUHdlQ0YwU3g0UUVmdS1ndGN6cTFFaDFaekZURHJWTUdSekJlTUNJVGZzX0xfTjQ3bkZ2SVB3SnZ6b1hRZ2czUzI3YTdGaGd3dVJKR2hTSGM0UThFZ3R2RmhaYWRncE1Wd3h6aWxNTnp2MHdyRDdkSFFGbHdSOExKWWlkNnFQdld6ZTBBbmNQSVFDSnIwTTF6STd2a2s0VEVYd1F6OXI3dVROX3p0cEQwWnFlR0JUbWVNMmsxMlYxemFOemkwTTY1TGc4QzllNE81MDY4czEzQ21zN0Z3dnV3dE1uVzFIaGJmWWpLc3JzUEFHQ0dHc1Q3NS1wZnNCOTNyajA5RnduWXZRdHRIcDlrcnpRMmIwOThZU2RBTjJn?oc=5",
+                "date": "Yahoo股市・Mon, 23 Nov 2026"
               }
             ],
             "bearish": [
@@ -54242,7 +54300,9 @@
         "website": "http://www.mediatek.com",
         "summary": "多媒體IC 、電腦週邊IC、高階消費性IC、其他特殊應用IC",
         "business_source": "tw_yahoo_profile",
-        "index_tags": [],
+        "index_tags": [
+          "0050成分股"
+        ],
         "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
       },
       "news_sentiment": {
@@ -54253,9 +54313,9 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "聯發科（2454）做什麼？Q3財報優於預期、股價反彈攻漲停，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-            "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxOZVQxSHlGVjVnelhmeWtmUE4ybG9GUkdLYjBkRXphZUNETk9PVWxsYmUxTFJYQUlpY08zc0U4LWpITGdDcy1DdXJwTFN2Y3JOVk9kci1wWXFab2hzS0hYM3d3U2NPX25rdHdnQmIxbFJuZWJiYkVRbGF6c0RaLURKb3h3dV96MGJRcW5VcUR4Zl8wWDZzOVJXbmZQazNMcEJRdGZMb3VkUVM2Tnp5T3prcUFweldUNE1sUEgxcHBXSFhnRE5jNXVkOTI5S0JwQkpwX3p0bHdGLS1qX3ZVcUR2bWh6X2J5ZW5zc1FuckhSRUltYzRyZkdlRlpOcVBIUXdfMUNnTTlCWDdtVXZUR21mVnR4MGNsRUF3MTc3MHZEZWZyeW5aU3E1UjVsbmlIQUZuSzVQZ1NObG80U2tzMDJHS0xrMTNxME9MMlo1dDVQT0pHTnVkSFdWWG5Ock9JN2V5SFphNWNVWlByVXF1VlVEZFNSRGFCanhNMmFYUll3SW5PMFlyYTJlNXEzMlBmUGhiOGx0d0tXSS1MNXBKdUpkNTgzX2xRZk5pRXBITDVvbGxWR3VDcndpeUNWeWZCRE9jS1JReHBmdVFZRzFPR2E0VzRwN3lydk5SNGc?oc=5",
-            "date": "永豐金證券・Mon, 23 Nov 2026"
+            "title": "聯發科(2454) 今日股價與討論 - 股市爆料同學會 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE85ejFuR3BQdWdERWg5RUI3dnl1Wi14QVZtdmk4ZFl3Z3liaWV6NW5kbHZYczBqRzRuX0RLNjdiMXh5RVB3UXR5X05CcVJkQk0?oc=5",
+            "date": "CMoney・Fri, 20 Nov 2026"
           }
         ],
         "bearish": [
@@ -54297,24 +54357,24 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
+                "title": "聯發科(2454) 今日股價與討論 - 股市爆料同學會 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE85ejFuR3BQdWdERWg5RUI3dnl1Wi14QVZtdmk4ZFl3Z3liaWV6NW5kbHZYczBqRzRuX0RLNjdiMXh5RVB3UXR5X05CcVJkQk0?oc=5",
+                "date": "CMoney・Fri, 20 Nov 2026"
+              },
+              {
                 "title": "聯發科（2454）做什麼？Q3財報優於預期、股價反彈攻漲停，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
                 "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxOZVQxSHlGVjVnelhmeWtmUE4ybG9GUkdLYjBkRXphZUNETk9PVWxsYmUxTFJYQUlpY08zc0U4LWpITGdDcy1DdXJwTFN2Y3JOVk9kci1wWXFab2hzS0hYM3d3U2NPX25rdHdnQmIxbFJuZWJiYkVRbGF6c0RaLURKb3h3dV96MGJRcW5VcUR4Zl8wWDZzOVJXbmZQazNMcEJRdGZMb3VkUVM2Tnp5T3prcUFweldUNE1sUEgxcHBXSFhnRE5jNXVkOTI5S0JwQkpwX3p0bHdGLS1qX3ZVcUR2bWh6X2J5ZW5zc1FuckhSRUltYzRyZkdlRlpOcVBIUXdfMUNnTTlCWDdtVXZUR21mVnR4MGNsRUF3MTc3MHZEZWZyeW5aU3E1UjVsbmlIQUZuSzVQZ1NObG80U2tzMDJHS0xrMTNxME9MMlo1dDVQT0pHTnVkSFdWWG5Ock9JN2V5SFphNWNVWlByVXF1VlVEZFNSRGFCanhNMmFYUll3SW5PMFlyYTJlNXEzMlBmUGhiOGx0d0tXSS1MNXBKdUpkNTgzX2xRZk5pRXBITDVvbGxWR3VDcndpeUNWeWZCRE9jS1JReHBmdVFZRzFPR2E0VzRwN3lydk5SNGc?oc=5",
                 "date": "永豐金證券・Mon, 23 Nov 2026"
               },
               {
-                "title": "2454 聯發科 - 登豐擁NV、聯想、任天堂三大客戶2027營運拚回穩- 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1hclF2Z3VKZFRKN1owN0RENG4xWFhTSU1VSFY5YjNvYWItcGxKSWRBXzBhNXFWakMzaXd6M2h0NDN5c01IbFpiemE3Z0tDbS1SR1Y1X0ZFbjg?oc=5",
-                "date": "CMoney・Mon, 23 Nov 2026"
+                "title": "殺盤嚇不倒真AI！【2454聯發科】⊕【3661世芯-KY】⊕雙亮燈，急拉止穩就看這關鍵!! - 鉅亨網",
+                "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFB3TmFRd2E4UWVrbGlwcW00NGZDYnliMEFnd3ktR0RZNC14Vk9yR2pHT29SdG54ak92X3FtUDVMekpOTEt4a1c0MUladk84U2M?oc=5",
+                "date": "鉅亨網・Mon, 23 Nov 2026"
               },
               {
                 "title": "【即時新聞】聯發科(2454)爆量大漲逾7%，這「4檔概念股」資金輪動升溫！ - CMoney投資網誌",
                 "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVW96dU9HSUN0VmdjdFUwVTlxS2hiMzh6N0VCZ2U0R2pOZ1RTNUR2Qi00SFJXT3BJaVVBX19aR0k1bG02R21lSEZpc2Y0c2lmaHhUODNtZXNIZlBsQlJRcWIteUstS1F2ZDFXODRvSjVqRUxnN29GQktrUjVZUVNfVFdQWWcwck04QkZWMHhjOEk?oc=5",
                 "date": "CMoney投資網誌・Mon, 23 Nov 2026"
-              },
-              {
-                "title": "再奪Google TPU大單！聯發科獲大摩高喊6188元目標價 前三季EPS衝47元 - Yahoo股市",
-                "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxPYXZuUTFlUTFEeGVwWHh5cHNxdW9uOHEyRHJ5ejNqSjBUb0tYUEdlQjJOMUhKbFR1bEtGTXlXWGRMaFdTUWFnV0RGaXRXaWNfbkZkZVJNM1ppS1NWNnU0aEcwaFdrbmNkQ1ZQak40c0tTSGZ2cnVtd3pyZlpNNi01UWJzQjNFUUhRbGZuSHJzdlVUTm9BcmhETHBBREZUNkpQcUthTUJvSW84eDVhajRSWTR2NUhHS2N0NGdrQWVRRnE5anNzR2FOcTNWWTlFNHNQNXhOQWZ1bFRIVUUyUk5rRjM4TUhOeXlQZjNtaDFYRndvdUZMandBdEZkWUd3a1dlMEpjeDZIck5RdG1xcktqTnlpdDZ0bGpCX1B6VUIzYTFHYmYxYUhObXdIWDdEd0FnYXNwLUVENUtEbW55YVhiWF9qSkNNTU1lT05QWTZrMl93T0daUU44aG9HOFpzb2xtQ04tc01ZTUI4TVk5UFhSZEg5OA?oc=5",
-                "date": "Yahoo股市・Sun, 22 Nov 2026"
               }
             ],
             "bearish": [
@@ -55338,7 +55398,9 @@
         "website": "https://www.deltaww.com/zh-TW/index",
         "summary": "電源供應系統、無刷直流風扇、散熱系統、微型化關鍵零組件、",
         "business_source": "tw_yahoo_profile",
-        "index_tags": [],
+        "index_tags": [
+          "0050成分股"
+        ],
         "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
       },
       "news_sentiment": {
@@ -56429,7 +56491,9 @@
         "website": "https://www.honhai.com/zh-tw",
         "summary": "電腦系統設備及其週邊之連接器等",
         "business_source": "tw_yahoo_profile",
-        "index_tags": [],
+        "index_tags": [
+          "0050成分股"
+        ],
         "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
       },
       "news_sentiment": {
@@ -57520,7 +57584,9 @@
         "website": "www.aseglobal.com",
         "summary": null,
         "business_source": null,
-        "index_tags": [],
+        "index_tags": [
+          "0050成分股"
+        ],
         "source": "證交所 OpenAPI (t187ap03_L)"
       },
       "news_sentiment": {
@@ -57531,9 +57597,9 @@
             "date": "證交所/櫃買中心 OpenAPI"
           },
           {
-            "title": "日月光投控：USI Asteelflash USA收購PCBA等業務案，最終購買價款約1312萬美元(補充) - 台視全球資訊網",
-            "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQU5zWkxObnItcFNPbmdQMXFCa2I3UFFJYURDalZOZ1k1bGNGdnN4SDRQY1FBSmtnUFI3eEg1V1FzZVlfYVVPdDVQVkJUNWlZWnJBQzF4X0pPdEl1Nl9Da0VJdXlVYUsxSzhHZkQyZ1ByNjZWaHA0NkpDdDJ3SENXekJYOTJVck5LRVpET1JhUzFfQQ?oc=5",
-            "date": "台視全球資訊網・Mon, 23 Nov 2026"
+            "title": "日月光投控：矽品精密工業11/21~23取得廠務工程，計約74億元 - CMoney",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBJdHdKVDVNUVhEa1RJZkI4dE1sck03cGhfdm9vdFhjY0t3eHFnMHlndmt4dThDbk16YXF5Vnp0VUtQbU9TdDhLNVpxeC1jU3FXbXZIQlNQUDY?oc=5",
+            "date": "CMoney・Mon, 23 Nov 2026"
           }
         ],
         "bearish": [
@@ -57575,14 +57641,14 @@
             "label": "📰 產業與個股新聞時事 (附來源連結)",
             "bullish": [
               {
+                "title": "日月光投控：矽品精密工業11/21~23取得廠務工程，計約74億元 - CMoney",
+                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBJdHdKVDVNUVhEa1RJZkI4dE1sck03cGhfdm9vdFhjY0t3eHFnMHlndmt4dThDbk16YXF5Vnp0VUtQbU9TdDhLNVpxeC1jU3FXbXZIQlNQUDY?oc=5",
+                "date": "CMoney・Mon, 23 Nov 2026"
+              },
+              {
                 "title": "日月光投控：USI Asteelflash USA收購PCBA等業務案，最終購買價款約1312萬美元(補充) - 台視全球資訊網",
                 "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQU5zWkxObnItcFNPbmdQMXFCa2I3UFFJYURDalZOZ1k1bGNGdnN4SDRQY1FBSmtnUFI3eEg1V1FzZVlfYVVPdDVQVkJUNWlZWnJBQzF4X0pPdEl1Nl9Da0VJdXlVYUsxSzhHZkQyZ1ByNjZWaHA0NkpDdDJ3SENXekJYOTJVck5LRVpET1JhUzFfQQ?oc=5",
                 "date": "台視全球資訊網・Mon, 23 Nov 2026"
-              },
-              {
-                "title": "3711 日月光投控- 融資斷頭炒底- 股市爆料同學會 - CMoney",
-                "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9vSlZrbVZMOTZ2d0JTUjBkVE0yU1ZXbkpIX1pvdjU0VUFfTlR1dndzRkVsUF9sa3RLdDRIYjBOQjFrOUUtcUJsSlg5dTFMZ0tSYkxEVmlHUE4?oc=5",
-                "date": "CMoney・Sun, 22 Nov 2026"
               },
               {
                 "title": "個股：日月光投控(3711)11/24受邀參加「Citi Taiwan Corporate Day」 - 富聯網",
@@ -57615,9 +57681,9 @@
       "change_pct": 2.16,
       "market_cap": 0,
       "ext_session": {
-        "price": 36934.0,
-        "change": 275.0,
-        "change_pct": 0.75,
+        "price": 36682.0,
+        "change": 23.0,
+        "change_pct": 0.06,
         "label": "夜盤"
       },
       "intraday": [],
@@ -57645,10 +57711,10 @@
       "name": "小S&P期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 7116.75,
+      "price": 7114.75,
       "prev_close": 6935.0,
-      "change": 181.75,
-      "change_pct": 2.62,
+      "change": 179.75,
+      "change_pct": 2.59,
       "market_cap": 0,
       "ext_session": {
         "price": 6935.0,
@@ -58660,7 +58726,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 7116.0
+          "close": 7115.25
         }
       ],
       "fundamentals": {
@@ -58681,10 +58747,10 @@
       "name": "小納斯達克期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 25972.75,
+      "price": 25970.75,
       "prev_close": 25126.5,
-      "change": 846.25,
-      "change_pct": 3.37,
+      "change": 844.25,
+      "change_pct": 3.36,
       "market_cap": 0,
       "ext_session": {
         "price": 25126.5,
@@ -59696,7 +59762,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 25962.0
+          "close": 25975.5
         }
       ],
       "fundamentals": {
@@ -59717,10 +59783,10 @@
       "name": "小道瓊期貨",
       "asset_type": "futures",
       "future_group": "us_index_futures",
-      "price": 49130.0,
+      "price": 49079.0,
       "prev_close": 48216.0,
-      "change": 914.0,
-      "change_pct": 1.9,
+      "change": 863.0,
+      "change_pct": 1.79,
       "market_cap": 0,
       "ext_session": {
         "price": 48216.0,
@@ -60732,7 +60798,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 49122.0
+          "close": 49079.0
         }
       ],
       "fundamentals": {
@@ -60753,10 +60819,10 @@
       "name": "黃金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 3612.7,
+      "price": 3617.4,
       "prev_close": 3515.4,
-      "change": 97.3,
-      "change_pct": 2.77,
+      "change": 102.0,
+      "change_pct": 2.9,
       "market_cap": 0,
       "ext_session": {
         "price": 3515.4,
@@ -61768,7 +61834,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 3612.1
+          "close": 3617.4
         }
       ],
       "fundamentals": {
@@ -61789,10 +61855,10 @@
       "name": "白銀期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 42.38,
+      "price": 42.53,
       "prev_close": 41.07,
-      "change": 1.31,
-      "change_pct": 3.2,
+      "change": 1.46,
+      "change_pct": 3.57,
       "market_cap": 0,
       "ext_session": {
         "price": 41.07,
@@ -62804,7 +62870,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 42.38
+          "close": 42.53
         }
       ],
       "fundamentals": {
@@ -62825,10 +62891,10 @@
       "name": "銅期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 5.52,
+      "price": 5.54,
       "prev_close": 5.49,
-      "change": 0.04,
-      "change_pct": 0.67,
+      "change": 0.05,
+      "change_pct": 0.94,
       "market_cap": 0,
       "ext_session": {
         "price": 5.49,
@@ -63840,7 +63906,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 5.52
+          "close": 5.54
         }
       ],
       "fundamentals": {
@@ -63861,10 +63927,10 @@
       "name": "鈀金期貨",
       "asset_type": "futures",
       "future_group": "metals_futures",
-      "price": 900.5,
+      "price": 906.5,
       "prev_close": 893.1,
-      "change": 7.4,
-      "change_pct": 0.83,
+      "change": 13.4,
+      "change_pct": 1.5,
       "market_cap": 0,
       "ext_session": {
         "price": 893.1,
@@ -64876,7 +64942,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 901.0
+          "close": 906.5
         }
       ],
       "fundamentals": {
@@ -64897,10 +64963,10 @@
       "name": "布蘭特原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 91.72,
+      "price": 91.91,
       "prev_close": 92.57,
-      "change": -0.85,
-      "change_pct": -0.92,
+      "change": -0.66,
+      "change_pct": -0.71,
       "market_cap": 0,
       "ext_session": {
         "price": 92.57,
@@ -65912,7 +65978,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 89.26
+          "close": 89.35
         }
       ],
       "fundamentals": {
@@ -65933,10 +65999,10 @@
       "name": "WTI 原油期貨",
       "asset_type": "futures",
       "future_group": "energy_futures",
-      "price": 82.77,
+      "price": 83.02,
       "prev_close": 83.41,
-      "change": -0.64,
-      "change_pct": -0.77,
+      "change": -0.39,
+      "change_pct": -0.47,
       "market_cap": 0,
       "ext_session": {
         "price": 83.41,
@@ -66948,7 +67014,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 82.78
+          "close": 83.0
         }
       ],
       "fundamentals": {
@@ -66969,15 +67035,15 @@
       "name": "黃豆期貨 (CBOT)",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 1227.0,
+      "price": 1228.0,
       "prev_close": 1220.75,
-      "change": 6.25,
-      "change_pct": 0.51,
+      "change": 7.25,
+      "change_pct": 0.59,
       "market_cap": 0,
       "ext_session": {
-        "price": 1230.75,
-        "change": 6.0,
-        "change_pct": 0.49,
+        "price": 1231.75,
+        "change": 7.0,
+        "change_pct": 0.57,
         "label": "芝商所 ZSH7"
       },
       "intraday": [],
@@ -67984,7 +68050,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1227.0
+          "close": 1228.0
         }
       ],
       "fundamentals": {
@@ -68005,15 +68071,15 @@
       "name": "小麥期貨 (CBOT)",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 573.75,
+      "price": 574.75,
       "prev_close": 574.25,
-      "change": -0.5,
-      "change_pct": -0.09,
+      "change": 0.5,
+      "change_pct": 0.09,
       "market_cap": 0,
       "ext_session": {
-        "price": 591.5,
-        "change": -0.5,
-        "change_pct": -0.08,
+        "price": 592.5,
+        "change": 0.5,
+        "change_pct": 0.08,
         "label": "芝商所 ZWH7"
       },
       "intraday": [],
@@ -69020,7 +69086,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 591.5
+          "close": 592.5
         }
       ],
       "fundamentals": {
@@ -69041,15 +69107,15 @@
       "name": "玉米期貨 (CBOT)",
       "asset_type": "futures",
       "future_group": "agri_futures",
-      "price": 435.75,
+      "price": 436.75,
       "prev_close": 434.5,
-      "change": 1.25,
-      "change_pct": 0.29,
+      "change": 2.25,
+      "change_pct": 0.52,
       "market_cap": 0,
       "ext_session": {
-        "price": 450.5,
-        "change": 1.75,
-        "change_pct": 0.39,
+        "price": 451.25,
+        "change": 2.5,
+        "change_pct": 0.56,
         "label": "芝商所 ZCH7"
       },
       "intraday": [],
@@ -70056,7 +70122,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 450.5
+          "close": 451.25
         }
       ],
       "fundamentals": {
@@ -70077,10 +70143,10 @@
       "name": "比特幣 (BTC)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 61506.69,
+      "price": 61235.47,
       "prev_close": 61161.91,
-      "change": 344.78,
-      "change_pct": 0.56,
+      "change": 73.56,
+      "change_pct": 0.12,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -71547,7 +71613,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 61473.49
+          "close": 61230.14
         }
       ],
       "fundamentals": {
@@ -71568,10 +71634,10 @@
       "name": "以太幣 (ETH)",
       "asset_type": "futures",
       "future_group": "crypto_assets",
-      "price": 1725.3,
+      "price": 1718.11,
       "prev_close": 1721.08,
-      "change": 4.22,
-      "change_pct": 0.25,
+      "change": -2.97,
+      "change_pct": -0.17,
       "market_cap": 0,
       "ext_session": null,
       "intraday": [],
@@ -73038,7 +73104,7 @@
         },
         {
           "date": "2026-11-23",
-          "close": 1724.31
+          "close": 1717.86
         }
       ],
       "fundamentals": {
@@ -74168,7 +74234,9 @@
                 "website": "https://www.tsmc.com",
                 "summary": "依客戶之訂單與其提供之產品設計說明，以從事製造與銷售積體電路",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -74179,9 +74247,9 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "2330 台積電 - 卓榮泰要出手了 至於外資會怎玩大家心裡有數 未來一週 加油 - 股市爆料同學會 - CMoney",
-                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9NcTBTcGt1RVRIMnpfd0dTVFZrWTNTdVR3ci1MRkNOUmpsNnh6WGFJUGNuM2RPejhUVFJNS3RTZ2NFb2lFSHRWZllKUl9nSllNSWw0aXN2cks?oc=5",
-                    "date": "CMoney・Sun, 22 Nov 2026"
+                    "title": "2330 台積電 - 台積加油💪💪 - 股市爆料同學會 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB5TTFqemU4Mkh6Z240RS16Y3VTblR0SFVCZG1RcEJXSHhiN05kVXp5YUVVWVhUb0trUDdLWFhOMHF3aS0xSk1ZT0diRzh1ZHdNem92Yy1TZ0Y?oc=5",
+                    "date": "CMoney・Mon, 23 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -74223,9 +74291,9 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
-                        "title": "2330 台積電 - 卓榮泰要出手了 至於外資會怎玩大家心裡有數 未來一週 加油 - 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9NcTBTcGt1RVRIMnpfd0dTVFZrWTNTdVR3ci1MRkNOUmpsNnh6WGFJUGNuM2RPejhUVFJNS3RTZ2NFb2lFSHRWZllKUl9nSllNSWw0aXN2cks?oc=5",
-                        "date": "CMoney・Sun, 22 Nov 2026"
+                        "title": "2330 台積電 - 台積加油💪💪 - 股市爆料同學會 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB5TTFqemU4Mkh6Z240RS16Y3VTblR0SFVCZG1RcEJXSHhiN05kVXp5YUVVWVhUb0trUDdLWFhOMHF3aS0xSk1ZT0diRzh1ZHdNem92Yy1TZ0Y?oc=5",
+                        "date": "CMoney・Mon, 23 Nov 2026"
                       },
                       {
                         "title": "【即時新聞】台積電(2330)零股爆量湧入！資金輪動，這「3檔概念股」掀多空激戰！ - CMoney投資網誌",
@@ -74233,9 +74301,9 @@
                         "date": "CMoney投資網誌・Mon, 23 Nov 2026"
                       },
                       {
-                        "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、00919 群益台灣精選高息、2330 台積電、0056 元大高股息、00878 國泰永續高股息(1123)｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                        "url": "https://news.google.com/rss/articles/CBMimAVBVV95cUxPMGQxMFVNY1lNMXQ1YTJpWlJzeElUazN0Q1Y3U3Zjb2hkbE9hd2dCMUVjY1A2aHhHRUt2c0FNU3RtNXpLLU1EU2hGSXBoTno1RS10NlZQckVWdC0yV2JGT181Y25nczZ4akx2U1YwQXdqbmlJTGVHekJ0NXZqbkl2RWE1SnNBM2hkaS11VWZ2TFV5VHdxOE8tSGRTVlhIYy1OemdBMTlhdnpzOUZNSkVHMFpWbVpQZEZxcEhmM3BKQWEzU1kwXzVmbG5DTUVuS3l3Ynd4cktMZEVWMkpDR0hDNGE0ekRzbFpNVHRfbnhJd2xLc3NUbVpRODhRbXlzOXBPcjh2Z09QNE1BRVlYOGNGWl9pOHBrOUJ0Z2lKRHBvOFBnNXQ3UGVoTGZsa25LZ0RvQ1hRaDFlZGItaEdBcXN4Y0x0T043N3BPX1pESlhXdlNhc3c5Yi01RkNuQTg2X09xa096Yk5lcXJBVlVRSndHakpSa2NPQzJmX0E3Sy1xMXI0M1lqRWpOeDZEbXpsLTRQUDBSeDVYSFpiZy0tNHNFUnZJS3F0X29nRGY0SXRfVVZ3TjFYTm5GbTdPRXZBQXJVM2JPSld4U1V5TUFONWJEWjZFcWlSS2d2T3lGRnNGNEg5akFraVVMNnZIM0ZyZ2FNZHRpZFpVQVZNYVdPNTNxOGJGcmdLU2QxN0F0OWxfaXhwN0NJdXVTYkVPaUEtR0NfYWRMQVZSSXVOSWMwZ2U4dTFwLUk1Vzk2MUxtSUNMU2lQckNJUmE3Wng3UjB5cEM4YnNSSTJjREJtNy1ZZnJsaW9wY2E0allaa1JTeXJfWElkMXNqUXJtMFdYSEhDNHp3cTFFNG5kMHdvU29PVUZLeTBlMFlKZndL?oc=5",
-                        "date": "永豐金證券・Mon, 23 Nov 2026"
+                        "title": "AI要退燒了？台積電駁：先進製程照樣供不應求 - Yahoo股市",
+                        "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxPVUF4elNid0tSLVBlVkVpY3hsTTJxNi1wd0pfVGZEN0hlRFFKZVNWdWpuNm1LdUJkUHdlQ0YwU3g0UUVmdS1ndGN6cTFFaDFaekZURHJWTUdSekJlTUNJVGZzX0xfTjQ3bkZ2SVB3SnZ6b1hRZ2czUzI3YTdGaGd3dVJKR2hTSGM0UThFZ3R2RmhaYWRncE1Wd3h6aWxNTnp2MHdyRDdkSFFGbHdSOExKWWlkNnFQdld6ZTBBbmNQSVFDSnIwTTF6STd2a2s0VEVYd1F6OXI3dVROX3p0cEQwWnFlR0JUbWVNMmsxMlYxemFOemkwTTY1TGc4QzllNE81MDY4czEzQ21zN0Z3dnV3dE1uVzFIaGJmWWpLc3JzUEFHQ0dHc1Q3NS1wZnNCOTNyajA5RnduWXZRdHRIcDlrcnpRMmIwOThZU2RBTjJn?oc=5",
+                        "date": "Yahoo股市・Mon, 23 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -75259,7 +75327,9 @@
                 "website": "http://www.mediatek.com",
                 "summary": "多媒體IC 、電腦週邊IC、高階消費性IC、其他特殊應用IC",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -75270,9 +75340,9 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "聯發科（2454）做什麼？Q3財報優於預期、股價反彈攻漲停，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
-                    "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxOZVQxSHlGVjVnelhmeWtmUE4ybG9GUkdLYjBkRXphZUNETk9PVWxsYmUxTFJYQUlpY08zc0U4LWpITGdDcy1DdXJwTFN2Y3JOVk9kci1wWXFab2hzS0hYM3d3U2NPX25rdHdnQmIxbFJuZWJiYkVRbGF6c0RaLURKb3h3dV96MGJRcW5VcUR4Zl8wWDZzOVJXbmZQazNMcEJRdGZMb3VkUVM2Tnp5T3prcUFweldUNE1sUEgxcHBXSFhnRE5jNXVkOTI5S0JwQkpwX3p0bHdGLS1qX3ZVcUR2bWh6X2J5ZW5zc1FuckhSRUltYzRyZkdlRlpOcVBIUXdfMUNnTTlCWDdtVXZUR21mVnR4MGNsRUF3MTc3MHZEZWZyeW5aU3E1UjVsbmlIQUZuSzVQZ1NObG80U2tzMDJHS0xrMTNxME9MMlo1dDVQT0pHTnVkSFdWWG5Ock9JN2V5SFphNWNVWlByVXF1VlVEZFNSRGFCanhNMmFYUll3SW5PMFlyYTJlNXEzMlBmUGhiOGx0d0tXSS1MNXBKdUpkNTgzX2xRZk5pRXBITDVvbGxWR3VDcndpeUNWeWZCRE9jS1JReHBmdVFZRzFPR2E0VzRwN3lydk5SNGc?oc=5",
-                    "date": "永豐金證券・Mon, 23 Nov 2026"
+                    "title": "聯發科(2454) 今日股價與討論 - 股市爆料同學會 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE85ejFuR3BQdWdERWg5RUI3dnl1Wi14QVZtdmk4ZFl3Z3liaWV6NW5kbHZYczBqRzRuX0RLNjdiMXh5RVB3UXR5X05CcVJkQk0?oc=5",
+                    "date": "CMoney・Fri, 20 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -75314,24 +75384,24 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
+                        "title": "聯發科(2454) 今日股價與討論 - 股市爆料同學會 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE85ejFuR3BQdWdERWg5RUI3dnl1Wi14QVZtdmk4ZFl3Z3liaWV6NW5kbHZYczBqRzRuX0RLNjdiMXh5RVB3UXR5X05CcVJkQk0?oc=5",
+                        "date": "CMoney・Fri, 20 Nov 2026"
+                      },
+                      {
                         "title": "聯發科（2454）做什麼？Q3財報優於預期、股價反彈攻漲停，AI ASIC成長動能完整解析｜豐雲學堂2026 年 11 月 - 永豐金證券",
                         "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxOZVQxSHlGVjVnelhmeWtmUE4ybG9GUkdLYjBkRXphZUNETk9PVWxsYmUxTFJYQUlpY08zc0U4LWpITGdDcy1DdXJwTFN2Y3JOVk9kci1wWXFab2hzS0hYM3d3U2NPX25rdHdnQmIxbFJuZWJiYkVRbGF6c0RaLURKb3h3dV96MGJRcW5VcUR4Zl8wWDZzOVJXbmZQazNMcEJRdGZMb3VkUVM2Tnp5T3prcUFweldUNE1sUEgxcHBXSFhnRE5jNXVkOTI5S0JwQkpwX3p0bHdGLS1qX3ZVcUR2bWh6X2J5ZW5zc1FuckhSRUltYzRyZkdlRlpOcVBIUXdfMUNnTTlCWDdtVXZUR21mVnR4MGNsRUF3MTc3MHZEZWZyeW5aU3E1UjVsbmlIQUZuSzVQZ1NObG80U2tzMDJHS0xrMTNxME9MMlo1dDVQT0pHTnVkSFdWWG5Ock9JN2V5SFphNWNVWlByVXF1VlVEZFNSRGFCanhNMmFYUll3SW5PMFlyYTJlNXEzMlBmUGhiOGx0d0tXSS1MNXBKdUpkNTgzX2xRZk5pRXBITDVvbGxWR3VDcndpeUNWeWZCRE9jS1JReHBmdVFZRzFPR2E0VzRwN3lydk5SNGc?oc=5",
                         "date": "永豐金證券・Mon, 23 Nov 2026"
                       },
                       {
-                        "title": "2454 聯發科 - 登豐擁NV、聯想、任天堂三大客戶2027營運拚回穩- 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1hclF2Z3VKZFRKN1owN0RENG4xWFhTSU1VSFY5YjNvYWItcGxKSWRBXzBhNXFWakMzaXd6M2h0NDN5c01IbFpiemE3Z0tDbS1SR1Y1X0ZFbjg?oc=5",
-                        "date": "CMoney・Mon, 23 Nov 2026"
+                        "title": "殺盤嚇不倒真AI！【2454聯發科】⊕【3661世芯-KY】⊕雙亮燈，急拉止穩就看這關鍵!! - 鉅亨網",
+                        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFB3TmFRd2E4UWVrbGlwcW00NGZDYnliMEFnd3ktR0RZNC14Vk9yR2pHT29SdG54ak92X3FtUDVMekpOTEt4a1c0MUladk84U2M?oc=5",
+                        "date": "鉅亨網・Mon, 23 Nov 2026"
                       },
                       {
                         "title": "【即時新聞】聯發科(2454)爆量大漲逾7%，這「4檔概念股」資金輪動升溫！ - CMoney投資網誌",
                         "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVW96dU9HSUN0VmdjdFUwVTlxS2hiMzh6N0VCZ2U0R2pOZ1RTNUR2Qi00SFJXT3BJaVVBX19aR0k1bG02R21lSEZpc2Y0c2lmaHhUODNtZXNIZlBsQlJRcWIteUstS1F2ZDFXODRvSjVqRUxnN29GQktrUjVZUVNfVFdQWWcwck04QkZWMHhjOEk?oc=5",
                         "date": "CMoney投資網誌・Mon, 23 Nov 2026"
-                      },
-                      {
-                        "title": "再奪Google TPU大單！聯發科獲大摩高喊6188元目標價 前三季EPS衝47元 - Yahoo股市",
-                        "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxPYXZuUTFlUTFEeGVwWHh5cHNxdW9uOHEyRHJ5ejNqSjBUb0tYUEdlQjJOMUhKbFR1bEtGTXlXWGRMaFdTUWFnV0RGaXRXaWNfbkZkZVJNM1ppS1NWNnU0aEcwaFdrbmNkQ1ZQak40c0tTSGZ2cnVtd3pyZlpNNi01UWJzQjNFUUhRbGZuSHJzdlVUTm9BcmhETHBBREZUNkpQcUthTUJvSW84eDVhajRSWTR2NUhHS2N0NGdrQWVRRnE5anNzR2FOcTNWWTlFNHNQNXhOQWZ1bFRIVUUyUk5rRjM4TUhOeXlQZjNtaDFYRndvdUZMandBdEZkWUd3a1dlMEpjeDZIck5RdG1xcktqTnlpdDZ0bGpCX1B6VUIzYTFHYmYxYUhObXdIWDdEd0FnYXNwLUVENUtEbW55YVhiWF9qSkNNTU1lT05QWTZrMl93T0daUU44aG9HOFpzb2xtQ04tc01ZTUI4TVk5UFhSZEg5OA?oc=5",
-                        "date": "Yahoo股市・Sun, 22 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -76355,7 +76425,9 @@
                 "website": "www.aseglobal.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -76366,9 +76438,9 @@
                     "date": "證交所/櫃買中心 OpenAPI"
                   },
                   {
-                    "title": "日月光投控：USI Asteelflash USA收購PCBA等業務案，最終購買價款約1312萬美元(補充) - 台視全球資訊網",
-                    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQU5zWkxObnItcFNPbmdQMXFCa2I3UFFJYURDalZOZ1k1bGNGdnN4SDRQY1FBSmtnUFI3eEg1V1FzZVlfYVVPdDVQVkJUNWlZWnJBQzF4X0pPdEl1Nl9Da0VJdXlVYUsxSzhHZkQyZ1ByNjZWaHA0NkpDdDJ3SENXekJYOTJVck5LRVpET1JhUzFfQQ?oc=5",
-                    "date": "台視全球資訊網・Mon, 23 Nov 2026"
+                    "title": "日月光投控：矽品精密工業11/21~23取得廠務工程，計約74億元 - CMoney",
+                    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBJdHdKVDVNUVhEa1RJZkI4dE1sck03cGhfdm9vdFhjY0t3eHFnMHlndmt4dThDbk16YXF5Vnp0VUtQbU9TdDhLNVpxeC1jU3FXbXZIQlNQUDY?oc=5",
+                    "date": "CMoney・Mon, 23 Nov 2026"
                   }
                 ],
                 "bearish": [
@@ -76410,14 +76482,14 @@
                     "label": "📰 產業與個股新聞時事 (附來源連結)",
                     "bullish": [
                       {
+                        "title": "日月光投控：矽品精密工業11/21~23取得廠務工程，計約74億元 - CMoney",
+                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBJdHdKVDVNUVhEa1RJZkI4dE1sck03cGhfdm9vdFhjY0t3eHFnMHlndmt4dThDbk16YXF5Vnp0VUtQbU9TdDhLNVpxeC1jU3FXbXZIQlNQUDY?oc=5",
+                        "date": "CMoney・Mon, 23 Nov 2026"
+                      },
+                      {
                         "title": "日月光投控：USI Asteelflash USA收購PCBA等業務案，最終購買價款約1312萬美元(補充) - 台視全球資訊網",
                         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQU5zWkxObnItcFNPbmdQMXFCa2I3UFFJYURDalZOZ1k1bGNGdnN4SDRQY1FBSmtnUFI3eEg1V1FzZVlfYVVPdDVQVkJUNWlZWnJBQzF4X0pPdEl1Nl9Da0VJdXlVYUsxSzhHZkQyZ1ByNjZWaHA0NkpDdDJ3SENXekJYOTJVck5LRVpET1JhUzFfQQ?oc=5",
                         "date": "台視全球資訊網・Mon, 23 Nov 2026"
-                      },
-                      {
-                        "title": "3711 日月光投控- 融資斷頭炒底- 股市爆料同學會 - CMoney",
-                        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9vSlZrbVZMOTZ2d0JTUjBkVE0yU1ZXbkpIX1pvdjU0VUFfTlR1dndzRkVsUF9sa3RLdDRIYjBOQjFrOUUtcUJsSlg5dTFMZ0tSYkxEVmlHUE4?oc=5",
-                        "date": "CMoney・Sun, 22 Nov 2026"
                       },
                       {
                         "title": "個股：日月光投控(3711)11/24受邀參加「Citi Taiwan Corporate Day」 - 富聯網",
@@ -77446,7 +77518,9 @@
                 "website": "https://www.honhai.com/zh-tw",
                 "summary": "電腦系統設備及其週邊之連接器等",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -78537,7 +78611,9 @@
                 "website": "https://www.deltaww.com/zh-TW/index",
                 "summary": "電源供應系統、無刷直流風扇、散熱系統、微型化關鍵零組件、",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -79628,7 +79704,9 @@
                 "website": "www.quantatw.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -80709,7 +80787,9 @@
                 "website": "www.fubon.com",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -81790,7 +81870,9 @@
                 "website": "www.cathayholdings.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -82871,7 +82953,9 @@
                 "website": "https://www.cht.com.tw",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -83952,7 +84036,9 @@
                 "website": "https://www.ctbcholding.com",
                 "summary": "投資金融相關事業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -84132,9 +84218,9 @@
               "change_pct": -14.01,
               "market_cap": 3025272970581.0,
               "ext_session": {
-                "price": 136.31,
-                "change": 10.78,
-                "change_pct": 8.59,
+                "price": 135.89,
+                "change": 10.36,
+                "change_pct": 8.25,
                 "label": "盤前"
               },
               "intraday": [],
@@ -85252,9 +85338,9 @@
               "change_pct": -9.48,
               "market_cap": 1570360545680.0,
               "ext_session": {
-                "price": 342.65,
-                "change": 23.94,
-                "change_pct": 7.51,
+                "price": 339.89,
+                "change": 21.18,
+                "change_pct": 6.65,
                 "label": "盤前"
               },
               "intraday": [],
@@ -86266,7 +86352,7 @@
               ],
               "fundamentals": {
                 "pe": 20.54,
-                "forward_pe": 18.61,
+                "forward_pe": 18.62,
                 "eps": 15.54,
                 "gross_margin": "64.8%",
                 "operating_margin": "57.8%",
@@ -86303,7 +86389,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.61",
+                    "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.62",
                     "url": "https://finance.yahoo.com/quote/TSM/financials/",
                     "date": "SEC Filings / Yahoo Finance (TSM)"
                   },
@@ -86325,7 +86411,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.61",
+                        "title": "[估值水位檢視] 本益比 PE 20.54 倍、預估本益比 18.62",
                         "url": "https://finance.yahoo.com/quote/TSM/financials/",
                         "date": "SEC Filings / Yahoo Finance (TSM)"
                       }
@@ -86373,9 +86459,9 @@
               "change_pct": -12.19,
               "market_cap": 1453140690109.0,
               "ext_session": {
-                "price": 323.0,
-                "change": 18.59,
-                "change_pct": 6.11,
+                "price": 321.01,
+                "change": 16.6,
+                "change_pct": 5.45,
                 "label": "盤前"
               },
               "intraday": [],
@@ -87493,9 +87579,9 @@
               "change_pct": -1.9,
               "market_cap": 4978144107334.0,
               "ext_session": {
-                "price": 348.01,
-                "change": 5.45,
-                "change_pct": 1.59,
+                "price": 347.3,
+                "change": 4.74,
+                "change_pct": 1.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -87574,7 +87660,7 @@
                 },
                 {
                   "date": "2025-12-18",
-                  "close": 271.25
+                  "close": 271.24
                 },
                 {
                   "date": "2025-12-19",
@@ -88618,9 +88704,9 @@
               "change_pct": -2.77,
               "market_cap": 3598139598062.0,
               "ext_session": {
-                "price": 499.45,
-                "change": 14.93,
-                "change_pct": 3.08,
+                "price": 499.75,
+                "change": 15.23,
+                "change_pct": 3.14,
                 "label": "盤前"
               },
               "intraday": [],
@@ -89705,19 +89791,19 @@
                         "date": "Moomoo・Sun, 22 Nov 2026"
                       },
                       {
-                        "title": "Microsoft stock sinks as new AI rival targets $27 billion business - TradingView",
-                        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPa2pURUgxNEcyY1BIUVVoOUR5S184LXNzOWFDQXlOcG5uTDhZSDlKMXNxblVYSHF0VkZMeTQ1M1diQ3ptNGcyemxkVW1QOWU4UjBmVHRlQ2dvd3JacFdIYXhhNGp0blVZcEVLME9xLXFDdEo1eTRnYm9MbUR5XzliaWYtZm8xd19XWFdTMW9tRGdiZlFhLUwtZC1kdFN0aVhHNC15RWFfS3EzYmcyZkp2ZDNHUldoQzd4X3pCNzBSY2hmdw?oc=5",
-                        "date": "TradingView・Wed, 11 Nov 2026"
+                        "title": "MSFT預測 — 2027的目標價 - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBqNWdRV28tSnJKRHF1cjUwcXBleTVDTTg1UVk4YV9CdmVLeU5ENXE4RWgtRUMwbEJ5U2lORlpzY1ZTdzloMjltWERCU3RLVHJzdl9GTmlZS255cnJvQWtLQ3ZLXy0yLTB0UmlRbXhkbS0xVE43WFNEcA?oc=5",
+                        "date": "TradingView・Fri, 26 Jun 2026"
                       },
                       {
-                        "title": "MSFT Nov 2026 535.000 put (MSFT261116P00535000) 過往股價及數據 - Yahoo 財經",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9zTG1TVGZVZWJzN252QjFfekJPZmNaUUgwUlplblJ4dG81LUxhMWZLeFUyY1Fqajlpb2tvVTYtR2dEQTlLRDhzZDF6NkV5Qzlja1pDNzJYaTJaUmhQamlpY1ZVRFh1d0pONzFvdEE1VVQ?oc=5",
-                        "date": "Yahoo 財經・Thu, 19 Nov 2026"
+                        "title": "花旗：Databricks大會印證企業AI擴散加速，力薦微軟(MSFT.US)、Snowflake(SNOW.US)、Palantir(PLTR.US)、MongoDB(MDB.US)四股作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
+                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE4xc2c4dG50RC1yc004RmxJZ2IzYjJVcVlvU3BYR1hYTi11TzAyWGN4Q1dfYzBaV09EOHpBYXFRcmN0UTRlOTFmMVBsU05wdERNVFlRNHpiVDZ4dDhTVHFKYUJvSk41YXBCR2t6Y0NWeGY?oc=5",
+                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Fri, 20 Nov 2026"
                       },
                       {
-                        "title": "“完美風暴”引發連鎖故障！微軟(MSFT.US)CEO承認Outlook宕機本可避免 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-                        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsTVpKeEFpaUw5dkdEaG9DVUdnZEhfTDZYRG85RjBfY25rb2V0ZVJkS0QxTVQ3alMyQkt0XzE4UHZjSmJwVGJ3U1R3TjFCSko3Vmk5MGNpV1lVOUFKT2ZXZGpCZVJFNlh1eUdXcGN3RzQ?oc=5",
-                        "date": "Investing.com 香港 - 股市報價& 財經新聞・Thu, 19 Nov 2026"
+                        "title": "Microsoft(MSFT) Stock Price Today | Quotes & News - Moomoo",
+                        "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQZzAtdGFuN3h1SUNHQzRCaXVnZF9BMDF0M1E2NmZZTDVjNG5PRTkxV0p4bnNsQzIxenJVOUNLYjF5bmlWQ1dLM2lZSWVrTXUwNnUwZlpWVTIwdVJTZ29fWEE4ZUEwcVFhZllUYThZVEQyRHpKQWlRVHFWM040SGVucDJuNXdDWERQUkF6ODBLUjBKNmpxNEpHODRQWXNmOWQxTU1uNDlMSEJ2OFJ5bXlvM0ZDdGxUMEFwTkF1bGhRcDVzSlNyM2llT3pzeFhGTGhlbVpOanpSN1JqaEtRclN0MHIwdkkzd3hUb1F3ZHpRNGFhb3RSMVdJZlJsTDRFYm12aXV5Sk13aWVjcy1xNm9NRXZyOEFoYkw0MEI4cl9pOWE?oc=5",
+                        "date": "Moomoo・Wed, 18 Nov 2026"
                       }
                     ],
                     "bearish": [
@@ -89743,9 +89829,9 @@
               "change_pct": -2.7,
               "market_cap": 3235509897217.0,
               "ext_session": {
-                "price": 277.59,
-                "change": 12.3,
-                "change_pct": 4.64,
+                "price": 277.11,
+                "change": 11.82,
+                "change_pct": 4.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -90868,9 +90954,9 @@
               "change_pct": -4.1,
               "market_cap": 2668898725155.0,
               "ext_session": {
-                "price": 256.56,
-                "change": 9.74,
-                "change_pct": 3.95,
+                "price": 256.3,
+                "change": 9.48,
+                "change_pct": 3.84,
                 "label": "盤前"
               },
               "intraday": [],
@@ -91988,9 +92074,9 @@
               "change_pct": -5.93,
               "market_cap": 1433642301357.0,
               "ext_session": {
-                "price": 584.0,
-                "change": 23.16,
-                "change_pct": 4.13,
+                "price": 583.0,
+                "change": 22.16,
+                "change_pct": 3.95,
                 "label": "盤前"
               },
               "intraday": [],
@@ -93108,9 +93194,9 @@
               "change_pct": -7.69,
               "market_cap": 1735524117945.0,
               "ext_session": {
-                "price": 132.58,
-                "change": 4.79,
-                "change_pct": 3.75,
+                "price": 132.41,
+                "change": 4.62,
+                "change_pct": 3.62,
                 "label": "盤前"
               },
               "intraday": [],
@@ -93610,9 +93696,9 @@
                     "date": "SEC Filings / Yahoo Finance (SPCX)"
                   },
                   {
-                    "title": "【01:03 即時新聞】Space Exploration Technologies(SPCX) 股價重挫逾5%／AI晶片租賃壓力與債務風險升溫 - 美股放大鏡",
-                    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ1B3YnZ2dGNjMzRkOHVKSzBQZHE2YkxlQy1PRlN1SjVlbDRLOGhaNnJ0NXFneWVwZWZhMzM0UkdRS2pTczlEQ2d3Q3FoUXJHQzhZZk84T2FvN1ZpQnVibzYzWVdodS1aZ3ZtaE1xUC1KZ01sbHJGTU03eUlxWHlqUVdLZExhTmcwWGRKVzR0Ym1KUUlh?oc=5",
-                    "date": "美股放大鏡・Thu, 19 Nov 2026"
+                    "title": "SpaceX股價較IPO後高點下跌了30%：接下來會發生什麼？ - TradingKey",
+                    "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNam1hckQ3X1JrT0g2MGFmTXJjb1NqNXl6a1VWMlRxMmZUUzFoUUU1eFdqdHJLWkx5bjUtOGg5QVFzZUg5LUViUnVoOE1YRm5NSjRrXzRNZFFiRXFpUVIxcnFSVXFLWlppaS1wM3lyX0hkTnowVmkzcHpRRHVkSHEydjZ3UjJ6WlV2TnNZRDRhQTk5c0FZX3BUbnI1RlNqVkc4eFhZbTg5cV9TUnVDN3BoLWxkSGF5QTlHMmpHVEh4bTFXT2NqUzlEUUNpN2Zkdw?oc=5",
+                    "date": "TradingKey・Sun, 22 Nov 2026"
                   }
                 ],
                 "categories": {
@@ -93647,16 +93733,16 @@
                         "date": "永豐金證券・Mon, 16 Nov 2026"
                       },
                       {
-                        "title": "SpaceX（SPCX）日線中軸承壓與下方需求區推演 - Moomoo",
-                        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxON1RxVFJXYVFIbE5kam1iQjUyV2wzOXNYNmpDbzFLSlFBT2hHaFNWUE1kREE1Y0liSXVXU0pYci1CX05hNU45ZEx3Y29MTUMzTVRMcl9JWGlYVnRXdTZ5dXZwdzNRLWxPYkNZUHY1SzBSZW9ucmNtUmVkd1FzMm9wQ2E4Ym0yeHNsZ1RFTy1zTlYzaExPZ1U0VFNjSDlSZjF1enc1c1hrdk9kQW1lWXFsNnFXUmpRdkNrTUo0UEV5amRudzFLRFFwQ25kdw?oc=5",
-                        "date": "Moomoo・Fri, 20 Nov 2026"
+                        "title": "Anthropic IPO Frenzy: SPCX, CBRS, ARM And Other Mega-Listings Show What Happens After The First-Day Pop - TradingView",
+                        "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNMDlnQnVyTDJkam5kQW1URUt1aW5iYmRjT3FzZjNEU2kweDFZc0t3RFktUFBkUlRUdDlJNUNHV21PaDlVUGJ6eU1FWXU2N3Y4SUVHRXhmTURjdlQtb0txdk9fQk1lZnVMdmlYSzNvbEVud2FuajlXQ2w5YXNSeDVjeWxUa2pMZWNEWEdkWGF1LU5EWS1VaGp1MHlJbjVBbmkycnVfMTdGa1lWTEM1UXd2ZGkyVjVrckNBSkJmTmRoSnhITkFZTmk1WHdtcmlCQkZkUU5nMHRnWWNCODB1c21UU2h1NDZxWFlEa0F2MTlrSlBVdw?oc=5",
+                        "date": "TradingView・Tue, 17 Nov 2026"
                       }
                     ],
                     "bearish": [
                       {
-                        "title": "【01:03 即時新聞】Space Exploration Technologies(SPCX) 股價重挫逾5%／AI晶片租賃壓力與債務風險升溫 - 美股放大鏡",
-                        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ1B3YnZ2dGNjMzRkOHVKSzBQZHE2YkxlQy1PRlN1SjVlbDRLOGhaNnJ0NXFneWVwZWZhMzM0UkdRS2pTczlEQ2d3Q3FoUXJHQzhZZk84T2FvN1ZpQnVibzYzWVdodS1aZ3ZtaE1xUC1KZ01sbHJGTU03eUlxWHlqUVdLZExhTmcwWGRKVzR0Ym1KUUlh?oc=5",
-                        "date": "美股放大鏡・Thu, 19 Nov 2026"
+                        "title": "SpaceX股價較IPO後高點下跌了30%：接下來會發生什麼？ - TradingKey",
+                        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNam1hckQ3X1JrT0g2MGFmTXJjb1NqNXl6a1VWMlRxMmZUUzFoUUU1eFdqdHJLWkx5bjUtOGg5QVFzZUg5LUViUnVoOE1YRm5NSjRrXzRNZFFiRXFpUVIxcnFSVXFLWlppaS1wM3lyX0hkTnowVmkzcHpRRHVkSHEydjZ3UjJ6WlV2TnNZRDRhQTk5c0FZX3BUbnI1RlNqVkc4eFhZbTg5cV9TUnVDN3BoLWxkSGF5QTlHMmpHVEh4bTFXT2NqUzlEUUNpN2Zkdw?oc=5",
+                        "date": "TradingKey・Sun, 22 Nov 2026"
                       }
                     ]
                   }
@@ -93675,9 +93761,9 @@
               "change_pct": -0.3,
               "market_cap": 1267286976592.0,
               "ext_session": {
-                "price": 1351.08,
-                "change": 3.97,
-                "change_pct": 0.29,
+                "price": 1352.08,
+                "change": 4.97,
+                "change_pct": 0.37,
                 "label": "盤前"
               },
               "intraday": [],
@@ -93832,7 +93918,7 @@
                 },
                 {
                   "date": "2026-01-16",
-                  "close": 1032.16
+                  "close": 1032.15
                 },
                 {
                   "date": "2026-01-20",
@@ -94784,8 +94870,8 @@
               "change_pct": -0.36,
               "market_cap": 1210976227126.0,
               "ext_session": {
-                "price": 572.88,
-                "change": 2.88,
+                "price": 572.92,
+                "change": 2.92,
                 "change_pct": 0.51,
                 "label": "盤前"
               },
@@ -95893,9 +95979,9 @@
               "change_pct": -7.64,
               "market_cap": 1366942820098.0,
               "ext_session": {
-                "price": 363.37,
-                "change": 17.55,
-                "change_pct": 5.07,
+                "price": 361.36,
+                "change": 15.54,
+                "change_pct": 4.49,
                 "label": "盤前"
               },
               "intraday": [],
@@ -97013,9 +97099,9 @@
               "change_pct": 1.52,
               "market_cap": 1015122788483.0,
               "ext_session": {
-                "price": 127.75,
-                "change": -0.2,
-                "change_pct": -0.16,
+                "price": 127.77,
+                "change": -0.18,
+                "change_pct": -0.14,
                 "label": "盤前"
               },
               "intraday": [],
@@ -98027,7 +98113,7 @@
               ],
               "fundamentals": {
                 "pe": 48.96,
-                "forward_pe": 44.25,
+                "forward_pe": 44.28,
                 "eps": 2.61,
                 "gross_margin": "26.9%",
                 "operating_margin": "4.5%",
@@ -98063,7 +98149,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 48.96 倍、預估本益比 44.25",
+                    "title": "[估值水位檢視] 本益比 PE 48.96 倍、預估本益比 44.28",
                     "url": "https://finance.yahoo.com/quote/WMT/financials/",
                     "date": "SEC Filings / Yahoo Finance (WMT)"
                   },
@@ -98085,7 +98171,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 48.96 倍、預估本益比 44.25",
+                        "title": "[估值水位檢視] 本益比 PE 48.96 倍、預估本益比 44.28",
                         "url": "https://finance.yahoo.com/quote/WMT/financials/",
                         "date": "SEC Filings / Yahoo Finance (WMT)"
                       }
@@ -102544,9 +102630,9 @@
               "change_pct": -14.09,
               "market_cap": 161949213086.0,
               "ext_session": {
-                "price": 163.7,
-                "change": 11.5,
-                "change_pct": 7.56,
+                "price": 163.8,
+                "change": 11.6,
+                "change_pct": 7.62,
                 "label": "盤前"
               },
               "intraday": [],
@@ -103653,9 +103739,9 @@
               "change_pct": -8.06,
               "market_cap": 75920691215.0,
               "ext_session": {
-                "price": 402.9,
-                "change": 6.73,
-                "change_pct": 1.7,
+                "price": 409.0,
+                "change": 12.83,
+                "change_pct": 3.24,
                 "label": "盤前"
               },
               "intraday": [],
@@ -104763,9 +104849,9 @@
               "change_pct": -7.64,
               "market_cap": 77259634517.0,
               "ext_session": {
-                "price": 284.1,
-                "change": 2.52,
-                "change_pct": 0.89,
+                "price": 289.89,
+                "change": 8.31,
+                "change_pct": 2.95,
                 "label": "盤前"
               },
               "intraday": [],
@@ -107952,7 +108038,9 @@
                 "website": "www.guc-asic.com",
                 "summary": "一、研究、開發、生產、製造及銷售：各種應用積體電路1.嵌入式記",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -109116,9 +109204,9 @@
               "change_pct": -11.69,
               "market_cap": 107227333915.0,
               "ext_session": {
-                "price": 130.78,
-                "change": 8.5,
-                "change_pct": 6.95,
+                "price": 130.55,
+                "change": 8.27,
+                "change_pct": 6.76,
                 "label": "盤前"
               },
               "intraday": [],
@@ -110143,13 +110231,13 @@
                 "sector": "電子科技",
                 "industry": "半導體",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "邁威爾科技有限公司（英語：Marvell Technology Group，簡稱Marvell）是一家美國晶片製造商，主要生產用於儲存、通訊和消費性電子產品的晶片。公司由周秀文（Sehat Sutardja）博士及其妻戴偉立（Weili Dai）、其弟周秀武三人於1995年共同創立，總部位於美國加州聖塔克拉拉。該公司2010年在全球二十大半導體廠商中排名第十八。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股",
                   "納斯達克100成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -111224,7 +111312,9 @@
                 "website": "www.kyec.com.tw",
                 "summary": "各種積體電路之設計.製造.測試.配件.加工.包裝.買賣業務",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -113469,9 +113559,9 @@
               "change_pct": -9.56,
               "market_cap": 4408346391.0,
               "ext_session": {
-                "price": 136.45,
-                "change": 6.44,
-                "change_pct": 4.95,
+                "price": 140.96,
+                "change": 10.95,
+                "change_pct": 8.42,
                 "label": "盤前"
               },
               "intraday": [],
@@ -113938,7 +114028,7 @@
                 },
                 {
                   "date": "2026-05-11",
-                  "close": 260.69
+                  "close": 260.7
                 },
                 {
                   "date": "2026-05-12",
@@ -114576,8 +114666,8 @@
               "change_pct": -10.02,
               "market_cap": 228935578266.0,
               "ext_session": {
-                "price": 196.01,
-                "change": 12.74,
+                "price": 196.0,
+                "change": 12.73,
                 "change_pct": 6.95,
                 "label": "盤前"
               },
@@ -115686,9 +115776,9 @@
               "change_pct": -10.71,
               "market_cap": 240166388702.0,
               "ext_session": {
-                "price": 323.75,
-                "change": 21.12,
-                "change_pct": 6.98,
+                "price": 323.0,
+                "change": 20.37,
+                "change_pct": 6.73,
                 "label": "盤前"
               },
               "intraday": [],
@@ -117794,7 +117884,9 @@
                 "website": "https://www.nanya.com",
                 "summary": "電子零組件製造業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -118875,7 +118967,9 @@
                 "website": "WWW.WINBOND.COM",
                 "summary": "1積體電路2半導體記憶零組件及其系統產品3電腦系統用、數位通訊",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -121120,9 +121214,9 @@
               "change_pct": -13.89,
               "market_cap": 672642428248.0,
               "ext_session": {
-                "price": 639.72,
-                "change": 45.21,
-                "change_pct": 7.6,
+                "price": 634.54,
+                "change": 40.03,
+                "change_pct": 6.73,
                 "label": "盤前"
               },
               "intraday": [],
@@ -122230,9 +122324,9 @@
               "change_pct": -2.72,
               "market_cap": 90200063852.0,
               "ext_session": {
-                "price": 85.5,
-                "change": -8.89,
-                "change_pct": -9.42,
+                "price": 85.13,
+                "change": -9.26,
+                "change_pct": -9.81,
                 "label": "盤前"
               },
               "intraday": [],
@@ -128858,9 +128952,9 @@
               "change_pct": -12.02,
               "market_cap": 97739544253.0,
               "ext_session": {
-                "price": 279.26,
-                "change": 18.15,
-                "change_pct": 6.95,
+                "price": 278.3,
+                "change": 17.19,
+                "change_pct": 6.58,
                 "label": "盤前"
               },
               "intraday": [],
@@ -129047,7 +129141,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 278.12
+                  "close": 278.11
                 },
                 {
                   "date": "2026-01-30",
@@ -129885,13 +129979,13 @@
                 "sector": "電子科技",
                 "industry": "電腦週邊設備",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "威騰電子（英語：Western Digital Corporation），簡稱WD、西數或威騰，是美國一家專門研發和生產電腦機械硬碟以及儲存裝置的公司，在收購新帝後（2016年至2025年），一度在積體電路和固態硬碟上也佔有一席之地。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股",
                   "納斯達克100成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -129968,9 +130062,9 @@
               "change_pct": -12.35,
               "market_cap": 104911725786.0,
               "ext_session": {
-                "price": 469.0,
-                "change": 11.99,
-                "change_pct": 2.62,
+                "price": 488.0,
+                "change": 30.99,
+                "change_pct": 6.78,
                 "label": "盤前"
               },
               "intraday": [],
@@ -133357,9 +133451,9 @@
               "change_pct": -10.94,
               "market_cap": 81299035627.0,
               "ext_session": {
-                "price": 100.25,
-                "change": 5.87,
-                "change_pct": 6.22,
+                "price": 99.75,
+                "change": 5.37,
+                "change_pct": 5.69,
                 "label": "盤前"
               },
               "intraday": [],
@@ -142059,9 +142153,9 @@
               "change_pct": -13.15,
               "market_cap": 8352189381.0,
               "ext_session": {
-                "price": 175.02,
-                "change": 4.86,
-                "change_pct": 2.86,
+                "price": 185.88,
+                "change": 15.72,
+                "change_pct": 9.24,
                 "label": "盤前"
               },
               "intraday": [],
@@ -144164,7 +144258,9 @@
                 "website": "www.unimicron.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -146409,9 +146505,9 @@
               "change_pct": -7.97,
               "market_cap": 272553193512.0,
               "ext_session": {
-                "price": 54.4,
-                "change": 3.12,
-                "change_pct": 6.08,
+                "price": 54.46,
+                "change": 3.18,
+                "change_pct": 6.2,
                 "label": "盤前"
               },
               "intraday": [],
@@ -147519,9 +147615,9 @@
               "change_pct": -13.25,
               "market_cap": 696036664900.0,
               "ext_session": {
-                "price": 452.49,
-                "change": 28.1,
-                "change_pct": 6.62,
+                "price": 447.78,
+                "change": 23.39,
+                "change_pct": 5.51,
                 "label": "盤前"
               },
               "intraday": [],
@@ -151882,9 +151978,9 @@
               "change_pct": -1.45,
               "market_cap": 230841086283.0,
               "ext_session": {
-                "price": 505.91,
-                "change": 3.08,
-                "change_pct": 0.61,
+                "price": 508.9,
+                "change": 6.07,
+                "change_pct": 1.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -158425,9 +158521,9 @@
               "change_pct": -14.5,
               "market_cap": 1029843671.0,
               "ext_session": {
-                "price": 20.89,
-                "change": 1.67,
-                "change_pct": 8.69,
+                "price": 21.26,
+                "change": 2.04,
+                "change_pct": 10.61,
                 "label": "盤前"
               },
               "intraday": [],
@@ -161694,9 +161790,9 @@
               "change_pct": -8.68,
               "market_cap": 19513587651.0,
               "ext_session": {
-                "price": 37.8,
-                "change": 2.24,
-                "change_pct": 6.3,
+                "price": 37.5,
+                "change": 1.94,
+                "change_pct": 5.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -168323,9 +168419,9 @@
               "change_pct": -6.63,
               "market_cap": 489226022058.0,
               "ext_session": {
-                "price": 1353.62,
-                "change": 87.4,
-                "change_pct": 6.9,
+                "price": 1342.28,
+                "change": 76.06,
+                "change_pct": 6.01,
                 "label": "盤前"
               },
               "intraday": [],
@@ -168512,7 +168608,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 1446.29
+                  "close": 1446.3
                 },
                 {
                   "date": "2026-01-30",
@@ -169432,9 +169528,9 @@
               "change_pct": -10.33,
               "market_cap": 165306843564.0,
               "ext_session": {
-                "price": 136.22,
-                "change": 9.35,
-                "change_pct": 7.37,
+                "price": 137.69,
+                "change": 10.82,
+                "change_pct": 8.53,
                 "label": "盤前"
               },
               "intraday": [],
@@ -171540,7 +171636,9 @@
                 "website": "WWW.UMC.COM",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -184595,9 +184693,9 @@
               "change_pct": -7.45,
               "market_cap": 160435802612.0,
               "ext_session": {
-                "price": 156.72,
-                "change": 6.78,
-                "change_pct": 4.52,
+                "price": 156.19,
+                "change": 6.25,
+                "change_pct": 4.17,
                 "label": "盤前"
               },
               "intraday": [],
@@ -187784,7 +187882,9 @@
                 "website": "https://www.asus.com",
                 "summary": "3C 資訊產品(含電腦系統產品、主機板及各類板卡",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -192191,9 +192291,9 @@
               "change_pct": -11.04,
               "market_cap": 176768656278.0,
               "ext_session": {
-                "price": 297.58,
-                "change": 19.56,
-                "change_pct": 7.04,
+                "price": 299.9,
+                "change": 21.88,
+                "change_pct": 7.87,
                 "label": "盤前"
               },
               "intraday": [],
@@ -193300,9 +193400,9 @@
               "change_pct": -9.19,
               "market_cap": 14272272005.0,
               "ext_session": {
-                "price": 23.21,
-                "change": 1.56,
-                "change_pct": 7.21,
+                "price": 23.28,
+                "change": 1.63,
+                "change_pct": 7.53,
                 "label": "盤前"
               },
               "intraday": [],
@@ -198733,9 +198833,9 @@
               "change_pct": -10.83,
               "market_cap": 5724995144.0,
               "ext_session": {
-                "price": 72.0,
-                "change": -1.02,
-                "change_pct": -1.4,
+                "price": 81.08,
+                "change": 8.06,
+                "change_pct": 11.04,
                 "label": "盤前"
               },
               "intraday": [],
@@ -204164,9 +204264,9 @@
               "change_pct": -11.4,
               "market_cap": 7493779807.0,
               "ext_session": {
-                "price": 30.71,
-                "change": 0.47,
-                "change_pct": 1.55,
+                "price": 32.6,
+                "change": 2.36,
+                "change_pct": 7.8,
                 "label": "盤前"
               },
               "intraday": [],
@@ -205271,9 +205371,9 @@
               "change_pct": -13.84,
               "market_cap": 61092605270.0,
               "ext_session": {
-                "price": 29.12,
-                "change": 2.85,
-                "change_pct": 10.85,
+                "price": 29.34,
+                "change": 3.07,
+                "change_pct": 11.69,
                 "label": "盤前"
               },
               "intraday": [],
@@ -207380,7 +207480,9 @@
                 "website": "https://www.honprec.com/",
                 "summary": "IC測試分選機及其相關設備整合性解決方案",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -208461,7 +208563,9 @@
                 "website": "http://www.chromaate.com",
                 "summary": "精密電子量測儀器",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -208542,11 +208646,11 @@
               "prev_close": 227.43,
               "change": -22.65,
               "change_pct": -9.96,
-              "market_cap": 31970445928.0,
+              "market_cap": 31950149710.0,
               "ext_session": {
-                "price": 222.32,
-                "change": 17.54,
-                "change_pct": 8.57,
+                "price": 219.3,
+                "change": 14.52,
+                "change_pct": 7.09,
                 "label": "盤前"
               },
               "intraday": [],
@@ -209557,8 +209661,8 @@
                 }
               ],
               "fundamentals": {
-                "pe": 23.51,
-                "forward_pe": 21.56,
+                "pe": 23.49,
+                "forward_pe": 21.55,
                 "eps": 8.71,
                 "gross_margin": "59.1%",
                 "operating_margin": "32.6%",
@@ -209594,7 +209698,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 23.51 倍、預估本益比 21.56",
+                    "title": "[估值水位檢視] 本益比 PE 23.49 倍、預估本益比 21.55",
                     "url": "https://finance.yahoo.com/quote/TER/financials/",
                     "date": "SEC Filings / Yahoo Finance (TER)"
                   },
@@ -209616,7 +209720,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 23.51 倍、預估本益比 21.56",
+                        "title": "[估值水位檢視] 本益比 PE 23.49 倍、預估本益比 21.55",
                         "url": "https://finance.yahoo.com/quote/TER/financials/",
                         "date": "SEC Filings / Yahoo Finance (TER)"
                       }
@@ -209654,9 +209758,9 @@
               "change_pct": -7.07,
               "market_cap": 44430549063.0,
               "ext_session": {
-                "price": 265.0,
-                "change": 3.49,
-                "change_pct": 1.33,
+                "price": 276.8,
+                "change": 15.29,
+                "change_pct": 5.85,
                 "label": "盤前"
               },
               "intraday": [],
@@ -211736,7 +211840,7 @@
               ],
               "fundamentals": {
                 "pe": 91.01,
-                "forward_pe": 66.73,
+                "forward_pe": 66.76,
                 "eps": 15.27,
                 "gross_margin": "55.1%",
                 "operating_margin": "44.5%",
@@ -211779,7 +211883,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 91.01 倍、預估本益比 66.73",
+                    "title": "[估值水位檢視] 本益比 PE 91.01 倍、預估本益比 66.76",
                     "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                     "date": "MOPS 財務報表 / TradingView"
                   },
@@ -211806,7 +211910,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 91.01 倍、預估本益比 66.73",
+                        "title": "[估值水位檢視] 本益比 PE 91.01 倍、預估本益比 66.76",
                         "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                         "date": "MOPS 財務報表 / TradingView"
                       }
@@ -215087,9 +215191,9 @@
               "change_pct": -13.94,
               "market_cap": 41770977370.0,
               "ext_session": {
-                "price": 494.97,
-                "change": 34.43,
-                "change_pct": 7.48,
+                "price": 490.48,
+                "change": 29.94,
+                "change_pct": 6.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -220521,9 +220625,9 @@
               "change_pct": -12.9,
               "market_cap": 36874604160.0,
               "ext_session": {
-                "price": 199.11,
-                "change": 11.89,
-                "change_pct": 6.35,
+                "price": 198.88,
+                "change": 11.66,
+                "change_pct": 6.23,
                 "label": "盤前"
               },
               "intraday": [],
@@ -221630,9 +221734,9 @@
               "change_pct": -8.56,
               "market_cap": 10180920507.0,
               "ext_session": {
-                "price": 291.9,
-                "change": 6.86,
-                "change_pct": 2.41,
+                "price": 301.99,
+                "change": 16.95,
+                "change_pct": 5.95,
                 "label": "盤前"
               },
               "intraday": [],
@@ -222737,9 +222841,9 @@
               "change_pct": -16.55,
               "market_cap": 2989080387.0,
               "ext_session": {
-                "price": 35.7,
-                "change": 2.77,
-                "change_pct": 8.41,
+                "price": 35.78,
+                "change": 2.85,
+                "change_pct": 8.65,
                 "label": "盤前"
               },
               "intraday": [],
@@ -224817,7 +224921,7 @@
               ],
               "fundamentals": {
                 "pe": 18.59,
-                "forward_pe": 15.74,
+                "forward_pe": 15.73,
                 "eps": 72.61,
                 "gross_margin": "18.3%",
                 "operating_margin": "13.8%",
@@ -224842,7 +224946,9 @@
                 "website": "http://www.accton.com",
                 "summary": "1.CC01060 2.CC01070 3.F401010 4.研發開發製造銷售:電腦網路",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -224860,7 +224966,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 18.59 倍、預估本益比 15.74",
+                    "title": "[估值水位檢視] 本益比 PE 18.59 倍、預估本益比 15.73",
                     "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                     "date": "MOPS 財務報表 / TradingView"
                   },
@@ -224887,7 +224993,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 18.59 倍、預估本益比 15.74",
+                        "title": "[估值水位檢視] 本益比 PE 18.59 倍、預估本益比 15.73",
                         "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                         "date": "MOPS 財務報表 / TradingView"
                       }
@@ -227087,9 +227193,9 @@
               "change_pct": -11.59,
               "market_cap": 211822030782.0,
               "ext_session": {
-                "price": 175.41,
-                "change": 7.79,
-                "change_pct": 4.65,
+                "price": 176.74,
+                "change": 9.12,
+                "change_pct": 5.44,
                 "label": "盤前"
               },
               "intraday": [],
@@ -228196,9 +228302,9 @@
               "change_pct": -4.29,
               "market_cap": 357343506266.0,
               "ext_session": {
-                "price": 93.25,
-                "change": 2.61,
-                "change_pct": 2.88,
+                "price": 93.51,
+                "change": 2.87,
+                "change_pct": 3.17,
                 "label": "盤前"
               },
               "intraday": [],
@@ -229306,9 +229412,9 @@
               "change_pct": -10.76,
               "market_cap": 33235665120.0,
               "ext_session": {
-                "price": 239.11,
-                "change": 4.74,
-                "change_pct": 2.02,
+                "price": 247.8,
+                "change": 13.43,
+                "change_pct": 5.73,
                 "label": "盤前"
               },
               "intraday": [],
@@ -237899,7 +238005,9 @@
                 "website": "www.largan.com.tw",
                 "summary": "各式光學鏡頭模組",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -251097,9 +251205,9 @@
               "change_pct": -0.33,
               "market_cap": 86008371831.0,
               "ext_session": {
-                "price": 520.1,
-                "change": -0.11,
-                "change_pct": -0.02,
+                "price": 520.51,
+                "change": 0.3,
+                "change_pct": 0.06,
                 "label": "盤前"
               },
               "intraday": [],
@@ -252206,9 +252314,9 @@
               "change_pct": -3.93,
               "market_cap": 32996972410.0,
               "ext_session": {
-                "price": 9.71,
-                "change": -0.06,
-                "change_pct": -0.61,
+                "price": 10.02,
+                "change": 0.25,
+                "change_pct": 2.56,
                 "label": "盤前"
               },
               "intraday": [],
@@ -253313,9 +253421,9 @@
               "change_pct": -8.27,
               "market_cap": 39986262599.0,
               "ext_session": {
-                "price": 7.27,
-                "change": 0.39,
-                "change_pct": 5.67,
+                "price": 7.23,
+                "change": 0.35,
+                "change_pct": 5.09,
                 "label": "盤前"
               },
               "intraday": [],
@@ -255418,7 +255526,9 @@
                 "website": "www.taiwanmobile.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -256499,7 +256609,9 @@
                 "website": "www.fareastone.com.tw",
                 "summary": "行動電話業務",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -257692,9 +257804,9 @@
               "change_pct": 1.62,
               "market_cap": 192806703785.0,
               "ext_session": {
-                "price": 46.3,
-                "change": -0.18,
-                "change_pct": -0.39,
+                "price": 46.19,
+                "change": -0.29,
+                "change_pct": -0.62,
                 "label": "盤前"
               },
               "intraday": [],
@@ -258801,9 +258913,9 @@
               "change_pct": 2.11,
               "market_cap": 150290723150.0,
               "ext_session": {
-                "price": 22.27,
-                "change": -0.04,
-                "change_pct": -0.18,
+                "price": 22.22,
+                "change": -0.09,
+                "change_pct": -0.4,
                 "label": "盤前"
               },
               "intraday": [],
@@ -262088,7 +262200,9 @@
                 "website": "http://www.npc.com.tw",
                 "summary": "各種塑膠加工品、塑膠原料、電子材料、聚酯纖維之製銷",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -264333,9 +264447,9 @@
               "change_pct": -1.35,
               "market_cap": 8488698003.0,
               "ext_session": {
-                "price": 110.02,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 113.1,
+                "change": 3.08,
+                "change_pct": 2.8,
                 "label": "盤前"
               },
               "intraday": [],
@@ -266438,7 +266552,9 @@
                 "website": "http://www.emctw.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -270988,9 +271104,9 @@
               "change_pct": -4.03,
               "market_cap": 21017913148.0,
               "ext_session": {
-                "price": 29.1,
-                "change": 0.07,
-                "change_pct": 0.24,
+                "price": 29.25,
+                "change": 0.22,
+                "change_pct": 0.76,
                 "label": "盤前"
               },
               "intraday": [],
@@ -276366,7 +276482,9 @@
                 "website": "http://www.gce.com.tw/",
                 "summary": "雙層、多層印刷電路板之製造加工及買賣業務。",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -277530,9 +277648,9 @@
               "change_pct": -13.46,
               "market_cap": 6201349570.0,
               "ext_session": {
-                "price": 63.3,
-                "change": 4.45,
-                "change_pct": 7.56,
+                "price": 63.65,
+                "change": 4.8,
+                "change_pct": 8.16,
                 "label": "盤前"
               },
               "intraday": [],
@@ -281797,7 +281915,9 @@
                 "website": "https://www.zdtco.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -288283,7 +288403,9 @@
                 "website": "www.wistron.com",
                 "summary": "3C電子產品",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -292607,7 +292729,9 @@
                 "website": "http://www.liteon.com/",
                 "summary": "電腦資訊系統及週邊設備之製造加工及買賣業務",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -292690,9 +292814,9 @@
               "change_pct": -8.39,
               "market_cap": 23247517249.0,
               "ext_session": {
-                "price": 228.0,
-                "change": 2.23,
-                "change_pct": 0.99,
+                "price": 239.8,
+                "change": 14.03,
+                "change_pct": 6.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -293799,9 +293923,9 @@
               "change_pct": -16.0,
               "market_cap": 25427922465.0,
               "ext_session": {
-                "price": 218.0,
-                "change": 16.2,
-                "change_pct": 8.03,
+                "price": 219.0,
+                "change": 17.2,
+                "change_pct": 8.52,
                 "label": "盤前"
               },
               "intraday": [],
@@ -295987,9 +296111,9 @@
               "change_pct": -8.77,
               "market_cap": 4167891158.0,
               "ext_session": {
-                "price": 95.1,
-                "change": 5.9,
-                "change_pct": 6.61,
+                "price": 95.42,
+                "change": 6.22,
+                "change_pct": 6.97,
                 "label": "盤前"
               },
               "intraday": [],
@@ -298092,7 +298216,9 @@
                 "website": "https://www.nanyapcb.com.tw/nypcb/Chinese/index",
                 "summary": "電子零組件製造業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -301335,7 +301461,9 @@
                 "website": "https://www.jentech.com.tw/zh",
                 "summary": "各種機械及零件、精密模具之製造加工買賣",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -311090,7 +311218,9 @@
                 "website": "http://www.bizlinktech.com",
                 "summary": "電腦週邊零組件之研發、生產及銷售",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -317659,9 +317789,9 @@
               "change_pct": -7.79,
               "market_cap": 172218627535.0,
               "ext_session": {
-                "price": 72.49,
-                "change": 2.77,
-                "change_pct": 3.97,
+                "price": 72.54,
+                "change": 2.82,
+                "change_pct": 4.04,
                 "label": "盤前"
               },
               "intraday": [],
@@ -328496,7 +328626,9 @@
                 "website": "WWW.YAGEO.COM",
                 "summary": "被動元件、電阻原料半成品",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -333004,9 +333136,9 @@
               "change_pct": -10.74,
               "market_cap": 3429682701.0,
               "ext_session": {
-                "price": 22.81,
-                "change": 0.45,
-                "change_pct": 2.01,
+                "price": 24.01,
+                "change": 1.65,
+                "change_pct": 7.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -347180,9 +347312,9 @@
               "change_pct": -7.7,
               "market_cap": 241006923141.0,
               "ext_session": {
-                "price": 273.14,
-                "change": 9.39,
-                "change_pct": 3.56,
+                "price": 272.99,
+                "change": 9.24,
+                "change_pct": 3.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -348207,13 +348339,13 @@
                 "sector": "電子科技",
                 "industry": "半導體",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "德州儀器（英語：Texas Instruments），簡稱德儀（TI），是一家美國跨國科技公司，總部位於德克薩斯州的達拉斯，以開發、製造、銷售半導體和計算機技術聞名於世，主要從事數位訊號處理與類比電路方面的研究、製造和銷售。它在25個國家有製造、設計或者銷售機構。根據2021年IC Insights統計，德州儀器是世界第九大半導體製造商；曾經是行動電話的第二大晶片供應商，僅次於高通；同時也是在世界範圍內的第一大數位訊號處理器（DSP）和類比半導體元件的製造商，其產品還包括計算機、微控制器以及多核處理器。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股",
                   "納斯達克100成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -348290,9 +348422,9 @@
               "change_pct": -8.35,
               "market_cap": 167620890501.0,
               "ext_session": {
-                "price": 352.25,
-                "change": 6.33,
-                "change_pct": 1.83,
+                "price": 358.94,
+                "change": 13.02,
+                "change_pct": 3.76,
                 "label": "盤前"
               },
               "intraday": [],
@@ -348479,7 +348611,7 @@
                 },
                 {
                   "date": "2026-01-29",
-                  "close": 315.88
+                  "close": 315.87
                 },
                 {
                   "date": "2026-01-30",
@@ -349400,9 +349532,9 @@
               "change_pct": -7.43,
               "market_cap": 23684068118.0,
               "ext_session": {
-                "price": 64.12,
-                "change": 3.28,
-                "change_pct": 5.39,
+                "price": 64.25,
+                "change": 3.41,
+                "change_pct": 5.6,
                 "label": "盤前"
               },
               "intraday": [],
@@ -350509,9 +350641,9 @@
               "change_pct": -10.67,
               "market_cap": 35924333801.0,
               "ext_session": {
-                "price": 41.04,
-                "change": 1.93,
-                "change_pct": 4.93,
+                "price": 41.05,
+                "change": 1.94,
+                "change_pct": 4.96,
                 "label": "盤前"
               },
               "intraday": [],
@@ -352697,9 +352829,9 @@
               "change_pct": -11.87,
               "market_cap": 55695498559.0,
               "ext_session": {
-                "price": 1176.0,
-                "change": 33.95,
-                "change_pct": 2.97,
+                "price": 1207.11,
+                "change": 65.06,
+                "change_pct": 5.7,
                 "label": "盤前"
               },
               "intraday": [],
@@ -353090,7 +353222,7 @@
                 },
                 {
                   "date": "2026-04-14",
-                  "close": 1359.33
+                  "close": 1359.34
                 },
                 {
                   "date": "2026-04-15",
@@ -358131,9 +358263,9 @@
               "change_pct": -3.16,
               "market_cap": 53908993506.0,
               "ext_session": {
-                "price": 242.11,
-                "change": 2.49,
-                "change_pct": 1.04,
+                "price": 243.98,
+                "change": 4.36,
+                "change_pct": 1.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -360238,7 +360370,9 @@
                 "website": "http://www.kingslide.com",
                 "summary": "研發、設計、製造和銷售伺服器等用導軌及其週邊零組件生產及買賣",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -361317,10 +361451,10 @@
                 "spokesman": "吳仁山",
                 "tax_id": "36268804",
                 "website": "",
-                "summary": "電子零組件製造業",
-                "business_source": "tw_yahoo_profile",
+                "summary": null,
+                "business_source": null,
                 "index_tags": [],
-                "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
+                "source": "櫃買中心 OpenAPI (mopsfin_t187ap03_O)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -366724,7 +366858,9 @@
                 "website": "https://www.wiwynn.com",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -367888,9 +368024,9 @@
               "change_pct": -5.82,
               "market_cap": 120951699783.0,
               "ext_session": {
-                "price": 316.0,
-                "change": 4.67,
-                "change_pct": 1.5,
+                "price": 327.64,
+                "change": 16.31,
+                "change_pct": 5.24,
                 "label": "盤前"
               },
               "intraday": [],
@@ -368997,9 +369133,9 @@
               "change_pct": -0.27,
               "market_cap": 91972696017.0,
               "ext_session": {
-                "price": 177.99,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 180.03,
+                "change": 2.04,
+                "change_pct": 1.15,
                 "label": "盤前"
               },
               "intraday": [],
@@ -371104,7 +371240,9 @@
                 "website": "https://www.avc.co",
                 "summary": null,
                 "business_source": null,
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L)"
               },
               "news_sentiment": {
@@ -374430,9 +374568,9 @@
               "change_pct": -7.35,
               "market_cap": 6632059730.0,
               "ext_session": {
-                "price": 127.0,
-                "change": 2.33,
-                "change_pct": 1.87,
+                "price": 133.94,
+                "change": 9.27,
+                "change_pct": 7.44,
                 "label": "盤前"
               },
               "intraday": [],
@@ -375444,7 +375582,7 @@
               ],
               "fundamentals": {
                 "pe": 52.28,
-                "forward_pe": 24.51,
+                "forward_pe": 24.98,
                 "eps": 2.38,
                 "gross_margin": "21.9%",
                 "operating_margin": "10.7%",
@@ -375477,7 +375615,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 52.28 倍、預估本益比 24.51",
+                    "title": "[估值水位檢視] 本益比 PE 52.28 倍、預估本益比 24.98",
                     "url": "https://finance.yahoo.com/quote/MOD/financials/",
                     "date": "SEC Filings / Yahoo Finance (MOD)"
                   },
@@ -375499,7 +375637,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 52.28 倍、預估本益比 24.51",
+                        "title": "[估值水位檢視] 本益比 PE 52.28 倍、預估本益比 24.98",
                         "url": "https://finance.yahoo.com/quote/MOD/financials/",
                         "date": "SEC Filings / Yahoo Finance (MOD)"
                       }
@@ -375537,9 +375675,9 @@
               "change_pct": -10.14,
               "market_cap": 64012442061.0,
               "ext_session": {
-                "price": 176.53,
-                "change": 10.29,
-                "change_pct": 6.19,
+                "price": 174.0,
+                "change": 7.76,
+                "change_pct": 4.67,
                 "label": "盤前"
               },
               "intraday": [],
@@ -378808,9 +378946,9 @@
               "change_pct": -3.89,
               "market_cap": 9405384649.0,
               "ext_session": {
-                "price": 80.36,
-                "change": 0.66,
-                "change_pct": 0.83,
+                "price": 81.2,
+                "change": 1.5,
+                "change_pct": 1.88,
                 "label": "盤前"
               },
               "intraday": [],
@@ -385322,9 +385460,9 @@
               "change_pct": -6.15,
               "market_cap": 4426277542.0,
               "ext_session": {
-                "price": 124.35,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 129.9,
+                "change": 5.55,
+                "change_pct": 4.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -388591,9 +388729,9 @@
               "change_pct": -6.37,
               "market_cap": 65992710665.0,
               "ext_session": {
-                "price": 47.86,
-                "change": 1.87,
-                "change_pct": 4.07,
+                "price": 48.54,
+                "change": 2.55,
+                "change_pct": 5.54,
                 "label": "盤前"
               },
               "intraday": [],
@@ -390673,7 +390811,7 @@
               ],
               "fundamentals": {
                 "pe": 27.81,
-                "forward_pe": 24.59,
+                "forward_pe": 24.28,
                 "eps": 15.28,
                 "gross_margin": "42.8%",
                 "operating_margin": "23.4%",
@@ -390743,7 +390881,7 @@
                         "date": "證交所/櫃買中心 OpenAPI"
                       },
                       {
-                        "title": "[估值水位檢視] 本益比 PE 27.81 倍、預估本益比 24.59",
+                        "title": "[估值水位檢視] 本益比 PE 27.81 倍、預估本益比 24.28",
                         "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                         "date": "MOPS 財務報表 / TradingView"
                       }
@@ -393916,7 +394054,7 @@
               ],
               "fundamentals": {
                 "pe": 18.91,
-                "forward_pe": 17.03,
+                "forward_pe": 17.22,
                 "eps": 2.83,
                 "gross_margin": "23.7%",
                 "operating_margin": "8.6%",
@@ -393959,7 +394097,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 18.91 倍、預估本益比 17.03",
+                    "title": "[估值水位檢視] 本益比 PE 18.91 倍、預估本益比 17.22",
                     "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                     "date": "MOPS 財務報表 / TradingView"
                   },
@@ -393986,7 +394124,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 18.91 倍、預估本益比 17.03",
+                        "title": "[估值水位檢視] 本益比 PE 18.91 倍、預估本益比 17.22",
                         "url": "https://mops.twse.com.tw/mops/#/web/t163sb04",
                         "date": "MOPS 財務報表 / TradingView"
                       }
@@ -395105,8 +395243,8 @@
               "change_pct": -7.53,
               "market_cap": 185096614983.0,
               "ext_session": {
-                "price": 729.01,
-                "change": 29.68,
+                "price": 728.99,
+                "change": 29.66,
                 "change_pct": 4.24,
                 "label": "盤前"
               },
@@ -396214,9 +396352,9 @@
               "change_pct": -3.6,
               "market_cap": 21327389782.0,
               "ext_session": {
-                "price": 405.47,
-                "change": 1.81,
-                "change_pct": 0.45,
+                "price": 416.8,
+                "change": 13.14,
+                "change_pct": 3.26,
                 "label": "盤前"
               },
               "intraday": [],
@@ -398505,9 +398643,9 @@
               "change_pct": -5.8,
               "market_cap": 84116114733.0,
               "ext_session": {
-                "price": 246.79,
-                "change": 9.38,
-                "change_pct": 3.95,
+                "price": 247.89,
+                "change": 10.48,
+                "change_pct": 4.41,
                 "label": "盤前"
               },
               "intraday": [],
@@ -399615,9 +399753,9 @@
               "change_pct": -7.17,
               "market_cap": 39115237312.0,
               "ext_session": {
-                "price": 119.95,
-                "change": 4.7,
-                "change_pct": 4.08,
+                "price": 120.48,
+                "change": 5.23,
+                "change_pct": 4.54,
                 "label": "盤前"
               },
               "intraday": [],
@@ -400724,9 +400862,9 @@
               "change_pct": -0.41,
               "market_cap": 175198442635.0,
               "ext_session": {
-                "price": 83.44,
-                "change": -0.01,
-                "change_pct": -0.01,
+                "price": 83.61,
+                "change": 0.16,
+                "change_pct": 0.19,
                 "label": "盤前"
               },
               "intraday": [],
@@ -401833,9 +401971,9 @@
               "change_pct": -4.83,
               "market_cap": 84233045587.0,
               "ext_session": {
-                "price": 577.58,
-                "change": 18.55,
-                "change_pct": 3.32,
+                "price": 585.0,
+                "change": 25.97,
+                "change_pct": 4.65,
                 "label": "盤前"
               },
               "intraday": [],
@@ -402138,7 +402276,7 @@
                 },
                 {
                   "date": "2026-03-12",
-                  "close": 566.62
+                  "close": 566.61
                 },
                 {
                   "date": "2026-03-13",
@@ -407419,7 +407557,7 @@
                 },
                 {
                   "date": "2026-01-15",
-                  "close": 638.2
+                  "close": 638.21
                 },
                 {
                   "date": "2026-01-16",
@@ -408820,7 +408958,7 @@
                 },
                 {
                   "date": "2026-05-01",
-                  "close": 295.63
+                  "close": 295.64
                 },
                 {
                   "date": "2026-05-04",
@@ -412755,9 +412893,9 @@
               "change_pct": -0.83,
               "market_cap": 5236168970.0,
               "ext_session": {
-                "price": 172.25,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 176.9,
+                "change": 4.65,
+                "change_pct": 2.7,
                 "label": "盤前"
               },
               "intraday": [],
@@ -420348,9 +420486,9 @@
               "change_pct": -2.0,
               "market_cap": 172885756048.0,
               "ext_session": {
-                "price": 69.75,
-                "change": 2.57,
-                "change_pct": 3.83,
+                "price": 69.66,
+                "change": 2.48,
+                "change_pct": 3.69,
                 "label": "盤前"
               },
               "intraday": [],
@@ -421362,7 +421500,7 @@
               ],
               "fundamentals": {
                 "pe": 17.34,
-                "forward_pe": 13.71,
+                "forward_pe": 13.68,
                 "eps": 3.87,
                 "gross_margin": "39.1%",
                 "operating_margin": "39.1%",
@@ -421395,7 +421533,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 17.34 倍、預估本益比 13.71",
+                    "title": "[估值水位檢視] 本益比 PE 17.34 倍、預估本益比 13.68",
                     "url": "https://finance.yahoo.com/quote/BHP/financials/",
                     "date": "SEC Filings / Yahoo Finance (BHP)"
                   },
@@ -421417,7 +421555,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 17.34 倍、預估本益比 13.71",
+                        "title": "[估值水位檢視] 本益比 PE 17.34 倍、預估本益比 13.68",
                         "url": "https://finance.yahoo.com/quote/BHP/financials/",
                         "date": "SEC Filings / Yahoo Finance (BHP)"
                       }
@@ -421455,9 +421593,9 @@
               "change_pct": -8.96,
               "market_cap": 6088141577.0,
               "ext_session": {
-                "price": 10.71,
-                "change": 0.04,
-                "change_pct": 0.37,
+                "price": 11.37,
+                "change": 0.7,
+                "change_pct": 6.56,
                 "label": "盤前"
               },
               "intraday": [],
@@ -422562,9 +422700,9 @@
               "change_pct": -5.26,
               "market_cap": 114358376397.0,
               "ext_session": {
-                "price": 140.28,
-                "change": 6.26,
-                "change_pct": 4.67,
+                "price": 141.35,
+                "change": 7.33,
+                "change_pct": 5.47,
                 "label": "盤前"
               },
               "intraday": [],
@@ -423576,7 +423714,7 @@
               ],
               "fundamentals": {
                 "pe": 17.98,
-                "forward_pe": 16.92,
+                "forward_pe": 16.91,
                 "eps": 7.45,
                 "gross_margin": "59.5%",
                 "operating_margin": "58.6%",
@@ -423609,7 +423747,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 17.98 倍、預估本益比 16.92",
+                    "title": "[估值水位檢視] 本益比 PE 17.98 倍、預估本益比 16.91",
                     "url": "https://finance.yahoo.com/quote/SCCO/financials/",
                     "date": "SEC Filings / Yahoo Finance (SCCO)"
                   },
@@ -423631,7 +423769,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 17.98 倍、預估本益比 16.92",
+                        "title": "[估值水位檢視] 本益比 PE 17.98 倍、預估本益比 16.91",
                         "url": "https://finance.yahoo.com/quote/SCCO/financials/",
                         "date": "SEC Filings / Yahoo Finance (SCCO)"
                       }
@@ -436695,9 +436833,9 @@
               "change_pct": 0.67,
               "market_cap": 652634816121.0,
               "ext_session": {
-                "price": 161.03,
-                "change": 1.04,
-                "change_pct": 0.65,
+                "price": 161.38,
+                "change": 1.39,
+                "change_pct": 0.87,
                 "label": "盤前"
               },
               "intraday": [],
@@ -437804,8 +437942,8 @@
               "change_pct": 0.91,
               "market_cap": 409534895625.0,
               "ext_session": {
-                "price": 209.34,
-                "change": 0.97,
+                "price": 209.35,
+                "change": 0.98,
                 "change_pct": 0.47,
                 "label": "盤前"
               },
@@ -438913,9 +439051,9 @@
               "change_pct": 0.84,
               "market_cap": 160939429110.0,
               "ext_session": {
-                "price": 135.0,
-                "change": -1.12,
-                "change_pct": -0.82,
+                "price": 136.58,
+                "change": 0.46,
+                "change_pct": 0.34,
                 "label": "盤前"
               },
               "intraday": [],
@@ -440395,7 +440533,7 @@
                 },
                 {
                   "date": "2026-04-07",
-                  "close": 141.11
+                  "close": 141.12
                 },
                 {
                   "date": "2026-04-08",
@@ -441131,9 +441269,9 @@
               "change_pct": -4.2,
               "market_cap": 67735000338.0,
               "ext_session": {
-                "price": 46.52,
-                "change": 0.63,
-                "change_pct": 1.37,
+                "price": 47.14,
+                "change": 1.25,
+                "change_pct": 2.72,
                 "label": "盤前"
               },
               "intraday": [],
@@ -442240,9 +442378,9 @@
               "change_pct": -3.99,
               "market_cap": 44499848555.0,
               "ext_session": {
-                "price": 44.83,
-                "change": 0.02,
-                "change_pct": 0.04,
+                "price": 45.92,
+                "change": 1.11,
+                "change_pct": 2.48,
                 "label": "盤前"
               },
               "intraday": [],
@@ -443350,9 +443488,9 @@
               "change_pct": -2.75,
               "market_cap": 80400520665.0,
               "ext_session": {
-                "price": 64.31,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 65.24,
+                "change": 0.93,
+                "change_pct": 1.45,
                 "label": "盤前"
               },
               "intraday": [],
@@ -445568,9 +445706,9 @@
               "change_pct": -2.48,
               "market_cap": 53191105308.0,
               "ext_session": {
-                "price": 84.8,
-                "change": 0.43,
-                "change_pct": 0.51,
+                "price": 85.35,
+                "change": 0.98,
+                "change_pct": 1.16,
                 "label": "盤前"
               },
               "intraday": [],
@@ -448782,7 +448920,9 @@
                 "website": "WWW.FPCC.COM.TW",
                 "summary": "石油化工原料製造業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -453122,7 +453262,7 @@
               ],
               "fundamentals": {
                 "pe": 7.18,
-                "forward_pe": 5.37,
+                "forward_pe": 5.39,
                 "eps": 51.12,
                 "gross_margin": "14.6%",
                 "operating_margin": "12.4%",
@@ -453157,7 +453297,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 7.18 倍、預估本益比 5.37",
+                    "title": "[估值水位檢視] 本益比 PE 7.18 倍、預估本益比 5.39",
                     "url": "https://finance.yahoo.com/quote/MPC/financials/",
                     "date": "SEC Filings / Yahoo Finance (MPC)"
                   },
@@ -453179,7 +453319,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 7.18 倍、預估本益比 5.37",
+                        "title": "[估值水位檢視] 本益比 PE 7.18 倍、預估本益比 5.39",
                         "url": "https://finance.yahoo.com/quote/MPC/financials/",
                         "date": "SEC Filings / Yahoo Finance (MPC)"
                       }
@@ -453217,9 +453357,9 @@
               "change_pct": -1.39,
               "market_cap": 93375528881.0,
               "ext_session": {
-                "price": 240.85,
-                "change": 1.52,
-                "change_pct": 0.64,
+                "price": 240.95,
+                "change": 1.62,
+                "change_pct": 0.68,
                 "label": "盤前"
               },
               "intraday": [],
@@ -454326,9 +454466,9 @@
               "change_pct": -1.26,
               "market_cap": 93197586554.0,
               "ext_session": {
-                "price": 336.35,
-                "change": 2.17,
-                "change_pct": 0.65,
+                "price": 339.99,
+                "change": 5.81,
+                "change_pct": 1.74,
                 "label": "盤前"
               },
               "intraday": [],
@@ -457597,9 +457737,9 @@
               "change_pct": -4.04,
               "market_cap": 18049860840.0,
               "ext_session": {
-                "price": 55.81,
-                "change": -0.03,
-                "change_pct": -0.05,
+                "price": 56.26,
+                "change": 0.42,
+                "change_pct": 0.75,
                 "label": "盤前"
               },
               "intraday": [],
@@ -474947,9 +475087,9 @@
               "change_pct": -8.92,
               "market_cap": 9077852079.0,
               "ext_session": {
-                "price": 25.26,
-                "change": 1.99,
-                "change_pct": 8.55,
+                "price": 25.5,
+                "change": 2.23,
+                "change_pct": 9.58,
                 "label": "盤前"
               },
               "intraday": [],
@@ -477163,9 +477303,9 @@
               "change_pct": -3.23,
               "market_cap": 61238876560.0,
               "ext_session": {
-                "price": 1140.0,
-                "change": 18.78,
-                "change_pct": 1.67,
+                "price": 1139.0,
+                "change": 17.78,
+                "change_pct": 1.59,
                 "label": "盤前"
               },
               "intraday": [],
@@ -482596,9 +482736,9 @@
               "change_pct": -2.9,
               "market_cap": 320049754313.0,
               "ext_session": {
-                "price": 311.5,
-                "change": 1.88,
-                "change_pct": 0.61,
+                "price": 319.12,
+                "change": 9.5,
+                "change_pct": 3.07,
                 "label": "盤前"
               },
               "intraday": [],
@@ -483705,9 +483845,9 @@
               "change_pct": -2.39,
               "market_cap": 67483115607.0,
               "ext_session": {
-                "price": 212.64,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 215.9,
+                "change": 3.26,
+                "change_pct": 1.53,
                 "label": "盤前"
               },
               "intraday": [],
@@ -486977,9 +487117,9 @@
               "change_pct": -2.88,
               "market_cap": 123535022405.0,
               "ext_session": {
-                "price": 159.0,
-                "change": 3.11,
-                "change_pct": 1.99,
+                "price": 159.87,
+                "change": 3.98,
+                "change_pct": 2.55,
                 "label": "盤前"
               },
               "intraday": [],
@@ -488086,9 +488226,9 @@
               "change_pct": -10.92,
               "market_cap": 28706389713.0,
               "ext_session": {
-                "price": 49.5,
-                "change": 4.08,
-                "change_pct": 8.98,
+                "price": 49.43,
+                "change": 4.01,
+                "change_pct": 8.83,
                 "label": "盤前"
               },
               "intraday": [],
@@ -489195,9 +489335,9 @@
               "change_pct": -10.33,
               "market_cap": 2003055145.0,
               "ext_session": {
-                "price": 9.47,
-                "change": 0.7,
-                "change_pct": 7.98,
+                "price": 9.49,
+                "change": 0.72,
+                "change_pct": 8.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -491383,9 +491523,9 @@
               "change_pct": -6.63,
               "market_cap": 345738784008.0,
               "ext_session": {
-                "price": 151.08,
-                "change": 7.59,
-                "change_pct": 5.29,
+                "price": 150.6,
+                "change": 7.11,
+                "change_pct": 4.96,
                 "label": "盤前"
               },
               "intraday": [],
@@ -494756,9 +494896,9 @@
               "change_pct": -1.32,
               "market_cap": 256919984176.0,
               "ext_session": {
-                "price": 190.98,
-                "change": 0.81,
-                "change_pct": 0.43,
+                "price": 191.07,
+                "change": 0.9,
+                "change_pct": 0.47,
                 "label": "盤前"
               },
               "intraday": [],
@@ -495783,12 +495923,12 @@
                 "sector": "電子科技",
                 "industry": "航太與國防軍工",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "RTX公司（英語：RTX Corporation），前稱雷神技術公司（Raytheon Technologies Corporation），是一家美國跨國航空航天防務企業，為世界最大航空航天防務企業之一。總部設在康乃狄克州法明頓。RTX公司由雷神公司與聯合技術公司於2020年4月3日合併而成。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -496974,9 +497114,9 @@
               "change_pct": -9.51,
               "market_cap": 4410728738.0,
               "ext_session": {
-                "price": 89.65,
-                "change": 2.86,
-                "change_pct": 3.3,
+                "price": 92.96,
+                "change": 6.17,
+                "change_pct": 7.11,
                 "label": "盤前"
               },
               "intraday": [],
@@ -500243,9 +500383,9 @@
               "change_pct": -1.11,
               "market_cap": 130633123169.0,
               "ext_session": {
-                "price": 570.25,
-                "change": 4.75,
-                "change_pct": 0.84,
+                "price": 572.0,
+                "change": 6.5,
+                "change_pct": 1.15,
                 "label": "盤前"
               },
               "intraday": [],
@@ -501352,9 +501492,9 @@
               "change_pct": -1.48,
               "market_cap": 75906473908.0,
               "ext_session": {
-                "price": 536.25,
-                "change": 1.94,
-                "change_pct": 0.36,
+                "price": 537.0,
+                "change": 2.69,
+                "change_pct": 0.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -502379,12 +502519,12 @@
                 "sector": "電子科技",
                 "industry": "航太與國防軍工",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "諾斯洛普·格魯曼公司（Northrop Grumman），簡稱諾格，是總部設於美國的跨國航太及國防科技公司。組建於1994年，諾斯洛普公司收購格魯曼公司後組成，是世界第4大軍工生產廠商（2022年）、最大的雷達製造商。2020年該公司在財富美國500強雜誌中位列排名美國第96名的大企業。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -505621,7 +505761,9 @@
                 "website": "www.evergreen-marine.com",
                 "summary": "船舶運送業、船務代理業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -513271,9 +513413,9 @@
               "change_pct": -1.01,
               "market_cap": 3537430717.0,
               "ext_session": {
-                "price": 29.5,
-                "change": 0.18,
-                "change_pct": 0.61,
+                "price": 29.79,
+                "change": 0.47,
+                "change_pct": 1.6,
                 "label": "盤前"
               },
               "intraday": [],
@@ -517621,9 +517763,9 @@
               "change_pct": -1.15,
               "market_cap": 170722210321.0,
               "ext_session": {
-                "price": 289.4,
-                "change": 2.11,
-                "change_pct": 0.73,
+                "price": 291.19,
+                "change": 3.9,
+                "change_pct": 1.36,
                 "label": "盤前"
               },
               "intraday": [],
@@ -518730,9 +518872,9 @@
               "change_pct": -2.65,
               "market_cap": 90443072698.0,
               "ext_session": {
-                "price": 107.91,
-                "change": 1.69,
-                "change_pct": 1.59,
+                "price": 107.67,
+                "change": 1.45,
+                "change_pct": 1.37,
                 "label": "盤前"
               },
               "intraday": [],
@@ -520048,7 +520190,7 @@
                 },
                 {
                   "date": "2026-02-05",
-                  "close": 289.87
+                  "close": 289.86
                 },
                 {
                   "date": "2026-02-06",
@@ -523027,7 +523169,9 @@
                 "website": "www.advantech.com",
                 "summary": "工業測控產品",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -524191,9 +524335,9 @@
               "change_pct": 0.25,
               "market_cap": 212122912095.0,
               "ext_session": {
-                "price": 228.02,
-                "change": 3.58,
-                "change_pct": 1.6,
+                "price": 228.77,
+                "change": 4.33,
+                "change_pct": 1.93,
                 "label": "盤前"
               },
               "intraday": [],
@@ -525218,12 +525362,12 @@
                 "sector": "科技服務",
                 "industry": "資訊科技服務",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "國際商業機器公司（美國英語：International Business Machines Corporation，舊譯為萬國商業機器公司），以英文簡稱IBM名義經營，綽號Big Blue（藍色巨人），是一家美國跨國科技公司，總部設在紐約州阿蒙克，業務遍及175個以上國家。公司公開上市，是道瓊工業平均指數30家成分股公司之一。IBM是全球最大的工業研究機構，在十幾個國家設有19處研究設施；1993年至2021年連續29年保持企業年度美國專利數量最高的紀錄。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -525300,9 +525444,9 @@
               "change_pct": -5.25,
               "market_cap": 91515448133.0,
               "ext_session": {
-                "price": 128.32,
-                "change": 3.76,
-                "change_pct": 3.02,
+                "price": 128.55,
+                "change": 3.99,
+                "change_pct": 3.2,
                 "label": "盤前"
               },
               "intraday": [],
@@ -528572,9 +528716,9 @@
               "change_pct": -5.09,
               "market_cap": 281865726013.0,
               "ext_session": {
-                "price": 350.48,
-                "change": 7.16,
-                "change_pct": 2.09,
+                "price": 353.67,
+                "change": 10.35,
+                "change_pct": 3.01,
                 "label": "盤前"
               },
               "intraday": [],
@@ -529682,9 +529826,9 @@
               "change_pct": -5.76,
               "market_cap": 234931606328.0,
               "ext_session": {
-                "price": 222.07,
-                "change": -7.37,
-                "change_pct": -3.21,
+                "price": 221.08,
+                "change": -8.36,
+                "change_pct": -3.64,
                 "label": "盤前"
               },
               "intraday": [],
@@ -530792,9 +530936,9 @@
               "change_pct": -8.48,
               "market_cap": 305971861721.0,
               "ext_session": {
-                "price": 106.42,
-                "change": 5.23,
-                "change_pct": 5.17,
+                "price": 106.0,
+                "change": 4.81,
+                "change_pct": 4.75,
                 "label": "盤前"
               },
               "intraday": [],
@@ -531901,9 +532045,9 @@
               "change_pct": -1.42,
               "market_cap": 90991080634.0,
               "ext_session": {
-                "price": 90.36,
-                "change": 2.75,
-                "change_pct": 3.14,
+                "price": 90.25,
+                "change": 2.64,
+                "change_pct": 3.01,
                 "label": "盤前"
               },
               "intraday": [],
@@ -533010,9 +533154,9 @@
               "change_pct": -1.47,
               "market_cap": 148695520980.0,
               "ext_session": {
-                "price": 184.31,
-                "change": 3.69,
-                "change_pct": 2.04,
+                "price": 184.6,
+                "change": 3.98,
+                "change_pct": 2.2,
                 "label": "盤前"
               },
               "intraday": [],
@@ -539524,9 +539668,9 @@
               "change_pct": 1.18,
               "market_cap": 130749460848.0,
               "ext_session": {
-                "price": 221.2,
-                "change": 0.03,
-                "change_pct": 0.01,
+                "price": 222.88,
+                "change": 1.71,
+                "change_pct": 0.77,
                 "label": "盤前"
               },
               "intraday": [],
@@ -540633,9 +540777,9 @@
               "change_pct": -1.79,
               "market_cap": 84732737271.0,
               "ext_session": {
-                "price": 220.24,
-                "change": 2.53,
-                "change_pct": 1.16,
+                "price": 220.71,
+                "change": 3.0,
+                "change_pct": 1.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -541743,9 +541887,9 @@
               "change_pct": -12.77,
               "market_cap": 71400221206.0,
               "ext_session": {
-                "price": 273.15,
-                "change": 2.71,
-                "change_pct": 1.0,
+                "price": 276.88,
+                "change": 6.44,
+                "change_pct": 2.38,
                 "label": "盤前"
               },
               "intraday": [],
@@ -541816,7 +541960,7 @@
                 },
                 {
                   "date": "2025-12-16",
-                  "close": 660.05
+                  "close": 660.04
                 },
                 {
                   "date": "2025-12-17",
@@ -543851,7 +543995,9 @@
                 "website": "http://www.PharmaEssentia.com",
                 "summary": "從事新藥之研究、開發、生產與銷售",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -550409,9 +550555,9 @@
               "change_pct": -2.7,
               "market_cap": 171535153945.0,
               "ext_session": {
-                "price": 38.67,
-                "change": 0.85,
-                "change_pct": 2.25,
+                "price": 38.6,
+                "change": 0.78,
+                "change_pct": 2.06,
                 "label": "盤前"
               },
               "intraday": [],
@@ -551516,9 +551662,9 @@
               "change_pct": 0.94,
               "market_cap": 505891781148.0,
               "ext_session": {
-                "price": 286.5,
-                "change": 0.3,
-                "change_pct": 0.1,
+                "price": 287.0,
+                "change": 0.8,
+                "change_pct": 0.28,
                 "label": "盤前"
               },
               "intraday": [],
@@ -552625,9 +552771,9 @@
               "change_pct": 0.69,
               "market_cap": 329652678019.0,
               "ext_session": {
-                "price": 133.76,
-                "change": 0.04,
-                "change_pct": 0.03,
+                "price": 134.47,
+                "change": 0.75,
+                "change_pct": 0.56,
                 "label": "盤前"
               },
               "intraday": [],
@@ -553734,9 +553880,9 @@
               "change_pct": -0.51,
               "market_cap": 156175984154.0,
               "ext_session": {
-                "price": 27.52,
-                "change": 0.12,
-                "change_pct": 0.44,
+                "price": 27.54,
+                "change": 0.14,
+                "change_pct": 0.51,
                 "label": "盤前"
               },
               "intraday": [],
@@ -554843,9 +554989,9 @@
               "change_pct": -0.15,
               "market_cap": 235642693358.0,
               "ext_session": {
-                "price": 435.64,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 438.0,
+                "change": 2.36,
+                "change_pct": 0.54,
                 "label": "盤前"
               },
               "intraday": [],
@@ -554884,7 +555030,7 @@
                 },
                 {
                   "date": "2025-12-04",
-                  "close": 331.43
+                  "close": 331.42
                 },
                 {
                   "date": "2025-12-05",
@@ -555953,9 +556099,9 @@
               "change_pct": -1.08,
               "market_cap": 130576977790.0,
               "ext_session": {
-                "price": 515.02,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 520.0,
+                "change": 4.98,
+                "change_pct": 0.97,
                 "label": "盤前"
               },
               "intraday": [],
@@ -557063,9 +557209,9 @@
               "change_pct": -0.19,
               "market_cap": 95227624709.0,
               "ext_session": {
-                "price": 920.69,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 927.93,
+                "change": 7.24,
+                "change_pct": 0.79,
                 "label": "盤前"
               },
               "intraday": [],
@@ -558173,9 +558319,9 @@
               "change_pct": -0.06,
               "market_cap": 206429547949.0,
               "ext_session": {
-                "price": 167.58,
-                "change": 1.15,
-                "change_pct": 0.69,
+                "price": 167.26,
+                "change": 0.83,
+                "change_pct": 0.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -564805,9 +564951,9 @@
               "change_pct": -2.79,
               "market_cap": 248075186883.0,
               "ext_session": {
-                "price": 673.5,
-                "change": 3.96,
-                "change_pct": 0.59,
+                "price": 676.63,
+                "change": 7.09,
+                "change_pct": 1.06,
                 "label": "盤前"
               },
               "intraday": [],
@@ -565819,7 +565965,7 @@
               ],
               "fundamentals": {
                 "pe": 35.32,
-                "forward_pe": 26.47,
+                "forward_pe": 26.48,
                 "eps": 18.95,
                 "gross_margin": "40.5%",
                 "operating_margin": "19.1%",
@@ -565854,7 +566000,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 35.32 倍、預估本益比 26.47",
+                    "title": "[估值水位檢視] 本益比 PE 35.32 倍、預估本益比 26.48",
                     "url": "https://finance.yahoo.com/quote/TMO/financials/",
                     "date": "SEC Filings / Yahoo Finance (TMO)"
                   },
@@ -565876,7 +566022,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 35.32 倍、預估本益比 26.47",
+                        "title": "[估值水位檢視] 本益比 PE 35.32 倍、預估本益比 26.48",
                         "url": "https://finance.yahoo.com/quote/TMO/financials/",
                         "date": "SEC Filings / Yahoo Finance (TMO)"
                       }
@@ -565914,9 +566060,9 @@
               "change_pct": -3.16,
               "market_cap": 155030052531.0,
               "ext_session": {
-                "price": 221.31,
-                "change": 0.95,
-                "change_pct": 0.43,
+                "price": 222.17,
+                "change": 1.81,
+                "change_pct": 0.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -567023,9 +567169,9 @@
               "change_pct": -2.01,
               "market_cap": 138328167157.0,
               "ext_session": {
-                "price": 406.04,
-                "change": 6.99,
-                "change_pct": 1.75,
+                "price": 407.11,
+                "change": 8.06,
+                "change_pct": 2.02,
                 "label": "盤前"
               },
               "intraday": [],
@@ -568050,13 +568196,13 @@
                 "sector": "醫療生技科技",
                 "industry": "醫療器材與耗材",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "直覺手術公司（Intuitive Surgical Inc.），或稱直覺外科公司，是一家美國醫療設備公司，主要研究機器人輔助微創手術技術，著名產品為達文西外科手術系統。 該公司研發的達文西手術機器人主要用於前列腺切除術、心臟瓣膜修復和婦產科手術。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股",
                   "納斯達克100成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -568133,9 +568279,9 @@
               "change_pct": -0.84,
               "market_cap": 178389989990.0,
               "ext_session": {
-                "price": 103.28,
-                "change": 0.28,
-                "change_pct": 0.27,
+                "price": 103.47,
+                "change": 0.47,
+                "change_pct": 0.46,
                 "label": "盤前"
               },
               "intraday": [],
@@ -569242,9 +569388,9 @@
               "change_pct": -0.98,
               "market_cap": 118014212952.0,
               "ext_session": {
-                "price": 309.75,
-                "change": -0.25,
-                "change_pct": -0.08,
+                "price": 311.0,
+                "change": 1.0,
+                "change_pct": 0.32,
                 "label": "盤前"
               },
               "intraday": [],
@@ -570351,9 +570497,9 @@
               "change_pct": -2.35,
               "market_cap": 60877876533.0,
               "ext_session": {
-                "price": 42.2,
-                "change": 0.22,
-                "change_pct": 0.52,
+                "price": 42.34,
+                "change": 0.36,
+                "change_pct": 0.86,
                 "label": "盤前"
               },
               "intraday": [],
@@ -573779,7 +573925,7 @@
                 },
                 {
                   "date": "2025-12-05",
-                  "close": 123.04
+                  "close": 123.03
                 },
                 {
                   "date": "2025-12-08",
@@ -579117,7 +579263,9 @@
                 "website": "www.kgi.com",
                 "summary": "投資及被投資公司之管理",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -580198,7 +580346,9 @@
                 "website": "https://www.tsholdings.com.tw/",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -581279,7 +581429,9 @@
                 "website": "https://www.esunfhc.com",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -583524,9 +583676,9 @@
               "change_pct": 2.84,
               "market_cap": 304544661840.0,
               "ext_session": {
-                "price": 340.03,
-                "change": 0.18,
-                "change_pct": 0.05,
+                "price": 332.5,
+                "change": -7.35,
+                "change_pct": -2.16,
                 "label": "盤前"
               },
               "intraday": [],
@@ -587865,7 +588017,7 @@
               ],
               "fundamentals": {
                 "pe": 18.13,
-                "forward_pe": 16.4,
+                "forward_pe": 16.31,
                 "eps": 6.86,
                 "gross_margin": "N/A",
                 "operating_margin": "27.4%",
@@ -587900,7 +588052,7 @@
                 ],
                 "bearish": [
                   {
-                    "title": "[估值水位檢視] 本益比 PE 18.13 倍、預估本益比 16.4",
+                    "title": "[估值水位檢視] 本益比 PE 18.13 倍、預估本益比 16.31",
                     "url": "https://finance.yahoo.com/quote/AFL/financials/",
                     "date": "SEC Filings / Yahoo Finance (AFL)"
                   },
@@ -587922,7 +588074,7 @@
                     ],
                     "bearish": [
                       {
-                        "title": "[估值水位檢視] 本益比 PE 18.13 倍、預估本益比 16.4",
+                        "title": "[估值水位檢視] 本益比 PE 18.13 倍、預估本益比 16.31",
                         "url": "https://finance.yahoo.com/quote/AFL/financials/",
                         "date": "SEC Filings / Yahoo Finance (AFL)"
                       }
@@ -592284,9 +592436,9 @@
               "change_pct": 0.62,
               "market_cap": 133674005472.0,
               "ext_session": {
-                "price": 231.39,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 231.95,
+                "change": 0.56,
+                "change_pct": 0.24,
                 "label": "盤前"
               },
               "intraday": [],
@@ -592565,7 +592717,7 @@
                 },
                 {
                   "date": "2026-03-04",
-                  "close": 211.09
+                  "close": 211.1
                 },
                 {
                   "date": "2026-03-05",
@@ -593393,9 +593545,9 @@
               "change_pct": 0.41,
               "market_cap": 141992103744.0,
               "ext_session": {
-                "price": 373.39,
-                "change": 1.76,
-                "change_pct": 0.47,
+                "price": 373.0,
+                "change": 1.37,
+                "change_pct": 0.37,
                 "label": "盤前"
               },
               "intraday": [],
@@ -594502,9 +594654,9 @@
               "change_pct": 0.76,
               "market_cap": 98060562155.0,
               "ext_session": {
-                "price": 206.22,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 208.0,
+                "change": 1.78,
+                "change_pct": 0.86,
                 "label": "盤前"
               },
               "intraday": [],
@@ -595611,9 +595763,9 @@
               "change_pct": 0.62,
               "market_cap": 70663188676.0,
               "ext_session": {
-                "price": 325.0,
-                "change": -8.07,
-                "change_pct": -2.42,
+                "price": 333.07,
+                "change": 0.0,
+                "change_pct": 0.0,
                 "label": "盤前"
               },
               "intraday": [],
@@ -598882,9 +599034,9 @@
               "change_pct": -0.09,
               "market_cap": 746251798432.0,
               "ext_session": {
-                "price": 405.03,
-                "change": 3.16,
-                "change_pct": 0.79,
+                "price": 405.16,
+                "change": 3.29,
+                "change_pct": 0.82,
                 "label": "盤前"
               },
               "intraday": [],
@@ -599991,9 +600143,9 @@
               "change_pct": -0.15,
               "market_cap": 545473876733.0,
               "ext_session": {
-                "price": 625.84,
-                "change": 0.25,
-                "change_pct": 0.04,
+                "price": 629.63,
+                "change": 4.04,
+                "change_pct": 0.65,
                 "label": "盤前"
               },
               "intraday": [],
@@ -601100,9 +601252,9 @@
               "change_pct": -3.02,
               "market_cap": 202305547175.0,
               "ext_session": {
-                "price": 306.25,
-                "change": 4.55,
-                "change_pct": 1.51,
+                "price": 307.02,
+                "change": 5.32,
+                "change_pct": 1.76,
                 "label": "盤前"
               },
               "intraday": [],
@@ -602209,9 +602361,9 @@
               "change_pct": -0.51,
               "market_cap": 95005938110.0,
               "ext_session": {
-                "price": 171.24,
-                "change": 1.24,
-                "change_pct": 0.73,
+                "price": 171.17,
+                "change": 1.17,
+                "change_pct": 0.69,
                 "label": "盤前"
               },
               "intraday": [],
@@ -603318,9 +603470,9 @@
               "change_pct": 0.41,
               "market_cap": 110086147446.0,
               "ext_session": {
-                "price": 307.56,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 308.76,
+                "change": 1.2,
+                "change_pct": 0.39,
                 "label": "盤前"
               },
               "intraday": [],
@@ -604427,9 +604579,9 @@
               "change_pct": -0.7,
               "market_cap": 127480625440.0,
               "ext_session": {
-                "price": 443.0,
-                "change": 3.43,
-                "change_pct": 0.78,
+                "price": 448.73,
+                "change": 9.16,
+                "change_pct": 2.08,
                 "label": "盤前"
               },
               "intraday": [],
@@ -606534,7 +606686,9 @@
                 "website": "www.megaholdings.com.tw",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -607615,7 +607769,9 @@
                 "website": "www.tcfhc.com.tw",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -608696,7 +608852,9 @@
                 "website": "www.firstholding.com.tw",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -609777,7 +609935,9 @@
                 "website": "www.hnfhc.com.tw",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -610858,7 +611018,9 @@
                 "website": "https://www.sinopac.com/index.html",
                 "summary": "本公司得投資下列事業：銀行業、票券金融業、信用卡業、信託業、",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -617427,9 +617589,9 @@
               "change_pct": -3.03,
               "market_cap": 825044793231.0,
               "ext_session": {
-                "price": 318.57,
-                "change": 8.04,
-                "change_pct": 2.59,
+                "price": 318.3,
+                "change": 7.77,
+                "change_pct": 2.5,
                 "label": "盤前"
               },
               "intraday": [],
@@ -618536,9 +618698,9 @@
               "change_pct": -3.15,
               "market_cap": 324861845307.0,
               "ext_session": {
-                "price": 47.94,
-                "change": 0.9,
-                "change_pct": 1.91,
+                "price": 47.81,
+                "change": 0.77,
+                "change_pct": 1.64,
                 "label": "盤前"
               },
               "intraday": [],
@@ -619645,9 +619807,9 @@
               "change_pct": -2.47,
               "market_cap": 236005482117.0,
               "ext_session": {
-                "price": 79.54,
-                "change": 0.92,
-                "change_pct": 1.17,
+                "price": 80.6,
+                "change": 1.98,
+                "change_pct": 2.52,
                 "label": "盤前"
               },
               "intraday": [],
@@ -620754,9 +620916,9 @@
               "change_pct": -4.04,
               "market_cap": 183098722771.0,
               "ext_session": {
-                "price": 113.74,
-                "change": 3.12,
-                "change_pct": 2.82,
+                "price": 113.81,
+                "change": 3.19,
+                "change_pct": 2.88,
                 "label": "盤前"
               },
               "intraday": [],
@@ -621863,9 +622025,9 @@
               "change_pct": -6.71,
               "market_cap": 228062355235.0,
               "ext_session": {
-                "price": 816.0,
-                "change": 25.31,
-                "change_pct": 3.2,
+                "price": 820.0,
+                "change": 29.31,
+                "change_pct": 3.71,
                 "label": "盤前"
               },
               "intraday": [],
@@ -622972,9 +623134,9 @@
               "change_pct": -5.32,
               "market_cap": 258949467335.0,
               "ext_session": {
-                "price": 170.92,
-                "change": 5.25,
-                "change_pct": 3.17,
+                "price": 171.5,
+                "change": 5.83,
+                "change_pct": 3.52,
                 "label": "盤前"
               },
               "intraday": [],
@@ -623369,7 +623531,7 @@
                 },
                 {
                   "date": "2026-04-15",
-                  "close": 188.41
+                  "close": 188.4
                 },
                 {
                   "date": "2026-04-16",
@@ -625079,7 +625241,9 @@
                 "website": "http://www.yuanta.com",
                 "summary": "金融控股公司業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -635950,9 +636114,9 @@
               "change_pct": -5.9,
               "market_cap": 121117886802.0,
               "ext_session": {
-                "price": 74.22,
-                "change": 3.03,
-                "change_pct": 4.26,
+                "price": 74.1,
+                "change": 2.91,
+                "change_pct": 4.09,
                 "label": "盤前"
               },
               "intraday": [],
@@ -638168,9 +638332,9 @@
               "change_pct": -3.0,
               "market_cap": 178512064895.0,
               "ext_session": {
-                "price": 1108.04,
-                "change": 6.32,
-                "change_pct": 0.57,
+                "price": 1134.7,
+                "change": 32.98,
+                "change_pct": 2.99,
                 "label": "盤前"
               },
               "intraday": [],
@@ -639277,9 +639441,9 @@
               "change_pct": -4.47,
               "market_cap": 136768582737.0,
               "ext_session": {
-                "price": 110.99,
-                "change": 0.19,
-                "change_pct": 0.17,
+                "price": 113.45,
+                "change": 2.65,
+                "change_pct": 2.39,
                 "label": "盤前"
               },
               "intraday": [],
@@ -640304,12 +640468,12 @@
                 "sector": "金融業",
                 "industry": "Investment Managers",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "黑石集團（英語：Blackstone Group，NYSE：BX）又譯作「百仕通集團」，是美國的私人股權投資和投資管理公司，由蘇世民及彼得·喬治·彼得森創建於1985年，總部位於美國紐約曼哈頓，在亞特蘭大、波士頓、倫敦、杜塞道夫、巴黎、馬德里、悉尼、東京、新加坡、北京、上海、香港、孟買和杜拜都設有辦事機構。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -640386,9 +640550,9 @@
               "change_pct": -3.9,
               "market_cap": 78990039885.0,
               "ext_session": {
-                "price": 89.25,
-                "change": 0.71,
-                "change_pct": 0.8,
+                "price": 91.9,
+                "change": 3.36,
+                "change_pct": 3.79,
                 "label": "盤前"
               },
               "intraday": [],
@@ -644766,9 +644930,9 @@
               "change_pct": -5.01,
               "market_cap": 233578953361.0,
               "ext_session": {
-                "price": 533.16,
-                "change": 22.71,
-                "change_pct": 4.45,
+                "price": 533.79,
+                "change": 23.34,
+                "change_pct": 4.57,
                 "label": "盤前"
               },
               "intraday": [],
@@ -644887,7 +645051,7 @@
                 },
                 {
                   "date": "2026-01-05",
-                  "close": 610.91
+                  "close": 610.9
                 },
                 {
                   "date": "2026-01-06",
@@ -645875,9 +646039,9 @@
               "change_pct": -2.5,
               "market_cap": 164269272957.0,
               "ext_session": {
-                "price": 613.19,
-                "change": 3.94,
-                "change_pct": 0.65,
+                "price": 616.18,
+                "change": 6.93,
+                "change_pct": 1.14,
                 "label": "盤前"
               },
               "intraday": [],
@@ -663255,9 +663419,9 @@
               "change_pct": -4.89,
               "market_cap": 95842467706.0,
               "ext_session": {
-                "price": 968.22,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 982.11,
+                "change": 13.89,
+                "change_pct": 1.43,
                 "label": "盤前"
               },
               "intraday": [],
@@ -663652,7 +663816,7 @@
                 },
                 {
                   "date": "2026-04-15",
-                  "close": 1037.61
+                  "close": 1037.62
                 },
                 {
                   "date": "2026-04-16",
@@ -664364,9 +664528,9 @@
               "change_pct": 0.7,
               "market_cap": 338306587276.0,
               "ext_session": {
-                "price": 342.0,
-                "change": 2.96,
-                "change_pct": 0.87,
+                "price": 341.93,
+                "change": 2.89,
+                "change_pct": 0.85,
                 "label": "盤前"
               },
               "intraday": [],
@@ -665473,9 +665637,9 @@
               "change_pct": 0.78,
               "market_cap": 123903166864.0,
               "ext_session": {
-                "price": 215.69,
-                "change": -5.15,
-                "change_pct": -2.33,
+                "price": 224.6,
+                "change": 3.76,
+                "change_pct": 1.7,
                 "label": "盤前"
               },
               "intraday": [],
@@ -675375,9 +675539,9 @@
               "change_pct": -1.64,
               "market_cap": 107769748385.0,
               "ext_session": {
-                "price": 146.21,
-                "change": 1.3,
-                "change_pct": 0.9,
+                "price": 147.81,
+                "change": 2.9,
+                "change_pct": 2.0,
                 "label": "盤前"
               },
               "intraday": [],
@@ -676485,9 +676649,9 @@
               "change_pct": -1.41,
               "market_cap": 100807050168.0,
               "ext_session": {
-                "price": 170.5,
-                "change": 0.14,
-                "change_pct": 0.08,
+                "price": 173.47,
+                "change": 3.11,
+                "change_pct": 1.83,
                 "label": "盤前"
               },
               "intraday": [],
@@ -679814,9 +679978,9 @@
               "change_pct": -2.2,
               "market_cap": 79299789384.0,
               "ext_session": {
-                "price": 300.0,
-                "change": 3.52,
-                "change_pct": 1.19,
+                "price": 308.99,
+                "change": 12.51,
+                "change_pct": 4.22,
                 "label": "盤前"
               },
               "intraday": [],
@@ -689571,9 +689735,9 @@
               "change_pct": 0.33,
               "market_cap": 192848612461.0,
               "ext_session": {
-                "price": 272.4,
-                "change": -0.84,
-                "change_pct": -0.31,
+                "price": 273.0,
+                "change": -0.24,
+                "change_pct": -0.09,
                 "label": "盤前"
               },
               "intraday": [],
@@ -690680,9 +690844,9 @@
               "change_pct": -1.28,
               "market_cap": 117578507351.0,
               "ext_session": {
-                "price": 103.13,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 104.44,
+                "change": 1.31,
+                "change_pct": 1.27,
                 "label": "盤前"
               },
               "intraday": [],
@@ -691790,9 +691954,9 @@
               "change_pct": -2.07,
               "market_cap": 44969859417.0,
               "ext_session": {
-                "price": 35.77,
-                "change": 0.22,
-                "change_pct": 0.62,
+                "price": 35.98,
+                "change": 0.43,
+                "change_pct": 1.21,
                 "label": "盤前"
               },
               "intraday": [],
@@ -692899,9 +693063,9 @@
               "change_pct": 0.86,
               "market_cap": 43109166967.0,
               "ext_session": {
-                "price": 160.7,
-                "change": 0.0,
-                "change_pct": 0.0,
+                "price": 160.86,
+                "change": 0.16,
+                "change_pct": 0.1,
                 "label": "盤前"
               },
               "intraday": [],
@@ -694008,9 +694172,9 @@
               "change_pct": -0.27,
               "market_cap": 31862788281.0,
               "ext_session": {
-                "price": 66.8,
-                "change": -0.15,
-                "change_pct": -0.22,
+                "price": 67.48,
+                "change": 0.53,
+                "change_pct": 0.79,
                 "label": "盤前"
               },
               "intraday": [],
@@ -696115,7 +696279,9 @@
                 "website": "https://www.uni-president.com.tw",
                 "summary": "食品事業、便利商店事業、流通事業",
                 "business_source": "tw_yahoo_profile",
-                "index_tags": [],
+                "index_tags": [
+                  "0050成分股"
+                ],
                 "source": "證交所 OpenAPI (t187ap03_L) / Yahoo 奇摩股市 (同步證交所/櫃買中心)"
               },
               "news_sentiment": {
@@ -703765,9 +703931,9 @@
               "change_pct": 0.91,
               "market_cap": 392562929796.0,
               "ext_session": {
-                "price": 169.62,
-                "change": 0.25,
-                "change_pct": 0.15,
+                "price": 169.0,
+                "change": -0.37,
+                "change_pct": -0.22,
                 "label": "盤前"
               },
               "intraday": [],
@@ -704874,9 +705040,9 @@
               "change_pct": 0.94,
               "market_cap": 417241499130.0,
               "ext_session": {
-                "price": 96.71,
-                "change": -0.28,
-                "change_pct": -0.29,
+                "price": 96.82,
+                "change": -0.17,
+                "change_pct": -0.18,
                 "label": "盤前"
               },
               "intraday": [],
@@ -705983,9 +706149,9 @@
               "change_pct": 1.11,
               "market_cap": 191519623480.0,
               "ext_session": {
-                "price": 140.44,
-                "change": -0.1,
-                "change_pct": -0.07,
+                "price": 140.7,
+                "change": 0.16,
+                "change_pct": 0.11,
                 "label": "盤前"
               },
               "intraday": [],
@@ -707010,13 +707176,13 @@
                 "sector": "非耐久消費品",
                 "industry": "Food: Specialty/Candy",
                 "website": "",
-                "summary": "",
-                "business_source": "",
+                "summary": "百事公司（英語：PepsiCo Inc.，台灣舊譯百事可公司）是跨國企業集團，總部位於美國威斯特徹斯特郡，於1965年由百事可樂公司與世界最大休閒食品製造銷售商菲多利合併而成，現在為納斯達克上市公司，股票代號PEP （頁面存檔備份，存於網際網路檔案館）。",
+                "business_source": "zh.wikipedia.org",
                 "index_tags": [
                   "標普500成分股",
                   "納斯達克100成分股"
                 ],
-                "source": "TradingView"
+                "source": "TradingView / 維基百科 (繁體中文)"
               },
               "news_sentiment": {
                 "bullish": [
@@ -707093,9 +707259,9 @@
               "change_pct": -1.26,
               "market_cap": 286932910995.0,
               "ext_session": {
-                "price": 184.25,
-                "change": 0.16,
-                "change_pct": 0.09,
+                "price": 184.27,
+                "change": 0.18,
+                "change_pct": 0.1,
                 "label": "盤前"
               },
               "intraday": [],
@@ -708202,9 +708368,9 @@
               "change_pct": -4.11,
               "market_cap": 48918645722.0,
               "ext_session": {
-                "price": 33.61,
-                "change": 0.69,
-                "change_pct": 2.1,
+                "price": 33.42,
+                "change": 0.5,
+                "change_pct": 1.52,
                 "label": "盤前"
               },
               "intraday": [],
@@ -716878,9 +717044,9 @@
               "change_pct": 0.76,
               "market_cap": 488395005731.0,
               "ext_session": {
-                "price": 1100.65,
-                "change": -1.5,
-                "change_pct": -0.14,
+                "price": 1105.0,
+                "change": 2.85,
+                "change_pct": 0.26,
                 "label": "盤前"
               },
               "intraday": [],
@@ -717007,7 +717173,7 @@
                 },
                 {
                   "date": "2026-01-07",
-                  "close": 877.41
+                  "close": 877.4
                 },
                 {
                   "date": "2026-01-08",
@@ -717988,9 +718154,9 @@
               "change_pct": 0.15,
               "market_cap": 153578364373.0,
               "ext_session": {
-                "price": 140.68,
-                "change": 1.06,
-                "change_pct": 0.76,
+                "price": 141.0,
+                "change": 1.38,
+                "change_pct": 0.99,
                 "label": "盤前"
               },
               "intraday": [],
