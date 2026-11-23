@@ -24,6 +24,13 @@ def to_trad(text):
         s = s.replace(w, r)
     return s
 
+def clean_role_text(text):
+    s = to_trad(text or "")
+    s = re.sub(r'[（(]\s*千億美元\s*[）)]', '', s)
+    s = re.sub(r'上市千億霸主\s*[：:]?\s*', '', s)
+    s = re.sub(r'\s{2,}', ' ', s).strip(" ：:·-－")
+    return s
+
 def safe_float(val, default=0.0):
     try:
         if val is None or pd.isna(val):
@@ -80,7 +87,10 @@ def extract_close_series(df, ticker=None):
 class SimpleTableParser(HTMLParser):
     def __init__(self):
         super().__init__()
+        self.tables = []
         self.rows = []
+        self._in_table = False
+        self._cur_table = []
         self._in_tr = False
         self._in_cell = False
         self._cur_row = []
@@ -88,7 +98,10 @@ class SimpleTableParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         t = tag.lower()
-        if t == "tr":
+        if t == "table":
+            self._in_table = True
+            self._cur_table = []
+        elif t == "tr":
             self._in_tr = True
             self._cur_row = []
         elif t in ("td", "th") and self._in_tr:
@@ -105,7 +118,13 @@ class SimpleTableParser(HTMLParser):
         elif t == "tr" and self._in_tr:
             if self._cur_row:
                 self.rows.append(self._cur_row)
+                if self._in_table:
+                    self._cur_table.append(self._cur_row)
             self._in_tr = False
+        elif t == "table" and self._in_table:
+            if self._cur_table:
+                self.tables.append(self._cur_table)
+            self._in_table = False
 
     def handle_data(self, data):
         if self._in_cell:
@@ -261,15 +280,20 @@ FUTURES_AND_COMMODITIES = {
     "ETH-USD": {"name": "以太幣 (ETH)", "group": "crypto_assets"}
 }
 
-# 0. 讀取既有 market_data.json 作為報價防漏備援與公司簡介快取
+# 0. 讀取既有 market_data.json 作為報價防漏備援、公司簡介與成分股快取
 def load_previous_cache():
     old_assets = {}
     cached_tw_biz = {}
     cached_us_wiki = {}
+    old_idx_sets = {"tw0050": set(), "sp500": set(), "ndx100": set()}
     if os.path.exists("data/market_data.json"):
         try:
             with open("data/market_data.json", "r", encoding="utf-8") as f:
                 old_data = json.load(f) or {}
+            ic = old_data.get("index_constituents") or {}
+            for k in ("tw0050", "sp500", "ndx100"):
+                if isinstance(ic.get(k), list):
+                    old_idx_sets[k] = set(str(x).strip().upper() for x in ic[k] if x)
             buckets = []
             for k in ["indices", "vix_indices", "us_bonds", "fx_rates", "us_stocks", "tw_stocks", "futures_commodities"]:
                 buckets.extend(old_data.get(k) or [])
@@ -298,7 +322,129 @@ def load_previous_cache():
                         cached_us_wiki[sym] = prof["summary"]
         except Exception:
             pass
-    return old_assets, cached_tw_biz, cached_us_wiki
+    return old_assets, cached_tw_biz, cached_us_wiki, old_idx_sets
+
+# 0.5 動態抓取 0050、標普 500、納斯達克 100 成分股清單
+def fetch_index_constituents(old_idx_sets):
+    res = {
+        "tw0050": set(old_idx_sets.get("tw0050") or []),
+        "sp500": set(old_idx_sets.get("sp500") or []),
+        "ndx100": set(old_idx_sets.get("ndx100") or [])
+    }
+    ua_browser = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    ua_wiki = "MarketDashboardBot/1.0 (https://leo555g.github.io/market2/)"
+
+    # 1. 元大台灣 50 (0050) 成分股
+    got_0050 = set()
+    try:
+        r = requests.get("https://www.yuantaetfs.com/api/StkWeights?date=&fundid=1066", headers={"User-Agent": ua_browser}, timeout=10, verify=False)
+        if r.status_code == 200 and r.text.strip().startswith("["):
+            for row in r.json():
+                c = str(row.get("code") or "").strip()
+                if re.match(r"^\d{4}$", c):
+                    got_0050.add(c)
+    except Exception:
+        pass
+    if len(got_0050) < 40:
+        try:
+            r_w = requests.get(
+                "https://zh.wikipedia.org/w/api.php",
+                params={"action": "parse", "page": "臺灣50指數", "prop": "text", "format": "json"},
+                headers={"User-Agent": ua_wiki},
+                timeout=10
+            )
+            if r_w.status_code == 200:
+                html_str = ((r_w.json().get("parse") or {}).get("text") or {}).get("*") or ""
+                parser = SimpleTableParser()
+                parser.feed(html_str)
+                for tb in parser.tables:
+                    codes_in_tb = set()
+                    for row in tb:
+                        for cell in row:
+                            if re.match(r"^\d{4}$", cell.strip()):
+                                codes_in_tb.add(cell.strip())
+                    if 45 <= len(codes_in_tb) <= 60:
+                        got_0050 = codes_in_tb
+                        break
+        except Exception:
+            pass
+    if len(got_0050) >= 40:
+        res["tw0050"] = got_0050
+
+    # 2. 標普 500 (S&P 500) 成分股
+    got_sp500 = set()
+    try:
+        r = requests.get("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", headers={"User-Agent": ua_browser}, timeout=10)
+        if r.status_code == 200 and "Symbol" in r.text:
+            df_sp = pd.read_csv(io.StringIO(r.text))
+            if "Symbol" in df_sp.columns:
+                for s in df_sp["Symbol"].dropna():
+                    sym = str(s).strip().upper().replace(".", "-")
+                    if sym:
+                        got_sp500.add(sym)
+    except Exception:
+        pass
+    if len(got_sp500) < 400:
+        try:
+            r = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", headers={"User-Agent": ua_wiki}, timeout=10)
+            if r.status_code == 200:
+                parser = SimpleTableParser()
+                parser.feed(r.text)
+                for tb in parser.tables:
+                    if tb and any("Symbol" in c for c in tb[0]):
+                        idx_sym = next((i for i, c in enumerate(tb[0]) if "Symbol" in c), 0)
+                        for row in tb[1:]:
+                            if len(row) > idx_sym:
+                                sym = row[idx_sym].strip().upper().replace(".", "-")
+                                if re.match(r"^[A-Z]{1,5}(?:-[A-Z])?$", sym):
+                                    got_sp500.add(sym)
+                        if len(got_sp500) >= 400:
+                            break
+        except Exception:
+            pass
+    if len(got_sp500) >= 400:
+        res["sp500"] = got_sp500
+
+    # 3. 納斯達克 100 (Nasdaq-100) 成分股
+    got_ndx100 = set()
+    try:
+        r = requests.get("https://en.wikipedia.org/wiki/Nasdaq-100", headers={"User-Agent": ua_wiki}, timeout=10)
+        if r.status_code == 200:
+            parser = SimpleTableParser()
+            parser.feed(r.text)
+            for tb in parser.tables:
+                if tb and any(c.strip() in ("Ticker", "Symbol") for c in tb[0]):
+                    idx_t = next((i for i, c in enumerate(tb[0]) if c.strip() in ("Ticker", "Symbol")), 0)
+                    cands = set()
+                    for row in tb[1:]:
+                        if len(row) > idx_t:
+                            sym = row[idx_t].strip().upper().replace(".", "-")
+                            if re.match(r"^[A-Z]{1,5}(?:-[A-Z])?$", sym):
+                                cands.add(sym)
+                    if len(cands) >= 90:
+                        got_ndx100 = cands
+                        break
+    except Exception:
+        pass
+    if len(got_ndx100) < 90:
+        try:
+            r = requests.get(
+                "https://api.nasdaq.com/api/quote/list-type/nasdaq100",
+                headers={"User-Agent": ua_browser, "Accept": "application/json"},
+                timeout=10
+            )
+            if r.status_code == 200:
+                rows = (((r.json().get("data") or {}).get("data") or {}).get("rows")) or []
+                for row in rows:
+                    sym = str(row.get("symbol") or "").strip().upper().replace(".", "-")
+                    if re.match(r"^[A-Z]{1,5}(?:-[A-Z])?$", sym):
+                        got_ndx100.add(sym)
+        except Exception:
+            pass
+    if len(got_ndx100) >= 90:
+        res["ndx100"] = got_ndx100
+
+    return res
 
 # 1. 官方月營收 OpenAPI (上市 + 上櫃)
 def fetch_official_tw_monthly_revenues():
@@ -409,7 +555,6 @@ def _strip_html_to_text(raw_html):
 
 def fetch_tw_main_business_3channels(code, sym, debug=False):
     ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
-    # 通道 1：Yahoo 奇摩股市基本資料頁 (同步證交所/櫃買中心「主要經營業務」，海外 IP 最穩)
     try:
         r_y = requests.get(
             f"https://tw.stock.yahoo.com/quote/{sym}/profile",
@@ -420,7 +565,6 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
             print(f"[TW Biz Debug] {code} YahooProfile HTTP={r_y.status_code} bytes={len(r_y.content)}")
         if r_y.status_code == 200:
             raw = r_y.text
-            # 1a. 先從內嵌 JSON 抓 mainBusiness / businessDescription
             for pat in [r'"mainBusiness"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"', r'"主要經營業務"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"']:
                 mj = re.search(pat, raw)
                 if mj:
@@ -430,7 +574,6 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
                         if debug:
                             print(f"[TW Biz Debug] {code} YahooJSON extracted({len(val)} chars): {val[:35]}...")
                         return to_trad(val), "tw_yahoo_profile"
-            # 1b. 再從純文字區塊擷取「主要經營業務」
             plain = _strip_html_to_text(raw)
             m_txt = re.search(r'主要經營業務\s*\n\s*([^\n]{8,600})', plain)
             if m_txt:
@@ -443,7 +586,6 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
         if debug:
             print(f"[TW Biz Debug] {code} YahooProfile err: {e}")
 
-    # 通道 2：公開資訊觀測站 (mopsov.twse.com.tw/mops/web/ajax_t05st03)
     try:
         r_m = requests.post(
             "https://mopsov.twse.com.tw/mops/web/ajax_t05st03",
@@ -473,7 +615,6 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
         if debug:
             print(f"[TW Biz Debug] {code} MOPS err: {e}")
 
-    # 通道 3：產業價值鏈資訊平台 (ic.tpex.org.tw)
     try:
         r_ic = requests.get(
             f"https://ic.tpex.org.tw/company_basic.php?stk_code={code}",
@@ -1118,7 +1259,6 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
         except Exception:
             pass
 
-    # 核心指數、美債、外匯與期貨單檔重試防漏機制（保障 ^KS11、^N225 與歐股指數）
     core_priority = [s for s in list(INDICES.keys()) + list(VIX_INDICES.keys()) + list(US_BONDS.keys()) + list(FX_RATES.keys()) + list(FUTURES_AND_COMMODITIES.keys()) if s not in skip_set]
     for sym in core_priority:
         if sym in yf_map and safe_float(yf_map[sym].get("price"), 0.0) > 0:
@@ -1384,7 +1524,7 @@ def parse_sectors_and_symbols_from_js(js_path="supply_chain_db.js"):
                     continue
                 if not (sym.endswith(".TW") or sym.endswith(".TWO")) and len(sym) > 5 and "-" not in sym:
                     continue
-                items_map[sym] = {"symbol": sym, "name": to_trad(name), "role": to_trad(role)}
+                items_map[sym] = {"symbol": sym, "name": to_trad(name), "role": clean_role_text(role)}
                 if sym not in sector_stocks_map[sec_id]:
                     sector_stocks_map[sec_id].append(sym)
     except Exception:
@@ -1433,7 +1573,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, idx_sets, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -1492,6 +1632,17 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
 
     profile_obj = None
     if asset_type in ["us_stock", "tw_stock"]:
+        index_tags = []
+        if tw_code:
+            if tw_code in idx_sets["tw0050"]:
+                index_tags.append("0050成分股")
+        else:
+            norm_us = symbol.upper().replace(".", "-")
+            if norm_us in idx_sets["sp500"]:
+                index_tags.append("標普500成分股")
+            if norm_us in idx_sets["ndx100"]:
+                index_tags.append("納斯達克100成分股")
+
         mapped_tw_code = tw_code or ADR_TO_TW_MAP.get(symbol)
         if mapped_tw_code:
             off_p = tw_prof_official.get(mapped_tw_code) or {}
@@ -1518,6 +1669,7 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
                 "website": off_p.get("website") or "",
                 "summary": biz_text,
                 "business_source": biz_src_key,
+                "index_tags": index_tags,
                 "source": " / ".join(src_parts)
             }
         else:
@@ -1530,6 +1682,7 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
                 "website": "",
                 "summary": wiki_txt,
                 "business_source": "zh.wikipedia.org" if wiki_txt else "",
+                "index_tags": index_tags,
                 "source": "TradingView / 維基百科 (繁體中文)" if wiki_txt else "TradingView"
             }
 
@@ -1546,10 +1699,16 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
 def main():
     t0 = time.time()
     os.makedirs("data", exist_ok=True)
-    old_assets, cached_tw_biz, cached_us_wiki = load_previous_cache()
+    old_assets, cached_tw_biz, cached_us_wiki, old_idx_sets = load_previous_cache()
+    idx_sets = fetch_index_constituents(old_idx_sets)
 
     payload = {
         "last_updated": now_tw.strftime("%Y-%m-%d %H:%M:%S CST"),
+        "index_constituents": {
+            "tw0050": sorted(idx_sets["tw0050"]),
+            "sp500": sorted(idx_sets["sp500"]),
+            "ndx100": sorted(idx_sets["ndx100"])
+        },
         "indices": [], "vix_indices": [], "fear_greed": fetch_fear_and_greed_indices(),
         "us_bonds": [], "fx_rates": [], "fx_bonds": [],
         "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
@@ -1595,7 +1754,7 @@ def main():
             if sym not in built_cache:
                 built_cache[sym] = build_asset_object(
                     sym, name, a_type, f_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map,
-                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki,
+                    rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, idx_sets,
                     fetch_rss=(sym in core_rss_set)
                 )
             cp = dict(built_cache[sym])
@@ -1625,7 +1784,7 @@ def main():
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
         json.dump(clean_json_nans(payload), f, ensure_ascii=False, indent=2, allow_nan=False)
-    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached TW biz: {len(cached_tw_biz)}, US wiki: {len(cached_us_wiki)}")
+    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached TW biz: {len(cached_tw_biz)}, US wiki: {len(cached_us_wiki)} | 0050: {len(idx_sets['tw0050'])}, SP500: {len(idx_sets['sp500'])}, NDX100: {len(idx_sets['ndx100'])}")
 
 if __name__ == "__main__":
     main()
