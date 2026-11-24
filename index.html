@@ -289,22 +289,51 @@
       </div>
     </section>
 
-    <!-- 專區 9：每日市場深度報告 -->
+    <!-- 專區 9：每日市場深度報告（支援點擊互動與重大新聞專區） -->
     <section class="card-bg rounded-2xl p-6 shadow-xl border border-amber-500/30 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-4 gap-3">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded animate-pulse">📑 每日盤後與盤前深度報告</span>
-            <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告 (五大維度完整拆解)</h2>
+            <h2 class="text-xl font-bold text-white">全球金融市場與台股每日深度分析報告</h2>
           </div>
           <p id="daily-report-headline" class="text-sm text-indigo-300 font-semibold mt-2"></p>
+          <p class="text-[11px] text-slate-400 mt-1">💡 點擊下方任一盤勢拆解、多空因素或重大新聞卡片，即可彈出互動視窗檢視關聯標的即時報價與原文連結</p>
         </div>
         <div class="flex items-center gap-2 shrink-0">
           <button onclick="exportDailyReportToMarkdown()" class="text-xs px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 border border-amber-500/40 rounded-lg font-bold transition">📑 下載本篇 Markdown 報告</button>
           <span id="daily-report-date" class="text-xs text-slate-400 mono bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800"></span>
         </div>
       </div>
-      <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4"><h3 class="text-sm font-bold text-sky-300 mb-3">📊 一、最新盤勢漲跌五大核心原因深度剖析</h3><ul id="daily-report-drivers" class="space-y-3 text-xs text-slate-200 leading-relaxed"></ul></div>
+
+      <!-- 重大影響市場新聞專區 -->
+      <div class="bg-slate-900/80 border border-rose-500/30 rounded-xl p-4 space-y-3.5">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5 border-b border-slate-800 pb-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded">🚨 市場重大事件快訊</span>
+              <h3 class="text-sm md:text-base font-bold text-white">重大政經官員言論 &amp; 科技巨頭震撼新聞專區</h3>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1">鎖定美國總統／財政部長／聯準會、台灣總統／行政院／金管會／證交所，以及黃仁勳／輝達／台積電等高影響力動態</p>
+          </div>
+          <div id="high-impact-news-tabs" class="flex flex-wrap items-center gap-1.5 shrink-0">
+            <button id="hin-tab-ALL" onclick="switchHighImpactNewsTab('ALL')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-rose-600 text-white transition">🔥 全部重大</button>
+            <button id="hin-tab-us_gov" onclick="switchHighImpactNewsTab('us_gov')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">🇺🇸 美國政經與聯準會</button>
+            <button id="hin-tab-tw_gov" onclick="switchHighImpactNewsTab('tw_gov')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">🇹🇼 台灣政府與監理</button>
+            <button id="hin-tab-tech_giants" onclick="switchHighImpactNewsTab('tech_giants')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">⚡ 科技巨頭大事</button>
+          </div>
+        </div>
+        <div id="daily-report-high-impact-news" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </div>
+
+      <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-bold text-sky-300">📊 一、最新盤勢漲跌核心原因深度剖析</h3>
+          <span class="text-[11px] text-slate-400">點擊項目展開關聯標的互動看板</span>
+        </div>
+        <ul id="daily-report-drivers" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="bg-slate-900/75 border border-emerald-500/25 rounded-xl p-4"><h3 class="text-sm font-bold text-emerald-300 mb-3 pb-2 border-b border-slate-800">🔥 二、當前市場關鍵利多支撐因素</h3><ul id="daily-report-bulls" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul></div>
         <div class="bg-slate-900/75 border border-rose-500/25 rounded-xl p-4"><h3 class="text-sm font-bold text-rose-300 mb-3 pb-2 border-b border-slate-800">❄️ 三、當前市場潛在利空與風險提示</h3><ul id="daily-report-bears" class="space-y-2.5 text-xs text-slate-200 leading-relaxed"></ul></div>
@@ -539,11 +568,42 @@
       </div>
     </div>
   </div>
+
+  <!-- 彈出式視窗 C：每日深度報告與重大新聞互動解析視窗 -->
+  <div id="report-detail-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="card-bg border border-amber-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl space-y-5">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="report-modal-badge" class="text-xs font-bold px-2.5 py-0.5 rounded border bg-amber-500/20 text-amber-300 border-amber-500/40"></span>
+            <span id="report-modal-meta" class="text-xs text-slate-400 mono"></span>
+          </div>
+          <h2 id="report-modal-title" class="text-xl md:text-2xl font-bold text-white mt-2 leading-snug"></h2>
+        </div>
+        <button onclick="closeReportDetailModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg w-8 h-8 flex items-center justify-center text-base font-bold transition shrink-0" title="關閉">✕</button>
+      </div>
+
+      <div id="report-modal-body" class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 text-sm text-slate-200 leading-relaxed space-y-2.5"></div>
+
+      <div id="report-modal-tickers-wrap" class="bg-slate-900/70 border border-slate-800 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-bold text-sky-300">📈 關聯受影響標的即時報價（點擊卡片直接檢視個股簡介／加入走勢圖）</h3>
+        </div>
+        <div id="report-modal-related-tickers" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
+        <div id="report-modal-links" class="flex flex-wrap items-center gap-2"></div>
+        <button onclick="closeReportDetailModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg">關閉視窗</button>
+      </div>
+    </div>
+  </div>
   <script>
     try { ["MARKET2_REAL_CACHE_V3", "MARKET2_REAL_CACHE_V4", "MARKET2_LIVE_CACHE_V5", "MARKET2_LIVE_CACHE_V6"].forEach(k => localStorage.removeItem(k)); } catch (e) {}
 
     let globalMarketData = null, allAssetsMap = {}, twCodeMap = {}, twFundMap = {}, usFundMap = {}, twMcapMap = {}, usMcapMap = {}, currentAppView = "market", currentAssetSymbol = "^GSPC", compareSymbols = [], currentRangeMode = "1M", currentModalSymbol = null, currentModalTab = "ALL";
-    let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW", currentHeatmapMarket = "TW";
+    let currentScMarket = "TW", currentScCategory = "ALL", currentScSectorId = "tw_top10", currentScRange = "1M", scCompareSymbols = [], currentTopMarket = "TW", currentHeatmapMarket = "TW", currentHighImpactNewsTab = "ALL";
+    let lastBuiltDailyReport = null;
     let mainChart = null, instChart = null, marginChart = null, maintChart = null, fgUsChart = null, fgCryptoChart = null, scChart = null, heatmapChart = null, finnhubSocket = null, lastJsonTimestamp = "";
 
     const CHART_COLORS = ["#38bdf8", "#fb7185", "#facc15", "#a78bfa", "#34d399", "#f97316", "#ec4899", "#2dd4bf", "#60a5fa", "#c084fc"];
@@ -570,6 +630,19 @@
         if (day === 0 || day === 6) return false;
         const mins = nyDate.getHours() * 60 + nyDate.getMinutes();
         return mins >= 570 && mins < 960;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function isUsPremarketWindowNow() {
+      try {
+        const nyStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+        const nyDate = new Date(nyStr);
+        const day = nyDate.getDay();
+        if (day === 0 || day === 6) return false;
+        const mins = nyDate.getHours() * 60 + nyDate.getMinutes();
+        return mins >= 240 && mins < 570;
       } catch (e) {
         return false;
       }
@@ -977,17 +1050,20 @@
       const otcPt = getLastVerifiedPoint(chips.otc_margin_balance, chips.dates);
       const ratePt = getLastVerifiedPoint(chips.twse_only_margin_rate, chips.dates);
       const shortPt = getLastVerifiedPoint(chips.short_balance, chips.dates);
+      const hinList = (globalMarketData?.high_impact_news || []).slice(0, 10);
 
       const lines = [
         `# 全球金融市場與台股每日深度分析報告`,
         `> **產出時間**：${rep.report_date}`,
         `> **核心結論**：${rep.headline}`, ``,
-        `## 一、最新盤勢漲跌五大核心原因深度剖析`,
-        ...(rep.market_drivers || []).map(d => `- ${d}`), ``,
+        `## 重大政經官員言論與科技巨頭震撼新聞`,
+        ...(hinList.length ? hinList.map(n => `- **[${n.category_label}]** [${n.title}](${n.url}) (${n.source}・${n.date})`) : ["- 尚無即時重大快訊"]), ``,
+        `## 一、最新盤勢漲跌核心原因深度剖析`,
+        ...(rep.market_drivers || []).map(d => `- ${typeof d === "string" ? d : d.text}`), ``,
         `## 二、當前市場關鍵利多支撐因素`,
-        ...(rep.bullish_factors || []).map(b => `- ${b}`), ``,
+        ...(rep.bullish_factors || []).map(b => `- ${typeof b === "string" ? b : b.text}`), ``,
         `## 三、當前市場潛在利空與風險提示`,
-        ...(rep.bearish_factors || []).map(b => `- ${b}`), ``,
+        ...(rep.bearish_factors || []).map(b => `- ${typeof b === "string" ? b : b.text}`), ``,
         `## 四、台股與美股今日最強勢細分產業鏈 TOP 6`,
         `### 🇹🇼 台股強勢族群前六強`,
         ...twTop6.map((s, i) => `${i + 1}. **${s.title}**（平均漲跌：\`${formatSignedPct(s.avg_pct)}\`）— ${(s.leaders || []).map(l => `${l.name} ${formatDisplayPrice(l.price, l.symbol)} (${formatSignedPct(l.change_pct)})`).join("、")}`), ``,
@@ -1024,6 +1100,155 @@
       { id: "earnings", categoryName: "🎙️ 超級財報 / 法說會", badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30", accentBorder: "border-l-4 border-l-purple-500", schedule: [{ title: "AVGO 博通財報 & 台積電月營收", time: "2026-12-10T13:30:00+08:00", note: "關注客製化 AI ASIC 與 CoWoS 產能" }], latestRelease: { period: "NVDA 輝達 Q3 財報 & 台積電營收實績", actual: "營收年增 +78.4% YoY", momText: "資料中心季增：+17.5% QoQ", expected: "毛利率財測 74.5%–75.5%", prior: "實際毛利率 75.0%", priorNote: "Blackwell 全面放量出貨", verdictBadge: "營收與財測雙雙優於預期", verdictColor: "text-amber-300 bg-amber-500/20 border-amber-500/30", subMetrics: [{ label: "2330 台積電 10月營收", val: "3,142.4 億元 (+24.8% MoM)" }, { label: "NVDA 下季營收指引", val: "預估再季增 +12%" }], impacts: ["輝達財報與台積電單月營收雙雙確立 AI 算力基建需求。"], sourceName: "公開資訊觀測站 (MOPS) & NVIDIA IR", sourceLinks: [{ label: "MOPS 官網", url: "https://mops.twse.com.tw/mops/#/web/home" }] } }
     ];
 
+    // ==================== 重大政經與巨頭新聞專區 & 互動式每日深度報告 ====================
+    function switchHighImpactNewsTab(tabKey) {
+      currentHighImpactNewsTab = tabKey;
+      ["ALL", "us_gov", "tw_gov", "tech_giants"].forEach(k => {
+        const btn = document.getElementById(`hin-tab-${k}`);
+        if (!btn) return;
+        btn.className = (k === tabKey)
+          ? "px-2.5 py-1 rounded-md text-xs font-bold bg-rose-600 text-white transition shadow"
+          : "px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+      });
+      renderHighImpactNews();
+    }
+
+    function renderHighImpactNews() {
+      const container = document.getElementById("daily-report-high-impact-news");
+      if (!container) return;
+      const rawList = Array.isArray(globalMarketData?.high_impact_news) ? globalMarketData.high_impact_news : [];
+      const filtered = currentHighImpactNewsTab === "ALL" ? rawList : rawList.filter(n => n.category === currentHighImpactNewsTab);
+
+      if (!filtered.length) {
+        container.innerHTML = `<div class="col-span-full text-xs text-slate-400 bg-slate-950/60 border border-slate-800 rounded-lg p-4 text-center">尚無最新重大新聞資料，請執行一次 GitHub Actions 或稍候自動同步。</div>`;
+        return;
+      }
+
+      const catBadgeStyle = {
+        us_gov: "bg-blue-500/20 text-blue-300 border-blue-500/40",
+        tw_gov: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+        tech_giants: "bg-amber-500/20 text-amber-300 border-amber-500/40"
+      };
+
+      container.innerHTML = filtered.slice(0, 9).map((n, idx) => {
+        const origIdx = rawList.indexOf(n);
+        const badgeCls = catBadgeStyle[n.category] || "bg-rose-500/20 text-rose-300 border-rose-500/40";
+        const symTags = (n.related_symbols || []).map(sym => {
+          const it = allAssetsMap[sym];
+          const pctStr = it && Number(it.price) > 0 ? ` ${formatSignedPct(it.change_pct)}` : "";
+          const pctCls = it && Number(it.price) > 0 ? getColorClass(it.change_pct, sym) : "text-slate-300";
+          return `<span onclick="event.stopPropagation(); openStockModal('${sym}')" class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 hover:border-sky-400 text-[10px] mono cursor-pointer transition"><span class="text-white font-bold">${sym}</span><span class="${pctCls}">${pctStr}</span></span>`;
+        }).join("");
+
+        return `
+          <div onclick="openHighImpactNewsModal(${origIdx})" class="bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-rose-500/50 rounded-xl p-3.5 cursor-pointer transition-all flex flex-col justify-between gap-2.5 shadow-sm">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${badgeCls}">${cleanTwText(n.category_label || "重大新聞")}</span>
+                <span class="text-[10px] text-slate-400 mono shrink-0">${n.date || ""}</span>
+              </div>
+              <h4 class="text-xs md:text-sm font-bold text-white leading-snug line-clamp-3">${cleanTwText(n.title)}</h4>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-slate-800/70">
+              ${symTags ? `<div class="flex flex-wrap gap-1">${symTags}</div>` : ""}
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-400 truncate pr-2">來源：${cleanTwText(n.source || "財經媒體")}</span>
+                <span class="text-rose-300 font-bold shrink-0">點擊互動解析 &rarr;</span>
+              </div>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function openHighImpactNewsModal(newsIdx) {
+      const list = globalMarketData?.high_impact_news || [];
+      const n = list[newsIdx];
+      if (!n) return;
+      openReportDetailModal({
+        badge: cleanTwText(n.category_label || "重大新聞"),
+        meta: `發布時間：${n.date || "近期"} ｜ 媒體來源：${cleanTwText(n.source || "財經媒體")}`,
+        title: cleanTwText(n.title),
+        bodyHtml: `
+          <p class="text-slate-200 leading-relaxed">此事件屬於高市場敏感度之政經官員發言或科技巨頭重大動態，建議同步觀察下方關聯指數與權值股之即時價格與盤前／盤後反應。</p>
+          <p class="text-xs text-slate-400">可點擊下方「閱讀原文報導」前往原始媒體頁面檢視完整內容，或直接點擊關聯標的卡片開啟公司簡介與財報視窗。</p>`,
+        symbols: (n.related_symbols && n.related_symbols.length) ? n.related_symbols : ["^GSPC", "^TWII", "NVDA", "2330.TW"],
+        links: [
+          { label: "🔗 閱讀原文報導", url: n.url },
+          { label: "🔍 Google 新聞追蹤後續", url: `https://news.google.com/search?q=${encodeURIComponent(n.title.slice(0, 24))}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant` }
+        ]
+      });
+    }
+
+    function openDailyReportSectionModal(sectionType, idx) {
+      const rep = lastBuiltDailyReport || buildDynamicDailyMarketReport();
+      if (!rep) return;
+      let item = null;
+      if (sectionType === "driver") item = (rep.market_drivers || [])[idx];
+      else if (sectionType === "bull") item = (rep.bullish_factors || [])[idx];
+      else if (sectionType === "bear") item = (rep.bearish_factors || [])[idx];
+      if (!item) return;
+
+      openReportDetailModal({
+        badge: item.badge || (sectionType === "bull" ? "🔥 利多支撐解析" : (sectionType === "bear" ? "❄️ 風險提示解析" : "📊 盤勢核心剖析")),
+        meta: `報告基準時間：${rep.report_date}`,
+        title: item.title || "每日深度報告互動解析",
+        bodyHtml: `<p class="text-slate-100 leading-relaxed">${item.text}</p>${item.extra ? `<p class="text-xs text-indigo-300 bg-slate-950/70 p-3 rounded-lg border border-slate-800">${item.extra}</p>` : ""}`,
+        symbols: item.symbols || ["^GSPC", "^TWII"],
+        links: item.links || []
+      });
+    }
+
+    function openReportDetailModal(cfg) {
+      const modal = document.getElementById("report-detail-modal");
+      if (!modal) return;
+      document.getElementById("report-modal-badge").textContent = cfg.badge || "深度報告";
+      document.getElementById("report-modal-meta").textContent = cfg.meta || "";
+      document.getElementById("report-modal-title").textContent = cfg.title || "";
+      document.getElementById("report-modal-body").innerHTML = cfg.bodyHtml || "";
+
+      const syms = (cfg.symbols || []).filter(s => allAssetsMap[s]);
+      const tickersWrap = document.getElementById("report-modal-tickers-wrap");
+      const tickersGrid = document.getElementById("report-modal-related-tickers");
+      if (syms.length > 0) {
+        tickersWrap.classList.remove("hidden");
+        tickersGrid.innerHTML = syms.map(sym => {
+          const it = allAssetsMap[sym];
+          const label = it.asset_type === "us_stock" ? it.symbol : cleanTwText(it.name || it.symbol);
+          const extLine = (!isCryptoSymbol(sym) && it.ext_session && Number(it.ext_session.price) > 0)
+            ? `<div class="text-[10px] mono mt-1 text-slate-400">${it.ext_session.label || "盤後"}: <span class="${getColorClass(it.ext_session.change_pct, sym)} font-bold">${formatDisplayPrice(it.ext_session.price, sym)} (${formatSignedPct(it.ext_session.change_pct)})</span></div>`
+            : "";
+          return `
+            <div onclick="closeReportDetailModal(); openStockModal('${sym}');" class="bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-sky-400/60 rounded-xl p-3 cursor-pointer transition flex flex-col justify-between">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold text-white truncate">${label}</span>
+                <span class="text-[10px] text-slate-500 mono">${sym}</span>
+              </div>
+              <div class="mt-1.5 flex items-baseline justify-between mono">
+                <span class="text-base font-bold text-white">${formatDisplayPrice(it.price, sym)}</span>
+                <span class="text-xs font-bold ${getColorClass(it.change_pct, sym)}">${formatSignedPct(it.change_pct)}</span>
+              </div>
+              ${extLine}
+              <div class="mt-2 pt-1.5 border-t border-slate-800/70 flex items-center justify-between text-[10px]">
+                <span class="text-sky-300 font-bold">檢視詳情 &rarr;</span>
+                <button onclick="event.stopPropagation(); closeReportDetailModal(); toggleCompareSymbol('${sym}'); document.getElementById('main-price-chart').scrollIntoView({ behavior: 'smooth' });" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-emerald-600/40 text-slate-300 hover:text-emerald-300">＋比較</button>
+              </div>
+            </div>`;
+        }).join("");
+      } else {
+        tickersWrap.classList.add("hidden");
+      }
+
+      const linksEl = document.getElementById("report-modal-links");
+      linksEl.innerHTML = (cfg.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="px-3 py-1.5 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border border-blue-500/40 rounded-lg text-xs font-bold transition">${l.label} &rarr;</a>`).join("");
+
+      modal.classList.remove("hidden");
+    }
+
+    function closeReportDetailModal() {
+      const modal = document.getElementById("report-detail-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
     function buildDynamicDailyMarketReport() {
       const g = (sym) => {
         const it = allAssetsMap[sym];
@@ -1057,34 +1282,92 @@
       const usTopSectors = computeDynamicTopPerformingSectors("US");
       const twTop3Str = twTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "同步中";
       const usTop3Str = usTopSectors.slice(0, 3).map(s => `${s.title} (${formatSignedPct(s.avg_pct)})`).join("、") || "同步中";
+      const twTopSyms = twTopSectors.slice(0, 2).flatMap(s => (s.leaders || []).slice(0, 2).map(l => l.symbol));
+      const usTopSyms = usTopSectors.slice(0, 2).flatMap(s => (s.leaders || []).slice(0, 2).map(l => l.symbol));
       const nowStr = new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
 
-      return {
+      const reportObj = {
         report_date: `${nowStr} CST`,
         headline: `台股加權報 ${twii.price} (${twii.pct})、櫃買報 ${twoii.price} (${twoii.pct})、納斯達克 100 指數報 ${ndx.price} (${ndx.pct})、上市融資維持率 ${ratePt.val ?? '--'}%`,
         market_drivers: [
-          `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克 100 指數報 ${ndx.price} (${ndx.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
-          `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，台指期報 ${txf.price} (${txf.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
-          `【三、台美股強勢產業鏈輪動】台股前三大強勢族群：${twTop3Str}；美股前三大強勢族群：${usTop3Str}。`,
-          `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${ratePt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；大盤上市融資維持率 ${ratePt.val ?? '--'}%、融券餘額 ${shortPt.val ?? '--'} 萬張。`,
-          `【五、美債、外匯、原油、農產品與加密貨幣】美債 2Y ${us2y.price}% / 10Y ${tnx.price}% / 30Y ${tyx.price}%；DXY ${dxy.price}、USD/TWD ${twd.price}；黃金 ${gc.price} (${gc.pct})、布蘭特原油 ${bz.price} (${bz.pct})、WTI 原油 ${cl.price} (${cl.pct})；黃豆 ${zs.price}、小麥 ${zw.price}、玉米 ${zc.price}；BTC ${btc.price} (${btc.pct})、ETH ${eth.price} (${eth.pct})。`
+          {
+            badge: "🇺🇸 美股與半導體",
+            title: "美股主要指數、VIX 與科技權值表現",
+            text: `【一、美股五大指數與 VIX】S&P 500 報 ${sp.price} (${sp.pct})、道瓊報 ${dji.price} (${dji.pct})、納斯達克 100 指數報 ${ndx.price} (${ndx.pct})、費城半導體報 ${sox.price} (${sox.pct})、羅素 2000 報 ${rut.price} (${rut.pct})；CBOE VIX 報 ${vixUs.price} (${vixUs.pct})，NVDA 報 ${nvda.price} (${nvda.pct})、TSM 報 ${tsmUs.price} (${tsmUs.pct})。`,
+            extra: "可點擊下方關聯卡片直接檢視正規收盤與盤前／盤後動態，或加入主走勢圖與台股疊圖對照。",
+            symbols: ["^GSPC", "^NDX", "^SOX", "^VIX", "NVDA", "TSM"]
+          },
+          {
+            badge: "🇹🇼 台股與權值股",
+            title: "台股大盤、台指期與核心權值動向",
+            text: `【二、台股大盤、台指期與權值股】加權指數報 ${twii.price} (${twii.pct})，櫃買指數報 ${twoii.price} (${twoii.pct})，台指期報 ${txf.price} (${txf.pct})，VIXTWN 報 ${vixTw.price} (${vixTw.pct})。權值股：台積電 ${tsmTw.price} (${tsmTw.pct})、聯發科 ${mtkTw.price} (${mtkTw.pct})、台達電 ${deltaTw.price} (${deltaTw.pct})、鴻海 ${honhaiTw.price} (${honhaiTw.pct})。`,
+            extra: "點擊下方權值股可直接開啟官方「主要經營業務」、MOPS 月營收與 0050 成分股檢視。",
+            symbols: ["^TWII", "^TWOII", "TXF", "2330.TW", "2454.TW", "2308.TW"]
+          },
+          {
+            badge: "🔄 強勢產業輪動",
+            title: "台美股領漲細分產業鏈結構",
+            text: `【三、台美股強勢產業鏈輪動】台股前三大強勢族群：${twTop3Str}；美股前三大強勢族群：${usTop3Str}。`,
+            extra: "已自動帶出當前領漲指標股，點擊卡片可檢視財務估值與即時報價，或切至視窗二檢視完整供應鏈。",
+            symbols: [...twTopSyms, ...usTopSyms].slice(0, 6)
+          },
+          {
+            badge: "🏦 法人與信用籌碼",
+            title: `三大法人買賣超 (${fPt.date}) 與融資維持率 (${ratePt.date})`,
+            text: `【四、三大法人籌碼 (${fPt.date})、融資餘額與維持率 (${ratePt.date})】外資 ${(fPt.val || 0) >= 0 ? '+' : ''}${(fPt.val || 0).toFixed(2)} 億、投信 ${(tPt.val || 0) >= 0 ? '+' : ''}${(tPt.val || 0).toFixed(2)} 億、自營商 ${(dPt.val || 0) >= 0 ? '+' : ''}${(dPt.val || 0).toFixed(2)} 億，合計 ${totInst >= 0 ? '+' : ''}${totInst.toFixed(2)} 億；上市融資餘額 ${mPt.val ?? '--'} 億、上櫃 ${otcPt.val ?? '--'} 億；大盤上市融資維持率 ${ratePt.val ?? '--'}%、融券餘額 ${shortPt.val ?? '--'} 萬張。`,
+            extra: "當大盤融資維持率逼近 130% 追繳警戒線時，須留意融資斷頭賣壓與隔日早盤流動性變化。",
+            symbols: ["^TWII", "^TWOII", "TXF", "TWD=X"],
+            links: [
+              { label: "🔗 證交所三大法人官網", url: "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" },
+              { label: "🔗 證交所信用交易統計", url: "https://www.twse.com.tw/zh/trading/margin/mi-margn.html" }
+            ]
+          },
+          {
+            badge: "🌐 債匯商品與幣圈",
+            title: "美債殖利率、美元匯率、原油農產品與加密貨幣",
+            text: `【五、美債、外匯、原油、農產品與加密貨幣】美債 2Y ${us2y.price}% / 10Y ${tnx.price}% / 30Y ${tyx.price}%；DXY ${dxy.price}、USD/TWD ${twd.price}；黃金 ${gc.price} (${gc.pct})、布蘭特原油 ${bz.price} (${bz.pct})、WTI 原油 ${cl.price} (${cl.pct})；黃豆 ${zs.price}、小麥 ${zw.price}、玉米 ${zc.price}；BTC ${btc.price} (${btc.pct})、ETH ${eth.price} (${eth.pct})。`,
+            extra: "美債長短天期殖利率與美元指數決定全球資金成本與外資對新興市場的配置意願。",
+            symbols: ["US2Y", "^TNX", "DX-Y.NYB", "TWD=X", "GC=F", "BTC-USD"]
+          }
         ],
         bullish_factors: [
-          `🔥 強勢族群輪動 (${twTop3Str})：資金持續聚焦具備基本面與營收動能之核心供應鏈。`,
-          `🔥 融資維持率監控 (${ratePt.val ?? '--'}%)：與 130% 追繳警戒線對照，即時掌握市場籌碼壓力。`
+          {
+            badge: "🔥 關鍵利多",
+            title: "強勢供應鏈資金輪動支撐",
+            text: `🔥 強勢族群輪動 (${twTop3Str})：資金持續聚焦具備基本面與營收動能之核心供應鏈。`,
+            symbols: [...twTopSyms.slice(0, 3), ...usTopSyms.slice(0, 3)]
+          },
+          {
+            badge: "🔥 籌碼安全邊際",
+            title: `融資維持率水位監控 (${ratePt.val ?? '--'}%)`,
+            text: `🔥 融資維持率監控 (${ratePt.val ?? '--'}%)：與 130% 追繳警戒線對照，即時掌握市場籌碼壓力。`,
+            symbols: ["^TWII", "^TWOII", "2330.TW"]
+          }
         ],
         bearish_factors: [
-          `❄️ 法人動向與匯率波動：持續追蹤外資現貨買賣超 (${fPt.date}: ${(fPt.val || 0).toFixed(2)} 億) 與美元兌新台幣 (${twd.price}) 變化。`,
-          `❄️ 美債殖利率水位：10 年期公債殖利率處於 ${tnx.price}%，影響高估值成長股本益比空間。`
+          {
+            badge: "❄️ 籌碼與匯率風險",
+            title: "外資動向與新台幣匯率波動",
+            text: `❄️ 法人動向與匯率波動：持續追蹤外資現貨買賣超 (${fPt.date}: ${(fPt.val || 0).toFixed(2)} 億) 與美元兌新台幣 (${twd.price}) 變化。`,
+            symbols: ["TWD=X", "DX-Y.NYB", "^TWII"]
+          },
+          {
+            badge: "❄️ 利率與估值壓力",
+            title: "美債殖利率水位壓抑成長股估值",
+            text: `❄️ 美債殖利率水位：10 年期公債殖利率處於 ${tnx.price}%，影響高估值成長股本益比空間。`,
+            symbols: ["^TNX", "US2Y", "^NDX", "NVDA"]
+          }
         ],
         upcoming_macro_week: [
-          { date: "每週四 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "高頻追蹤美國勞動市場", impact: "牽動美債殖利率與聯準會政策預期" },
-          { date: "月底 21:30", event: "💳 美國核心 PCE 物價指數", consensus: "聯準會首選核心通膨指標", impact: "FOMC 會議前最關鍵通膨數據" }
+          { date: "每週四 21:30", event: "👷 美國初領失業金人數 (Initial Jobless Claims)", consensus: "高頻追蹤美國勞動市場", impact: "牽動美債殖利率與聯準會政策預期", macroId: "nfp" },
+          { date: "月底 21:30", event: "💳 美國核心 PCE 物價指數", consensus: "聯準會首選核心通膨指標", impact: "FOMC 會議前最關鍵通膨數據", macroId: "pce" }
         ],
         upcoming_earnings_week: [
           { date: "近期追蹤", ticker: "DELL", name: "戴爾 (Dell) 財報法說會", focus: "AI 伺服器在手訂單積壓金額 (Backlog) 與毛利率" }
         ]
       };
+      lastBuiltDailyReport = reportObj;
+      return reportObj;
     }
 
     function renderDailyMarketReport() {
@@ -1092,13 +1375,31 @@
       if (!rep) return;
       document.getElementById("daily-report-date").textContent = `報告時間：${rep.report_date}`;
       document.getElementById("daily-report-headline").textContent = `📌 核心結論：${rep.headline}`;
-      document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map(d => `<li class="border-b border-slate-800/70 pb-2.5 last:border-0">${d}</li>`).join("");
-      document.getElementById("daily-report-bulls").innerHTML = (rep.bullish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
-      document.getElementById("daily-report-bears").innerHTML = (rep.bearish_factors || []).map(b => `<li class="border-b border-slate-800/70 pb-2 last:border-0">${b}</li>`).join("");
+      renderHighImpactNews();
+
+      document.getElementById("daily-report-drivers").innerHTML = (rep.market_drivers || []).map((d, i) => `
+        <li onclick="openDailyReportSectionModal('driver', ${i})" class="group bg-slate-950/60 hover:bg-slate-900 border border-slate-800/80 hover:border-sky-500/50 rounded-lg p-3 cursor-pointer transition flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+          <span class="leading-relaxed">${d.text}</span>
+          <span class="text-[11px] text-sky-400 font-bold shrink-0 group-hover:translate-x-0.5 transition">互動檢視 &rarr;</span>
+        </li>`).join("");
+
+      document.getElementById("daily-report-bulls").innerHTML = (rep.bullish_factors || []).map((b, i) => `
+        <li onclick="openDailyReportSectionModal('bull', ${i})" class="group bg-slate-950/60 hover:bg-slate-900 border border-slate-800/80 hover:border-emerald-500/50 rounded-lg p-2.5 cursor-pointer transition flex items-start justify-between gap-2">
+          <span>${b.text}</span>
+          <span class="text-[10px] text-emerald-400 font-bold shrink-0">展開 &rarr;</span>
+        </li>`).join("");
+
+      document.getElementById("daily-report-bears").innerHTML = (rep.bearish_factors || []).map((b, i) => `
+        <li onclick="openDailyReportSectionModal('bear', ${i})" class="group bg-slate-950/60 hover:bg-slate-900 border border-slate-800/80 hover:border-rose-500/50 rounded-lg p-2.5 cursor-pointer transition flex items-start justify-between gap-2">
+          <span>${b.text}</span>
+          <span class="text-[10px] text-rose-400 font-bold shrink-0">展開 &rarr;</span>
+        </li>`).join("");
+
       const mwEl = document.getElementById("daily-report-macro-week");
-      if (mwEl) mwEl.innerHTML = (rep.upcoming_macro_week || []).map(m => `<div class="bg-slate-950/70 border border-slate-800 rounded-lg p-3"><div class="flex items-center justify-between mb-1"><span class="font-bold text-white">${m.event}</span><span class="text-[11px] text-amber-300 mono">${m.date}</span></div><div class="text-[11px] text-emerald-400 mono mb-1">🎯 ${m.consensus}</div><div class="text-[11px] text-slate-400">💡 ${m.impact}</div></div>`).join("");
+      if (mwEl) mwEl.innerHTML = (rep.upcoming_macro_week || []).map(m => `<div onclick="openMacroModal('${m.macroId || 'pce'}')" class="bg-slate-950/70 hover:bg-slate-900 border border-slate-800 hover:border-indigo-500/50 rounded-lg p-3 cursor-pointer transition"><div class="flex items-center justify-between mb-1"><span class="font-bold text-white">${m.event}</span><span class="text-[11px] text-amber-300 mono">${m.date}</span></div><div class="text-[11px] text-emerald-400 mono mb-1">🎯 ${m.consensus}</div><div class="flex items-center justify-between text-[11px]"><span class="text-slate-400">💡 ${m.impact}</span><span class="text-indigo-300 font-bold shrink-0">詳情 &rarr;</span></div></div>`).join("");
+
       const ewEl = document.getElementById("daily-report-earnings-week");
-      if (ewEl) ewEl.innerHTML = (rep.upcoming_earnings_week || []).map(e => `<div class="bg-slate-950/70 border border-slate-800 rounded-lg p-3"><div class="flex items-center justify-between mb-1"><span class="font-bold text-white"><strong class="text-purple-300 mono mr-1">${e.ticker}</strong> ${e.name}</span><span class="text-[11px] text-amber-300 mono">${e.date}</span></div><div class="text-[11px] text-slate-300">🔍 觀察重點：${e.focus}</div></div>`).join("");
+      if (ewEl) ewEl.innerHTML = (rep.upcoming_earnings_week || []).map(e => `<div onclick="if(allAssetsMap['${e.ticker}']) openStockModal('${e.ticker}'); else openMacroModal('earnings');" class="bg-slate-950/70 hover:bg-slate-900 border border-slate-800 hover:border-purple-500/50 rounded-lg p-3 cursor-pointer transition"><div class="flex items-center justify-between mb-1"><span class="font-bold text-white"><strong class="text-purple-300 mono mr-1">${e.ticker}</strong> ${e.name}</span><span class="text-[11px] text-amber-300 mono">${e.date}</span></div><div class="flex items-center justify-between text-[11px]"><span class="text-slate-300">🔍 觀察重點：${e.focus}</span><span class="text-purple-300 font-bold shrink-0">詳情 &rarr;</span></div></div>`).join("");
     }
 
     function switchTopMarketTab(market) {
@@ -1211,6 +1512,7 @@
       return {
         last_updated: "正在同步最新市場數據...",
         index_constituents: { tw0050: [], sp500: [], ndx100: [] },
+        high_impact_news: [],
         indices: [mk("^GSPC", "S&P 500 指數", "index"), mk("^DJI", "道瓊工業指數", "index"), mk("^NDX", "納斯達克 100 指數", "index"), mk("^SOX", "費城半導體指數", "index"), mk("^RUT", "羅素 2000 指數", "index"), mk("^TWII", "台灣加權指數", "index"), mk("^TWOII", "台灣櫃買指數", "index"), mk("^N225", "日經 225 指數", "index"), mk("^KS11", "韓國 KOSPI 指數", "index"), mk("^FTSE", "英國富時 100", "index"), mk("^GDAXI", "德國 DAX 指數", "index"), mk("^FCHI", "法國 CAC 40", "index")],
         vix_indices: [mk("^VIX", "美國 CBOE VIX 恐慌指數", "vix_index"), mk("^VIXTWN", "臺指選擇權波動率指數 (VIXTWN)", "vix_index")],
         fear_greed: { us_cnn: { score: null, label_zh: "同步中", label_en: "LOADING" }, crypto_alt: { score: null, label_zh: "同步中", label_en: "LOADING" } },
@@ -2489,7 +2791,16 @@
         filter: [{ left: "name", operation: "in_range", right: allUsSyms }],
         options: { lang: "zh_TW" }, markets: ["america"],
         symbols: { query: { types: [] }, tickers: [] },
-        columns: ["name", "close", "change", "change_abs", "price_earnings_ttm", "price_earnings_forward_fy", "earnings_per_share_diluted_ttm", "return_on_equity", "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm", "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq", "market_cap_basic"],
+        columns: [
+          "name", "close", "change", "change_abs",
+          "price_earnings_ttm", "price_earnings_forward_fy",
+          "earnings_per_share_diluted_ttm", "return_on_equity",
+          "gross_margin_ttm", "operating_margin_ttm", "total_revenue_yoy_growth_ttm",
+          "earnings_per_share_forecast_next_fy", "earnings_per_share_forecast_fq",
+          "market_cap_basic",
+          "premarket_close", "premarket_change", "premarket_change_abs",
+          "postmarket_close", "postmarket_change", "postmarket_change_abs"
+        ],
         range: [0, 1000]
       };
       try {
@@ -2498,6 +2809,7 @@
         if (rows.length > 0) {
           const fmtN = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? Number(Number(v).toFixed(2)) : null;
           const fmtP = (v) => (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) !== 0) ? `${Number(v).toFixed(1)}%` : null;
+          const isPreWin = isUsPremarketWindowNow();
           rows.forEach(row => {
             const d = row.d || [], sRaw = String(row.s || "");
             const sym = (sRaw.includes(":") ? sRaw.split(":")[1].trim() : String(d[0] || "").trim()).replace(".", "-");
@@ -2513,6 +2825,26 @@
               if (fmtP(d[8]) !== null) fObj.gross_margin = fmtP(d[8]);
               if (fmtP(d[9]) !== null) fObj.operating_margin = fmtP(d[9]);
               if (fmtP(d[10]) !== null) fObj.yoy_rev_growth = fmtP(d[10]);
+
+              let extObj = null;
+              if (p > 0) {
+                const preP = Number(d[14] || 0), prePct = d[15], preChg = d[16];
+                const postP = Number(d[17] || 0), postPct = d[18], postChg = d[19];
+                if (isPreWin && preP > 0) {
+                  const ec = (preChg !== null && preChg !== undefined && !isNaN(Number(preChg))) ? Number(Number(preChg).toFixed(2)) : Number((preP - p).toFixed(2));
+                  const ep = (prePct !== null && prePct !== undefined && !isNaN(Number(prePct))) ? Number(Number(prePct).toFixed(2)) : Number((((preP - p) / p) * 100).toFixed(2));
+                  extObj = { price: Number(preP.toFixed(2)), change: ec, change_pct: ep, label: "盤前" };
+                } else if (postP > 0) {
+                  const ec = (postChg !== null && postChg !== undefined && !isNaN(Number(postChg))) ? Number(Number(postChg).toFixed(2)) : Number((postP - p).toFixed(2));
+                  const ep = (postPct !== null && postPct !== undefined && !isNaN(Number(postPct))) ? Number(Number(postPct).toFixed(2)) : Number((((postP - p) / p) * 100).toFixed(2));
+                  extObj = { price: Number(postP.toFixed(2)), change: ec, change_pct: ep, label: "盤後" };
+                } else if (preP > 0) {
+                  const ec = (preChg !== null && preChg !== undefined && !isNaN(Number(preChg))) ? Number(Number(preChg).toFixed(2)) : Number((preP - p).toFixed(2));
+                  const ep = (prePct !== null && prePct !== undefined && !isNaN(Number(prePct))) ? Number(Number(prePct).toFixed(2)) : Number((((preP - p) / p) * 100).toFixed(2));
+                  extObj = { price: Number(preP.toFixed(2)), change: ec, change_pct: ep, label: "盤前" };
+                }
+              }
+
               usFundMap[sym] = Object.assign(usFundMap[sym] || {}, fObj);
               if (mcap > 0) usMcapMap[sym] = mcap;
               if (allAssetsMap[sym]) {
@@ -2523,7 +2855,7 @@
                 if (peEl) peEl.textContent = allAssetsMap[sym].fundamentals.pe;
                 if (fpeEl) fpeEl.textContent = allAssetsMap[sym].fundamentals.forward_pe;
                 if (epsEl) epsEl.textContent = allAssetsMap[sym].fundamentals.eps;
-                if (p > 0) updateAssetDomPrice(sym, p, pct);
+                if (p > 0) updateAssetDomPrice(sym, p, pct, extObj || allAssetsMap[sym].ext_session);
               }
             }
           });
@@ -2621,6 +2953,29 @@
           for (let i = rawCloses.length - 1; i >= 0; i--) {
             if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) { latestTickP = Number(rawCloses[i]); break; }
           }
+
+          // 美股個股嚴格區分「正規盤收盤價 (regularMarketPrice)」與「盤前／盤後價」，絕不互相覆蓋或錯算基準
+          if (item.asset_type === "us_stock") {
+            const regPrice = Number(meta.regularMarketPrice || 0);
+            if (regPrice <= 0) continue;
+            const prevClose = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || 0);
+            const mainPct = prevClose > 0 ? ((regPrice - prevClose) / prevClose) * 100 : 0;
+            let extSession = item.ext_session;
+            const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
+            const isPreWin = isUsPremarketWindowNow();
+            if (isPreWin && preP > 0) {
+              extSession = { price: Number(preP.toFixed(2)), change: Number((preP - regPrice).toFixed(2)), change_pct: Number((((preP - regPrice) / regPrice) * 100).toFixed(2)), label: "盤前" };
+            } else if (postP > 0) {
+              extSession = { price: Number(postP.toFixed(2)), change: Number((postP - regPrice).toFixed(2)), change_pct: Number((((postP - regPrice) / regPrice) * 100).toFixed(2)), label: "盤後" };
+            } else if (preP > 0) {
+              extSession = { price: Number(preP.toFixed(2)), change: Number((preP - regPrice).toFixed(2)), change_pct: Number((((preP - regPrice) / regPrice) * 100).toFixed(2)), label: "盤前" };
+            } else if (!isUsRegularMarketOpenNow() && latestTickP && Math.abs(latestTickP - regPrice) > 0.005) {
+              extSession = { price: Number(latestTickP.toFixed(2)), change: Number((latestTickP - regPrice).toFixed(2)), change_pct: Number((((latestTickP - regPrice) / regPrice) * 100).toFixed(2)), label: isPreWin ? "盤前" : "盤後" };
+            }
+            updateAssetDomPrice(sym, regPrice, mainPct, extSession);
+            return;
+          }
+
           const livePrice = Number(latestTickP || meta.regularMarketPrice || 0);
           const settlePrice = Number(meta.chartPreviousClose || meta.previousClose || item.prev_close || 0);
           if (livePrice <= 0) continue;
@@ -2666,13 +3021,7 @@
           }
 
           const mainPct = settlePrice > 0 ? ((livePrice - settlePrice) / settlePrice) * 100 : 0;
-          let extSession = item.ext_session;
-          if (item.asset_type === "us_stock") {
-            const preP = Number(meta.preMarketPrice || 0), postP = Number(meta.postMarketPrice || 0);
-            if (preP > 0) extSession = { price: Number(preP.toFixed(2)), change: Number((preP - livePrice).toFixed(2)), change_pct: Number((((preP - livePrice) / livePrice) * 100).toFixed(2)), label: "盤前" };
-            else if (postP > 0) extSession = { price: Number(postP.toFixed(2)), change: Number((postP - livePrice).toFixed(2)), change_pct: Number((((postP - livePrice) / livePrice) * 100).toFixed(2)), label: "盤後" };
-          }
-          updateAssetDomPrice(sym, livePrice, mainPct, extSession);
+          updateAssetDomPrice(sym, livePrice, mainPct, item.ext_session);
           return;
         } catch (e) {}
       }
@@ -2730,8 +3079,8 @@
           if (item.asset_type === "us_stock") {
             if (isUsRegularMarketOpenNow()) updateAssetDomPrice(mappedSym, last.p, prev > 0 ? ((last.p - prev) / prev) * 100 : 0, item.ext_session);
             else {
-              const regP = Number(item.price) || prev, chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0, hr = new Date().getHours();
-              updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: (hr >= 15 && hr <= 22) ? "盤前" : "盤後" });
+              const regP = Number(item.price) || prev, chg = last.p - regP, pct = regP > 0 ? (chg / regP) * 100 : 0;
+              updateAssetDomPrice(mappedSym, item.price, item.change_pct, { price: last.p, change: chg, change_pct: pct, label: isUsPremarketWindowNow() ? "盤前" : "盤後" });
             }
           } else updateAssetDomPrice(mappedSym, last.p, prev ? ((last.p - prev) / prev) * 100 : 0, null);
         }
@@ -2891,12 +3240,21 @@
       setInterval(syncTaiwanIndicesLiveInBrowser, 20000);
       setInterval(syncTaifexVixAndTxfLiveInBrowser, 15000);
       setInterval(syncTradingViewTaiwanScannerInBrowser, 30000);
+      setInterval(syncTradingViewUsScannerInBrowser, 30000);
       setInterval(syncLatestTwChipsInBrowser, 45000);
       setInterval(() => tryLoadMarketJson(false), 30000);
 
       const savedKey = localStorage.getItem("FINNHUB_API_KEY");
       if (savedKey) startFinnhubWebSocket(savedKey);
     }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeStockModal();
+        closeMacroModal();
+        closeReportDetailModal();
+      }
+    });
 
     window.addEventListener("resize", () => {
       [mainChart, instChart, marginChart, maintChart, fgUsChart, fgCryptoChart, scChart, heatmapChart].forEach(c => { if (c) c.resize(); });
