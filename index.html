@@ -353,15 +353,15 @@
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
             <span class="px-2.5 py-1 text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40 rounded">🗺️ 市值加權熱力圖</span>
-            <h2 id="heatmap-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股全產業市值熱力圖 (紅漲綠跌・區塊面積依真實總市值)</h2>
+            <h2 id="heatmap-title" class="text-lg md:text-xl font-bold text-white">🇹🇼 台股市場熱力圖</h2>
           </div>
           <p class="text-xs text-slate-400 mt-1">依大類產業分群並自動去重，滑鼠懸停檢視即時報價與市值，點擊任一方塊可直接開啟公司簡介、財報與新聞視窗</p>
         </div>
         <div class="flex flex-wrap items-center gap-2.5 shrink-0">
           <div id="heatmap-legend-bar" class="flex items-center gap-0.5 text-[10px] mono font-bold"></div>
           <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-lg border border-slate-800">
-            <button id="hm-btn-tw" onclick="switchHeatmapMarket('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股 (紅漲綠跌)</button>
-            <button id="hm-btn-us" onclick="switchHeatmapMarket('US')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white">🇺🇸 美股 (綠漲紅跌)</button>
+            <button id="hm-btn-tw" onclick="switchHeatmapMarket('TW')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow">🇹🇼 台股</button>
+            <button id="hm-btn-us" onclick="switchHeatmapMarket('US')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white">🇺🇸 美股</button>
           </div>
         </div>
       </div>
@@ -732,8 +732,8 @@
       const bar = document.getElementById("heatmap-legend-bar");
       if (!bar) return;
       const steps = isTw
-        ? [["-3%", "#10b981"], ["-2%", "#059669"], ["-1%", "#047857"], ["0%", "#334155"], ["+1%", "#9f1239"], ["+2%", "#be123c"], ["+3%", "#e11d48"]]
-        : [["-3%", "#e11d48"], ["-2%", "#be123c"], ["-1%", "#9f1239"], ["0%", "#334155"], ["+1%", "#047857"], ["+2%", "#059669"], ["+3%", "#10b981"]];
+        ? [["≥-3%", "#10b981"], ["-2%", "#059669"], ["-1%", "#047857"], ["0%", "#334155"], ["+1%", "#9f1239"], ["+2%", "#be123c"], ["≥+3%", "#e11d48"]]
+        : [["≥-3%", "#e11d48"], ["-2%", "#be123c"], ["-1%", "#9f1239"], ["0%", "#334155"], ["+1%", "#047857"], ["+2%", "#059669"], ["≥+3%", "#10b981"]];
       bar.innerHTML = steps.map(([lbl, bg]) => `<span class="px-1.5 py-0.5 rounded text-white" style="background-color:${bg}">${lbl}</span>`).join("");
     }
 
@@ -743,11 +743,11 @@
       if (market === "TW") {
         if (btnTw) btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-rose-600 text-white shadow";
         if (btnUs) btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
-        if (titleEl) titleEl.textContent = "🇹🇼 台股全產業市值熱力圖 (紅漲綠跌・區塊面積依真實總市值)";
+        if (titleEl) titleEl.textContent = "🇹🇼 台股市場熱力圖";
       } else {
         if (btnUs) btnUs.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-emerald-600 text-white shadow";
         if (btnTw) btnTw.className = "px-3.5 py-1.5 rounded-md text-xs font-bold transition bg-slate-800 text-slate-300 hover:text-white";
-        if (titleEl) titleEl.textContent = "🇺🇸 美股全產業市值熱力圖 (綠漲紅跌・區塊面積依真實總市值)";
+        if (titleEl) titleEl.textContent = "🇺🇸 美股市場熱力圖";
       }
       renderMarketHeatmap();
     }
@@ -2954,7 +2954,6 @@
             if (rawCloses[i] !== null && rawCloses[i] !== undefined && Number(rawCloses[i]) > 0) { latestTickP = Number(rawCloses[i]); break; }
           }
 
-          // 美股個股嚴格區分「正規盤收盤價 (regularMarketPrice)」與「盤前／盤後價」，絕不互相覆蓋或錯算基準
           if (item.asset_type === "us_stock") {
             const regPrice = Number(meta.regularMarketPrice || 0);
             if (regPrice <= 0) continue;
