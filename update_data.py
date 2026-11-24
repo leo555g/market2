@@ -1,6 +1,7 @@
 import os, re, sys, io, json, math, time, datetime
 import html as html_lib
 import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from urllib.parse import quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -131,7 +132,9 @@ class SimpleTableParser(HTMLParser):
             self._cur_cell.append(data)
 
 tw_tz = pytz.timezone('Asia/Taipei')
+ny_tz = pytz.timezone('America/New_York')
 now_tw = datetime.datetime.now(tw_tz)
+now_ny = datetime.datetime.now(ny_tz)
 
 DELISTED_BLACKLIST = {
     "2867.TW", "2809.TW", "2888.TW", "MMC",
@@ -334,7 +337,6 @@ def fetch_index_constituents(old_idx_sets):
     ua_browser = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     ua_wiki = "MarketDashboardBot/1.0 (https://leo555g.github.io/market2/)"
 
-    # 1. 元大台灣 50 (0050) 成分股：元大 API -> 維基百科 Template:臺灣50指數成分股票 -> 維基百科 臺灣50指數
     got_0050 = set()
     try:
         r = requests.get("https://www.yuantaetfs.com/api/StkWeights?date=&fundid=1066", headers={"User-Agent": ua_browser}, timeout=10, verify=False)
@@ -367,7 +369,6 @@ def fetch_index_constituents(old_idx_sets):
     if len(got_0050) >= 40:
         res["tw0050"] = got_0050
 
-    # 2. 標普 500 (S&P 500) 成分股
     got_sp500 = set()
     try:
         r = requests.get("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", headers={"User-Agent": ua_browser}, timeout=10)
@@ -401,7 +402,6 @@ def fetch_index_constituents(old_idx_sets):
     if len(got_sp500) >= 400:
         res["sp500"] = got_sp500
 
-    # 3. 納斯達克 100 (Nasdaq-100) 成分股
     got_ndx100 = set()
     try:
         r = requests.get("https://en.wikipedia.org/wiki/Nasdaq-100", headers={"User-Agent": ua_wiki}, timeout=10)
@@ -441,6 +441,98 @@ def fetch_index_constituents(old_idx_sets):
         res["ndx100"] = got_ndx100
 
     return res
+
+# 0.8 抓取高影響力政經官員發言與科技巨頭震撼大事 (Google News RSS 近 3 日)
+def detect_related_symbols_for_news(title_str):
+    t = str(title_str or "")
+    mapping = [
+        (["黃仁勳", "輝達", "NVIDIA", "NVDA"], ["NVDA", "^SOX"]),
+        (["台積電", "魏哲家", "TSMC", "TSM"], ["2330.TW", "TSM"]),
+        (["馬斯克", "特斯拉", "Tesla", "SpaceX"], ["TSLA"]),
+        (["蘋果", "Apple", "庫克"], ["AAPL"]),
+        (["博通", "Broadcom", "AVGO"], ["AVGO"]),
+        (["超微", "蘇姿丰", "AMD"], ["AMD"]),
+        (["微軟", "Microsoft", "OpenAI"], ["MSFT", "^NDX"]),
+        (["Google", "Alphabet", "Meta"], ["GOOGL", "META"]),
+        (["聯準會", "Fed", "鮑爾", "升息", "降息", "美債", "財政部長", "貝森特"], ["^TNX", "US2Y", "^GSPC"]),
+        (["川普", "美國總統", "白宮", "關稅", "商務部"], ["^GSPC", "^NDX", "DX-Y.NYB"]),
+        (["賴清德", "台灣總統", "行政院", "金管會", "證交所", "台灣央行", "楊金龍", "台股"], ["^TWII", "^TWOII", "TWD=X"])
+    ]
+    syms = []
+    for kws, targets in mapping:
+        if any(k.lower() in t.lower() for k in kws):
+            for s in targets:
+                if s not in syms:
+                    syms.append(s)
+    return syms[:4]
+
+def fetch_high_impact_market_news():
+    buckets = [
+        ("us_gov", "🇺🇸 美國政經與聯準會", "(川普 OR 美國總統 OR 美國財政部長 OR 聯準會 OR 鮑爾 OR 美國商務部 OR 關稅) (股市 OR 美股 OR 降息 OR 升息 OR 通膨) when:3d", 8),
+        ("tw_gov", "🇹🇼 台灣政府與監理政策", "(賴清德 OR 台灣總統 OR 行政院 OR 金管會 OR 證交所 OR 台灣央行 OR 楊金龍) (股市 OR 台股 OR 政策 OR 利率 OR 匯率) when:3d", 8),
+        ("tech_giants", "⚡ 科技巨頭與市場大事", "(黃仁勳 OR 輝達 OR 台積電 OR 魏哲家 OR 馬斯克 OR OpenAI OR 蘋果) (重大 OR 回歸 OR 宣布 OR 財報 OR 合作 OR 晶片 OR 禁令) when:3d", 8)
+    ]
+    all_items = []
+    seen_titles = set()
+
+    def _fetch_bucket(cat_key, cat_label, q_str, limit):
+        out = []
+        try:
+            url = f"https://news.google.com/rss/search?q={quote(q_str)}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
+            if r.status_code == 200:
+                root = ET.fromstring(r.content)
+                for item in root.findall("./channel/item")[:limit + 4]:
+                    raw_title = to_trad(item.findtext("title") or "").strip()
+                    source = to_trad(item.findtext("source") or "財經媒體").strip()
+                    link = item.findtext("link") or "#"
+                    pub_raw = item.findtext("pubDate") or ""
+                    clean_t = raw_title
+                    if source and clean_t.endswith(f" - {source}"):
+                        clean_t = clean_t[: -(len(source) + 3)].strip()
+                    if not clean_t or len(clean_t) < 8:
+                        continue
+                    ts = 0
+                    date_str = pub_raw[:16]
+                    try:
+                        dt_obj = parsedate_to_datetime(pub_raw)
+                        if dt_obj.tzinfo is None:
+                            dt_obj = pytz.utc.localize(dt_obj)
+                        dt_tw = dt_obj.astimezone(tw_tz)
+                        ts = int(dt_tw.timestamp())
+                        date_str = dt_tw.strftime("%m/%d %H:%M")
+                    except Exception:
+                        pass
+                    out.append({
+                        "category": cat_key,
+                        "category_label": cat_label,
+                        "title": clean_t,
+                        "source": source,
+                        "date": date_str,
+                        "ts": ts,
+                        "url": link,
+                        "related_symbols": detect_related_symbols_for_news(clean_t)
+                    })
+                    if len(out) >= limit:
+                        break
+        except Exception:
+            pass
+        return out
+
+    with ThreadPoolExecutor(max_workers=3) as ex:
+        futs = [ex.submit(_fetch_bucket, ck, cl, qs, lm) for (ck, cl, qs, lm) in buckets]
+        for fut in as_completed(futs):
+            try:
+                for it in fut.result():
+                    norm_key = re.sub(r'\W+', '', it["title"])[:24]
+                    if norm_key not in seen_titles:
+                        seen_titles.add(norm_key)
+                        all_items.append(it)
+            except Exception:
+                pass
+
+    all_items.sort(key=lambda x: x.get("ts", 0), reverse=True)
+    return all_items[:24]
 
 # 1. 官方月營收 OpenAPI (上市 + 上櫃)
 def fetch_official_tw_monthly_revenues():
@@ -567,20 +659,15 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
                     val = bytes(mj.group(1), "utf-8").decode("unicode_escape", errors="ignore")
                     val = re.sub(r'\s+', ' ', html_lib.unescape(val)).strip()
                     if len(val) >= 8:
-                        if debug:
-                            print(f"[TW Biz Debug] {code} YahooJSON extracted({len(val)} chars): {val[:35]}...")
                         return to_trad(val), "tw_yahoo_profile"
             plain = _strip_html_to_text(raw)
             m_txt = re.search(r'主要經營業務\s*\n\s*([^\n]{8,600})', plain)
             if m_txt:
                 cand = m_txt.group(1).strip()
                 if not any(bad in cand for bad in ["公司名稱", "英文簡稱", "成立時間", "上市日期", "上櫃日期"]):
-                    if debug:
-                        print(f"[TW Biz Debug] {code} YahooHTML extracted({len(cand)} chars): {cand[:35]}...")
                     return to_trad(cand), "tw_yahoo_profile"
-    except Exception as e:
-        if debug:
-            print(f"[TW Biz Debug] {code} YahooProfile err: {e}")
+    except Exception:
+        pass
 
     try:
         r_m = requests.post(
@@ -593,8 +680,6 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
             timeout=10,
             verify=False
         )
-        if debug:
-            print(f"[TW Biz Debug] {code} MOPS_t05st03 HTTP={r_m.status_code} bytes={len(r_m.content)}")
         if r_m.status_code == 200:
             r_m.encoding = "utf-8"
             parser = SimpleTableParser()
@@ -604,12 +689,9 @@ def fetch_tw_main_business_3channels(code, sym, debug=False):
                     if "主要經營業務" in cell and i + 1 < len(row):
                         cand = row[i + 1].strip()
                         if len(cand) >= 6:
-                            if debug:
-                                print(f"[TW Biz Debug] {code} MOPS extracted({len(cand)} chars): {cand[:35]}...")
                             return to_trad(cand), "mops_t05st03"
-    except Exception as e:
-        if debug:
-            print(f"[TW Biz Debug] {code} MOPS err: {e}")
+    except Exception:
+        pass
 
     try:
         r_ic = requests.get(
@@ -732,7 +814,7 @@ def enrich_us_zh_wiki_summaries(us_sym_list, us_prof_meta, cached_us_wiki, max_f
             time.sleep(0.1)
     return cached_us_wiki
 
-# 3. Google News RSS
+# 3. Google News RSS (個股)
 def fetch_google_news_rss_for_stock(query_str, max_items=3):
     news_list = []
     try:
@@ -1032,6 +1114,11 @@ TV_FUND_COLUMNS = [
     "market_cap_basic", "description", "sector", "industry"
 ]
 
+TV_US_COLUMNS = TV_FUND_COLUMNS + [
+    "premarket_close", "premarket_change", "premarket_change_abs",
+    "postmarket_close", "postmarket_change", "postmarket_change_abs"
+]
+
 def parse_tv_fundamentals(d):
     p = safe_float(d[1], 0.0) if len(d) > 1 else 0.0
     fwd_pe = fmt_num_str(d[5]) if len(d) > 5 else "N/A"
@@ -1085,14 +1172,16 @@ def fetch_tradingview_taiwan_full_market():
     return tv_stocks, tv_fund_map, tv_mcap_map, tv_prof_meta
 
 def fetch_tradingview_us_fundamentals(us_sym_list):
-    us_fund_map, us_mcap_map, us_prof_meta = {}, {}, {}
+    us_quotes_map, us_fund_map, us_mcap_map, us_prof_meta = {}, {}, {}, {}
     clean_us = [s.replace("-", ".") for s in set(us_sym_list) if s and not s.startswith("^") and "=" not in s]
     payload = {
         "filter": [{"left": "name", "operation": "in_range", "right": clean_us}],
         "options": {"lang": "zh_TW"}, "markets": ["america"],
         "symbols": {"query": {"types": []}, "tickers": []},
-        "columns": TV_FUND_COLUMNS, "range": [0, 1000]
+        "columns": TV_US_COLUMNS, "range": [0, 1000]
     }
+    ny_mins = now_ny.hour * 60 + now_ny.minute
+    is_premarket_window = (240 <= ny_mins < 570)
     try:
         r = requests.post("https://scanner.tradingview.com/america/scan", json=payload, headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}, timeout=12)
         if r.status_code == 200:
@@ -1101,6 +1190,37 @@ def fetch_tradingview_us_fundamentals(us_sym_list):
                 t_raw = str(row.get("s", ""))
                 sym = (t_raw.split(":")[-1].strip() if ":" in t_raw else str(d[0]).strip()).replace(".", "-")
                 if len(d) >= 5 and sym:
+                    p, pct, chg = safe_float(d[1], 0.0), safe_float(d[2], 0.0), safe_float(d[3], 0.0)
+                    pre_p = safe_float(d[17], 0.0) if len(d) > 17 else 0.0
+                    pre_pct = safe_float(d[18], None) if len(d) > 18 else None
+                    pre_chg = safe_float(d[19], None) if len(d) > 19 else None
+                    post_p = safe_float(d[20], 0.0) if len(d) > 20 else 0.0
+                    post_pct = safe_float(d[21], None) if len(d) > 21 else None
+                    post_chg = safe_float(d[22], None) if len(d) > 22 else None
+
+                    ext_obj = None
+                    if p > 0:
+                        if is_premarket_window and pre_p > 0:
+                            ec = round(pre_chg, 2) if pre_chg is not None else round(pre_p - p, 2)
+                            ep = round(pre_pct, 2) if pre_pct is not None else round(((pre_p - p) / p) * 100, 2)
+                            ext_obj = {"price": round(pre_p, 2), "change": ec, "change_pct": ep, "label": "盤前"}
+                        elif post_p > 0:
+                            ec = round(post_chg, 2) if post_chg is not None else round(post_p - p, 2)
+                            ep = round(post_pct, 2) if post_pct is not None else round(((post_p - p) / p) * 100, 2)
+                            ext_obj = {"price": round(post_p, 2), "change": ec, "change_pct": ep, "label": "盤後"}
+                        elif pre_p > 0:
+                            ec = round(pre_chg, 2) if pre_chg is not None else round(pre_p - p, 2)
+                            ep = round(pre_pct, 2) if pre_pct is not None else round(((pre_p - p) / p) * 100, 2)
+                            ext_obj = {"price": round(pre_p, 2), "change": ec, "change_pct": ep, "label": "盤前"}
+
+                        us_quotes_map[sym] = {
+                            "price": round(p, 2),
+                            "prev_close": round(p - chg, 2),
+                            "change": round(chg, 2),
+                            "change_pct": round(pct, 2),
+                            "ext_session": ext_obj
+                        }
+
                     us_fund_map[sym] = parse_tv_fundamentals(d)
                     mcap = safe_float(d[13], 0.0) if len(d) > 13 else 0.0
                     if mcap > 0:
@@ -1112,7 +1232,7 @@ def fetch_tradingview_us_fundamentals(us_sym_list):
                     }
     except Exception:
         pass
-    return us_fund_map, us_mcap_map, us_prof_meta
+    return us_quotes_map, us_fund_map, us_mcap_map, us_prof_meta
 
 def fetch_tradingview_futures_quotes():
     tv_fut_map = {}
@@ -1301,7 +1421,7 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                         yf_map[sym]["change_pct"] = round((chg / prev_c) * 100, 2) if prev_c > 0 else 0.0
                         yf_map[sym]["ext_session"] = None
                     elif sym in FUTURES_AND_COMMODITIES:
-                        today_us = (now_tw - datetime.timedelta(hours=13)).strftime("%Y-%m-%d")
+                        today_us = now_ny.strftime("%Y-%m-%d")
                         last_hist_date = yf_map[sym]["history"][-1]["date"] if yf_map[sym]["history"] else ""
                         settle_p = prev_c if (last_hist_date == today_us and prev_c > 0) else reg_p
                         chg = round(latest_tick_p - settle_p, 2)
@@ -1312,10 +1432,32 @@ def download_all_yf_histories_and_ext(symbols_list, us_eq_list):
                         yf_map[sym]["change_pct"] = pct
                         yf_map[sym]["ext_session"] = {"price": settle_p, "change": 0.0, "change_pct": 0.0, "label": "前日結算"}
                     else:
-                        e_chg = round(latest_tick_p - reg_p, 2)
-                        e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
-                        lbl = "盤前" if 15 <= now_tw.hour <= 22 else "盤後"
-                        yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": lbl}
+                        # 美股依美東時間嚴格切分正規盤 (09:30–16:00) 與盤前/盤後，絕不混用前一日收盤價
+                        idx_ny = closes.index.tz_convert(ny_tz) if closes.index.tz is not None else closes.index.tz_localize("UTC").tz_convert(ny_tz)
+                        latest_ts = idx_ny[-1]
+                        latest_day = latest_ts.date()
+                        mins_arr = idx_ny.hour * 60 + idx_ny.minute
+                        reg_mask = (mins_arr >= 570) & (mins_arr < 960)
+                        reg_closes = closes[reg_mask]
+                        if not reg_closes.empty:
+                            last_reg_p = round(safe_float(reg_closes.iloc[-1]), 2)
+                            last_reg_d = idx_ny[reg_mask][-1].strftime("%Y-%m-%d")
+                            hist_last_d = yf_map[sym]["history"][-1]["date"] if yf_map[sym]["history"] else ""
+                            if last_reg_p > 0 and last_reg_d > hist_last_d:
+                                prev_c = reg_p
+                                reg_p = last_reg_p
+                                chg_r = round(reg_p - prev_c, 2)
+                                yf_map[sym]["price"] = reg_p
+                                yf_map[sym]["prev_close"] = prev_c
+                                yf_map[sym]["change"] = chg_r
+                                yf_map[sym]["change_pct"] = round((chg_r / prev_c) * 100, 2) if prev_c > 0 else 0.0
+                                yf_map[sym]["history"].append({"date": last_reg_d, "close": reg_p})
+                        latest_min = latest_ts.hour * 60 + latest_ts.minute
+                        if latest_min < 570 or latest_min >= 960:
+                            e_chg = round(latest_tick_p - reg_p, 2)
+                            e_pct = round((e_chg / reg_p) * 100, 2) if reg_p > 0 else 0.0
+                            lbl = "盤前" if latest_min < 570 else "盤後"
+                            yf_map[sym]["ext_session"] = {"price": latest_tick_p, "change": e_chg, "change_pct": e_pct, "label": lbl}
                 except Exception:
                     continue
         except Exception:
@@ -1569,7 +1711,7 @@ def build_stock_specific_sentiment_and_news(symbol, display_name, f_obj, mops_by
         }
     }
 
-def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, idx_sets, fetch_rss=False):
+def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, old_assets, tw_official, us_quotes_map, us_fund_map, us_mcap_map, rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, idx_sets, fetch_rss=False):
     dec = 4 if (asset_type == "fx_rate" and symbol not in ["JPY=X", "TWD=X"]) else 2
     tw_code = symbol.split(".")[0] if (symbol.endswith(".TW") or symbol.endswith(".TWO")) else None
     y_data = yf_map.get(symbol) or {}
@@ -1606,6 +1748,21 @@ def build_asset_object(symbol, display_name, asset_type, future_group, yf_map, o
                     hist.append({"date": today_str, "close": p_val})
                 else:
                     hist[-1]["close"] = p_val
+
+    # 美股優先採用 TradingView America Scanner 最新正規盤收盤價與同基準盤前/盤後報價
+    if asset_type == "us_stock" and symbol in us_quotes_map:
+        uq = us_quotes_map[symbol]
+        if uq["price"] > 0:
+            p_val, prev_val, chg_val, pct_val = uq["price"], uq["prev_close"], uq["change"], uq["change_pct"]
+            if uq.get("ext_session") is not None:
+                ext_obj = uq["ext_session"]
+            us_today_str = now_ny.strftime("%Y-%m-%d")
+            if not hist:
+                hist = [{"date": us_today_str, "close": p_val}]
+            elif hist[-1]["date"] < us_today_str and now_ny.weekday() < 5 and (now_ny.hour >= 16 or now_ny.hour < 4):
+                hist.append({"date": us_today_str, "close": p_val})
+            else:
+                hist[-1]["close"] = p_val
 
     if p_val <= 0 and symbol in old_assets:
         oa = old_assets[symbol]
@@ -1705,6 +1862,7 @@ def main():
             "sp500": sorted(idx_sets["sp500"]),
             "ndx100": sorted(idx_sets["ndx100"])
         },
+        "high_impact_news": fetch_high_impact_market_news(),
         "indices": [], "vix_indices": [], "fear_greed": fetch_fear_and_greed_indices(),
         "us_bonds": [], "fx_rates": [], "fx_bonds": [],
         "us_stocks": [], "tw_stocks": [], "futures_commodities": [],
@@ -1724,7 +1882,7 @@ def main():
         cached_tw_biz = enrich_tw_official_main_business(all_tw_syms, cached_tw_biz, max_fetch=220)
 
         tw_official = fetch_tw_official_all_channels()
-        us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
+        us_quotes_map, us_fund_map, us_mcap_map, us_prof_meta = fetch_tradingview_us_fundamentals(all_us_eq)
         cached_us_wiki = enrich_us_zh_wiki_summaries(list(US_STOCKS) + all_us_eq, us_prof_meta, cached_us_wiki, max_fetch=35)
 
         payload["tw_chips_visual"] = fetch_twse_official_margin_and_maintenance()
@@ -1749,7 +1907,7 @@ def main():
         def get_asset(sym, name, a_type, f_group=None):
             if sym not in built_cache:
                 built_cache[sym] = build_asset_object(
-                    sym, name, a_type, f_group, yf_map, old_assets, tw_official, us_fund_map, us_mcap_map,
+                    sym, name, a_type, f_group, yf_map, old_assets, tw_official, us_quotes_map, us_fund_map, us_mcap_map,
                     rev_map, mops_by_code, tw_prof_official, us_prof_meta, cached_tw_biz, cached_us_wiki, idx_sets,
                     fetch_rss=(sym in core_rss_set)
                 )
@@ -1780,7 +1938,7 @@ def main():
 
     with open("data/market_data.json", "w", encoding="utf-8") as f:
         json.dump(clean_json_nans(payload), f, ensure_ascii=False, indent=2, allow_nan=False)
-    print(f"Success! Completed in {time.time()-t0:.1f}s. Cached TW biz: {len(cached_tw_biz)}, US wiki: {len(cached_us_wiki)} | 0050: {len(idx_sets['tw0050'])}, SP500: {len(idx_sets['sp500'])}, NDX100: {len(idx_sets['ndx100'])}")
+    print(f"Success! Completed in {time.time()-t0:.1f}s. US quotes: {len(us_quotes_map)}, High-impact news: {len(payload['high_impact_news'])} | 0050: {len(idx_sets['tw0050'])}, SP500: {len(idx_sets['sp500'])}, NDX100: {len(idx_sets['ndx100'])}")
 
 if __name__ == "__main__":
     main()
